@@ -1107,55 +1107,27 @@
 
 <!-- ═══════════════════════ CTA BANNER ═══════════════════════ -->
 <section class="py-16 bg-gradient-to-br from-fox-500 to-fox-700 relative overflow-hidden">
-    <!-- English decorations -->
+    <!-- Quality SVG illustrations -->
     <div class="absolute inset-0 pointer-events-none select-none">
-        <!-- Emoji decorations -->
-        <div class="absolute top-4 left-8 text-5xl opacity-15">🇬🇧</div>
-        <div class="absolute top-6 right-14 text-4xl opacity-15">🎓</div>
-        <div class="absolute bottom-4 left-16 text-4xl opacity-15">📚</div>
-        <div class="absolute bottom-4 right-8 text-5xl opacity-15">🇬🇧</div>
-        <div class="absolute top-1/2 left-1/4 text-3xl opacity-10 -translate-y-1/2">⭐</div>
-        <div class="absolute top-1/2 right-1/4 text-2xl opacity-10 -translate-y-1/2">✏️</div>
-        <!-- Big Ben silhouette right -->
-        <div class="absolute right-4 bottom-0 h-full flex items-end">
-            <svg class="h-[90%] w-auto text-white opacity-8" viewBox="0 0 52 108" fill="currentColor">
-                <rect x="12" y="90" width="28" height="18"/>
-                <rect x="10" y="46" width="32" height="44"/>
-                <rect x="15" y="55" width="8" height="10" rx="3" fill="rgba(255,255,255,0.12)"/>
-                <rect x="29" y="55" width="8" height="10" rx="3" fill="rgba(255,255,255,0.12)"/>
-                <rect x="6" y="32" width="40" height="16"/>
-                <circle cx="26" cy="40" r="9" fill="rgba(255,255,255,0.12)"/>
-                <rect x="6" y="30" width="6" height="8"/>
-                <rect x="40" y="30" width="6" height="8"/>
-                <rect x="12" y="10" width="28" height="22"/>
-                <polygon points="26,0 10,10 42,10"/>
-            </svg>
+        <!-- Double-decker bus — left, bottom-aligned -->
+        <div class="absolute left-0 bottom-0 flex items-end" style="height:75%; max-width:340px; transform:translateX(-8%)">
+            <img src="bus.svg" alt="" class="h-full w-auto object-contain drop-shadow-2xl" style="filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25))">
         </div>
-        <!-- Red bus silhouette left -->
-        <div class="absolute left-0 bottom-0 h-full flex items-end">
-            <svg class="h-1/3 w-auto text-white opacity-8" viewBox="0 0 200 72" fill="currentColor">
-                <rect x="0" y="14" width="190" height="50" rx="7"/>
-                <rect x="8" y="4" width="148" height="18" rx="5"/>
-                <rect x="16" y="8" width="22" height="10" rx="2" fill="rgba(255,255,255,0.08)"/>
-                <rect x="44" y="8" width="22" height="10" rx="2" fill="rgba(255,255,255,0.08)"/>
-                <rect x="72" y="8" width="22" height="10" rx="2" fill="rgba(255,255,255,0.08)"/>
-                <rect x="100" y="8" width="22" height="10" rx="2" fill="rgba(255,255,255,0.08)"/>
-                <circle cx="36" cy="62" r="10" fill="rgba(0,0,0,0.3)"/>
-                <circle cx="154" cy="62" r="10" fill="rgba(0,0,0,0.3)"/>
-            </svg>
+        <!-- Big Ben — right, bottom-aligned -->
+        <div class="absolute right-0 bottom-0 flex items-end" style="height:110%; max-width:220px; transform:translateX(12%)">
+            <img src="bigben.svg" alt="" class="h-full w-auto object-contain" style="filter: drop-shadow(0 8px 32px rgba(0,0,0,0.2))">
         </div>
     </div>
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <!-- Header -->
         <span class="inline-block bg-white/20 border border-white/30 text-white font-bold text-xs px-4 py-1.5 rounded-full mb-4 tracking-widest uppercase">Підготовка до іспитів</span>
         <h2 class="text-3xl md:text-4xl font-black text-white mb-3">Готуємо до міжнародних іспитів</h2>
         <p class="text-orange-100 text-base mb-10 max-w-xl mx-auto">Cambridge YLE, IELTS, TOEFL та інші — ваша дитина буде готова</p>
 
         <!-- Scrolling exam logos -->
-        <div class="marquee-fade overflow-hidden mb-10 -mx-4">
+        <div class="marquee-fade overflow-hidden -mx-4">
             <div class="marquee-track flex gap-4 w-max px-4">
-
-                <!-- Row 1: badges (duplicated for infinite scroll) -->
                 <template x-for="_ in [1,2]">
                     <div class="flex gap-4">
                         <!-- Cambridge English -->
@@ -1224,14 +1196,8 @@
                         </div>
                     </div>
                 </template>
-
             </div>
         </div>
-
-        <!-- CTA -->
-        <a href="#" @click.prevent="modalOpen=true"
-           class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-fox-600 font-black text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
-           x-text="t.cta.btn"></a>
     </div>
 </section>
 
