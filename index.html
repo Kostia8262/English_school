@@ -810,26 +810,79 @@
 
 
 <!-- ═══════════════════════ ADVANTAGES ═══════════════════════ -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="py-20 bg-[#1E2D4E] relative overflow-hidden">
 
-        <div class="text-center mb-14">
-            <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.adv.label"></span>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3" x-text="t.adv.title"></h2>
-            <p class="text-gray-500 text-lg max-w-xl mx-auto" x-text="t.adv.subtitle"></p>
+    <!-- Декор: великий "?" праворуч вгорі -->
+    <div class="absolute right-6 top-2 text-[200px] font-black leading-none text-white/5 pointer-events-none select-none">?</div>
+
+    <!-- Декор: сітка ромбів праворуч -->
+    <div class="absolute right-0 top-0 h-full w-52 opacity-[0.07] pointer-events-none select-none">
+        <svg width="100%" height="100%" viewBox="0 0 200 500" preserveAspectRatio="xMidYMid slice" fill="none" stroke="white" stroke-width="1.2">
+            <g>
+                <template x-for="row in 12" :key="row"><g>
+                    <template x-for="col in 5" :key="col">
+                        <polygon :points="`${(col-1)*40+20},${(row-1)*44+8} ${(col-1)*40+38},${(row-1)*44+22} ${(col-1)*40+20},${(row-1)*44+36} ${(col-1)*40+2},${(row-1)*44+22}`"/>
+                    </template>
+                </g></template>
+            </g>
+        </svg>
+    </div>
+
+    <!-- Декор: трикутники ліворуч -->
+    <div class="absolute left-6 top-1/2 -translate-y-1/2 pointer-events-none select-none space-y-2 hidden lg:block">
+        <div class="flex gap-2">
+            <template x-for="n in 5" :key="n"><svg viewBox="0 0 10 9" class="w-3 h-3 text-white/20" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg></template>
+        </div>
+        <div class="flex gap-2">
+            <template x-for="n in 4" :key="n"><svg viewBox="0 0 10 9" class="w-3 h-3 text-white/20" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg></template>
+        </div>
+    </div>
+
+    <!-- Декор: трикутники праворуч (нижче середини) -->
+    <div class="absolute right-6 bottom-1/3 pointer-events-none select-none space-y-2 hidden lg:block">
+        <div class="flex gap-2">
+            <template x-for="n in 4" :key="n"><svg viewBox="0 0 10 9" class="w-3 h-3 text-white/20" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg></template>
+        </div>
+        <div class="flex gap-2">
+            <template x-for="n in 4" :key="n"><svg viewBox="0 0 10 9" class="w-3 h-3 text-white/20" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg></template>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+
+        <!-- Великий заголовок -->
+        <div class="mb-16">
+            <h2 class="text-7xl md:text-8xl font-black text-white leading-none tracking-tight" x-text="t.adv.title"></h2>
+            <p class="text-base md:text-lg font-black text-white/70 uppercase tracking-widest mt-3" x-text="t.adv.subtitle"></p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- 6 пунктів, 3 колонки -->
+        <div class="grid md:grid-cols-3 gap-x-12 gap-y-12">
             <template x-for="(adv, i) in t.adv.items" :key="i">
-                <div class="card-lift flex items-start gap-4 bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                    <div class="w-12 h-12 bg-fox-100 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0" x-text="adv.emoji"></div>
+                <div class="flex items-start gap-5">
+                    <!-- Іконка: кружок з SVG лінійна -->
+                    <div class="w-14 h-14 rounded-full bg-white/10 border border-white/10 flex items-center justify-center flex-shrink-0">
+                        <!-- 0: Освіта — мантія/диплом -->
+                        <svg x-show="i===0" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
+                        <!-- 1: Спілкування — бульбашки чату -->
+                        <svg x-show="i===1" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+                        <!-- 2: Кар'єра — портфель -->
+                        <svg x-show="i===2" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/></svg>
+                        <!-- 3: Майбутнє — кубок -->
+                        <svg x-show="i===3" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"/></svg>
+                        <!-- 4: Подорожі — глобус -->
+                        <svg x-show="i===4" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+                        <!-- 5: Ранній старт — прапор -->
+                        <svg x-show="i===5" class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
+                    </div>
                     <div>
-                        <h3 class="font-black text-gray-900 mb-1" x-text="adv.title"></h3>
-                        <p class="text-gray-500 text-sm leading-relaxed" x-text="adv.desc"></p>
+                        <h3 class="font-black text-white text-base mb-2" x-text="adv.title"></h3>
+                        <p class="text-white/55 text-sm leading-relaxed" x-text="adv.desc"></p>
                     </div>
                 </div>
             </template>
         </div>
+
     </div>
 </section>
 
@@ -1695,16 +1748,16 @@ uk: {
     },
 
     adv: {
-        label:    'Чому FluentFox',
-        title:    'Ми не просто навчаємо — ми закохуємо в мову',
-        subtitle: 'Переваги, які відрізняють нас від звичайних курсів',
+        label:    '',
+        title:    'ЧОМУ',
+        subtitle: 'ВАШІЙ ДИТИНІ ВАЖЛИВО ЗНАТИ АНГЛІЙСЬКУ МОВУ',
         items: [
-            { emoji: '🎮', title: 'Ігровий підхід',       desc: 'Кожен урок — це пригода. Ігри, відео та інтерактивні завдання замість нудних підручників.' },
-            { emoji: '👩‍🏫', title: 'Живі вчителі',         desc: 'Тільки живе спілкування. Ніяких ботів, записів і самостійного навчання без підтримки.' },
-            { emoji: '👥', title: 'Малі групи',            desc: 'Максимум 6 учнів у групі. Кожна дитина у фокусі уваги вчителя.' },
-            { emoji: '🕐', title: 'Гнучкий розклад',      desc: 'Зранку, після школи чи ввечері — обираєте зручний час.' },
-            { emoji: '📊', title: 'Звіт щомісяця',        desc: 'Батьки отримують детальний звіт про прогрес дитини кожного місяця.' },
-            { emoji: '🏆', title: 'Сертифікат FluentFox', desc: 'Після завершення курсу — офіційний сертифікат, який підтверджує рівень.' },
+            { emoji: '🎓', title: 'Освіта',        desc: 'Англійська — офіційна мова провідних університетів світу. Знання відкриє двері до найкращих вишів Європи, США та Канади.' },
+            { emoji: '💬', title: 'Спілкування',   desc: 'Вільно розмовляти з людьми з будь-якого куточка планети — безцінна навичка, яка допоможе дитині знаходити друзів та партнерів по всьому світу.' },
+            { emoji: '💼', title: 'Кар\'єра',      desc: 'Англійська підвищує цінність фахівця у рази. Міжнародні компанії, IT-фриланс і дистанційна робота з будь-якої точки — все стає реальним.' },
+            { emoji: '🏆', title: 'Майбутнє',      desc: 'Вкладаючи в англійську сьогодні, ви даруєте дитині конкурентну перевагу на десятиліття вперед. Ця інвестиція окупається тисячократно.' },
+            { emoji: '✈️', title: 'Подорожі',      desc: 'Готелі, ресторани та музеї в будь-якій країні мають англійський інтерфейс. Дитина, яка вільно говорить, почуватиметься впевнено де завгодно.' },
+            { emoji: '⭐', title: 'Ранній старт',  desc: 'Діти засвоюють мови природно та без зусиль. Чим раніше розпочати — тим органічнішою стає англійська, мов справді рідна.' },
         ],
     },
 
@@ -2012,16 +2065,16 @@ ru: {
     },
 
     adv: {
-        label:    'Почему FluentFox',
-        title:    'Мы не просто учим — мы влюбляем в язык',
-        subtitle: 'Преимущества, которые отличают нас от обычных курсов',
+        label:    '',
+        title:    'ПОЧЕМУ',
+        subtitle: 'ВАШЕМУ РЕБЁНКУ ВАЖНО ЗНАТЬ АНГЛИЙСКИЙ ЯЗЫК',
         items: [
-            { emoji: '🎮', title: 'Игровой подход',         desc: 'Каждый урок — это приключение. Игры, видео и интерактивные задания вместо скучных учебников.' },
-            { emoji: '👩‍🏫', title: 'Живые учителя',          desc: 'Только живое общение. Никаких ботов, записей и самостоятельного обучения без поддержки.' },
-            { emoji: '👥', title: 'Маленькие группы',       desc: 'Максимум 6 учеников в группе. Каждый ребёнок в фокусе внимания учителя.' },
-            { emoji: '🕐', title: 'Гибкое расписание',     desc: 'Утром, после школы или вечером — выбираете удобное время.' },
-            { emoji: '📊', title: 'Отчёт каждый месяц',    desc: 'Родители получают подробный отчёт о прогрессе ребёнка каждый месяц.' },
-            { emoji: '🏆', title: 'Сертификат FluentFox',  desc: 'После завершения курса — официальный сертификат, подтверждающий уровень.' },
+            { emoji: '🎓', title: 'Образование',       desc: 'Английский — официальный язык ведущих университетов мира. Знание языка открывает двери в лучшие вузы Европы, США и Канады.' },
+            { emoji: '💬', title: 'Общение',           desc: 'Свободно говорить с людьми из любой точки планеты — бесценный навык, который поможет ребёнку находить друзей и партнёров по всему миру.' },
+            { emoji: '💼', title: 'Карьера',           desc: 'Английский повышает ценность специалиста многократно. Международные компании, IT-фриланс и удалённая работа из любой точки — всё становится реальным.' },
+            { emoji: '🏆', title: 'Будущее',           desc: 'Инвестируя в английский сегодня, вы дарите ребёнку конкурентное преимущество на десятилетия вперёд. Эта инвестиция окупается тысячекратно.' },
+            { emoji: '✈️', title: 'Путешествия',       desc: 'Отели, рестораны и музеи в любой стране — на английском. Ребёнок, который свободно говорит, будет чувствовать себя уверенно в любой точке мира.' },
+            { emoji: '⭐', title: 'Ранний старт',      desc: 'Дети усваивают языки естественно и легко. Чем раньше начать — тем органичнее английский становится родным.' },
         ],
     },
 
