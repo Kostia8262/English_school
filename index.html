@@ -889,7 +889,7 @@
 
 <!-- ═══════════════════════ PRICING ═══════════════════════ -->
 <section id="prices" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-14">
             <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.pricing.label"></span>
@@ -897,38 +897,64 @@
             <p class="text-gray-500 text-lg max-w-xl mx-auto" x-text="t.pricing.subtitle"></p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6 items-stretch">
+        <div class="grid md:grid-cols-3 gap-5 items-start">
             <template x-for="(plan, i) in t.pricing.plans" :key="i">
-                <div :class="plan.highlight ? 'price-highlight' : 'bg-white border-2 border-gray-100 card-lift'"
-                     class="rounded-3xl p-8 relative flex flex-col">
-                    <!-- Popular badge -->
-                    <div x-show="plan.highlight" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 text-xs font-black px-4 py-1 rounded-full shadow" x-text="t.pricing.popular"></div>
+                <div :class="plan.highlight ? 'bg-[#2B4EAD]' : 'bg-white border-2 border-gray-100 shadow-sm'"
+                     class="rounded-3xl p-8 relative">
 
-                    <div class="text-3xl mb-3" x-text="plan.emoji"></div>
-                    <h3 class="text-xl font-black mb-1" :class="plan.highlight ? 'text-white' : 'text-gray-900'" x-text="plan.name"></h3>
-                    <p class="text-sm mb-6" :class="plan.highlight ? 'text-orange-100' : 'text-gray-400'" x-text="plan.desc"></p>
-
-                    <div class="mb-6">
-                        <span class="text-4xl font-black" :class="plan.highlight ? 'text-white' : 'text-gray-900'" x-text="plan.price"></span>
-                        <span class="text-sm ml-1" :class="plan.highlight ? 'text-orange-100' : 'text-gray-400'" x-text="t.pricing.perMonth"></span>
+                    <!-- Лейбл вгорі -->
+                    <div class="flex items-center gap-2 mb-8">
+                        <span x-show="plan.labelDot" class="w-2.5 h-2.5 rounded-full bg-red-500 flex-shrink-0 animate-pulse"></span>
+                        <span class="text-[11px] font-black tracking-widest uppercase"
+                              :class="plan.highlight ? 'text-white/70' : 'text-gray-500'"
+                              x-text="plan.label"></span>
                     </div>
 
-                    <ul class="space-y-3 mb-8 flex-1">
-                        <template x-for="feat in plan.features" :key="feat">
-                            <li class="flex items-start gap-2.5">
-                                <span class="check-icon w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                                      :class="plan.highlight ? 'bg-white/25' : 'bg-fox-100'">
-                                    <svg class="w-3 h-3" :class="plan.highlight ? 'text-white' : 'text-fox-600'" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                                </span>
-                                <span class="text-sm font-500" :class="plan.highlight ? 'text-white' : 'text-gray-600'" x-text="feat"></span>
-                            </li>
-                        </template>
-                    </ul>
+                    <!-- Корона (тільки виділений) -->
+                    <div x-show="plan.crown" class="text-3xl mb-5">👑</div>
 
-                    <a href="#" @click.prevent="modalOpen=true"
-                       class="btn-action block text-center font-black py-3 rounded-full transition-all hover:-translate-y-0.5 shadow-md hover:shadow-lg"
-                       :class="plan.highlight ? 'bg-white text-fox-600 hover:bg-gray-50' : 'bg-fox-500 hover:bg-fox-600 text-white'"
-                       x-text="t.pricing.cta"></a>
+                    <!-- Ціна + бейдж "8 занять" -->
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-5xl font-black leading-none"
+                                  :class="plan.highlight ? 'text-white' : 'text-gray-900'"
+                                  x-text="plan.priceNum"></span>
+                            <span class="text-lg font-bold"
+                                  :class="plan.highlight ? 'text-white/60' : 'text-gray-400'">грн.</span>
+                        </div>
+                        <!-- "8 занять" бейдж -->
+                        <div x-show="plan.lessons"
+                             class="rounded-2xl px-3 py-2.5 text-center flex-shrink-0"
+                             :class="plan.highlight ? 'bg-[#1A3888]' : 'bg-[#2B4EAD]'">
+                            <div class="text-xl font-black text-white leading-none" x-text="plan.lessons"></div>
+                            <div class="text-[10px] font-bold text-white/70 mt-0.5" x-text="t.pricing.lessonsWord"></div>
+                        </div>
+                    </div>
+
+                    <!-- "за 1 заняття" -->
+                    <p class="text-sm mb-5"
+                       :class="plan.highlight ? 'text-white/50' : 'text-gray-400'"
+                       x-text="t.pricing.perLesson"></p>
+
+                    <!-- Нотатка про графік (тільки індивідуальний) -->
+                    <div x-show="plan.scheduleNote"
+                         class="inline-block bg-[#2B4EAD] text-white text-xs font-black px-5 py-2.5 rounded-xl mb-5">
+                        <span x-text="t.pricing.scheduleNote"></span>
+                    </div>
+
+                    <!-- Роздільник -->
+                    <div :class="plan.highlight ? 'border-white/15' : 'border-gray-100'" class="border-t my-5"></div>
+
+                    <!-- Підсумок за місяць -->
+                    <div>
+                        <span class="text-lg font-black"
+                              :class="plan.highlight ? 'text-white' : 'text-[#2B4EAD]'"
+                              x-text="plan.monthly"></span>
+                        <span class="text-sm ml-1"
+                              :class="plan.highlight ? 'text-white/50' : 'text-gray-400'"
+                              x-text="plan.monthlyDesc"></span>
+                    </div>
+
                 </div>
             </template>
         </div>
@@ -939,7 +965,7 @@
 
 
 <!-- ═══════════════════════ TEACHERS ═══════════════════════ -->
-<section id="teachers" class="py-20 bg-fox-50">
+<section id="teachers" class="py-20 bg-fox-50 hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-14">
@@ -1800,37 +1826,46 @@ uk: {
     },
 
     pricing: {
-        label:    'Ціни',
-        title:    'Прозорі тарифи',
-        subtitle: 'Без прихованих платежів і зайвих зобов\'язань',
-        perMonth: '/ місяць',
-        popular:  '🔥 Популярний',
-        cta:      'Записатись',
-        note:     '* При оплаті за 3 місяці — знижка 10%. При записі 2 дітей з сім\'ї — знижка 15% на другу дитину.',
+        label:        'Ціни',
+        title:        'Прозорі ціни',
+        subtitle:     'Без прихованих платежів і зайвих умов',
+        lessonsWord:  'занять',
+        perLesson:    'за 1 заняття',
+        scheduleNote: 'Індивідуальний графік занять',
+        note:         '* Перший пробний урок — безкоштовно. При записі двох дітей з родини — знижка 10%.',
         plans: [
             {
-                emoji:     '👥',
-                name:      'Груповий',
-                desc:      '4–6 учнів, 8 уроків на місяць',
-                price:     '1 299 грн',
-                highlight: false,
-                features:  ['8 уроків по 55 хвилин', 'Група до 6 учнів', 'Доступ до матеріалів', 'Чат з вчителем', 'Щомісячний звіт', 'Сертифікат'],
+                label:       'ОНЛАЙН ІНДИВІДУАЛЬНО',
+                labelDot:    true,
+                crown:       false,
+                priceNum:    '450',
+                lessons:     null,
+                scheduleNote: true,
+                monthly:     '3 600 грн',
+                monthlyDesc: 'в місяць, за 8 занять',
+                highlight:   false,
             },
             {
-                emoji:     '🎯',
-                name:      'Індивідуальний',
-                desc:      'Повна увага, 8 уроків на місяць',
-                price:     '2 799 грн',
-                highlight: true,
-                features:  ['8 уроків по 55 хвилин', 'Повна увага вчителя', 'Індивідуальний план', 'Запис уроків', 'Пріоритетна підтримка', 'Сертифікат'],
+                label:       'ОНЛАЙН У ГРУПІ',
+                labelDot:    false,
+                crown:       true,
+                priceNum:    '200',
+                lessons:     '8',
+                scheduleNote: false,
+                monthly:     '1 600 грн',
+                monthlyDesc: 'вартість у місяць',
+                highlight:   true,
             },
             {
-                emoji:     '⚡',
-                name:      'Інтенсив',
-                desc:      'Максимум прогресу, 12 уроків',
-                price:     '3 999 грн',
-                highlight: false,
-                features:  ['12 уроків по 55 хвилин', 'Індивідуальна програма', 'Підготовка до іспитів', 'Запис уроків', 'Зв\'язок 24/7', 'Сертифікат'],
+                label:       'ОФЛАЙН',
+                labelDot:    true,
+                crown:       false,
+                priceNum:    '500',
+                lessons:     '8',
+                scheduleNote: false,
+                monthly:     '4 000 грн',
+                monthlyDesc: 'вартість у місяць',
+                highlight:   false,
             },
         ],
     },
@@ -2117,37 +2152,46 @@ ru: {
     },
 
     pricing: {
-        label:    'Цены',
-        title:    'Прозрачные тарифы',
-        subtitle: 'Без скрытых платежей и лишних обязательств',
-        perMonth: '/ месяц',
-        popular:  '🔥 Популярный',
-        cta:      'Записаться',
-        note:     '* При оплате за 3 месяца — скидка 10%. При записи 2 детей из семьи — скидка 15% на второго ребёнка.',
+        label:        'Цены',
+        title:        'Прозрачные цены',
+        subtitle:     'Без скрытых платежей и лишних условий',
+        lessonsWord:  'уроков',
+        perLesson:    'за 1 урок',
+        scheduleNote: 'Индивидуальный график занятий',
+        note:         '* Первый пробный урок — бесплатно. При записи двух детей из семьи — скидка 10%.',
         plans: [
             {
-                emoji:     '👥',
-                name:      'Групповой',
-                desc:      '4–6 учеников, 8 уроков в месяц',
-                price:     '1 299 грн',
-                highlight: false,
-                features:  ['8 уроков по 55 минут', 'Группа до 6 учеников', 'Доступ к материалам', 'Чат с учителем', 'Ежемесячный отчёт', 'Сертификат'],
+                label:       'ОНЛАЙН ИНДИВИДУАЛЬНО',
+                labelDot:    true,
+                crown:       false,
+                priceNum:    '450',
+                lessons:     null,
+                scheduleNote: true,
+                monthly:     '3 600 грн',
+                monthlyDesc: 'в месяц, за 8 занятий',
+                highlight:   false,
             },
             {
-                emoji:     '🎯',
-                name:      'Индивидуальный',
-                desc:      'Полное внимание, 8 уроков в месяц',
-                price:     '2 799 грн',
-                highlight: true,
-                features:  ['8 уроков по 55 минут', 'Полное внимание учителя', 'Индивидуальный план', 'Запись уроков', 'Приоритетная поддержка', 'Сертификат'],
+                label:       'ОНЛАЙН В ГРУППЕ',
+                labelDot:    false,
+                crown:       true,
+                priceNum:    '200',
+                lessons:     '8',
+                scheduleNote: false,
+                monthly:     '1 600 грн',
+                monthlyDesc: 'стоимость в месяц',
+                highlight:   true,
             },
             {
-                emoji:     '⚡',
-                name:      'Интенсив',
-                desc:      'Максимум прогресса, 12 уроков',
-                price:     '3 999 грн',
-                highlight: false,
-                features:  ['12 уроков по 55 минут', 'Индивидуальная программа', 'Подготовка к экзаменам', 'Запись уроков', 'Связь 24/7', 'Сертификат'],
+                label:       'ОФЛАЙН',
+                labelDot:    true,
+                crown:       false,
+                priceNum:    '500',
+                lessons:     '8',
+                scheduleNote: false,
+                monthly:     '4 000 грн',
+                monthlyDesc: 'стоимость в месяц',
+                highlight:   false,
             },
         ],
     },
