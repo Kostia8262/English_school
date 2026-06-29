@@ -250,6 +250,11 @@
 
             <!-- Right side -->
             <div class="flex items-center gap-3">
+                <!-- Phone numbers (desktop only) -->
+                <div class="hidden lg:flex flex-col items-end gap-0 leading-tight mr-1">
+                    <a href="tel:+380954624672" class="text-xs font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight">+38 (095) 462-46-72</a>
+                    <a href="tel:+380682522876" class="text-xs text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
+                </div>
                 <!-- Language switcher -->
                 <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-xs font-bold">
                     <button
@@ -349,50 +354,159 @@
             <!-- Fox illustration side -->
             <div class="flex justify-center items-center">
                 <div class="fox-float relative">
-                    <!-- Main fox SVG -->
-                    <svg viewBox="0 0 300 320" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-64 h-64 md:w-80 md:h-80 drop-shadow-2xl">
+                    <!-- Main fox SVG — detailed student character -->
+                    <svg viewBox="0 0 320 370" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-64 h-64 md:w-80 md:h-80 drop-shadow-2xl">
+                        <!-- BG glow -->
+                        <ellipse cx="160" cy="185" rx="130" ry="160" fill="#FF6B35" opacity="0.06"/>
+                        <!-- Floating letters -->
+                        <text x="18" y="115" font-family="Arial Black,sans-serif" font-size="15" font-weight="900" fill="#FF6B35" opacity="0.22" transform="rotate(-12 26 108)">A</text>
+                        <text x="284" y="148" font-family="Arial Black,sans-serif" font-size="14" font-weight="900" fill="#7C3AED" opacity="0.2" transform="rotate(8 291 141)">B</text>
+                        <text x="290" y="78" font-family="Arial Black,sans-serif" font-size="13" font-weight="900" fill="#FFD700" opacity="0.35" transform="rotate(-6 297 71)">C</text>
+                        <!-- Star sparkle top right -->
+                        <polygon points="278,44 280,51 287,51 281,56 283,63 278,58 273,63 275,56 269,51 276,51" fill="#FFD700" opacity="0.6"/>
+                        <!-- Small star left -->
+                        <polygon points="36,68 37,73 42,73 38,76 40,81 36,78 32,81 34,76 30,73 35,73" fill="#FF6B35" opacity="0.4"/>
+
                         <!-- Shadow -->
-                        <ellipse cx="150" cy="305" rx="72" ry="12" fill="#FFB38A" opacity="0.35"/>
-                        <!-- Tail -->
-                        <path d="M82 228 C42 252 30 285 56 300 C82 315 114 290 116 262 C120 242 110 228 100 228Z" fill="#FF6B35"/>
-                        <path d="M58 298 C46 287 62 272 76 282Z" fill="#FFF0E8"/>
-                        <!-- Body -->
-                        <ellipse cx="152" cy="218" rx="62" ry="70" fill="#FF6B35"/>
+                        <ellipse cx="162" cy="358" rx="76" ry="10" fill="rgba(0,0,0,0.09)"/>
+
+                        <!-- TAIL (right side, curled) -->
+                        <path d="M222 272 C268 252 292 292 278 336 C266 372 232 364 220 332 C212 308 222 272 222 272Z" fill="#FF6B35"/>
+                        <ellipse cx="262" cy="342" rx="20" ry="15" fill="#FFF0E8" transform="rotate(-25 262 342)"/>
+                        <!-- Tail stripe detail -->
+                        <path d="M236 290 C255 278 272 298 265 318" stroke="#E05500" stroke-width="1.5" fill="none" opacity="0.3"/>
+
+                        <!-- BODY -->
+                        <ellipse cx="162" cy="268" rx="74" ry="78" fill="#FF6B35"/>
+                        <!-- Body shading -->
+                        <ellipse cx="148" cy="248" rx="30" ry="22" fill="white" opacity="0.07"/>
                         <!-- Belly -->
-                        <ellipse cx="152" cy="232" rx="34" ry="44" fill="#FFF0E8"/>
-                        <!-- Legs -->
-                        <rect x="108" y="268" width="22" height="30" rx="11" fill="#FF6B35"/>
-                        <rect x="152" y="268" width="22" height="30" rx="11" fill="#FF6B35"/>
-                        <ellipse cx="119" cy="297" rx="14" ry="8" fill="#FF8C5A"/>
-                        <ellipse cx="163" cy="297" rx="14" ry="8" fill="#FF8C5A"/>
-                        <!-- Head -->
-                        <ellipse cx="152" cy="116" rx="60" ry="56" fill="#FF6B35"/>
-                        <!-- Ears -->
-                        <polygon points="98,78 74,22 126,62" fill="#FF6B35"/>
-                        <polygon points="206,78 224,22 180,62" fill="#FF6B35"/>
-                        <polygon points="101,72 84,34 122,59" fill="#FF9966"/>
-                        <polygon points="203,72 212,34 183,59" fill="#FF9966"/>
-                        <!-- Face patch -->
-                        <ellipse cx="152" cy="130" rx="38" ry="34" fill="#FFF0E8"/>
-                        <!-- Eyes -->
-                        <ellipse cx="133" cy="112" rx="12" ry="13" fill="white"/>
-                        <ellipse cx="171" cy="112" rx="12" ry="13" fill="white"/>
-                        <circle cx="135" cy="113" r="8" fill="#222233"/>
-                        <circle cx="173" cy="113" r="8" fill="#222233"/>
-                        <circle cx="138" cy="110" r="3" fill="white"/>
-                        <circle cx="176" cy="110" r="3" fill="white"/>
-                        <!-- Nose -->
-                        <ellipse cx="152" cy="132" rx="7" ry="5" fill="#222233"/>
-                        <!-- Smile -->
-                        <path d="M143 139 Q152 147 161 139" stroke="#222233" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                        <!-- Blush -->
-                        <ellipse cx="116" cy="126" rx="10" ry="7" fill="#FFB347" opacity="0.45"/>
-                        <ellipse cx="188" cy="126" rx="10" ry="7" fill="#FFB347" opacity="0.45"/>
-                        <!-- Book -->
-                        <rect x="104" y="176" width="54" height="40" rx="6" fill="#7C3AED" transform="rotate(-6 131 196)"/>
-                        <rect x="106" y="178" width="52" height="38" rx="5" fill="#9F67E4" transform="rotate(-6 131 196)"/>
-                        <rect x="129" y="176" width="4" height="40" fill="#6D28D9" transform="rotate(-6 131 196)"/>
-                        <text x="110" y="201" font-family="Arial,sans-serif" font-size="12" font-weight="bold" fill="white" transform="rotate(-6 131 196)">A B C</text>
+                        <ellipse cx="162" cy="282" rx="44" ry="56" fill="#FFF0E8"/>
+
+                        <!-- LEFT LEG -->
+                        <ellipse cx="124" cy="336" rx="24" ry="16" fill="#FF6B35" transform="rotate(-18 124 336)"/>
+                        <ellipse cx="112" cy="352" rx="20" ry="11" fill="#FF8C5A"/>
+                        <!-- Left paw toes -->
+                        <path d="M100 350 Q107 357 112 353 Q117 357 124 350" stroke="#E05500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+                        <!-- RIGHT LEG -->
+                        <ellipse cx="200" cy="336" rx="24" ry="16" fill="#FF6B35" transform="rotate(18 200 336)"/>
+                        <ellipse cx="212" cy="352" rx="20" ry="11" fill="#FF8C5A"/>
+                        <path d="M200 350 Q207 357 212 353 Q217 357 224 350" stroke="#E05500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+                        <!-- LEFT ARM (holding book, forward) -->
+                        <path d="M100 234 C72 254 68 284 84 306 C94 320 116 310 120 290 C126 268 116 248 100 234Z" fill="#FF6B35"/>
+                        <ellipse cx="84" cy="310" rx="16" ry="11" fill="#FF8C5A" transform="rotate(20 84 310)"/>
+
+                        <!-- RIGHT ARM -->
+                        <path d="M224 234 C252 254 256 284 240 306 C230 320 208 310 204 290 C198 268 208 248 224 234Z" fill="#FF6B35"/>
+                        <ellipse cx="240" cy="310" rx="16" ry="11" fill="#FF8C5A" transform="rotate(-20 240 310)"/>
+
+                        <!-- BOOK (between arms) -->
+                        <rect x="105" y="266" width="78" height="62" rx="7" fill="rgba(0,0,0,0.12)" transform="rotate(-7 144 297) translate(3,3)"/>
+                        <rect x="105" y="266" width="78" height="62" rx="7" fill="#5B21B6" transform="rotate(-7 144 297)"/>
+                        <rect x="140" y="266" width="43" height="62" rx="5" fill="#7C3AED" transform="rotate(-7 144 297)"/>
+                        <rect x="135" y="266" width="8" height="62" fill="#4C1D95" transform="rotate(-7 144 297)"/>
+                        <!-- Pages edge -->
+                        <rect x="183" y="268" width="3" height="58" rx="1" fill="#e8d5ff" opacity="0.5" transform="rotate(-7 144 297)"/>
+                        <!-- ABC text -->
+                        <text x="112" y="303" font-family="Arial Black,sans-serif" font-size="17" font-weight="900" fill="white" transform="rotate(-7 144 297)">ABC</text>
+                        <!-- Book star -->
+                        <text x="143" y="320" font-family="Arial,sans-serif" font-size="13" fill="#FFD700" transform="rotate(-7 144 297)">★</text>
+
+                        <!-- HEAD -->
+                        <ellipse cx="162" cy="144" rx="72" ry="68" fill="#FF6B35"/>
+                        <!-- Head top sheen -->
+                        <ellipse cx="146" cy="106" rx="30" ry="16" fill="white" opacity="0.07"/>
+
+                        <!-- EARS -->
+                        <polygon points="96,92 72,28 136,70" fill="#FF6B35"/>
+                        <polygon points="228,92 248,28 190,70" fill="#FF6B35"/>
+                        <!-- Ear inner -->
+                        <polygon points="100,85 83,42 130,67" fill="#FFB399"/>
+                        <polygon points="224,85 238,42 196,67" fill="#FFB399"/>
+                        <polygon points="104,80 90,52 126,65" fill="#FF9977" opacity="0.45"/>
+                        <polygon points="220,80 230,52 198,65" fill="#FF9977" opacity="0.45"/>
+
+                        <!-- GRADUATION CAP -->
+                        <rect x="106" y="76" width="90" height="13" rx="3" fill="#1E293B" transform="rotate(-10 151 82)"/>
+                        <rect x="148" y="60" width="18" height="18" fill="#1E293B" transform="rotate(-10 157 69)"/>
+                        <rect x="106" y="73" width="90" height="7" rx="2" fill="#334155" transform="rotate(-10 151 76)"/>
+                        <!-- Tassel string -->
+                        <line x1="193" y1="69" x2="202" y2="93" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Tassel ball -->
+                        <circle cx="202" cy="96" r="5" fill="#FFD700"/>
+                        <!-- Tassel fringe -->
+                        <line x1="199" y1="93" x2="196" y2="104" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="202" y1="95" x2="201" y2="106" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="205" y1="93" x2="207" y2="104" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
+
+                        <!-- FACE PATCH -->
+                        <ellipse cx="162" cy="158" rx="48" ry="43" fill="#FFF0E8"/>
+
+                        <!-- EYEBROWS -->
+                        <path d="M128 120 Q140 113 153 118" stroke="#C44000" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+                        <path d="M171 118 Q184 113 196 120" stroke="#C44000" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+                        <!-- LEFT EYE -->
+                        <ellipse cx="141" cy="140" rx="16" ry="17" fill="white"/>
+                        <circle cx="143" cy="141" r="11" fill="#1A1A2E"/>
+                        <circle cx="143" cy="141" r="7" fill="#2A3F10"/>
+                        <circle cx="143" cy="142" r="5" fill="#0A0A15"/>
+                        <circle cx="147" cy="136" r="4" fill="white"/>
+                        <circle cx="141" cy="147" r="1.8" fill="white" opacity="0.55"/>
+
+                        <!-- RIGHT EYE -->
+                        <ellipse cx="183" cy="140" rx="16" ry="17" fill="white"/>
+                        <circle cx="181" cy="141" r="11" fill="#1A1A2E"/>
+                        <circle cx="181" cy="141" r="7" fill="#2A3F10"/>
+                        <circle cx="181" cy="142" r="5" fill="#0A0A15"/>
+                        <circle cx="185" cy="136" r="4" fill="white"/>
+                        <circle cx="179" cy="147" r="1.8" fill="white" opacity="0.55"/>
+
+                        <!-- Eyelashes left -->
+                        <line x1="129" y1="127" x2="125" y2="121" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="139" y1="123" x2="137" y2="117" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="149" y1="124" x2="149" y2="118" stroke="#C44000" stroke-width="1.5" stroke-linecap="round"/>
+                        <!-- Eyelashes right -->
+                        <line x1="195" y1="127" x2="199" y2="121" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="185" y1="123" x2="187" y2="117" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="175" y1="124" x2="175" y2="118" stroke="#C44000" stroke-width="1.5" stroke-linecap="round"/>
+
+                        <!-- NOSE -->
+                        <ellipse cx="162" cy="165" rx="9" ry="6.5" fill="#993300"/>
+                        <ellipse cx="162" cy="163" rx="9" ry="6.5" fill="#CC3300"/>
+                        <ellipse cx="159" cy="161" rx="3" ry="2" fill="rgba(255,255,255,0.38)"/>
+
+                        <!-- MOUTH -->
+                        <path d="M150 174 Q162 185 174 174" stroke="#CC3300" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M149 173 Q145 178 147 183" stroke="#FFAA88" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                        <path d="M175 173 Q179 178 177 183" stroke="#FFAA88" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+                        <!-- CHEEK BLUSH -->
+                        <ellipse cx="116" cy="158" rx="16" ry="10" fill="#FF9966" opacity="0.42"/>
+                        <ellipse cx="208" cy="158" rx="16" ry="10" fill="#FF9966" opacity="0.42"/>
+                        <circle cx="113" cy="156" r="2" fill="#FF7755" opacity="0.28"/>
+                        <circle cx="121" cy="162" r="1.5" fill="#FF7755" opacity="0.28"/>
+                        <circle cx="205" cy="156" r="2" fill="#FF7755" opacity="0.28"/>
+                        <circle cx="213" cy="162" r="1.5" fill="#FF7755" opacity="0.28"/>
+
+                        <!-- WHISKERS -->
+                        <line x1="120" y1="164" x2="94" y2="157" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="120" y1="170" x2="92" y2="170" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="120" y1="176" x2="96" y2="180" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="204" y1="164" x2="230" y2="157" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="204" y1="170" x2="232" y2="170" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="204" y1="176" x2="228" y2="180" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+
+                        <!-- PENCIL (right side, floating) -->
+                        <g transform="rotate(28 280 218)">
+                            <rect x="270" y="192" width="10" height="46" rx="2" fill="#FFD700"/>
+                            <polygon points="270,238 280,238 275,252" fill="#FF6B35"/>
+                            <polygon points="270,238 280,238 275,246" fill="#FFF0E8"/>
+                            <rect x="270" y="192" width="10" height="7" rx="1" fill="#FFAABB"/>
+                            <rect x="270" y="199" width="10" height="3" fill="#888"/>
+                        </g>
                     </svg>
 
                     <!-- Floating badges around fox -->
@@ -487,31 +601,6 @@
 </section>
 
 
-<!-- ═══════════════════════ ADVANTAGES ═══════════════════════ -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center mb-14">
-            <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.adv.label"></span>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3" x-text="t.adv.title"></h2>
-            <p class="text-gray-500 text-lg max-w-xl mx-auto" x-text="t.adv.subtitle"></p>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <template x-for="(adv, i) in t.adv.items" :key="i">
-                <div class="card-lift flex items-start gap-4 bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                    <div class="w-12 h-12 bg-fox-100 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0" x-text="adv.emoji"></div>
-                    <div>
-                        <h3 class="font-black text-gray-900 mb-1" x-text="adv.title"></h3>
-                        <p class="text-gray-500 text-sm leading-relaxed" x-text="adv.desc"></p>
-                    </div>
-                </div>
-            </template>
-        </div>
-    </div>
-</section>
-
-
 <!-- ═══════════════════════ PROGRAM (TABS) ═══════════════════════ -->
 <section id="program" class="py-20 bg-violet-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -564,6 +653,31 @@
                                 </template>
                             </ul>
                         </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ ADVANTAGES ═══════════════════════ -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-14">
+            <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.adv.label"></span>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3" x-text="t.adv.title"></h2>
+            <p class="text-gray-500 text-lg max-w-xl mx-auto" x-text="t.adv.subtitle"></p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <template x-for="(adv, i) in t.adv.items" :key="i">
+                <div class="card-lift flex items-start gap-4 bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                    <div class="w-12 h-12 bg-fox-100 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0" x-text="adv.emoji"></div>
+                    <div>
+                        <h3 class="font-black text-gray-900 mb-1" x-text="adv.title"></h3>
+                        <p class="text-gray-500 text-sm leading-relaxed" x-text="adv.desc"></p>
                     </div>
                 </div>
             </template>
@@ -1049,7 +1163,7 @@
                             </div>
                         </div>
 
-                        <p class="text-xs text-gray-400 text-center" x-text="t.form.privacy"></p>
+                        <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore"></span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink"></a><span x-text="t.form.privacyAfter"></span></p>
                     </form>
                 </div>
             </div>
@@ -1187,7 +1301,7 @@
                     </div>
                 </div>
 
-                <p class="text-xs text-gray-400 text-center" x-text="t.form.privacy"></p>
+                <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore"></span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink"></a><span x-text="t.form.privacyAfter"></span></p>
             </form>
         </div>
     </div>
@@ -1277,7 +1391,7 @@
         <div class="border-t border-gray-800 py-4">
             <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs justify-center md:justify-start">
                 <template x-for="link in t.footer.legalLinks" :key="link.label">
-                    <a href="#" class="hover:text-fox-400 transition-colors" x-text="link.label"></a>
+                    <a :href="link.href" class="hover:text-fox-400 transition-colors" x-text="link.label"></a>
                 </template>
             </div>
         </div>
@@ -1315,12 +1429,12 @@ uk: {
 
     hero: {
         badge:     'Перший урок — безкоштовно!',
-        titleLine1:'Англійська,',
-        titleLine2:'яку діти',
-        titleLine3:'обожнюють 🦊',
-        subtitle:  'Онлайн-школа для дітей та підлітків 6–16 років. Ігровий підхід, живі вчителі, реальний результат.',
+        titleLine1:'Онлайн англійська',
+        titleLine2:'для дітей та підлітків',
+        titleLine3:'яку вони обожнюють',
+        subtitle:  'Курси англійської мови для дітей 6–16 років. Ігровий підхід, живі вчителі, результат вже за перший місяць.',
         tags:      ['✓ Без нудних підручників', '✓ Живі заняття онлайн', '✓ Малі групи до 6 учнів', '✓ Гарантія результату'],
-        cta1:      'Отримати пробний урок',
+        cta1:      'Безкоштовний урок',
         cta2:      'Дізнатись більше',
     },
 
@@ -1594,7 +1708,9 @@ uk: {
         orWrite:        'або напишіть нам напряму',
         submit:         'Записатися на пробний урок безкоштовно',
         sending:        'Відправляємо...',
-        privacy:        'Натискаючи кнопку, ви погоджуєтесь з політикою конфіденційності.',
+        privacyBefore:  'Натискаючи кнопку, ви погоджуєтесь з ',
+        privacyLink:    'політикою конфіденційності',
+        privacyAfter:   '.',
         successTitle:   'Дякуємо!',
         successText:    'Ми зв\'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.',
         errorText:      'Щось пішло не так. Спробуйте ще раз або зателефонуйте нам.',
@@ -1607,11 +1723,11 @@ uk: {
         hours:        'Пн–Сб: 9:00–21:00',
         copyright:    '© 2026 FluentFox. Всі права захищені.',
         legalLinks: [
-            { label: 'Політика конфіденційності' },
-            { label: 'Публічна оферта' },
-            { label: 'Правила та умови' },
-            { label: 'Правила повернення' },
-            { label: 'Політика куків' },
+            { label: 'Політика конфіденційності', href: 'privacy.html' },
+            { label: 'Публічна оферта',           href: 'offer.html'   },
+            { label: 'Правила та умови',           href: 'terms.html'   },
+            { label: 'Правила повернення',         href: 'returns.html' },
+            { label: 'Політика куків',             href: 'cookies.html' },
         ],
     },
 },
@@ -1630,12 +1746,12 @@ ru: {
 
     hero: {
         badge:     'Первый урок — бесплатно!',
-        titleLine1:'Английский,',
-        titleLine2:'который дети',
-        titleLine3:'обожают 🦊',
-        subtitle:  'Онлайн-школа для детей и подростков 6–16 лет. Игровой подход, живые учителя, реальный результат.',
+        titleLine1:'Онлайн английский',
+        titleLine2:'для детей и подростков',
+        titleLine3:'который они обожают',
+        subtitle:  'Курсы английского языка для детей 6–16 лет. Игровой подход, живые учителя, результат уже за первый месяц.',
         tags:      ['✓ Без скучных учебников', '✓ Живые занятия онлайн', '✓ Маленькие группы до 6 учеников', '✓ Гарантия результата'],
-        cta1:      'Получить пробный урок',
+        cta1:      'Бесплатный урок',
         cta2:      'Узнать больше',
     },
 
@@ -1909,7 +2025,9 @@ ru: {
         orWrite:        'или напишите нам напрямую',
         submit:         'Записаться на пробный урок бесплатно',
         sending:        'Отправляем...',
-        privacy:        'Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.',
+        privacyBefore:  'Нажимая кнопку, вы соглашаетесь с ',
+        privacyLink:    'политикой конфиденциальности',
+        privacyAfter:   '.',
         successTitle:   'Спасибо!',
         successText:    'Мы свяжемся с вами в ближайшее время и договоримся об удобном времени для пробного урока.',
         errorText:    'Что-то пошло не так. Попробуйте ещё раз или позвоните нам.',
@@ -1922,11 +2040,11 @@ ru: {
         hours:        'Пн–Сб: 9:00–21:00',
         copyright:    '© 2026 FluentFox. Все права защищены.',
         legalLinks: [
-            { label: 'Политика конфиденциальности' },
-            { label: 'Публичная оферта' },
-            { label: 'Правила и условия' },
-            { label: 'Правила возврата' },
-            { label: 'Политика куков' },
+            { label: 'Политика конфиденциальности', href: 'privacy.html' },
+            { label: 'Публичная оферта',            href: 'offer.html'   },
+            { label: 'Правила и условия',           href: 'terms.html'   },
+            { label: 'Правила возврата',            href: 'returns.html' },
+            { label: 'Политика куков',              href: 'cookies.html' },
         ],
     },
 },
