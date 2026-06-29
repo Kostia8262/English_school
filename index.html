@@ -101,7 +101,7 @@
         },
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+380XXXXXXXXX",
+            "telephone": "+380954624677",
             "contactType": "customer service",
             "availableLanguage": ["Ukrainian","Russian"]
         },
@@ -844,14 +844,14 @@
                         <div class="w-10 h-10 bg-fox-50 rounded-xl flex items-center justify-center text-lg">📞</div>
                         <div>
                             <div class="text-xs font-bold text-gray-400 uppercase mb-0.5" x-text="t.form.phoneLabel"></div>
-                            <div class="font-bold">+38 (0XX) XXX-XX-XX</div>
+                            <div class="font-bold">+38 (095) 462-46-72</div>
                         </div>
                     </div>
                     <div class="flex items-center gap-3 text-gray-600">
                         <div class="w-10 h-10 bg-fox-50 rounded-xl flex items-center justify-center text-lg">✉️</div>
                         <div>
                             <div class="text-xs font-bold text-gray-400 uppercase mb-0.5" x-text="t.form.emailLabel"></div>
-                            <div class="font-bold">hello@fluentfox.com.ua</div>
+                            <div class="font-bold">my.computer.academy25@gmail.com</div>
                         </div>
                     </div>
                     <div class="flex items-center gap-3 text-gray-600">
@@ -892,7 +892,7 @@
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.phoneLabel2"></label>
                         <input x-model="formData.phone" type="tel"
-                               placeholder="+38 (0XX) XXX-XX-XX"
+                               placeholder="+38 (095) 462-46-72"
                                class="form-input w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-500 transition-all"
                                required>
                     </div>
@@ -977,20 +977,64 @@
             <div>
                 <h4 class="text-white font-black text-sm mb-4 uppercase tracking-wide" x-text="t.footer.contactTitle"></h4>
                 <ul class="space-y-2 text-sm">
-                    <li class="flex items-center gap-2"><span>📞</span> +38 (0XX) XXX-XX-XX</li>
-                    <li class="flex items-center gap-2"><span>✉️</span> hello@fluentfox.com.ua</li>
+                    <li class="flex items-center gap-2"><span>📞</span> +38 (095) 462-46-72</li>
+                    <li class="flex items-center gap-2"><span>✉️</span> my.computer.academy25@gmail.com</li>
                     <li class="flex items-center gap-2"><span>💬</span> @fluentfox_ua</li>
                     <li class="flex items-center gap-2"><span>⏰</span> <span x-text="t.footer.hours"></span></li>
                 </ul>
             </div>
         </div>
 
-        <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-            <span x-text="t.footer.copyright"></span>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-fox-400 transition-colors" x-text="t.footer.privacy"></a>
-                <a href="#" class="hover:text-fox-400 transition-colors" x-text="t.footer.terms"></a>
+        <!-- Payment methods -->
+        <div class="border-t border-gray-800 pt-8 mb-5">
+            <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                <!-- VISA -->
+                <div class="bg-white rounded-md px-2.5 py-1 h-8 flex items-center">
+                    <svg width="44" height="14" viewBox="0 0 44 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="12" font-family="Arial,sans-serif" font-weight="900" font-style="italic" font-size="14" fill="#1A1F71">VISA</text>
+                    </svg>
+                </div>
+                <!-- Mastercard -->
+                <div class="bg-white rounded-md px-2.5 py-1 h-8 flex items-center gap-1">
+                    <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="10" r="10" fill="#EB001B"/>
+                        <circle cx="20" cy="10" r="10" fill="#F79E1B"/>
+                        <path d="M16 2.7a10 10 0 0 1 0 14.6A10 10 0 0 1 16 2.7z" fill="#FF5F00"/>
+                    </svg>
+                </div>
+                <!-- Apple Pay -->
+                <div class="bg-black rounded-md px-3 py-1 h-8 flex items-center">
+                    <svg width="46" height="18" viewBox="0 0 46 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="13" font-family="Arial,sans-serif" font-size="8" fill="white">&#xf8ff;</text>
+                        <text x="9" y="13" font-family="Arial,sans-serif" font-weight="500" font-size="11" fill="white">Pay</text>
+                    </svg>
+                </div>
+                <!-- Google Pay -->
+                <div class="bg-white rounded-md px-3 py-1 h-8 flex items-center">
+                    <svg width="44" height="18" viewBox="0 0 44 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="13" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#4285F4">G</text>
+                        <text x="10" y="13" font-family="Arial,sans-serif" font-size="11" fill="#3C4043"> Pay</text>
+                    </svg>
+                </div>
             </div>
+        </div>
+
+        <!-- Legal links -->
+        <div class="border-t border-gray-800 py-4">
+            <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs justify-center md:justify-start">
+                <template x-for="link in t.footer.legalLinks" :key="link.label">
+                    <a href="#" class="hover:text-fox-400 transition-colors" x-text="link.label"></a>
+                </template>
+            </div>
+        </div>
+
+        <!-- Copyright + FOP -->
+        <div class="border-t border-gray-800 pt-5 space-y-1.5 text-xs text-gray-500 text-center md:text-left">
+            <p x-text="t.footer.copyright"></p>
+            <p>ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,
+               <a href="tel:+380954624677" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a>,
+               <a href="mailto:my.computer.academy25@gmail.com" class="hover:text-fox-400 transition-colors">my.computer.academy25@gmail.com</a>
+            </p>
         </div>
     </div>
 </footer>
@@ -1302,9 +1346,14 @@ uk: {
         navTitle:     'Навігація',
         contactTitle: 'Контакти',
         hours:        'Пн–Сб: 9:00–21:00',
-        copyright:    '© 2025 FluentFox. Всі права захищені.',
-        privacy:      'Конфіденційність',
-        terms:        'Умови використання',
+        copyright:    '© 2026 FluentFox. Всі права захищені.',
+        legalLinks: [
+            { label: 'Політика конфіденційності' },
+            { label: 'Публічна оферта' },
+            { label: 'Правила та умови' },
+            { label: 'Правила повернення' },
+            { label: 'Політика куків' },
+        ],
     },
 },
 
@@ -1607,9 +1656,14 @@ ru: {
         navTitle:     'Навигация',
         contactTitle: 'Контакты',
         hours:        'Пн–Сб: 9:00–21:00',
-        copyright:    '© 2025 FluentFox. Все права защищены.',
-        privacy:      'Конфиденциальность',
-        terms:        'Условия использования',
+        copyright:    '© 2026 FluentFox. Все права защищены.',
+        legalLinks: [
+            { label: 'Политика конфиденциальности' },
+            { label: 'Публичная оферта' },
+            { label: 'Правила и условия' },
+            { label: 'Правила возврата' },
+            { label: 'Политика куков' },
+        ],
     },
 },
 }; /* end TRANS */
