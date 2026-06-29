@@ -764,16 +764,16 @@
                     <div class="grid md:grid-cols-2">
 
                         <!-- Left: gradient purple panel -->
-                        <div class="bg-gradient-to-br from-violet-600 via-violet-700 to-purple-800 p-8 md:p-12 relative overflow-hidden">
-                            <div class="absolute -bottom-14 -right-14 w-52 h-52 bg-white/5 rounded-full pointer-events-none"></div>
-                            <div class="absolute -top-8 -left-8 w-36 h-36 bg-white/5 rounded-full pointer-events-none"></div>
-                            <div class="absolute top-1/2 right-6 w-16 h-16 bg-white/4 rounded-full pointer-events-none"></div>
+                        <div class="bg-gradient-to-br from-fox-500 to-fox-700 p-8 md:p-12 relative overflow-hidden">
+                            <div class="absolute -bottom-14 -right-14 w-52 h-52 bg-white/10 rounded-full pointer-events-none"></div>
+                            <div class="absolute -top-8 -left-8 w-36 h-36 bg-white/10 rounded-full pointer-events-none"></div>
+                            <div class="absolute top-1/2 right-6 w-16 h-16 bg-white/8 rounded-full pointer-events-none"></div>
                             <div class="relative z-10">
                                 <div class="text-5xl mb-5 select-none" x-text="t.prog[tab].emoji"></div>
                                 <h3 class="text-2xl font-black text-white mb-3 leading-tight" x-text="t.prog[tab].name"></h3>
-                                <p class="text-violet-200 leading-relaxed mb-8 text-sm md:text-base" x-text="t.prog[tab].desc"></p>
+                                <p class="text-orange-100 leading-relaxed mb-8 text-sm md:text-base" x-text="t.prog[tab].desc"></p>
                                 <a href="#" @click.prevent="modalOpen=true"
-                                   class="inline-flex items-center gap-2 bg-white text-violet-700 hover:bg-orange-50 hover:text-fox-600 font-black px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg hover:shadow-xl text-sm"
+                                   class="inline-flex items-center gap-2 bg-white text-fox-600 hover:bg-fox-50 hover:text-fox-700 font-black px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg hover:shadow-xl text-sm"
                                    x-text="t.prog.cta">
                                 </a>
                             </div>
@@ -1035,60 +1035,41 @@
             <p class="text-gray-500 text-lg" x-text="t.reviews.subtitle"></p>
         </div>
 
-        <!-- Testimonials grid (show all on md+, carousel on mobile) -->
-        <div class="hidden md:grid md:grid-cols-2 gap-5">
-            <template x-for="(review, i) in t.reviews.list" :key="i">
-                <div class="card-lift bg-gray-50 rounded-3xl p-7 border border-gray-100">
-                    <!-- Stars -->
-                    <div class="flex gap-0.5 mb-4">
-                        <template x-for="s in review.stars" :key="s">
-                            <span class="star text-lg">★</span>
-                        </template>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-5 italic" x-text="'«' + review.text + '»'"></p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg" :style="'background:' + review.color" x-text="review.avatar"></div>
-                        <div>
-                            <div class="font-black text-gray-900 text-sm" x-text="review.name"></div>
-                            <div class="text-gray-400 text-xs" x-text="review.role"></div>
+        <!-- Reviews: 2 per row, paged navigation -->
+        <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <template x-for="(review, i) in reviewSlice()" :key="i">
+                    <div class="card-lift bg-gray-50 rounded-3xl p-7 border border-gray-100">
+                        <div class="flex gap-0.5 mb-4">
+                            <template x-for="s in review.stars" :key="s">
+                                <span class="star text-lg">★</span>
+                            </template>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-5 italic" x-text="'«' + review.text + '»'"></p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg" :style="'background:' + review.color" x-text="review.avatar"></div>
+                            <div>
+                                <div class="font-black text-gray-900 text-sm" x-text="review.name"></div>
+                                <div class="text-gray-400 text-xs" x-text="review.role"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </template>
-        </div>
-
-        <!-- Mobile carousel -->
-        <div class="md:hidden relative">
-            <div class="overflow-hidden rounded-3xl">
-                <div class="bg-gray-50 p-7 border border-gray-100">
-                    <div class="flex gap-0.5 mb-4">
-                        <template x-for="s in t.reviews.list[currentReview].stars" :key="s">
-                            <span class="star text-lg">★</span>
-                        </template>
-                    </div>
-                    <p class="text-gray-700 leading-relaxed mb-5 italic" x-text="'«' + t.reviews.list[currentReview].text + '»'"></p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg"
-                             :style="'background:' + t.reviews.list[currentReview].color"
-                             x-text="t.reviews.list[currentReview].avatar"></div>
-                        <div>
-                            <div class="font-black text-gray-900 text-sm" x-text="t.reviews.list[currentReview].name"></div>
-                            <div class="text-gray-400 text-xs" x-text="t.reviews.list[currentReview].role"></div>
-                        </div>
-                    </div>
-                </div>
+                </template>
             </div>
-            <!-- Carousel controls -->
-            <div class="flex items-center justify-center gap-4 mt-4">
-                <button @click="prevReview()" class="w-9 h-9 rounded-full bg-fox-50 hover:bg-fox-100 text-fox-600 flex items-center justify-center transition-colors">‹</button>
+
+            <!-- Page navigation (arrows + dots) -->
+            <div x-show="reviewPageCount() > 1" class="flex items-center justify-center gap-4 mt-8">
+                <button @click="prevReviewPage()" :disabled="reviewPage === 0"
+                        class="w-9 h-9 rounded-full bg-fox-50 hover:bg-fox-100 disabled:opacity-30 disabled:cursor-not-allowed text-fox-600 flex items-center justify-center transition-colors text-xl leading-none">‹</button>
                 <div class="flex gap-2">
-                    <template x-for="(r, i) in t.reviews.list" :key="i">
-                        <button @click="currentReview=i"
-                                :class="currentReview===i ? 'bg-fox-500 w-5' : 'bg-gray-200 w-2'"
+                    <template x-for="i in reviewPageCount()" :key="i">
+                        <button @click="reviewPage = i - 1"
+                                :class="reviewPage === i-1 ? 'bg-fox-500 w-5' : 'bg-gray-200 w-2'"
                                 class="h-2 rounded-full transition-all duration-300"></button>
                     </template>
                 </div>
-                <button @click="nextReview()" class="w-9 h-9 rounded-full bg-fox-50 hover:bg-fox-100 text-fox-600 flex items-center justify-center transition-colors">›</button>
+                <button @click="nextReviewPage()" :disabled="reviewPage >= reviewPageCount() - 1"
+                        class="w-9 h-9 rounded-full bg-fox-50 hover:bg-fox-100 disabled:opacity-30 disabled:cursor-not-allowed text-fox-600 flex items-center justify-center transition-colors text-xl leading-none">›</button>
             </div>
         </div>
     </div>
@@ -1631,11 +1612,12 @@
                     </svg>
                 </div>
                 <!-- Apple Pay -->
-                <div class="bg-black rounded-md px-3 py-1 h-8 flex items-center">
-                    <svg width="46" height="18" viewBox="0 0 46 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="13" font-family="Arial,sans-serif" font-size="8" fill="white">&#xf8ff;</text>
-                        <text x="9" y="13" font-family="Arial,sans-serif" font-weight="500" font-size="11" fill="white">Pay</text>
+                <div class="bg-white rounded-md px-2.5 py-1 h-8 flex items-center gap-1.5 border border-gray-200">
+                    <svg width="10" height="12" viewBox="0 0 10 12" fill="#1D1D1F">
+                        <path d="M8.3 6.2c0-1.6 1.3-2.3 1.3-2.3C8.8 2.6 7.7 2.5 7.3 2.5c-1 0-1.8.6-2.3.6C4.5 3 3.7 2.5 2.8 2.5 1.2 2.5 0 3.8 0 5.7c0 1.1.4 2.2.9 3 .5.8 1 1.4 1.7 1.4.6 0 .9-.4 1.7-.4.8 0 1 .4 1.7.4.7 0 1.2-.6 1.7-1.3.5-.8.7-1.5.7-1.5-.3-.1-.8-.7-.9-1.1z"/>
+                        <path d="M6.8 1.5C7.2.9 7.4.3 7.2 0 6.7 0 6.1.4 5.8.9c-.3.4-.6 1-.4 1.5.5.1 1-.3 1.4-.9z"/>
                     </svg>
+                    <span class="text-sm font-semibold text-gray-900">Pay</span>
                 </div>
                 <!-- Google Pay -->
                 <div class="bg-white rounded-md px-3 py-1 h-8 flex items-center">
@@ -2321,6 +2303,7 @@ function app() {
         openFaq:       null,
         activeTab:     'group',
         currentReview: 0,
+        reviewPage:    0,
         scrolled:      false,
 
         formData: {
@@ -2351,9 +2334,9 @@ function app() {
                 this.scrolled = window.scrollY > 60;
             }, { passive: true });
 
-            // Auto-advance testimonials on mobile
+            // Auto-advance reviews on mobile
             setInterval(() => {
-                if (window.innerWidth < 768) this.nextReview();
+                if (window.innerWidth < 768) this.nextReviewPage();
             }, 5000);
         },
 
@@ -2369,14 +2352,19 @@ function app() {
             window.history.replaceState({}, '', url);
         },
 
-        /* ── reviews carousel ── */
-        prevReview() {
-            const max = this.t.reviews.list.length - 1;
-            this.currentReview = this.currentReview === 0 ? max : this.currentReview - 1;
+        /* ── reviews pagination ── */
+        reviewSlice() {
+            return this.t.reviews.list.slice(this.reviewPage * 2, this.reviewPage * 2 + 2);
         },
-        nextReview() {
-            const max = this.t.reviews.list.length - 1;
-            this.currentReview = this.currentReview === max ? 0 : this.currentReview + 1;
+        reviewPageCount() {
+            return Math.ceil(this.t.reviews.list.length / 2);
+        },
+        prevReviewPage() {
+            if (this.reviewPage > 0) this.reviewPage--;
+        },
+        nextReviewPage() {
+            if (this.reviewPage < this.reviewPageCount() - 1) this.reviewPage++;
+            else this.reviewPage = 0;
         },
 
         /* ── form submission → Google Sheets ── */
