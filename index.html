@@ -267,7 +267,7 @@
                 </div>
 
                 <!-- CTA button desktop -->
-                <a href="#form"
+                <a href="#" @click.prevent="modalOpen=true"
                    class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-sm font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
                    x-text="t.nav.trial">
                 </a>
@@ -293,7 +293,7 @@
                 <a href="#teachers" @click="menuOpen=false" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-fox-50 font-600 transition-colors" x-text="t.nav.teachers"></a>
                 <a href="#reviews"  @click="menuOpen=false" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-fox-50 font-600 transition-colors" x-text="t.nav.reviews"></a>
                 <a href="#contacts" @click="menuOpen=false" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-fox-50 font-600 transition-colors" x-text="t.nav.contacts"></a>
-                <a href="#form" @click="menuOpen=false"
+                <a href="#" @click.prevent="menuOpen=false; modalOpen=true"
                    class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-bold py-2.5 rounded-full transition-colors"
                    x-text="t.nav.trial"></a>
             </div>
@@ -337,7 +337,7 @@
 
                 <!-- CTAs -->
                 <div class="flex flex-wrap gap-4">
-                    <a href="#form"
+                    <a href="#" @click.prevent="modalOpen=true"
                        class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
                        x-text="t.hero.cta1"></a>
                     <a href="#about"
@@ -548,7 +548,7 @@
                             <div class="text-4xl mb-4" x-text="t.prog[tab].emoji"></div>
                             <h3 class="text-2xl font-black text-gray-900 mb-3" x-text="t.prog[tab].name"></h3>
                             <p class="text-gray-500 leading-relaxed mb-6" x-text="t.prog[tab].desc"></p>
-                            <a href="#form" class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-bold px-6 py-3 rounded-full transition-all hover:-translate-y-0.5 shadow-md hover:shadow-lg" x-text="t.prog.cta"></a>
+                            <a href="#" @click.prevent="modalOpen=true" class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-bold px-6 py-3 rounded-full transition-all hover:-translate-y-0.5 shadow-md hover:shadow-lg" x-text="t.prog.cta"></a>
                         </div>
                         <!-- Right: features list -->
                         <div class="bg-fox-50 p-8 md:p-12">
@@ -610,7 +610,7 @@
                         </template>
                     </ul>
 
-                    <a href="#form"
+                    <a href="#" @click.prevent="modalOpen=true"
                        class="btn-action block text-center font-black py-3 rounded-full transition-all hover:-translate-y-0.5 shadow-md hover:shadow-lg"
                        :class="plan.highlight ? 'bg-white text-fox-600 hover:bg-gray-50' : 'bg-fox-500 hover:bg-fox-600 text-white'"
                        x-text="t.pricing.cta"></a>
@@ -681,27 +681,80 @@
                 </ul>
             </div>
 
-            <!-- Certificate mockup -->
+            <!-- Certificate mockup — premium -->
             <div class="flex justify-center">
-                <div class="bg-white rounded-3xl p-8 shadow-2xl max-w-xs w-full border-4 border-fox-100 relative">
-                    <div class="absolute -top-3 -right-3 w-10 h-10 bg-fox-500 rounded-full flex items-center justify-center text-white text-lg">🦊</div>
-                    <div class="text-center mb-4">
-                        <div class="text-3xl mb-2">🏆</div>
-                        <div class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2" x-text="t.results.certLabel"></div>
-                        <div class="text-xl font-black text-gray-900 mb-1">FluentFox</div>
-                        <div class="w-16 h-0.5 bg-fox-200 mx-auto mb-4"></div>
-                    </div>
-                    <div class="text-center mb-4">
-                        <p class="text-sm text-gray-500 mb-1" x-text="t.results.certGiven"></p>
-                        <p class="text-lg font-black text-gray-900">[Ім'я учня]</p>
-                    </div>
-                    <div class="bg-fox-50 rounded-xl p-3 text-center">
-                        <p class="text-xs text-gray-500 mb-1" x-text="t.results.certLevel"></p>
-                        <p class="font-black text-fox-600">Elementary → Pre-Intermediate</p>
-                    </div>
-                    <div class="flex items-center justify-between mt-4 text-xs text-gray-400">
-                        <span x-text="t.results.certDate"></span>
-                        <span>fluentfox.com.ua</span>
+                <div class="relative w-72 md:w-80" style="filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));">
+                    <!-- Outer card -->
+                    <div class="relative rounded-2xl overflow-hidden" style="background:#0F1B3D; padding:2px;">
+                        <!-- Gold rim -->
+                        <div style="background: linear-gradient(135deg,#D4AF37,#F5E88A,#B8960C,#F5E88A,#D4AF37); padding:2px; border-radius:14px;">
+                            <div class="rounded-xl overflow-hidden" style="background:#0F1B3D;">
+
+                                <!-- Inner content -->
+                                <div class="relative p-8 flex flex-col items-center text-center" style="min-height:380px; gap:0;">
+
+                                    <!-- Corner ornaments -->
+                                    <svg class="absolute top-3 left-3 w-7 h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 0 L14 0"/></svg>
+                                    <svg class="absolute top-3 right-3 w-7 h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 0 L14 0"/></svg>
+                                    <svg class="absolute bottom-3 left-3 w-7 h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 28 L14 28"/></svg>
+                                    <svg class="absolute bottom-3 right-3 w-7 h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 28 L14 28"/></svg>
+
+                                    <!-- Background glow -->
+                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,#FF6B35,transparent)"></div>
+
+                                    <!-- Logo -->
+                                    <div class="mt-6 mb-3 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-xl z-10" style="background: linear-gradient(135deg,#FF6B35,#E54E1A);">🦊</div>
+                                    <div class="text-white font-black text-base tracking-widest z-10">FLUENT<span style="color:#D4AF37">FOX</span></div>
+
+                                    <!-- Gold divider -->
+                                    <div class="flex items-center gap-2 w-full my-4 z-10">
+                                        <div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#D4AF37)"></div>
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="#D4AF37"><polygon points="6,0 7.5,4.5 12,4.5 8.5,7 10,12 6,9 2,12 3.5,7 0,4.5 4.5,4.5"/></svg>
+                                        <div class="h-px flex-1" style="background:linear-gradient(to left,transparent,#D4AF37)"></div>
+                                    </div>
+
+                                    <!-- Certificate label -->
+                                    <div class="text-xs font-black tracking-[0.25em] uppercase z-10 mb-5" style="color:#D4AF37;" x-text="t.results.certLabel"></div>
+
+                                    <!-- Name area -->
+                                    <div class="z-10 mb-5">
+                                        <p class="text-xs mb-2" style="color:#8899BB;" x-text="t.results.certGiven"></p>
+                                        <p class="font-black text-xl text-white">[Ім'я учня]</p>
+                                    </div>
+
+                                    <!-- Completed text -->
+                                    <div class="z-10 mb-4">
+                                        <p class="text-xs mb-2" style="color:#8899BB;" x-text="t.results.certCompleted"></p>
+                                        <div class="px-4 py-1.5 rounded-lg border text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
+                                            English A1 → A2
+                                        </div>
+                                    </div>
+
+                                    <!-- Bottom divider + seal row -->
+                                    <div class="w-full mt-auto z-10">
+                                        <div class="h-px w-full mb-4" style="background:linear-gradient(to right,transparent,#D4AF37,transparent)"></div>
+                                        <div class="flex items-center justify-between">
+                                            <!-- Director -->
+                                            <div class="text-left">
+                                                <div class="w-14 h-px mb-1" style="background:#D4AF37;opacity:0.4;"></div>
+                                                <div class="text-xs" style="color:#5566AA;" x-text="t.results.certDirector"></div>
+                                            </div>
+                                            <!-- Wax seal -->
+                                            <div class="w-12 h-12 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#D4AF37; color:#D4AF37;">
+                                                <div class="text-xs font-black leading-none">FF</div>
+                                                <div class="text-[8px] leading-none mt-0.5" x-text="t.results.certYear"></div>
+                                            </div>
+                                            <!-- Date -->
+                                            <div class="text-right">
+                                                <div class="w-14 h-px mb-1 ml-auto" style="background:#D4AF37;opacity:0.4;"></div>
+                                                <div class="text-xs" style="color:#5566AA;" x-text="t.results.certDate"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -820,124 +873,325 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 class="text-3xl md:text-4xl font-black text-white mb-4" x-text="t.cta.title"></h2>
         <p class="text-orange-100 text-lg mb-8 max-w-xl mx-auto" x-text="t.cta.subtitle"></p>
-        <a href="#form"
+        <a href="#" @click.prevent="modalOpen=true"
            class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-fox-600 font-black text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
            x-text="t.cta.btn"></a>
     </div>
 </section>
 
 
-<!-- ═══════════════════════ CONTACT FORM ═══════════════════════ -->
-<section id="contacts" class="py-20 bg-white">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- ═══════════════════════ CONTACT + FORM ═══════════════════════ -->
+<section id="contacts" class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-2 gap-12 items-start">
 
-            <!-- Info side -->
-            <div>
-                <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-5" x-text="t.form.label"></span>
-                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4" x-text="t.form.title"></h2>
-                <p class="text-gray-500 text-lg mb-8 leading-relaxed" x-text="t.form.subtitle"></p>
+            <!-- ── Left: contact info ── -->
+            <div class="pt-2">
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-4">
+                    <span x-text="t.form.titleLine1"></span><br>
+                    <span class="gradient-text" x-text="t.form.titleLine2"></span>
+                </h2>
+                <p class="text-gray-500 text-lg leading-relaxed mb-10" x-text="t.form.subtitle"></p>
 
-                <!-- Contact details -->
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3 text-gray-600">
-                        <div class="w-10 h-10 bg-fox-50 rounded-xl flex items-center justify-center text-lg">📞</div>
-                        <div>
-                            <div class="text-xs font-bold text-gray-400 uppercase mb-0.5" x-text="t.form.phoneLabel"></div>
-                            <div class="font-bold">+38 (095) 462-46-72</div>
+                <!-- Phones -->
+                <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3" x-text="t.form.phonesLabel"></p>
+                <div class="space-y-3 mb-8">
+                    <!-- Phone 1 -->
+                    <div class="flex items-center gap-3">
+                        <a href="tel:+380954624677" class="font-black text-gray-900 text-xl hover:text-fox-500 transition-colors">+38 (095) 462-46-72</a>
+                        <div class="flex gap-1.5">
+                            <a href="viber://chat?number=%2B380954624677" aria-label="Viber" title="Viber"
+                               class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
+                               style="background:#7360F2;">
+                                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M11.4 0C5.4 0 1 4 1 9.4c0 3 1.6 5.8 4.2 7.6v3.5l3.4-1.8c.9.2 1.8.3 2.8.3 6 0 10.4-4 10.4-9.6C21.8 4 17.4 0 11.4 0zm5.8 13c-.3.7-1.5 1.4-2.1 1.5-.5.1-1.2.2-3.8-.8-3.2-1.2-5.2-4.4-5.4-4.6-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4.9-.4h.7c.2 0 .5.1.8.7.3.7 1 2.3 1.1 2.5.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.8 1.3 1.6 2.1 1.1 1 2 1.4 2.4 1.6.3.1.6.1.8-.1l.6-.7c.2-.3.5-.3.8-.2.3.1 2.1 1 2.4 1.2.4.2.6.3.7.5.1.2 0 1-.3 1.8z"/></svg>
+                            </a>
+                            <a href="https://wa.me/380954624677" aria-label="WhatsApp" title="WhatsApp"
+                               class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
+                               style="background:#25D366;">
+                                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.2.1-.3.2-.5.1-.2 0-.4 0-.5C9.9 9 9 6.8 8.7 6c-.3-.8-.6-.7-.8-.7H7.3c-.2 0-.5.1-.8.4C6.2 6 5.2 7 5.2 9s1.5 3.8 1.7 4c.2.2 2.9 4.4 7 6.2 1 .4 1.7.7 2.3.9.9.3 1.8.2 2.5.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.3-.3-.4-.6-.5-.2 0-.8-.3-1.3-.7z"/><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.5 5.9L.1 24l6.3-1.6C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0zm0 22c-2 0-3.9-.5-5.5-1.4l-.4-.2-3.7.9.9-3.6-.3-.4C2 16 1.5 14.1 1.5 12 1.5 6.2 6.2 1.5 12 1.5c2.8 0 5.4 1.1 7.4 3.1 2 2 3.1 4.6 3.1 7.4 0 5.8-4.7 10.5-10.5 10.5z"/></svg>
+                            </a>
+                            <a href="https://t.me/fluentfox_ua" aria-label="Telegram" title="Telegram"
+                               class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
+                               style="background:#2AABEE;">
+                                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.2l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2-1.3 1.3c-.2.2-.4.3-.7.3l.2-2.8 4.8-4.3c.2-.2 0-.3-.3-.1L6.5 14.3l-2.7-.8c-.6-.2-.6-.6.1-.8l10.6-4.1c.5-.2 1 .1.8.6l.6-.1v.1z"/></svg>
+                            </a>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 text-gray-600">
-                        <div class="w-10 h-10 bg-fox-50 rounded-xl flex items-center justify-center text-lg">✉️</div>
-                        <div>
-                            <div class="text-xs font-bold text-gray-400 uppercase mb-0.5" x-text="t.form.emailLabel"></div>
-                            <div class="font-bold">my.computer.academy25@gmail.com</div>
+                    <!-- Phone 2 -->
+                    <div class="flex items-center gap-3">
+                        <a href="tel:+380682522876" class="font-black text-gray-900 text-xl hover:text-fox-500 transition-colors">+38 (068) 252-28-76</a>
+                        <div class="flex gap-1.5">
+                            <a href="https://wa.me/380682522876" aria-label="WhatsApp" title="WhatsApp"
+                               class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
+                               style="background:#25D366;">
+                                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.2.1-.3.2-.5.1-.2 0-.4 0-.5C9.9 9 9 6.8 8.7 6c-.3-.8-.6-.7-.8-.7H7.3c-.2 0-.5.1-.8.4C6.2 6 5.2 7 5.2 9s1.5 3.8 1.7 4c.2.2 2.9 4.4 7 6.2 1 .4 1.7.7 2.3.9.9.3 1.8.2 2.5.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.3-.3-.4-.6-.5-.2 0-.8-.3-1.3-.7z"/><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.5 5.9L.1 24l6.3-1.6C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0zm0 22c-2 0-3.9-.5-5.5-1.4l-.4-.2-3.7.9.9-3.6-.3-.4C2 16 1.5 14.1 1.5 12 1.5 6.2 6.2 1.5 12 1.5c2.8 0 5.4 1.1 7.4 3.1 2 2 3.1 4.6 3.1 7.4 0 5.8-4.7 10.5-10.5 10.5z"/></svg>
+                            </a>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 text-gray-600">
-                        <div class="w-10 h-10 bg-fox-50 rounded-xl flex items-center justify-center text-lg">💬</div>
-                        <div>
-                            <div class="text-xs font-bold text-gray-400 uppercase mb-0.5" x-text="t.form.telegramLabel"></div>
-                            <div class="font-bold">@fluentfox_ua</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 text-gray-600">
-                        <div class="w-10 h-10 bg-fox-50 rounded-xl flex items-center justify-center text-lg">📸</div>
-                        <div>
-                            <div class="text-xs font-bold text-gray-400 uppercase mb-0.5">Instagram</div>
-                            <div class="font-bold">@fluentfox.ua</div>
-                        </div>
-                    </div>
+                </div>
+
+                <!-- Email -->
+                <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2" x-text="t.form.emailLabel"></p>
+                <a href="mailto:my.computer.academy25@gmail.com" class="font-bold text-fox-500 hover:text-fox-600 transition-colors mb-8 block">my.computer.academy25@gmail.com</a>
+
+                <!-- Socials -->
+                <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3 mt-6" x-text="t.form.socialLabel"></p>
+                <div class="flex gap-3">
+                    <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 bg-white hover:border-fox-300 transition-colors text-sm font-bold text-gray-700">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
+                        Facebook
+                    </a>
+                    <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 bg-white hover:border-fox-300 transition-colors text-sm font-bold text-gray-700">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="url(#ig-grad)">
+                            <defs>
+                                <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#FD5949"/>
+                                    <stop offset="50%" style="stop-color:#D6249F"/>
+                                    <stop offset="100%" style="stop-color:#285AEB"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/>
+                        </svg>
+                        Instagram
+                    </a>
                 </div>
             </div>
 
-            <!-- Form side -->
-            <div id="form" class="bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-sm">
-                <!-- Success state -->
-                <div x-show="formSuccess" x-transition class="text-center py-8">
-                    <div class="text-5xl mb-4">🦊</div>
-                    <h3 class="text-xl font-black text-gray-900 mb-2" x-text="t.form.successTitle"></h3>
-                    <p class="text-gray-500" x-text="t.form.successText"></p>
-                </div>
+            <!-- ── Right: form card ── -->
+            <div id="form">
+                <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
 
-                <!-- Form -->
-                <form x-show="!formSuccess" @submit.prevent="submitForm()" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.nameLabel"></label>
-                        <input x-model="formData.name" type="text"
-                               :placeholder="t.form.namePlaceholder"
-                               class="form-input w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-500 transition-all"
-                               required>
+                    <!-- Success state -->
+                    <div x-show="formSuccess" x-transition class="text-center py-10">
+                        <div class="text-5xl mb-4">🦊</div>
+                        <h3 class="text-xl font-black text-gray-900 mb-2" x-text="t.form.successTitle"></h3>
+                        <p class="text-gray-500" x-text="t.form.successText"></p>
                     </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.phoneLabel2"></label>
-                        <input x-model="formData.phone" type="tel"
-                               placeholder="+38 (095) 462-46-72"
-                               class="form-input w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-500 transition-all"
-                               required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
-                        <select x-model="formData.childAge"
-                                class="form-input w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-500 transition-all appearance-none">
-                            <option value="" x-text="t.form.agePlaceholder"></option>
-                            <option value="6-8">6–8 <span x-text="t.form.years"></span></option>
-                            <option value="9-12">9–12 <span x-text="t.form.years"></span></option>
-                            <option value="13-16">13–16 <span x-text="t.form.years"></span></option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.formatLabel"></label>
-                        <div class="grid grid-cols-3 gap-2">
-                            <template x-for="opt in t.form.formatOptions" :key="opt.value">
-                                <button type="button"
-                                        @click="formData.format=opt.value"
-                                        :class="formData.format===opt.value ? 'bg-fox-500 text-white border-fox-500' : 'bg-white text-gray-600 border-gray-200 hover:border-fox-300'"
-                                        class="py-2.5 px-2 rounded-xl border-2 text-xs font-bold transition-all"
-                                        x-text="opt.label"></button>
-                            </template>
+
+                    <!-- Form -->
+                    <form x-show="!formSuccess" @submit.prevent="submitForm()" class="space-y-4">
+
+                        <!-- Name + Age row -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                    <span x-text="t.form.nameLabel"></span> <span class="text-fox-500">*</span>
+                                </label>
+                                <input x-model="formData.name" type="text"
+                                       :placeholder="t.form.namePlaceholder"
+                                       class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-500 transition-all"
+                                       required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
+                                <input x-model="formData.childAge" type="number" min="6" max="16"
+                                       placeholder="9"
+                                       class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-500 transition-all">
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Error -->
-                    <div x-show="formError" x-transition class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-600 text-sm" x-text="t.form.errorText"></div>
+                        <!-- Phone with prefix -->
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                <span x-text="t.form.phoneLabel2"></span> <span class="text-fox-500">*</span>
+                            </label>
+                            <div class="flex">
+                                <div class="flex items-center gap-1.5 bg-gray-100 border-2 border-r-0 border-gray-200 rounded-l-xl px-3 whitespace-nowrap">
+                                    <span class="text-sm">🇺🇦</span>
+                                    <span class="text-sm font-bold text-gray-600">+380</span>
+                                </div>
+                                <input x-model="formData.phone" type="tel"
+                                       placeholder="(XX) XXX-XX-XX"
+                                       class="form-input flex-1 bg-gray-50 border-2 border-gray-200 rounded-r-xl px-4 py-3 text-gray-800 font-500 transition-all"
+                                       required>
+                            </div>
+                        </div>
 
-                    <button type="submit"
-                            :disabled="formLoading"
-                            class="w-full bg-fox-500 hover:bg-fox-600 disabled:bg-fox-300 text-white font-black py-4 rounded-xl transition-all hover:-translate-y-0.5 shadow-md hover:shadow-lg text-base">
-                        <span x-show="!formLoading" x-text="t.form.submit"></span>
-                        <span x-show="formLoading" class="flex items-center justify-center gap-2">
-                            <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
-                            <span x-text="t.form.sending"></span>
-                        </span>
-                    </button>
+                        <!-- Error -->
+                        <div x-show="formError" x-transition
+                             class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-600 text-sm"
+                             x-text="t.form.errorText"></div>
 
-                    <p class="text-xs text-gray-400 text-center" x-text="t.form.privacy"></p>
-                </form>
+                        <!-- Submit -->
+                        <button type="submit"
+                                :disabled="formLoading"
+                                class="w-full text-white font-black py-4 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg hover:shadow-xl text-base"
+                                style="background: linear-gradient(135deg,#7C3AED,#5B21B6);">
+                            <span x-show="!formLoading" x-text="t.form.submit"></span>
+                            <span x-show="formLoading" class="flex items-center justify-center gap-2">
+                                <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+                                <span x-text="t.form.sending"></span>
+                            </span>
+                        </button>
+
+                        <!-- Messenger alternative -->
+                        <div class="text-center">
+                            <p class="text-xs text-gray-400 mb-3" x-text="t.form.orWrite"></p>
+                            <div class="flex justify-center gap-2">
+                                <a href="viber://chat?number=%2B380954624677"
+                                   class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all hover:-translate-y-0.5"
+                                   style="border-color:#7360F2; color:#7360F2;">
+                                    <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M11.4 0C5.4 0 1 4 1 9.4c0 3 1.6 5.8 4.2 7.6v3.5l3.4-1.8c.9.2 1.8.3 2.8.3 6 0 10.4-4 10.4-9.6C21.8 4 17.4 0 11.4 0zm5.8 13c-.3.7-1.5 1.4-2.1 1.5-.5.1-1.2.2-3.8-.8-3.2-1.2-5.2-4.4-5.4-4.6-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4.9-.4h.7c.2 0 .5.1.8.7.3.7 1 2.3 1.1 2.5.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.8 1.3 1.6 2.1 1.1 1 2 1.4 2.4 1.6.3.1.6.1.8-.1l.6-.7c.2-.3.5-.3.8-.2.3.1 2.1 1 2.4 1.2.4.2.6.3.7.5.1.2 0 1-.3 1.8z"/></svg>
+                                    Viber
+                                </a>
+                                <a href="https://wa.me/380954624677"
+                                   class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all hover:-translate-y-0.5"
+                                   style="border-color:#25D366; color:#25D366;">
+                                    <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.2.1-.3.2-.5.1-.2 0-.4 0-.5C9.9 9 9 6.8 8.7 6c-.3-.8-.6-.7-.8-.7H7.3c-.2 0-.5.1-.8.4C6.2 6 5.2 7 5.2 9s1.5 3.8 1.7 4c.2.2 2.9 4.4 7 6.2 1 .4 1.7.7 2.3.9.9.3 1.8.2 2.5.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.3-.3-.4-.6-.5-.2 0-.8-.3-1.3-.7z"/><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.5 5.9L.1 24l6.3-1.6C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0zm0 22c-2 0-3.9-.5-5.5-1.4l-.4-.2-3.7.9.9-3.6-.3-.4C2 16 1.5 14.1 1.5 12 1.5 6.2 6.2 1.5 12 1.5c2.8 0 5.4 1.1 7.4 3.1 2 2 3.1 4.6 3.1 7.4 0 5.8-4.7 10.5-10.5 10.5z"/></svg>
+                                    WhatsApp
+                                </a>
+                                <a href="https://t.me/fluentfox_ua"
+                                   class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all hover:-translate-y-0.5"
+                                   style="border-color:#2AABEE; color:#2AABEE;">
+                                    <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.2l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2-1.3 1.3c-.2.2-.4.3-.7.3l.2-2.8 4.8-4.3c.2-.2 0-.3-.3-.1L6.5 14.3l-2.7-.8c-.6-.2-.6-.6.1-.8l10.6-4.1c.5-.2 1 .1.8.6l.6-.1v.1z"/></svg>
+                                    Telegram
+                                </a>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-gray-400 text-center" x-text="t.form.privacy"></p>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+
+<!-- ═══════════════════════ MODAL ═══════════════════════ -->
+<div x-show="modalOpen"
+     x-transition:enter="transition ease-out duration-200"
+     x-transition:enter-start="opacity-0"
+     x-transition:enter-end="opacity-100"
+     x-transition:leave="transition ease-in duration-150"
+     x-transition:leave-start="opacity-100"
+     x-transition:leave-end="opacity-0"
+     @click.self="modalOpen=false"
+     class="fixed inset-0 z-[100] flex items-center justify-center p-4"
+     style="background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);">
+
+    <div x-show="modalOpen"
+         x-transition:enter="transition ease-out duration-250"
+         x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100 scale-100"
+         x-transition:leave-end="opacity-0 scale-95"
+         @click.stop
+         class="bg-white rounded-3xl w-full max-w-md shadow-2xl relative overflow-hidden">
+
+        <!-- Decorative top strip -->
+        <div class="h-1.5 w-full" style="background:linear-gradient(to right,#FF6B35,#7C3AED)"></div>
+
+        <!-- Close button -->
+        <button @click="modalOpen=false"
+                class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors z-10"
+                aria-label="Close">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+
+        <div class="p-7">
+            <!-- Header -->
+            <div class="mb-6">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-2xl">🦊</span>
+                    <span class="font-black text-lg text-gray-900">FluentFox</span>
+                </div>
+                <h3 class="text-2xl font-black text-gray-900 leading-tight" x-text="t.modal.title"></h3>
+                <p class="text-gray-500 text-sm mt-1" x-text="t.modal.subtitle"></p>
+            </div>
+
+            <!-- Success -->
+            <div x-show="formSuccess" x-transition class="text-center py-8">
+                <div class="text-5xl mb-3">🦊</div>
+                <h4 class="text-xl font-black text-gray-900 mb-1" x-text="t.form.successTitle"></h4>
+                <p class="text-gray-500 text-sm" x-text="t.form.successText"></p>
+                <button @click="modalOpen=false; formSuccess=false"
+                        class="mt-5 px-6 py-2.5 bg-fox-500 hover:bg-fox-600 text-white font-bold rounded-full transition-colors"
+                        x-text="t.modal.close"></button>
+            </div>
+
+            <!-- Form -->
+            <form x-show="!formSuccess" @submit.prevent="submitForm()" class="space-y-4">
+                <!-- Name + Age -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                            <span x-text="t.form.nameLabel"></span> <span class="text-fox-500">*</span>
+                        </label>
+                        <input x-model="formData.name" type="text"
+                               :placeholder="t.form.namePlaceholder"
+                               class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-500 transition-all"
+                               required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
+                        <input x-model="formData.childAge" type="number" min="6" max="16"
+                               placeholder="9"
+                               class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-500 transition-all">
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                        <span x-text="t.form.phoneLabel2"></span> <span class="text-fox-500">*</span>
+                    </label>
+                    <div class="flex">
+                        <div class="flex items-center gap-1.5 bg-gray-100 border-2 border-r-0 border-gray-200 rounded-l-xl px-3 whitespace-nowrap">
+                            <span class="text-sm">🇺🇦</span>
+                            <span class="text-sm font-bold text-gray-600">+380</span>
+                        </div>
+                        <input x-model="formData.phone" type="tel"
+                               placeholder="(XX) XXX-XX-XX"
+                               class="form-input flex-1 bg-gray-50 border-2 border-gray-200 rounded-r-xl px-4 py-3 text-sm font-500 transition-all"
+                               required>
+                    </div>
+                </div>
+
+                <!-- Error -->
+                <div x-show="formError" x-transition
+                     class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-600 text-sm"
+                     x-text="t.form.errorText"></div>
+
+                <!-- Submit -->
+                <button type="submit"
+                        :disabled="formLoading"
+                        class="w-full text-white font-black py-3.5 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg text-sm"
+                        style="background:linear-gradient(135deg,#7C3AED,#5B21B6);">
+                    <span x-show="!formLoading" x-text="t.form.submit"></span>
+                    <span x-show="formLoading" class="flex items-center justify-center gap-2">
+                        <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+                        <span x-text="t.form.sending"></span>
+                    </span>
+                </button>
+
+                <!-- Messengers -->
+                <div class="text-center">
+                    <p class="text-xs text-gray-400 mb-2" x-text="t.form.orWrite"></p>
+                    <div class="flex justify-center gap-2">
+                        <a href="viber://chat?number=%2B380954624677" class="flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-bold transition-all hover:-translate-y-0.5" style="border-color:#7360F2;color:#7360F2;">
+                            <svg viewBox="0 0 24 24" class="w-3 h-3" fill="currentColor"><path d="M11.4 0C5.4 0 1 4 1 9.4c0 3 1.6 5.8 4.2 7.6v3.5l3.4-1.8c.9.2 1.8.3 2.8.3 6 0 10.4-4 10.4-9.6C21.8 4 17.4 0 11.4 0zm5.8 13c-.3.7-1.5 1.4-2.1 1.5-.5.1-1.2.2-3.8-.8-3.2-1.2-5.2-4.4-5.4-4.6-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4.9-.4h.7c.2 0 .5.1.8.7.3.7 1 2.3 1.1 2.5.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.8 1.3 1.6 2.1 1.1 1 2 1.4 2.4 1.6.3.1.6.1.8-.1l.6-.7c.2-.3.5-.3.8-.2.3.1 2.1 1 2.4 1.2.4.2.6.3.7.5.1.2 0 1-.3 1.8z"/></svg>
+                            Viber
+                        </a>
+                        <a href="https://wa.me/380954624677" class="flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-bold transition-all hover:-translate-y-0.5" style="border-color:#25D366;color:#25D366;">
+                            <svg viewBox="0 0 24 24" class="w-3 h-3" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.2.1-.3.2-.5.1-.2 0-.4 0-.5C9.9 9 9 6.8 8.7 6c-.3-.8-.6-.7-.8-.7H7.3c-.2 0-.5.1-.8.4C6.2 6 5.2 7 5.2 9s1.5 3.8 1.7 4c.2.2 2.9 4.4 7 6.2 1 .4 1.7.7 2.3.9.9.3 1.8.2 2.5.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.3-.3-.4-.6-.5-.2 0-.8-.3-1.3-.7z"/><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.5 5.9L.1 24l6.3-1.6C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0zm0 22c-2 0-3.9-.5-5.5-1.4l-.4-.2-3.7.9.9-3.6-.3-.4C2 16 1.5 14.1 1.5 12 1.5 6.2 6.2 1.5 12 1.5c2.8 0 5.4 1.1 7.4 3.1 2 2 3.1 4.6 3.1 7.4 0 5.8-4.7 10.5-10.5 10.5z"/></svg>
+                            WhatsApp
+                        </a>
+                        <a href="https://t.me/fluentfox_ua" class="flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-bold transition-all hover:-translate-y-0.5" style="border-color:#2AABEE;color:#2AABEE;">
+                            <svg viewBox="0 0 24 24" class="w-3 h-3" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.2l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2-1.3 1.3c-.2.2-.4.3-.7.3l.2-2.8 4.8-4.3c.2-.2 0-.3-.3-.1L6.5 14.3l-2.7-.8c-.6-.2-.6-.6.1-.8l10.6-4.1c.5-.2 1 .1.8.6l.6-.1v.1z"/></svg>
+                            Telegram
+                        </a>
+                    </div>
+                </div>
+
+                <p class="text-xs text-gray-400 text-center" x-text="t.form.privacy"></p>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
@@ -1238,6 +1492,12 @@ uk: {
         ],
     },
 
+    modal: {
+        title:    'Запишіться на пробний урок',
+        subtitle: 'Передзвонимо протягом 30 хвилин',
+        close:    'Закрити',
+    },
+
     results: {
         label:     'Результати',
         title:     'Ваша дитина досягне цього',
@@ -1249,10 +1509,12 @@ uk: {
             'Дивитиметься серіали та фільми без субтитрів',
             'Полюбить вивчення іноземних мов',
         ],
-        certLabel:  'Сертифікат',
-        certGiven:  'Видано учню:',
-        certLevel:  'Досягнутий рівень:',
-        certDate:   '2025 р.',
+        certLabel:     'Сертифікат',
+        certGiven:     'Видано учню:',
+        certCompleted: 'Успішно завершив курс:',
+        certDirector:  'Директор',
+        certDate:      'Дата',
+        certYear:      '2026',
     },
 
     reviews: {
@@ -1315,30 +1577,27 @@ uk: {
     },
 
     form: {
-        label:         'Контакти',
-        title:         'Запишіться на пробний урок',
-        subtitle:      'Безкоштовно та без зобов\'язань. Ми зв\'яжемося протягом 1 години.',
-        phoneLabel:    'Телефон',
-        emailLabel:    'Email',
-        telegramLabel: 'Telegram',
-        nameLabel:     'Ваше ім\'я',
-        namePlaceholder: 'Наприклад: Олена',
-        phoneLabel2:   'Номер телефону',
-        ageLabel:      'Вік дитини',
-        agePlaceholder:'Оберіть вік',
-        years:         'років',
-        formatLabel:   'Формат навчання',
-        formatOptions: [
-            { value: 'group',      label: 'Груповий' },
-            { value: 'individual', label: 'Індивідуальний' },
-            { value: 'unsure',     label: 'Не знаю' },
-        ],
-        submit:       'Записатись на пробний урок 🦊',
-        sending:      'Відправляємо...',
-        privacy:      'Натискаючи кнопку, ви погоджуєтесь з обробкою персональних даних.',
-        successTitle: 'Дякуємо!',
-        successText:  'Ми зв\'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.',
-        errorText:    'Щось пішло не так. Спробуйте ще раз або зателефонуйте нам.',
+        label:          'Контакти',
+        titleLine1:     'Запишіться на',
+        titleLine2:     'пробний урок',
+        subtitle:       'Залиш заявку — передзвонимо протягом 30 хвилин, запишемо дитину на безкоштовне перше заняття.',
+        phonesLabel:    'Телефони',
+        phoneLabel:     'Телефон',
+        emailLabel:     'Пошта',
+        telegramLabel:  'Telegram',
+        socialLabel:    'Слідкуйте за нами',
+        nameLabel:      'Ваше ім\'я',
+        namePlaceholder:'Наприклад: Іван',
+        phoneLabel2:    'Ваш телефон',
+        ageLabel:       'Вік',
+        years:          'років',
+        orWrite:        'або напишіть нам напряму',
+        submit:         'Записатися на пробний урок безкоштовно',
+        sending:        'Відправляємо...',
+        privacy:        'Натискаючи кнопку, ви погоджуєтесь з політикою конфіденційності.',
+        successTitle:   'Дякуємо!',
+        successText:    'Ми зв\'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.',
+        errorText:      'Щось пішло не так. Спробуйте ще раз або зателефонуйте нам.',
     },
 
     footer: {
@@ -1548,6 +1807,12 @@ ru: {
         ],
     },
 
+    modal: {
+        title:    'Запишитесь на пробный урок',
+        subtitle: 'Перезвоним в течение 30 минут',
+        close:    'Закрыть',
+    },
+
     results: {
         label:     'Результаты',
         title:     'Вашего ребёнка ждёт это',
@@ -1559,10 +1824,12 @@ ru: {
             'Смотреть сериалы и фильмы без субтитров',
             'Полюбить изучение иностранных языков',
         ],
-        certLabel:  'Сертификат',
-        certGiven:  'Выдан ученику:',
-        certLevel:  'Достигнутый уровень:',
-        certDate:   '2025 г.',
+        certLabel:     'Сертификат',
+        certGiven:     'Выдан ученику:',
+        certCompleted: 'Успешно завершил курс:',
+        certDirector:  'Директор',
+        certDate:      'Дата',
+        certYear:      '2026',
     },
 
     reviews: {
@@ -1625,29 +1892,26 @@ ru: {
     },
 
     form: {
-        label:         'Контакты',
-        title:         'Запишитесь на пробный урок',
-        subtitle:      'Бесплатно и без обязательств. Мы свяжемся в течение 1 часа.',
-        phoneLabel:    'Телефон',
-        emailLabel:    'Email',
-        telegramLabel: 'Telegram',
-        nameLabel:     'Ваше имя',
-        namePlaceholder: 'Например: Елена',
-        phoneLabel2:   'Номер телефона',
-        ageLabel:      'Возраст ребёнка',
-        agePlaceholder:'Выберите возраст',
-        years:         'лет',
-        formatLabel:   'Формат обучения',
-        formatOptions: [
-            { value: 'group',      label: 'Групповой' },
-            { value: 'individual', label: 'Индивидуальный' },
-            { value: 'unsure',     label: 'Не знаю' },
-        ],
-        submit:       'Записаться на пробный урок 🦊',
-        sending:      'Отправляем...',
-        privacy:      'Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.',
-        successTitle: 'Спасибо!',
-        successText:  'Мы свяжемся с вами в ближайшее время и договоримся об удобном времени для пробного урока.',
+        label:          'Контакты',
+        titleLine1:     'Запишитесь на',
+        titleLine2:     'пробный урок',
+        subtitle:       'Оставь заявку — перезвоним в течение 30 минут, запишем ребёнка на бесплатное первое занятие.',
+        phonesLabel:    'Телефоны',
+        phoneLabel:     'Телефон',
+        emailLabel:     'Почта',
+        telegramLabel:  'Telegram',
+        socialLabel:    'Следите за нами',
+        nameLabel:      'Ваше имя',
+        namePlaceholder:'Например: Иван',
+        phoneLabel2:    'Ваш телефон',
+        ageLabel:       'Возраст',
+        years:          'лет',
+        orWrite:        'или напишите нам напрямую',
+        submit:         'Записаться на пробный урок бесплатно',
+        sending:        'Отправляем...',
+        privacy:        'Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.',
+        successTitle:   'Спасибо!',
+        successText:    'Мы свяжемся с вами в ближайшее время и договоримся об удобном времени для пробного урока.',
         errorText:    'Что-то пошло не так. Попробуйте ещё раз или позвоните нам.',
     },
 
@@ -1687,6 +1951,7 @@ function app() {
             childAge: '',
             format:   'group',
         },
+        modalOpen:   false,
         formLoading: false,
         formSuccess: false,
         formError:   false,
@@ -1699,6 +1964,9 @@ function app() {
 
             // Update <html lang> on language change
             this.$watch('lang', v => { document.documentElement.lang = v; });
+
+            // ESC closes modal
+            window.addEventListener('keydown', e => { if (e.key === 'Escape') this.modalOpen = false; });
 
             // Header scroll effect
             window.addEventListener('scroll', () => {
