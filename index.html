@@ -101,10 +101,7 @@
                     },
                     fontSize: {
                         // Micro — маркі іспитів, сертифікат (merge [8–11px])
-                        '2xs': ['0.6875rem', { lineHeight: '1.2' }],
-                        // Display — тільки секція ЧОМУ
-                        'display':    ['4.5rem', { lineHeight: '1', letterSpacing: '-0.02em' }],
-                        'display-lg': ['6rem',   { lineHeight: '1', letterSpacing: '-0.02em' }],
+                        '2xs': ['0.6875rem', { lineHeight: '1.5' }],
                     },
 
                     // ── Shape ──────────────────────────────────────────────
@@ -917,10 +914,9 @@
 
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
 
-        <!-- Великий заголовок -->
-        <div class="mb-16">
-            <h2 class="text-display md:text-display-lg font-black text-white tracking-tight" x-text="t.adv.title"></h2>
-            <p class="text-base md:text-lg font-black text-gray-400 uppercase tracking-widest mt-3" x-text="t.adv.subtitle"></p>
+        <div class="text-center mb-14">
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-3 leading-tight" x-text="t.adv.title"></h2>
+            <p class="text-gray-400 text-lg" x-text="t.adv.subtitle"></p>
         </div>
 
         <!-- 6 пунктів, 3 колонки -->
@@ -1019,7 +1015,7 @@
             <template x-for="(teacher, i) in t.teachers.list" :key="i">
                 <div class="card-lift bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm">
                     <!-- Photo placeholder -->
-                    <div class="h-52 flex items-center justify-center text-display"
+                    <div class="h-52 flex items-center justify-center text-5xl"
                          :style="'background:' + teacher.bg">
                         <span x-text="teacher.avatar"></span>
                     </div>
