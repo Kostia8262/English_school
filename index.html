@@ -99,6 +99,13 @@
                         extrabold:'800',
                         black:    '900',
                     },
+                    fontSize: {
+                        // Micro — маркі іспитів, сертифікат (merge [8–11px])
+                        '2xs': ['0.6875rem', { lineHeight: '1.2' }],
+                        // Display — тільки секція ЧОМУ
+                        'display':    ['4.5rem', { lineHeight: '1', letterSpacing: '-0.02em' }],
+                        'display-lg': ['6rem',   { lineHeight: '1', letterSpacing: '-0.02em' }],
+                    },
 
                     // ── Shape ──────────────────────────────────────────────
                     borderRadius: {
@@ -390,7 +397,7 @@
                     <span x-text="t.hero.badge"></span>
                 </div>
 
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-5">
+                <h1 class="text-4xl sm:text-5xl font-black text-gray-900 leading-tight mb-5">
                     <span x-text="t.hero.titleLine1"></span><br>
                     <span class="gradient-text" x-text="t.hero.titleLine2"></span><br>
                     <span x-text="t.hero.titleLine3"></span>
@@ -576,7 +583,7 @@
 
                     <!-- Floating badges around fox -->
                     <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg px-3 py-2 text-sm font-bold text-gray-800 border border-gray-100">
-                        ⭐ 4.9 <span class="text-gray-400 font-normal text-xs">рейтинг</span>
+                        ⭐ 4.9 <span class="text-gray-400 font-medium text-xs">рейтинг</span>
                     </div>
                     <div class="absolute -bottom-2 -left-6 bg-fox-500 text-white rounded-2xl shadow-lg px-3 py-2 text-sm font-bold">
                         🎓 500+ учнів
@@ -738,7 +745,7 @@
             <p class="text-white font-black text-xs sm:text-sm md:text-base tracking-widest uppercase leading-tight">
                 🇬🇧 &nbsp;Speak the Language of the World&nbsp; 🇬🇧
             </p>
-            <p class="text-red-200 text-[10px] md:text-xs mt-0.5 tracking-wider">Oxford · Cambridge · IELTS · British Council</p>
+            <p class="text-red-200 text-2xs md:text-xs mt-0.5 tracking-wider">Oxford · Cambridge · IELTS · British Council</p>
         </div>
 
         <!-- Phone booth SVG -->
@@ -805,7 +812,7 @@
                         class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-200"
                         x-text="t.prog.tab2">
                     </button>
-                    <span class="absolute -top-3 -right-2 bg-fox-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded-full leading-tight shadow-lg pointer-events-none">★ ТОП</span>
+                    <span class="absolute -top-3 -right-2 bg-fox-500 text-white text-2xs font-black px-1.5 py-0.5 rounded-full leading-tight shadow-lg pointer-events-none">★ ТОП</span>
                 </div>
             </div>
         </div>
@@ -912,7 +919,7 @@
 
         <!-- Великий заголовок -->
         <div class="mb-16">
-            <h2 class="text-7xl md:text-8xl font-black text-white leading-none tracking-tight" x-text="t.adv.title"></h2>
+            <h2 class="text-display md:text-display-lg font-black text-white tracking-tight" x-text="t.adv.title"></h2>
             <p class="text-base md:text-lg font-black text-gray-400 uppercase tracking-widest mt-3" x-text="t.adv.subtitle"></p>
         </div>
 
@@ -1012,7 +1019,7 @@
             <template x-for="(teacher, i) in t.teachers.list" :key="i">
                 <div class="card-lift bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm">
                     <!-- Photo placeholder -->
-                    <div class="h-52 flex items-center justify-center text-7xl"
+                    <div class="h-52 flex items-center justify-center text-display"
                          :style="'background:' + teacher.bg">
                         <span x-text="teacher.avatar"></span>
                     </div>
@@ -1117,7 +1124,7 @@
                                             <!-- Wax seal -->
                                             <div class="w-12 h-12 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#D4AF37; color:#D4AF37;">
                                                 <div class="text-xs font-black leading-none">FF</div>
-                                                <div class="text-[8px] leading-none mt-0.5" x-text="t.results.certYear"></div>
+                                                <div class="text-2xs leading-none mt-0.5" x-text="t.results.certYear"></div>
                                             </div>
                                             <!-- Date -->
                                             <div class="text-right">
@@ -1205,7 +1212,7 @@
                         @click="openFaq = openFaq===i ? null : i"
                         class="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition-colors">
                         <span class="font-bold text-gray-900" x-text="item.q"></span>
-                        <span class="text-fox-500 text-xl font-light transition-transform duration-200 flex-shrink-0 ml-3"
+                        <span class="text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3"
                               :class="openFaq===i ? 'rotate-45' : ''">+</span>
                     </button>
                     <div x-show="openFaq===i" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
@@ -1248,7 +1255,7 @@
                             <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#003B5C">CE</div>
                             <div class="text-left">
                                 <div class="font-black text-gray-900 text-sm leading-tight">Cambridge</div>
-                                <div class="text-gray-400 text-[11px]">YLE · KET · PET</div>
+                                <div class="text-gray-400 text-2xs">YLE · KET · PET</div>
                             </div>
                         </div>
                         <!-- Cambridge FCE/CAE -->
@@ -1256,7 +1263,7 @@
                             <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#00539B">FCE</div>
                             <div class="text-left">
                                 <div class="font-black text-gray-900 text-sm leading-tight">Cambridge</div>
-                                <div class="text-gray-400 text-[11px]">B2 First · C1 Advanced</div>
+                                <div class="text-gray-400 text-2xs">B2 First · C1 Advanced</div>
                             </div>
                         </div>
                         <!-- IELTS -->
@@ -1264,7 +1271,7 @@
                             <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#D12E2E">IE</div>
                             <div class="text-left">
                                 <div class="font-black text-gray-900 text-sm leading-tight">IELTS</div>
-                                <div class="text-gray-400 text-[11px]">Academic · General</div>
+                                <div class="text-gray-400 text-2xs">Academic · General</div>
                             </div>
                         </div>
                         <!-- TOEFL -->
@@ -1272,7 +1279,7 @@
                             <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#003087">iBT</div>
                             <div class="text-left">
                                 <div class="font-black text-gray-900 text-sm leading-tight">TOEFL iBT</div>
-                                <div class="text-gray-400 text-[11px]">ETS · Online</div>
+                                <div class="text-gray-400 text-2xs">ETS · Online</div>
                             </div>
                         </div>
                         <!-- Duolingo -->
@@ -1280,31 +1287,31 @@
                             <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#58CC02">DET</div>
                             <div class="text-left">
                                 <div class="font-black text-gray-900 text-sm leading-tight">Duolingo</div>
-                                <div class="text-gray-400 text-[11px]">English Test</div>
+                                <div class="text-gray-400 text-2xs">English Test</div>
                             </div>
                         </div>
                         <!-- YLE Starters -->
                         <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
-                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-[10px] flex-shrink-0" style="background:#F4A100">YLE</div>
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-2xs flex-shrink-0" style="background:#F4A100">YLE</div>
                             <div class="text-left">
                                 <div class="font-black text-gray-900 text-sm leading-tight">YLE</div>
-                                <div class="text-gray-400 text-[11px]">Starters · Movers · Flyers</div>
+                                <div class="text-gray-400 text-2xs">Starters · Movers · Flyers</div>
                             </div>
                         </div>
                         <!-- Trinity -->
                         <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
-                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-[10px] flex-shrink-0" style="background:#6B21A8">TCL</div>
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-2xs flex-shrink-0" style="background:#6B21A8">TCL</div>
                             <div class="text-left">
                                 <div class="font-black text-gray-900 text-sm leading-tight">Trinity</div>
-                                <div class="text-gray-400 text-[11px]">GESE · ISE</div>
+                                <div class="text-gray-400 text-2xs">GESE · ISE</div>
                             </div>
                         </div>
                         <!-- PTE -->
                         <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:140px">
-                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-[10px] flex-shrink-0" style="background:#0099D6">PTE</div>
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-2xs flex-shrink-0" style="background:#0099D6">PTE</div>
                             <div class="text-left">
                                 <div class="font-black text-gray-900 text-sm leading-tight">PTE Academic</div>
-                                <div class="text-gray-400 text-[11px]">Pearson</div>
+                                <div class="text-gray-400 text-2xs">Pearson</div>
                             </div>
                         </div>
                     </div>
