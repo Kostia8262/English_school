@@ -3,45 +3,46 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://fluentfox.com.ua/</loc>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://fluentfox.com.ua/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://fluentfox.com.ua/?lang=ru"/>
-    <lastmod>2026-01-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://fluent-fox.site/</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/"/>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://fluentfox.com.ua/privacy.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <loc>https://fluent-fox.site/privacy.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://fluentfox.com.ua/offer.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <loc>https://fluent-fox.site/offer.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://fluentfox.com.ua/terms.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <loc>https://fluent-fox.site/terms.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://fluentfox.com.ua/returns.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <loc>https://fluent-fox.site/returns.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
 
   <url>
-    <loc>https://fluentfox.com.ua/cookies.html</loc>
-    <lastmod>2026-01-01</lastmod>
+    <loc>https://fluent-fox.site/cookies.html</loc>
+    <lastmod>2026-07-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fluentfox.com.ua/sitemap.xml
+Sitemap: https://fluent-fox.site/sitemap.xml

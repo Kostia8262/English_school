@@ -16,8 +16,10 @@
     <meta property="og:site_name" content="FluentFox">
     <meta property="og:title" content="FluentFox — Онлайн-школа англійської для дітей та підлітків">
     <meta property="og:description" content="Вивчай англійську разом з FluentFox — ігровий підхід, малі групи, живі вчителі. Перший урок безкоштовно!">
-    <meta property="og:image" content="https://fluentfox.com.ua/og-image.jpg">
-    <meta property="og:url" content="https://fluentfox.com.ua">
+    <meta property="og:image" content="https://fluent-fox.site/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://fluent-fox.site">
     <meta property="og:locale" content="uk_UA">
     <meta property="og:locale:alternate" content="ru_UA">
 
@@ -25,15 +27,18 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="FluentFox — Онлайн-школа англійської для дітей">
     <meta name="twitter:description" content="Ігровий підхід, малі групи, живі вчителі. Перший урок безкоштовно!">
-    <meta name="twitter:image" content="https://fluentfox.com.ua/og-image.jpg">
+    <meta name="twitter:image" content="https://fluent-fox.site/og-image.jpg">
 
     <!-- ═══ Canonical & Hreflang ═══ -->
-    <link rel="canonical" href="https://fluentfox.com.ua">
-    <link rel="alternate" hreflang="uk" href="https://fluentfox.com.ua">
-    <link rel="alternate" hreflang="ru" href="https://fluentfox.com.ua?lang=ru">
+    <link rel="canonical" href="https://fluent-fox.site">
+    <link rel="alternate" hreflang="uk" href="https://fluent-fox.site">
+    <link rel="alternate" hreflang="ru" href="https://fluent-fox.site?lang=ru">
+    <link rel="alternate" hreflang="x-default" href="https://fluent-fox.site">
 
     <!-- ═══ Favicon (fox emoji) ═══ -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>">
+
+    <meta name="theme-color" content="#FF6B35">
 
     <!-- ═══ Google Fonts ═══ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -130,7 +135,7 @@
     </script>
 
     <!-- ═══ Alpine.js CDN ═══ -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
     <!-- ═══ Schema.org ═══ -->
     <script type="application/ld+json">
@@ -138,7 +143,7 @@
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
         "name": "FluentFox",
-        "url": "https://fluentfox.com.ua",
+        "url": "https://fluent-fox.site",
         "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років",
         "address": {
             "@type": "PostalAddress",
@@ -401,9 +406,9 @@
                 </div>
 
                 <h1 class="text-4xl sm:text-5xl font-black text-gray-900 leading-tight mb-5">
-                    <span x-text="t.hero.titleLine1"></span><br>
-                    <span class="gradient-text" x-text="t.hero.titleLine2"></span><br>
-                    <span x-text="t.hero.titleLine3"></span>
+                    <span x-text="t.hero.titleLine1">Онлайн англійська</span><br>
+                    <span class="gradient-text" x-text="t.hero.titleLine2">для дітей та підлітків</span><br>
+                    <span x-text="t.hero.titleLine3">яку вони обожнюють</span>
                 </h1>
 
                 <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg" x-text="t.hero.subtitle"></p>
@@ -2446,12 +2451,12 @@ function app() {
 
         /* ── init ── */
         init() {
+            // Update <html lang> on language change (must register before setting lang)
+            this.$watch('lang', v => { document.documentElement.lang = v; });
+
             // Check URL param for default language
             const p = new URLSearchParams(window.location.search).get('lang');
             if (p === 'ru') this.lang = 'ru';
-
-            // Update <html lang> on language change
-            this.$watch('lang', v => { document.documentElement.lang = v; });
 
             // ESC closes modal
             window.addEventListener('keydown', e => { if (e.key === 'Escape') this.modalOpen = false; });
