@@ -13,20 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USER }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: ${{ secrets.SFTP_PORT }}
-          protocol: sftp
-          server-dir: /home/u260300169/domains/fluent-fox.site/public_html/
-          local-dir: ./
-          exclude: |
-            **/.git*
-            **/.git*/**
-            CLAUDE.md
-            .github/**
-            *.jsonl
-            *.md
+      - name: Install sshpass and rsync
+        run: sudo apt-get install -y sshpass rsync
+
+      - name: Deploy via rsync over SSH
+        env:
+          SSHPASS: ${{ secrets.SFTP_PASSWORD }}
+        run: |
+          sshpass -e rsync -avz --delete \
+            --exclude='.git*' \
+            --exclude='.github/' \
+            --exclude='CLAUDE.md' \
+            --exclude='*.md' \
+            --exclude='*.jsonl' \
+            -e "ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no" \
+            ./ ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}:/home/u260300169/domains/fluent-fox.site/public_html/
