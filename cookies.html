@@ -1,109 +1,220 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Політика куків — FluentFox</title>
-    <meta name="robots" content="noindex">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: { colors: { fox: { 50:'#FFF4EE', 100:'#FFE4D1', 400:'#FF8C5A', 500:'#FF6B35', 600:'#E85520' } } } }
-        }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Nunito', sans-serif; }</style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Політика Cookie — FluentFox</title>
+<meta name="description" content="Політика використання cookie-файлів FluentFox — які файли cookie ми використовуємо, як надати або відкликати згоду на відстеження у браузері."/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',Arial,sans-serif;background:#FFF5EF;color:#1a1a2e;line-height:1.8;font-size:15px}
+.wrap{max-width:760px;margin:0 auto;padding:48px 28px;background:#fff;min-height:100vh;border-left:1px solid #FFE8D6;border-right:1px solid #FFE8D6}
+.back{display:inline-flex;align-items:center;gap:6px;color:#E54E1A;text-decoration:none;font-size:13.5px;font-weight:700;margin-bottom:32px;padding:7px 14px;border:1.5px solid #FFCAAA;border-radius:8px;transition:all .18s}
+.back:hover{background:#FF6B35;color:#fff;border-color:#FF6B35}
+h1{font-size:20px;font-weight:900;color:#0f0f1a;margin-bottom:6px;padding-bottom:18px;border-bottom:2.5px solid #FF6B35;line-height:1.35}
+.doc-meta{font-size:13px;color:#888;margin-top:10px;margin-bottom:40px}
+h2{font-size:14.5px;font-weight:800;color:#0f0f1a;margin-top:36px;margin-bottom:12px;padding:9px 14px;background:#FFF5EF;border-left:4px solid #FF6B35;border-radius:0 6px 6px 0}
+h3{font-size:14px;font-weight:700;color:#BF3C0F;margin-top:20px;margin-bottom:8px}
+p{margin-bottom:12px;color:#2c2c4a;font-size:15px;line-height:1.8}
+ul,ol{margin-bottom:14px;padding-left:22px}
+li{margin-bottom:6px;color:#2c2c4a;font-size:15px;line-height:1.75}
+table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:14px}
+th{background:#FF6B35;color:#fff;padding:9px 13px;text-align:left;font-weight:700;font-size:13px}
+td{padding:8px 13px;border-bottom:1px solid #FFE8D6;vertical-align:top}
+tr:nth-child(even) td{background:#FFF9F5}
+a{color:#E54E1A}
+a:hover{text-decoration:underline}
+strong{font-weight:700;color:#0f0f1a}
+.footer-note{margin-top:48px;padding:16px 18px;background:#FFF5EF;border-radius:10px;font-size:13px;color:#666;border:1px solid #FFE8D6;line-height:1.8}
+@media(max-width:600px){.wrap{padding:24px 16px;border:none}h1{font-size:17px}h2{font-size:13.5px}table{font-size:13px}th,td{padding:7px 9px}}
+.doc-nav{margin-top:36px;padding:16px 18px;background:#FFF9F5;border-radius:10px;font-size:13px;line-height:2;border:1px solid #FFE8D6}
+.doc-nav a{color:#E54E1A}.doc-nav a:hover{text-decoration:underline}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
+<div class="wrap">
+<a href="/" class="back">← FluentFox</a>
+<h1>ПОЛІТИКА ВИКОРИСТАННЯ ФАЙЛІВ COOKIE</h1>
+<p class="doc-meta">Дата набрання чинності: 8 липня 2026 р.</p>
 
-    <header class="bg-white shadow-sm py-4">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2">
-                <span class="text-2xl">🦊</span>
-                <span class="text-xl font-black text-gray-900">Fluent<span class="text-fox-500">Fox</span></span>
-            </a>
-            <a href="index.html" class="text-sm font-bold text-fox-500 hover:text-fox-600 transition-colors">← На головну</a>
-        </div>
-    </header>
+<p>Ця Політика пояснює, які файли cookie використовує сайт FluentFox, з якою метою та як ви можете керувати своїми налаштуваннями. Документ відповідає вимогам Закону України «Про захист персональних даних» (№&nbsp;2297-VI), ЗУ «Про електронну комерцію» (№&nbsp;675-VIII) та Регламенту GDPR (EU) 2016/679.</p>
 
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-        <h1 class="text-3xl font-black text-gray-900 mb-2">Політика куків (Cookie Policy)</h1>
-        <p class="text-sm text-gray-400 mb-8">Остання редакція: 01 січня 2026 р.</p>
+<h2>1. Що таке файли cookie?</h2>
+<p>Файл cookie — це невеликий текстовий файл, який веб-сайт зберігає на вашому пристрої під час відвідування. Cookie дозволяють сайту:</p>
+<ul>
+  <li>запам'ятовувати ваші налаштування (мова, параметри сесії) між візитами;</li>
+  <li>аналізувати відвідуваність і покращувати роботу сайту;</li>
+  <li>показувати персоналізовані матеріали;</li>
+  <li>забезпечувати безпеку та запобігати шахрайству.</li>
+</ul>
+<p>Cookie не є шкідливими програмами: вони не виконують код, не містять вірусів і не надають доступ до вашого пристрою.</p>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 space-y-8 text-gray-700 leading-relaxed">
+<h2>2. Які файли cookie ми використовуємо</h2>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">1. Що таке cookies</h2>
-                <p>Cookies (куки) — це невеликі текстові файли, які зберігаються у вашому браузері, коли ви відвідуєте веб-сайт. Вони допомагають сайту запам'ятати інформацію про ваш візит: мову інтерфейсу, налаштування тощо.</p>
-            </section>
+<h3>🔒 Обов'язкові (функціональні) cookie</h3>
+<p>Правова підстава: законний інтерес (ст. 6(1)(f) GDPR) — необхідні для роботи сайту.<br/>
+Строк зберігання: сесія або до 1 року.<br/>
+Приклади: збереження мови інтерфейсу, CSRF-токени форм.</p>
+<p>Ці файли cookie необхідні для базової роботи Сайту і не можуть бути вимкнені. Вони не збирають особисту інформацію в маркетингових цілях.</p>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">2. Які cookies ми використовуємо</h2>
+<h3>📊 Аналітичні cookie</h3>
+<p>Правова підстава: згода користувача (ст. 6(1)(a) GDPR).<br/>
+Строк зберігання: до 2 років.<br/>
+Приклади: Google Analytics (_ga, _gid, _gat), Google Tag Manager.</p>
+<p>Аналітичні cookie допомагають нам розуміти, як відвідувачі взаємодіють із Сайтом. Ми збираємо знеособлену статистику: кількість відвідувань, джерела трафіку, поведінку на сторінках.</p>
+<ul>
+  <li><strong>Google Analytics</strong> — сервіс веб-аналітики від Google LLC. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Детальніше</a></li>
+  <li><strong>Facebook Pixel</strong> — інструмент аналітики від Meta Platforms Inc. <a href="https://www.facebook.com/privacy/explanation" target="_blank" rel="noopener">Детальніше</a></li>
+</ul>
 
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm border-collapse">
-                        <thead>
-                            <tr class="bg-fox-50">
-                                <th class="text-left p-3 font-black rounded-tl-lg">Назва / Джерело</th>
-                                <th class="text-left p-3 font-black">Тип</th>
-                                <th class="text-left p-3 font-black rounded-tr-lg">Призначення</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr>
-                                <td class="p-3 font-bold">lang</td>
-                                <td class="p-3"><span class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-bold">Технічний</span></td>
-                                <td class="p-3">Зберігає обрану мову інтерфейсу (UA/RU)</td>
-                            </tr>
-                            <tr class="bg-gray-50">
-                                <td class="p-3 font-bold">_ga, _ga_*</td>
-                                <td class="p-3"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-xs font-bold">Аналітичний</span></td>
-                                <td class="p-3">Google Analytics 4 — статистика відвідуваності</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 font-bold">_gcl_au</td>
-                                <td class="p-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full text-xs font-bold">Маркетинговий</span></td>
-                                <td class="p-3">Google Ads — відстеження рекламних конверсій</td>
-                            </tr>
-                            <tr class="bg-gray-50">
-                                <td class="p-3 font-bold">_fbp</td>
-                                <td class="p-3"><span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full text-xs font-bold">Маркетинговий</span></td>
-                                <td class="p-3">Meta Pixel — аналітика та ремаркетинг Facebook/Instagram</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+<h3>🎯 Маркетингові (рекламні) cookie</h3>
+<p>Правова підстава: згода користувача (ст. 6(1)(a) GDPR).<br/>
+Строк зберігання: до 1 року.<br/>
+Приклади: Google Ads, ремаркетинг Facebook.</p>
+<p>Маркетингові cookie використовуються для показу релевантної реклами на основі ваших попередніх дій на Сайті.</p>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">3. Термін зберігання</h2>
-                <p>Технічні cookies зберігаються протягом поточної сесії або до 1 року. Аналітичні та маркетингові cookies — до 2 років, відповідно до умов постачальників (Google, Meta).</p>
-            </section>
+<h3>🌐 Cookie соціальних мереж</h3>
+<p>Правова підстава: згода користувача (ст. 6(1)(a) GDPR).<br/>
+Строк зберігання: визначається третьою стороною.<br/>
+Приклади: Facebook, Instagram, Telegram Widget.</p>
+<p>Якщо на Сайті є кнопки соціальних мереж або вбудований контент, ці сервіси можуть встановлювати власні cookie. Зверніться до відповідних платформ для отримання детальної інформації.</p>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">4. Як відключити cookies</h2>
-                <p>Ви можете в будь-який момент відключити cookies у налаштуваннях вашого браузера. Зверніть увагу, що відключення технічних cookies може вплинути на коректну роботу сайту.</p>
-                <ul class="list-disc list-inside space-y-1 mt-2 text-sm">
-                    <li>Chrome: Налаштування → Конфіденційність та безпека → Файли cookie.</li>
-                    <li>Firefox: Налаштування → Конфіденційність і захист → Файли cookies.</li>
-                    <li>Safari: Налаштування → Конфіденційність → Файли cookie.</li>
-                </ul>
-            </section>
+<h2>3. Зведена таблиця — типи cookie та згода</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Тип cookie</th>
+      <th>Потрібна згода?</th>
+      <th>Як керувати?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🔒 Обов'язкові</td>
+      <td>Ні (завжди активні)</td>
+      <td>Не можуть бути вимкнені — необхідні для роботи сайту</td>
+    </tr>
+    <tr>
+      <td>📊 Аналітичні</td>
+      <td>Так — Cookie Banner</td>
+      <td>Відмовитись через банер або налаштування браузера</td>
+    </tr>
+    <tr>
+      <td>🎯 Маркетингові</td>
+      <td>Так — Cookie Banner</td>
+      <td>Відмовитись через банер або Google/Meta Consent</td>
+    </tr>
+    <tr>
+      <td>🌐 Соціальні</td>
+      <td>Так — Cookie Banner</td>
+      <td>Відмовитись через банер або налаштування соцмережі</td>
+    </tr>
+  </tbody>
+</table>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">5. Контактна інформація</h2>
-                <p>З питань щодо використання cookies: <a href="mailto:my.computer.academy25@gmail.com" class="text-fox-500 underline">my.computer.academy25@gmail.com</a></p>
-            </section>
+<h2>4. Надання згоди та відмова від cookie</h2>
 
-        </div>
-    </main>
+<h3>4.1. Керування через браузер</h3>
+<p>Ви можете керувати файлами cookie безпосередньо у налаштуваннях браузера. Відключення обов'язкових cookie може призвести до некоректної роботи Сайту.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Браузер</th>
+      <th>Де знайти налаштування</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Google Chrome</td>
+      <td>Меню → Налаштування → Конфіденційність та безпека → Файли cookie</td>
+    </tr>
+    <tr>
+      <td>Mozilla Firefox</td>
+      <td>Меню → Налаштування → Конфіденційність та захист</td>
+    </tr>
+    <tr>
+      <td>Safari (Mac/iOS)</td>
+      <td>Налаштування → Safari → Конфіденційність → Керування даними сайту</td>
+    </tr>
+    <tr>
+      <td>Microsoft Edge</td>
+      <td>Меню → Налаштування → Файли cookie та дозволи сайту</td>
+    </tr>
+    <tr>
+      <td>Opera</td>
+      <td>Меню → Налаштування → Додатково → Конфіденційність та безпека</td>
+    </tr>
+  </tbody>
+</table>
 
-    <footer class="bg-gray-900 text-gray-400 text-center py-6 mt-12">
-        <p class="text-sm">© 2026 FluentFox. Всі права захищені. &nbsp;|&nbsp;
-            <a href="index.html" class="hover:text-fox-400 transition-colors">На головну</a>
-        </p>
-    </footer>
+<h3>4.2. Відмова від Google Analytics</h3>
+<p>Для повної відмови від відстеження встановіть офіційний плагін: <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a></p>
 
+<h3>4.3. Відмова від реклами</h3>
+<ul>
+  <li>Facebook: <a href="https://www.facebook.com/settings/?tab=ads" target="_blank" rel="noopener">facebook.com/settings/?tab=ads</a></li>
+  <li>Google: <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a></li>
+</ul>
+
+<h2>5. Передача даних третім особам</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Партнер</th>
+      <th>Мета</th>
+      <th>Категорія cookie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Google LLC</td>
+      <td>Аналітика (GA4), збереження заявок (Sheets), Google Ads</td>
+      <td>Аналітичні, маркетингові, обов'язкові</td>
+    </tr>
+    <tr>
+      <td>Meta Platforms Inc.</td>
+      <td>Аналітика Facebook, реклама Instagram</td>
+      <td>Аналітичні, маркетингові</td>
+    </tr>
+    <tr>
+      <td>LiqPay / WayForPay</td>
+      <td>Обробка платежів</td>
+      <td>Обов'язкові</td>
+    </tr>
+  </tbody>
+</table>
+<p>Виконавець не продає персональні дані, зібрані через cookie, третім особам у комерційних цілях.</p>
+
+<h2>6. Ваші права щодо cookie-даних</h2>
+<p>Відповідно до GDPR та ЗУ «Про захист персональних даних», ви маєте право:</p>
+<ul>
+  <li><strong>на доступ</strong> — отримати інформацію про те, які cookie-дані ми зберігаємо;</li>
+  <li><strong>на видалення</strong> — вимагати видалення ваших даних, зібраних через cookie;</li>
+  <li><strong>на відкликання згоди</strong> — будь-коли відкликати згоду на необов'язкові cookie;</li>
+  <li><strong>на обмеження обробки</strong> — обмежити використання ваших даних.</li>
+</ul>
+<p>Для реалізації прав надішліть запит на <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a>. Ми відповімо протягом 30 календарних днів.</p>
+
+<h2>7. Діти та неповнолітні</h2>
+<p>FluentFox не збирає свідомо дані дітей до 13 років через cookie або будь-які інші засоби без відповідного дозволу батьків або законних опікунів. Якщо вам стало відомо про таку ситуацію, негайно повідомте нас: <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a>.</p>
+
+<h2>8. Зміни до Політики</h2>
+<p>Ми можемо оновлювати цю Політику у відповідь на зміни в законодавстві або технологіях. Нова редакція набуває чинності з моменту публікації на Сайті. Продовження використання Сайту означає вашу згоду з новою редакцією.</p>
+
+<h2>9. Контактна інформація</h2>
+<ul>
+  <li><strong>Відповідальна особа:</strong> ФОП Піменов К.Ю. / FluentFox</li>
+  <li><strong>E-mail:</strong> <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a></li>
+</ul>
+
+<nav class="doc-nav" aria-label="Навігація по документах">
+  <p><strong>Інші документи:</strong> <a href="privacy.html">Конфіденційність</a> · <a href="offer.html">Публічна оферта</a> · <a href="returns.html">Повернення коштів</a> · <a href="terms.html">Правила використання</a></p>
+  <p><strong>FluentFox:</strong> <a href="/#pricing">Тарифи</a> · <a href="/#ages">Вікові групи</a> · <a href="/#contact">Записатись на урок</a></p>
+</nav>
+<div class="footer-note">© 2026 FluentFox / ФОП Піменов К.Ю. · <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a></div>
+</div>
 </body>
 </html>

@@ -1,90 +1,255 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Правила повернення — FluentFox</title>
-    <meta name="robots" content="noindex">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: { colors: { fox: { 50:'#FFF4EE', 100:'#FFE4D1', 400:'#FF8C5A', 500:'#FF6B35', 600:'#E85520' } } } }
-        }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Nunito', sans-serif; }</style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Повернення коштів — FluentFox</title>
+<meta name="description" content="Правила повернення коштів FluentFox — умови відшкодування за уроки англійської мови, строки та порядок подання заяви."/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',Arial,sans-serif;background:#FFF5EF;color:#1a1a2e;line-height:1.8;font-size:15px}
+.wrap{max-width:760px;margin:0 auto;padding:48px 28px;background:#fff;min-height:100vh;border-left:1px solid #FFE8D6;border-right:1px solid #FFE8D6}
+.back{display:inline-flex;align-items:center;gap:6px;color:#E54E1A;text-decoration:none;font-size:13.5px;font-weight:700;margin-bottom:32px;padding:7px 14px;border:1.5px solid #FFCAAA;border-radius:8px;transition:all .18s}
+.back:hover{background:#FF6B35;color:#fff;border-color:#FF6B35}
+h1{font-size:20px;font-weight:900;color:#0f0f1a;margin-bottom:6px;padding-bottom:18px;border-bottom:2.5px solid #FF6B35;line-height:1.35}
+.doc-meta{font-size:13px;color:#888;margin-top:10px;margin-bottom:40px}
+h2{font-size:14.5px;font-weight:800;color:#0f0f1a;margin-top:36px;margin-bottom:12px;padding:9px 14px;background:#FFF5EF;border-left:4px solid #FF6B35;border-radius:0 6px 6px 0}
+h3{font-size:14px;font-weight:700;color:#BF3C0F;margin-top:20px;margin-bottom:8px}
+p{margin-bottom:12px;color:#2c2c4a;font-size:15px;line-height:1.8}
+ul,ol{margin-bottom:14px;padding-left:22px}
+li{margin-bottom:6px;color:#2c2c4a;font-size:15px;line-height:1.75}
+table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:14px}
+th{background:#FF6B35;color:#fff;padding:9px 13px;text-align:left;font-weight:700;font-size:13px}
+td{padding:8px 13px;border-bottom:1px solid #FFE8D6;vertical-align:top}
+tr:nth-child(even) td{background:#FFF9F5}
+.warn{background:#fffaed;border:1.5px solid #f5a623;border-radius:8px;padding:14px 16px;margin:20px 0}
+.warn p{margin-bottom:4px;color:#7a4500;font-size:14px}
+.warn p:last-child{margin-bottom:0}
+a{color:#E54E1A}
+a:hover{text-decoration:underline}
+strong{font-weight:700;color:#0f0f1a}
+.footer-note{margin-top:48px;padding:16px 18px;background:#FFF5EF;border-radius:10px;font-size:13px;color:#666;border:1px solid #FFE8D6;line-height:1.8}
+@media(max-width:600px){.wrap{padding:24px 16px;border:none}h1{font-size:17px}h2{font-size:13.5px}table{font-size:13px}th,td{padding:7px 9px}}
+.doc-nav{margin-top:36px;padding:16px 18px;background:#FFF9F5;border-radius:10px;font-size:13px;line-height:2;border:1px solid #FFE8D6}
+.doc-nav a{color:#E54E1A}.doc-nav a:hover{text-decoration:underline}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
+<div class="wrap">
+<a href="/" class="back">← FluentFox</a>
+<h1>ПРАВИЛА ПОВЕРНЕННЯ КОШТІВ</h1>
+<p class="doc-meta">Дата набрання чинності: 8 липня 2026 р.</p>
 
-    <header class="bg-white shadow-sm py-4">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2">
-                <span class="text-2xl">🦊</span>
-                <span class="text-xl font-black text-gray-900">Fluent<span class="text-fox-500">Fox</span></span>
-            </a>
-            <a href="index.html" class="text-sm font-bold text-fox-500 hover:text-fox-600 transition-colors">← На головну</a>
-        </div>
-    </header>
+<div class="warn">
+  <p><strong>⚠️ Важливо.</strong> Оплата освітніх послуг є підтвердженням акцепту публічної оферти. Після здійснення оплати та початку надання послуг повернення коштів не здійснюється, за виключенням випадків, прямо передбачених цими Правилами та чинним законодавством України.</p>
+  <p>Правова підстава: ст. 633, 651 ЦКУ; ст. 10 ЗУ «Про захист прав споживачів» № 1023-XII; ст. 59 ЗУ «Про освіту» № 2145-VIII.</p>
+</div>
 
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-        <h1 class="text-3xl font-black text-gray-900 mb-2">Правила повернення коштів</h1>
-        <p class="text-sm text-gray-400 mb-8">Остання редакція: 01 січня 2026 р.</p>
+<h2>1. Загальні положення</h2>
+<h3>1.1. Предмет та сторони</h3>
+<p>Ці Правила повернення коштів встановлюють умови і порядок відшкодування коштів між:</p>
+<ul>
+  <li><strong>Виконавцем</strong> — ФОП Піменов К.Ю. / FluentFox;</li>
+  <li><strong>Замовником</strong> — особою, яка оплатила послуги навчання англійської мови.</li>
+</ul>
+<p>Правила розроблені відповідно до Цивільного кодексу України, ЗУ «Про захист прав споживачів» (№&nbsp;1023-XII), ЗУ «Про освіту» (№&nbsp;2145-VIII) та ЗУ «Про електронну комерцію» (№&nbsp;675-VIII).</p>
 
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 space-y-8 text-gray-700 leading-relaxed">
+<h3>1.2. Момент укладення договору</h3>
+<p>Договір між Замовником і Виконавцем вважається укладеним з моменту здійснення першого платежу або повної оплати послуг. Здійснюючи оплату, Замовник підтверджує ознайомлення з умовами <a href="offer.html">Публічної оферти</a> та цих Правил.</p>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">1. Загальні умови повернення</h2>
-                <p>FluentFox прагне забезпечити вам найкращий досвід навчання. Якщо з будь-яких причин ви незадоволені якістю послуг, ми розглянемо ваш запит на повернення коштів відповідно до умов, викладених нижче.</p>
-            </section>
+<h2>2. Базове правило: після початку навчання кошти не повертаються</h2>
+<p>FluentFox надає освітні послуги інтелектуального характеру. Відповідно до ч. 3 ст. 10 ЗУ «Про захист прав споживачів», на послуги освітнього характеру не поширюється право на безумовне повернення, передбачене для товарів.</p>
+<p>Кошти не повертаються, якщо:</p>
+<ul>
+  <li>Замовник здійснив оплату та навчання розпочалось;</li>
+  <li>Замовник пропустив заняття без поважних причин;</li>
+  <li>Замовник не вийшов на зв'язок або не відповідає на повідомлення;</li>
+  <li>Замовник відмовився від занять після початку курсу;</li>
+  <li>Замовник не виконував домашніх завдань або ігнорував рекомендації викладача;</li>
+  <li>Слухача відраховано за порушення дисципліни;</li>
+  <li>дія договору припинена у зв'язку з форс-мажорними обставинами тривалістю понад 3 місяці.</li>
+</ul>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">2. Повернення за невикористані уроки</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>При відмові від навчання до початку першого оплаченого місяця — повне повернення коштів.</li>
-                    <li>При відмові протягом першого тижня навчання — повернення за невикористані заняття.</li>
-                    <li>Після 2+ тижнів навчання — повернення розраховується індивідуально на підставі кількості проведених занять.</li>
-                </ul>
-            </section>
+<h2>3. Випадки, коли повернення можливе</h2>
+<h3>3.1. Відмова до початку навчання</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Ситуація</th>
+      <th>Сума повернення</th>
+      <th>Термін виплати</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Замовник відмовляється до першого заняття (не пізніше ніж за 24 год до початку)</td>
+      <td>50% від сплаченої суми</td>
+      <td>10 робочих днів</td>
+    </tr>
+    <tr>
+      <td>Виконавець з власної ініціативи скасував курс або не зміг надати послугу</td>
+      <td>100% від сплаченої суми</td>
+      <td>10 робочих днів</td>
+    </tr>
+    <tr>
+      <td>Технічна помилка — подвійне списання коштів</td>
+      <td>Сума надміру списаного платежу</td>
+      <td>5 робочих днів</td>
+    </tr>
+  </tbody>
+</table>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">3. Повернення через технічні проблеми</h2>
-                <p>Якщо заняття не відбулося з вини FluentFox (технічний збій, відсутність вчителя без попередження) — заняття переноситься або відшкодовується в повному обсязі.</p>
-            </section>
+<h3>3.2. Систематичне ненадання послуг з вини Виконавця</h3>
+<p>Якщо Виконавець систематично (3 та більше рази підряд) не проводить заняття без поважних причин та без попередження Замовника, Замовник має право вимагати повернення коштів пропорційно непроведеним заняттям.</p>
+<p>Розрахунок: сума повернення = (кількість непроведених занять / загальна кількість занять за місяць) × сплачена сума.</p>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">4. Випадки, що не підлягають поверненню</h2>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>Пропущені учнем заняття без своєчасного попередження (менш ніж за 12 годин).</li>
-                    <li>Частково проведені заняття, якщо учень покинув урок достроково з власної ініціативи.</li>
-                    <li>Вартість пробного уроку (він надається безкоштовно — повернення не застосовується).</li>
-                </ul>
-            </section>
+<h2>4. Зведена таблиця: чи здійснюється повернення?</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Ситуація</th>
+      <th>Повернення</th>
+      <th>Правова підстава</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Відмова до початку занять (≤ 24 год до початку)</td>
+      <td>50%</td>
+      <td>П. 7.2 Оферти; ст. 651 ЦКУ</td>
+    </tr>
+    <tr>
+      <td>Виконавець скасував курс повністю</td>
+      <td>100%</td>
+      <td>Ст. 10 ЗУ № 1023-XII</td>
+    </tr>
+    <tr>
+      <td>Подвійне списання (технічна помилка)</td>
+      <td>Різниця</td>
+      <td>Ст. 1212 ЦКУ (безпідставне збагачення)</td>
+    </tr>
+    <tr>
+      <td>Систематичне непроведення занять Виконавцем (3+)</td>
+      <td>Пропорційно</td>
+      <td>Ст. 10 ЗУ № 1023-XII</td>
+    </tr>
+    <tr>
+      <td>Відмова після першого заняття</td>
+      <td>Ні</td>
+      <td>П. 7.2 Оферти; послуга вже надається</td>
+    </tr>
+    <tr>
+      <td>Прогул занять Замовником</td>
+      <td>Ні</td>
+      <td>П. 5.1.7 Оферти; вина Замовника</td>
+    </tr>
+    <tr>
+      <td>Замовник не виходить на зв'язок</td>
+      <td>Ні</td>
+      <td>П. 7.4 Оферти; договір діючий</td>
+    </tr>
+    <tr>
+      <td>Відрахування за порушення дисципліни</td>
+      <td>Ні</td>
+      <td>П. 5.1.4, 5.1.6 Оферти</td>
+    </tr>
+    <tr>
+      <td>Невиконання домашніх завдань</td>
+      <td>Ні</td>
+      <td>П. 4.2.2 Оферти</td>
+    </tr>
+    <tr>
+      <td>Зміна особистих обставин Замовника</td>
+      <td>Ні</td>
+      <td>Ст. 651 ЦКУ; угода виконується</td>
+    </tr>
+    <tr>
+      <td>Незадоволення якістю (без офіційної претензії)</td>
+      <td>Ні</td>
+      <td>Ст. 10 ЗУ № 1023-XII; претензія обов'язкова</td>
+    </tr>
+    <tr>
+      <td>Форс-мажор понад 3 місяці (підтверджений ТПП)</td>
+      <td>Ні</td>
+      <td>Розд. 9 Оферти; договір припиняється</td>
+    </tr>
+    <tr>
+      <td>Хвороба / тривале лікування (медична довідка)</td>
+      <td>Перенесення занять</td>
+      <td>П. 4.1.9 Оферти; погодження з менеджером</td>
+    </tr>
+  </tbody>
+</table>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">5. Процедура повернення</h2>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li>Зверніться до нас через email або телефон із зазначенням причини повернення.</li>
-                    <li>Ми розглянемо запит протягом 3 робочих днів.</li>
-                    <li>У разі підтвердження — кошти повертаються на картку, з якої здійснювалася оплата, протягом 5–10 робочих днів.</li>
-                </ol>
-            </section>
+<h2>5. Пропуски занять</h2>
+<h3>5.1. Прогули занять</h3>
+<p>Відвідування занять є зобов'язанням Замовника (п. 4.2.2 Публічної оферти). Пропущені заняття:</p>
+<ul>
+  <li>не відпрацьовуються, якщо пропуск стався без поважної причини;</li>
+  <li>не компенсуються фінансово;</li>
+  <li>не переносяться на наступний місяць.</li>
+</ul>
+<p>Поважні причини: хвороба (підтверджена медичною довідкою), форс-мажор, надзвичайні ситуації. У таких випадках заняття може бути перенесене у межах поточного місяця за погодженням з менеджером.</p>
 
-            <section>
-                <h2 class="text-xl font-black text-gray-900 mb-3">6. Контакти для звернень</h2>
-                <p>Email: <a href="mailto:my.computer.academy25@gmail.com" class="text-fox-500 underline">my.computer.academy25@gmail.com</a><br>
-                Тел.: <a href="tel:+380954624672" class="text-fox-500 underline">+38 (095) 462-46-72</a><br>
-                Telegram: <a href="https://t.me/fluentfox_ua" class="text-fox-500 underline" target="_blank">@fluentfox_ua</a></p>
-            </section>
+<h3>5.2. Відсутність зв'язку із Замовником</h3>
+<p>Якщо Замовник не відвідує заняття та не виходить на зв'язок протягом 14 та більше календарних днів без письмового повідомлення:</p>
+<ul>
+  <li>Виконавець надсилає попередження на контактний e-mail та/або телефон;</li>
+  <li>за відсутності відповіді протягом 3 робочих днів — Виконавець має право розірвати договір;</li>
+  <li>кошти за оплачений, але невикористаний період не повертаються.</li>
+</ul>
 
-        </div>
-    </main>
+<h2>6. Порядок подачі заяви на повернення</h2>
+<h3>6.1. Як подати заяву</h3>
+<ol>
+  <li>Надіслати письмову заяву на e-mail: <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a></li>
+  <li>У темі листа вказати: «Заява на повернення коштів — [ПІБ Замовника]»</li>
+  <li>Долучити документи, що підтверджують підставу для повернення</li>
+  <li>Вказати реквізити для повернення коштів (IBAN, ПІБ отримувача)</li>
+</ol>
+<p>Заява без підтвердних документів не розглядається. Усні звернення та повідомлення в месенджерах не є офіційною підставою для повернення.</p>
 
-    <footer class="bg-gray-900 text-gray-400 text-center py-6 mt-12">
-        <p class="text-sm">© 2026 FluentFox. Всі права захищені. &nbsp;|&nbsp;
-            <a href="index.html" class="hover:text-fox-400 transition-colors">На головну</a>
-        </p>
-    </footer>
+<h3>6.2. Документи для підтвердження підстав</h3>
+<ul>
+  <li><strong>При відмові до початку навчання:</strong> скріншот підтвердження оплати, письмова заява із зазначенням причини.</li>
+  <li><strong>При хворобі:</strong> копія медичної довідки, заява на перенесення занять.</li>
+  <li><strong>При технічній помилці (подвійне списання):</strong> виписка з банківського рахунку.</li>
+  <li><strong>При скасуванні курсу Виконавцем:</strong> офіційне повідомлення від Виконавця.</li>
+</ul>
 
+<h3>6.3. Терміни розгляду заяви</h3>
+<ul>
+  <li>підтвердження отримання заяви — протягом 2 робочих днів;</li>
+  <li>прийняття рішення по заяві — протягом 10 робочих днів;</li>
+  <li>здійснення виплати (у разі схвалення) — протягом 10 робочих днів після прийняття рішення.</li>
+</ul>
+<p>Загальний термін від подачі заяви до виплати не може перевищувати 20 робочих днів (ст. 15 ЗУ «Про захист прав споживачів»).</p>
+
+<h2>7. Скасування транзакції (chargeback)</h2>
+<p>У разі технічної помилки при оплаті Замовник може звернутись до Виконавця або ініціювати chargeback через банк чи платіжну систему. Якщо Замовник ініціює відкликання платежу через банк без законних підстав, Виконавець надає документальні докази надання послуги та оскаржує chargeback у встановленому порядку.</p>
+
+<h2>8. Вирішення спорів</h2>
+<ol>
+  <li>Замовник надсилає письмову претензію на <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a></li>
+  <li>Виконавець розглядає претензію та надає відповідь протягом 10 робочих днів</li>
+  <li>У разі недосягнення згоди — спір передається на розгляд суду за законодавством України</li>
+</ol>
+
+<h2>9. Контактна інформація</h2>
+<p>З питань повернення коштів звертайтесь виключно в письмовій формі:</p>
+<ul>
+  <li><strong>E-mail:</strong> <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a> (тема: «Заява на повернення коштів»)</li>
+</ul>
+<p>Усні звернення (телефон, месенджери) не є офіційною підставою для розгляду заяви.</p>
+
+<nav class="doc-nav" aria-label="Навігація по документах">
+  <p><strong>Інші документи:</strong> <a href="privacy.html">Конфіденційність</a> · <a href="cookies.html">Політика Cookie</a> · <a href="offer.html">Публічна оферта</a> · <a href="terms.html">Правила використання</a></p>
+  <p><strong>FluentFox:</strong> <a href="/#pricing">Тарифи</a> · <a href="/#ages">Вікові групи</a> · <a href="/#contact">Записатись на урок</a></p>
+</nav>
+<div class="footer-note">© 2026 FluentFox / ФОП Піменов К.Ю. · <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a></div>
+</div>
 </body>
 </html>

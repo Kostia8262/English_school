@@ -6,7 +6,7 @@
 
     <!-- ═══ SEO Primary ═══ -->
     <title>FluentFox — Онлайн-школа англійської для дітей та підлітків</title>
-    <meta name="description" content="FluentFox — онлайн-школа англійської мови для дітей 6–16 років. Групові та індивідуальні заняття, ігровий підхід, досвідчені вчителі. Перший урок — безкоштовно!">
+    <meta name="description" content="FluentFox — онлайн-школа англійської мови для дітей 6–18 років. Групові та індивідуальні заняття, ігровий підхід, досвідчені вчителі. Перший урок — безкоштовно!">
     <meta name="keywords" content="онлайн школа англійської для дітей, англійська для дітей онлайн, англійська для підлітків, вивчення англійської дітям, FluentFox">
     <meta name="robots" content="index, follow">
     <meta name="author" content="FluentFox">
@@ -80,6 +80,7 @@
                         gray: {
                             950: '#030712',
                         },
+                        british: '#C8102E',
                         cream: '#FFFBF7',
                         gold: {
                             DEFAULT: '#D4AF37',
@@ -138,7 +139,7 @@
         "@type": "EducationalOrganization",
         "name": "FluentFox",
         "url": "https://fluentfox.com.ua",
-        "description": "Онлайн-школа англійської мови для дітей та підлітків 6–16 років",
+        "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Дніпро",
@@ -151,8 +152,9 @@
             "availableLanguage": ["Ukrainian","Russian"]
         },
         "sameAs": [
-            "https://www.instagram.com/fluentfox.ua",
-            "https://t.me/fluentfox_ua"
+            "https://www.instagram.com/fluent.fox.study/",
+            "https://www.facebook.com/profile.php?id=61591810049590",
+            "https://t.me/Artist8262"
         ]
     }
     </script>
@@ -160,27 +162,35 @@
     <style>
         /* ── Design tokens as CSS variables ────────────────────── */
         :root {
+            /* ── Brand colours ─────────────────────────────────── */
+            --fox-50:     #FFF5EF;
             --fox-500:    #FF6B35;
             --fox-600:    #E54E1A;
+            --violet-50:  #F4F0FF;
             --violet-500: #7C3AED;
             --violet-700: #5B21B6;
             --gold:       #D4AF37;
             --cream:      #FFFBF7;
             --gray-950:   #030712;
 
-            /* Fox-tinted shadows */
+            /* ── Fox-tinted shadows ─────────────────────────────── */
             --shadow-fox-sm: 0 4px 14px rgba(255,107,53,0.12);
             --shadow-fox:    0 8px 24px rgba(255,107,53,0.18);
             --shadow-fox-lg: 0 20px 40px rgba(255,107,53,0.22);
             --shadow-fox-xl: 0 28px 56px rgba(255,107,53,0.30);
 
-            /* Border radius scale */
-            --radius-sm:  0.5rem;   /* 8px  — form inputs, small chips */
-            --radius-md:  0.75rem;  /* 12px — step icons, small cards */
-            --radius-lg:  1rem;     /* 16px — FAQ items, tab panels */
-            --radius-xl:  1.5rem;   /* 24px — primary cards */
-            --radius-2xl: 2rem;     /* 32px — hero blobs, modals */
-            --radius-pill: 9999px;  /* buttons, badges, tags */
+            /* ── Border radius scale ────────────────────────────── */
+            --radius-sm:   0.75rem;  /* 12px — inputs, small chips   */
+            --radius-md:   1rem;     /* 16px — step icons, tags       */
+            --radius-lg:   1.5rem;   /* 24px — primary cards          */
+            --radius-xl:   2rem;     /* 32px — hero blobs, modals     */
+            --radius-pill: 9999px;   /* pill buttons, badges          */
+
+            /* ── Interaction ────────────────────────────────────── */
+            --fox-ring:     rgba(255,107,53,0.18); /* focus ring    */
+            --duration-fast: 150ms;  /* icon scale, micro-animations */
+            --duration-base: 200ms;  /* buttons, links, color shifts */
+            --duration-slow: 300ms;  /* card lift, nav, large el.    */
         }
 
         [x-cloak] { display: none !important; }
@@ -202,12 +212,12 @@
 
         /* ── Hero background ────────────────────────────────────── */
         .hero-bg {
-            background: linear-gradient(140deg, #FFF5EF 0%, #FFF9F5 50%, #F4F0FF 100%);
+            background: linear-gradient(140deg, var(--fox-50) 0%, var(--cream) 50%, var(--violet-50) 100%);
         }
 
         /* ── Card hover lift ────────────────────────────────────── */
         .card-lift {
-            transition: transform 0.28s ease, box-shadow 0.28s ease;
+            transition: transform var(--duration-slow) ease, box-shadow var(--duration-slow) ease;
         }
         .card-lift:hover {
             transform: translateY(-6px);
@@ -276,7 +286,7 @@
         .form-input:focus {
             outline: none;
             border-color: var(--fox-500) !important;
-            box-shadow: 0 0 0 3px rgba(255,107,53,0.18);
+            box-shadow: 0 0 0 3px var(--fox-ring);
         }
 
         .wave-top  { margin-top: -2px; }
@@ -342,12 +352,12 @@
 
                 <!-- CTA button desktop -->
                 <a href="#" @click.prevent="modalOpen=true"
-                   class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-sm font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                   class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-sm font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5"
                    x-text="t.nav.trial">
                 </a>
 
                 <!-- Hamburger -->
-                <button @click="menuOpen=!menuOpen" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Menu">
+                <button @click="menuOpen=!menuOpen" class="md:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors" aria-label="Menu">
                     <svg x-show="!menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -361,14 +371,14 @@
         <!-- Mobile menu -->
         <div x-show="menuOpen" x-transition class="md:hidden pb-4 border-t border-gray-100 mobile-menu-enter">
             <div class="flex flex-col gap-1 pt-3">
-                <a href="#about"    @click="menuOpen=false" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.about"></a>
-                <a href="#program"  @click="menuOpen=false" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.program"></a>
-                <a href="#prices"   @click="menuOpen=false" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.prices"></a>
-                <a href="#teachers" @click="menuOpen=false" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.teachers"></a>
-                <a href="#reviews"  @click="menuOpen=false" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.reviews"></a>
-                <a href="#contacts" @click="menuOpen=false" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.contacts"></a>
+                <a href="#about"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.about"></a>
+                <a href="#program"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.program"></a>
+                <a href="#prices"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.prices"></a>
+                <a href="#teachers" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.teachers"></a>
+                <a href="#reviews"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.reviews"></a>
+                <a href="#contacts" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.contacts"></a>
                 <a href="#" @click.prevent="menuOpen=false; modalOpen=true"
-                   class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-bold py-2.5 rounded-full transition-colors"
+                   class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200"
                    x-text="t.nav.trial"></a>
             </div>
         </div>
@@ -412,10 +422,10 @@
                 <!-- CTAs -->
                 <div class="flex flex-wrap gap-4">
                     <a href="#" @click.prevent="modalOpen=true"
-                       class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                       class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg transition-all duration-200 hover:-translate-y-1"
                        x-text="t.hero.cta1"></a>
                     <a href="#about"
-                       class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-bold text-base px-7 py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+                       class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-bold text-base px-7 py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1"
                        x-text="t.hero.cta2"></a>
                 </div>
             </div>
@@ -582,7 +592,7 @@
                     <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg px-3 py-2 text-sm font-bold text-gray-800 border border-gray-100">
                         ⭐ 4.9 <span class="text-gray-400 font-medium text-xs">рейтинг</span>
                     </div>
-                    <div class="absolute -bottom-2 -left-6 bg-fox-500 text-white rounded-2xl shadow-lg px-3 py-2 text-sm font-bold">
+                    <div class="absolute -bottom-2 -left-6 bg-fox-500 text-white rounded-2xl shadow-fox-sm px-3 py-2 text-sm font-bold">
                         🎓 500+ учнів
                     </div>
                     <div class="absolute top-1/2 -right-8 bg-white border-2 border-red-100 rounded-2xl shadow px-3 py-2 text-sm font-bold text-gray-800">
@@ -617,7 +627,7 @@
         <!-- Section header -->
         <div class="text-center mb-14">
             <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.ages.label"></span>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3" x-text="t.ages.title"></h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.ages.title"></h2>
             <p class="text-gray-500 text-lg max-w-xl mx-auto" x-text="t.ages.subtitle"></p>
         </div>
 
@@ -644,12 +654,12 @@
 
 
 <!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
-<section class="py-14 md:py-24 bg-gradient-to-b from-fox-50 to-white">
+<section class="py-20 md:py-24 bg-gradient-to-b from-fox-50 to-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-10 md:mb-16">
+        <div class="text-center mb-14">
             <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.how.label"></span>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3" x-text="t.how.title"></h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.how.title"></h2>
             <p class="text-gray-500 text-lg max-w-xl mx-auto" x-text="t.how.subtitle"></p>
         </div>
 
@@ -676,7 +686,7 @@
                 <div class="relative flex items-start gap-3 pb-5">
                     <div x-show="i < t.how.steps.length - 1"
                          class="absolute left-[17px] top-[38px] bottom-0 w-0.5 bg-gradient-to-b from-fox-200 to-transparent z-0"></div>
-                    <div class="flex-shrink-0 w-9 h-9 rounded-xl bg-fox-500 text-white font-black text-sm flex items-center justify-center shadow-md z-10" x-text="i+1"></div>
+                    <div class="flex-shrink-0 w-9 h-9 rounded-xl bg-fox-500 text-white font-black text-sm flex items-center justify-center shadow-fox-sm z-10" x-text="i+1"></div>
                     <div class="flex-1 pt-1">
                         <div class="flex items-center gap-2 mb-0.5">
                             <span class="text-base select-none" x-text="step.emoji"></span>
@@ -693,7 +703,7 @@
 
 
 <!-- ═══════════════════════ LONDON ACCENT STRIP ═══════════════════════ -->
-<div class="bg-[#C8102E] py-4 relative overflow-hidden">
+<div class="bg-british py-4 relative overflow-hidden">
     <!-- Union Jack diagonal pattern overlay -->
     <div class="absolute inset-0 opacity-[0.06] pointer-events-none"
          style="background-image:repeating-linear-gradient(45deg,white 0,white 2px,transparent 0,transparent 16px),repeating-linear-gradient(-45deg,white 0,white 2px,transparent 0,transparent 16px)"></div>
@@ -787,9 +797,9 @@
 
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <div class="text-center mb-12">
+        <div class="text-center mb-14">
             <span class="inline-block border border-white/20 bg-white/10 text-white font-bold text-sm px-4 py-1.5 rounded-full mb-4 backdrop-blur-sm" x-text="t.prog.label"></span>
-            <h2 class="text-3xl md:text-4xl font-black text-white mb-3" x-text="t.prog.title"></h2>
+            <h2 class="text-3xl md:text-4xl font-black text-white leading-tight mb-3" x-text="t.prog.title"></h2>
             <p class="text-gray-400 text-lg" x-text="t.prog.subtitle"></p>
         </div>
 
@@ -809,7 +819,7 @@
                         class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-200"
                         x-text="t.prog.tab2">
                     </button>
-                    <span class="absolute -top-3 -right-2 bg-fox-500 text-white text-2xs font-black px-1.5 py-0.5 rounded-full leading-tight shadow-lg pointer-events-none">★ ТОП</span>
+                    <span class="absolute -top-3 -right-2 bg-fox-500 text-white text-2xs font-black px-1.5 py-0.5 rounded-full leading-tight shadow-fox-sm pointer-events-none">★ ТОП</span>
                 </div>
             </div>
         </div>
@@ -956,7 +966,7 @@
 
         <div class="text-center mb-14">
             <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.pricing.label"></span>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3" x-text="t.pricing.title"></h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.pricing.title"></h2>
             <p class="text-gray-500 text-lg max-w-xl mx-auto" x-text="t.pricing.subtitle"></p>
         </div>
 
@@ -989,7 +999,7 @@
                     </ul>
 
                     <a href="#" @click.prevent="modalOpen=true"
-                       class="btn-action block text-center font-black py-3 rounded-full transition-all hover:-translate-y-0.5 shadow-md hover:shadow-lg"
+                       class="btn-action block text-center font-black py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox-sm hover:shadow-fox"
                        :class="plan.highlight ? 'bg-white text-fox-600 hover:bg-gray-50' : 'bg-fox-500 hover:bg-fox-600 text-white'"
                        x-text="t.pricing.cta"></a>
                 </div>
@@ -1007,7 +1017,7 @@
 
         <div class="text-center mb-14">
             <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.teachers.label"></span>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3" x-text="t.teachers.title"></h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.teachers.title"></h2>
             <p class="text-gray-500 text-lg max-w-xl mx-auto" x-text="t.teachers.subtitle"></p>
         </div>
 
@@ -1048,7 +1058,7 @@
             <!-- Results list -->
             <div>
                 <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-5" x-text="t.results.label"></span>
-                <h2 class="text-3xl md:text-4xl font-black text-white mb-8" x-text="t.results.title"></h2>
+                <h2 class="text-3xl md:text-4xl font-black text-white leading-tight mb-8" x-text="t.results.title"></h2>
                 <ul class="space-y-4">
                     <template x-for="(item, i) in t.results.items" :key="i">
                         <li class="flex items-center gap-4">
@@ -1081,7 +1091,7 @@
                                     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,#FF6B35,transparent)"></div>
 
                                     <!-- Logo -->
-                                    <div class="mt-6 mb-3 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-xl z-10" style="background: linear-gradient(135deg,#FF6B35,#E54E1A);">🦊</div>
+                                    <div class="mt-6 mb-3 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-fox z-10" style="background: linear-gradient(135deg,#FF6B35,#E54E1A);">🦊</div>
                                     <div class="text-white font-black text-base tracking-widest z-10">FLUENT<span style="color:#D4AF37">FOX</span></div>
 
                                     <!-- Gold divider -->
@@ -1103,7 +1113,7 @@
                                     <!-- Completed text -->
                                     <div class="z-10 mb-4">
                                         <p class="text-xs mb-2" style="color:#8899BB;" x-text="t.results.certCompleted"></p>
-                                        <div class="px-4 py-1.5 rounded-lg border text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
+                                        <div class="px-4 py-1.5 rounded-xl border text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
                                             English A1 → A2
                                         </div>
                                     </div>
@@ -1147,7 +1157,7 @@
 
         <div class="text-center mb-14">
             <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.reviews.label"></span>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3" x-text="t.reviews.title"></h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.reviews.title"></h2>
             <p class="text-gray-500 text-lg" x-text="t.reviews.subtitle"></p>
         </div>
 
@@ -1196,9 +1206,9 @@
 <section class="py-20 bg-fox-50">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-12">
+        <div class="text-center mb-14">
             <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.faq.label"></span>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3" x-text="t.faq.title"></h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.faq.title"></h2>
         </div>
 
         <div class="space-y-3">
@@ -1238,7 +1248,7 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <!-- Header -->
         <span class="inline-block bg-white/20 border border-white/30 text-white font-bold text-xs px-4 py-1.5 rounded-full mb-4 tracking-widest uppercase">Підготовка до іспитів</span>
-        <h2 class="text-3xl md:text-4xl font-black text-white mb-3">Готуємо до міжнародних іспитів</h2>
+        <h2 class="text-3xl md:text-4xl font-black text-white leading-tight mb-3">Готуємо до міжнародних іспитів</h2>
         <p class="text-orange-100 text-base mb-10 max-w-xl mx-auto">Cambridge YLE, IELTS, TOEFL та інші — ваша дитина буде готова</p>
 
         <!-- Scrolling exam logos -->
@@ -1348,7 +1358,7 @@
                                style="background:#25D366;">
                                 <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 5.9L.1 23.9l6.3-1.6C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0zm5.8 16.6c-.3.8-1.6 1.5-2.2 1.6-.5.1-1.2.2-3.8-.8-3.1-1.2-5.1-4.4-5.3-4.6-.1-.2-1.3-1.7-1.3-3.3 0-1.5.8-2.3 1.1-2.6.3-.3.7-.5 1-.5h.7c.2 0 .5.1.7.7.3.7 1 2.2 1.1 2.4.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.2.7.1.3.8 1.4 1.7 2.2 1.1.9 2 1.3 2.3 1.5.3.1.6.1.8-.1l.6-.7c.2-.3.5-.3.7-.2.3.1 2.1 1 2.4 1.2.4.2.6.3.7.5.1.2.1 1.1-.2 1.9z"/></svg>
                             </a>
-                            <a href="https://t.me/fluentfox_ua" aria-label="Telegram" title="Telegram"
+                            <a href="https://t.me/Artist8262" aria-label="Telegram" title="Telegram"
                                class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
                                style="background:#2AABEE;">
                                 <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
@@ -1370,16 +1380,16 @@
 
                 <!-- Email -->
                 <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2" x-text="t.form.emailLabel"></p>
-                <a href="mailto:my.computer.academy25@gmail.com" class="font-bold text-fox-500 hover:text-fox-600 transition-colors mb-8 block">my.computer.academy25@gmail.com</a>
+                <a href="mailto:fluent.fox.study@gmail.com" class="font-bold text-fox-500 hover:text-fox-600 transition-colors mb-8 block">fluent.fox.study@gmail.com</a>
 
                 <!-- Socials -->
                 <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3 mt-6" x-text="t.form.socialLabel"></p>
                 <div class="flex gap-3">
-                    <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 bg-white hover:border-fox-300 transition-colors text-sm font-bold text-gray-700">
+                    <a href="https://www.facebook.com/profile.php?id=61591810049590" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 bg-white hover:border-fox-300 transition-colors text-sm font-bold text-gray-700">
                         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
                         Facebook
                     </a>
-                    <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 bg-white hover:border-fox-300 transition-colors text-sm font-bold text-gray-700">
+                    <a href="https://www.instagram.com/fluent.fox.study/" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 bg-white hover:border-fox-300 transition-colors text-sm font-bold text-gray-700">
                         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="url(#ig-grad)">
                             <defs>
                                 <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -1417,14 +1427,14 @@
                                 </label>
                                 <input x-model="formData.name" type="text"
                                        :placeholder="t.form.namePlaceholder"
-                                       class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-medium transition-all"
+                                       class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200"
                                        required>
                             </div>
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
                                 <input x-model="formData.childAge" type="number" min="6" max="16"
                                        placeholder="9"
-                                       class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-medium transition-all">
+                                       class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200">
                             </div>
                         </div>
 
@@ -1440,7 +1450,7 @@
                                 </div>
                                 <input x-model="formData.phone" type="tel"
                                        placeholder="(XX) XXX-XX-XX"
-                                       class="form-input flex-1 bg-gray-50 border-2 border-gray-200 rounded-r-xl px-4 py-3 text-gray-800 font-medium transition-all"
+                                       class="form-input flex-1 bg-gray-50 border-2 border-gray-200 rounded-r-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200"
                                        required>
                             </div>
                         </div>
@@ -1453,7 +1463,7 @@
                         <!-- Submit -->
                         <button type="submit"
                                 :disabled="formLoading"
-                                class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-4 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-fox-200 hover:shadow-xl text-base">
+                                class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-base">
                             <span x-show="!formLoading" x-text="t.form.submit"></span>
                             <span x-show="formLoading" class="flex items-center justify-center gap-2">
                                 <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
@@ -1466,19 +1476,19 @@
                             <p class="text-xs text-gray-400 mb-3" x-text="t.form.orWrite"></p>
                             <div class="flex justify-center gap-2">
                                 <a href="viber://chat?number=%2B380954624677"
-                                   class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all hover:-translate-y-0.5"
+                                   class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5"
                                    style="border-color:#7360F2; color:#7360F2;">
                                     <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
                                     Viber
                                 </a>
                                 <a href="https://wa.me/380954624677"
-                                   class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all hover:-translate-y-0.5"
+                                   class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5"
                                    style="border-color:#25D366; color:#25D366;">
                                     <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 5.9L.1 23.9l6.3-1.6C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0zm5.8 16.6c-.3.8-1.6 1.5-2.2 1.6-.5.1-1.2.2-3.8-.8-3.1-1.2-5.1-4.4-5.3-4.6-.1-.2-1.3-1.7-1.3-3.3 0-1.5.8-2.3 1.1-2.6.3-.3.7-.5 1-.5h.7c.2 0 .5.1.7.7.3.7 1 2.2 1.1 2.4.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.2.7.1.3.8 1.4 1.7 2.2 1.1.9 2 1.3 2.3 1.5.3.1.6.1.8-.1l.6-.7c.2-.3.5-.3.7-.2.3.1 2.1 1 2.4 1.2.4.2.6.3.7.5.1.2.1 1.1-.2 1.9z"/></svg>
                                     WhatsApp
                                 </a>
-                                <a href="https://t.me/fluentfox_ua"
-                                   class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all hover:-translate-y-0.5"
+                                <a href="https://t.me/Artist8262"
+                                   class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5"
                                    style="border-color:#2AABEE; color:#2AABEE;">
                                     <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
                                     Telegram
@@ -1486,7 +1496,7 @@
                             </div>
                         </div>
 
-                        <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore"></span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink"></a><span x-text="t.form.privacyAfter"></span></p>
+                        <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore"></span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink"></a><span x-text="t.form.privacyMiddle"></span><a href="offer.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.offerLink"></a><span x-text="t.form.privacyAfter"></span></p>
                     </form>
                 </div>
             </div>
@@ -1508,7 +1518,7 @@
      style="background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);">
 
     <div x-show="modalOpen"
-         x-transition:enter="transition ease-out duration-250"
+         x-transition:enter="transition ease-out duration-200"
          x-transition:enter-start="opacity-0 scale-95 translate-y-4"
          x-transition:enter-end="opacity-100 scale-100 translate-y-0"
          x-transition:leave="transition ease-in duration-150"
@@ -1546,7 +1556,7 @@
                 <h4 class="text-xl font-black text-gray-900 mb-1" x-text="t.form.successTitle"></h4>
                 <p class="text-gray-500 text-sm" x-text="t.form.successText"></p>
                 <button @click="modalOpen=false; formSuccess=false"
-                        class="mt-5 px-6 py-2.5 bg-fox-500 hover:bg-fox-600 text-white font-bold rounded-full transition-colors"
+                        class="mt-5 px-6 py-2.5 bg-fox-500 hover:bg-fox-600 text-white font-black rounded-full shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5 transition-all duration-200"
                         x-text="t.modal.close"></button>
             </div>
 
@@ -1560,14 +1570,14 @@
                         </label>
                         <input x-model="formData.name" type="text"
                                :placeholder="t.form.namePlaceholder"
-                               class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-medium transition-all"
+                               class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200"
                                required>
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
                         <input x-model="formData.childAge" type="number" min="6" max="16"
                                placeholder="9"
-                               class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-medium transition-all">
+                               class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200">
                     </div>
                 </div>
 
@@ -1583,7 +1593,7 @@
                         </div>
                         <input x-model="formData.phone" type="tel"
                                placeholder="(XX) XXX-XX-XX"
-                               class="form-input flex-1 bg-gray-50 border-2 border-gray-200 rounded-r-xl px-4 py-3 text-sm font-medium transition-all"
+                               class="form-input flex-1 bg-gray-50 border-2 border-gray-200 rounded-r-xl px-4 py-3 text-sm font-medium transition-all duration-200"
                                required>
                     </div>
                 </div>
@@ -1596,7 +1606,7 @@
                 <!-- Submit -->
                 <button type="submit"
                         :disabled="formLoading"
-                        class="w-full text-white font-black py-3.5 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg text-sm"
+                        class="w-full text-white font-black py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-lg text-sm"
                         style="background:linear-gradient(135deg,#7C3AED,#5B21B6);">
                     <span x-show="!formLoading" x-text="t.form.submit"></span>
                     <span x-show="formLoading" class="flex items-center justify-center gap-2">
@@ -1609,22 +1619,22 @@
                 <div class="text-center">
                     <p class="text-xs text-gray-400 mb-2" x-text="t.form.orWrite"></p>
                     <div class="flex justify-center gap-2">
-                        <a href="viber://chat?number=%2B380954624677" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all hover:-translate-y-0.5" style="border-color:#7360F2;color:#7360F2;">
+                        <a href="viber://chat?number=%2B380954624677" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5" style="border-color:#7360F2;color:#7360F2;">
                             <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
                             Viber
                         </a>
-                        <a href="https://wa.me/380954624677" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all hover:-translate-y-0.5" style="border-color:#25D366;color:#25D366;">
+                        <a href="https://wa.me/380954624677" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5" style="border-color:#25D366;color:#25D366;">
                             <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 5.9L.1 23.9l6.3-1.6C8 23.4 10 24 12 24c6.6 0 12-5.4 12-12S18.6 0 12 0zm5.8 16.6c-.3.8-1.6 1.5-2.2 1.6-.5.1-1.2.2-3.8-.8-3.1-1.2-5.1-4.4-5.3-4.6-.1-.2-1.3-1.7-1.3-3.3 0-1.5.8-2.3 1.1-2.6.3-.3.7-.5 1-.5h.7c.2 0 .5.1.7.7.3.7 1 2.2 1.1 2.4.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.2.7.1.3.8 1.4 1.7 2.2 1.1.9 2 1.3 2.3 1.5.3.1.6.1.8-.1l.6-.7c.2-.3.5-.3.7-.2.3.1 2.1 1 2.4 1.2.4.2.6.3.7.5.1.2.1 1.1-.2 1.9z"/></svg>
                             WhatsApp
                         </a>
-                        <a href="https://t.me/fluentfox_ua" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all hover:-translate-y-0.5" style="border-color:#2AABEE;color:#2AABEE;">
+                        <a href="https://t.me/Artist8262" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5" style="border-color:#2AABEE;color:#2AABEE;">
                             <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
                             Telegram
                         </a>
                     </div>
                 </div>
 
-                <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore"></span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink"></a><span x-text="t.form.privacyAfter"></span></p>
+                <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore"></span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink"></a><span x-text="t.form.privacyMiddle"></span><a href="offer.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.offerLink"></a><span x-text="t.form.privacyAfter"></span></p>
             </form>
         </div>
     </div>
@@ -1645,10 +1655,15 @@
                 <p class="text-sm leading-relaxed max-w-xs" x-text="t.footer.tagline"></p>
                 <!-- Social icons -->
                 <div class="flex gap-3 mt-4">
-                    <a href="#" aria-label="Instagram" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-colors text-sm">📸</a>
-                    <a href="#" aria-label="Telegram" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-colors text-sm">💬</a>
-                    <a href="#" aria-label="Facebook" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-colors text-sm">📘</a>
-                    <a href="#" aria-label="TikTok" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-colors text-sm">🎵</a>
+                    <a href="https://www.instagram.com/fluent.fox.study/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+                    </a>
+                    <a href="https://t.me/Artist8262" target="_blank" rel="noopener" aria-label="Telegram" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61591810049590" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
+                    </a>
                 </div>
             </div>
 
@@ -1669,7 +1684,7 @@
                 <h4 class="text-white font-black text-sm mb-4 uppercase tracking-wide" x-text="t.footer.contactTitle"></h4>
                 <ul class="space-y-2 text-sm">
                     <li class="flex items-center gap-2"><span>📞</span> +38 (095) 462-46-72</li>
-                    <li class="flex items-center gap-2"><span>✉️</span> my.computer.academy25@gmail.com</li>
+                    <li class="flex items-center gap-2"><span>✉️</span> fluent.fox.study@gmail.com</li>
                     <li class="flex items-center gap-2"><span>💬</span> @fluentfox_ua</li>
                     <li class="flex items-center gap-2"><span>⏰</span> <span x-text="t.footer.hours"></span></li>
                 </ul>
@@ -1680,13 +1695,13 @@
         <div class="border-t border-gray-800 pt-8 mb-5">
             <div class="flex flex-wrap gap-2 justify-center md:justify-start">
                 <!-- VISA -->
-                <div class="bg-white rounded-md px-2.5 py-1 h-8 flex items-center">
+                <div class="bg-white rounded-xl px-2.5 py-1 h-8 flex items-center">
                     <svg width="44" height="14" viewBox="0 0 44 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <text x="0" y="12" font-family="Arial,sans-serif" font-weight="900" font-style="italic" font-size="14" fill="#1A1F71">VISA</text>
                     </svg>
                 </div>
                 <!-- Mastercard -->
-                <div class="bg-white rounded-md px-2.5 py-1 h-8 flex items-center gap-1">
+                <div class="bg-white rounded-xl px-2.5 py-1 h-8 flex items-center gap-1">
                     <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="10" r="10" fill="#EB001B"/>
                         <circle cx="20" cy="10" r="10" fill="#F79E1B"/>
@@ -1694,7 +1709,7 @@
                     </svg>
                 </div>
                 <!-- Apple Pay -->
-                <div class="bg-white rounded-md px-2.5 py-1 h-8 flex items-center gap-1.5 border border-gray-200">
+                <div class="bg-white rounded-xl px-2.5 py-1 h-8 flex items-center gap-1.5 border border-gray-200">
                     <svg width="10" height="12" viewBox="0 0 10 12" fill="#1D1D1F">
                         <path d="M8.3 6.2c0-1.6 1.3-2.3 1.3-2.3C8.8 2.6 7.7 2.5 7.3 2.5c-1 0-1.8.6-2.3.6C4.5 3 3.7 2.5 2.8 2.5 1.2 2.5 0 3.8 0 5.7c0 1.1.4 2.2.9 3 .5.8 1 1.4 1.7 1.4.6 0 .9-.4 1.7-.4.8 0 1 .4 1.7.4.7 0 1.2-.6 1.7-1.3.5-.8.7-1.5.7-1.5-.3-.1-.8-.7-.9-1.1z"/>
                         <path d="M6.8 1.5C7.2.9 7.4.3 7.2 0 6.7 0 6.1.4 5.8.9c-.3.4-.6 1-.4 1.5.5.1 1-.3 1.4-.9z"/>
@@ -1702,7 +1717,7 @@
                     <span class="text-sm font-semibold text-gray-900">Pay</span>
                 </div>
                 <!-- Google Pay -->
-                <div class="bg-white rounded-md px-3 py-1 h-8 flex items-center">
+                <div class="bg-white rounded-xl px-3 py-1 h-8 flex items-center">
                     <svg width="44" height="18" viewBox="0 0 44 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <text x="0" y="13" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#4285F4">G</text>
                         <text x="10" y="13" font-family="Arial,sans-serif" font-size="11" fill="#3C4043"> Pay</text>
@@ -1725,7 +1740,7 @@
             <p x-text="t.footer.copyright"></p>
             <p>ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,
                <a href="tel:+380954624677" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a>,
-               <a href="mailto:my.computer.academy25@gmail.com" class="hover:text-fox-400 transition-colors">my.computer.academy25@gmail.com</a>
+               <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors">fluent.fox.study@gmail.com</a>
             </p>
         </div>
     </div>
@@ -1756,7 +1771,7 @@ uk: {
         titleLine1:'Онлайн англійська',
         titleLine2:'для дітей та підлітків',
         titleLine3:'яку вони обожнюють',
-        subtitle:  'Курси англійської мови для дітей 6–16 років. Ігровий підхід, живі вчителі, результат вже за перший місяць.',
+        subtitle:  'Курси англійської мови для дітей 6–18 років. Ігровий підхід, живі вчителі, результат вже за перший місяць.',
         tags:      ['✓ Без нудних підручників', '✓ Живі заняття онлайн', '✓ Малі групи до 6 учнів', '✓ Гарантія результату'],
         cta1:      'Безкоштовний урок',
         cta2:      'Дізнатись більше',
@@ -1790,7 +1805,7 @@ uk: {
             },
             {
                 emoji: '🎯',
-                range: '13–16 років',
+                range: '13–18 років',
                 title: 'Підлітки-лідери',
                 desc:  'Підготовка до НМТ, розмовні клуби, реальне спілкування з однолітками.',
                 items: ['Підготовка до НМТ', 'Cambridge YLE/KET', 'Розмова на актуальні теми', 'Письмо та есе'],
@@ -1837,7 +1852,7 @@ uk: {
             name:  'Групові заняття',
             desc:  'Ідеально для тих, хто любить навчатись у команді. Малі групи по 4–6 учнів, дружня атмосфера та командна робота.',
             features: [
-                '2 заняття на тиждень по 55 хвилин',
+                '2 заняття на тиждень по 1.5 години',
                 'Максимум 6 учнів у групі',
                 'Інтерактивні та комунікативні вправи',
                 'Домашні завдання на онлайн-платформі',
@@ -1851,7 +1866,7 @@ uk: {
             name:  'Індивідуальні заняття',
             desc:  'Максимальна увага вчителя та програма під конкретну мету. Найшвидший результат для тих, хто хоче зростати швидко.',
             features: [
-                '2–3 заняття на тиждень по 55 хвилин',
+                '2–3 заняття на тиждень по 1.5 години',
                 'Програма під мету та рівень дитини',
                 'Підготовка до іспитів (НМТ, Cambridge, IELTS)',
                 'Гнучкий розклад будь-якого дня та часу',
@@ -1872,28 +1887,28 @@ uk: {
         note:     '* Перший пробний урок — безкоштовно. При записі двох дітей з родини — знижка 10%.',
         plans: [
             {
-                emoji:     '💻',
-                name:      'Онлайн індивідуально',
-                desc:      '8 занять на місяць · індивідуальний графік',
-                price:     '3 600 грн',
-                highlight: false,
-                features:  ['450 грн за 1 заняття', '8 уроків по 55 хвилин', 'Повна увага вчителя', 'Індивідуальний план навчання', 'Запис кожного уроку', 'Сертифікат FluentFox'],
-            },
-            {
                 emoji:     '👥',
-                name:      'Онлайн у групі',
-                desc:      '8 занять на місяць · до 6 учнів',
-                price:     '1 600 грн',
-                highlight: true,
-                features:  ['200 грн за 1 заняття', '8 уроків по 55 хвилин', 'Група до 6 учнів', 'Інтерактивні вправи та ігри', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
+                name:      'Група 1×/тиждень',
+                desc:      '4 заняття на місяць · до 6 учнів',
+                price:     '1 800 грн',
+                highlight: false,
+                features:  ['450 грн за 1 заняття', '4 уроки по 1.5 години', 'Група до 6 учнів', 'Інтерактивні вправи та ігри', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
             },
             {
-                emoji:     '🏫',
-                name:      'Офлайн',
-                desc:      '8 занять на місяць · очний формат',
-                price:     '4 000 грн',
+                emoji:     '🔥',
+                name:      'Група 2×/тиждень',
+                desc:      '8 занять на місяць · до 6 учнів',
+                price:     '3 600 грн',
+                highlight: true,
+                features:  ['450 грн за 1 заняття', '8 уроків по 1.5 години', 'Група до 6 учнів', 'Максимальний прогрес', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
+            },
+            {
+                emoji:     '💻',
+                name:      'Індивідуально',
+                desc:      '4 заняття на місяць · особистий підхід',
+                price:     '3 000 грн',
                 highlight: false,
-                features:  ['500 грн за 1 заняття', '8 уроків по 55 хвилин', 'Заняття в офісі (очно)', 'Усі матеріали включено', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
+                features:  ['750 грн за 1 заняття', '4 уроки по 1.5 години', 'Повна увага вчителя', 'Індивідуальний план навчання', 'Запис кожного уроку', 'Сертифікат FluentFox'],
             },
         ],
     },
@@ -1917,15 +1932,15 @@ uk: {
                 name:   'Олена М.',
                 cert:   'TEFL • 7 років досвіду',
                 desc:   'Ведеться підліткові програми та підготовка до НМТ і Cambridge YLE. Знає, як мотивувати підлітків.',
-                tags:   ['11–16 років', 'НМТ', 'Cambridge YLE'],
+                tags:   ['11–18 років', 'НМТ', 'Cambridge YLE'],
             },
             {
                 avatar: '👨‍🎓',
                 bg:     'linear-gradient(135deg, #F0FFF4, #C6F6D5)',
                 name:   'Артем Д.',
                 cert:   'MA Linguistics • 4 роки',
-                desc:   'Інтенсивні курси для підлітків 13–16 років. Фокус на розмовній практиці та реальному спілкуванні.',
-                tags:   ['13–16 років', 'Інтенсив', 'Розмовна практика'],
+                desc:   'Інтенсивні курси для підлітків 13–18 років. Фокус на розмовній практиці та реальному спілкуванні.',
+                tags:   ['13–18 років', 'Інтенсив', 'Розмовна практика'],
             },
         ],
     },
@@ -1962,35 +1977,51 @@ uk: {
         list: [
             {
                 stars:  5,
-                text:   'Дочка просить іти на урок сама! Раніше казала, що англійська нудна. FluentFox змінив все.',
+                text:   'Перед першим заняттям Соня тиснула мене за руку і шептала «мамо, не хочу». Після третього уроку — сама сіла за планшет і повторювала слова з вчителькою. Зараз вже 4-й місяць, і вона засмучується, якщо заняття скасовують.',
                 name:   'Ірина К.',
-                role:   'Мама Соні, 8 років',
+                role:   'Мама Соні, 7 років',
                 avatar: '👩',
                 color:  'linear-gradient(135deg, #FFF0E8, #FFD6C0)',
             },
             {
                 stars:  5,
-                text:   'Син за 3 місяці почав дивитись серіали англійською без субтитрів. Вражений результатом!',
+                text:   'Максим готувався до Cambridge KET і шкільних іспитів одночасно. Вчителька склала окремий план під кожне завдання, після кожного уроку надсилала розбір помилок. Склав KET на Merit, а в школі отримав річну «відмінно». Дуже структурований підхід.',
                 name:   'Олег Т.',
-                role:   'Тато Максима, 12 років',
+                role:   'Тато Максима, 13 років',
                 avatar: '👨',
                 color:  'linear-gradient(135deg, #EFF6FF, #BFDBFE)',
             },
             {
                 stars:  5,
-                text:   'Готувались до НМТ. Вчителька дуже уважна, завжди на зв\'язку. Результат перевершив очікування!',
+                text:   'Готувались до НМТ з нуля за 4 місяці. Вчителька підібрала програму під конкретні завдання іспиту, щотижня розбирали помилки. Дарина склала на 183 бали. Вже записую молодшого сина.',
                 name:   'Марина В.',
-                role:   'Мама Дарини, 15 років',
+                role:   'Мама Дарини, 16 років',
                 avatar: '👩‍🦰',
                 color:  'linear-gradient(135deg, #F4F0FF, #DDD6FE)',
             },
             {
                 stars:  5,
-                text:   'Дуже задоволені! Вчитель знаходить підхід до кожної дитини. Результат вже через місяць.',
+                text:   'Льоша соромився говорити навіть зі мною по-українськи, а тут — англійська! Думала, нічого не вийде. Зараз вчителька в школі питає, де він так добре навчився. Не знаю як FluentFox це робить, але це точно працює.',
                 name:   'Тетяна Л.',
                 role:   'Мама Льоші, 9 років',
                 avatar: '👩‍🦱',
                 color:  'linear-gradient(135deg, #F0FFF4, #C6F6D5)',
+            },
+            {
+                stars:  5,
+                text:   'Аліна займалась рік у групі. Спочатку боялась відкрити рота, а тепер за сімейною вечерею виправляє мою вимову 😄 На день народження попросила... додаткові заняття. Ось такий результат.',
+                name:   'Андрій С.',
+                role:   'Тато Аліни, 11 років',
+                avatar: '👨‍💼',
+                color:  'linear-gradient(135deg, #FFF9EC, #FEF3C7)',
+            },
+            {
+                stars:  5,
+                text:   'Записала відразу двох синів у різні групи — зі знижкою на другу дитину виходить вигідно. Обоє займаються вже 7 місяців. Старший читає в оригіналі, а молодший просить перемикати мультики на англійську і сміється, що я не розумію.',
+                name:   'Наталія Б.',
+                role:   'Мама Артема та Дениса, 8 і 12 років',
+                avatar: '👩‍👧‍👦',
+                color:  'linear-gradient(135deg, #F0F9FF, #BAE6FD)',
             },
         ],
     },
@@ -1999,9 +2030,9 @@ uk: {
         label: 'FAQ',
         title: 'Питання та відповіді',
         items: [
-            { q: 'З якого віку можна записатись?',          a: 'Ми приймаємо дітей від 6 до 16 років. Для кожної вікової групи — окрема програма та підхід.' },
+            { q: 'З якого віку можна записатись?',          a: 'Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід.' },
             { q: 'Що потрібно для занять онлайн?',          a: 'Комп\'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet.' },
-            { q: 'Як проходять групові заняття?',           a: 'Групи 4–6 дітей, 2 рази на тиждень по 55 хвилин. Ігрова форма, комунікативні вправи, домашні завдання.' },
+            { q: 'Як проходять групові заняття?',           a: 'Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання. Будь-який рівень — від нуля до просунутого.' },
             { q: 'Чи можна перенести урок?',               a: 'Так, урок можна перенести за 12 годин до початку. Ми розуміємо, що плани змінюються.' },
             { q: 'Коли буде видно перший результат?',      a: 'Перші помітні результати — вже після 1 місяця. За 3–6 місяців — впевнене спілкування.' },
             { q: 'Чи є знижки та акції?',                  a: 'Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім\'ї — 15% знижки на другу дитину. Слідкуйте за нашим Instagram!' },
@@ -2034,6 +2065,8 @@ uk: {
         sending:        'Відправляємо...',
         privacyBefore:  'Натискаючи кнопку, ви погоджуєтесь з ',
         privacyLink:    'політикою конфіденційності',
+        privacyMiddle:  ' та ',
+        offerLink:      'публічною офертою',
         privacyAfter:   '.',
         successTitle:   'Дякуємо!',
         successText:    'Ми зв\'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.',
@@ -2073,7 +2106,7 @@ ru: {
         titleLine1:'Онлайн английский',
         titleLine2:'для детей и подростков',
         titleLine3:'который они обожают',
-        subtitle:  'Курсы английского языка для детей 6–16 лет. Игровой подход, живые учителя, результат уже за первый месяц.',
+        subtitle:  'Курсы английского языка для детей 6–18 лет. Игровой подход, живые учителя, результат уже за первый месяц.',
         tags:      ['✓ Без скучных учебников', '✓ Живые занятия онлайн', '✓ Маленькие группы до 6 учеников', '✓ Гарантия результата'],
         cta1:      'Бесплатный урок',
         cta2:      'Узнать больше',
@@ -2107,7 +2140,7 @@ ru: {
             },
             {
                 emoji: '🎯',
-                range: '13–16 лет',
+                range: '13–18 лет',
                 title: 'Подростки-лидеры',
                 desc:  'Подготовка к НМТ, разговорные клубы, реальное общение со сверстниками.',
                 items: ['Подготовка к НМТ', 'Cambridge YLE/KET', 'Общение на актуальные темы', 'Письмо и эссе'],
@@ -2154,7 +2187,7 @@ ru: {
             name:  'Групповые занятия',
             desc:  'Идеально для тех, кто любит учиться в команде. Маленькие группы по 4–6 учеников, дружная атмосфера и командная работа.',
             features: [
-                '2 занятия в неделю по 55 минут',
+                '2 занятия в неделю по 1.5 часа',
                 'Максимум 6 учеников в группе',
                 'Интерактивные и коммуникативные упражнения',
                 'Домашние задания на онлайн-платформе',
@@ -2168,7 +2201,7 @@ ru: {
             name:  'Индивидуальные занятия',
             desc:  'Максимальное внимание учителя и программа под конкретную цель. Самый быстрый результат для тех, кто хочет расти быстро.',
             features: [
-                '2–3 занятия в неделю по 55 минут',
+                '2–3 занятия в неделю по 1.5 часа',
                 'Программа под цель и уровень ребёнка',
                 'Подготовка к экзаменам (НМТ, Cambridge, IELTS)',
                 'Гибкое расписание в любой день и время',
@@ -2189,28 +2222,28 @@ ru: {
         note:     '* Первый пробный урок — бесплатно. При записи двух детей из семьи — скидка 10%.',
         plans: [
             {
-                emoji:     '💻',
-                name:      'Онлайн индивидуально',
-                desc:      '8 уроков в месяц · индивидуальный график',
-                price:     '3 600 грн',
-                highlight: false,
-                features:  ['450 грн за 1 урок', '8 уроков по 55 минут', 'Полное внимание учителя', 'Индивидуальный план обучения', 'Запись каждого урока', 'Сертификат FluentFox'],
-            },
-            {
                 emoji:     '👥',
-                name:      'Онлайн в группе',
-                desc:      '8 уроков в месяц · до 6 учеников',
-                price:     '1 600 грн',
-                highlight: true,
-                features:  ['200 грн за 1 урок', '8 уроков по 55 минут', 'Группа до 6 учеников', 'Интерактивные упражнения и игры', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
+                name:      'Группа 1×/неделю',
+                desc:      '4 занятия в месяц · до 6 учеников',
+                price:     '1 800 грн',
+                highlight: false,
+                features:  ['450 грн за 1 занятие', '4 урока по 1.5 часа', 'Группа до 6 учеников', 'Интерактивные упражнения и игры', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
             },
             {
-                emoji:     '🏫',
-                name:      'Офлайн',
-                desc:      '8 уроков в месяц · очный формат',
-                price:     '4 000 грн',
+                emoji:     '🔥',
+                name:      'Группа 2×/неделю',
+                desc:      '8 занятий в месяц · до 6 учеников',
+                price:     '3 600 грн',
+                highlight: true,
+                features:  ['450 грн за 1 занятие', '8 уроков по 1.5 часа', 'Группа до 6 учеников', 'Максимальный прогресс', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
+            },
+            {
+                emoji:     '💻',
+                name:      'Индивидуально',
+                desc:      '4 занятия в месяц · личный подход',
+                price:     '3 000 грн',
                 highlight: false,
-                features:  ['500 грн за 1 урок', '8 уроков по 55 минут', 'Занятия в офисе (очно)', 'Все материалы включены', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
+                features:  ['750 грн за 1 занятие', '4 урока по 1.5 часа', 'Полное внимание учителя', 'Индивидуальный план обучения', 'Запись каждого урока', 'Сертификат FluentFox'],
             },
         ],
     },
@@ -2234,15 +2267,15 @@ ru: {
                 name:   'Елена М.',
                 cert:   'TEFL • 7 лет опыта',
                 desc:   'Ведёт подростковые программы и подготовку к НМТ и Cambridge YLE. Знает, как мотивировать подростков.',
-                tags:   ['11–16 лет', 'НМТ', 'Cambridge YLE'],
+                tags:   ['11–18 лет', 'НМТ', 'Cambridge YLE'],
             },
             {
                 avatar: '👨‍🎓',
                 bg:     'linear-gradient(135deg, #F0FFF4, #C6F6D5)',
                 name:   'Артём Д.',
                 cert:   'MA Linguistics • 4 года',
-                desc:   'Интенсивные курсы для подростков 13–16 лет. Фокус на разговорной практике и реальном общении.',
-                tags:   ['13–16 лет', 'Интенсив', 'Разговорная практика'],
+                desc:   'Интенсивные курсы для подростков 13–18 лет. Фокус на разговорной практике и реальном общении.',
+                tags:   ['13–18 лет', 'Интенсив', 'Разговорная практика'],
             },
         ],
     },
@@ -2279,35 +2312,51 @@ ru: {
         list: [
             {
                 stars:  5,
-                text:   'Дочь сама просит идти на урок! Раньше говорила, что английский скучный. FluentFox всё изменил.',
+                text:   'Перед первым занятием Соня держала меня за руку и шептала «мам, не хочу». После третьего урока — сама садилась за планшет и повторяла слова с учительницей. Сейчас уже 4-й месяц, и она расстраивается, если занятие отменяют.',
                 name:   'Ирина К.',
-                role:   'Мама Сони, 8 лет',
+                role:   'Мама Сони, 7 лет',
                 avatar: '👩',
                 color:  'linear-gradient(135deg, #FFF0E8, #FFD6C0)',
             },
             {
                 stars:  5,
-                text:   'Сын за 3 месяца начал смотреть сериалы на английском без субтитров. Впечатлён результатом!',
+                text:   'Максим готовился к Cambridge KET и школьным экзаменам одновременно. Учительница составила отдельный план под каждое задание, после каждого урока присылала разбор ошибок. Сдал KET на Merit, а в школе получил годовую пятёрку по английскому. Очень структурированный подход.',
                 name:   'Олег Т.',
-                role:   'Папа Максима, 12 лет',
+                role:   'Папа Максима, 13 лет',
                 avatar: '👨',
                 color:  'linear-gradient(135deg, #EFF6FF, #BFDBFE)',
             },
             {
                 stars:  5,
-                text:   'Готовились к НМТ. Учительница очень внимательна, всегда на связи. Результат превзошёл ожидания!',
+                text:   'Готовились к НМТ с нуля за 4 месяца. Учительница подобрала программу под конкретные задания экзамена, каждую неделю разбирали ошибки. Дарина сдала на 183 балла. Уже записываю младшего сына.',
                 name:   'Марина В.',
-                role:   'Мама Дарины, 15 лет',
+                role:   'Мама Дарины, 16 лет',
                 avatar: '👩‍🦰',
                 color:  'linear-gradient(135deg, #F4F0FF, #DDD6FE)',
             },
             {
                 stars:  5,
-                text:   'Очень довольны! Учитель находит подход к каждому ребёнку. Результат уже через месяц.',
+                text:   'Лёша стеснялся говорить даже по-русски, а тут — английский! Думала, ничего не получится. Сейчас учительница в школе спрашивает, где он так хорошо научился. Не знаю как FluentFox это делает, но это точно работает.',
                 name:   'Татьяна Л.',
                 role:   'Мама Лёши, 9 лет',
                 avatar: '👩‍🦱',
                 color:  'linear-gradient(135deg, #F0FFF4, #C6F6D5)',
+            },
+            {
+                stars:  5,
+                text:   'Алина занималась год в группе. Сначала боялась открыть рот, а теперь за семейным ужином поправляет моё произношение 😄 На день рождения попросила... дополнительные занятия. Вот такой результат.',
+                name:   'Андрей С.',
+                role:   'Папа Алины, 11 лет',
+                avatar: '👨‍💼',
+                color:  'linear-gradient(135deg, #FFF9EC, #FEF3C7)',
+            },
+            {
+                stars:  5,
+                text:   'Записала сразу двух сыновей в разные группы — со скидкой на второго ребёнка выходит выгодно. Оба занимаются уже 7 месяцев. Старший читает в оригинале, а младший просит переключать мультики на английский и смеётся, что я не понимаю.',
+                name:   'Наталья Б.',
+                role:   'Мама Артёма и Дениса, 8 и 12 лет',
+                avatar: '👩‍👧‍👦',
+                color:  'linear-gradient(135deg, #F0F9FF, #BAE6FD)',
             },
         ],
     },
@@ -2316,9 +2365,9 @@ ru: {
         label: 'FAQ',
         title: 'Вопросы и ответы',
         items: [
-            { q: 'С какого возраста можно записаться?',       a: 'Мы принимаем детей от 6 до 16 лет. Для каждой возрастной группы — отдельная программа и подход.' },
+            { q: 'С какого возраста можно записаться?',       a: 'Мы принимаем детей от 6 до 18 лет. Для каждой возрастной группы — отдельная программа и подход.' },
             { q: 'Что нужно для занятий онлайн?',             a: 'Компьютер или планшет, стабильный интернет и наушники с микрофоном. Платформа — Zoom или Google Meet.' },
-            { q: 'Как проходят групповые занятия?',           a: 'Группы 4–6 детей, 2 раза в неделю по 55 минут. Игровая форма, коммуникативные упражнения, домашние задания.' },
+            { q: 'Как проходят групповые занятия?',           a: 'Группы до 6 детей, 1–2 раза в неделю по 1.5 часа. Игровая форма, коммуникативные упражнения, домашние задания. Любой уровень — от нуля до продвинутого.' },
             { q: 'Можно ли перенести урок?',                  a: 'Да, урок можно перенести за 12 часов до начала. Мы понимаем, что планы меняются.' },
             { q: 'Когда будет виден первый результат?',       a: 'Первые заметные результаты — уже после 1 месяца. За 3–6 месяцев — уверенное общение.' },
             { q: 'Есть ли скидки и акции?',                  a: 'Да! При оплате за 3 месяца — скидка 10%. При записи двух детей из семьи — 15% скидки на второго ребёнка. Следите за нашим Instagram!' },
@@ -2351,6 +2400,8 @@ ru: {
         sending:        'Отправляем...',
         privacyBefore:  'Нажимая кнопку, вы соглашаетесь с ',
         privacyLink:    'политикой конфиденциальности',
+        privacyMiddle:  ' и ',
+        offerLink:      'публичной офертой',
         privacyAfter:   '.',
         successTitle:   'Спасибо!',
         successText:    'Мы свяжемся с вами в ближайшее время и договоримся об удобном времени для пробного урока.',
