@@ -328,9 +328,9 @@
             <!-- Right side -->
             <div class="flex items-center gap-3">
                 <!-- Phone numbers (desktop only) -->
-                <div class="hidden lg:flex flex-col items-end gap-0 leading-tight mr-1">
+                <div class="flex flex-col items-end gap-0 leading-tight mr-1">
                     <a href="tel:+380954624672" class="text-xs font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight">+38 (095) 462-46-72</a>
-                    <a href="tel:+380682522876" class="text-xs text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
+                    <a href="tel:+380682522876" class="hidden lg:block text-xs text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
                 </div>
                 <!-- Language switcher -->
                 <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-xs font-bold">
@@ -355,7 +355,7 @@
                 </a>
 
                 <!-- Hamburger -->
-                <button @click="menuOpen=!menuOpen" class="md:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors" aria-label="Menu">
+                <button @click="menuOpen=!menuOpen" class="md:hidden p-2 transition-colors text-gray-700" aria-label="Menu">
                     <svg x-show="!menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -416,18 +416,18 @@
                 </div>
 
                 <!-- CTAs -->
-                <div class="flex flex-wrap gap-4">
+                <div class="flex gap-3">
                     <a href="#" @click.prevent="modalOpen=true"
-                       class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg transition-all duration-200 hover:-translate-y-1"
+                       class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black text-sm md:text-base px-5 md:px-7 py-3 md:py-3.5 rounded-full shadow-fox hover:shadow-fox-lg transition-all duration-200 hover:-translate-y-1"
                        x-text="t.hero.cta1"></a>
                     <a href="#about"
-                       class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-bold text-base px-7 py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1"
+                       class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-bold text-sm md:text-base px-5 md:px-7 py-3 md:py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1"
                        x-text="t.hero.cta2"></a>
                 </div>
             </div>
 
             <!-- Fox illustration side -->
-            <div class="flex justify-center items-center">
+            <div class="hidden md:flex justify-center items-center">
                 <div class="fox-float relative">
                     <!-- Main fox SVG — detailed student character -->
                     <svg viewBox="0 0 320 370" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-64 h-64 md:w-80 md:h-80 drop-shadow-2xl">
