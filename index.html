@@ -102,6 +102,7 @@
                         medium:   '500',
                         semibold: '600',
                         bold:     '700',
+                        extrabold:'800',
                         black:    '900',
                     },
                     fontSize: {
@@ -317,27 +318,27 @@
 
             <!-- Logo -->
             <a href="#" class="flex items-center gap-2 group">
-                <span class="text-3xl group-hover:scale-110 transition-transform duration-200">🦊</span>
-                <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
+                <span class="text-2xl group-hover:scale-110 transition-transform duration-200">🦊</span>
+                <span class="text-xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
             </a>
 
             <!-- Desktop nav -->
             <div class="hidden md:flex items-center gap-6">
-                <a href="#about"    class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.about"></a>
-                <a href="#prices"   class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices"></a>
-                <a href="#reviews"  class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.reviews"></a>
-                <a href="#contacts" class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.contacts"></a>
+                <a href="#about"    class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.about"></a>
+                <a href="#prices"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices"></a>
+                <a href="#reviews"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.reviews"></a>
+                <a href="#contacts" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.contacts"></a>
             </div>
 
             <!-- Right side -->
             <div class="flex items-center gap-3">
                 <!-- Phone numbers (desktop only) -->
                 <div class="flex flex-col items-end gap-0 leading-tight mr-1">
-                    <a href="tel:+380954624672" class="text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight">+38 (095) 462-46-72</a>
-                    <a href="tel:+380682522876" class="hidden lg:block text-sm text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
+                    <a href="tel:+380954624672" class="text-xs font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight">+38 (095) 462-46-72</a>
+                    <a href="tel:+380682522876" class="hidden lg:block text-xs text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
                 </div>
                 <!-- Language switcher -->
-                <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
+                <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-xs font-bold">
                     <button
                         @click="setLang('uk')"
                         :class="lang==='uk' ? 'bg-white shadow text-fox-600' : 'text-gray-400 hover:text-gray-600'"
@@ -354,7 +355,7 @@
 
                 <!-- CTA button desktop -->
                 <a href="#" @click.prevent="modalOpen=true"
-                   class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-base font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5"
+                   class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-sm font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5"
                    x-text="t.nav.trial">
                 </a>
 
@@ -394,7 +395,7 @@
     <div class="absolute bottom-0 left-0 w-48 h-48 bg-violet-100 blob opacity-50 -z-0" style="animation-delay:-3s"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
 
             <!-- Text side -->
             <div>
@@ -430,62 +431,174 @@
                 </div>
             </div>
 
-            <!-- Photo + parallax details side -->
-            <div class="hidden lg:flex justify-center items-center">
-                <div x-data="{px:0,py:0}"
-                     @mousemove.window="px = ($event.clientX / window.innerWidth) - 0.5; py = ($event.clientY / window.innerHeight) - 0.5"
-                     class="relative w-80 h-80 xl:w-96 xl:h-96">
+            <!-- Fox illustration side -->
+            <div class="hidden md:flex justify-center items-center">
+                <div class="fox-float relative">
+                    <!-- Main fox SVG — detailed student character -->
+                    <svg viewBox="0 0 320 370" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-64 h-64 md:w-80 md:h-80 drop-shadow-2xl">
+                        <!-- BG glow -->
+                        <ellipse cx="160" cy="185" rx="130" ry="160" fill="#FF6B35" opacity="0.06"/>
+                        <!-- Floating letters -->
+                        <text x="18" y="115" font-family="Arial Black,sans-serif" font-size="15" font-weight="900" fill="#FF6B35" opacity="0.22" transform="rotate(-12 26 108)">A</text>
+                        <text x="284" y="148" font-family="Arial Black,sans-serif" font-size="14" font-weight="900" fill="#7C3AED" opacity="0.2" transform="rotate(8 291 141)">B</text>
+                        <text x="290" y="78" font-family="Arial Black,sans-serif" font-size="13" font-weight="900" fill="#FFD700" opacity="0.35" transform="rotate(-6 297 71)">C</text>
+                        <!-- Star sparkle top right -->
+                        <polygon points="278,44 280,51 287,51 281,56 283,63 278,58 273,63 275,56 269,51 276,51" fill="#FFD700" opacity="0.6"/>
+                        <!-- Small star left -->
+                        <polygon points="36,68 37,73 42,73 38,76 40,81 36,78 32,81 34,76 30,73 35,73" fill="#FF6B35" opacity="0.4"/>
 
-                    <!-- Decorative outer ring (part of the fixed circle group — no parallax) -->
-                    <div class="absolute -inset-3.5 rounded-full border-2 border-violet-200/70"></div>
+                        <!-- Shadow -->
+                        <ellipse cx="162" cy="358" rx="76" ry="10" fill="rgba(0,0,0,0.09)"/>
 
-                    <!-- Photo circle — placeholder for now, stays fixed (no parallax) -->
-                    <div class="absolute inset-0 rounded-full border-8 border-white shadow-fox-xl overflow-hidden bg-gradient-to-br from-fox-100 via-cream to-violet-100 flex items-center justify-center">
-                        <span class="text-6xl opacity-40" aria-hidden="true">🧑‍🎓</span>
-                    </div>
+                        <!-- TAIL (right side, curled) -->
+                        <path d="M222 272 C268 252 292 292 278 336 C266 372 232 364 220 332 C212 308 222 272 222 272Z" fill="#FF6B35"/>
+                        <ellipse cx="262" cy="342" rx="20" ry="15" fill="#FFF0E8" transform="rotate(-25 262 342)"/>
+                        <!-- Tail stripe detail -->
+                        <path d="M236 290 C255 278 272 298 265 318" stroke="#E05500" stroke-width="1.5" fill="none" opacity="0.3"/>
 
-                    <!-- Floating card: rating (independent parallax) -->
-                    <div class="absolute -top-4 -left-10 bg-white rounded-2xl shadow-lg shadow-black/10 px-3 py-2 border border-gray-100 flex items-center gap-1.5 transition-transform duration-300"
-                         :style="`transform:translate(${px * -16}px, ${py * -16}px)`">
-                        <span class="text-fox-500 text-base leading-none">⭐</span>
-                        <span class="font-black text-sm text-gray-800">4.9</span>
-                        <span class="text-2xs text-gray-400 font-medium" x-text="t.hero.ratingLabel"></span>
-                    </div>
+                        <!-- BODY -->
+                        <ellipse cx="162" cy="268" rx="74" ry="78" fill="#FF6B35"/>
+                        <!-- Body shading -->
+                        <ellipse cx="148" cy="248" rx="30" ry="22" fill="white" opacity="0.07"/>
+                        <!-- Belly -->
+                        <ellipse cx="162" cy="282" rx="44" ry="56" fill="#FFF0E8"/>
 
-                    <!-- Floating card: mini lesson-window mockup (independent parallax) -->
-                    <div class="absolute -top-6 -right-12 bg-white rounded-2xl shadow-lg shadow-black/10 p-3 w-28 border border-gray-100 transition-transform duration-300"
-                         :style="`transform:translate(${px * 20}px, ${py * 14}px)`">
-                        <div class="flex gap-1 mb-2">
-                            <span class="w-1.5 h-1.5 rounded-full bg-fox-300"></span>
-                            <span class="w-1.5 h-1.5 rounded-full bg-violet-300"></span>
-                            <span class="w-1.5 h-1.5 rounded-full bg-gray-200"></span>
-                        </div>
-                        <div class="h-1.5 rounded-full bg-gray-100 mb-1.5 w-full"></div>
-                        <div class="h-1.5 rounded-full bg-gray-100 w-2/3"></div>
-                    </div>
+                        <!-- LEFT LEG -->
+                        <ellipse cx="124" cy="336" rx="24" ry="16" fill="#FF6B35" transform="rotate(-18 124 336)"/>
+                        <ellipse cx="112" cy="352" rx="20" ry="11" fill="#FF8C5A"/>
+                        <!-- Left paw toes -->
+                        <path d="M100 350 Q107 357 112 353 Q117 357 124 350" stroke="#E05500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
 
-                    <!-- Floating card: vocabulary flashcard (independent parallax) -->
-                    <div class="absolute bottom-4 -left-14 bg-white rounded-2xl shadow-lg shadow-black/10 p-3 w-32 border border-gray-100 transition-transform duration-300"
-                         :style="`transform:translate(${px * 24}px, ${py * -18}px)`">
-                        <span class="text-lg leading-none" aria-hidden="true">🔤</span>
-                        <div class="h-1.5 rounded-full bg-gray-100 mt-2 mb-1.5 w-full"></div>
-                        <div class="h-1.5 rounded-full bg-fox-100 w-1/2"></div>
-                    </div>
+                        <!-- RIGHT LEG -->
+                        <ellipse cx="200" cy="336" rx="24" ry="16" fill="#FF6B35" transform="rotate(18 200 336)"/>
+                        <ellipse cx="212" cy="352" rx="20" ry="11" fill="#FF8C5A"/>
+                        <path d="M200 350 Q207 357 212 353 Q217 357 224 350" stroke="#E05500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
 
-                    <!-- Floating badge: students count (independent parallax) -->
-                    <div class="absolute -bottom-3 -right-8 bg-fox-500 text-white rounded-2xl shadow-fox-sm px-3 py-2 text-sm font-bold transition-transform duration-300"
-                         :style="`transform:translate(${px * -12}px, ${py * 16}px)`"
-                         x-text="t.hero.studentsBadge"></div>
+                        <!-- LEFT ARM (holding book, forward) -->
+                        <path d="M100 234 C72 254 68 284 84 306 C94 320 116 310 120 290 C126 268 116 248 100 234Z" fill="#FF6B35"/>
+                        <ellipse cx="84" cy="310" rx="16" ry="11" fill="#FF8C5A" transform="rotate(20 84 310)"/>
 
-                    <!-- Decorative star (independent parallax) -->
-                    <div class="absolute top-10 left-1/2 text-violet-400 text-xl leading-none transition-transform duration-300"
-                         :style="`transform:translate(${px * 26}px, ${py * 20}px)`" aria-hidden="true">★</div>
+                        <!-- RIGHT ARM -->
+                        <path d="M224 234 C252 254 256 284 240 306 C230 320 208 310 204 290 C198 268 208 248 224 234Z" fill="#FF6B35"/>
+                        <ellipse cx="240" cy="310" rx="16" ry="11" fill="#FF8C5A" transform="rotate(-20 240 310)"/>
 
-                    <!-- Decorative squiggle (independent parallax) -->
-                    <svg class="absolute -bottom-7 right-10 w-10 h-6 text-fox-300 transition-transform duration-300" viewBox="0 0 40 20" fill="none"
-                         :style="`transform:translate(${px * -20}px, ${py * -12}px)`" aria-hidden="true">
-                        <path d="M2 10 Q10 2 18 10 T34 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- BOOK (between arms) -->
+                        <rect x="105" y="266" width="78" height="62" rx="7" fill="rgba(0,0,0,0.12)" transform="rotate(-7 144 297) translate(3,3)"/>
+                        <rect x="105" y="266" width="78" height="62" rx="7" fill="#5B21B6" transform="rotate(-7 144 297)"/>
+                        <rect x="140" y="266" width="43" height="62" rx="5" fill="#7C3AED" transform="rotate(-7 144 297)"/>
+                        <rect x="135" y="266" width="8" height="62" fill="#4C1D95" transform="rotate(-7 144 297)"/>
+                        <!-- Pages edge -->
+                        <rect x="183" y="268" width="3" height="58" rx="1" fill="#e8d5ff" opacity="0.5" transform="rotate(-7 144 297)"/>
+                        <!-- ABC text -->
+                        <text x="112" y="303" font-family="Arial Black,sans-serif" font-size="17" font-weight="900" fill="white" transform="rotate(-7 144 297)">ABC</text>
+                        <!-- Book star -->
+                        <text x="143" y="320" font-family="Arial,sans-serif" font-size="13" fill="#FFD700" transform="rotate(-7 144 297)">★</text>
+
+                        <!-- HEAD -->
+                        <ellipse cx="162" cy="144" rx="72" ry="68" fill="#FF6B35"/>
+                        <!-- Head top sheen -->
+                        <ellipse cx="146" cy="106" rx="30" ry="16" fill="white" opacity="0.07"/>
+
+                        <!-- EARS -->
+                        <polygon points="96,92 72,28 136,70" fill="#FF6B35"/>
+                        <polygon points="228,92 248,28 190,70" fill="#FF6B35"/>
+                        <!-- Ear inner -->
+                        <polygon points="100,85 83,42 130,67" fill="#FFB399"/>
+                        <polygon points="224,85 238,42 196,67" fill="#FFB399"/>
+                        <polygon points="104,80 90,52 126,65" fill="#FF9977" opacity="0.45"/>
+                        <polygon points="220,80 230,52 198,65" fill="#FF9977" opacity="0.45"/>
+
+                        <!-- GRADUATION CAP -->
+                        <rect x="106" y="76" width="90" height="13" rx="3" fill="#1E293B" transform="rotate(-10 151 82)"/>
+                        <rect x="148" y="60" width="18" height="18" fill="#1E293B" transform="rotate(-10 157 69)"/>
+                        <rect x="106" y="73" width="90" height="7" rx="2" fill="#334155" transform="rotate(-10 151 76)"/>
+                        <!-- Tassel string -->
+                        <line x1="193" y1="69" x2="202" y2="93" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Tassel ball -->
+                        <circle cx="202" cy="96" r="5" fill="#FFD700"/>
+                        <!-- Tassel fringe -->
+                        <line x1="199" y1="93" x2="196" y2="104" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="202" y1="95" x2="201" y2="106" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="205" y1="93" x2="207" y2="104" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
+
+                        <!-- FACE PATCH -->
+                        <ellipse cx="162" cy="158" rx="48" ry="43" fill="#FFF0E8"/>
+
+                        <!-- EYEBROWS -->
+                        <path d="M128 120 Q140 113 153 118" stroke="#C44000" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+                        <path d="M171 118 Q184 113 196 120" stroke="#C44000" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+                        <!-- LEFT EYE -->
+                        <ellipse cx="141" cy="140" rx="16" ry="17" fill="white"/>
+                        <circle cx="143" cy="141" r="11" fill="#1A1A2E"/>
+                        <circle cx="143" cy="141" r="7" fill="#2A3F10"/>
+                        <circle cx="143" cy="142" r="5" fill="#0A0A15"/>
+                        <circle cx="147" cy="136" r="4" fill="white"/>
+                        <circle cx="141" cy="147" r="1.8" fill="white" opacity="0.55"/>
+
+                        <!-- RIGHT EYE -->
+                        <ellipse cx="183" cy="140" rx="16" ry="17" fill="white"/>
+                        <circle cx="181" cy="141" r="11" fill="#1A1A2E"/>
+                        <circle cx="181" cy="141" r="7" fill="#2A3F10"/>
+                        <circle cx="181" cy="142" r="5" fill="#0A0A15"/>
+                        <circle cx="185" cy="136" r="4" fill="white"/>
+                        <circle cx="179" cy="147" r="1.8" fill="white" opacity="0.55"/>
+
+                        <!-- Eyelashes left -->
+                        <line x1="129" y1="127" x2="125" y2="121" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="139" y1="123" x2="137" y2="117" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="149" y1="124" x2="149" y2="118" stroke="#C44000" stroke-width="1.5" stroke-linecap="round"/>
+                        <!-- Eyelashes right -->
+                        <line x1="195" y1="127" x2="199" y2="121" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="185" y1="123" x2="187" y2="117" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
+                        <line x1="175" y1="124" x2="175" y2="118" stroke="#C44000" stroke-width="1.5" stroke-linecap="round"/>
+
+                        <!-- NOSE -->
+                        <ellipse cx="162" cy="165" rx="9" ry="6.5" fill="#993300"/>
+                        <ellipse cx="162" cy="163" rx="9" ry="6.5" fill="#CC3300"/>
+                        <ellipse cx="159" cy="161" rx="3" ry="2" fill="rgba(255,255,255,0.38)"/>
+
+                        <!-- MOUTH -->
+                        <path d="M150 174 Q162 185 174 174" stroke="#CC3300" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M149 173 Q145 178 147 183" stroke="#FFAA88" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                        <path d="M175 173 Q179 178 177 183" stroke="#FFAA88" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+                        <!-- CHEEK BLUSH -->
+                        <ellipse cx="116" cy="158" rx="16" ry="10" fill="#FF9966" opacity="0.42"/>
+                        <ellipse cx="208" cy="158" rx="16" ry="10" fill="#FF9966" opacity="0.42"/>
+                        <circle cx="113" cy="156" r="2" fill="#FF7755" opacity="0.28"/>
+                        <circle cx="121" cy="162" r="1.5" fill="#FF7755" opacity="0.28"/>
+                        <circle cx="205" cy="156" r="2" fill="#FF7755" opacity="0.28"/>
+                        <circle cx="213" cy="162" r="1.5" fill="#FF7755" opacity="0.28"/>
+
+                        <!-- WHISKERS -->
+                        <line x1="120" y1="164" x2="94" y2="157" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="120" y1="170" x2="92" y2="170" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="120" y1="176" x2="96" y2="180" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="204" y1="164" x2="230" y2="157" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="204" y1="170" x2="232" y2="170" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+                        <line x1="204" y1="176" x2="228" y2="180" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
+
+                        <!-- PENCIL (right side, floating) -->
+                        <g transform="rotate(28 280 218)">
+                            <rect x="270" y="192" width="10" height="46" rx="2" fill="#FFD700"/>
+                            <polygon points="270,238 280,238 275,252" fill="#FF6B35"/>
+                            <polygon points="270,238 280,238 275,246" fill="#FFF0E8"/>
+                            <rect x="270" y="192" width="10" height="7" rx="1" fill="#FFAABB"/>
+                            <rect x="270" y="199" width="10" height="3" fill="#888"/>
+                        </g>
                     </svg>
+
+                    <!-- Floating badges around fox -->
+                    <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg px-3 py-2 text-sm font-bold text-gray-800 border border-gray-100">
+                        ⭐ 4.9 <span class="text-gray-400 font-medium text-xs">рейтинг</span>
+                    </div>
+                    <div class="absolute -bottom-2 -left-6 bg-fox-500 text-white rounded-2xl shadow-fox-sm px-3 py-2 text-sm font-bold">
+                        🎓 500+ учнів
+                    </div>
+                    <div class="absolute top-1/2 -right-8 bg-white border-2 border-red-100 rounded-2xl shadow px-3 py-2 text-sm font-bold text-gray-800">
+                        🇬🇧 British English
+                    </div>
                 </div>
             </div>
         </div>
@@ -509,31 +622,65 @@
 
 
 <!-- ═══════════════════════ FOR WHOM (AGES) ═══════════════════════ -->
-<section id="about" class="py-20 bg-white">
+<section id="about" class="py-20 bg-fox-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Section header -->
         <div class="text-center mb-14">
-            <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.ages.label"></span>
+            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.ages.label"></span>
             <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.ages.title"></h2>
             <p class="text-gray-500 text-lg max-w-xl mx-auto" x-text="t.ages.subtitle"></p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
             <template x-for="(age, i) in t.ages.cards" :key="i">
-                <div class="card-lift bg-white border-2 border-gray-100 rounded-3xl p-8 cursor-default">
-                    <div class="text-5xl mb-4" x-text="age.emoji"></div>
-                    <div class="inline-block bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full mb-3" x-text="age.range"></div>
+                <div class="card-lift bg-white border-2 border-gray-100 rounded-3xl p-8 shadow-sm flex flex-col cursor-default">
+
+                    <!-- Icon + age range -->
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="w-14 h-14 rounded-2xl bg-fox-50 border-2 border-fox-100 flex items-center justify-center text-3xl" x-text="age.emoji"></div>
+                        <div class="inline-block bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="age.range"></div>
+                    </div>
+
                     <h3 class="text-xl font-black text-gray-900 mb-2" x-text="age.title"></h3>
-                    <p class="text-gray-500 leading-relaxed" x-text="age.desc"></p>
-                    <ul class="mt-4 space-y-2">
+                    <p class="text-gray-500 leading-relaxed mb-5" x-text="age.desc"></p>
+
+                    <!-- Format chips -->
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <template x-for="f in age.format" :key="f">
+                            <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" x-text="f"></span>
+                        </template>
+                    </div>
+
+                    <!-- Checklist -->
+                    <ul class="space-y-2 mb-6">
                         <template x-for="item in age.items" :key="item">
                             <li class="flex items-start gap-2 text-sm text-gray-600">
-                                <span class="text-fox-500 mt-0.5 flex-shrink-0">✓</span>
+                                <span class="w-5 h-5 rounded-full bg-fox-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg class="w-3 h-3 text-fox-500" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                </span>
                                 <span x-text="item"></span>
                             </li>
                         </template>
                     </ul>
+
+                    <!-- CEFR progression track + result -->
+                    <div class="mt-auto pt-5 border-t border-gray-100">
+                        <p class="text-2xs font-black text-gray-400 uppercase tracking-widest mb-2" x-text="t.ages.levelLabel"></p>
+                        <div class="flex gap-1.5 mb-4">
+                            <template x-for="lv in age.track" :key="lv.l">
+                                <div class="flex-1 text-center">
+                                    <div class="h-1.5 rounded-full mb-1.5" :class="lv.on ? 'bg-fox-500' : 'bg-gray-100'"></div>
+                                    <span class="text-2xs font-bold" :class="lv.on ? 'text-fox-600' : 'text-gray-300'" x-text="lv.l"></span>
+                                </div>
+                            </template>
+                        </div>
+
+                        <div class="bg-fox-50 rounded-xl px-4 py-3">
+                            <p class="text-2xs font-black text-fox-600 uppercase tracking-widest mb-1" x-text="t.ages.resultLabel"></p>
+                            <p class="text-sm text-gray-700 leading-snug" x-text="age.result"></p>
+                        </div>
+                    </div>
                 </div>
             </template>
         </div>
@@ -558,8 +705,8 @@
                 <template x-for="(step, i) in t.how.steps" :key="i">
                     <div class="flex flex-col items-center text-center group cursor-default">
                         <div class="relative mb-6">
-                            <div class="w-[72px] h-[72px] rounded-2xl bg-white flex items-center justify-center text-3xl shadow-fox-sm border-2 border-fox-100 group-hover:border-fox-400 group-hover:shadow-fox-lg group-hover:-translate-y-1.5 transition-all duration-300 select-none" x-text="step.emoji"></div>
-                            <div class="absolute -bottom-2.5 -right-2.5 w-7 h-7 rounded-full bg-gradient-to-br from-fox-500 to-fox-600 text-white text-xs font-black flex items-center justify-center shadow-fox-sm" x-text="i+1"></div>
+                            <div class="w-[72px] h-[72px] rounded-2xl bg-white flex items-center justify-center text-3xl shadow-md border-2 border-fox-100 group-hover:border-fox-400 group-hover:shadow-lg group-hover:shadow-fox-100 group-hover:-translate-y-1.5 transition-all duration-300 select-none" x-text="step.emoji"></div>
+                            <div class="absolute -bottom-2.5 -right-2.5 w-7 h-7 rounded-full bg-gradient-to-br from-fox-500 to-fox-600 text-white text-xs font-black flex items-center justify-center shadow-md shadow-fox-200" x-text="i+1"></div>
                         </div>
                         <h3 class="font-black text-gray-900 mb-1.5 leading-tight text-base" x-text="step.title"></h3>
                         <p class="text-gray-400 text-sm leading-relaxed" x-text="step.desc"></p>
@@ -747,7 +894,7 @@
                             <ul class="space-y-3.5">
                                 <template x-for="feat in t.prog[tab].features" :key="feat">
                                     <li class="flex items-start gap-3 group/feat">
-                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-fox-400 to-fox-600 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-fox-sm group-hover/feat:scale-110 transition-transform duration-150">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-fox-400 to-fox-600 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm shadow-fox-100 group-hover/feat:scale-110 transition-transform duration-150">
                                             <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                                             </svg>
@@ -775,7 +922,7 @@
     <div class="absolute bottom-0 right-0 w-72 h-72 bg-fox-500/6 rounded-full blur-3xl pointer-events-none"></div>
 
     <!-- Декор: великий "?" праворуч вгорі -->
-    <div class="absolute right-6 top-2 font-black leading-none pointer-events-none select-none" style="color:rgba(255,107,53,0.07); font-size:200px">?</div>
+    <div class="absolute right-6 top-2 text-[200px] font-black leading-none pointer-events-none select-none" style="color:rgba(255,107,53,0.07)">?</div>
 
     <!-- Декор: сітка ромбів праворуч -->
     <div class="absolute right-0 top-0 h-full w-52 opacity-[0.1] pointer-events-none select-none">
@@ -976,10 +1123,10 @@
                                     <svg class="absolute bottom-3 right-3 w-7 h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 28 L14 28"/></svg>
 
                                     <!-- Background glow -->
-                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,var(--fox-500),transparent)"></div>
+                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,#FF6B35,transparent)"></div>
 
                                     <!-- Logo -->
-                                    <div class="mt-6 mb-3 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-fox z-10" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));">🦊</div>
+                                    <div class="mt-6 mb-3 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-fox z-10" style="background: linear-gradient(135deg,#FF6B35,#E54E1A);">🦊</div>
                                     <div class="text-white font-black text-base tracking-widest z-10">FLUENT<span style="color:#D4AF37">FOX</span></div>
 
                                     <!-- Gold divider -->
@@ -1249,7 +1396,7 @@
                             <a href="https://t.me/fluentfox_ua" aria-label="Telegram" title="Telegram"
                                class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
                                style="background:#2AABEE;">
-                                <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
+                                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1351,7 +1498,7 @@
                         <!-- Submit -->
                         <button type="submit"
                                 :disabled="formLoading"
-                                class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-4 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-base">
+                                class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-base">
                             <span x-show="!formLoading" x-text="t.form.submit"></span>
                             <span x-show="formLoading" class="flex items-center justify-center gap-2">
                                 <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
@@ -1378,7 +1525,7 @@
                                 <a href="https://t.me/fluentfox_ua"
                                    class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5"
                                    style="border-color:#2AABEE; color:#2AABEE;">
-                                    <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
+                                    <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
                                     Telegram
                                 </a>
                             </div>
@@ -1416,7 +1563,7 @@
          class="bg-white rounded-3xl w-full max-w-md shadow-2xl relative overflow-hidden">
 
         <!-- Decorative top strip -->
-        <div class="h-1.5 w-full" style="background:linear-gradient(to right,var(--fox-500),var(--violet-500))"></div>
+        <div class="h-1.5 w-full" style="background:linear-gradient(to right,#FF6B35,#7C3AED)"></div>
 
         <!-- Close button -->
         <button @click="modalOpen=false"
@@ -1494,7 +1641,8 @@
                 <!-- Submit -->
                 <button type="submit"
                         :disabled="formLoading"
-                        class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-sm">
+                        class="w-full text-white font-black py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-lg text-sm"
+                        style="background:linear-gradient(135deg,#7C3AED,#5B21B6);">
                     <span x-show="!formLoading" x-text="t.form.submit"></span>
                     <span x-show="formLoading" class="flex items-center justify-center gap-2">
                         <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
@@ -1515,7 +1663,7 @@
                             WhatsApp
                         </a>
                         <a href="https://t.me/fluentfox_ua" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5" style="border-color:#2AABEE;color:#2AABEE;">
-                            <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
+                            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
                             Telegram
                         </a>
                     </div>
@@ -1536,17 +1684,17 @@
             <!-- Brand -->
             <div class="md:col-span-2">
                 <a href="#" class="flex items-center gap-2 mb-3">
-                    <span class="text-3xl">🦊</span>
-                    <span class="text-2xl font-black text-white">Fluent<span class="text-fox-400">Fox</span></span>
+                    <span class="text-2xl">🦊</span>
+                    <span class="text-xl font-black text-white">Fluent<span class="text-fox-400">Fox</span></span>
                 </a>
-                <p class="text-base leading-relaxed max-w-xs" x-text="t.footer.tagline"></p>
+                <p class="text-sm leading-relaxed max-w-xs" x-text="t.footer.tagline"></p>
                 <!-- Social icons -->
                 <div class="flex gap-3 mt-4">
                     <a href="https://www.instagram.com/fluent.fox.study/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
                     </a>
                     <a href="https://t.me/fluentfox_ua" target="_blank" rel="noopener" aria-label="Telegram" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
-                        <svg viewBox="-3 -3 30 30" fill="currentColor" class="w-4 h-4"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                     </a>
                     <a href="https://www.facebook.com/profile.php?id=61591810049590" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
@@ -1556,8 +1704,8 @@
 
             <!-- Nav links -->
             <div>
-                <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" x-text="t.footer.navTitle"></h4>
-                <ul class="space-y-2 text-base">
+                <h4 class="text-white font-black text-sm mb-4 uppercase tracking-wide" x-text="t.footer.navTitle"></h4>
+                <ul class="space-y-2 text-sm">
                     <li><a href="#about"    class="hover:text-fox-400 transition-colors" x-text="t.nav.about"></a></li>
                     <li><a href="#prices"   class="hover:text-fox-400 transition-colors" x-text="t.nav.prices"></a></li>
                     <li><a href="#reviews"  class="hover:text-fox-400 transition-colors" x-text="t.nav.reviews"></a></li>
@@ -1566,8 +1714,8 @@
 
             <!-- Contacts -->
             <div>
-                <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" x-text="t.footer.contactTitle"></h4>
-                <ul class="space-y-2 text-base">
+                <h4 class="text-white font-black text-sm mb-4 uppercase tracking-wide" x-text="t.footer.contactTitle"></h4>
+                <ul class="space-y-2 text-sm">
                     <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a></li>
                     <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380682522876" class="hover:text-fox-400 transition-colors">+38 (068) 252-28-76</a></li>
                     <li class="flex items-center gap-2"><span>✉️</span> <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors">fluent.fox.study@gmail.com</a></li>
@@ -1599,7 +1747,7 @@
                         <path d="M8.3 6.2c0-1.6 1.3-2.3 1.3-2.3C8.8 2.6 7.7 2.5 7.3 2.5c-1 0-1.8.6-2.3.6C4.5 3 3.7 2.5 2.8 2.5 1.2 2.5 0 3.8 0 5.7c0 1.1.4 2.2.9 3 .5.8 1 1.4 1.7 1.4.6 0 .9-.4 1.7-.4.8 0 1 .4 1.7.4.7 0 1.2-.6 1.7-1.3.5-.8.7-1.5.7-1.5-.3-.1-.8-.7-.9-1.1z"/>
                         <path d="M6.8 1.5C7.2.9 7.4.3 7.2 0 6.7 0 6.1.4 5.8.9c-.3.4-.6 1-.4 1.5.5.1 1-.3 1.4-.9z"/>
                     </svg>
-                    <span class="text-base font-semibold text-gray-900">Pay</span>
+                    <span class="text-sm font-semibold text-gray-900">Pay</span>
                 </div>
                 <!-- Google Pay -->
                 <div class="bg-white rounded-xl px-3 py-1 h-8 flex items-center">
@@ -1613,7 +1761,7 @@
 
         <!-- Legal links -->
         <div class="border-t border-gray-800 py-4">
-            <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm justify-center md:justify-start">
+            <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs justify-center md:justify-start">
                 <template x-for="link in t.footer.legalLinks" :key="link.label">
                     <a :href="link.href" class="hover:text-fox-400 transition-colors" x-text="link.label"></a>
                 </template>
@@ -1621,7 +1769,7 @@
         </div>
 
         <!-- Copyright + FOP -->
-        <div class="border-t border-gray-800 pt-5 space-y-1.5 text-sm text-gray-500 text-center md:text-left">
+        <div class="border-t border-gray-800 pt-5 space-y-1.5 text-xs text-gray-500 text-center md:text-left">
             <p x-text="t.footer.copyright"></p>
             <p>ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,
                <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a>,
@@ -1660,8 +1808,6 @@ uk: {
         tags:      ['✓ Без нудних підручників', '✓ Живі заняття онлайн', '✓ Малі групи до 6 учнів', '✓ Гарантія результату'],
         cta1:      'Безкоштовний урок',
         cta2:      'Дізнатись більше',
-        ratingLabel:   'рейтинг',
-        studentsBadge: '500+ учнів',
     },
 
     stats: [
@@ -1672,30 +1818,41 @@ uk: {
     ],
 
     ages: {
-        label:    'Для кого',
-        title:    'Програма для кожного віку',
-        subtitle: 'Особлива методика для кожної вікової групи',
+        label:       'Для кого',
+        title:       'Програма для кожного віку',
+        subtitle:    'Особлива методика для кожної вікової групи',
+        levelLabel:  'Цільовий рівень CEFR',
+        resultLabel: 'Результат',
         cards: [
             {
-                emoji: '🐣',
-                range: '6–8 років',
-                title: 'Маленькі дослідники',
-                desc:  'Казки, пісні та ігри. Дитина полюбить англійську з першого уроку.',
-                items: ['Ігрова форма занять', 'Лексика через пісні й мультики', 'Алфавіт і базові слова', 'Розвиток вимови'],
+                emoji:  '🐣',
+                range:  '6–8 років',
+                title:  'Маленькі дослідники',
+                desc:   'Казки, пісні та ігри. Дитина полюбить англійську з першого уроку.',
+                format: ['1.5 год урок', '2 рази / тиждень'],
+                items:  ['Ігрова форма занять', 'Лексика через пісні й мультики', 'Алфавіт і базові слова', 'Розвиток вимови'],
+                track:  [{l:'A1',on:true},{l:'A2',on:false},{l:'B1',on:false},{l:'B2',on:false}],
+                result: 'Розуміє прості фрази, називає предмети та кольори англійською, співає дитячі пісні',
             },
             {
-                emoji: '🚀',
-                range: '9–12 років',
-                title: 'Активні учні',
-                desc:  'Розмовна практика, граматика та підготовка до шкільних тестів.',
-                items: ['Граматика без нудьги', 'Розмовні клуби', 'Читання та аудіювання', 'Домашні завдання онлайн'],
+                emoji:  '🚀',
+                range:  '9–12 років',
+                title:  'Активні учні',
+                desc:   'Розмовна практика, граматика та підготовка до шкільних тестів.',
+                format: ['1.5 год урок', '2 рази / тиждень'],
+                items:  ['Граматика без нудьги', 'Розмовні клуби', 'Читання та аудіювання', 'Домашні завдання онлайн'],
+                track:  [{l:'A1',on:true},{l:'A2',on:true},{l:'B1',on:true},{l:'B2',on:false}],
+                result: 'Веде прості діалоги, читає й переказує тексти, пише короткі розповіді',
             },
             {
-                emoji: '🎯',
-                range: '13–18 років',
-                title: 'Підлітки-лідери',
-                desc:  'Підготовка до НМТ, розмовні клуби, реальне спілкування з однолітками.',
-                items: ['Підготовка до НМТ', 'Cambridge YLE/KET', 'Розмова на актуальні теми', 'Письмо та есе'],
+                emoji:  '🎯',
+                range:  '13–18 років',
+                title:  'Підлітки-лідери',
+                desc:   'Підготовка до НМТ, розмовні клуби, реальне спілкування з однолітками.',
+                format: ['1.5 год урок', '2 рази / тиждень'],
+                items:  ['Підготовка до НМТ', 'Cambridge YLE/KET', 'Розмова на актуальні теми', 'Письмо та есе'],
+                track:  [{l:'A1',on:true},{l:'A2',on:true},{l:'B1',on:true},{l:'B2',on:true}],
+                result: 'Вільно спілкується на побутові теми, готовий(а) до НМТ та міжнародних іспитів',
             },
         ],
     },
@@ -1779,7 +1936,7 @@ uk: {
                 desc:      '4 заняття на місяць · до 6 учнів',
                 price:     '1 800 грн',
                 highlight: false,
-                features:  ['300 грн за 1 годину', '4 уроки по 1.5 години', 'Група до 6 учнів', 'Інтерактивні вправи та ігри', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
+                features:  ['450 грн за 1 заняття', '4 уроки по 1.5 години', 'Група до 6 учнів', 'Інтерактивні вправи та ігри', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
             },
             {
                 emoji:     '🔥',
@@ -1787,7 +1944,7 @@ uk: {
                 desc:      '8 занять на місяць · до 6 учнів',
                 price:     '3 600 грн',
                 highlight: true,
-                features:  ['300 грн за 1 годину', '8 уроків по 1.5 години', 'Група до 6 учнів', 'Максимальний прогрес', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
+                features:  ['450 грн за 1 заняття', '8 уроків по 1.5 години', 'Група до 6 учнів', 'Максимальний прогрес', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
             },
             {
                 emoji:     '💻',
@@ -1795,7 +1952,7 @@ uk: {
                 desc:      '4 заняття на місяць · особистий підхід',
                 price:     '3 000 грн',
                 highlight: false,
-                features:  ['500 грн за 1 годину', '4 уроки по 1.5 години', 'Повна увага вчителя', 'Індивідуальний план навчання', 'Запис кожного уроку', 'Сертифікат FluentFox'],
+                features:  ['750 грн за 1 заняття', '4 уроки по 1.5 години', 'Повна увага вчителя', 'Індивідуальний план навчання', 'Запис кожного уроку', 'Сертифікат FluentFox'],
             },
         ],
     },
@@ -1997,8 +2154,6 @@ ru: {
         tags:      ['✓ Без скучных учебников', '✓ Живые занятия онлайн', '✓ Маленькие группы до 6 учеников', '✓ Гарантия результата'],
         cta1:      'Бесплатный урок',
         cta2:      'Узнать больше',
-        ratingLabel:   'рейтинг',
-        studentsBadge: '500+ учеников',
     },
 
     stats: [
@@ -2009,30 +2164,41 @@ ru: {
     ],
 
     ages: {
-        label:    'Для кого',
-        title:    'Программа для каждого возраста',
-        subtitle: 'Особая методика для каждой возрастной группы',
+        label:       'Для кого',
+        title:       'Программа для каждого возраста',
+        subtitle:    'Особая методика для каждой возрастной группы',
+        levelLabel:  'Целевой уровень CEFR',
+        resultLabel: 'Результат',
         cards: [
             {
-                emoji: '🐣',
-                range: '6–8 лет',
-                title: 'Маленькие исследователи',
-                desc:  'Сказки, песни и игры. Ребёнок полюбит английский с первого урока.',
-                items: ['Игровая форма занятий', 'Лексика через песни и мультики', 'Алфавит и базовые слова', 'Развитие произношения'],
+                emoji:  '🐣',
+                range:  '6–8 лет',
+                title:  'Маленькие исследователи',
+                desc:   'Сказки, песни и игры. Ребёнок полюбит английский с первого урока.',
+                format: ['1.5 часа урок', '2 раза / неделю'],
+                items:  ['Игровая форма занятий', 'Лексика через песни и мультики', 'Алфавит и базовые слова', 'Развитие произношения'],
+                track:  [{l:'A1',on:true},{l:'A2',on:false},{l:'B1',on:false},{l:'B2',on:false}],
+                result: 'Понимает простые фразы, называет предметы и цвета на английском, поёт детские песни',
             },
             {
-                emoji: '🚀',
-                range: '9–12 лет',
-                title: 'Активные ученики',
-                desc:  'Разговорная практика, грамматика и подготовка к школьным тестам.',
-                items: ['Грамматика без скуки', 'Разговорные клубы', 'Чтение и аудирование', 'Домашние задания онлайн'],
+                emoji:  '🚀',
+                range:  '9–12 лет',
+                title:  'Активные ученики',
+                desc:   'Разговорная практика, грамматика и подготовка к школьным тестам.',
+                format: ['1.5 часа урок', '2 раза / неделю'],
+                items:  ['Грамматика без скуки', 'Разговорные клубы', 'Чтение и аудирование', 'Домашние задания онлайн'],
+                track:  [{l:'A1',on:true},{l:'A2',on:true},{l:'B1',on:true},{l:'B2',on:false}],
+                result: 'Ведёт простые диалоги, читает и пересказывает тексты, пишет короткие рассказы',
             },
             {
-                emoji: '🎯',
-                range: '13–18 лет',
-                title: 'Подростки-лидеры',
-                desc:  'Подготовка к НМТ, разговорные клубы, реальное общение со сверстниками.',
-                items: ['Подготовка к НМТ', 'Cambridge YLE/KET', 'Общение на актуальные темы', 'Письмо и эссе'],
+                emoji:  '🎯',
+                range:  '13–18 лет',
+                title:  'Подростки-лидеры',
+                desc:   'Подготовка к НМТ, разговорные клубы, реальное общение со сверстниками.',
+                format: ['1.5 часа урок', '2 раза / неделю'],
+                items:  ['Подготовка к НМТ', 'Cambridge YLE/KET', 'Общение на актуальные темы', 'Письмо и эссе'],
+                track:  [{l:'A1',on:true},{l:'A2',on:true},{l:'B1',on:true},{l:'B2',on:true}],
+                result: 'Свободно общается на бытовые темы, готов(а) к НМТ и международным экзаменам',
             },
         ],
     },
@@ -2116,7 +2282,7 @@ ru: {
                 desc:      '4 занятия в месяц · до 6 учеников',
                 price:     '1 800 грн',
                 highlight: false,
-                features:  ['300 грн за 1 час', '4 урока по 1.5 часа', 'Группа до 6 учеников', 'Интерактивные упражнения и игры', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
+                features:  ['450 грн за 1 занятие', '4 урока по 1.5 часа', 'Группа до 6 учеников', 'Интерактивные упражнения и игры', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
             },
             {
                 emoji:     '🔥',
@@ -2124,7 +2290,7 @@ ru: {
                 desc:      '8 занятий в месяц · до 6 учеников',
                 price:     '3 600 грн',
                 highlight: true,
-                features:  ['300 грн за 1 час', '8 уроков по 1.5 часа', 'Группа до 6 учеников', 'Максимальный прогресс', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
+                features:  ['450 грн за 1 занятие', '8 уроков по 1.5 часа', 'Группа до 6 учеников', 'Максимальный прогресс', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
             },
             {
                 emoji:     '💻',
@@ -2132,7 +2298,7 @@ ru: {
                 desc:      '4 занятия в месяц · личный подход',
                 price:     '3 000 грн',
                 highlight: false,
-                features:  ['500 грн за 1 час', '4 урока по 1.5 часа', 'Полное внимание учителя', 'Индивидуальный план обучения', 'Запись каждого урока', 'Сертификат FluentFox'],
+                features:  ['750 грн за 1 занятие', '4 урока по 1.5 часа', 'Полное внимание учителя', 'Индивидуальный план обучения', 'Запись каждого урока', 'Сертификат FluentFox'],
             },
         ],
     },
