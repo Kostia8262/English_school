@@ -317,27 +317,27 @@
 
             <!-- Logo -->
             <a href="#" class="flex items-center gap-2 group">
-                <span class="text-2xl group-hover:scale-110 transition-transform duration-200">🦊</span>
-                <span class="text-xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
+                <span class="text-3xl group-hover:scale-110 transition-transform duration-200">🦊</span>
+                <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
             </a>
 
             <!-- Desktop nav -->
             <div class="hidden md:flex items-center gap-6">
-                <a href="#about"    class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.about"></a>
-                <a href="#prices"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices"></a>
-                <a href="#reviews"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.reviews"></a>
-                <a href="#contacts" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.contacts"></a>
+                <a href="#about"    class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.about"></a>
+                <a href="#prices"   class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices"></a>
+                <a href="#reviews"  class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.reviews"></a>
+                <a href="#contacts" class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.contacts"></a>
             </div>
 
             <!-- Right side -->
             <div class="flex items-center gap-3">
                 <!-- Phone numbers (desktop only) -->
                 <div class="flex flex-col items-end gap-0 leading-tight mr-1">
-                    <a href="tel:+380954624672" class="text-xs font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight">+38 (095) 462-46-72</a>
-                    <a href="tel:+380682522876" class="hidden lg:block text-xs text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
+                    <a href="tel:+380954624672" class="text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight">+38 (095) 462-46-72</a>
+                    <a href="tel:+380682522876" class="hidden lg:block text-sm text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
                 </div>
                 <!-- Language switcher -->
-                <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-xs font-bold">
+                <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
                     <button
                         @click="setLang('uk')"
                         :class="lang==='uk' ? 'bg-white shadow text-fox-600' : 'text-gray-400 hover:text-gray-600'"
@@ -354,7 +354,7 @@
 
                 <!-- CTA button desktop -->
                 <a href="#" @click.prevent="modalOpen=true"
-                   class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-sm font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5"
+                   class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-base font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5"
                    x-text="t.nav.trial">
                 </a>
 
@@ -1361,7 +1361,7 @@
                             <a href="https://t.me/fluentfox_ua" aria-label="Telegram" title="Telegram"
                                class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
                                style="background:#2AABEE;">
-                                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
+                                <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1490,7 +1490,7 @@
                                 <a href="https://t.me/fluentfox_ua"
                                    class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5"
                                    style="border-color:#2AABEE; color:#2AABEE;">
-                                    <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
+                                    <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
                                     Telegram
                                 </a>
                             </div>
@@ -1628,7 +1628,7 @@
                             WhatsApp
                         </a>
                         <a href="https://t.me/fluentfox_ua" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5" style="border-color:#2AABEE;color:#2AABEE;">
-                            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
+                            <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.3-2.1 9.7c-.1.6-.6.8-1.1.5l-3-2.2-1.4 1.4c-.2.2-.4.3-.7.3l.2-3 5-4.5c.2-.2 0-.3-.3-.1L7.1 15.1l-2.9-.9c-.6-.2-.7-.6.1-.9L17.1 7.6c.5-.2 1 .1.8.7z"/></svg>
                             Telegram
                         </a>
                     </div>
@@ -1649,17 +1649,17 @@
             <!-- Brand -->
             <div class="md:col-span-2">
                 <a href="#" class="flex items-center gap-2 mb-3">
-                    <span class="text-2xl">🦊</span>
-                    <span class="text-xl font-black text-white">Fluent<span class="text-fox-400">Fox</span></span>
+                    <span class="text-3xl">🦊</span>
+                    <span class="text-2xl font-black text-white">Fluent<span class="text-fox-400">Fox</span></span>
                 </a>
-                <p class="text-sm leading-relaxed max-w-xs" x-text="t.footer.tagline"></p>
+                <p class="text-base leading-relaxed max-w-xs" x-text="t.footer.tagline"></p>
                 <!-- Social icons -->
                 <div class="flex gap-3 mt-4">
                     <a href="https://www.instagram.com/fluent.fox.study/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
                     </a>
                     <a href="https://t.me/fluentfox_ua" target="_blank" rel="noopener" aria-label="Telegram" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        <svg viewBox="-3 -3 30 30" fill="currentColor" class="w-4 h-4"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                     </a>
                     <a href="https://www.facebook.com/profile.php?id=61591810049590" target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
                         <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
@@ -1669,8 +1669,8 @@
 
             <!-- Nav links -->
             <div>
-                <h4 class="text-white font-black text-sm mb-4 uppercase tracking-wide" x-text="t.footer.navTitle"></h4>
-                <ul class="space-y-2 text-sm">
+                <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" x-text="t.footer.navTitle"></h4>
+                <ul class="space-y-2 text-base">
                     <li><a href="#about"    class="hover:text-fox-400 transition-colors" x-text="t.nav.about"></a></li>
                     <li><a href="#prices"   class="hover:text-fox-400 transition-colors" x-text="t.nav.prices"></a></li>
                     <li><a href="#reviews"  class="hover:text-fox-400 transition-colors" x-text="t.nav.reviews"></a></li>
@@ -1679,8 +1679,8 @@
 
             <!-- Contacts -->
             <div>
-                <h4 class="text-white font-black text-sm mb-4 uppercase tracking-wide" x-text="t.footer.contactTitle"></h4>
-                <ul class="space-y-2 text-sm">
+                <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" x-text="t.footer.contactTitle"></h4>
+                <ul class="space-y-2 text-base">
                     <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a></li>
                     <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380682522876" class="hover:text-fox-400 transition-colors">+38 (068) 252-28-76</a></li>
                     <li class="flex items-center gap-2"><span>✉️</span> <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors">fluent.fox.study@gmail.com</a></li>
@@ -1712,7 +1712,7 @@
                         <path d="M8.3 6.2c0-1.6 1.3-2.3 1.3-2.3C8.8 2.6 7.7 2.5 7.3 2.5c-1 0-1.8.6-2.3.6C4.5 3 3.7 2.5 2.8 2.5 1.2 2.5 0 3.8 0 5.7c0 1.1.4 2.2.9 3 .5.8 1 1.4 1.7 1.4.6 0 .9-.4 1.7-.4.8 0 1 .4 1.7.4.7 0 1.2-.6 1.7-1.3.5-.8.7-1.5.7-1.5-.3-.1-.8-.7-.9-1.1z"/>
                         <path d="M6.8 1.5C7.2.9 7.4.3 7.2 0 6.7 0 6.1.4 5.8.9c-.3.4-.6 1-.4 1.5.5.1 1-.3 1.4-.9z"/>
                     </svg>
-                    <span class="text-sm font-semibold text-gray-900">Pay</span>
+                    <span class="text-base font-semibold text-gray-900">Pay</span>
                 </div>
                 <!-- Google Pay -->
                 <div class="bg-white rounded-xl px-3 py-1 h-8 flex items-center">
@@ -1726,7 +1726,7 @@
 
         <!-- Legal links -->
         <div class="border-t border-gray-800 py-4">
-            <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs justify-center md:justify-start">
+            <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm justify-center md:justify-start">
                 <template x-for="link in t.footer.legalLinks" :key="link.label">
                     <a :href="link.href" class="hover:text-fox-400 transition-colors" x-text="link.label"></a>
                 </template>
@@ -1734,7 +1734,7 @@
         </div>
 
         <!-- Copyright + FOP -->
-        <div class="border-t border-gray-800 pt-5 space-y-1.5 text-xs text-gray-500 text-center md:text-left">
+        <div class="border-t border-gray-800 pt-5 space-y-1.5 text-sm text-gray-500 text-center md:text-left">
             <p x-text="t.footer.copyright"></p>
             <p>ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,
                <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a>,
@@ -1890,7 +1890,7 @@ uk: {
                 desc:      '4 заняття на місяць · до 6 учнів',
                 price:     '1 800 грн',
                 highlight: false,
-                features:  ['450 грн за 1 заняття', '4 уроки по 1.5 години', 'Група до 6 учнів', 'Інтерактивні вправи та ігри', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
+                features:  ['300 грн за 1 годину', '4 уроки по 1.5 години', 'Група до 6 учнів', 'Інтерактивні вправи та ігри', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
             },
             {
                 emoji:     '🔥',
@@ -1898,7 +1898,7 @@ uk: {
                 desc:      '8 занять на місяць · до 6 учнів',
                 price:     '3 600 грн',
                 highlight: true,
-                features:  ['450 грн за 1 заняття', '8 уроків по 1.5 години', 'Група до 6 учнів', 'Максимальний прогрес', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
+                features:  ['300 грн за 1 годину', '8 уроків по 1.5 години', 'Група до 6 учнів', 'Максимальний прогрес', 'Щомісячний звіт батькам', 'Сертифікат FluentFox'],
             },
             {
                 emoji:     '💻',
@@ -1906,7 +1906,7 @@ uk: {
                 desc:      '4 заняття на місяць · особистий підхід',
                 price:     '3 000 грн',
                 highlight: false,
-                features:  ['750 грн за 1 заняття', '4 уроки по 1.5 години', 'Повна увага вчителя', 'Індивідуальний план навчання', 'Запис кожного уроку', 'Сертифікат FluentFox'],
+                features:  ['500 грн за 1 годину', '4 уроки по 1.5 години', 'Повна увага вчителя', 'Індивідуальний план навчання', 'Запис кожного уроку', 'Сертифікат FluentFox'],
             },
         ],
     },
@@ -2225,7 +2225,7 @@ ru: {
                 desc:      '4 занятия в месяц · до 6 учеников',
                 price:     '1 800 грн',
                 highlight: false,
-                features:  ['450 грн за 1 занятие', '4 урока по 1.5 часа', 'Группа до 6 учеников', 'Интерактивные упражнения и игры', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
+                features:  ['300 грн за 1 час', '4 урока по 1.5 часа', 'Группа до 6 учеников', 'Интерактивные упражнения и игры', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
             },
             {
                 emoji:     '🔥',
@@ -2233,7 +2233,7 @@ ru: {
                 desc:      '8 занятий в месяц · до 6 учеников',
                 price:     '3 600 грн',
                 highlight: true,
-                features:  ['450 грн за 1 занятие', '8 уроков по 1.5 часа', 'Группа до 6 учеников', 'Максимальный прогресс', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
+                features:  ['300 грн за 1 час', '8 уроков по 1.5 часа', 'Группа до 6 учеников', 'Максимальный прогресс', 'Ежемесячный отчёт родителям', 'Сертификат FluentFox'],
             },
             {
                 emoji:     '💻',
@@ -2241,7 +2241,7 @@ ru: {
                 desc:      '4 занятия в месяц · личный подход',
                 price:     '3 000 грн',
                 highlight: false,
-                features:  ['750 грн за 1 занятие', '4 урока по 1.5 часа', 'Полное внимание учителя', 'Индивидуальный план обучения', 'Запись каждого урока', 'Сертификат FluentFox'],
+                features:  ['500 грн за 1 час', '4 урока по 1.5 часа', 'Полное внимание учителя', 'Индивидуальный план обучения', 'Запись каждого урока', 'Сертификат FluentFox'],
             },
         ],
     },
