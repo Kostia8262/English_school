@@ -394,7 +394,7 @@
     <div class="absolute bottom-0 left-0 w-48 h-48 bg-violet-100 blob opacity-50 -z-0" style="animation-delay:-3s"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
 
             <!-- Text side -->
             <div>
@@ -430,174 +430,62 @@
                 </div>
             </div>
 
-            <!-- Fox illustration side -->
-            <div class="hidden md:flex justify-center items-center">
-                <div class="fox-float relative">
-                    <!-- Main fox SVG — detailed student character -->
-                    <svg viewBox="0 0 320 370" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-64 h-64 md:w-80 md:h-80 drop-shadow-2xl">
-                        <!-- BG glow -->
-                        <ellipse cx="160" cy="185" rx="130" ry="160" fill="#FF6B35" opacity="0.06"/>
-                        <!-- Floating letters -->
-                        <text x="18" y="115" font-family="Arial Black,sans-serif" font-size="15" font-weight="900" fill="#FF6B35" opacity="0.22" transform="rotate(-12 26 108)">A</text>
-                        <text x="284" y="148" font-family="Arial Black,sans-serif" font-size="14" font-weight="900" fill="#7C3AED" opacity="0.2" transform="rotate(8 291 141)">B</text>
-                        <text x="290" y="78" font-family="Arial Black,sans-serif" font-size="13" font-weight="900" fill="#FFD700" opacity="0.35" transform="rotate(-6 297 71)">C</text>
-                        <!-- Star sparkle top right -->
-                        <polygon points="278,44 280,51 287,51 281,56 283,63 278,58 273,63 275,56 269,51 276,51" fill="#FFD700" opacity="0.6"/>
-                        <!-- Small star left -->
-                        <polygon points="36,68 37,73 42,73 38,76 40,81 36,78 32,81 34,76 30,73 35,73" fill="#FF6B35" opacity="0.4"/>
+            <!-- Photo + parallax details side -->
+            <div class="hidden lg:flex justify-center items-center">
+                <div x-data="{px:0,py:0}"
+                     @mousemove.window="px = ($event.clientX / window.innerWidth) - 0.5; py = ($event.clientY / window.innerHeight) - 0.5"
+                     class="relative w-80 h-80 xl:w-96 xl:h-96">
 
-                        <!-- Shadow -->
-                        <ellipse cx="162" cy="358" rx="76" ry="10" fill="rgba(0,0,0,0.09)"/>
+                    <!-- Decorative outer ring (part of the fixed circle group — no parallax) -->
+                    <div class="absolute -inset-3.5 rounded-full border-2 border-violet-200/70"></div>
 
-                        <!-- TAIL (right side, curled) -->
-                        <path d="M222 272 C268 252 292 292 278 336 C266 372 232 364 220 332 C212 308 222 272 222 272Z" fill="#FF6B35"/>
-                        <ellipse cx="262" cy="342" rx="20" ry="15" fill="#FFF0E8" transform="rotate(-25 262 342)"/>
-                        <!-- Tail stripe detail -->
-                        <path d="M236 290 C255 278 272 298 265 318" stroke="#E05500" stroke-width="1.5" fill="none" opacity="0.3"/>
+                    <!-- Photo circle — placeholder for now, stays fixed (no parallax) -->
+                    <div class="absolute inset-0 rounded-full border-8 border-white shadow-fox-xl overflow-hidden bg-gradient-to-br from-fox-100 via-cream to-violet-100 flex items-center justify-center">
+                        <span class="text-6xl opacity-40" aria-hidden="true">🧑‍🎓</span>
+                    </div>
 
-                        <!-- BODY -->
-                        <ellipse cx="162" cy="268" rx="74" ry="78" fill="#FF6B35"/>
-                        <!-- Body shading -->
-                        <ellipse cx="148" cy="248" rx="30" ry="22" fill="white" opacity="0.07"/>
-                        <!-- Belly -->
-                        <ellipse cx="162" cy="282" rx="44" ry="56" fill="#FFF0E8"/>
+                    <!-- Floating card: rating (independent parallax) -->
+                    <div class="absolute -top-4 -left-10 bg-white rounded-2xl shadow-lg shadow-black/10 px-3 py-2 border border-gray-100 flex items-center gap-1.5 transition-transform duration-300"
+                         :style="`transform:translate(${px * -16}px, ${py * -16}px)`">
+                        <span class="text-fox-500 text-base leading-none">⭐</span>
+                        <span class="font-black text-sm text-gray-800">4.9</span>
+                        <span class="text-2xs text-gray-400 font-medium" x-text="t.hero.ratingLabel"></span>
+                    </div>
 
-                        <!-- LEFT LEG -->
-                        <ellipse cx="124" cy="336" rx="24" ry="16" fill="#FF6B35" transform="rotate(-18 124 336)"/>
-                        <ellipse cx="112" cy="352" rx="20" ry="11" fill="#FF8C5A"/>
-                        <!-- Left paw toes -->
-                        <path d="M100 350 Q107 357 112 353 Q117 357 124 350" stroke="#E05500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <!-- Floating card: mini lesson-window mockup (independent parallax) -->
+                    <div class="absolute -top-6 -right-12 bg-white rounded-2xl shadow-lg shadow-black/10 p-3 w-28 border border-gray-100 transition-transform duration-300"
+                         :style="`transform:translate(${px * 20}px, ${py * 14}px)`">
+                        <div class="flex gap-1 mb-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-fox-300"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-violet-300"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-200"></span>
+                        </div>
+                        <div class="h-1.5 rounded-full bg-gray-100 mb-1.5 w-full"></div>
+                        <div class="h-1.5 rounded-full bg-gray-100 w-2/3"></div>
+                    </div>
 
-                        <!-- RIGHT LEG -->
-                        <ellipse cx="200" cy="336" rx="24" ry="16" fill="#FF6B35" transform="rotate(18 200 336)"/>
-                        <ellipse cx="212" cy="352" rx="20" ry="11" fill="#FF8C5A"/>
-                        <path d="M200 350 Q207 357 212 353 Q217 357 224 350" stroke="#E05500" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <!-- Floating card: vocabulary flashcard (independent parallax) -->
+                    <div class="absolute bottom-4 -left-14 bg-white rounded-2xl shadow-lg shadow-black/10 p-3 w-32 border border-gray-100 transition-transform duration-300"
+                         :style="`transform:translate(${px * 24}px, ${py * -18}px)`">
+                        <span class="text-lg leading-none" aria-hidden="true">🔤</span>
+                        <div class="h-1.5 rounded-full bg-gray-100 mt-2 mb-1.5 w-full"></div>
+                        <div class="h-1.5 rounded-full bg-fox-100 w-1/2"></div>
+                    </div>
 
-                        <!-- LEFT ARM (holding book, forward) -->
-                        <path d="M100 234 C72 254 68 284 84 306 C94 320 116 310 120 290 C126 268 116 248 100 234Z" fill="#FF6B35"/>
-                        <ellipse cx="84" cy="310" rx="16" ry="11" fill="#FF8C5A" transform="rotate(20 84 310)"/>
+                    <!-- Floating badge: students count (independent parallax) -->
+                    <div class="absolute -bottom-3 -right-8 bg-fox-500 text-white rounded-2xl shadow-fox-sm px-3 py-2 text-sm font-bold transition-transform duration-300"
+                         :style="`transform:translate(${px * -12}px, ${py * 16}px)`"
+                         x-text="t.hero.studentsBadge"></div>
 
-                        <!-- RIGHT ARM -->
-                        <path d="M224 234 C252 254 256 284 240 306 C230 320 208 310 204 290 C198 268 208 248 224 234Z" fill="#FF6B35"/>
-                        <ellipse cx="240" cy="310" rx="16" ry="11" fill="#FF8C5A" transform="rotate(-20 240 310)"/>
+                    <!-- Decorative star (independent parallax) -->
+                    <div class="absolute top-10 left-1/2 text-violet-400 text-xl leading-none transition-transform duration-300"
+                         :style="`transform:translate(${px * 26}px, ${py * 20}px)`" aria-hidden="true">★</div>
 
-                        <!-- BOOK (between arms) -->
-                        <rect x="105" y="266" width="78" height="62" rx="7" fill="rgba(0,0,0,0.12)" transform="rotate(-7 144 297) translate(3,3)"/>
-                        <rect x="105" y="266" width="78" height="62" rx="7" fill="#5B21B6" transform="rotate(-7 144 297)"/>
-                        <rect x="140" y="266" width="43" height="62" rx="5" fill="#7C3AED" transform="rotate(-7 144 297)"/>
-                        <rect x="135" y="266" width="8" height="62" fill="#4C1D95" transform="rotate(-7 144 297)"/>
-                        <!-- Pages edge -->
-                        <rect x="183" y="268" width="3" height="58" rx="1" fill="#e8d5ff" opacity="0.5" transform="rotate(-7 144 297)"/>
-                        <!-- ABC text -->
-                        <text x="112" y="303" font-family="Arial Black,sans-serif" font-size="17" font-weight="900" fill="white" transform="rotate(-7 144 297)">ABC</text>
-                        <!-- Book star -->
-                        <text x="143" y="320" font-family="Arial,sans-serif" font-size="13" fill="#FFD700" transform="rotate(-7 144 297)">★</text>
-
-                        <!-- HEAD -->
-                        <ellipse cx="162" cy="144" rx="72" ry="68" fill="#FF6B35"/>
-                        <!-- Head top sheen -->
-                        <ellipse cx="146" cy="106" rx="30" ry="16" fill="white" opacity="0.07"/>
-
-                        <!-- EARS -->
-                        <polygon points="96,92 72,28 136,70" fill="#FF6B35"/>
-                        <polygon points="228,92 248,28 190,70" fill="#FF6B35"/>
-                        <!-- Ear inner -->
-                        <polygon points="100,85 83,42 130,67" fill="#FFB399"/>
-                        <polygon points="224,85 238,42 196,67" fill="#FFB399"/>
-                        <polygon points="104,80 90,52 126,65" fill="#FF9977" opacity="0.45"/>
-                        <polygon points="220,80 230,52 198,65" fill="#FF9977" opacity="0.45"/>
-
-                        <!-- GRADUATION CAP -->
-                        <rect x="106" y="76" width="90" height="13" rx="3" fill="#1E293B" transform="rotate(-10 151 82)"/>
-                        <rect x="148" y="60" width="18" height="18" fill="#1E293B" transform="rotate(-10 157 69)"/>
-                        <rect x="106" y="73" width="90" height="7" rx="2" fill="#334155" transform="rotate(-10 151 76)"/>
-                        <!-- Tassel string -->
-                        <line x1="193" y1="69" x2="202" y2="93" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
-                        <!-- Tassel ball -->
-                        <circle cx="202" cy="96" r="5" fill="#FFD700"/>
-                        <!-- Tassel fringe -->
-                        <line x1="199" y1="93" x2="196" y2="104" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
-                        <line x1="202" y1="95" x2="201" y2="106" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
-                        <line x1="205" y1="93" x2="207" y2="104" stroke="#FFD700" stroke-width="1.5" stroke-linecap="round"/>
-
-                        <!-- FACE PATCH -->
-                        <ellipse cx="162" cy="158" rx="48" ry="43" fill="#FFF0E8"/>
-
-                        <!-- EYEBROWS -->
-                        <path d="M128 120 Q140 113 153 118" stroke="#C44000" stroke-width="2.8" fill="none" stroke-linecap="round"/>
-                        <path d="M171 118 Q184 113 196 120" stroke="#C44000" stroke-width="2.8" fill="none" stroke-linecap="round"/>
-
-                        <!-- LEFT EYE -->
-                        <ellipse cx="141" cy="140" rx="16" ry="17" fill="white"/>
-                        <circle cx="143" cy="141" r="11" fill="#1A1A2E"/>
-                        <circle cx="143" cy="141" r="7" fill="#2A3F10"/>
-                        <circle cx="143" cy="142" r="5" fill="#0A0A15"/>
-                        <circle cx="147" cy="136" r="4" fill="white"/>
-                        <circle cx="141" cy="147" r="1.8" fill="white" opacity="0.55"/>
-
-                        <!-- RIGHT EYE -->
-                        <ellipse cx="183" cy="140" rx="16" ry="17" fill="white"/>
-                        <circle cx="181" cy="141" r="11" fill="#1A1A2E"/>
-                        <circle cx="181" cy="141" r="7" fill="#2A3F10"/>
-                        <circle cx="181" cy="142" r="5" fill="#0A0A15"/>
-                        <circle cx="185" cy="136" r="4" fill="white"/>
-                        <circle cx="179" cy="147" r="1.8" fill="white" opacity="0.55"/>
-
-                        <!-- Eyelashes left -->
-                        <line x1="129" y1="127" x2="125" y2="121" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
-                        <line x1="139" y1="123" x2="137" y2="117" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
-                        <line x1="149" y1="124" x2="149" y2="118" stroke="#C44000" stroke-width="1.5" stroke-linecap="round"/>
-                        <!-- Eyelashes right -->
-                        <line x1="195" y1="127" x2="199" y2="121" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
-                        <line x1="185" y1="123" x2="187" y2="117" stroke="#C44000" stroke-width="1.8" stroke-linecap="round"/>
-                        <line x1="175" y1="124" x2="175" y2="118" stroke="#C44000" stroke-width="1.5" stroke-linecap="round"/>
-
-                        <!-- NOSE -->
-                        <ellipse cx="162" cy="165" rx="9" ry="6.5" fill="#993300"/>
-                        <ellipse cx="162" cy="163" rx="9" ry="6.5" fill="#CC3300"/>
-                        <ellipse cx="159" cy="161" rx="3" ry="2" fill="rgba(255,255,255,0.38)"/>
-
-                        <!-- MOUTH -->
-                        <path d="M150 174 Q162 185 174 174" stroke="#CC3300" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                        <path d="M149 173 Q145 178 147 183" stroke="#FFAA88" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                        <path d="M175 173 Q179 178 177 183" stroke="#FFAA88" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-
-                        <!-- CHEEK BLUSH -->
-                        <ellipse cx="116" cy="158" rx="16" ry="10" fill="#FF9966" opacity="0.42"/>
-                        <ellipse cx="208" cy="158" rx="16" ry="10" fill="#FF9966" opacity="0.42"/>
-                        <circle cx="113" cy="156" r="2" fill="#FF7755" opacity="0.28"/>
-                        <circle cx="121" cy="162" r="1.5" fill="#FF7755" opacity="0.28"/>
-                        <circle cx="205" cy="156" r="2" fill="#FF7755" opacity="0.28"/>
-                        <circle cx="213" cy="162" r="1.5" fill="#FF7755" opacity="0.28"/>
-
-                        <!-- WHISKERS -->
-                        <line x1="120" y1="164" x2="94" y2="157" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
-                        <line x1="120" y1="170" x2="92" y2="170" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
-                        <line x1="120" y1="176" x2="96" y2="180" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
-                        <line x1="204" y1="164" x2="230" y2="157" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
-                        <line x1="204" y1="170" x2="232" y2="170" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
-                        <line x1="204" y1="176" x2="228" y2="180" stroke="#CC8866" stroke-width="1.2" opacity="0.5"/>
-
-                        <!-- PENCIL (right side, floating) -->
-                        <g transform="rotate(28 280 218)">
-                            <rect x="270" y="192" width="10" height="46" rx="2" fill="#FFD700"/>
-                            <polygon points="270,238 280,238 275,252" fill="#FF6B35"/>
-                            <polygon points="270,238 280,238 275,246" fill="#FFF0E8"/>
-                            <rect x="270" y="192" width="10" height="7" rx="1" fill="#FFAABB"/>
-                            <rect x="270" y="199" width="10" height="3" fill="#888"/>
-                        </g>
+                    <!-- Decorative squiggle (independent parallax) -->
+                    <svg class="absolute -bottom-7 right-10 w-10 h-6 text-fox-300 transition-transform duration-300" viewBox="0 0 40 20" fill="none"
+                         :style="`transform:translate(${px * -20}px, ${py * -12}px)`" aria-hidden="true">
+                        <path d="M2 10 Q10 2 18 10 T34 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
                     </svg>
-
-                    <!-- Floating badges around fox -->
-                    <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg px-3 py-2 text-sm font-bold text-gray-800 border border-gray-100">
-                        ⭐ 4.9 <span class="text-gray-400 font-medium text-xs">рейтинг</span>
-                    </div>
-                    <div class="absolute -bottom-2 -left-6 bg-fox-500 text-white rounded-2xl shadow-fox-sm px-3 py-2 text-sm font-bold">
-                        🎓 500+ учнів
-                    </div>
-                    <div class="absolute top-1/2 -right-8 bg-white border-2 border-red-100 rounded-2xl shadow px-3 py-2 text-sm font-bold text-gray-800">
-                        🇬🇧 British English
-                    </div>
                 </div>
             </div>
         </div>
@@ -1606,8 +1494,7 @@
                 <!-- Submit -->
                 <button type="submit"
                         :disabled="formLoading"
-                        class="w-full text-white font-black py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-black/10 text-sm"
-                        style="background:linear-gradient(135deg,var(--violet-500),var(--violet-700));">
+                        class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-sm">
                     <span x-show="!formLoading" x-text="t.form.submit"></span>
                     <span x-show="formLoading" class="flex items-center justify-center gap-2">
                         <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
@@ -1773,6 +1660,8 @@ uk: {
         tags:      ['✓ Без нудних підручників', '✓ Живі заняття онлайн', '✓ Малі групи до 6 учнів', '✓ Гарантія результату'],
         cta1:      'Безкоштовний урок',
         cta2:      'Дізнатись більше',
+        ratingLabel:   'рейтинг',
+        studentsBadge: '500+ учнів',
     },
 
     stats: [
@@ -2108,6 +1997,8 @@ ru: {
         tags:      ['✓ Без скучных учебников', '✓ Живые занятия онлайн', '✓ Маленькие группы до 6 учеников', '✓ Гарантия результата'],
         cta1:      'Бесплатный урок',
         cta2:      'Узнать больше',
+        ratingLabel:   'рейтинг',
+        studentsBadge: '500+ учеников',
     },
 
     stats: [
