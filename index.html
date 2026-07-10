@@ -102,7 +102,6 @@
                         medium:   '500',
                         semibold: '600',
                         bold:     '700',
-                        extrabold:'800',
                         black:    '900',
                     },
                     fontSize: {
@@ -671,8 +670,8 @@
                 <template x-for="(step, i) in t.how.steps" :key="i">
                     <div class="flex flex-col items-center text-center group cursor-default">
                         <div class="relative mb-6">
-                            <div class="w-[72px] h-[72px] rounded-2xl bg-white flex items-center justify-center text-3xl shadow-md border-2 border-fox-100 group-hover:border-fox-400 group-hover:shadow-lg group-hover:shadow-fox-100 group-hover:-translate-y-1.5 transition-all duration-300 select-none" x-text="step.emoji"></div>
-                            <div class="absolute -bottom-2.5 -right-2.5 w-7 h-7 rounded-full bg-gradient-to-br from-fox-500 to-fox-600 text-white text-xs font-black flex items-center justify-center shadow-md shadow-fox-200" x-text="i+1"></div>
+                            <div class="w-[72px] h-[72px] rounded-2xl bg-white flex items-center justify-center text-3xl shadow-fox-sm border-2 border-fox-100 group-hover:border-fox-400 group-hover:shadow-fox-lg group-hover:-translate-y-1.5 transition-all duration-300 select-none" x-text="step.emoji"></div>
+                            <div class="absolute -bottom-2.5 -right-2.5 w-7 h-7 rounded-full bg-gradient-to-br from-fox-500 to-fox-600 text-white text-xs font-black flex items-center justify-center shadow-fox-sm" x-text="i+1"></div>
                         </div>
                         <h3 class="font-black text-gray-900 mb-1.5 leading-tight text-base" x-text="step.title"></h3>
                         <p class="text-gray-400 text-sm leading-relaxed" x-text="step.desc"></p>
@@ -860,7 +859,7 @@
                             <ul class="space-y-3.5">
                                 <template x-for="feat in t.prog[tab].features" :key="feat">
                                     <li class="flex items-start gap-3 group/feat">
-                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-fox-400 to-fox-600 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm shadow-fox-100 group-hover/feat:scale-110 transition-transform duration-150">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-fox-400 to-fox-600 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-fox-sm group-hover/feat:scale-110 transition-transform duration-150">
                                             <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                                             </svg>
@@ -888,7 +887,7 @@
     <div class="absolute bottom-0 right-0 w-72 h-72 bg-fox-500/6 rounded-full blur-3xl pointer-events-none"></div>
 
     <!-- Декор: великий "?" праворуч вгорі -->
-    <div class="absolute right-6 top-2 text-[200px] font-black leading-none pointer-events-none select-none" style="color:rgba(255,107,53,0.07)">?</div>
+    <div class="absolute right-6 top-2 font-black leading-none pointer-events-none select-none" style="color:rgba(255,107,53,0.07); font-size:200px">?</div>
 
     <!-- Декор: сітка ромбів праворуч -->
     <div class="absolute right-0 top-0 h-full w-52 opacity-[0.1] pointer-events-none select-none">
@@ -1089,10 +1088,10 @@
                                     <svg class="absolute bottom-3 right-3 w-7 h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 28 L14 28"/></svg>
 
                                     <!-- Background glow -->
-                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,#FF6B35,transparent)"></div>
+                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,var(--fox-500),transparent)"></div>
 
                                     <!-- Logo -->
-                                    <div class="mt-6 mb-3 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-fox z-10" style="background: linear-gradient(135deg,#FF6B35,#E54E1A);">🦊</div>
+                                    <div class="mt-6 mb-3 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-fox z-10" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));">🦊</div>
                                     <div class="text-white font-black text-base tracking-widest z-10">FLUENT<span style="color:#D4AF37">FOX</span></div>
 
                                     <!-- Gold divider -->
@@ -1464,7 +1463,7 @@
                         <!-- Submit -->
                         <button type="submit"
                                 :disabled="formLoading"
-                                class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-4 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-base">
+                                class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-4 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-base">
                             <span x-show="!formLoading" x-text="t.form.submit"></span>
                             <span x-show="formLoading" class="flex items-center justify-center gap-2">
                                 <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
@@ -1529,7 +1528,7 @@
          class="bg-white rounded-3xl w-full max-w-md shadow-2xl relative overflow-hidden">
 
         <!-- Decorative top strip -->
-        <div class="h-1.5 w-full" style="background:linear-gradient(to right,#FF6B35,#7C3AED)"></div>
+        <div class="h-1.5 w-full" style="background:linear-gradient(to right,var(--fox-500),var(--violet-500))"></div>
 
         <!-- Close button -->
         <button @click="modalOpen=false"
@@ -1607,8 +1606,8 @@
                 <!-- Submit -->
                 <button type="submit"
                         :disabled="formLoading"
-                        class="w-full text-white font-black py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-lg text-sm"
-                        style="background:linear-gradient(135deg,#7C3AED,#5B21B6);">
+                        class="w-full text-white font-black py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-black/10 text-sm"
+                        style="background:linear-gradient(135deg,var(--violet-500),var(--violet-700));">
                     <span x-show="!formLoading" x-text="t.form.submit"></span>
                     <span x-show="formLoading" class="flex items-center justify-center gap-2">
                         <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
