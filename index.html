@@ -440,12 +440,30 @@
                      @mousemove.window="px = ($event.clientX / window.innerWidth) - 0.5; py = ($event.clientY / window.innerHeight) - 0.5"
                      class="relative w-80 h-80 xl:w-96 xl:h-96">
 
+                    <!-- British flag backdrop (vector Union Jack) — signals English school; sits behind everything -->
+                    <div class="absolute left-1/2 top-1/2 w-[122%] h-[61%] -translate-x-1/2 -translate-y-1/2 rotate-[-6deg] rounded-2xl overflow-hidden border-4 border-white opacity-80 shadow-[0_18px_40px_rgba(1,33,105,0.20)]" aria-hidden="true">
+                        <svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                            <clipPath id="ujS"><rect width="60" height="30"/></clipPath>
+                            <clipPath id="ujT"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+                            <g clip-path="url(#ujS)">
+                                <rect width="60" height="30" fill="#012169"/>
+                                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ujT)" stroke="#C8102E" stroke-width="4"/>
+                                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+                            </g>
+                        </svg>
+                    </div>
+
                     <!-- Decorative outer ring (part of the fixed circle group — no parallax) -->
                     <div class="absolute -inset-3.5 rounded-full border-2 border-violet-200/70"></div>
 
                     <!-- Photo circle — stays fixed (no parallax) -->
                     <div class="absolute inset-0 rounded-full border-8 border-white shadow-fox-xl overflow-hidden bg-gradient-to-br from-fox-100 via-cream to-violet-100">
-                        <img src="hero-photo.png" :alt="t.hero.photoAlt" class="w-full h-full object-cover" width="800" height="800" loading="eager" fetchpriority="high">
+                        <picture>
+                            <source srcset="hero-photo.webp" type="image/webp">
+                            <img src="hero-photo.png" :alt="t.hero.photoAlt" class="w-full h-full object-cover" width="900" height="900" loading="eager" fetchpriority="high">
+                        </picture>
                     </div>
 
                     <!-- Floating card: rating (independent parallax) -->
@@ -886,7 +904,7 @@
 
 
 <!-- ═══════════════════════ PRICING ═══════════════════════ -->
-<section id="prices" class="py-20 bg-white">
+<section id="prices" class="py-20 bg-fox-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-14">
@@ -897,7 +915,7 @@
 
         <div class="grid md:grid-cols-3 gap-6 items-stretch">
             <template x-for="(plan, i) in t.pricing.plans" :key="i">
-                <div :class="plan.highlight ? 'price-highlight' : 'bg-white border-2 border-gray-100 card-lift'"
+                <div :class="plan.highlight ? 'price-highlight' : 'bg-white border-2 border-gray-200 card-lift shadow-sm'"
                      class="rounded-3xl p-8 relative flex flex-col">
                     <!-- Popular badge -->
                     <div x-show="plan.highlight" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 text-xs font-black px-4 py-1 rounded-full shadow" x-text="t.pricing.popular"></div>
