@@ -443,9 +443,9 @@
                     <!-- Decorative outer ring (part of the fixed circle group — no parallax) -->
                     <div class="absolute -inset-3.5 rounded-full border-2 border-violet-200/70"></div>
 
-                    <!-- Photo circle — placeholder for now, stays fixed (no parallax) -->
-                    <div class="absolute inset-0 rounded-full border-8 border-white shadow-fox-xl overflow-hidden bg-gradient-to-br from-fox-100 via-cream to-violet-100 flex items-center justify-center">
-                        <span class="text-6xl opacity-40" aria-hidden="true">🧑‍🎓</span>
+                    <!-- Photo circle — stays fixed (no parallax) -->
+                    <div class="absolute inset-0 rounded-full border-8 border-white shadow-fox-xl overflow-hidden bg-gradient-to-br from-fox-100 via-cream to-violet-100">
+                        <img src="hero-photo.png" :alt="t.hero.photoAlt" class="w-full h-full object-cover" width="800" height="800" loading="eager" fetchpriority="high">
                     </div>
 
                     <!-- Floating card: rating (independent parallax) -->
@@ -1723,6 +1723,7 @@ uk: {
         cta2:      'Дізнатись більше',
         ratingLabel:   'рейтинг',
         studentsBadge: '500+ учнів',
+        photoAlt:      'Мама з донькою навчаються англійської онлайн з FluentFox',
     },
 
     stats: [
@@ -2071,6 +2072,7 @@ ru: {
         cta2:      'Узнать больше',
         ratingLabel:   'рейтинг',
         studentsBadge: '500+ учеников',
+        photoAlt:      'Мама с дочкой изучают английский онлайн с FluentFox',
     },
 
     stats: [
