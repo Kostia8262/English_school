@@ -597,7 +597,7 @@
 
 
 <!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
-<section class="py-20 md:py-24 bg-gradient-to-b from-fox-50 to-white">
+<section class="py-20 md:py-24 bg-white border-t border-fox-100">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-14">
@@ -836,11 +836,66 @@
     <div class="absolute right-0 top-0 h-full w-52 opacity-[0.1] pointer-events-none select-none">
         <svg width="100%" height="100%" viewBox="0 0 200 500" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#FF6B35" stroke-width="1.2">
             <g>
-                <template x-for="row in 12" :key="row"><g>
-                    <template x-for="col in 5" :key="col">
-                        <polygon :points="`${(col-1)*40+20},${(row-1)*44+8} ${(col-1)*40+38},${(row-1)*44+22} ${(col-1)*40+20},${(row-1)*44+36} ${(col-1)*40+2},${(row-1)*44+22}`"/>
-                    </template>
-                </g></template>
+                <polygon points="20,8 38,22 20,36 2,22"/>
+                <polygon points="60,8 78,22 60,36 42,22"/>
+                <polygon points="100,8 118,22 100,36 82,22"/>
+                <polygon points="140,8 158,22 140,36 122,22"/>
+                <polygon points="180,8 198,22 180,36 162,22"/>
+                <polygon points="20,52 38,66 20,80 2,66"/>
+                <polygon points="60,52 78,66 60,80 42,66"/>
+                <polygon points="100,52 118,66 100,80 82,66"/>
+                <polygon points="140,52 158,66 140,80 122,66"/>
+                <polygon points="180,52 198,66 180,80 162,66"/>
+                <polygon points="20,96 38,110 20,124 2,110"/>
+                <polygon points="60,96 78,110 60,124 42,110"/>
+                <polygon points="100,96 118,110 100,124 82,110"/>
+                <polygon points="140,96 158,110 140,124 122,110"/>
+                <polygon points="180,96 198,110 180,124 162,110"/>
+                <polygon points="20,140 38,154 20,168 2,154"/>
+                <polygon points="60,140 78,154 60,168 42,154"/>
+                <polygon points="100,140 118,154 100,168 82,154"/>
+                <polygon points="140,140 158,154 140,168 122,154"/>
+                <polygon points="180,140 198,154 180,168 162,154"/>
+                <polygon points="20,184 38,198 20,212 2,198"/>
+                <polygon points="60,184 78,198 60,212 42,198"/>
+                <polygon points="100,184 118,198 100,212 82,198"/>
+                <polygon points="140,184 158,198 140,212 122,198"/>
+                <polygon points="180,184 198,198 180,212 162,198"/>
+                <polygon points="20,228 38,242 20,256 2,242"/>
+                <polygon points="60,228 78,242 60,256 42,242"/>
+                <polygon points="100,228 118,242 100,256 82,242"/>
+                <polygon points="140,228 158,242 140,256 122,242"/>
+                <polygon points="180,228 198,242 180,256 162,242"/>
+                <polygon points="20,272 38,286 20,300 2,286"/>
+                <polygon points="60,272 78,286 60,300 42,286"/>
+                <polygon points="100,272 118,286 100,300 82,286"/>
+                <polygon points="140,272 158,286 140,300 122,286"/>
+                <polygon points="180,272 198,286 180,300 162,286"/>
+                <polygon points="20,316 38,330 20,344 2,330"/>
+                <polygon points="60,316 78,330 60,344 42,330"/>
+                <polygon points="100,316 118,330 100,344 82,330"/>
+                <polygon points="140,316 158,330 140,344 122,330"/>
+                <polygon points="180,316 198,330 180,344 162,330"/>
+                <polygon points="20,360 38,374 20,388 2,374"/>
+                <polygon points="60,360 78,374 60,388 42,374"/>
+                <polygon points="100,360 118,374 100,388 82,374"/>
+                <polygon points="140,360 158,374 140,388 122,374"/>
+                <polygon points="180,360 198,374 180,388 162,374"/>
+                <polygon points="20,404 38,418 20,432 2,418"/>
+                <polygon points="60,404 78,418 60,432 42,418"/>
+                <polygon points="100,404 118,418 100,432 82,418"/>
+                <polygon points="140,404 158,418 140,432 122,418"/>
+                <polygon points="180,404 198,418 180,432 162,418"/>
+                <polygon points="20,448 38,462 20,476 2,462"/>
+                <polygon points="60,448 78,462 60,476 42,462"/>
+                <polygon points="100,448 118,462 100,476 82,462"/>
+                <polygon points="140,448 158,462 140,476 122,462"/>
+                <polygon points="180,448 198,462 180,476 162,462"/>
+                <polygon points="20,492 38,506 20,520 2,506"/>
+                <polygon points="60,492 78,506 60,520 42,506"/>
+                <polygon points="100,492 118,506 100,520 82,506"/>
+                <polygon points="140,492 158,506 140,520 122,506"/>
+                <polygon points="180,492 198,506 180,520 162,506"/>
             </g>
         </svg>
     </div>
@@ -2507,7 +2562,7 @@ function app() {
              *   3. Deploy → New deployment → Web app → Anyone
              *   4. Replace the URL below with the deployment URL
              */
-            const SCRIPT_URL = 'https://script.google.com/macros/s/REPLACE_WITH_YOUR_SCRIPT_ID/exec';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAA1T6SIdTeldgSFmT-3HUEfRBUIq7-v79uGBe3UbVnTQBlespZMrsgNQMqmZKCzEGqA/exec';
 
             const body = new FormData();
             body.append('name',      this.formData.name.trim());
