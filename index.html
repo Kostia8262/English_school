@@ -335,13 +335,14 @@
 
             <!-- Right side -->
             <div class="flex items-center gap-3">
-                <!-- Phone numbers (desktop only) -->
+                <!-- Phone: number on mobile, column on desktop -->
+                <a href="tel:+380954624672" class="flex md:hidden text-xs font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight whitespace-nowrap">095 462-46-72</a>
                 <div class="hidden md:flex flex-col items-end gap-0 leading-tight mr-1">
                     <a href="tel:+380954624672" class="text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight">+38 (095) 462-46-72</a>
                     <a href="tel:+380682522876" class="hidden lg:block text-sm text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
                 </div>
-                <!-- Language switcher -->
-                <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
+                <!-- Language switcher: desktop only -->
+                <div class="hidden md:flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
                     <button
                         @click="setLang('uk')"
                         :class="lang==='uk' ? 'bg-white shadow text-fox-600' : 'text-gray-400 hover:text-gray-600'"
@@ -384,6 +385,14 @@
                 <a href="#" @click.prevent="menuOpen=false; modalOpen=true"
                    class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200"
                    x-text="t.nav.trial"></a>
+                <!-- Language in mobile menu -->
+                <div class="flex items-center gap-3 px-3 pt-3 mt-1 border-t border-gray-100">
+                    <span class="text-xs text-gray-400 font-semibold">UA / RU</span>
+                    <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
+                        <button @click="setLang('uk')" :class="lang==='uk' ? 'bg-white shadow text-fox-600' : 'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
+                        <button @click="setLang('ru')" :class="lang==='ru' ? 'bg-white shadow text-fox-600' : 'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -424,12 +433,12 @@
                 </div>
 
                 <!-- CTAs -->
-                <div class="flex flex-wrap gap-3">
+                <div class="flex gap-2 md:gap-3">
                     <a href="#" @click.prevent="modalOpen=true"
-                       class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black text-sm md:text-base px-5 md:px-7 py-3 md:py-3.5 rounded-full shadow-fox hover:shadow-fox-lg transition-all duration-200 hover:-translate-y-1"
+                       class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black text-sm md:text-base px-4 md:px-7 py-3 md:py-3.5 rounded-full shadow-fox hover:shadow-fox-lg transition-all duration-200 hover:-translate-y-1"
                        x-text="t.hero.cta1"></a>
                     <a href="#about"
-                       class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-bold text-sm md:text-base px-5 md:px-7 py-3 md:py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1"
+                       class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-bold text-sm md:text-base px-4 md:px-7 py-3 md:py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1"
                        x-text="t.hero.cta2"></a>
                 </div>
             </div>
@@ -516,13 +525,13 @@
 
 
 <!-- ═══════════════════════ STATS BAR ═══════════════════════ -->
-<section class="bg-gray-950 py-10">
+<section class="bg-white border-y border-gray-100 py-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="grid grid-cols-4 text-center divide-x divide-gray-100">
             <template x-for="stat in t.stats" :key="stat.value">
-                <div>
-                    <div class="text-3xl md:text-4xl font-black text-fox-400 mb-1" x-text="stat.value"></div>
-                    <div class="text-sm text-gray-400 font-medium" x-text="stat.label"></div>
+                <div class="px-2 py-1">
+                    <div class="text-xl md:text-2xl font-black text-fox-500 leading-none" x-text="stat.value"></div>
+                    <div class="text-2xs md:text-xs text-gray-400 font-medium mt-1 leading-tight" x-text="stat.label"></div>
                 </div>
             </template>
         </div>
