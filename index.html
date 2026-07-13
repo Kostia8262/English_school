@@ -928,15 +928,16 @@
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div class="text-center mb-10 md:mb-14">
+            <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.adv.label"></span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white mb-3 leading-tight" x-text="t.adv.title"></h2>
             <p class="text-gray-400 text-sm sm:text-base md:text-lg" x-text="t.adv.subtitle"></p>
         </div>
 
         <!-- 6 пунктів, 3 колонки -->
-        <div class="grid md:grid-cols-3 gap-x-12 gap-y-12">
+        <div class="grid md:grid-cols-3 gap-x-8 gap-y-6">
             <template x-for="(adv, i) in t.adv.items" :key="i">
                 <div class="flex items-start gap-5">
                     <!-- Іконка: кружок fox-orange -->
@@ -1005,7 +1006,7 @@
                     </ul>
 
                     <a href="#" @click.prevent="modalOpen=true"
-                       class="btn-action block text-center font-black py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox-sm hover:shadow-fox"
+                       class="btn-action block text-center font-black text-sm py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox-sm hover:shadow-fox"
                        :class="plan.highlight ? 'bg-white text-fox-600 hover:bg-gray-50' : 'bg-fox-500 hover:bg-fox-600 text-white'"
                        x-text="t.pricing.cta"></a>
                 </div>
@@ -1493,7 +1494,7 @@
                         <!-- Submit -->
                         <button type="submit"
                                 :disabled="formLoading"
-                                class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-4 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-base">
+                                class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-base">
                             <span x-show="!formLoading" x-text="t.form.submit"></span>
                             <span x-show="formLoading" class="flex items-center justify-center gap-2">
                                 <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
@@ -1815,9 +1816,9 @@ uk: {
     ],
 
     ages: {
-        label:       'Для кого',
-        title:       'Програма для кожного віку',
-        subtitle:    'Особлива методика для кожної вікової групи',
+        label:       'Вікові групи',
+        title:       'Англійська онлайн від 6 до 18 років',
+        subtitle:    'Адаптована програма для кожного етапу розвитку дитини',
         levelLabel:  'Цільовий рівень CEFR',
         resultLabel: 'Результат',
         cards: [
@@ -1867,9 +1868,9 @@ uk: {
     },
 
     adv: {
-        label:    '',
-        title:    'ЧОМУ',
-        subtitle: 'ВАШІЙ ДИТИНІ ВАЖЛИВО ЗНАТИ АНГЛІЙСЬКУ МОВУ',
+        label:    'Переваги',
+        title:    'Чому батьки обирають FluentFox',
+        subtitle: 'Бо результат видно вже з першого місяця занять',
         items: [
             { emoji: '🎓', title: 'Освіта',        desc: 'Англійська — офіційна мова провідних університетів світу. Знання відкриє двері до найкращих вишів Європи, США та Канади.' },
             { emoji: '💬', title: 'Спілкування',   desc: 'Вільно розмовляти з людьми з будь-якого куточка планети — безцінна навичка, яка допоможе дитині знаходити друзів та партнерів по всьому світу.' },
@@ -2068,8 +2069,8 @@ uk: {
     },
 
     faq: {
-        label: 'FAQ',
-        title: 'Питання та відповіді',
+        label: 'Запитання',
+        title: 'Відповіді на найчастіші запитання',
         items: [
             { q: 'З якого віку можна записатись?',          a: 'Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід.' },
             { q: 'Що потрібно для занять онлайн?',          a: 'Комп\'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet.' },
@@ -2164,9 +2165,9 @@ ru: {
     ],
 
     ages: {
-        label:       'Для кого',
-        title:       'Программа для каждого возраста',
-        subtitle:    'Особая методика для каждой возрастной группы',
+        label:       'Возрастные группы',
+        title:       'Английский онлайн от 6 до 18 лет',
+        subtitle:    'Адаптированная программа для каждого этапа развития ребёнка',
         levelLabel:  'Целевой уровень CEFR',
         resultLabel: 'Результат',
         cards: [
@@ -2216,9 +2217,9 @@ ru: {
     },
 
     adv: {
-        label:    '',
-        title:    'ПОЧЕМУ',
-        subtitle: 'ВАШЕМУ РЕБЁНКУ ВАЖНО ЗНАТЬ АНГЛИЙСКИЙ ЯЗЫК',
+        label:    'Преимущества',
+        title:    'Почему родители выбирают FluentFox',
+        subtitle: 'Результат заметен уже после первого месяца занятий',
         items: [
             { emoji: '🎓', title: 'Образование',       desc: 'Английский — официальный язык ведущих университетов мира. Знание языка открывает двери в лучшие вузы Европы, США и Канады.' },
             { emoji: '💬', title: 'Общение',           desc: 'Свободно говорить с людьми из любой точки планеты — бесценный навык, который поможет ребёнку находить друзей и партнёров по всему миру.' },
@@ -2417,8 +2418,8 @@ ru: {
     },
 
     faq: {
-        label: 'FAQ',
-        title: 'Вопросы и ответы',
+        label: 'Вопросы',
+        title: 'Ответы на частые вопросы',
         items: [
             { q: 'С какого возраста можно записаться?',       a: 'Мы принимаем детей от 6 до 18 лет. Для каждой возрастной группы — отдельная программа и подход.' },
             { q: 'Что нужно для занятий онлайн?',             a: 'Компьютер или планшет, стабильный интернет и наушники с микрофоном. Платформа — Zoom или Google Meet.' },
