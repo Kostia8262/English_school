@@ -45,6 +45,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <link rel="preload" as="image" href="hero-photo.webp" type="image/webp">
+
+    <!-- Dynamic meta for ru version -->
+    <script>
+    (function(){
+        if(new URLSearchParams(location.search).get('lang')==='ru'){
+            document.querySelector('title').textContent='FluentFox — Онлайн-школа английского для детей и подростков';
+            document.querySelector('meta[name="description"]').content='FluentFox — онлайн-школа английского языка для детей 6–18 лет. Групповые и индивидуальные занятия, игровой подход, опытные учителя. Первый урок — бесплатно!';
+            document.querySelector('meta[property="og:title"]').content='FluentFox — Онлайн-школа английского для детей и подростков';
+            document.querySelector('meta[property="og:description"]').content='Учи английский вместе с FluentFox — игровой подход, малые группы, живые учителя. Первый урок бесплатно!';
+            document.documentElement.lang='ru';
+        }
+    })();
+    </script>
+
     <!-- ═══ Google Tag Manager — placeholder ═══ -->
     <!-- GTM: replace GTM-XXXXXXX with your container ID -->
     <!--
@@ -159,6 +174,52 @@
             "https://www.instagram.com/fluent.fox.study/",
             "https://www.facebook.com/profile.php?id=61591810049590",
             "https://t.me/fluentfox_ua"
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "bestRating": "5",
+            "ratingCount": "6",
+            "reviewCount": "6"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "З якого віку можна записатись?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід." }
+            },
+            {
+                "@type": "Question",
+                "name": "Що потрібно для занять онлайн?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Комп'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet." }
+            },
+            {
+                "@type": "Question",
+                "name": "Як проходять групові заняття?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання. Будь-який рівень — від нуля до просунутого." }
+            },
+            {
+                "@type": "Question",
+                "name": "Чи можна перенести урок?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Так, урок можна перенести за 12 годин до початку. Ми розуміємо, що плани змінюються." }
+            },
+            {
+                "@type": "Question",
+                "name": "Коли буде видно перший результат?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Перші помітні результати — вже після 1 місяця. За 3–6 місяців — впевнене спілкування." }
+            },
+            {
+                "@type": "Question",
+                "name": "Чи є знижки та акції?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім'ї — 15% знижки на другу дитину." }
+            }
         ]
     }
     </script>
@@ -1857,7 +1918,7 @@ uk: {
 
     how: {
         label:    'Як це працює',
-        title:    'Починайте за 4 кроки',
+        title:    'Почніть навчання онлайн за 4 кроки',
         subtitle: 'Від першого дзвінка до першого уроку — за одну годину',
         steps: [
             { emoji: '📝', title: 'Залишіть заявку',    desc: 'Заповніть форму — ми зв\'яжемося протягом 1 години' },
@@ -1921,7 +1982,7 @@ uk: {
 
     pricing: {
         label:    'Ціни',
-        title:    'Прозорі ціни',
+        title:    'Ціни на курси англійської онлайн',
         subtitle: 'Без прихованих платежів і зайвих умов',
         perMonth: '/ місяць',
         popular:  'Популярний',
@@ -2206,7 +2267,7 @@ ru: {
 
     how: {
         label:    'Как это работает',
-        title:    'Начните за 4 шага',
+        title:    'Начните обучение онлайн за 4 шага',
         subtitle: 'От первого звонка до первого урока — за один час',
         steps: [
             { emoji: '📝', title: 'Оставьте заявку',      desc: 'Заполните форму — мы свяжемся в течение 1 часа' },
@@ -2270,7 +2331,7 @@ ru: {
 
     pricing: {
         label:    'Цены',
-        title:    'Прозрачные цены',
+        title:    'Цены на курсы английского онлайн',
         subtitle: 'Без скрытых платежей и лишних условий',
         perMonth: '/ месяц',
         popular:  'Популярный',
