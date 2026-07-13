@@ -386,6 +386,7 @@
             <!-- Desktop nav -->
             <div class="hidden md:flex items-center gap-6">
                 <a href="#about"    class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.about"></a>
+                <a href="#program"  class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.program"></a>
                 <a href="#prices"   class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices"></a>
                 <a href="#reviews"  class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.reviews"></a>
                 <a href="#contacts" class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.contacts"></a>
@@ -437,6 +438,7 @@
         <div x-show="menuOpen" x-transition class="md:hidden pb-4 border-t border-gray-100 mobile-menu-enter">
             <div class="flex flex-col gap-1 pt-3">
                 <a href="#about"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.about"></a>
+                <a href="#program"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.program"></a>
                 <a href="#prices"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.prices"></a>
                 <a href="#reviews"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.reviews"></a>
                 <a href="#contacts" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.contacts"></a>
@@ -796,7 +798,7 @@
 
 
 <!-- ═══════════════════════ PROGRAM (TABS) ═══════════════════════ -->
-<section id="program" class="py-12 md:py-20 bg-gray-950 relative overflow-hidden hidden">
+<section id="program" class="py-20 bg-gray-950 relative overflow-hidden">
     <!-- BG ambient glows -->
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute -top-24 -left-24 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl"></div>
@@ -806,83 +808,71 @@
 
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block border border-white/20 bg-white/10 text-white font-bold text-sm px-4 py-1.5 rounded-full mb-4 backdrop-blur-sm" x-text="t.prog.label"></span>
-            <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-3" x-text="t.prog.title"></h2>
+        <!-- Section header -->
+        <div class="text-center mb-14">
+            <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.prog.label"></span>
+            <h2 class="text-3xl md:text-4xl font-black text-white leading-tight mb-3" x-text="t.prog.title"></h2>
             <p class="text-gray-400 text-sm sm:text-base md:text-lg" x-text="t.prog.subtitle"></p>
         </div>
 
-        <!-- Tab switcher -->
-        <div class="flex justify-center mb-10">
-            <div class="inline-flex bg-white/10 backdrop-blur-sm rounded-2xl p-1 border border-white/15 gap-1">
-                <button
-                    @click="activeTab='group'"
-                    :class="activeTab==='group' ? 'bg-white text-gray-900 shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/10'"
-                    class="px-4 md:px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-200"
-                    x-text="t.prog.tab1">
-                </button>
-                <div class="relative">
-                    <button
-                        @click="activeTab='individual'"
-                        :class="activeTab==='individual' ? 'bg-white text-gray-900 shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/10'"
-                        class="px-4 md:px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-200"
-                        x-text="t.prog.tab2">
+        <!-- Age tab switcher -->
+        <div class="flex justify-center mb-8">
+            <div class="inline-flex bg-white/8 backdrop-blur-sm rounded-2xl p-1 border border-white/10 gap-1">
+                <template x-for="tab in t.prog.tabs" :key="tab.key">
+                    <button @click="progTab=tab.key"
+                            :class="progTab===tab.key ? 'bg-white text-gray-900 shadow-md' : 'text-gray-400 hover:text-white hover:bg-white/10'"
+                            class="px-4 md:px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 whitespace-nowrap"
+                            x-text="tab.emoji + ' ' + tab.label">
                     </button>
-                    <span class="absolute -top-3 -right-2 bg-fox-500 text-white text-2xs font-black px-1.5 py-0.5 rounded-full leading-tight shadow-fox-sm pointer-events-none">★ ТОП</span>
-                </div>
+                </template>
             </div>
         </div>
 
-        <!-- Content card -->
-        <div class="rounded-3xl overflow-hidden shadow-2xl shadow-black/60 ring-1 ring-white/10">
-            <template x-for="tab in ['group','individual']" :key="tab">
-                <div x-show="activeTab===tab"
-                     x-transition:enter="transition ease-out duration-200"
-                     x-transition:enter-start="opacity-0"
-                     x-transition:enter-end="opacity-100">
-                    <div class="grid md:grid-cols-2">
+        <!-- Content per age group -->
+        <template x-for="tab in t.prog.tabs" :key="tab.key">
+            <div x-show="progTab===tab.key"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0">
 
-                        <!-- Left: gradient purple panel -->
-                        <div class="bg-gradient-to-br from-fox-500 to-fox-700 p-8 md:p-12 relative overflow-hidden">
-                            <div class="absolute -bottom-14 -right-14 w-52 h-52 bg-white/10 rounded-full pointer-events-none"></div>
-                            <div class="absolute -top-8 -left-8 w-36 h-36 bg-white/10 rounded-full pointer-events-none"></div>
-                            <div class="absolute top-1/2 right-6 w-16 h-16 bg-white/8 rounded-full pointer-events-none"></div>
-                            <div class="relative z-10">
-                                <div class="text-5xl mb-5 select-none" x-text="t.prog[tab].emoji"></div>
-                                <h3 class="text-2xl font-black text-white mb-3 leading-tight" x-text="t.prog[tab].name"></h3>
-                                <p class="text-orange-100 leading-relaxed mb-8 text-sm md:text-base" x-text="t.prog[tab].desc"></p>
-                                <a href="#" @click.prevent="modalOpen=true"
-                                   class="inline-flex items-center gap-2 bg-white text-fox-600 hover:bg-fox-50 hover:text-fox-700 font-black px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg hover:shadow-xl text-sm"
-                                   x-text="t.prog.cta">
-                                </a>
+                <!-- Age header card -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-r from-fox-500 to-fox-600 rounded-3xl px-6 py-5 mb-4 shadow-fox-lg">
+                    <div>
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="text-2xl" x-text="tab.emoji"></span>
+                            <h3 class="text-white font-black text-xl leading-tight" x-text="tab.label + ' · ' + tab.level"></h3>
+                        </div>
+                        <p class="text-fox-100 text-sm"><span x-text="tab.total"></span>+ <span x-text="t.prog.lessonsLabel"></span></p>
+                    </div>
+                    <a href="#form"
+                       class="inline-flex items-center bg-white text-fox-600 hover:bg-fox-50 font-black px-5 py-2.5 rounded-full text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap flex-none"
+                       x-text="t.prog.cta">
+                    </a>
+                </div>
+
+                <!-- Scrollable modules -->
+                <div class="rounded-3xl overflow-hidden ring-1 ring-white/10">
+                    <div class="max-h-[500px] overflow-y-auto scrollbar-hide p-2 space-y-1.5 bg-white/3">
+                        <template x-for="(mod, mi) in t.prog[tab.key].modules" :key="mod.name">
+                            <div class="rounded-2xl overflow-hidden ring-1 ring-white/8">
+                                <!-- Module header -->
+                                <div class="flex items-center justify-between px-4 py-3 bg-white/8">
+                                    <span class="font-black text-sm text-white" x-text="(mi+1) + '. ' + mod.name"></span>
+                                    <span class="text-2xs font-bold text-fox-400 bg-fox-500/20 px-2.5 py-1 rounded-full whitespace-nowrap ml-3 flex-none" x-text="mod.lessons + ' ' + t.prog.lessonUnit"></span>
+                                </div>
+                                <!-- Topics -->
+                                <div class="px-4 py-3 flex flex-wrap gap-1.5 bg-black/20">
+                                    <template x-for="topic in mod.topics" :key="topic">
+                                        <span class="text-2xs text-gray-400 bg-white/5 border border-white/8 px-2.5 py-1 rounded-full leading-none" x-text="topic"></span>
+                                    </template>
+                                </div>
                             </div>
-                        </div>
-
-                        <!-- Right: features panel -->
-                        <div class="bg-white p-8 md:p-12">
-                            <h4 class="font-black text-gray-800 text-xs uppercase tracking-widest mb-7 flex items-center gap-3">
-                                <span class="flex-1 h-px bg-gradient-to-r from-fox-300 to-transparent"></span>
-                                <span x-text="t.prog.included"></span>
-                                <span class="flex-1 h-px bg-gradient-to-l from-fox-300 to-transparent"></span>
-                            </h4>
-                            <ul class="space-y-3.5">
-                                <template x-for="feat in t.prog[tab].features" :key="feat">
-                                    <li class="flex items-start gap-3 group/feat">
-                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-fox-400 to-fox-600 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-fox-sm group-hover/feat:scale-110 transition-transform duration-150">
-                                            <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                            </svg>
-                                        </div>
-                                        <span class="text-gray-700 text-sm leading-relaxed" x-text="feat"></span>
-                                    </li>
-                                </template>
-                            </ul>
-                        </div>
-
+                        </template>
                     </div>
                 </div>
-            </template>
-        </div>
+
+            </div>
+        </template>
 
     </div>
 </section>
@@ -1040,7 +1030,7 @@
                 <div :class="plan.highlight ? 'price-highlight' : 'bg-white border-2 border-gray-200 card-lift shadow-sm'"
                      class="rounded-3xl p-8 relative flex flex-col">
                     <!-- Popular badge -->
-                    <div x-show="plan.highlight" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-fox-600 text-xs font-black px-4 py-1 rounded-full shadow-fox-sm" x-text="t.pricing.popular"></div>
+                    <div x-show="plan.highlight" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-950 text-white text-xs font-black px-4 py-1 rounded-full shadow-sm" x-text="t.pricing.popular"></div>
 
                     <div class="text-3xl mb-3" x-text="plan.emoji"></div>
                     <h3 class="text-xl font-black mb-1" :class="plan.highlight ? 'text-white' : 'text-gray-900'" x-text="plan.name"></h3>
@@ -1440,12 +1430,12 @@
                             <a href="viber://chat?number=%2B380954624672" aria-label="Viber" title="Viber"
                                class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
                                style="background:#7360F2;">
-                                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
+                                <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
                             </a>
                             <a href="https://wa.me/380954624672" aria-label="WhatsApp" title="WhatsApp"
                                class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
                                style="background:#25D366;">
-                                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
+                                <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
                             </a>
                             <a href="https://t.me/fluentfox_ua" aria-label="Telegram" title="Telegram"
                                class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
@@ -1461,7 +1451,7 @@
                             <a href="https://wa.me/380682522876" aria-label="WhatsApp" title="WhatsApp"
                                class="w-9 h-9 rounded-full flex items-center justify-center text-white text-base transition-opacity hover:opacity-80"
                                style="background:#25D366;">
-                                <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
+                                <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
                             </a>
                         </div>
                     </div>
@@ -1567,13 +1557,13 @@
                                 <a href="viber://chat?number=%2B380954624672"
                                    class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5"
                                    style="border-color:#7360F2; color:#7360F2;">
-                                    <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
+                                    <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
                                     Viber
                                 </a>
                                 <a href="https://wa.me/380954624672"
                                    class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5"
                                    style="border-color:#25D366; color:#25D366;">
-                                    <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
+                                    <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
                                     WhatsApp
                                 </a>
                                 <a href="https://t.me/fluentfox_ua"
@@ -1708,11 +1698,11 @@
                     <p class="text-xs text-gray-400 mb-2" x-text="t.form.orWrite"></p>
                     <div class="flex flex-wrap justify-center gap-2">
                         <a href="viber://chat?number=%2B380954624672" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5" style="border-color:#7360F2;color:#7360F2;">
-                            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
+                            <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
                             Viber
                         </a>
                         <a href="https://wa.me/380954624672" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5" style="border-color:#25D366;color:#25D366;">
-                            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
+                            <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
                             WhatsApp
                         </a>
                         <a href="https://t.me/fluentfox_ua" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5" style="border-color:#2AABEE;color:#2AABEE;">
@@ -1760,6 +1750,7 @@
                 <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" x-text="t.footer.navTitle"></h4>
                 <ul class="space-y-2 text-base">
                     <li><a href="#about"    class="hover:text-fox-400 transition-colors" x-text="t.nav.about"></a></li>
+                    <li><a href="#program"  class="hover:text-fox-400 transition-colors" x-text="t.nav.program"></a></li>
                     <li><a href="#prices"   class="hover:text-fox-400 transition-colors" x-text="t.nav.prices"></a></li>
                     <li><a href="#reviews"  class="hover:text-fox-400 transition-colors" x-text="t.nav.reviews"></a></li>
                 </ul>
@@ -1940,41 +1931,38 @@ uk: {
     },
 
     prog: {
-        label:    'Програма',
-        title:    'Два формати — один результат',
-        subtitle: 'Оберіть формат, що підходить саме вашій дитині',
-        tab1:     'Групові заняття',
-        tab2:     'Індивідуальні',
-        cta:      'Записатись на пробний урок',
-        included: 'Що входить у курс',
-        group: {
-            emoji: '👥',
-            name:  'Групові заняття',
-            desc:  'Ідеально для тих, хто любить навчатись у команді. Малі групи по 4–6 учнів, дружня атмосфера та командна робота.',
-            features: [
-                '2 заняття на тиждень по 1.5 години',
-                'Максимум 6 учнів у групі',
-                'Інтерактивні та комунікативні вправи',
-                'Домашні завдання на онлайн-платформі',
-                'Щомісячний звіт для батьків',
-                'Чат з вчителем у будній день',
-                'Доступ до матеріалів курсу',
-            ],
-        },
-        individual: {
-            emoji: '🎯',
-            name:  'Індивідуальні заняття',
-            desc:  'Максимальна увага вчителя та програма під конкретну мету. Найшвидший результат для тих, хто хоче зростати швидко.',
-            features: [
-                '2–3 заняття на тиждень по 1.5 години',
-                'Програма під мету та рівень дитини',
-                'Підготовка до іспитів (НМТ, Cambridge, IELTS)',
-                'Гнучкий розклад будь-якого дня та часу',
-                'Запис кожного уроку для повторення',
-                'Пріоритетний зв\'язок з вчителем',
-                'Щотижневий звіт для батьків',
-            ],
-        },
+        label:        'Програма',
+        title:        'Що вивчає ваша дитина',
+        subtitle:     'Детальна програма на 150+ занять для кожної вікової групи',
+        cta:          'Записатись на пробний урок',
+        lessonsLabel: 'занять по 1.5 год',
+        lessonUnit:   'занять',
+        tabs: [
+            { key: 'age6',  label: '6–8 років',  level: 'A0 → A1', emoji: '🐣', total: 150 },
+            { key: 'age9',  label: '9–12 років',  level: 'A1 → B1', emoji: '🚀', total: 150 },
+            { key: 'age13', label: '13–18 років', level: 'B1 → B2', emoji: '🎯', total: 150 },
+        ],
+        age6: { modules: [
+            { name: 'Знайомство з англійською', lessons: 30, topics: ['Алфавіт A–Z','Фоніка: голосні','Фоніка: приголосні','Фоніка: дифтонги','Числа 1–20','Числа 21–100','Кольори','Форми і розміри','Частини тіла','Одяг і взуття','Моя сім\'я','Домашні тварини','Дикі тварини','Тварини ферми','Тварини моря','Птахи та комахи','Фрукти','Овочі','Напої та солодощі','Транспорт','Природа','Рослини','Погода','Пори року','Дні тижня','Місяці','Свята','Мій клас','Шкільні речі','Повторення'] },
+            { name: 'Перші речення', lessons: 30, topics: ['To be: ствердження','To be: питання','To be: заперечення','Артиклі a/an/the','Множина іменників','Can / Can\'t','Команди (Imperative)','Займенники','Присвійні my/your','Прийменники місця','This/That/These/Those','Present Simple: я','Present Simple: він/вона','Present Simple: питання','Present Simple: заперечення','Частота дій','Мій будинок','Меблі','Розпорядок дня','Їжа і здоров\'я','Спорт і хобі','Місто','В магазині','В кафе','У лікаря','На природі','Діалог: знайомство','Діалог: де ти живеш?','Діалог: що вмієш?','Повторення'] },
+            { name: 'Пісні, казки, ігри', lessons: 30, topics: ['Alphabet Song','Head Shoulders Knees','Old MacDonald','Wheels on the Bus','If You\'re Happy','Twinkle Little Star','Happy Birthday','Jingle Bells','Ten Little Indians','We Wish You Merry','Three Little Pigs','Goldilocks','Red Riding Hood','Very Hungry Caterpillar','Ugly Duckling','Jack & the Beanstalk','Cinderella','Snow White','Simon Says','I Spy','Word Bingo','Pictionary','Charades','Скоромовки 1','Скоромовки 2','Дитячі вірші','Рими A–Z','Флешкарти: тварини','Флешкарти: їжа','Постер'] },
+            { name: 'Читаю і пишу', lessons: 30, topics: ['Великі літери','Малі літери','CVC-слова','Довгі голосні','Дифтонги','Слова-сімейства','Прості речення','Пунктуація','Текст: My Family','Текст: My Pet','Текст: My Day','Текст: My Home','Текст: My Friends','Написання: ім\'я','Написання: сім\'я','Написання: тварина','Написання: мій день','Лист Санті','Листівка другу','Щоденник день 1','Щоденник день 2','Підпис до малюнка','Проект: Animal Book','Проект: Dream House','Проект: Favourite Things','Читання тексту 1','Читання тексту 2','Розбір помилок','Словниковий тест','Повторення'] },
+            { name: 'Готуємось до A1', lessons: 30, topics: ['Cambridge Starters: формат','Listening тип 1','Listening тип 2','Listening тип 3','Reading тип 1','Reading тип 2','Reading тип 3','Writing тип 1','Writing тип 2','Speaking тип 1','Speaking тип 2','Speaking тип 3','Лексика: 100 слів','Лексика: ще 100 слів','Граматика: to be','Граматика: can','Граматика: Present Simple','Рольова гра: магазин','Рольова гра: лікар','Рольова гра: вечірка','Рольова гра: урок','Контрольна ч. 1','Контрольна ч. 2','Розбір помилок','Проект: English Poster','English Party!','Що я вивчив','Мої досягнення','Сертифікат A1','Вітання!'] },
+        ] },
+        age9: { modules: [
+            { name: 'Граматика без нудьги', lessons: 30, topics: ['Present Simple (повтор)','Present Continuous','Present Simple vs Cont.','Past Simple: правильні','Past Simple: неправильні 1','Past Simple: неправильні 2','Past Simple: питання','Future: will','Future: going to','Present Perfect 1','Present Perfect 2','Past Continuous','Ступені порівняння','Прикметники/прислівники','Модальні: can/could','Модальні: must/should','Модальні: would/might','Пасивний стан (вступ)','Conditionals 0 і 1','Conditionals 2','Непряма мова','Артиклі (поглиблено)','Прийменники (поглиблено)','Герундій vs інфінітив','Складні іменники','Зворотні займенники','Відносні займенники','Часові вирази','Граматичний тест A2','Повторення'] },
+            { name: 'Читаю і розумію', lessons: 30, topics: ['Стратегії читання','Ключові слова','Тема та головна думка','Деталі та факти','Хибні друзі','Тексти про тварин','Тексти про природу','Тексти про технології','Тексти про спорт','Тексти про культуру','Адаптовані казки','Адаптовані оповідання','Новини для дітей','Описи людей','Описи місць','Описи подій','Листи та поштівки','Меню та вивіски','Розклади та таблиці','Реклами','Детальне читання 1','Детальне читання 2','Reading A2 тест 1','Reading A2 тест 2','Пошук у тексті','Швидке читання','Reading B1 (вступ)','Читання для задоволення','Книга для читання','Повторення'] },
+            { name: 'Говорю впевнено', lessons: 30, topics: ['Наголос у словах','Інтонація','Вимова th/v/w','Вимова -ed/-ing','Linked speech','Школа і навчання','Родина і стосунки','Хобі та дозвілля','Подорожі','Їжа і кулінарія','Спорт','Технології','Природа і екологія','Мрії та плани','Дебати: за і проти','Презентація: книга','Презентація: хобі','Рольова гра: покупки','Рольова гра: готель','Рольова гра: аеропорт','Рольова гра: кіно','Рольова гра: лікар','Телефонна розмова','Ввічливі прохання','Погодження/відмова','Speaking A2 тест','Speaking B1 (вступ)','Монолог: моє місто','Монолог: майбутнє','Повторення'] },
+            { name: 'Пишу грамотно', lessons: 30, topics: ['Типи речень','Абзац і структура','Сполучники','Опис людини','Опис місця','Опис події','Опис процесу','Лист другу','Офіційний лист','Email: запит','Email: скарга','Email: відповідь','Листівка','Story: вступ','Story: розвиток','Story: кінцівка','Стаття для газети','Відгук: фільм','Відгук: книга','Відгук: ресторан','Анкета','Формуляр','Нотатки та конспект','Summarizing','Writing A2 тест 1','Writing A2 тест 2','Writing B1 (вступ)','Редагування тексту','Типові помилки','Повторення'] },
+            { name: 'Готуємось до B1', lessons: 30, topics: ['Cambridge Movers','Cambridge KET: формат','KET Reading 1–2','KET Reading 3–4','KET Reading 5','KET Listening 1–2','KET Listening 3–4','KET Listening 5','KET Writing 1','KET Writing 2','KET Writing 3','KET Speaking 1','KET Speaking 2','KET Speaking 3','Стратегії KET','Типові помилки KET','Пробний KET ч. 1','Пробний KET ч. 2','Розбір помилок','Словниковий тест B1','Граматика B1: огляд','Слова-зв\'язки B1','Підсумкова контрольна','Проект: презентація','English Club','Мої результати','Прогрес-звіт','Перехід до B1+','Сертифікат A2/B1','Вітання!'] },
+        ] },
+        age13: { modules: [
+            { name: 'Граматика B1–B2', lessons: 30, topics: ['Past Perfect','Past Perfect Continuous','Future Perfect','Future Continuous','Conditionals 2','Conditionals 3','Mixed Conditionals','Пасивний стан: всі часи','Reported Speech','Герундій/інфінітив','Артиклі (поглиблено)','Модальні: should have','Модальні: might/must/can\'t','Phrasal Verbs 1','Phrasal Verbs 2','Phrasal Verbs 3','Collocations 1','Collocations 2','Idioms 1','Idioms 2','Cleft Sentences','Emphatic structures','Inversions','Nominalisation','Linkers B2','Formal vs Informal','Помилки рівня B2','Grammar B2 тест 1','Grammar B2 тест 2','Повторення'] },
+            { name: 'Аудіювання та читання', lessons: 30, topics: ['Listening: multiple choice','Listening: sentence fill','Listening: matching','Listening: gap fill','Listening: form fill','Listening: note-taking','Автентичні подкасти','Аудіокниги','TED Talks','BBC Learning English','Reading: multiple choice','Reading: True/False/NG','Reading: matching','Reading: sentence fill','Reading: gapped text','Газетні статті','Наукові статті','Есе та нариси','Публіцистика','Художня проза','Критичне читання','Аналіз аргументів','Читання підтексту','Scanning і skimming','Словниковий контекст','Лексика B1–B2','Academic reading','Reading FCE тест','Listening FCE тест','Повторення'] },
+            { name: 'Розмовна практика', lessons: 30, topics: ['Fluency vs Accuracy','Accent reduction','Стрес у розмові','Переговори','Дискусії та дебати','Аргументація','Критика і похвала','Вираження думки','Погодження/незгода','Передача слова','Екологія','Технології і ШІ','Освіта майбутнього','Глобалізація','Медицина','Спорт і ЗСЖ','Культура і мистецтво','Соціальні мережі','Ринок праці','Права людини','Монолог 2 хв','Монолог 3 хв','Симуляція інтерв\'ю','Симуляція переговорів','Ток-шоу','Speaking B2 тест 1','Speaking B2 тест 2','Public speaking','Ораторське мистецтво','Повторення'] },
+            { name: 'Письмо B2', lessons: 30, topics: ['Opinion essay','Discussion essay','Problem-solution essay','Cause-effect essay','Formal letter: скарга','Formal letter: заява','Email: офіційний запит','Email: супровідний лист','Report: структура','Report: шкільний','Report: бізнес-вступ','Review: фільм','Review: книга','Review: продукт','Article: журнал','Article: газета','Proposal','Story: narrative','Story: descriptive','Story: dialogue','Editing і proofreading','Cohesion та coherence','Register і style','Уникнення повторів','Розвиток абзацу','Writing B2 тест 1','Writing B2 тест 2','Peer review','Портфоліо робіт','Повторення'] },
+            { name: 'НМТ та Cambridge', lessons: 30, topics: ['НМТ: формат іспиту','НМТ: граматика 1','НМТ: граматика 2','НМТ: читання 1','НМТ: читання 2','НМТ: аудіювання 1','НМТ: аудіювання 2','НМТ: письмо (лист)','НМТ: письмо (есе)','НМТ: стратегії та час','Cambridge PET: формат','PET Reading 1–3','PET Reading 4–6','PET Listening 1–2','PET Listening 3–4','PET Writing 1','PET Writing 2','PET Writing 3','PET Speaking 1–2','PET Speaking 3–4','FCE Use of English 1','FCE Use of English 2','FCE Use of English 3','FCE Use of English 4','Пробний НМТ (повний)','Пробний PET (повний)','Розбір помилок','Антистрес перед іспитом','Підсумкова контрольна B2','Сертифікат B1–B2'] },
+        ] },
     },
 
     pricing: {
@@ -2289,41 +2277,38 @@ ru: {
     },
 
     prog: {
-        label:    'Программа',
-        title:    'Два формата — один результат',
-        subtitle: 'Выберите формат, который подходит именно вашему ребёнку',
-        tab1:     'Групповые занятия',
-        tab2:     'Индивидуальные',
-        cta:      'Записаться на пробный урок',
-        included: 'Что входит в курс',
-        group: {
-            emoji: '👥',
-            name:  'Групповые занятия',
-            desc:  'Идеально для тех, кто любит учиться в команде. Маленькие группы по 4–6 учеников, дружная атмосфера и командная работа.',
-            features: [
-                '2 занятия в неделю по 1.5 часа',
-                'Максимум 6 учеников в группе',
-                'Интерактивные и коммуникативные упражнения',
-                'Домашние задания на онлайн-платформе',
-                'Ежемесячный отчёт для родителей',
-                'Чат с учителем в рабочие дни',
-                'Доступ к материалам курса',
-            ],
-        },
-        individual: {
-            emoji: '🎯',
-            name:  'Индивидуальные занятия',
-            desc:  'Максимальное внимание учителя и программа под конкретную цель. Самый быстрый результат для тех, кто хочет расти быстро.',
-            features: [
-                '2–3 занятия в неделю по 1.5 часа',
-                'Программа под цель и уровень ребёнка',
-                'Подготовка к экзаменам (НМТ, Cambridge, IELTS)',
-                'Гибкое расписание в любой день и время',
-                'Запись каждого урока для повторения',
-                'Приоритетная связь с учителем',
-                'Еженедельный отчёт для родителей',
-            ],
-        },
+        label:        'Программа',
+        title:        'Что изучает ваш ребёнок',
+        subtitle:     'Детальная программа на 150+ занятий для каждой возрастной группы',
+        cta:          'Записаться на пробный урок',
+        lessonsLabel: 'занятий по 1.5 ч',
+        lessonUnit:   'занятий',
+        tabs: [
+            { key: 'age6',  label: '6–8 лет',   level: 'A0 → A1', emoji: '🐣', total: 150 },
+            { key: 'age9',  label: '9–12 лет',   level: 'A1 → B1', emoji: '🚀', total: 150 },
+            { key: 'age13', label: '13–18 лет',  level: 'B1 → B2', emoji: '🎯', total: 150 },
+        ],
+        age6: { modules: [
+            { name: 'Знакомство с английским', lessons: 30, topics: ['Алфавит A–Z','Фоника: гласные','Фоника: согласные','Фоника: дифтонги','Числа 1–20','Числа 21–100','Цвета','Формы и размеры','Части тела','Одежда и обувь','Моя семья','Домашние животные','Дикие животные','Животные фермы','Животные моря','Птицы и насекомые','Фрукты','Овощи','Напитки и сладости','Транспорт','Природа','Растения','Погода','Времена года','Дни недели','Месяцы','Праздники','Мой класс','Школьные вещи','Повторение'] },
+            { name: 'Первые предложения', lessons: 30, topics: ['To be: утверждение','To be: вопрос','To be: отрицание','Артикли a/an/the','Множественное число','Can / Can\'t','Команды (Imperative)','Местоимения','Притяжательные my/your','Предлоги места','This/That/These/Those','Present Simple: я','Present Simple: он/она','Present Simple: вопрос','Present Simple: отрицание','Частота действий','Мой дом','Мебель','Распорядок дня','Еда и здоровье','Спорт и хобби','Город','В магазине','В кафе','У врача','На природе','Диалог: знакомство','Диалог: где ты живёшь?','Диалог: что умеешь?','Повторение'] },
+            { name: 'Песни, сказки, игры', lessons: 30, topics: ['Alphabet Song','Head Shoulders Knees','Old MacDonald','Wheels on the Bus','If You\'re Happy','Twinkle Little Star','Happy Birthday','Jingle Bells','Ten Little Indians','We Wish You Merry','Three Little Pigs','Goldilocks','Red Riding Hood','Very Hungry Caterpillar','Ugly Duckling','Jack & the Beanstalk','Cinderella','Snow White','Simon Says','I Spy','Word Bingo','Pictionary','Charades','Скороговорки 1','Скороговорки 2','Детские стихи','Рифмы A–Z','Флэшкарты: животные','Флэшкарты: еда','Постер'] },
+            { name: 'Читаю и пишу', lessons: 30, topics: ['Заглавные буквы','Строчные буквы','CVC-слова','Длинные гласные','Дифтонги','Семьи слов','Простые предложения','Пунктуация','Текст: My Family','Текст: My Pet','Текст: My Day','Текст: My Home','Текст: My Friends','Написание: имя','Написание: семья','Написание: животное','Написание: мой день','Письмо Санте','Открытка другу','Дневник день 1','Дневник день 2','Подпись к рисунку','Проект: Animal Book','Проект: Dream House','Проект: Favourite Things','Чтение текста 1','Чтение текста 2','Разбор ошибок','Словарный тест','Повторение'] },
+            { name: 'Подготовка к A1', lessons: 30, topics: ['Cambridge Starters: формат','Listening тип 1','Listening тип 2','Listening тип 3','Reading тип 1','Reading тип 2','Reading тип 3','Writing тип 1','Writing тип 2','Speaking тип 1','Speaking тип 2','Speaking тип 3','Лексика: 100 слов','Лексика: ещё 100 слов','Грамматика: to be','Грамматика: can','Грамматика: Present Simple','Ролевая игра: магазин','Ролевая игра: врач','Ролевая игра: вечеринка','Ролевая игра: урок','Контрольная ч. 1','Контрольная ч. 2','Разбор ошибок','Проект: English Poster','English Party!','Что я выучил','Мои достижения','Сертификат A1','Поздравление!'] },
+        ] },
+        age9: { modules: [
+            { name: 'Грамматика без скуки', lessons: 30, topics: ['Present Simple (повтор)','Present Continuous','Present Simple vs Cont.','Past Simple: правильные','Past Simple: неправильные 1','Past Simple: неправильные 2','Past Simple: вопросы','Future: will','Future: going to','Present Perfect 1','Present Perfect 2','Past Continuous','Степени сравнения','Прилагательные/наречия','Модальные: can/could','Модальные: must/should','Модальные: would/might','Пассивный залог (вступ)','Conditionals 0 и 1','Conditionals 2','Косвенная речь','Артикли (углублённо)','Предлоги (углублённо)','Герундий vs инфинитив','Составные существительные','Возвратные местоимения','Относительные местоимения','Временны́е выражения','Грамматический тест A2','Повторение'] },
+            { name: 'Читаю и понимаю', lessons: 30, topics: ['Стратегии чтения','Ключевые слова','Тема и главная мысль','Детали и факты','Ложные друзья','Тексты о животных','Тексты о природе','Тексты о технологиях','Тексты о спорте','Тексты о культуре','Адаптированные сказки','Адаптированные рассказы','Новости для детей','Описания людей','Описания мест','Описания событий','Письма и открытки','Меню и вывески','Расписания и таблицы','Реклама','Детальное чтение 1','Детальное чтение 2','Reading A2 тест 1','Reading A2 тест 2','Поиск в тексте','Быстрое чтение','Reading B1 (вступ)','Чтение для удовольствия','Книга для чтения','Повторение'] },
+            { name: 'Говорю уверенно', lessons: 30, topics: ['Ударение в словах','Интонация','Произношение th/v/w','Произношение -ed/-ing','Linked speech','Школа и учёба','Семья и отношения','Хобби и досуг','Путешествия','Еда и кулинария','Спорт','Технологии','Природа и экология','Мечты и планы','Дебаты: за и против','Презентация: книга','Презентация: хобби','Ролевая игра: покупки','Ролевая игра: отель','Ролевая игра: аэропорт','Ролевая игра: кино','Ролевая игра: врач','Телефонный разговор','Вежливые просьбы','Согласие/отказ','Speaking A2 тест','Speaking B1 (вступ)','Монолог: мой город','Монолог: будущее','Повторение'] },
+            { name: 'Пишу грамотно', lessons: 30, topics: ['Типы предложений','Абзац и структура','Союзы','Описание человека','Описание места','Описание события','Описание процесса','Письмо другу','Официальное письмо','Email: запрос','Email: жалоба','Email: ответ','Открытка','Story: вступление','Story: развитие','Story: концовка','Статья для газеты','Отзыв: фильм','Отзыв: книга','Отзыв: ресторан','Анкета','Формуляр','Заметки и конспект','Summarizing','Writing A2 тест 1','Writing A2 тест 2','Writing B1 (вступ)','Редактирование текста','Типичные ошибки','Повторение'] },
+            { name: 'Готовимся к B1', lessons: 30, topics: ['Cambridge Movers','Cambridge KET: формат','KET Reading 1–2','KET Reading 3–4','KET Reading 5','KET Listening 1–2','KET Listening 3–4','KET Listening 5','KET Writing 1','KET Writing 2','KET Writing 3','KET Speaking 1','KET Speaking 2','KET Speaking 3','Стратегии KET','Типичные ошибки KET','Пробный KET ч. 1','Пробный KET ч. 2','Разбор ошибок','Словарный тест B1','Грамматика B1: обзор','Слова-связки B1','Итоговая контрольная','Проект: презентация','English Club','Мои результаты','Отчёт о прогрессе','Переход к B1+','Сертификат A2/B1','Поздравление!'] },
+        ] },
+        age13: { modules: [
+            { name: 'Грамматика B1–B2', lessons: 30, topics: ['Past Perfect','Past Perfect Continuous','Future Perfect','Future Continuous','Conditionals 2','Conditionals 3','Mixed Conditionals','Пассивный залог: все времена','Reported Speech','Герундий/инфинитив','Артикли (углублённо)','Модальные: should have','Модальные: might/must/can\'t','Phrasal Verbs 1','Phrasal Verbs 2','Phrasal Verbs 3','Collocations 1','Collocations 2','Idioms 1','Idioms 2','Cleft Sentences','Emphatic structures','Inversions','Nominalisation','Linkers B2','Formal vs Informal','Ошибки уровня B2','Grammar B2 тест 1','Grammar B2 тест 2','Повторение'] },
+            { name: 'Аудирование и чтение', lessons: 30, topics: ['Listening: multiple choice','Listening: sentence fill','Listening: matching','Listening: gap fill','Listening: form fill','Listening: note-taking','Подкасты (аутентичные)','Аудиокниги','TED Talks','BBC Learning English','Reading: multiple choice','Reading: True/False/NG','Reading: matching','Reading: sentence fill','Reading: gapped text','Газетные статьи','Научные статьи','Эссе и очерки','Публицистика','Художественная проза','Критическое чтение','Анализ аргументов','Чтение подтекста','Scanning и skimming','Словарный контекст','Лексика B1–B2','Academic reading','Reading FCE тест','Listening FCE тест','Повторение'] },
+            { name: 'Разговорная практика', lessons: 30, topics: ['Fluency vs Accuracy','Accent reduction','Стресс в разговоре','Переговоры','Дискуссии и дебаты','Аргументация','Критика и похвала','Выражение мнения','Согласие/несогласие','Передача слова','Экология','Технологии и ИИ','Образование будущего','Глобализация','Медицина','Спорт и ЗОЖ','Культура и искусство','Социальные сети','Рынок труда','Права человека','Монолог 2 мин','Монолог 3 мин','Симуляция интервью','Симуляция переговоров','Ток-шоу','Speaking B2 тест 1','Speaking B2 тест 2','Public speaking','Ораторское искусство','Повторение'] },
+            { name: 'Письмо B2', lessons: 30, topics: ['Opinion essay','Discussion essay','Problem-solution essay','Cause-effect essay','Formal letter: жалоба','Formal letter: заявление','Email: официальный запрос','Email: сопроводительное письмо','Report: структура','Report: школьный','Report: бизнес-вступ','Review: фильм','Review: книга','Review: продукт','Article: журнал','Article: газета','Proposal','Story: narrative','Story: descriptive','Story: dialogue','Editing и proofreading','Cohesion и coherence','Register и style','Избегание повторов','Развитие абзаца','Writing B2 тест 1','Writing B2 тест 2','Peer review','Портфолио работ','Повторение'] },
+            { name: 'НМТ и Cambridge', lessons: 30, topics: ['НМТ: формат экзамена','НМТ: грамматика 1','НМТ: грамматика 2','НМТ: чтение 1','НМТ: чтение 2','НМТ: аудирование 1','НМТ: аудирование 2','НМТ: письмо (письмо)','НМТ: письмо (эссе)','НМТ: стратегии и время','Cambridge PET: формат','PET Reading 1–3','PET Reading 4–6','PET Listening 1–2','PET Listening 3–4','PET Writing 1','PET Writing 2','PET Writing 3','PET Speaking 1–2','PET Speaking 3–4','FCE Use of English 1','FCE Use of English 2','FCE Use of English 3','FCE Use of English 4','Пробный НМТ (полный)','Пробный PET (полный)','Разбор ошибок','Антистресс перед экзаменом','Итоговая контрольная B2','Сертификат B1–B2'] },
+        ] },
     },
 
     pricing: {
@@ -2549,6 +2534,7 @@ function app() {
         menuOpen:      false,
         openFaq:       null,
         activeTab:     'group',
+        progTab:       'age6',
         currentReview: 0,
         reviewPage:    0,
         scrolled:      false,
