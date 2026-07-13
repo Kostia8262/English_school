@@ -818,14 +818,14 @@
         <!-- 2-column grid -->
         <div class="grid lg:grid-cols-5 gap-6 items-start">
 
-            <!-- LEFT: tabs + module list -->
+            <!-- LEFT: tabs + accordion -->
             <div class="lg:col-span-3">
 
-                <!-- Age-group tabs (full-width segmented) -->
-                <div class="flex gap-1 bg-white/8 rounded-2xl p-1 mb-6 border border-white/10">
+                <!-- Age-group tabs -->
+                <div class="flex gap-1 bg-white/6 rounded-2xl p-1 mb-5 border border-white/8">
                     <template x-for="tab in t.prog.tabs" :key="tab.key">
-                        <button @click="progTab=tab.key"
-                                :class="progTab===tab.key ? 'bg-white text-gray-900 shadow-md' : 'text-gray-400 hover:text-white hover:bg-white/10'"
+                        <button @click="progTab=tab.key; openMod=0"
+                                :class="progTab===tab.key ? 'bg-white text-gray-900 shadow-md' : 'text-gray-400 hover:text-white hover:bg-white/8'"
                                 class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 text-center"
                                 x-text="tab.emoji + ' ' + tab.label">
                         </button>
@@ -839,40 +839,71 @@
                          x-transition:enter-start="opacity-0"
                          x-transition:enter-end="opacity-100">
 
-                        <!-- Level + total badge row -->
-                        <div class="flex items-center gap-2 mb-4">
-                            <span class="text-fox-400 font-bold text-sm" x-text="tab.level"></span>
-                            <span class="text-gray-700">·</span>
-                            <span class="text-gray-400 text-sm"><span x-text="tab.total"></span>+ <span x-text="t.prog.lessonsLabel"></span></span>
+                        <!-- Level + total -->
+                        <div class="flex items-center gap-2 mb-4 px-0.5">
+                            <span class="bg-fox-500/15 text-fox-400 text-xs font-bold px-3 py-1 rounded-full" x-text="tab.level"></span>
+                            <span class="text-gray-600 text-xs">·</span>
+                            <span class="text-gray-500 text-xs" x-text="tab.total + '+ ' + t.prog.lessonsLabel"></span>
                         </div>
 
-                        <!-- Scrollable module + topic list -->
+                        <!-- Accordion list -->
                         <div class="max-h-[600px] overflow-y-auto scrollbar-hide space-y-2 pr-0.5">
                             <template x-for="(mod, mi) in t.prog[tab.key].modules" :key="mod.name">
-                                <div class="rounded-2xl overflow-hidden ring-1 ring-white/8">
 
-                                    <!-- Module header row -->
-                                    <div class="flex items-center gap-3 px-4 py-3 bg-white/8">
-                                        <div class="w-8 h-8 rounded-xl bg-fox-500/25 flex items-center justify-center flex-none shadow-fox-sm">
-                                            <span class="text-fox-400 font-black text-xs tabular-nums" x-text="String(mi+1).padStart(2,'0')"></span>
+                                <div class="rounded-2xl overflow-hidden border transition-all duration-300"
+                                     :class="openMod===mi ? 'border-fox-500/35 bg-fox-500/5' : 'border-white/8 hover:border-white/14'">
+
+                                    <!-- Clickable header -->
+                                    <button @click="openMod = openMod===mi ? null : mi"
+                                            class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150"
+                                            :class="openMod===mi ? 'bg-white/6' : 'hover:bg-white/4'">
+
+                                        <!-- Number badge -->
+                                        <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200"
+                                             :class="openMod===mi ? 'bg-fox-500 shadow-fox-sm' : 'bg-white/8'">
+                                            <span class="font-black text-xs tabular-nums leading-none"
+                                                  :class="openMod===mi ? 'text-white' : 'text-gray-400'"
+                                                  x-text="String(mi+1).padStart(2,'0')"></span>
                                         </div>
+
+                                        <!-- Title + count -->
                                         <div class="flex-1 min-w-0">
-                                            <h3 class="text-white font-black text-sm leading-tight" x-text="mod.name"></h3>
-                                            <p class="text-gray-500 text-2xs mt-0.5" x-text="mod.lessons + ' ' + t.prog.lessonUnit"></p>
+                                            <p class="font-black text-sm leading-tight transition-colors duration-200"
+                                               :class="openMod===mi ? 'text-white' : 'text-gray-300'"
+                                               x-text="mod.name"></p>
+                                            <p class="text-2xs text-gray-500 mt-0.5" x-text="mod.lessons + ' ' + t.prog.lessonUnit"></p>
                                         </div>
-                                    </div>
 
-                                    <!-- Numbered topic rows -->
-                                    <div class="divide-y divide-white/4 bg-black/15">
-                                        <template x-for="(topic, ti) in mod.topics" :key="topic">
-                                            <div class="flex items-center gap-3 px-4 py-2.5 hover:bg-white/4 transition-colors duration-150">
-                                                <span class="text-2xs font-bold text-gray-600 w-6 flex-none tabular-nums" x-text="String(ti+1).padStart(2,'0')"></span>
-                                                <span class="text-sm text-gray-300 leading-relaxed" x-text="topic"></span>
+                                        <!-- Chevron -->
+                                        <svg class="w-4 h-4 flex-none transition-all duration-300"
+                                             :class="openMod===mi ? 'rotate-180 text-fox-400' : 'text-gray-600'"
+                                             fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                        </svg>
+                                    </button>
+
+                                    <!-- Topics as pill chips -->
+                                    <div x-show="openMod===mi"
+                                         x-transition:enter="transition ease-out duration-200"
+                                         x-transition:enter-start="opacity-0 -translate-y-1"
+                                         x-transition:enter-end="opacity-100 translate-y-0"
+                                         x-transition:leave="transition ease-in duration-150"
+                                         x-transition:leave-start="opacity-100"
+                                         x-transition:leave-end="opacity-0">
+                                        <div class="border-t border-white/8 px-4 py-4 bg-black/15">
+                                            <div class="flex flex-wrap gap-1.5">
+                                                <template x-for="(topic, ti) in mod.topics" :key="topic">
+                                                    <span class="inline-flex items-center gap-1.5 text-xs text-gray-300 bg-white/6 hover:bg-white/10 border border-white/8 hover:border-white/16 px-2.5 py-1.5 rounded-full transition-all duration-150 cursor-default leading-none">
+                                                        <span class="text-gray-600 font-bold text-2xs tabular-nums" x-text="ti+1"></span>
+                                                        <span x-text="topic"></span>
+                                                    </span>
+                                                </template>
                                             </div>
-                                        </template>
+                                        </div>
                                     </div>
 
                                 </div>
+
                             </template>
                         </div>
 
@@ -881,7 +912,7 @@
 
             </div>
 
-            <!-- RIGHT: info card + CTA (sticky on desktop) -->
+            <!-- RIGHT: info card + CTA (sticky) -->
             <div class="lg:col-span-2 lg:sticky lg:top-6 space-y-4">
 
                 <!-- Course info card -->
@@ -2584,6 +2615,7 @@ function app() {
         openFaq:       null,
         activeTab:     'group',
         progTab:       'age6',
+        openMod:       0,
         currentReview: 0,
         reviewPage:    0,
         scrolled:      false,
