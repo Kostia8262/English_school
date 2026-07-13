@@ -806,7 +806,7 @@
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-violet-800/5 rounded-full blur-2xl"></div>
     </div>
 
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <!-- Section header -->
         <div class="text-center mb-14">
@@ -815,64 +815,101 @@
             <p class="text-gray-400 text-sm sm:text-base md:text-lg" x-text="t.prog.subtitle"></p>
         </div>
 
-        <!-- Age tab switcher -->
-        <div class="flex justify-center mb-8">
-            <div class="inline-flex bg-white/8 backdrop-blur-sm rounded-2xl p-1 border border-white/10 gap-1">
-                <template x-for="tab in t.prog.tabs" :key="tab.key">
-                    <button @click="progTab=tab.key"
-                            :class="progTab===tab.key ? 'bg-white text-gray-900 shadow-md' : 'text-gray-400 hover:text-white hover:bg-white/10'"
-                            class="px-4 md:px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 whitespace-nowrap"
-                            x-text="tab.emoji + ' ' + tab.label">
-                    </button>
-                </template>
-            </div>
-        </div>
+        <!-- 2-column grid -->
+        <div class="grid lg:grid-cols-5 gap-6 items-start">
 
-        <!-- Content per age group -->
-        <template x-for="tab in t.prog.tabs" :key="tab.key">
-            <div x-show="progTab===tab.key"
-                 x-transition:enter="transition ease-out duration-200"
-                 x-transition:enter-start="opacity-0 translate-y-2"
-                 x-transition:enter-end="opacity-100 translate-y-0">
+            <!-- LEFT: tabs + module list -->
+            <div class="lg:col-span-3">
 
-                <!-- Age header card -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-r from-fox-500 to-fox-600 rounded-3xl px-6 py-5 mb-4 shadow-fox-lg">
-                    <div>
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="text-2xl" x-text="tab.emoji"></span>
-                            <h3 class="text-white font-black text-xl leading-tight" x-text="tab.label + ' · ' + tab.level"></h3>
-                        </div>
-                        <p class="text-fox-100 text-sm"><span x-text="tab.total"></span>+ <span x-text="t.prog.lessonsLabel"></span></p>
-                    </div>
-                    <a href="#form"
-                       class="inline-flex items-center bg-white text-fox-600 hover:bg-fox-50 font-black px-5 py-2.5 rounded-full text-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 whitespace-nowrap flex-none"
-                       x-text="t.prog.cta">
-                    </a>
+                <!-- Age-group tabs (full-width segmented) -->
+                <div class="flex gap-1 bg-white/8 rounded-2xl p-1 mb-6 border border-white/10">
+                    <template x-for="tab in t.prog.tabs" :key="tab.key">
+                        <button @click="progTab=tab.key"
+                                :class="progTab===tab.key ? 'bg-white text-gray-900 shadow-md' : 'text-gray-400 hover:text-white hover:bg-white/10'"
+                                class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 text-center"
+                                x-text="tab.emoji + ' ' + tab.label">
+                        </button>
+                    </template>
                 </div>
 
-                <!-- Scrollable modules -->
-                <div class="rounded-3xl overflow-hidden ring-1 ring-white/10">
-                    <div class="max-h-[500px] overflow-y-auto scrollbar-hide p-2 space-y-1.5 bg-white/3">
-                        <template x-for="(mod, mi) in t.prog[tab.key].modules" :key="mod.name">
-                            <div class="rounded-2xl overflow-hidden ring-1 ring-white/8">
-                                <!-- Module header -->
-                                <div class="flex items-center justify-between px-4 py-3 bg-white/8">
-                                    <span class="font-black text-sm text-white" x-text="(mi+1) + '. ' + mod.name"></span>
-                                    <span class="text-2xs font-bold text-fox-400 bg-fox-500/20 px-2.5 py-1 rounded-full whitespace-nowrap ml-3 flex-none" x-text="mod.lessons + ' ' + t.prog.lessonUnit"></span>
+                <!-- Content per tab -->
+                <template x-for="tab in t.prog.tabs" :key="tab.key">
+                    <div x-show="progTab===tab.key"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0"
+                         x-transition:enter-end="opacity-100">
+
+                        <!-- Level + total badge row -->
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="text-fox-400 font-bold text-sm" x-text="tab.level"></span>
+                            <span class="text-gray-700">·</span>
+                            <span class="text-gray-400 text-sm"><span x-text="tab.total"></span>+ <span x-text="t.prog.lessonsLabel"></span></span>
+                        </div>
+
+                        <!-- Scrollable module + topic list -->
+                        <div class="max-h-[600px] overflow-y-auto scrollbar-hide space-y-2 pr-0.5">
+                            <template x-for="(mod, mi) in t.prog[tab.key].modules" :key="mod.name">
+                                <div class="rounded-2xl overflow-hidden ring-1 ring-white/8">
+
+                                    <!-- Module header row -->
+                                    <div class="flex items-center gap-3 px-4 py-3 bg-white/8">
+                                        <div class="w-8 h-8 rounded-xl bg-fox-500/25 flex items-center justify-center flex-none shadow-fox-sm">
+                                            <span class="text-fox-400 font-black text-xs tabular-nums" x-text="String(mi+1).padStart(2,'0')"></span>
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <h3 class="text-white font-black text-sm leading-tight" x-text="mod.name"></h3>
+                                            <p class="text-gray-500 text-2xs mt-0.5" x-text="mod.lessons + ' ' + t.prog.lessonUnit"></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Numbered topic rows -->
+                                    <div class="divide-y divide-white/4 bg-black/15">
+                                        <template x-for="(topic, ti) in mod.topics" :key="topic">
+                                            <div class="flex items-center gap-3 px-4 py-2.5 hover:bg-white/4 transition-colors duration-150">
+                                                <span class="text-2xs font-bold text-gray-600 w-6 flex-none tabular-nums" x-text="String(ti+1).padStart(2,'0')"></span>
+                                                <span class="text-sm text-gray-300 leading-relaxed" x-text="topic"></span>
+                                            </div>
+                                        </template>
+                                    </div>
+
                                 </div>
-                                <!-- Topics -->
-                                <div class="px-4 py-3 flex flex-wrap gap-1.5 bg-black/20">
-                                    <template x-for="topic in mod.topics" :key="topic">
-                                        <span class="text-2xs text-gray-400 bg-white/5 border border-white/8 px-2.5 py-1 rounded-full leading-none" x-text="topic"></span>
-                                    </template>
+                            </template>
+                        </div>
+
+                    </div>
+                </template>
+
+            </div>
+
+            <!-- RIGHT: info card + CTA (sticky on desktop) -->
+            <div class="lg:col-span-2 lg:sticky lg:top-6 space-y-4">
+
+                <!-- Course info card -->
+                <div class="bg-white rounded-3xl p-6 shadow-md">
+                    <div class="space-y-4">
+                        <template x-for="row in t.prog.info" :key="row.label">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-2xl bg-fox-50 flex items-center justify-center text-xl flex-none shadow-sm">
+                                    <span x-text="row.emoji"></span>
+                                </div>
+                                <div>
+                                    <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider" x-text="row.label"></p>
+                                    <p class="text-sm font-bold text-gray-900 mt-0.5 leading-relaxed" x-text="row.value"></p>
                                 </div>
                             </div>
                         </template>
                     </div>
                 </div>
 
+                <!-- CTA button -->
+                <a href="#form"
+                   class="block text-center bg-fox-500 hover:bg-fox-600 text-white font-black px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200 text-base"
+                   x-text="t.prog.cta">
+                </a>
+
             </div>
-        </template>
+
+        </div>
 
     </div>
 </section>
@@ -1937,6 +1974,12 @@ uk: {
         cta:          'Записатись на пробний урок',
         lessonsLabel: 'занять по 1.5 год',
         lessonUnit:   'занять',
+        info: [
+            { emoji: '📅', label: 'Тривалість',  value: 'від 6 місяців · 2 рази/тиж' },
+            { emoji: '🎓', label: 'Рівень',       value: 'A0 → B2 · будь-який рівень' },
+            { emoji: '👥', label: 'Група',        value: 'До 6 учнів · увага кожному' },
+            { emoji: '🌐', label: 'Формат',       value: 'Онлайн (Zoom / Google Meet)' },
+        ],
         tabs: [
             { key: 'age6',  label: '6–8 років',  level: 'A0 → A1', emoji: '🐣', total: 150 },
             { key: 'age9',  label: '9–12 років',  level: 'A1 → B1', emoji: '🚀', total: 150 },
@@ -2283,6 +2326,12 @@ ru: {
         cta:          'Записаться на пробный урок',
         lessonsLabel: 'занятий по 1.5 ч',
         lessonUnit:   'занятий',
+        info: [
+            { emoji: '📅', label: 'Длительность', value: 'от 6 месяцев · 2 раза/нед' },
+            { emoji: '🎓', label: 'Уровень',      value: 'A0 → B2 · любой уровень' },
+            { emoji: '👥', label: 'Группа',       value: 'До 6 учеников · внимание каждому' },
+            { emoji: '🌐', label: 'Формат',       value: 'Онлайн (Zoom / Google Meet)' },
+        ],
         tabs: [
             { key: 'age6',  label: '6–8 лет',   level: 'A0 → A1', emoji: '🐣', total: 150 },
             { key: 'age9',  label: '9–12 лет',   level: 'A1 → B1', emoji: '🚀', total: 150 },
