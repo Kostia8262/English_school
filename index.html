@@ -531,11 +531,11 @@
 
 
 <!-- ═══════════════════════ FOR WHOM (AGES) ═══════════════════════ -->
-<section id="about" class="py-20 bg-fox-50">
+<section id="about" class="py-12 md:py-20 bg-fox-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Section header -->
-        <div class="text-center mb-14">
+        <div class="text-center mb-10 md:mb-14">
             <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.ages.label"></span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.ages.title"></h2>
             <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.ages.subtitle"></p>
@@ -597,10 +597,10 @@
 
 
 <!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
-<section class="py-20 md:py-24 bg-white border-t border-fox-100">
+<section class="py-12 md:py-24 bg-white border-t border-fox-100">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-14">
+        <div class="text-center mb-10 md:mb-14">
             <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.how.label"></span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.how.title"></h2>
             <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.how.subtitle"></p>
@@ -730,7 +730,7 @@
 
 
 <!-- ═══════════════════════ PROGRAM (TABS) ═══════════════════════ -->
-<section id="program" class="py-20 bg-gray-950 relative overflow-hidden hidden">
+<section id="program" class="py-12 md:py-20 bg-gray-950 relative overflow-hidden hidden">
     <!-- BG ambient glows -->
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute -top-24 -left-24 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl"></div>
@@ -740,7 +740,7 @@
 
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <div class="text-center mb-14">
+        <div class="text-center mb-10 md:mb-14">
             <span class="inline-block border border-white/20 bg-white/10 text-white font-bold text-sm px-4 py-1.5 rounded-full mb-4 backdrop-blur-sm" x-text="t.prog.label"></span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-3" x-text="t.prog.title"></h2>
             <p class="text-gray-400 text-sm sm:text-base md:text-lg" x-text="t.prog.subtitle"></p>
@@ -823,7 +823,7 @@
 
 
 <!-- ═══════════════════════ ADVANTAGES ═══════════════════════ -->
-<section class="py-20 bg-gray-950 relative overflow-hidden">
+<section class="py-12 md:py-20 bg-gray-950 relative overflow-hidden">
 
     <!-- Ambient glow fox-orange вгорі-зліва -->
     <div class="absolute -top-40 -left-40 w-96 h-96 bg-fox-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -922,7 +922,7 @@
 
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
 
-        <div class="text-center mb-14">
+        <div class="text-center mb-10 md:mb-14">
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white mb-3 leading-tight" x-text="t.adv.title"></h2>
             <p class="text-gray-400 text-sm sm:text-base md:text-lg" x-text="t.adv.subtitle"></p>
         </div>
@@ -959,10 +959,10 @@
 
 
 <!-- ═══════════════════════ PRICING ═══════════════════════ -->
-<section id="prices" class="py-20 bg-fox-50">
+<section id="prices" class="py-12 md:py-20 bg-fox-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-14">
+        <div class="text-center mb-10 md:mb-14">
             <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.pricing.label"></span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.pricing.title"></h2>
             <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.pricing.subtitle"></p>
@@ -973,7 +973,7 @@
                 <div :class="plan.highlight ? 'price-highlight' : 'bg-white border-2 border-gray-200 card-lift shadow-sm'"
                      class="rounded-3xl p-8 relative flex flex-col">
                     <!-- Popular badge -->
-                    <div x-show="plan.highlight" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 text-xs font-black px-4 py-1 rounded-full shadow" x-text="t.pricing.popular"></div>
+                    <div x-show="plan.highlight" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-fox-600 text-xs font-black px-4 py-1 rounded-full shadow-fox-sm" x-text="t.pricing.popular"></div>
 
                     <div class="text-3xl mb-3" x-text="plan.emoji"></div>
                     <h3 class="text-xl font-black mb-1" :class="plan.highlight ? 'text-white' : 'text-gray-900'" x-text="plan.name"></h3>
@@ -1010,10 +1010,10 @@
 
 
 <!-- ═══════════════════════ TEACHERS ═══════════════════════ -->
-<section id="teachers" class="py-20 bg-fox-50 hidden">
+<section id="teachers" class="py-12 md:py-20 bg-fox-50 hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-14">
+        <div class="text-center mb-10 md:mb-14">
             <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.teachers.label"></span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.teachers.title"></h2>
             <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.teachers.subtitle"></p>
@@ -1045,7 +1045,7 @@
 
 
 <!-- ═══════════════════════ RESULTS + CERTIFICATE ═══════════════════════ -->
-<section class="py-20 bg-gray-950 relative overflow-hidden">
+<section class="py-12 md:py-20 bg-gray-950 relative overflow-hidden">
     <!-- Decorative -->
     <div class="absolute top-0 right-0 w-80 h-80 bg-fox-600 rounded-full opacity-10 -translate-y-1/2 translate-x-1/2"></div>
     <div class="absolute bottom-0 left-0 w-64 h-64 bg-violet-600 rounded-full opacity-10 translate-y-1/2 -translate-x-1/2"></div>
@@ -1150,10 +1150,10 @@
 
 
 <!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
-<section id="reviews" class="py-20 bg-white">
+<section id="reviews" class="py-12 md:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-14">
+        <div class="text-center mb-10 md:mb-14">
             <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.reviews.label"></span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.reviews.title"></h2>
             <p class="text-gray-500 text-sm sm:text-base md:text-lg" x-text="t.reviews.subtitle"></p>
@@ -1225,10 +1225,10 @@
 
 
 <!-- ═══════════════════════ FAQ ═══════════════════════ -->
-<section class="py-20 bg-fox-50">
+<section class="py-12 md:py-20 bg-fox-50">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="text-center mb-14">
+        <div class="text-center mb-10 md:mb-14">
             <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.faq.label"></span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.faq.title"></h2>
         </div>
@@ -1254,7 +1254,7 @@
 
 
 <!-- ═══════════════════════ CTA BANNER ═══════════════════════ -->
-<section class="py-16 bg-gradient-to-br from-fox-500 to-fox-700 relative overflow-hidden">
+<section class="py-10 md:py-16 bg-gradient-to-br from-fox-500 to-fox-700 relative overflow-hidden">
     <!-- Quality SVG illustrations (desktop only — hidden on mobile to avoid overlap) -->
     <div class="absolute inset-0 pointer-events-none select-none hidden md:block">
         <!-- Double-decker bus — left, bottom-aligned -->
@@ -1351,7 +1351,7 @@
 
 
 <!-- ═══════════════════════ CONTACT + FORM ═══════════════════════ -->
-<section id="contacts" class="py-20 bg-gray-50 overflow-x-hidden">
+<section id="contacts" class="py-12 md:py-20 bg-gray-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-2 gap-12 items-start">
 
@@ -1915,7 +1915,7 @@ uk: {
         title:    'Прозорі ціни',
         subtitle: 'Без прихованих платежів і зайвих умов',
         perMonth: '/ місяць',
-        popular:  '🔥 Популярний',
+        popular:  'Популярний',
         cta:      'Записатись',
         note:     '* Перший пробний урок — безкоштовно. При записі двох дітей з родини — знижка 10%.',
         plans: [
@@ -1986,7 +1986,7 @@ uk: {
 
     results: {
         label:     'Результати',
-        title:     'Ваша дитина досягне цього',
+        title:     'Що вміє ваша дитина після наших уроків',
         items: [
             'Вільно спілкуватиметься англійською з однолітками',
             'Читатиме та розумітиме тексти без словника',
@@ -2264,7 +2264,7 @@ ru: {
         title:    'Прозрачные цены',
         subtitle: 'Без скрытых платежей и лишних условий',
         perMonth: '/ месяц',
-        popular:  '🔥 Популярный',
+        popular:  'Популярный',
         cta:      'Записаться',
         note:     '* Первый пробный урок — бесплатно. При записи двух детей из семьи — скидка 10%.',
         plans: [
@@ -2335,7 +2335,7 @@ ru: {
 
     results: {
         label:     'Результаты',
-        title:     'Вашего ребёнка ждёт это',
+        title:     'Что умеет ваш ребёнок после наших уроков',
         items: [
             'Свободно общаться по-английски со сверстниками',
             'Читать и понимать тексты без словаря',
