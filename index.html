@@ -1487,12 +1487,15 @@
         <div class="grid md:grid-cols-2 gap-12 items-start">
 
             <!-- ── Left: contact info ── -->
-            <div class="hidden md:block pt-2 min-w-0">
+            <div class="pt-2 min-w-0">
                 <h2 class="text-2xl sm:text-3xl md:text-5xl font-black text-gray-900 leading-tight mb-4">
                     <span x-text="t.form.titleLine1"></span><br>
                     <span class="gradient-text" x-text="t.form.titleLine2"></span>
                 </h2>
                 <p class="text-gray-500 text-sm sm:text-base md:text-lg leading-relaxed mb-10" x-text="t.form.subtitle"></p>
+
+                <!-- Phones (hidden on mobile) -->
+                <div class="hidden md:block">
 
                 <!-- Phones -->
                 <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3" x-text="t.form.phonesLabel"></p>
@@ -1556,6 +1559,7 @@
                         Instagram
                     </a>
                 </div>
+                </div><!-- /hidden md:block -->
             </div>
 
             <!-- ── Right: form card ── -->
