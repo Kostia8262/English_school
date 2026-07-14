@@ -1566,7 +1566,7 @@
                     </div>
 
                     <!-- Form -->
-                    <form x-show="!formSuccess" @submit.prevent="submitForm()" class="space-y-4">
+                    <form x-show="!formSuccess" @submit.prevent="submitForm()" class="space-y-4" novalidate>
 
                         <!-- Name + Age row -->
                         <div class="grid grid-cols-2 gap-3">
@@ -1576,8 +1576,10 @@
                                 </label>
                                 <input x-model="formData.name" type="text"
                                        :placeholder="t.form.namePlaceholder"
-                                       class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200"
-                                       required>
+                                       @input="formErrors.name = false"
+                                       :class="formErrors.name ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-gray-50'"
+                                       class="form-input w-full border-2 rounded-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200">
+                                <p x-show="formErrors.name" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.nameError"></p>
                             </div>
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
@@ -1599,9 +1601,11 @@
                                 </div>
                                 <input x-model="formData.phone" type="tel"
                                        placeholder="(XX) XXX-XX-XX"
-                                       class="form-input flex-1 min-w-0 bg-gray-50 border-2 border-gray-200 rounded-r-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200"
-                                       required>
+                                       @input="formErrors.phone = false"
+                                       :class="formErrors.phone ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-gray-50'"
+                                       class="form-input flex-1 min-w-0 border-2 rounded-r-xl px-4 py-3 text-gray-800 font-medium transition-all duration-200">
                             </div>
+                            <p x-show="formErrors.phone" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.phoneError"></p>
                         </div>
 
                         <!-- Error -->
@@ -1710,7 +1714,7 @@
             </div>
 
             <!-- Form -->
-            <form x-show="!formSuccess" @submit.prevent="submitForm()" class="space-y-4">
+            <form x-show="!formSuccess" @submit.prevent="submitForm()" class="space-y-4" novalidate>
                 <!-- Name + Age -->
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -1719,8 +1723,10 @@
                         </label>
                         <input x-model="formData.name" type="text"
                                :placeholder="t.form.namePlaceholder"
-                               class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200"
-                               required>
+                               @input="formErrors.name = false"
+                               :class="formErrors.name ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-gray-50'"
+                               class="form-input w-full border-2 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200">
+                        <p x-show="formErrors.name" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.nameError"></p>
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
@@ -1742,9 +1748,11 @@
                         </div>
                         <input x-model="formData.phone" type="tel"
                                placeholder="(XX) XXX-XX-XX"
-                               class="form-input flex-1 min-w-0 bg-gray-50 border-2 border-gray-200 rounded-r-xl px-4 py-3 text-sm font-medium transition-all duration-200"
-                               required>
+                               @input="formErrors.phone = false"
+                               :class="formErrors.phone ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-gray-50'"
+                               class="form-input flex-1 min-w-0 border-2 rounded-r-xl px-4 py-3 text-sm font-medium transition-all duration-200">
                     </div>
+                    <p x-show="formErrors.phone" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.phoneError"></p>
                 </div>
 
                 <!-- Error -->
@@ -2219,9 +2227,11 @@ uk: {
         emailLabel:     'Пошта',
         telegramLabel:  'Telegram',
         socialLabel:    'Слідкуйте за нами',
-        nameLabel:      'Ваше ім\'я',
-        namePlaceholder:'Наприклад: Іван',
+        nameLabel:      'Ім\'я дитини',
+        namePlaceholder:'Наприклад: Олена',
+        nameError:      'Введіть ім\'я дитини (мін. 2 символи)',
         phoneLabel2:    'Ваш телефон',
+        phoneError:     'Введіть коректний номер — 9 цифр після +380',
         ageLabel:       'Вік',
         years:          'років',
         orWrite:        'або напишіть нам напряму',
@@ -2571,9 +2581,11 @@ ru: {
         emailLabel:     'Почта',
         telegramLabel:  'Telegram',
         socialLabel:    'Следите за нами',
-        nameLabel:      'Ваше имя',
-        namePlaceholder:'Например: Иван',
+        nameLabel:      'Имя ребёнка',
+        namePlaceholder:'Например: Алёна',
+        nameError:      'Введите имя ребёнка (мин. 2 символа)',
         phoneLabel2:    'Ваш телефон',
+        phoneError:     'Введите корректный номер — 9 цифр после +380',
         ageLabel:       'Возраст',
         years:          'лет',
         orWrite:        'или напишите нам напрямую',
@@ -2628,6 +2640,7 @@ function app() {
             childAge: '',
             format:   'group',
         },
+        formErrors:  { name: false, phone: false },
         modalOpen:   false,
         formLoading: false,
         formSuccess: false,
@@ -2685,7 +2698,14 @@ function app() {
 
         /* ── form submission → Google Sheets ── */
         async submitForm() {
-            if (!this.formData.name.trim() || !this.formData.phone.trim()) return;
+            const nameOk = this.formData.name.trim().length >= 2;
+            let d = this.formData.phone.replace(/\D/g, '');
+            if (d.length === 12 && d.startsWith('380')) d = d.slice(3);
+            else if (d.length === 10 && d.startsWith('0')) d = d.slice(1);
+            const phoneOk = d.length === 9;
+            this.formErrors.name  = !nameOk;
+            this.formErrors.phone = !phoneOk;
+            if (!nameOk || !phoneOk) return;
 
             this.formLoading = true;
             this.formError   = false;
@@ -2715,7 +2735,8 @@ function app() {
                  */
                 await fetch(SCRIPT_URL, { method: 'POST', body, mode: 'no-cors' });
                 this.formSuccess = true;
-                this.formData = { name: '', phone: '', childAge: '', format: 'group' };
+                this.formData   = { name: '', phone: '', childAge: '', format: 'group' };
+                this.formErrors = { name: false, phone: false };
             } catch (e) {
                 this.formError = true;
             }
