@@ -365,10 +365,6 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- ═══ GTM noscript — placeholder ═══ -->
-<!--
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
--->
 
 <!-- ═══════════════════════ HEADER ═══════════════════════ -->
 <header
@@ -385,11 +381,11 @@
 
             <!-- Desktop nav -->
             <div class="hidden md:flex items-center gap-6">
-                <a href="#about"    class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.about"></a>
-                <a href="#program"  class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.program"></a>
-                <a href="#prices"   class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices"></a>
-                <a href="#reviews"  class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.reviews"></a>
-                <a href="#contacts" class="text-base font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.contacts"></a>
+                <a href="#about"    class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.about"></a>
+                <a href="#program"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.program"></a>
+                <a href="#prices"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices"></a>
+                <a href="#reviews"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.reviews"></a>
+                <a href="#contacts" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.contacts"></a>
             </div>
 
             <!-- Right side -->
@@ -418,7 +414,7 @@
 
                 <!-- CTA button desktop -->
                 <a href="#" @click.prevent="modalOpen=true"
-                   class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-base font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5"
+                   class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-base font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5"
                    x-text="t.nav.trial">
                 </a>
 
@@ -658,7 +654,7 @@
 
                         <div class="hidden md:block bg-fox-50 rounded-xl px-4 py-3">
                             <p class="text-2xs font-black text-fox-600 uppercase tracking-widest mb-1" x-text="t.ages.resultLabel"></p>
-                            <p class="text-sm text-gray-700 leading-snug" x-text="age.result"></p>
+                            <p class="text-sm text-gray-700 leading-tight" x-text="age.result"></p>
                         </div>
                     </div>
                 </div>
@@ -1091,7 +1087,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.pricing.label"></span>
+            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.pricing.label"></span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.pricing.title"></h2>
             <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.pricing.subtitle"></p>
         </div>
@@ -1740,7 +1736,7 @@
                         <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
                         <input x-model="formData.childAge" type="number" min="6" max="16"
                                placeholder="9"
-                               class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200">
+                               class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-xs font-medium transition-all duration-200">
                     </div>
                 </div>
 
@@ -1947,7 +1943,7 @@ uk: {
         { value: '500+', label: 'учнів навчаються' },
         { value: '15',   label: 'вчителів-ентузіастів' },
         { value: '4.9',  label: 'середній рейтинг ⭐' },
-        { value: '12+',  label: 'роки досвіду' },
+        { value: '12+',  label: 'років досвіду' },
     ],
 
     ages: {
@@ -2743,6 +2739,9 @@ function app() {
                  */
                 await fetch(SCRIPT_URL, { method: 'POST', body, mode: 'no-cors' });
                 this.formSuccess = true;
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'generate_lead', { event_category: 'form', event_label: 'trial_lesson' });
+                }
                 this.formData   = { name: '', phone: '', childAge: '', format: 'group' };
                 this.formErrors = { name: false, phone: false };
             } catch (e) {
