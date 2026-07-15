@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Блог FluentFox — корисні статті про англійську для дітей</title>
+<meta name="description" content="Практичні поради від вчителів FluentFox: як навчити дитину англійської, підготовка до НМТ, мотивація, вік початку навчання."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://fluent-fox.site/blog/"/>
+<link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/"/>
+<link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/?lang=ru"/>
+<link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Блог FluentFox — корисні статті про англійську для дітей"/>
+<meta property="og:description" content="Практичні поради від вчителів FluentFox для батьків та учнів."/>
+<meta property="og:url" content="https://fluent-fox.site/blog/"/>
+<meta property="og:image" content="https://fluent-fox.site/og-image.jpg"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>"/>
+<meta name="theme-color" content="#FF6B35"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: {
+      fox: { 50:'#FFF5EF',100:'#FFE8D6',200:'#FFCAAA',500:'#FF6B35',600:'#E54E1A',700:'#BF3C0F' },
+      violet: { 50:'#F4F0FF',500:'#7C3AED',600:'#6D28D9' },
+      cream: '#FFFBF7',
+    },
+    fontFamily: { sans: ['Nunito','sans-serif'] },
+    boxShadow: {
+      'fox-sm':'0 4px 14px rgba(255,107,53,0.12)',
+      'fox':'0 8px 24px rgba(255,107,53,0.18)',
+      'fox-lg':'0 20px 40px rgba(255,107,53,0.22)',
+    },
+    borderRadius: { '3xl':'1.5rem','4xl':'2rem' },
+  }}
+}
+</script>
+<script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<style>
+[x-cloak]{display:none!important}
+.gradient-text{background:linear-gradient(135deg,#FF6B35,#E54E1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.card-lift{transition:transform .3s ease,box-shadow .3s ease}
+.card-lift:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(255,107,53,0.18)}
+</style>
+</head>
+<body x-data="blogApp()" x-cloak class="font-sans antialiased bg-cream text-gray-800">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="text-3xl group-hover:scale-110 transition-transform duration-200">🦊</span>
+        <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="/#about"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
+        <a href="/#prices"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a href="/#reviews" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
+        <a href="/blog/"    class="text-sm font-semibold text-fox-500" x-text="lang==='uk'?'Блог':'Блог'"></a>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
+          <button @click="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
+          <button @click="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+        </div>
+        <a href="/#form" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
+        <button @click="menuOpen=!menuOpen" class="md:hidden p-2 text-gray-700" aria-label="Menu">
+          <svg x-show="!menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg x-show="menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div x-show="menuOpen" x-transition class="md:hidden pb-4 border-t border-gray-100">
+      <div class="flex flex-col gap-1 pt-3">
+        <a href="/#about"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Про нас':'О нас'"></a>
+        <a href="/#prices"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a href="/#reviews" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
+        <a href="/blog/"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-fox-500 hover:bg-fox-50 font-semibold transition-colors text-sm">Блог</a>
+        <a href="/#form" class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm text-sm" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="pt-28 pb-16 bg-gradient-to-b from-fox-50 to-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="lang==='uk'?'Блог FluentFox':'Блог FluentFox'"></span>
+    <h1 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight mb-4" x-text="lang==='uk'?'Корисні статті про англійську для дітей':'Полезные статьи об английском для детей'"></h1>
+    <p class="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed" x-text="lang==='uk'?'Практичні поради від вчителів FluentFox: методи навчання, підготовка до іспитів, мотивація та багато іншого':'Практические советы от учителей FluentFox: методы обучения, подготовка к экзаменам, мотивация и многое другое'"></p>
+  </div>
+</section>
+
+<!-- Articles grid -->
+<section class="py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <template x-for="post in articles" :key="post.slug">
+        <a :href="post.slug + (lang==='ru' ? '?lang=ru' : '')"
+           class="card-lift bg-white border-2 border-gray-100 rounded-3xl overflow-hidden flex flex-col shadow-sm hover:border-fox-100">
+          <!-- Card color bar -->
+          <div class="h-2 w-full" :class="post.accent === 'fox' ? 'bg-gradient-to-r from-fox-500 to-fox-600' : 'bg-gradient-to-r from-violet-500 to-violet-600'"></div>
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-start justify-between mb-4">
+              <span class="text-3xl leading-none" x-text="post.emoji"></span>
+              <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk' ? post.category : post.categoryRu"></span>
+            </div>
+            <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" x-text="lang==='uk' ? post.title : post.titleRu"></h2>
+            <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk' ? post.excerpt : post.excerptRu"></p>
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+              <div class="flex items-center gap-2 text-xs text-gray-400">
+                <span x-text="lang==='uk' ? post.date : post.dateRu"></span>
+                <span>·</span>
+                <span x-text="lang==='uk' ? post.readTime : post.readTimeRu"></span>
+              </div>
+              <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+            </div>
+          </div>
+        </a>
+      </template>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="py-16 bg-fox-50">
+  <div class="max-w-3xl mx-auto px-4 text-center">
+    <div class="text-4xl mb-4">🦊</div>
+    <h2 class="text-2xl md:text-3xl font-black text-gray-900 mb-3 leading-tight" x-text="lang==='uk'?'Хочете результату, а не просто статей?':'Хотите результата, а не просто статей?'"></h2>
+    <p class="text-gray-500 mb-6" x-text="lang==='uk'?'Запишіться на безкоштовний пробний урок — ми підберемо вчителя та програму під вашу дитину':'Запишитесь на бесплатный пробный урок — мы подберём учителя и программу под вашего ребёнка'"></p>
+    <a href="/#form" class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg transition-all duration-200 hover:-translate-y-1" x-text="lang==='uk'?'Безкоштовний пробний урок':'Бесплатный пробный урок'"></a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-950 text-gray-400 py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-2xl">🦊</span>
+        <span class="text-xl font-black text-white">Fluent<span class="text-fox-400">Fox</span></span>
+      </a>
+      <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <a href="/" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
+        <a href="/#prices" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a href="/blog/" class="text-fox-400">Блог</a>
+        <a href="/privacy.html" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Конфіденційність':'Конфиденциальность'"></a>
+      </div>
+      <p class="text-xs text-gray-600">© 2026 FluentFox</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const articles = [
+  {
+    slug: 'yak-navchyty-dytynu-anhliyskoyi-onlayn.html',
+    emoji: '📚', accent: 'fox',
+    date: '15 липня 2026', dateRu: '15 июля 2026',
+    readTime: '7 хв читання', readTimeRu: '7 мин чтения',
+    category: 'Методи навчання', categoryRu: 'Методы обучения',
+    title: 'Як навчити дитину англійської онлайн: 7 методів, які дають результат',
+    titleRu: 'Как научить ребёнка английскому онлайн: 7 методов, которые работают',
+    excerpt: 'Чому одні діти вчать англійську із задоволенням, а інші відмовляються відкривати підручник? Розбираємо сім перевірених підходів.',
+    excerptRu: 'Почему одни дети учат английский с удовольствием, а другие отказываются открывать учебник? Разбираем семь проверенных подходов.',
+  },
+  {
+    slug: 'z-yakoho-viku-pochynaty-anhliyskoyu.html',
+    emoji: '🎂', accent: 'violet',
+    date: '12 липня 2026', dateRu: '12 июля 2026',
+    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
+    category: 'Вік і розвиток', categoryRu: 'Возраст и развитие',
+    title: 'З якого віку починати вивчати англійську: відповідає педагог',
+    titleRu: 'С какого возраста начинать учить английский: отвечает педагог',
+    excerpt: 'Батьки питають: «Чи не рано?» або «Чи не пізно?». Що кажуть дослідження та наш досвід роботи з 500+ дітьми.',
+    excerptRu: 'Родители спрашивают: «Не рано?» или «Не поздно?». Что говорят исследования и наш опыт работы с 500+ детьми.',
+  },
+  {
+    slug: 'pidhotovka-do-nmt-anhliyskoyi-2025.html',
+    emoji: '📝', accent: 'fox',
+    date: '10 липня 2026', dateRu: '10 июля 2026',
+    readTime: '8 хв читання', readTimeRu: '8 мин чтения',
+    category: 'НМТ та іспити', categoryRu: 'НМТ и экзамены',
+    title: 'Підготовка до НМТ з англійської 2025: покроковий план',
+    titleRu: 'Подготовка к НМТ по английскому 2025: пошаговый план',
+    excerpt: 'НМТ з англійської здають понад 200 тисяч абітурієнтів щороку. Як підготуватися системно — навіть за 6 місяців.',
+    excerptRu: 'НМТ по английскому сдают более 200 тысяч абитуриентов ежегодно. Как подготовиться системно — даже за 6 месяцев.',
+  },
+  {
+    slug: 'hrupovi-chy-indyvidualni-zanyattya.html',
+    emoji: '👥', accent: 'violet',
+    date: '8 липня 2026', dateRu: '8 июля 2026',
+    readTime: '5 хв читання', readTimeRu: '5 мин чтения',
+    category: 'Формат занять', categoryRu: 'Формат занятий',
+    title: 'Групові або індивідуальні заняття: що вибрати для дитини',
+    titleRu: 'Групповые или индивидуальные занятия: что выбрать для ребёнка',
+    excerpt: 'Ціна, темп, соціалізація — порівнюємо два формати за шістьма критеріями та розповідаємо, коли що краще.',
+    excerptRu: 'Цена, темп, социализация — сравниваем два формата по шести критериям и объясняем, когда что лучше.',
+  },
+  {
+    slug: 'yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html',
+    emoji: '🚀', accent: 'fox',
+    date: '5 липня 2026', dateRu: '5 июля 2026',
+    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
+    category: 'Мотивація', categoryRu: 'Мотивация',
+    title: 'Як мотивувати дитину вивчати англійську: 8 прийомів для батьків',
+    titleRu: 'Как мотивировать ребёнка учить английский: 8 приёмов для родителей',
+    excerpt: 'Дитина знову відмовляється йти на урок? Реальні прийоми без теоретизування — тільки те, що перевірили наші вчителі.',
+    excerptRu: 'Ребёнок снова отказывается идти на урок? Реальные приёмы без теоретизирования — только то, что проверили наши учителя.',
+  },
+];
+
+function blogApp() {
+  return {
+    lang: new URLSearchParams(location.search).get('lang') || 'uk',
+    menuOpen: false,
+    setLang(l) {
+      this.lang = l;
+      const url = new URL(location.href);
+      if (l === 'ru') url.searchParams.set('lang','ru');
+      else url.searchParams.delete('lang');
+      history.replaceState(null,'',url.toString());
+      document.documentElement.lang = l;
+    }
+  };
+}
+</script>
+</body>
+</html>

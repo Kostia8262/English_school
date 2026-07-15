@@ -386,6 +386,7 @@
                 <a href="#prices"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices"></a>
                 <a href="#reviews"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.reviews"></a>
                 <a href="#contacts" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.contacts"></a>
+                <a href="blog/"     class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.blog"></a>
             </div>
 
             <!-- Right side -->
@@ -438,6 +439,7 @@
                 <a href="#prices"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.prices"></a>
                 <a href="#reviews"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.reviews"></a>
                 <a href="#contacts" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.contacts"></a>
+                <a href="blog/"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.blog"></a>
                 <a href="#" @click.prevent="menuOpen=false; modalOpen=true"
                    class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200"
                    x-text="t.nav.trial"></a>
@@ -1380,6 +1382,82 @@
 </section>
 
 
+<!-- ═══════════════════════ BLOG PREVIEW ═══════════════════════ -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-14">
+            <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="lang==='uk'?'Корисні статті':'Полезные статьи'"></span>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3 leading-tight" x-text="lang==='uk'?'Поради батькам від наших вчителів':'Советы родителям от наших учителей'"></h2>
+            <p class="text-gray-500 text-lg" x-text="lang==='uk'?'Практичні матеріали про навчання дітей англійській мові':'Практические материалы об обучении детей английскому языку'"></p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-10">
+            <!-- Card 1 -->
+            <a :href="lang==='uk'?'blog/yak-navchyty-dytynu-anhliyskoyi-onlayn.html':'blog/yak-navchyty-dytynu-anhliyskoyi-onlayn.html?lang=ru'"
+               class="card-lift bg-white border-2 border-gray-100 rounded-3xl overflow-hidden flex flex-col shadow-sm hover:border-fox-100">
+                <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-3xl leading-none">📚</span>
+                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Методи навчання':'Методы обучения'"></span>
+                    </div>
+                    <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як навчити дитину англійської онлайн: 7 методів, які дають результат':'Как научить ребёнка английскому онлайн: 7 методов, которые работают'"></h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Чому одні діти вчать із задоволенням, а інші відмовляються? Підходи, які справді працюють.':'Почему одни дети учат с удовольствием, а другие отказываются? Подходы, которые работают.'"></p>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'15 лип 2026':'15 июл 2026'"></span>
+                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 2 -->
+            <a :href="lang==='uk'?'blog/pidhotovka-do-nmt-anhliyskoyi-2025.html':'blog/pidhotovka-do-nmt-anhliyskoyi-2025.html?lang=ru'"
+               class="card-lift bg-white border-2 border-gray-100 rounded-3xl overflow-hidden flex flex-col shadow-sm hover:border-fox-100">
+                <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-3xl leading-none">📝</span>
+                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'НМТ та іспити':'НМТ и экзамены'"></span>
+                    </div>
+                    <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Підготовка до НМТ з англійської 2025: покроковий план':'Подготовка к НМТ по английскому 2025: пошаговый план'"></h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Структура іспиту, топ-теми з граматики та стратегія підготовки від вчителів FluentFox.':'Структура экзамена, ключевые темы и стратегия подготовки от учителей FluentFox.'"></p>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'10 лип 2026':'10 июл 2026'"></span>
+                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Card 3 -->
+            <a :href="lang==='uk'?'blog/yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html':'blog/yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html?lang=ru'"
+               class="card-lift bg-white border-2 border-gray-100 rounded-3xl overflow-hidden flex flex-col shadow-sm hover:border-fox-100">
+                <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="text-3xl leading-none">🚀</span>
+                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Мотивація':'Мотивация'"></span>
+                    </div>
+                    <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як мотивувати дитину вивчати англійську: 8 прийомів для батьків':'Как мотивировать ребёнка учить английский: 8 приёмов для родителей'"></h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Дитина відмовляється йти на урок? Реальні прийоми без теоретизування.':'Ребёнок отказывается идти на урок? Реальные приёмы без теоретизирования.'"></p>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'5 лип 2026':'5 июл 2026'"></span>
+                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="text-center">
+            <a href="blog/" class="inline-flex items-center gap-2 bg-white border-2 border-fox-200 text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-sm">
+                <span x-text="lang==='uk'?'Усі статті':'Все статьи'"></span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+        </div>
+
+    </div>
+</section>
+
 <!-- ═══════════════════════ CTA BANNER ═══════════════════════ -->
 <section class="py-10 md:py-16 bg-gradient-to-br from-fox-500 to-fox-700 relative overflow-hidden">
     <!-- Quality SVG illustrations (desktop only — hidden on mobile to avoid overlap) -->
@@ -1835,6 +1913,7 @@
                     <li><a href="#program"  class="hover:text-fox-400 transition-colors" x-text="t.nav.program"></a></li>
                     <li><a href="#prices"   class="hover:text-fox-400 transition-colors" x-text="t.nav.prices"></a></li>
                     <li><a href="#reviews"  class="hover:text-fox-400 transition-colors" x-text="t.nav.reviews"></a></li>
+                    <li><a href="blog/"     class="hover:text-fox-400 transition-colors" x-text="t.nav.blog"></a></li>
                 </ul>
             </div>
 
@@ -1922,6 +2001,7 @@ uk: {
         teachers: 'Вчителі',
         reviews:  'Відгуки',
         contacts: 'Контакти',
+        blog:     'Блог',
         trial:    'Пробний урок',
     },
 
@@ -2276,6 +2356,7 @@ ru: {
         teachers: 'Учителя',
         reviews:  'Отзывы',
         contacts: 'Контакты',
+        blog:     'Блог',
         trial:    'Пробный урок',
     },
 
