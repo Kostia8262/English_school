@@ -147,13 +147,16 @@
     <script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
     <!-- ═══ Schema.org ═══ -->
+
+    <!-- 1. EducationalOrganization + AggregateRating + Reviews -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
         "name": "FluentFox",
         "url": "https://fluent-fox.site",
-        "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років",
+        "logo": "https://fluent-fox.site/og-image.jpg",
+        "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років. Групові та індивідуальні заняття, ігровий підхід, досвідчені вчителі.",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Дніпро",
@@ -163,7 +166,7 @@
             "@type": "ContactPoint",
             "telephone": "+380954624672",
             "contactType": "customer service",
-            "availableLanguage": ["Ukrainian","Russian"]
+            "availableLanguage": ["Ukrainian", "Russian"]
         },
         "sameAs": [
             "https://www.instagram.com/fluent.fox.study/",
@@ -174,12 +177,58 @@
             "@type": "AggregateRating",
             "ratingValue": "4.9",
             "bestRating": "5",
+            "worstRating": "1",
             "ratingCount": "6",
             "reviewCount": "6"
-        }
+        },
+        "review": [
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Ірина К." },
+                "datePublished": "2026-03-15",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Перед першим заняттям Соня тиснула мене за руку і шептала «мамо, не хочу». Після третього уроку — сама сіла за планшет і повторювала слова з вчителькою. Зараз вже 4-й місяць, і вона засмучується, якщо заняття скасовують."
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Олег Т." },
+                "datePublished": "2026-04-02",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Максим готувався до Cambridge KET і шкільних іспитів одночасно. Вчителька склала окремий план під кожне завдання, після кожного уроку надсилала розбір помилок. Склав KET на Merit, а в школі отримав річну «відмінно». Дуже структурований підхід."
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Марина В." },
+                "datePublished": "2026-05-10",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Готувались до НМТ з нуля за 4 місяці. Вчителька підібрала програму під конкретні завдання іспиту, щотижня розбирали помилки. Дарина склала на 183 бали. Вже записую молодшого сина."
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Тетяна Л." },
+                "datePublished": "2026-04-20",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Льоша соромився говорити навіть зі мною по-українськи, а тут — англійська! Думала, нічого не вийде. Зараз вчителька в школі питає, де він так добре навчився. Не знаю як FluentFox це робить, але це точно працює."
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Андрій С." },
+                "datePublished": "2026-06-01",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Аліна займалась рік у групі. Спочатку боялась відкрити рота, а тепер за сімейною вечерею виправляє мою вимову. На день народження попросила додаткові заняття. Ось такий результат."
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Наталія Б." },
+                "datePublished": "2026-05-28",
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Записала відразу двох синів у різні групи — зі знижкою на другу дитину виходить вигідно. Обоє займаються вже 7 місяців. Старший читає в оригіналі, а молодший просить перемикати мультики на англійську і сміється, що я не розумію."
+            }
+        ]
     }
     </script>
 
+    <!-- 2. FAQPage -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -188,17 +237,17 @@
             {
                 "@type": "Question",
                 "name": "З якого віку можна записатись?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід." }
+                "acceptedAnswer": { "@type": "Answer", "text": "Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід: ігровий для малюків, комунікативний для школярів, профільний для підлітків." }
             },
             {
                 "@type": "Question",
                 "name": "Що потрібно для занять онлайн?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Комп'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet." }
+                "acceptedAnswer": { "@type": "Answer", "text": "Комп'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet. Ніяких додаткових програм встановлювати не треба." }
             },
             {
                 "@type": "Question",
                 "name": "Як проходять групові заняття?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання. Будь-який рівень — від нуля до просунутого." }
+                "acceptedAnswer": { "@type": "Answer", "text": "Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання в онлайн-платформі. Будь-який рівень — від нуля до просунутого." }
             },
             {
                 "@type": "Question",
@@ -208,14 +257,92 @@
             {
                 "@type": "Question",
                 "name": "Коли буде видно перший результат?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Перші помітні результати — вже після 1 місяця. За 3–6 місяців — впевнене спілкування." }
+                "acceptedAnswer": { "@type": "Answer", "text": "Перші помітні результати — вже після 1 місяця регулярних занять. За 3–6 місяців — впевнене спілкування та помітний ріст рівня." }
             },
             {
                 "@type": "Question",
                 "name": "Чи є знижки та акції?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім'ї — 15% знижки на другу дитину." }
+                "acceptedAnswer": { "@type": "Answer", "text": "Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім'ї — 15% знижки на другу дитину. Слідкуйте за нашим Instagram!" }
             }
         ]
+    }
+    </script>
+
+    <!-- 3. Course -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Онлайн-курс англійської мови для дітей та підлітків",
+        "description": "Групові та індивідуальні онлайн-заняття з англійської для дітей 6–18 років. Ігровий підхід, малі групи до 6 учнів, досвідчені вчителі. Рівні A0–B2.",
+        "url": "https://fluent-fox.site/#prices",
+        "provider": {
+            "@type": "EducationalOrganization",
+            "name": "FluentFox",
+            "url": "https://fluent-fox.site"
+        },
+        "educationalLevel": "Beginner to Upper-Intermediate",
+        "teaches": "English language communication, grammar, reading, listening, writing for children aged 6–18",
+        "availableLanguage": "Ukrainian",
+        "inLanguage": "uk",
+        "courseMode": "online",
+        "hasCourseInstance": [
+            {
+                "@type": "CourseInstance",
+                "courseMode": "online",
+                "courseWorkload": "PT1H30M",
+                "name": "Групові заняття 6–8 років",
+                "description": "Ігрові уроки англійської для дітей 6–8 років. Мета: рівень A1. 150+ занять.",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "360",
+                    "priceCurrency": "UAH",
+                    "availability": "https://schema.org/InStock"
+                }
+            },
+            {
+                "@type": "CourseInstance",
+                "courseMode": "online",
+                "courseWorkload": "PT1H30M",
+                "name": "Групові заняття 9–12 років",
+                "description": "Комунікативна програма для дітей 9–12 років. Мета: рівень B1. 150+ занять.",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "360",
+                    "priceCurrency": "UAH",
+                    "availability": "https://schema.org/InStock"
+                }
+            },
+            {
+                "@type": "CourseInstance",
+                "courseMode": "online",
+                "courseWorkload": "PT1H30M",
+                "name": "Групові заняття 13–18 років",
+                "description": "Підготовка до НМТ та Cambridge іспитів для підлітків 13–18 років. Мета: рівень B2.",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "360",
+                    "priceCurrency": "UAH",
+                    "availability": "https://schema.org/InStock"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- 4. WebSite -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "FluentFox",
+        "url": "https://fluent-fox.site",
+        "inLanguage": ["uk", "ru"],
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://fluent-fox.site/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
     }
     </script>
 
