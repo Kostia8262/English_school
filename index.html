@@ -74,6 +74,11 @@
         tailwind.config = {
             theme: {
                 extend: {
+                    // ── Breakpoints ────────────────────────────────────────
+                    screens: {
+                        nav: '1100px', // full desktop nav fits from here (phone + lang + CTA)
+                    },
+
                     // ── Brand colours ──────────────────────────────────────
                     colors: {
                         fox: {
@@ -498,7 +503,7 @@
     :class="(scrolled || menuOpen) ? 'shadow-md bg-white/95 backdrop-blur-sm' : 'bg-transparent'"
     class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16 md:h-18">
+        <div class="flex items-center justify-between h-16 nav:h-18">
 
             <!-- Logo -->
             <a href="#" class="flex items-center gap-2 group">
@@ -507,7 +512,7 @@
             </a>
 
             <!-- Desktop nav -->
-            <div class="hidden md:flex items-center gap-6">
+            <div class="hidden nav:flex items-center gap-6">
                 <a href="#about"    class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.about"></a>
                 <a href="#program"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.program"></a>
                 <a href="#prices"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices"></a>
@@ -519,13 +524,13 @@
             <!-- Right side -->
             <div class="flex items-center gap-3">
                 <!-- Phone: number on mobile, column on desktop -->
-                <a href="tel:+380954624672" class="flex md:hidden text-xs font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight whitespace-nowrap">095 462-46-72</a>
-                <div class="hidden md:flex flex-col items-end gap-0 leading-tight mr-1">
+                <a href="tel:+380954624672" class="flex nav:hidden text-xs font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight whitespace-nowrap">095 462-46-72</a>
+                <div class="hidden nav:flex flex-col items-end gap-0 leading-tight mr-1">
                     <a href="tel:+380954624672" class="text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight">+38 (095) 462-46-72</a>
-                    <a href="tel:+380682522876" class="hidden lg:block text-sm text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
+                    <a href="tel:+380682522876" class="hidden nav:block text-sm text-gray-400 hover:text-fox-500 transition-colors tracking-tight">+38 (068) 252-28-76</a>
                 </div>
                 <!-- Language switcher: desktop only -->
-                <div class="hidden md:flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
+                <div class="hidden nav:flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
                     <button
                         @click="setLang('uk')"
                         :class="lang==='uk' ? 'bg-white shadow text-fox-600' : 'text-gray-400 hover:text-gray-600'"
@@ -542,12 +547,12 @@
 
                 <!-- CTA button desktop -->
                 <a href="#" @click.prevent="modalOpen=true"
-                   class="hidden md:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-base font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5"
+                   class="hidden nav:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-base font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5"
                    x-text="t.nav.trial">
                 </a>
 
                 <!-- Hamburger -->
-                <button @click="menuOpen=!menuOpen" class="md:hidden p-2 transition-colors text-gray-700" aria-label="Menu">
+                <button @click="menuOpen=!menuOpen" class="nav:hidden p-2 transition-colors text-gray-700" aria-label="Menu">
                     <svg x-show="!menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -559,7 +564,7 @@
         </div>
 
         <!-- Mobile menu -->
-        <div x-show="menuOpen" x-transition class="md:hidden pb-4 border-t border-gray-100 mobile-menu-enter">
+        <div x-show="menuOpen" x-transition class="nav:hidden pb-4 border-t border-gray-100 mobile-menu-enter">
             <div class="flex flex-col gap-1 pt-3">
                 <a href="#about"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.about"></a>
                 <a href="#program"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.program"></a>
