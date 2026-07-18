@@ -4,9 +4,17 @@
   <!-- Main -->
   <url>
     <loc>https://fluent-fox.site/</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Main (Russian) -->
+  <url>
+    <loc>https://fluent-fox.site/?lang=ru</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- Blog listing -->
