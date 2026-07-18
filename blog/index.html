@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://fluent-fox.site/blog/"/>
 <meta property="og:image" content="https://fluent-fox.site/og-image.jpg"/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>"/>
-<meta name="theme-color" content="#FF6B35"/>
+<meta name="theme-color" content="#030712"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -30,8 +30,9 @@
 tailwind.config = {
   theme: { extend: {
     colors: {
-      fox: { 50:'#FFF5EF',100:'#FFE8D6',200:'#FFCAAA',500:'#FF6B35',600:'#E54E1A',700:'#BF3C0F' },
+      fox: { 50:'#FFF5EF',100:'#FFE8D6',200:'#FFCAAA',400:'#FF7A45',500:'#FF6B35',600:'#E54E1A',700:'#BF3C0F' },
       violet: { 50:'#F4F0FF',500:'#7C3AED',600:'#6D28D9' },
+      gray: { 950:'#030712' },
       cream: '#FFFBF7',
     },
     fontFamily: { sans: ['Nunito','sans-serif'] },
@@ -50,43 +51,64 @@ tailwind.config = {
 .gradient-text{background:linear-gradient(135deg,#FF6B35,#E54E1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .card-lift{transition:transform .3s ease,box-shadow .3s ease}
 .card-lift:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(255,107,53,0.18)}
+.scrollbar-hide::-webkit-scrollbar{display:none}
+.scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
 </style>
 </head>
-<body x-data="blogApp()" x-cloak class="font-sans antialiased bg-cream text-gray-800">
+<body x-data="blogApp()" x-cloak class="font-sans antialiased bg-gray-950 text-gray-300">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
+<noscript>
+<main style="max-width:800px;margin:0 auto;padding:2rem 1rem;font-family:sans-serif;line-height:1.6;color:#e5e7eb;background:#030712">
+  <h1>Блог FluentFox — корисні статті про англійську для дітей</h1>
+  <p>Практичні поради від вчителів FluentFox: методи навчання, підготовка до іспитів, мотивація, вік початку навчання, формат занять.</p>
+  <ul>
+    <li><a href="yak-navchyty-dytynu-anhliyskoyi-onlayn.html">Як навчити дитину англійської онлайн: 7 методів, які дають результат</a></li>
+    <li><a href="z-yakoho-viku-pochynaty-anhliyskoyu.html">З якого віку починати вивчати англійську: відповідає педагог</a></li>
+    <li><a href="pidhotovka-do-nmt-anhliyskoyi-2025.html">Підготовка до НМТ з англійської 2025: покроковий план</a></li>
+    <li><a href="hrupovi-chy-indyvidualni-zanyattya.html">Групові або індивідуальні заняття: що вибрати для дитини</a></li>
+    <li><a href="yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html">Як мотивувати дитину вивчати англійську: 8 прийомів для батьків</a></li>
+    <li><a href="skilky-koshtuye-anhliyska-dytyni-onlayn.html">Скільки коштує англійська для дитини онлайн у 2026 році</a></li>
+    <li><a href="cambridge-yle-ket-pet-navischo-dytyni.html">Що таке Cambridge YLE, KET і PET і навіщо вони дитині</a></li>
+    <li><a href="skilky-chasu-zagovoryty-anhliyskoyu.html">Скільки часу потрібно дитині, щоб заговорити англійською</a></li>
+    <li><a href="skilky-domashky-z-anhliyskoyi.html">Скільки домашки з англійської має бути у дитини</a></li>
+    <li><a href="dytyna-boyitsya-hovoryty-anhliyskoyu.html">Дитина боїться говорити англійською: що робити батькам</a></li>
+  </ul>
+</main>
+</noscript>
+
 <!-- Header -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+<header class="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-sm border-b border-white/10">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="/" class="flex items-center gap-2 group">
         <span class="text-3xl group-hover:scale-110 transition-transform duration-200">🦊</span>
-        <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
+        <span class="text-2xl font-black text-white">Fluent<span class="gradient-text">Fox</span></span>
       </a>
       <div class="hidden md:flex items-center gap-6">
-        <a href="/#about"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
-        <a href="/#prices"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a href="/#reviews" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
-        <a href="/blog/"    class="text-sm font-semibold text-fox-500" x-text="lang==='uk'?'Блог':'Блог'"></a>
+        <a href="/#about"   class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
+        <a href="/#prices"  class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a href="/#reviews" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
+        <a href="/blog/"    class="text-sm font-semibold text-fox-400" x-text="lang==='uk'?'Блог':'Блог'"></a>
       </div>
       <div class="flex items-center gap-3">
-        <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <button @click="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
-          <button @click="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+        <div class="flex items-center bg-white/10 rounded-full p-0.5 text-sm font-bold">
+          <button @click="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-200'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
+          <button @click="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-200'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
         </div>
         <a href="/#form" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
-        <button @click="menuOpen=!menuOpen" class="md:hidden p-2 text-gray-700" aria-label="Menu">
+        <button @click="menuOpen=!menuOpen" class="md:hidden p-2 text-gray-300" aria-label="Menu">
           <svg x-show="!menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
           <svg x-show="menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
     </div>
-    <div x-show="menuOpen" x-transition class="md:hidden pb-4 border-t border-gray-100">
+    <div x-show="menuOpen" x-transition class="md:hidden pb-4 border-t border-white/10">
       <div class="flex flex-col gap-1 pt-3">
-        <a href="/#about"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Про нас':'О нас'"></a>
-        <a href="/#prices"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a href="/#reviews" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
-        <a href="/blog/"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-fox-500 hover:bg-fox-50 font-semibold transition-colors text-sm">Блог</a>
+        <a href="/#about"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Про нас':'О нас'"></a>
+        <a href="/#prices"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a href="/#reviews" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
+        <a href="/blog/"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-fox-400 hover:bg-white/5 font-semibold transition-colors text-sm">Блог</a>
         <a href="/#form" class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm text-sm" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
       </div>
     </div>
@@ -94,21 +116,35 @@ tailwind.config = {
 </header>
 
 <!-- Hero -->
-<section class="pt-28 pb-16 bg-gradient-to-b from-fox-50 to-white">
+<section class="pt-28 pb-16 bg-gradient-to-b from-gray-950 to-gray-950" style="background:radial-gradient(ellipse at 75% 15%, rgba(124,58,237,0.22) 0%, transparent 55%), radial-gradient(ellipse at 15% 85%, rgba(255,107,53,0.16) 0%, transparent 50%), #030712;">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="lang==='uk'?'Блог FluentFox':'Блог FluentFox'"></span>
-    <h1 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight mb-4" x-text="lang==='uk'?'Корисні статті про англійську для дітей':'Полезные статьи об английском для детей'"></h1>
-    <p class="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed" x-text="lang==='uk'?'Практичні поради від вчителів FluentFox: методи навчання, підготовка до іспитів, мотивація та багато іншого':'Практические советы от учителей FluentFox: методы обучения, подготовка к экзаменам, мотивация и многое другое'"></p>
+    <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="lang==='uk'?'Блог FluentFox':'Блог FluentFox'"></span>
+    <h1 class="text-3xl md:text-5xl font-black text-white leading-tight mb-4" x-text="lang==='uk'?'Корисні статті про англійську для дітей':'Полезные статьи об английском для детей'"></h1>
+    <p class="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed" x-text="lang==='uk'?'Практичні поради від вчителів FluentFox: методи навчання, підготовка до іспитів, мотивація та багато іншого':'Практические советы от учителей FluentFox: методы обучения, подготовка к экзаменам, мотивация и многое другое'"></p>
+  </div>
+</section>
+
+<!-- Category tabs -->
+<section class="bg-gray-950 pb-8 sticky top-16 z-40 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex gap-2 overflow-x-auto scrollbar-hide -mx-4 px-4">
+      <template x-for="cat in categories" :key="cat.key">
+        <button @click="activeCat = cat.key"
+                :class="activeCat === cat.key ? 'bg-fox-500 text-white' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200'"
+                class="shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200"
+                x-text="lang==='uk' ? cat.label : cat.labelRu"></button>
+      </template>
+    </div>
   </div>
 </section>
 
 <!-- Articles grid -->
-<section class="py-16">
+<section class="py-16 bg-gray-950">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <template x-for="post in articles" :key="post.slug">
+      <template x-for="post in filteredArticles()" :key="post.slug">
         <a :href="post.slug + (lang==='ru' ? '?lang=ru' : '')"
-           class="card-lift bg-white border-2 border-gray-100 rounded-3xl overflow-hidden flex flex-col shadow-sm hover:border-fox-100">
+           class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
           <!-- Card color bar -->
           <div class="h-2 w-full" :class="post.accent === 'fox' ? 'bg-gradient-to-r from-fox-500 to-fox-600' : 'bg-gradient-to-r from-violet-500 to-violet-600'"></div>
           <div class="p-6 flex flex-col flex-1">
@@ -130,21 +166,22 @@ tailwind.config = {
         </a>
       </template>
     </div>
+    <p x-show="filteredArticles().length === 0" class="text-center text-gray-500 py-16" x-text="lang==='uk'?'У цій категорії поки немає статей':'В этой категории пока нет статей'"></p>
   </div>
 </section>
 
 <!-- CTA Banner -->
-<section class="py-16 bg-fox-50">
+<section class="py-16 bg-gradient-to-br from-fox-500 to-fox-700">
   <div class="max-w-3xl mx-auto px-4 text-center">
     <div class="text-4xl mb-4">🦊</div>
-    <h2 class="text-2xl md:text-3xl font-black text-gray-900 mb-3 leading-tight" x-text="lang==='uk'?'Хочете результату, а не просто статей?':'Хотите результата, а не просто статей?'"></h2>
-    <p class="text-gray-500 mb-6" x-text="lang==='uk'?'Запишіться на безкоштовний пробний урок — ми підберемо вчителя та програму під вашу дитину':'Запишитесь на бесплатный пробный урок — мы подберём учителя и программу под вашего ребёнка'"></p>
-    <a href="/#form" class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg transition-all duration-200 hover:-translate-y-1" x-text="lang==='uk'?'Безкоштовний пробний урок':'Бесплатный пробный урок'"></a>
+    <h2 class="text-2xl md:text-3xl font-black text-white mb-3 leading-tight" x-text="lang==='uk'?'Хочете результату, а не просто статей?':'Хотите результата, а не просто статей?'"></h2>
+    <p class="text-orange-100 mb-6" x-text="lang==='uk'?'Запишіться на безкоштовний пробний урок — ми підберемо вчителя та програму під вашу дитину':'Запишитесь на бесплатный пробный урок — мы подберём учителя и программу под вашего ребёнка'"></p>
+    <a href="/#form" class="inline-flex items-center gap-2 bg-white text-fox-600 hover:bg-fox-50 font-black px-7 py-3.5 rounded-full shadow-lg transition-all duration-200 hover:-translate-y-1" x-text="lang==='uk'?'Безкоштовний пробний урок':'Бесплатный пробный урок'"></a>
   </div>
 </section>
 
 <!-- Footer -->
-<footer class="bg-gray-950 text-gray-400 py-10">
+<footer class="bg-gray-950 text-gray-400 py-10 border-t border-white/10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
       <a href="/" class="flex items-center gap-2">
@@ -163,10 +200,19 @@ tailwind.config = {
 </footer>
 
 <script>
+const categories = [
+  { key: 'all',        label: 'Усі',              labelRu: 'Все' },
+  { key: 'methods',    label: 'Методи навчання',   labelRu: 'Методы обучения' },
+  { key: 'age',        label: 'Вік і розвиток',    labelRu: 'Возраст и развитие' },
+  { key: 'exams',      label: 'НМТ та іспити',     labelRu: 'НМТ и экзамены' },
+  { key: 'format',     label: 'Формат занять',     labelRu: 'Формат занятий' },
+  { key: 'motivation', label: 'Мотивація',         labelRu: 'Мотивация' },
+];
+
 const articles = [
   {
     slug: 'yak-navchyty-dytynu-anhliyskoyi-onlayn.html',
-    emoji: '📚', accent: 'fox',
+    emoji: '📚', accent: 'fox', catKey: 'methods',
     date: '15 липня 2026', dateRu: '15 июля 2026',
     readTime: '7 хв читання', readTimeRu: '7 мин чтения',
     category: 'Методи навчання', categoryRu: 'Методы обучения',
@@ -177,7 +223,7 @@ const articles = [
   },
   {
     slug: 'z-yakoho-viku-pochynaty-anhliyskoyu.html',
-    emoji: '🎂', accent: 'violet',
+    emoji: '🎂', accent: 'violet', catKey: 'age',
     date: '12 липня 2026', dateRu: '12 июля 2026',
     readTime: '6 хв читання', readTimeRu: '6 мин чтения',
     category: 'Вік і розвиток', categoryRu: 'Возраст и развитие',
@@ -188,7 +234,7 @@ const articles = [
   },
   {
     slug: 'pidhotovka-do-nmt-anhliyskoyi-2025.html',
-    emoji: '📝', accent: 'fox',
+    emoji: '📝', accent: 'fox', catKey: 'exams',
     date: '10 липня 2026', dateRu: '10 июля 2026',
     readTime: '8 хв читання', readTimeRu: '8 мин чтения',
     category: 'НМТ та іспити', categoryRu: 'НМТ и экзамены',
@@ -199,7 +245,7 @@ const articles = [
   },
   {
     slug: 'hrupovi-chy-indyvidualni-zanyattya.html',
-    emoji: '👥', accent: 'violet',
+    emoji: '👥', accent: 'violet', catKey: 'format',
     date: '8 липня 2026', dateRu: '8 июля 2026',
     readTime: '5 хв читання', readTimeRu: '5 мин чтения',
     category: 'Формат занять', categoryRu: 'Формат занятий',
@@ -210,7 +256,7 @@ const articles = [
   },
   {
     slug: 'yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html',
-    emoji: '🚀', accent: 'fox',
+    emoji: '🚀', accent: 'fox', catKey: 'motivation',
     date: '5 липня 2026', dateRu: '5 июля 2026',
     readTime: '6 хв читання', readTimeRu: '6 мин чтения',
     category: 'Мотивація', categoryRu: 'Мотивация',
@@ -219,12 +265,72 @@ const articles = [
     excerpt: 'Дитина знову відмовляється йти на урок? Реальні прийоми без теоретизування — тільки те, що перевірили наші вчителі.',
     excerptRu: 'Ребёнок снова отказывается идти на урок? Реальные приёмы без теоретизирования — только то, что проверили наши учителя.',
   },
+  {
+    slug: 'skilky-koshtuye-anhliyska-dytyni-onlayn.html',
+    emoji: '💰', accent: 'violet', catKey: 'format',
+    date: '20 липня 2026', dateRu: '20 июля 2026',
+    readTime: '5 хв читання', readTimeRu: '5 мин чтения',
+    category: 'Формат занять', categoryRu: 'Формат занятий',
+    title: 'Скільки коштує англійська для дитини онлайн у 2026 році',
+    titleRu: 'Сколько стоит английский для ребёнка онлайн в 2026 году',
+    excerpt: 'Групові, індивідуальні, розмовні клуби — розбираємо реальні ціни на ринку та від чого вони залежать.',
+    excerptRu: 'Групповые, индивидуальные, разговорные клубы — разбираем реальные цены на рынке и от чего они зависят.',
+  },
+  {
+    slug: 'cambridge-yle-ket-pet-navischo-dytyni.html',
+    emoji: '🏅', accent: 'fox', catKey: 'exams',
+    date: '21 липня 2026', dateRu: '21 июля 2026',
+    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
+    category: 'НМТ та іспити', categoryRu: 'НМТ и экзамены',
+    title: 'Що таке Cambridge YLE, KET і PET і навіщо вони дитині',
+    titleRu: 'Что такое Cambridge YLE, KET и PET и зачем они ребёнку',
+    excerpt: 'Розбираємо різницю між іспитами Cambridge English, з якого віку їх складати і чи потрібні вони, якщо дитина не їде вчитися за кордон.',
+    excerptRu: 'Разбираем разницу между экзаменами Cambridge English, с какого возраста их сдавать и нужны ли они, если ребёнок не едет учиться за границу.',
+  },
+  {
+    slug: 'skilky-chasu-zagovoryty-anhliyskoyu.html',
+    emoji: '⏱', accent: 'violet', catKey: 'age',
+    date: '22 липня 2026', dateRu: '22 июля 2026',
+    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
+    category: 'Вік і розвиток', categoryRu: 'Возраст и развитие',
+    title: 'Скільки часу потрібно дитині, щоб заговорити англійською',
+    titleRu: 'Сколько времени нужно ребёнку, чтобы заговорить по-английски',
+    excerpt: 'Реалістичні терміни за рівнями CEFR і що насправді впливає на швидкість прогресу — крім кількості занять.',
+    excerptRu: 'Реалистичные сроки по уровням CEFR и что на самом деле влияет на скорость прогресса — кроме количества занятий.',
+  },
+  {
+    slug: 'skilky-domashky-z-anhliyskoyi.html',
+    emoji: '✏️', accent: 'fox', catKey: 'methods',
+    date: '23 липня 2026', dateRu: '23 июля 2026',
+    readTime: '5 хв читання', readTimeRu: '5 мин чтения',
+    category: 'Методи навчання', categoryRu: 'Методы обучения',
+    title: 'Скільки домашки з англійської має бути у дитини',
+    titleRu: 'Сколько домашних заданий по английскому должно быть у ребёнка',
+    excerpt: 'Чому «більше вправ» не означає «швидший прогрес» і як виглядає домашка, яка реально працює.',
+    excerptRu: 'Почему «больше упражнений» не значит «быстрее прогресс» и как выглядит домашка, которая реально работает.',
+  },
+  {
+    slug: 'dytyna-boyitsya-hovoryty-anhliyskoyu.html',
+    emoji: '🙈', accent: 'violet', catKey: 'motivation',
+    date: '24 липня 2026', dateRu: '24 июля 2026',
+    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
+    category: 'Мотивація', categoryRu: 'Мотивация',
+    title: 'Дитина боїться говорити англійською: що робити батькам',
+    titleRu: 'Ребёнок боится говорить по-английски: что делать родителям',
+    excerpt: 'Страх помилки — головна причина мовчання на уроках. Прийоми, які знімають цей блок без тиску на дитину.',
+    excerptRu: 'Страх ошибки — главная причина молчания на уроках. Приёмы, которые снимают этот блок без давления на ребёнка.',
+  },
 ];
 
 function blogApp() {
   return {
     lang: new URLSearchParams(location.search).get('lang') || 'uk',
     menuOpen: false,
+    activeCat: 'all',
+    categories,
+    filteredArticles() {
+      return this.activeCat === 'all' ? articles : articles.filter(a => a.catKey === this.activeCat);
+    },
     setLang(l) {
       this.lang = l;
       const url = new URL(location.href);
