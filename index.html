@@ -625,6 +625,8 @@
       <a href="#contacts">Контакти</a> | 
       <a href="blog/">Блог</a>
     </nav>
+    <h2>Партнери</h2>
+    <p><a href="https://mycomputer.education/" target="_blank" rel="noopener">Школа програмування</a> · <a href="https://mycomputer.school/" target="_blank" rel="noopener">Школа дизайну</a></p>
     <p><a href="privacy.html">Політика конфіденційності</a> · <a href="offer.html">Публічна оферта</a> · <a href="terms.html">Правила та умови</a> · <a href="returns.html">Правила повернення</a> · <a href="cookies.html">Політика куків</a></p>
     <p>© 2026 FluentFox. Всі права захищені.</p>
   </main>
@@ -2179,6 +2181,13 @@
                     <li><a href="#reviews"  class="hover:text-fox-400 transition-colors" x-text="t.nav.reviews"></a></li>
                     <li><a href="blog/"     class="hover:text-fox-400 transition-colors" x-text="t.nav.blog"></a></li>
                 </ul>
+
+                <h4 class="text-white font-black text-base mb-4 mt-6 uppercase tracking-wide" x-text="t.footer.partnersTitle"></h4>
+                <ul class="space-y-2 text-base">
+                    <template x-for="link in t.footer.partners" :key="link.label">
+                        <li><a :href="link.href" target="_blank" rel="noopener" class="hover:text-fox-400 transition-colors" x-text="link.label"></a></li>
+                    </template>
+                </ul>
             </div>
 
             <!-- Contacts -->
@@ -2601,6 +2610,11 @@ uk: {
         contactTitle: 'Контакти',
         hours:        'Пн–Сб: 9:00–21:00',
         copyright:    '© 2026 FluentFox. Всі права захищені.',
+        partnersTitle: 'Партнери',
+        partners: [
+            { label: 'Школа програмування', href: 'https://mycomputer.education/' },
+            { label: 'Школа дизайну',        href: 'https://mycomputer.school/'   },
+        ],
         legalLinks: [
             { label: 'Політика конфіденційності', href: 'privacy.html' },
             { label: 'Публічна оферта',           href: 'offer.html'   },
@@ -2956,6 +2970,11 @@ ru: {
         contactTitle: 'Контакты',
         hours:        'Пн–Сб: 9:00–21:00',
         copyright:    '© 2026 FluentFox. Все права защищены.',
+        partnersTitle: 'Партнёры',
+        partners: [
+            { label: 'Школа программирования', href: 'https://mycomputer.education/' },
+            { label: 'Школа дизайна',           href: 'https://mycomputer.school/'   },
+        ],
         legalLinks: [
             { label: 'Политика конфиденциальности', href: 'privacy.html' },
             { label: 'Публичная оферта',            href: 'offer.html'   },
