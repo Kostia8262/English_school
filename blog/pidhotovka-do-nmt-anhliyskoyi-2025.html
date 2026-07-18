@@ -253,7 +253,7 @@
 </footer>
 
 <script>
-function blogApp(){return{lang:new URLSearchParams(location.search).get('lang')||'uk',setLang(l){this.lang=l;const u=new URL(location.href);if(l==='ru')u.searchParams.set('lang','ru');else u.searchParams.delete('lang');history.replaceState(null,'',u.toString());document.documentElement.lang=l;}}}
+function blogApp(){return{lang:new URLSearchParams(location.search).get('lang')||'uk',setLang(l){this.lang=l;const u=new URL(location.href);if(l==='ru')u.searchParams.set('lang','ru');else u.searchParams.delete('lang');history.replaceState(null,'',u.toString());document.documentElement.lang=l;const c=document.querySelector('link[rel="canonical"]');if(c)c.href=u.toString();const og=document.querySelector('meta[property="og:url"]');if(og)og.content=u.toString();}}}
 </script>
 </body>
 </html>
