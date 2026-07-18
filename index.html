@@ -1105,7 +1105,7 @@
                 <!-- Age-group tabs (white card, active = fox-orange) -->
                 <div class="flex gap-1 bg-white rounded-2xl p-1 mb-5 border border-gray-200 shadow-sm">
                     <template x-for="tab in t.prog.tabs" :key="tab.key">
-                        <button @click="progTab=tab.key; openMod=0"
+                        <button @click="progTab=tab.key; openMod=(window.innerWidth < 768 ? null : 0)"
                                 :class="progTab===tab.key ? 'bg-fox-500 text-white shadow-fox-sm' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'"
                                 class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 text-center"
                                 x-text="tab.emoji + ' ' + tab.label">
@@ -1334,11 +1334,11 @@
         </div>
 
         <!-- 6 пунктів, 3 колонки -->
-        <div class="grid md:grid-cols-3 gap-x-8 gap-y-6">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-6">
             <template x-for="(adv, i) in t.adv.items" :key="i">
-                <div class="flex items-start gap-5">
+                <div :class="i >= 4 ? 'hidden md:flex' : 'flex'" class="flex-col md:flex-row items-start gap-2 md:gap-5">
                     <!-- Іконка: кружок fox-orange -->
-                    <div class="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.22)">
+                    <div class="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.22)">
                         <!-- 0: Освіта — мантія/диплом -->
                         <svg x-show="i===0" class="w-6 h-6 text-fox-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
                         <!-- 1: Спілкування — бульбашки чату -->
@@ -1353,8 +1353,8 @@
                         <svg x-show="i===5" class="w-6 h-6 text-fox-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
                     </div>
                     <div>
-                        <h3 class="font-black text-white text-base mb-2" x-text="adv.title"></h3>
-                        <p class="text-gray-400 text-sm leading-relaxed" x-text="adv.desc"></p>
+                        <h3 class="font-black text-white text-sm md:text-base mb-1 md:mb-2" x-text="adv.title"></h3>
+                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed" x-text="adv.desc"></p>
                     </div>
                 </div>
             </template>
@@ -1374,10 +1374,10 @@
             <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.pricing.subtitle"></p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6 items-stretch">
+        <div class="flex md:grid md:grid-cols-3 gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
             <template x-for="(plan, i) in t.pricing.plans" :key="i">
                 <div :class="plan.highlight ? 'price-highlight' : 'bg-white border-2 border-gray-200 card-lift shadow-sm'"
-                     class="rounded-3xl p-8 relative flex flex-col">
+                     class="rounded-3xl p-8 relative flex flex-col snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto">
                     <!-- Popular badge -->
                     <div x-show="plan.highlight" class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-950 text-white text-xs font-black px-4 py-1 rounded-full shadow-sm" x-text="t.pricing.popular"></div>
 
@@ -3064,7 +3064,7 @@ function app() {
         openFaq:       null,
         activeTab:     'group',
         progTab:       'age6',
-        openMod:       0,
+        openMod:       window.innerWidth < 768 ? null : 0,
         currentReview: 0,
         reviewPage:    0,
         scrolled:      false,
