@@ -116,16 +116,16 @@ tailwind.config = {
 </header>
 
 <!-- Hero -->
-<section class="pt-28 pb-16 bg-gradient-to-b from-gray-950 to-gray-950" style="background:radial-gradient(ellipse at 75% 15%, rgba(124,58,237,0.22) 0%, transparent 55%), radial-gradient(ellipse at 15% 85%, rgba(255,107,53,0.16) 0%, transparent 50%), #030712;">
+<section class="pt-24 pb-10 md:pt-28 md:pb-16" style="background:radial-gradient(ellipse at 75% 15%, rgba(124,58,237,0.22) 0%, transparent 55%), #030712;">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="lang==='uk'?'Блог FluentFox':'Блог FluentFox'"></span>
-    <h1 class="text-3xl md:text-5xl font-black text-white leading-tight mb-4" x-text="lang==='uk'?'Корисні статті про англійську для дітей':'Полезные статьи об английском для детей'"></h1>
-    <p class="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed" x-text="lang==='uk'?'Практичні поради від вчителів FluentFox: методи навчання, підготовка до іспитів, мотивація та багато іншого':'Практические советы от учителей FluentFox: методы обучения, подготовка к экзаменам, мотивация и многое другое'"></p>
+    <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-white leading-tight mb-4" x-text="lang==='uk'?'Корисні статті про англійську для дітей':'Полезные статьи об английском для детей'"></h1>
+    <p class="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed" x-text="lang==='uk'?'Практичні поради від вчителів FluentFox: методи навчання, підготовка до іспитів, мотивація та багато іншого':'Практические советы от учителей FluentFox: методы обучения, подготовка к экзаменам, мотивация и многое другое'"></p>
   </div>
 </section>
 
 <!-- Category tabs -->
-<section class="bg-gray-950 pb-8 sticky top-16 z-40 border-b border-white/5">
+<section class="bg-gray-950 pt-4 pb-8 sticky top-16 z-40 border-b border-white/5">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex gap-2 overflow-x-auto scrollbar-hide -mx-4 px-4">
       <template x-for="cat in categories" :key="cat.key">
