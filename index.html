@@ -1374,7 +1374,7 @@
             <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.pricing.subtitle"></p>
         </div>
 
-        <div class="flex md:grid md:grid-cols-3 gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
+        <div class="flex md:grid md:grid-cols-3 gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pt-6 -mt-6 pb-4 md:pb-0">
             <template x-for="(plan, i) in t.pricing.plans" :key="i">
                 <div :class="plan.highlight ? 'price-highlight' : 'bg-white border-2 border-gray-200 card-lift shadow-sm'"
                      class="rounded-3xl p-8 relative flex flex-col snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto">
