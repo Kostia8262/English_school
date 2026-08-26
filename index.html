@@ -173,7 +173,7 @@
           "url": "https://fluent-fox.site/",
           "name": "FluentFox",
           "alternateName": "Онлайн-школа англійської FluentFox",
-          "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років",
+          "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років по всій Україні",
           "inLanguage": [
             "uk",
             "ru"
@@ -183,16 +183,13 @@
           }
         },
         {
-          "@type": [
-            "EducationalOrganization",
-            "LocalBusiness"
-          ],
+          "@type": "EducationalOrganization",
           "@id": "https://fluent-fox.site/#organization",
           "name": "FluentFox",
           "alternateName": "Флуент Фокс",
           "legalName": "ФОП Піменов К. Ю.",
           "url": "https://fluent-fox.site/",
-          "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років. Групові та індивідуальні заняття, ігровий підхід, підготовка до НМТ і Cambridge-іспитів. Групи до 6 учнів, перший урок безкоштовно.",
+          "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років. Заняття по всій Україні та для українських родин за кордоном; додатково працюють два очні класи в Дніпрі. Групи до 6 учнів, перший урок безкоштовно.",
           "slogan": "Англійська, яку діти обожнюють",
           "logo": {
             "@type": "ImageObject",
@@ -213,11 +210,16 @@
             "postalCode": "49001",
             "addressCountry": "UA"
           },
-          "hasMap": "https://www.google.com/maps/search/?api=1&query=%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%B0%20%D0%9F%D0%BE%D0%BB%D1%8F%2C%2028%D0%90%2C%20%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE",
-          "areaServed": {
-            "@type": "Country",
-            "name": "Ukraine"
-          },
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "Ukraine"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Europe"
+            }
+          ],
           "availableLanguage": [
             "uk",
             "ru",
@@ -422,6 +424,120 @@
               "opens": "10:00",
               "closes": "18:00"
             }
+          ],
+          "subOrganization": [
+            {
+              "@id": "https://fluent-fox.site/#branch-polia"
+            },
+            {
+              "@id": "https://fluent-fox.site/#branch-budivelnykiv"
+            }
+          ],
+          "serviceArea": {
+            "@type": "Country",
+            "name": "Ukraine"
+          }
+        },
+        {
+          "@type": [
+            "EducationalOrganization",
+            "LocalBusiness"
+          ],
+          "@id": "https://fluent-fox.site/#branch-polia",
+          "name": "FluentFox — просп. Олександра Поля",
+          "url": "https://fluent-fox.site/dnipro",
+          "parentOrganization": {
+            "@id": "https://fluent-fox.site/#organization"
+          },
+          "telephone": "+380682522876",
+          "email": "fluent.fox.study@gmail.com",
+          "priceRange": "1800–3600 UAH",
+          "currenciesAccepted": "UAH",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "проспект Олександра Поля, 28А",
+            "addressLocality": "Дніпро",
+            "addressRegion": "Дніпропетровська область",
+            "postalCode": "49001",
+            "addressCountry": "UA"
+          },
+          "hasMap": "https://www.google.com/maps/search/?api=1&query=%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%B0%20%D0%9F%D0%BE%D0%BB%D1%8F%2C%2028%D0%90%2C%20%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE",
+          "areaServed": {
+            "@type": "City",
+            "name": "Дніпро"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "09:00",
+              "closes": "20:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Saturday"
+              ],
+              "opens": "10:00",
+              "closes": "18:00"
+            }
+          ]
+        },
+        {
+          "@type": [
+            "EducationalOrganization",
+            "LocalBusiness"
+          ],
+          "@id": "https://fluent-fox.site/#branch-budivelnykiv",
+          "name": "FluentFox — вул. Будівельників",
+          "url": "https://fluent-fox.site/dnipro",
+          "parentOrganization": {
+            "@id": "https://fluent-fox.site/#organization"
+          },
+          "telephone": "+380954624672",
+          "email": "fluent.fox.study@gmail.com",
+          "priceRange": "1800–3600 UAH",
+          "currenciesAccepted": "UAH",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "вулиця Будівельників, 25",
+            "addressLocality": "Дніпро",
+            "addressRegion": "Дніпропетровська область",
+            "postalCode": "49000",
+            "addressCountry": "UA"
+          },
+          "hasMap": "https://www.google.com/maps/search/?api=1&query=%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%91%D1%83%D0%B4%D1%96%D0%B2%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA%D1%96%D0%B2%2C%2025%2C%20%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE",
+          "areaServed": {
+            "@type": "City",
+            "name": "Дніпро"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "09:00",
+              "closes": "20:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Saturday"
+              ],
+              "opens": "10:00",
+              "closes": "18:00"
+            }
           ]
         },
         {
@@ -429,7 +545,7 @@
           "@id": "https://fluent-fox.site/#webpage",
           "url": "https://fluent-fox.site/",
           "name": "FluentFox — Онлайн-школа англійської для дітей та підлітків",
-          "description": "FluentFox — онлайн-школа англійської мови для дітей 6–18 років. Групові та індивідуальні заняття, ігровий підхід, досвідчені вчителі. Перший урок — безкоштовно.",
+          "description": "FluentFox — онлайн-школа англійської мови для дітей 6–18 років по всій Україні. Групові та індивідуальні заняття, ігровий підхід, досвідчені вчителі. Є два очні класи в Дніпрі. Перший урок — безкоштовно.",
           "inLanguage": "uk",
           "isPartOf": {
             "@id": "https://fluent-fox.site/#website"
@@ -522,19 +638,49 @@
             "uk",
             "ru"
           ],
-          "courseMode": "online",
+          "courseMode": [
+            "online",
+            "onsite"
+          ],
           "educationalCredentialAwarded": "Сертифікат FluentFox — рівень A1 (CEFR)",
           "hasCourseInstance": [
             {
               "@type": "CourseInstance",
               "name": "Група — 1 заняття на тиждень",
-              "courseMode": "online",
+              "courseMode": [
+                "online",
+                "onsite"
+              ],
               "courseWorkload": "PT1H30M",
               "inLanguage": "uk",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://fluent-fox.site/"
-              },
+              "location": [
+                {
+                  "@type": "VirtualLocation",
+                  "url": "https://fluent-fox.site/"
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — просп. Олександра Поля",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "проспект Олександра Поля, 28А",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49001",
+                    "addressCountry": "UA"
+                  }
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — вул. Будівельників",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "вулиця Будівельників, 25",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49000",
+                    "addressCountry": "UA"
+                  }
+                }
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "1800",
@@ -546,13 +692,40 @@
             {
               "@type": "CourseInstance",
               "name": "Група — 2 заняття на тиждень",
-              "courseMode": "online",
+              "courseMode": [
+                "online",
+                "onsite"
+              ],
               "courseWorkload": "PT3H",
               "inLanguage": "uk",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://fluent-fox.site/"
-              },
+              "location": [
+                {
+                  "@type": "VirtualLocation",
+                  "url": "https://fluent-fox.site/"
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — просп. Олександра Поля",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "проспект Олександра Поля, 28А",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49001",
+                    "addressCountry": "UA"
+                  }
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — вул. Будівельників",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "вулиця Будівельників, 25",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49000",
+                    "addressCountry": "UA"
+                  }
+                }
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "3600",
@@ -564,13 +737,40 @@
             {
               "@type": "CourseInstance",
               "name": "Індивідуальні заняття",
-              "courseMode": "online",
+              "courseMode": [
+                "online",
+                "onsite"
+              ],
               "courseWorkload": "PT1H30M",
               "inLanguage": "uk",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://fluent-fox.site/"
-              },
+              "location": [
+                {
+                  "@type": "VirtualLocation",
+                  "url": "https://fluent-fox.site/"
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — просп. Олександра Поля",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "проспект Олександра Поля, 28А",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49001",
+                    "addressCountry": "UA"
+                  }
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — вул. Будівельників",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "вулиця Будівельників, 25",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49000",
+                    "addressCountry": "UA"
+                  }
+                }
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "3000",
@@ -613,19 +813,49 @@
             "uk",
             "ru"
           ],
-          "courseMode": "online",
+          "courseMode": [
+            "online",
+            "onsite"
+          ],
           "educationalCredentialAwarded": "Сертифікат FluentFox — рівень B1 (CEFR)",
           "hasCourseInstance": [
             {
               "@type": "CourseInstance",
               "name": "Група — 1 заняття на тиждень",
-              "courseMode": "online",
+              "courseMode": [
+                "online",
+                "onsite"
+              ],
               "courseWorkload": "PT1H30M",
               "inLanguage": "uk",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://fluent-fox.site/"
-              },
+              "location": [
+                {
+                  "@type": "VirtualLocation",
+                  "url": "https://fluent-fox.site/"
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — просп. Олександра Поля",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "проспект Олександра Поля, 28А",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49001",
+                    "addressCountry": "UA"
+                  }
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — вул. Будівельників",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "вулиця Будівельників, 25",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49000",
+                    "addressCountry": "UA"
+                  }
+                }
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "1800",
@@ -637,13 +867,40 @@
             {
               "@type": "CourseInstance",
               "name": "Група — 2 заняття на тиждень",
-              "courseMode": "online",
+              "courseMode": [
+                "online",
+                "onsite"
+              ],
               "courseWorkload": "PT3H",
               "inLanguage": "uk",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://fluent-fox.site/"
-              },
+              "location": [
+                {
+                  "@type": "VirtualLocation",
+                  "url": "https://fluent-fox.site/"
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — просп. Олександра Поля",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "проспект Олександра Поля, 28А",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49001",
+                    "addressCountry": "UA"
+                  }
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — вул. Будівельників",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "вулиця Будівельників, 25",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49000",
+                    "addressCountry": "UA"
+                  }
+                }
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "3600",
@@ -655,13 +912,40 @@
             {
               "@type": "CourseInstance",
               "name": "Індивідуальні заняття",
-              "courseMode": "online",
+              "courseMode": [
+                "online",
+                "onsite"
+              ],
               "courseWorkload": "PT1H30M",
               "inLanguage": "uk",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://fluent-fox.site/"
-              },
+              "location": [
+                {
+                  "@type": "VirtualLocation",
+                  "url": "https://fluent-fox.site/"
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — просп. Олександра Поля",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "проспект Олександра Поля, 28А",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49001",
+                    "addressCountry": "UA"
+                  }
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — вул. Будівельників",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "вулиця Будівельників, 25",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49000",
+                    "addressCountry": "UA"
+                  }
+                }
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "3000",
@@ -704,19 +988,49 @@
             "uk",
             "ru"
           ],
-          "courseMode": "online",
+          "courseMode": [
+            "online",
+            "onsite"
+          ],
           "educationalCredentialAwarded": "Сертифікат FluentFox — рівень B2 (CEFR)",
           "hasCourseInstance": [
             {
               "@type": "CourseInstance",
               "name": "Група — 1 заняття на тиждень",
-              "courseMode": "online",
+              "courseMode": [
+                "online",
+                "onsite"
+              ],
               "courseWorkload": "PT1H30M",
               "inLanguage": "uk",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://fluent-fox.site/"
-              },
+              "location": [
+                {
+                  "@type": "VirtualLocation",
+                  "url": "https://fluent-fox.site/"
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — просп. Олександра Поля",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "проспект Олександра Поля, 28А",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49001",
+                    "addressCountry": "UA"
+                  }
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — вул. Будівельників",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "вулиця Будівельників, 25",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49000",
+                    "addressCountry": "UA"
+                  }
+                }
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "1800",
@@ -728,13 +1042,40 @@
             {
               "@type": "CourseInstance",
               "name": "Група — 2 заняття на тиждень",
-              "courseMode": "online",
+              "courseMode": [
+                "online",
+                "onsite"
+              ],
               "courseWorkload": "PT3H",
               "inLanguage": "uk",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://fluent-fox.site/"
-              },
+              "location": [
+                {
+                  "@type": "VirtualLocation",
+                  "url": "https://fluent-fox.site/"
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — просп. Олександра Поля",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "проспект Олександра Поля, 28А",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49001",
+                    "addressCountry": "UA"
+                  }
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — вул. Будівельників",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "вулиця Будівельників, 25",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49000",
+                    "addressCountry": "UA"
+                  }
+                }
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "3600",
@@ -746,13 +1087,40 @@
             {
               "@type": "CourseInstance",
               "name": "Індивідуальні заняття",
-              "courseMode": "online",
+              "courseMode": [
+                "online",
+                "onsite"
+              ],
               "courseWorkload": "PT1H30M",
               "inLanguage": "uk",
-              "location": {
-                "@type": "VirtualLocation",
-                "url": "https://fluent-fox.site/"
-              },
+              "location": [
+                {
+                  "@type": "VirtualLocation",
+                  "url": "https://fluent-fox.site/"
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — просп. Олександра Поля",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "проспект Олександра Поля, 28А",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49001",
+                    "addressCountry": "UA"
+                  }
+                },
+                {
+                  "@type": "Place",
+                  "name": "FluentFox — вул. Будівельників",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "вулиця Будівельників, 25",
+                    "addressLocality": "Дніпро",
+                    "postalCode": "49000",
+                    "addressCountry": "UA"
+                  }
+                }
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "3000",
@@ -991,6 +1359,8 @@
     <h1>FluentFox — Онлайн-школа англійської для дітей та підлітків</h1>
     <p>Курси англійської мови для дітей 6–18 років. Ігровий підхід, живі вчителі, результат вже за перший місяць.</p>
     <ul><li>✓ Без нудних підручників</li><li>✓ Живі заняття онлайн</li><li>✓ Малі групи до 6 учнів</li><li>✓ Гарантія результату</li></ul>
+    <h2>Формати навчання</h2>
+    <p>Основний формат — онлайн: заняття по всій Україні та для українських родин за кордоном. Додатково працюють два очні класи в Дніпрі — просп. Олександра Поля, 28А (+38 068 252-28-76) та вул. Будівельників, 25 (+38 095 462-46-72), Пн–Пт 9:00–20:00, Сб 10:00–18:00. Програма, розмір групи та ціна в обох форматах однакові; формат можна змінити навіть посеред курсу.</p>
     <h2>Англійська онлайн від 6 до 18 років</h2>
     <p>Адаптована програма для кожного етапу розвитку дитини</p>
     <h3>6–8 років — Маленькі дослідники</h3>

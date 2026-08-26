@@ -13,6 +13,19 @@ BASE = "https://fluent-fox.site"
 ORG = BASE + "/#organization"
 
 
+# Де відбуваються заняття. Раніше тут стояв самий VirtualLocation — це було
+# правдою, поки школа працювала лише онлайн. Тепер до нього додані два класи.
+LOCATIONS = [
+    {"@type": "VirtualLocation", "url": BASE + "/"},
+    {"@type": "Place", "name": "FluentFox — просп. Олександра Поля",
+     "address": {"@type": "PostalAddress", "streetAddress": "проспект Олександра Поля, 28А",
+                 "addressLocality": "Дніпро", "postalCode": "49001", "addressCountry": "UA"}},
+    {"@type": "Place", "name": "FluentFox — вул. Будівельників",
+     "address": {"@type": "PostalAddress", "streetAddress": "вулиця Будівельників, 25",
+                 "addressLocality": "Дніпро", "postalCode": "49000", "addressCountry": "UA"}},
+]
+
+
 def course_offer():
     """Один і той самий блок цін для всіх курсових сторінок."""
     return {
@@ -46,21 +59,21 @@ def course_node(cid, name, desc, age, level, teaches, url):
         "teaches": teaches,
         "inLanguage": "uk",
         "availableLanguage": ["uk", "ru"],
-        "courseMode": "online",
+        "courseMode": ["online", "onsite"],
         "hasCourseInstance": [
             {"@type": "CourseInstance", "name": "Група — 1 заняття на тиждень",
-             "courseMode": "online", "courseWorkload": "PT1H30M", "inLanguage": "uk",
-             "location": {"@type": "VirtualLocation", "url": BASE + "/"},
+             "courseMode": ["online", "onsite"], "courseWorkload": "PT1H30M", "inLanguage": "uk",
+             "location": LOCATIONS,
              "offers": {"@type": "Offer", "price": "1800", "priceCurrency": "UAH",
                         "availability": "https://schema.org/InStock", "url": BASE + "/tsiny"}},
             {"@type": "CourseInstance", "name": "Група — 2 заняття на тиждень",
-             "courseMode": "online", "courseWorkload": "PT3H", "inLanguage": "uk",
-             "location": {"@type": "VirtualLocation", "url": BASE + "/"},
+             "courseMode": ["online", "onsite"], "courseWorkload": "PT3H", "inLanguage": "uk",
+             "location": LOCATIONS,
              "offers": {"@type": "Offer", "price": "3600", "priceCurrency": "UAH",
                         "availability": "https://schema.org/InStock", "url": BASE + "/tsiny"}},
             {"@type": "CourseInstance", "name": "Індивідуальні заняття",
-             "courseMode": "online", "courseWorkload": "PT1H30M", "inLanguage": "uk",
-             "location": {"@type": "VirtualLocation", "url": BASE + "/"},
+             "courseMode": ["online", "onsite"], "courseWorkload": "PT1H30M", "inLanguage": "uk",
+             "location": LOCATIONS,
              "offers": {"@type": "Offer", "price": "3000", "priceCurrency": "UAH",
                         "availability": "https://schema.org/InStock", "url": BASE + "/tsiny"}},
         ],
@@ -76,12 +89,30 @@ FORMAT_TABLE = (
         [("Розмір групи", "Размер группы"), ("до 6 учнів", "до 6 учеников")],
         [("Тривалість уроку", "Длительность урока"), ("1 година 30 хвилин", "1 час 30 минут")],
         [("Частота", "Частота"), ("1 або 2 рази на тиждень", "1 или 2 раза в неделю")],
-        [("Платформа", "Платформа"), ("Zoom або Google Meet", "Zoom или Google Meet")],
+        [("Формат", "Формат"),
+         ("клас у Дніпрі або онлайн — на вибір", "класс в Днепре или онлайн — на выбор")],
+        [("Платформа для онлайну", "Платформа для онлайна"),
+         ("Zoom або Google Meet", "Zoom или Google Meet")],
         [("Домашнє завдання", "Домашнее задание"),
          ("онлайн-платформа, 10–25 хвилин", "онлайн-платформа, 10–25 минут")],
         [("Перенесення уроку", "Перенос урока"),
          ("за 12 годин до початку", "за 12 часов до начала")],
     ],
+)
+
+# Заголовок цих сторінок каже «онлайн» — це ключ, за яким їх шукають. Але
+# школа веде ті самі групи очно, і сторінка, яка про це мовчить, суперечить
+# сусідній /dnipro. Дешевше сказати прямо й дати дорогу.
+OFFLINE_NOTE = (
+    "notelink",
+    "Ці ж групи працюють очно у двох класах у Дніпрі — просп. Олександра Поля, 28А "
+    "та вул. Будівельників, 25. Програма, розмір групи й ціна ті самі; формат можна "
+    "змінити навіть посеред курсу.",
+    "Эти же группы работают очно в двух классах в Днепре — просп. Александра Поля, 28А "
+    "и ул. Строителей, 25. Программа, размер группы и цена те же; формат можно сменить "
+    "даже посреди курса.",
+    "/dnipro",
+    "Про заняття в Дніпрі", "О занятиях в Днепре",
 )
 
 PRICE_CALLOUT = (
@@ -207,6 +238,7 @@ PAGES.append({
 
         ("h2", "Формат занять", "Формат занятий"),
         FORMAT_TABLE,
+        OFFLINE_NOTE,
         PRICE_CALLOUT,
     ],
     "faq": [
@@ -373,6 +405,7 @@ PAGES.append({
 
         ("h2", "Формат занять", "Формат занятий"),
         FORMAT_TABLE,
+        OFFLINE_NOTE,
         PRICE_CALLOUT,
     ],
     "faq": [
@@ -540,6 +573,7 @@ PAGES.append({
 
         ("h2", "Формат занять", "Формат занятий"),
         FORMAT_TABLE,
+        OFFLINE_NOTE,
         PRICE_CALLOUT,
     ],
     "faq": [

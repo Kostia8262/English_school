@@ -23,7 +23,8 @@ sys.path.insert(0, HERE)
 
 import content as C          # noqa: E402  — хелпери + три вікові сторінки
 import pages_exams          # noqa: E402,F401  — НМТ і Cambridge, дописують C.PAGES
-import pages_service        # noqa: E402,F401  — ціни, відгуки, школа, урок, Дніпро
+import pages_service        # noqa: E402,F401  — ціни, відгуки, школа, пробний урок
+import pages_dnipro         # noqa: E402,F401  — локальна сторінка з двома класами
 
 BASE = "https://fluent-fox.site"
 ORG = BASE + "/#organization"
@@ -135,6 +136,17 @@ def render_block(b):
                 '          <thead class="bg-fox-50">%s</thead>\n'
                 '          <tbody>\n%s\n          </tbody>\n'
                 '        </table>\n      </div>' % (th, tr))
+
+    if kind == "notelink":
+        # Callout із посиланням. Потрібен там, де сторінка про онлайн-формат
+        # мусить чесно сказати про очні класи й одразу дати туди дорогу.
+        _, uk, ru, href, l_uk, l_ru = b
+        return ('      <div class="bg-violet-50 border-l-4 border-violet-500 rounded-r-3xl px-6 py-5 mb-6 mt-4">\n'
+                '        <p class="text-base text-gray-700 leading-relaxed font-semibold mb-2"%s</p>\n'
+                '        <a href="%s" class="inline-flex items-center gap-1.5 text-sm font-black '
+                'text-violet-600 hover:text-violet-500 transition-colors duration-200"%s</a>\n'
+                '      </div>'
+                % (attr_ru(uk, ru), href, attr_ru(l_uk + " →", l_ru + " →")))
 
     if kind == "callout":
         return ('      <div class="bg-fox-50 border-l-4 border-fox-500 rounded-r-3xl px-6 py-5 mb-6 mt-4">\n'
