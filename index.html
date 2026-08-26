@@ -400,6 +400,28 @@
                 "@id": "https://fluent-fox.site/#organization"
               }
             }
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "09:00",
+              "closes": "20:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Saturday"
+              ],
+              "opens": "10:00",
+              "closes": "18:00"
+            }
           ]
         },
         {
@@ -1401,6 +1423,10 @@
                             <p class="text-2xs font-black text-fox-600 uppercase tracking-widest mb-1" x-text="t.ages.resultLabel"></p>
                             <p class="text-sm text-gray-700 leading-tight" x-text="age.result"></p>
                         </div>
+
+                        <a :href="lang==='ru' ? age.href + '?lang=ru' : age.href"
+                           class="inline-flex items-center gap-1.5 mt-4 text-sm font-black text-fox-600 hover:text-fox-700 transition-colors duration-200"
+                           x-text="(lang==='uk' ? 'Детальніше про програму' : 'Подробнее о программе') + ' →'"></a>
                     </div>
                 </div>
             </template>
@@ -2712,6 +2738,20 @@
                     <li><a href="blog/"     class="hover:text-fox-400 transition-colors" x-text="t.nav.blog"></a></li>
                 </ul>
 
+                <h4 class="text-white font-black text-base mb-4 mt-6 uppercase tracking-wide" x-text="lang==='uk'?'Розділи':'Разделы'"></h4>
+                <ul class="space-y-2 text-base">
+                    <li><a :href="lang==='ru'?'/anhliyska-6-8-rokiv?lang=ru':'/anhliyska-6-8-rokiv'"     class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська 6–8 років':'Английский 6–8 лет'"></a></li>
+                    <li><a :href="lang==='ru'?'/anhliyska-9-12-rokiv?lang=ru':'/anhliyska-9-12-rokiv'"    class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська 9–12 років':'Английский 9–12 лет'"></a></li>
+                    <li><a :href="lang==='ru'?'/anhliyska-13-18-rokiv?lang=ru':'/anhliyska-13-18-rokiv'"   class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська 13–18 років':'Английский 13–18 лет'"></a></li>
+                    <li><a :href="lang==='ru'?'/pidhotovka-do-nmt?lang=ru':'/pidhotovka-do-nmt'"       class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Підготовка до НМТ':'Подготовка к НМТ'"></a></li>
+                    <li><a :href="lang==='ru'?'/cambridge?lang=ru':'/cambridge'"               class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Іспити Cambridge':'Экзамены Cambridge'"></a></li>
+                    <li><a :href="lang==='ru'?'/dnipro?lang=ru':'/dnipro'"                  class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська у Дніпрі':'Английский в Днепре'"></a></li>
+                    <li><a :href="lang==='ru'?'/tsiny?lang=ru':'/tsiny'"                   class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни та знижки':'Цены и скидки'"></a></li>
+                    <li><a :href="lang==='ru'?'/vidhuky?lang=ru':'/vidhuky'"                 class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a></li>
+                    <li><a :href="lang==='ru'?'/pro-shkolu?lang=ru':'/pro-shkolu'"              class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про школу':'О школе'"></a></li>
+                    <li><a :href="lang==='ru'?'/probnyi-urok?lang=ru':'/probnyi-urok'"            class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a></li>
+                </ul>
+
                 <h4 class="text-white font-black text-base mb-4 mt-6 uppercase tracking-wide" x-text="t.footer.partnersTitle"></h4>
                 <ul class="space-y-2 text-base">
                     <template x-for="link in t.footer.partners" :key="link.label">
@@ -2838,6 +2878,7 @@ uk: {
         cards: [
             {
                 emoji:  '🐣',
+                href:   '/anhliyska-6-8-rokiv',
                 range:  '6–8 років',
                 title:  'Маленькі дослідники',
                 desc:   'Казки, пісні та ігри. Дитина полюбить англійську з першого уроку.',
@@ -2848,6 +2889,7 @@ uk: {
             },
             {
                 emoji:  '🚀',
+                href:   '/anhliyska-9-12-rokiv',
                 range:  '9–12 років',
                 title:  'Активні учні',
                 desc:   'Розмовна практика, граматика та підготовка до шкільних тестів.',
@@ -2858,6 +2900,7 @@ uk: {
             },
             {
                 emoji:  '🎯',
+                href:   '/anhliyska-13-18-rokiv',
                 range:  '13–18 років',
                 title:  'Підлітки-лідери',
                 desc:   'Підготовка до НМТ, розмовні клуби, реальне спілкування з однолітками.',
@@ -3196,6 +3239,7 @@ ru: {
         cards: [
             {
                 emoji:  '🐣',
+                href:   '/anhliyska-6-8-rokiv',
                 range:  '6–8 лет',
                 title:  'Маленькие исследователи',
                 desc:   'Сказки, песни и игры. Ребёнок полюбит английский с первого урока.',
@@ -3206,6 +3250,7 @@ ru: {
             },
             {
                 emoji:  '🚀',
+                href:   '/anhliyska-9-12-rokiv',
                 range:  '9–12 лет',
                 title:  'Активные ученики',
                 desc:   'Разговорная практика, грамматика и подготовка к школьным тестам.',
@@ -3216,6 +3261,7 @@ ru: {
             },
             {
                 emoji:  '🎯',
+                href:   '/anhliyska-13-18-rokiv',
                 range:  '13–18 лет',
                 title:  'Подростки-лидеры',
                 desc:   'Подготовка к НМТ, разговорные клубы, реальное общение со сверстниками.',

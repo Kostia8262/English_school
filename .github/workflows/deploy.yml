@@ -26,5 +26,8 @@ jobs:
             --exclude='CLAUDE.md' \
             --exclude='*.md' \
             --exclude='*.jsonl' \
+            --exclude='tools/' \
+            --exclude='seo/' \
+            --exclude='__pycache__/' \
             -e "ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no" \
             ./ ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}:/home/u260300169/domains/fluent-fox.site/public_html/

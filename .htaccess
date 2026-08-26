@@ -15,6 +15,16 @@
   RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
   RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 
+  # ── Посадкові сторінки без .html ────────────────────────────────────────
+  # Адреса /tsiny читається людиною і не розсипається при копіюванні в чат.
+  # Спершу 301 з .html-варіанта — інакше та сама сторінка існувала б за двома
+  # адресами одразу, тобто рівно той дубль, заради якого вище стоїть 301 з www.
+  RewriteCond %{THE_REQUEST} \s/+(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # І лише потім внутрішнє переписування на реальний файл.
+  RewriteRule ^(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro)$ $1.html [L]
+
   # /index.html → /  (і /blog/index.html → /blog/)
   # Умова на THE_REQUEST важлива: вона дивиться на те, що написав клієнт, а не
   # на внутрішнє переписування DirectoryIndex — інакше «/» зациклиться сам на себе.

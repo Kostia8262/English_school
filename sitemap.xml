@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Українська та російська версії — це одна сторінка з ?lang=ru, а не дві різні
-     адреси. Раніше кожна стояла окремим <loc>, і карта заявляла 22 сторінки
-     замість 11: Google зводив пару довше, ніж міг би, а обхід витрачався двічі.
-     Тепер мовна пара оголошена через xhtml:link — так само, як у сусідньої школи.
+     адреси. Раніше кожна стояла окремим <loc>, і карта заявляла вдвічі більше
+     сторінок, ніж є: Google зводив мовну пару довше, ніж міг би, а обхід
+     витрачався двічі. Тепер пара оголошена через xhtml:link.
+
+     Посадкові сторінки стоять без .html — саме так вони й канонічні: .htaccess
+     віддає 301 з /tsiny.html на /tsiny.
 
      Юридичні сторінки (privacy/offer/terms/returns/cookies) свідомо не входять
      у карту: вони несуть <meta name="robots" content="noindex">. Карта, яка
@@ -19,6 +22,106 @@
     <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/?lang=ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/probnyi-urok</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/probnyi-urok"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/probnyi-urok?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/probnyi-urok"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/tsiny</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/tsiny"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/tsiny?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/tsiny"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/anhliyska-6-8-rokiv</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/anhliyska-6-8-rokiv"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/anhliyska-6-8-rokiv?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/anhliyska-6-8-rokiv"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/anhliyska-9-12-rokiv</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/anhliyska-9-12-rokiv"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/anhliyska-9-12-rokiv?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/anhliyska-9-12-rokiv"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/anhliyska-13-18-rokiv</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/anhliyska-13-18-rokiv"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/anhliyska-13-18-rokiv?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/anhliyska-13-18-rokiv"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/pidhotovka-do-nmt</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/pidhotovka-do-nmt"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/pidhotovka-do-nmt?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/pidhotovka-do-nmt"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/cambridge</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/cambridge"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/cambridge?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/cambridge"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/dnipro</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/dnipro"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/dnipro?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/dnipro"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/vidhuky</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/vidhuky"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/vidhuky?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/vidhuky"/>
+  </url>
+
+  <url>
+    <loc>https://fluent-fox.site/pro-shkolu</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/pro-shkolu"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/pro-shkolu?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/pro-shkolu"/>
   </url>
 
   <url>
