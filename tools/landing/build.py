@@ -29,6 +29,10 @@ import pages_dnipro         # noqa: E402,F401  — локальна сторін
 BASE = "https://fluent-fox.site"
 ORG = BASE + "/#organization"
 
+# Версія в query до style.css. Піднімати руками разом зі складанням CSS,
+# інакше повернені відвідувачі побачать сторінку зі старими стилями.
+CSS_VERSION = "20260826"
+
 
 # ── дрібні помічники ─────────────────────────────────────────────────────────
 
@@ -259,8 +263,8 @@ HEAD = """<!DOCTYPE html>
 }})();
 </script>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="/js/tw.js"></script>
+<link rel="preload" as="style" href="/css/style.css?v={cssv}"/>
+<link rel="stylesheet" href="/css/style.css?v={cssv}" fetchpriority="high"/>
 <style>
   * {{ scroll-behavior: smooth; }}
   .gradient-text {{
@@ -448,7 +452,7 @@ def render_page(p):
         desc_uk=esc(p["desc_uk"]), desc_ru=p["desc_ru"].replace("'", "\\'"),
         og_title_uk=esc(p.get("og_uk", p["title_uk"])),
         og_title_ru=p.get("og_ru", p["title_ru"]).replace("'", "\\'"),
-        url=url, base=BASE, graph=build_graph(p))
+        url=url, base=BASE, graph=build_graph(p), cssv=CSS_VERSION)
 
     crumbs = ('\n<nav class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6" aria-label="Хлібні крихти" data-ru-aria="Хлебные крошки">\n'
               '  <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-400">\n'

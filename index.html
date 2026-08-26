@@ -73,86 +73,9 @@
     </script>
 
     <!-- ═══ Tailwind CSS CDN ═══ -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    // ── Breakpoints ────────────────────────────────────────
-                    screens: {
-                        nav: '1100px', // full desktop nav fits from here (phone + lang + CTA)
-                    },
-
-                    // ── Brand colours ──────────────────────────────────────
-                    colors: {
-                        fox: {
-                            50:  '#FFF5EF',
-                            100: '#FFE8D6',
-                            200: '#FFCAAA',
-                            300: '#FFA07A',
-                            400: '#FF7A45',
-                            500: '#FF6B35',
-                            600: '#E54E1A',
-                            700: '#BF3C0F',
-                        },
-                        violet: {
-                            50:  '#F4F0FF',
-                            100: '#EAE2FF',
-                            500: '#7C3AED',
-                            600: '#6D28D9',
-                        },
-                        gray: {
-                            950: '#030712',
-                        },
-                        british: '#C8102E',
-                        cream: '#FFFBF7',
-                        gold: {
-                            DEFAULT: '#D4AF37',
-                            light:   '#F5E88A',
-                            dark:    '#B8960C',
-                        },
-                    },
-
-                    // ── Typography ─────────────────────────────────────────
-                    fontFamily: {
-                        sans: ['Nunito', 'sans-serif'],
-                    },
-                    fontWeight: {
-                        medium:   '500',
-                        semibold: '600',
-                        bold:     '700',
-                        black:    '900',
-                    },
-                    fontSize: {
-                        // Micro — маркі іспитів, сертифікат (merge [8–11px])
-                        '2xs': ['0.6875rem', { lineHeight: '1.5' }],
-                    },
-
-                    // ── Shape ──────────────────────────────────────────────
-                    borderRadius: {
-                        '4xl': '2rem',
-                    },
-
-                    // ── Shadows ────────────────────────────────────────────
-                    boxShadow: {
-                        'fox-sm': '0 4px 14px rgba(255,107,53,0.12)',
-                        'fox':    '0 8px 24px rgba(255,107,53,0.18)',
-                        'fox-lg': '0 20px 40px rgba(255,107,53,0.22)',
-                        'fox-xl': '0 28px 56px rgba(255,107,53,0.30)',
-                    },
-
-                    // ── Named gradients ────────────────────────────────────
-                    backgroundImage: {
-                        'hero':     'linear-gradient(140deg,#FFF5EF 0%,#FFF9F5 50%,#F4F0FF 100%)',
-                        'fox-grad': 'linear-gradient(135deg,#FF6B35 0%,#E54E1A 100%)',
-                        'fox-step': 'linear-gradient(135deg,#FF6B35,#7C3AED)',
-                    },
-                }
-            }
-        }
-    </script>
-
-    <!-- ═══ Alpine.js CDN ═══ -->
+<link rel="preload" as="style" href="/css/style.css?v=20260826"/>
+<link rel="stylesheet" href="/css/style.css?v=20260826" fetchpriority="high"/>
+<!-- ═══ Alpine.js CDN ═══ -->
     <script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
     <!-- ═══ Schema.org ═══

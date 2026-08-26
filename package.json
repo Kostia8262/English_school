@@ -1,0 +1,12 @@
+{
+  "name": "fluentfox-site",
+  "private": true,
+  "description": "Статичний сайт FluentFox. npm потрібен лише для складання CSS — у деплої його немає, css/style.css лежить у репозиторії.",
+  "scripts": {
+    "css": "tailwindcss -i ./src/tailwind.css -o ./css/style.css --minify",
+    "css:watch": "tailwindcss -i ./src/tailwind.css -o ./css/style.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
