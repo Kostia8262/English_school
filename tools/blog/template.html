@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>%(title_uk)s</title>
+<meta name="description" content="%(desc_uk)s"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="%(author)s"/>
+<link rel="canonical" href="%(url)s"/>
+<link rel="alternate" hreflang="uk" href="%(url)s"/>
+<link rel="alternate" hreflang="ru" href="%(url)s?lang=ru"/>
+<link rel="alternate" hreflang="x-default" href="%(url)s"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="FluentFox"/>
+<meta property="og:title" content="%(og_title_uk)s"/>
+<meta property="og:description" content="%(og_desc_uk)s"/>
+<meta property="og:url" content="%(url)s"/>
+<meta property="og:image" content="%(base)s/og-image.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="FluentFox — онлайн-школа англійської для дітей"/>
+<meta property="og:locale" content="uk_UA"/>
+<meta property="og:locale:alternate" content="ru_UA"/>
+<meta property="article:published_time" content="%(published)s"/>
+<meta property="article:modified_time" content="%(modified)s"/>
+<meta property="article:section" content="%(section)s"/>
+<meta property="article:author" content="%(author)s"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="%(og_title_uk)s"/>
+<meta name="twitter:description" content="%(og_desc_uk)s"/>
+<meta name="twitter:image" content="%(base)s/og-image.jpg"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#129418;</text></svg>"/>
+<meta name="theme-color" content="#FF6B35"/>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
+
+<script type="application/ld+json">%(graph)s</script>
+
+<script>
+/* ?lang=ru — title і description підміняються до відмальовки, інакше в історії
+   браузера й у метриці лишається український заголовок російської сторінки. */
+(function(){
+  if(new URLSearchParams(location.search).get('lang')!=='ru') return;
+  // Без цього атрибут lang у html лишається 'uk' на російській сторінці —
+  // а це те, за чим і браузер, і пошуковик визначають мову документа.
+  document.documentElement.lang='ru';
+  document.title='%(title_ru)s';
+  var d=document.querySelector('meta[name="description"]'); if(d) d.content='%(desc_ru)s';
+  var ot=document.querySelector('meta[property="og:title"]'); if(ot) ot.content='%(title_ru)s';
+  var od=document.querySelector('meta[property="og:description"]'); if(od) od.content='%(desc_ru)s';
+  var ol=document.querySelector('meta[property="og:locale"]'); if(ol) ol.content='ru_RU';
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260826"/>
+<link rel="stylesheet" href="/css/style.css?v=20260826" fetchpriority="high"/>
+<script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
+<style>
+[x-cloak]{display:none!important}
+.gradient-text{background:linear-gradient(135deg,#FF6B35,#E54E1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.prose h2{font-size:1.375rem;font-weight:900;color:#111827;margin-top:2rem;margin-bottom:.75rem;line-height:1.25;padding-left:.875rem;border-left:4px solid #FF6B35}
+.prose h3{font-size:1.125rem;font-weight:800;color:#374151;margin-top:1.5rem;margin-bottom:.5rem}
+.prose h3.qa-q{color:#BF3C0F}
+.prose p{color:#374151;line-height:1.75;margin-bottom:1rem;font-size:1rem}
+.prose ul,.prose ol{margin:.75rem 0 1rem 0;display:flex;flex-direction:column;gap:.5rem;padding-left:0}
+.prose ul{list-style:none}
+.prose ol{list-style:none;counter-reset:step}
+.prose li{position:relative;padding-left:1.5rem;color:#374151;line-height:1.7;font-size:1rem}
+.prose ul li::before{content:'';position:absolute;left:0;top:.55em;width:.5rem;height:.5rem;border-radius:50%%;background:#FF6B35}
+.prose ol li{counter-increment:step;padding-left:2rem}
+.prose ol li::before{content:counter(step);position:absolute;left:0;top:.1em;width:1.35rem;height:1.35rem;border-radius:50%%;background:#FFE8D6;color:#BF3C0F;font-size:.8rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+.prose strong{font-weight:800;color:#111827}
+.callout{background:#FFF5EF;border-left:4px solid #FF6B35;border-radius:0 1rem 1rem 0;padding:1rem 1.25rem;margin:1.5rem 0}
+.callout p{margin:0;color:#374151}
+/* Врізка від першої особи: humanize-guide просить нестандартний блок і живий
+   голос із іменем, а не текст від безликої «редакції». */
+.expert{margin:1.75rem 0;padding:1.25rem 1.5rem;background:#F4F0FF;border-radius:1rem;border:1px solid #EAE2FF}
+.expert blockquote{margin:0;color:#374151;line-height:1.75;font-size:1rem;font-style:italic}
+.expert figcaption{margin-top:.75rem;font-size:.8125rem;font-weight:700;color:#6D28D9}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;border:1px solid #FFE8D6;border-radius:1rem;background:#fff}
+.table-wrap table{width:100%%;min-width:34rem;border-collapse:collapse}
+.table-wrap th{text-align:left;font-size:.8125rem;font-weight:900;color:#111827;padding:.75rem 1rem;background:#FFF5EF;white-space:nowrap}
+.table-wrap td{padding:.75rem 1rem;font-size:.9375rem;color:#374151;border-top:1px solid #FFE8D6;line-height:1.6}
+</style>
+</head>
+<body x-data="blogApp()" x-cloak class="font-sans antialiased bg-cream">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-3xl">&#129418;</span>
+        <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="/#about" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'">Про нас</a>
+        <a href="/tsiny" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'">Ціни</a>
+        <a href="/blog/" class="text-sm font-semibold text-fox-500">Блог</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
+          <button @click="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
+          <button @click="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+        </div>
+        <a href="/#form" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'">Пробний урок</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="pt-24 pb-20">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8" aria-label="Хлібні крихти">
+      <a href="/" class="hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Головна':'Главная'">Головна</a>
+      <span>/</span><a href="/blog/" class="hover:text-fox-500 transition-colors">Блог</a>
+      <span>/</span><span class="text-gray-600" x-text="lang==='uk'?'%(crumb_uk)s':'%(crumb_ru)s'">%(crumb_uk)s</span>
+    </nav>
+
+    <div x-show="lang === 'uk'">
+%(uk)s
+    </div>
+
+    <div x-show="lang === 'ru'" style="display:none">
+%(ru)s
+    </div>
+
+  </div>
+</main>
+
+<footer class="bg-gray-950 text-gray-400 py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-2xl">&#129418;</span>
+        <span class="text-xl font-black text-white">Fluent<span class="text-fox-500">Fox</span></span>
+      </a>
+      <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <a href="/" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'">Головна</a>
+        <a href="/tsiny" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'">Ціни</a>
+        <a href="/pro-shkolu" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про школу':'О школе'">Про школу</a>
+        <a href="/blog/" class="text-fox-400">Блог</a>
+        <a href="/probnyi-urok" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Пробний урок':'Пробный урок'">Пробний урок</a>
+      </div>
+      <p class="text-xs text-gray-600">&copy; 2026 FluentFox</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function blogApp(){return{lang:new URLSearchParams(location.search).get('lang')||'uk',setLang(l){this.lang=l;const u=new URL(location.href);if(l==='ru')u.searchParams.set('lang','ru');else u.searchParams.delete('lang');history.replaceState(null,'',u.toString());document.documentElement.lang=l;const c=document.querySelector('link[rel="canonical"]');if(c)c.href=u.toString();const og=document.querySelector('meta[property="og:url"]');if(og)og.content=u.toString();}}}
+</script>
+</body>
+</html>

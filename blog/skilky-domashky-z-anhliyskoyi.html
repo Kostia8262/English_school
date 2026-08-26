@@ -29,6 +29,20 @@
 <meta name="twitter:title" content="Скільки домашки з англійської має бути у дитини"/>
 <meta name="twitter:description" content="Пояснюємо, яка домашка реально працює, від вчителів FluentFox."/>
 <meta name="twitter:image" content="https://fluent-fox.site/og-image.jpg"/>
+<script>
+/* ?lang=ru — title, description і атрибут lang підміняються до відмальовки.
+   Без цього російська версія віддавалася пошуковику як українська: видимий
+   текст перемикався, а метадані лишалися старими. */
+(function(){
+  if(new URLSearchParams(location.search).get('lang')!=='ru') return;
+  document.documentElement.lang='ru';
+  document.title='Сколько домашних заданий по английскому должно быть у ребёнка';
+  var d=document.querySelector('meta[name="description"]'); if(d) d.content='Почему «больше упражнений» не значит «быстрее прогресс» и как выглядит домашка, которая реально работает.';
+  var ot=document.querySelector('meta[property="og:title"]'); if(ot) ot.content='Сколько домашних заданий по английскому должно быть у ребёнка';
+  var od=document.querySelector('meta[property="og:description"]'); if(od) od.content='Почему «больше упражнений» не значит «быстрее прогресс» и как выглядит домашка, которая реально работает.';
+  var ol=document.querySelector('meta[property="og:locale"]'); if(ol) ol.content='ru_RU';
+})();
+</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>

@@ -29,6 +29,20 @@
 <meta name="twitter:description" content="Порівнюємо групові та індивідуальні уроки англійської за ціною, темпом, ефективністю та соціальною складовою. Що краще для вашої дитини?"/>
 <meta name="twitter:image" content="https://fluent-fox.site/og-image.jpg"/>
 <meta property="article:author" content="Артем Дороженко"/>
+<script>
+/* ?lang=ru — title, description і атрибут lang підміняються до відмальовки.
+   Без цього російська версія віддавалася пошуковику як українська: видимий
+   текст перемикався, а метадані лишалися старими. */
+(function(){
+  if(new URLSearchParams(location.search).get('lang')!=='ru') return;
+  document.documentElement.lang='ru';
+  document.title='Групповые или индивидуальные занятия: что выбрать для ребёнка';
+  var d=document.querySelector('meta[name="description"]'); if(d) d.content='Цена, темп, социализация — сравниваем два формата по шести критериям и объясняем, когда что лучше.';
+  var ot=document.querySelector('meta[property="og:title"]'); if(ot) ot.content='Групповые или индивидуальные занятия: что выбрать для ребёнка';
+  var od=document.querySelector('meta[property="og:description"]'); if(od) od.content='Цена, темп, социализация — сравниваем два формата по шести критериям и объясняем, когда что лучше.';
+  var ol=document.querySelector('meta[property="og:locale"]'); if(ol) ol.content='ru_RU';
+})();
+</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>

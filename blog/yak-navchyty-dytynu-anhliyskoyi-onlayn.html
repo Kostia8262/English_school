@@ -29,6 +29,20 @@
 <meta name="twitter:title" content="Як навчити дитину англійської онлайн: 7 методів, які дають результат"/>
 <meta name="twitter:description" content="Перевірені підходи від вчителів FluentFox для дітей 6–18 років."/>
 <meta name="twitter:image" content="https://fluent-fox.site/og-image.jpg"/>
+<script>
+/* ?lang=ru — title, description і атрибут lang підміняються до відмальовки.
+   Без цього російська версія віддавалася пошуковику як українська: видимий
+   текст перемикався, а метадані лишалися старими. */
+(function(){
+  if(new URLSearchParams(location.search).get('lang')!=='ru') return;
+  document.documentElement.lang='ru';
+  document.title='Как научить ребёнка английскому онлайн: 7 методов, которые работают';
+  var d=document.querySelector('meta[name="description"]'); if(d) d.content='Почему одни дети учат английский с удовольствием, а другие отказываются открывать учебник? Разбираем семь проверенных подходов.';
+  var ot=document.querySelector('meta[property="og:title"]'); if(ot) ot.content='Как научить ребёнка английскому онлайн: 7 методов, которые работают';
+  var od=document.querySelector('meta[property="og:description"]'); if(od) od.content='Почему одни дети учат английский с удовольствием, а другие отказываются открывать учебник? Разбираем семь проверенных подходов.';
+  var ol=document.querySelector('meta[property="og:locale"]'); if(ol) ol.content='ru_RU';
+})();
+</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
