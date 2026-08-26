@@ -155,204 +155,665 @@
     <!-- ═══ Alpine.js CDN ═══ -->
     <script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
 
-    <!-- ═══ Schema.org ═══ -->
-
-    <!-- 1. EducationalOrganization + AggregateRating + Reviews -->
+    <!-- ═══ Schema.org ═══
+         Один @graph замість чотирьох окремих блоків. Раніше Organization,
+         Course, FAQPage і WebSite не знали один про одного: у графі стояли
+         три різні «FluentFox» без спільного @id, і зв'язок «цей курс веде ця
+         школа, а в ній працюють ці вчителі» доводилося вгадувати. Тепер
+         сутність одна, решта посилається на неї через @id — так само
+         влаштована розмітка сусідньої школи програмування.
+    ══════════════════════ -->
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "FluentFox",
-        "url": "https://fluent-fox.site",
-        "logo": "https://fluent-fox.site/og-image.jpg",
-        "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років. Групові та індивідуальні заняття, ігровий підхід, досвідчені вчителі.",
-        "address": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://fluent-fox.site/#website",
+          "url": "https://fluent-fox.site/",
+          "name": "FluentFox",
+          "alternateName": "Онлайн-школа англійської FluentFox",
+          "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років",
+          "inLanguage": [
+            "uk",
+            "ru"
+          ],
+          "publisher": {
+            "@id": "https://fluent-fox.site/#organization"
+          }
+        },
+        {
+          "@type": [
+            "EducationalOrganization",
+            "LocalBusiness"
+          ],
+          "@id": "https://fluent-fox.site/#organization",
+          "name": "FluentFox",
+          "alternateName": "Флуент Фокс",
+          "legalName": "ФОП Піменов К. Ю.",
+          "url": "https://fluent-fox.site/",
+          "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років. Групові та індивідуальні заняття, ігровий підхід, підготовка до НМТ і Cambridge-іспитів. Групи до 6 учнів, перший урок безкоштовно.",
+          "slogan": "Англійська, яку діти обожнюють",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://fluent-fox.site/logo.png",
+            "caption": "FluentFox"
+          },
+          "image": "https://fluent-fox.site/og-image.jpg",
+          "telephone": [
+            "+380954624672",
+            "+380682522876"
+          ],
+          "email": "fluent.fox.study@gmail.com",
+          "address": {
             "@type": "PostalAddress",
-            "streetAddress": "пр. О. Поля 28а",
+            "streetAddress": "проспект Олександра Поля, 28А",
             "addressLocality": "Дніпро",
+            "addressRegion": "Дніпропетровська область",
+            "postalCode": "49001",
             "addressCountry": "UA"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+380954624672",
-            "contactType": "customer service",
-            "availableLanguage": ["Ukrainian", "Russian"]
-        },
-        "sameAs": [
+          },
+          "hasMap": "https://www.google.com/maps/search/?api=1&query=%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%B0%20%D0%9F%D0%BE%D0%BB%D1%8F%2C%2028%D0%90%2C%20%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Ukraine"
+          },
+          "availableLanguage": [
+            "uk",
+            "ru",
+            "en"
+          ],
+          "knowsLanguage": [
+            "uk",
+            "ru",
+            "en"
+          ],
+          "priceRange": "1800–3600 UAH",
+          "currenciesAccepted": "UAH",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+380954624672",
+              "email": "fluent.fox.study@gmail.com",
+              "contactType": "customer service",
+              "areaServed": "UA",
+              "availableLanguage": [
+                "Ukrainian",
+                "Russian"
+              ]
+            }
+          ],
+          "sameAs": [
             "https://www.instagram.com/fluent.fox.study/",
             "https://www.facebook.com/profile.php?id=61591810049590",
             "https://t.me/fluentfox_ua"
-        ],
-        "aggregateRating": {
+          ],
+          "employee": [
+            {
+              "@id": "https://fluent-fox.site/#teacher-voloshyna"
+            },
+            {
+              "@id": "https://fluent-fox.site/#teacher-marchenko"
+            },
+            {
+              "@id": "https://fluent-fox.site/#teacher-dorozhenko"
+            }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Курси англійської мови онлайн",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@id": "https://fluent-fox.site/#course-6-8"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@id": "https://fluent-fox.site/#course-9-12"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@id": "https://fluent-fox.site/#course-13-18"
+                }
+              }
+            ]
+          },
+          "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "4.9",
             "bestRating": "5",
             "worstRating": "1",
             "ratingCount": "6",
             "reviewCount": "6"
+          },
+          "review": [
+            {
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": "Ірина К."
+              },
+              "datePublished": "2026-03-15",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "reviewBody": "Перед першим заняттям Соня тиснула мене за руку і шептала «мамо, не хочу». Після третього уроку — сама сіла за планшет і повторювала слова з вчителькою. Зараз вже 4-й місяць, і вона засмучується, якщо заняття скасовують.",
+              "itemReviewed": {
+                "@id": "https://fluent-fox.site/#organization"
+              }
+            },
+            {
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": "Олег Т."
+              },
+              "datePublished": "2026-04-02",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "reviewBody": "Максим готувався до Cambridge KET і шкільних іспитів одночасно. Вчителька склала окремий план під кожне завдання, після кожного уроку надсилала розбір помилок. Склав KET на Merit, а в школі отримав річну «відмінно». Дуже структурований підхід.",
+              "itemReviewed": {
+                "@id": "https://fluent-fox.site/#organization"
+              }
+            },
+            {
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": "Марина В."
+              },
+              "datePublished": "2026-05-10",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "reviewBody": "Готувались до НМТ з нуля за 4 місяці. Вчителька підібрала програму під конкретні завдання іспиту, щотижня розбирали помилки. Дарина склала на 183 бали. Вже записую молодшого сина.",
+              "itemReviewed": {
+                "@id": "https://fluent-fox.site/#organization"
+              }
+            },
+            {
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": "Тетяна Л."
+              },
+              "datePublished": "2026-04-20",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "reviewBody": "Льоша соромився говорити навіть зі мною по-українськи, а тут — англійська! Думала, нічого не вийде. Зараз вчителька в школі питає, де він так добре навчився. Не знаю як FluentFox це робить, але це точно працює.",
+              "itemReviewed": {
+                "@id": "https://fluent-fox.site/#organization"
+              }
+            },
+            {
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": "Андрій С."
+              },
+              "datePublished": "2026-06-01",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "reviewBody": "Аліна займалась рік у групі. Спочатку боялась відкрити рота, а тепер за сімейною вечерею виправляє мою вимову. На день народження попросила додаткові заняття. Ось такий результат.",
+              "itemReviewed": {
+                "@id": "https://fluent-fox.site/#organization"
+              }
+            },
+            {
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": "Наталія Б."
+              },
+              "datePublished": "2026-05-28",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "reviewBody": "Записала відразу двох синів у різні групи — зі знижкою на другу дитину виходить вигідно. Обоє займаються вже 7 місяців. Старший читає в оригіналі, а молодший просить перемикати мультики на англійську і сміється, що я не розумію.",
+              "itemReviewed": {
+                "@id": "https://fluent-fox.site/#organization"
+              }
+            }
+          ]
         },
-        "review": [
-            {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Ірина К." },
-                "datePublished": "2026-03-15",
-                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-                "reviewBody": "Перед першим заняттям Соня тиснула мене за руку і шептала «мамо, не хочу». Після третього уроку — сама сіла за планшет і повторювала слова з вчителькою. Зараз вже 4-й місяць, і вона засмучується, якщо заняття скасовують."
-            },
-            {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Олег Т." },
-                "datePublished": "2026-04-02",
-                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-                "reviewBody": "Максим готувався до Cambridge KET і шкільних іспитів одночасно. Вчителька склала окремий план під кожне завдання, після кожного уроку надсилала розбір помилок. Склав KET на Merit, а в школі отримав річну «відмінно». Дуже структурований підхід."
-            },
-            {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Марина В." },
-                "datePublished": "2026-05-10",
-                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-                "reviewBody": "Готувались до НМТ з нуля за 4 місяці. Вчителька підібрала програму під конкретні завдання іспиту, щотижня розбирали помилки. Дарина склала на 183 бали. Вже записую молодшого сина."
-            },
-            {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Тетяна Л." },
-                "datePublished": "2026-04-20",
-                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-                "reviewBody": "Льоша соромився говорити навіть зі мною по-українськи, а тут — англійська! Думала, нічого не вийде. Зараз вчителька в школі питає, де він так добре навчився. Не знаю як FluentFox це робить, але це точно працює."
-            },
-            {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Андрій С." },
-                "datePublished": "2026-06-01",
-                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-                "reviewBody": "Аліна займалась рік у групі. Спочатку боялась відкрити рота, а тепер за сімейною вечерею виправляє мою вимову. На день народження попросила додаткові заняття. Ось такий результат."
-            },
-            {
-                "@type": "Review",
-                "author": { "@type": "Person", "name": "Наталія Б." },
-                "datePublished": "2026-05-28",
-                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-                "reviewBody": "Записала відразу двох синів у різні групи — зі знижкою на другу дитину виходить вигідно. Обоє займаються вже 7 місяців. Старший читає в оригіналі, а молодший просить перемикати мультики на англійську і сміється, що я не розумію."
-            }
-        ]
-    }
-    </script>
-
-    <!-- 2. FAQPage -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "З якого віку можна записатись?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід: ігровий для малюків, комунікативний для школярів, профільний для підлітків." }
-            },
-            {
-                "@type": "Question",
-                "name": "Що потрібно для занять онлайн?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Комп'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet. Ніяких додаткових програм встановлювати не треба." }
-            },
-            {
-                "@type": "Question",
-                "name": "Як проходять групові заняття?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання в онлайн-платформі. Будь-який рівень — від нуля до просунутого." }
-            },
-            {
-                "@type": "Question",
-                "name": "Чи можна перенести урок?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Так, урок можна перенести за 12 годин до початку. Ми розуміємо, що плани змінюються." }
-            },
-            {
-                "@type": "Question",
-                "name": "Коли буде видно перший результат?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Перші помітні результати — вже після 1 місяця регулярних занять. За 3–6 місяців — впевнене спілкування та помітний ріст рівня." }
-            },
-            {
-                "@type": "Question",
-                "name": "Чи є знижки та акції?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім'ї — 15% знижки на другу дитину. Слідкуйте за нашим Instagram!" }
-            }
-        ]
-    }
-    </script>
-
-    <!-- 3. Course -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        "name": "Онлайн-курс англійської мови для дітей та підлітків",
-        "description": "Групові та індивідуальні онлайн-заняття з англійської для дітей 6–18 років. Ігровий підхід, малі групи до 6 учнів, досвідчені вчителі. Рівні A0–B2.",
-        "url": "https://fluent-fox.site/#prices",
-        "provider": {
-            "@type": "EducationalOrganization",
-            "name": "FluentFox",
-            "url": "https://fluent-fox.site"
+        {
+          "@type": "WebPage",
+          "@id": "https://fluent-fox.site/#webpage",
+          "url": "https://fluent-fox.site/",
+          "name": "FluentFox — Онлайн-школа англійської для дітей та підлітків",
+          "description": "FluentFox — онлайн-школа англійської мови для дітей 6–18 років. Групові та індивідуальні заняття, ігровий підхід, досвідчені вчителі. Перший урок — безкоштовно.",
+          "inLanguage": "uk",
+          "isPartOf": {
+            "@id": "https://fluent-fox.site/#website"
+          },
+          "about": {
+            "@id": "https://fluent-fox.site/#organization"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://fluent-fox.site/og-image.jpg"
+          }
         },
-        "educationalLevel": "Beginner to Upper-Intermediate",
-        "teaches": "English language communication, grammar, reading, listening, writing for children aged 6–18",
-        "availableLanguage": "Ukrainian",
-        "inLanguage": "uk",
-        "courseMode": "online",
-        "hasCourseInstance": [
+        {
+          "@type": "Person",
+          "@id": "https://fluent-fox.site/#teacher-voloshyna",
+          "name": "Катерина Волошина",
+          "jobTitle": "Вчителька англійської, CELTA",
+          "description": "Спеціалізується на дітях 6–10 років. Кожен урок перетворює на маленьке свято з іграми та піснями. 5 років досвіду.",
+          "worksFor": {
+            "@id": "https://fluent-fox.site/#organization"
+          },
+          "knowsLanguage": [
+            "en",
+            "uk"
+          ],
+          "hasCredential": [
             {
-                "@type": "CourseInstance",
-                "courseMode": "online",
-                "courseWorkload": "PT1H30M",
-                "name": "Групові заняття 6–8 років",
-                "description": "Ігрові уроки англійської для дітей 6–8 років. Мета: рівень A1. 150+ занять.",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "450",
-                    "priceCurrency": "UAH",
-                    "availability": "https://schema.org/InStock"
-                }
-            },
-            {
-                "@type": "CourseInstance",
-                "courseMode": "online",
-                "courseWorkload": "PT1H30M",
-                "name": "Групові заняття 9–12 років",
-                "description": "Комунікативна програма для дітей 9–12 років. Мета: рівень B1. 150+ занять.",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "450",
-                    "priceCurrency": "UAH",
-                    "availability": "https://schema.org/InStock"
-                }
-            },
-            {
-                "@type": "CourseInstance",
-                "courseMode": "online",
-                "courseWorkload": "PT1H30M",
-                "name": "Групові заняття 13–18 років",
-                "description": "Підготовка до НМТ та Cambridge іспитів для підлітків 13–18 років. Мета: рівень B2.",
-                "offers": {
-                    "@type": "Offer",
-                    "price": "450",
-                    "priceCurrency": "UAH",
-                    "availability": "https://schema.org/InStock"
-                }
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "certificate",
+              "name": "CELTA"
             }
-        ]
-    }
-    </script>
-
-    <!-- 4. WebSite -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "FluentFox",
-        "url": "https://fluent-fox.site",
-        "inLanguage": ["uk", "ru"],
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://fluent-fox.site/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://fluent-fox.site/#teacher-marchenko",
+          "name": "Олена Марченко",
+          "jobTitle": "Вчителька англійської, TEFL",
+          "description": "Веде підліткові програми та підготовку до НМТ і Cambridge YLE. Знає, як мотивувати підлітків. 7 років досвіду.",
+          "worksFor": {
+            "@id": "https://fluent-fox.site/#organization"
+          },
+          "knowsLanguage": [
+            "en",
+            "uk"
+          ],
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "certificate",
+              "name": "TEFL"
+            }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://fluent-fox.site/#teacher-dorozhenko",
+          "name": "Артем Дороженко",
+          "jobTitle": "Вчитель англійської, MA Linguistics",
+          "description": "Інтенсивні курси для підлітків 13–18 років. Фокус на розмовній практиці та реальному спілкуванні. 4 роки досвіду.",
+          "worksFor": {
+            "@id": "https://fluent-fox.site/#organization"
+          },
+          "knowsLanguage": [
+            "en",
+            "uk"
+          ],
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "credentialCategory": "certificate",
+              "name": "MA Linguistics"
+            }
+          ]
+        },
+        {
+          "@type": "Course",
+          "@id": "https://fluent-fox.site/#course-6-8",
+          "name": "Англійська для дітей 6–8 років",
+          "description": "Ігрові онлайн-уроки англійської для дітей 6–8 років: казки, пісні, фоніка та перші слова. Програма на 150+ занять, рівень A0 → A1. Групи до 6 учнів.",
+          "url": "https://fluent-fox.site/#program",
+          "provider": {
+            "@id": "https://fluent-fox.site/#organization"
+          },
+          "educationalLevel": "Beginner",
+          "typicalAgeRange": "6-8",
+          "teaches": "фоніка, алфавіт, базова лексика, вимова, прості фрази",
+          "inLanguage": "uk",
+          "availableLanguage": [
+            "uk",
+            "ru"
+          ],
+          "courseMode": "online",
+          "educationalCredentialAwarded": "Сертифікат FluentFox — рівень A1 (CEFR)",
+          "hasCourseInstance": [
+            {
+              "@type": "CourseInstance",
+              "name": "Група — 1 заняття на тиждень",
+              "courseMode": "online",
+              "courseWorkload": "PT1H30M",
+              "inLanguage": "uk",
+              "location": {
+                "@type": "VirtualLocation",
+                "url": "https://fluent-fox.site/"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "1800",
+                "priceCurrency": "UAH",
+                "availability": "https://schema.org/InStock",
+                "url": "https://fluent-fox.site/#prices"
+              }
+            },
+            {
+              "@type": "CourseInstance",
+              "name": "Група — 2 заняття на тиждень",
+              "courseMode": "online",
+              "courseWorkload": "PT3H",
+              "inLanguage": "uk",
+              "location": {
+                "@type": "VirtualLocation",
+                "url": "https://fluent-fox.site/"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "3600",
+                "priceCurrency": "UAH",
+                "availability": "https://schema.org/InStock",
+                "url": "https://fluent-fox.site/#prices"
+              }
+            },
+            {
+              "@type": "CourseInstance",
+              "name": "Індивідуальні заняття",
+              "courseMode": "online",
+              "courseWorkload": "PT1H30M",
+              "inLanguage": "uk",
+              "location": {
+                "@type": "VirtualLocation",
+                "url": "https://fluent-fox.site/"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "3000",
+                "priceCurrency": "UAH",
+                "availability": "https://schema.org/InStock",
+                "url": "https://fluent-fox.site/#prices"
+              }
+            }
+          ],
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "UAH",
+            "lowPrice": "1800",
+            "highPrice": "3600",
+            "offerCount": 3,
+            "availability": "https://schema.org/InStock",
+            "url": "https://fluent-fox.site/#prices",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "UAH",
+              "price": "1800",
+              "billingDuration": "P1M"
+            }
+          }
+        },
+        {
+          "@type": "Course",
+          "@id": "https://fluent-fox.site/#course-9-12",
+          "name": "Англійська для дітей 9–12 років",
+          "description": "Комунікативна програма англійської для дітей 9–12 років: розмовна практика, граматика без нудьги, читання та аудіювання. 150+ занять, рівень A1 → B1.",
+          "url": "https://fluent-fox.site/#program",
+          "provider": {
+            "@id": "https://fluent-fox.site/#organization"
+          },
+          "educationalLevel": "Intermediate",
+          "typicalAgeRange": "9-12",
+          "teaches": "граматика, розмовна практика, читання, аудіювання, письмо",
+          "inLanguage": "uk",
+          "availableLanguage": [
+            "uk",
+            "ru"
+          ],
+          "courseMode": "online",
+          "educationalCredentialAwarded": "Сертифікат FluentFox — рівень B1 (CEFR)",
+          "hasCourseInstance": [
+            {
+              "@type": "CourseInstance",
+              "name": "Група — 1 заняття на тиждень",
+              "courseMode": "online",
+              "courseWorkload": "PT1H30M",
+              "inLanguage": "uk",
+              "location": {
+                "@type": "VirtualLocation",
+                "url": "https://fluent-fox.site/"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "1800",
+                "priceCurrency": "UAH",
+                "availability": "https://schema.org/InStock",
+                "url": "https://fluent-fox.site/#prices"
+              }
+            },
+            {
+              "@type": "CourseInstance",
+              "name": "Група — 2 заняття на тиждень",
+              "courseMode": "online",
+              "courseWorkload": "PT3H",
+              "inLanguage": "uk",
+              "location": {
+                "@type": "VirtualLocation",
+                "url": "https://fluent-fox.site/"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "3600",
+                "priceCurrency": "UAH",
+                "availability": "https://schema.org/InStock",
+                "url": "https://fluent-fox.site/#prices"
+              }
+            },
+            {
+              "@type": "CourseInstance",
+              "name": "Індивідуальні заняття",
+              "courseMode": "online",
+              "courseWorkload": "PT1H30M",
+              "inLanguage": "uk",
+              "location": {
+                "@type": "VirtualLocation",
+                "url": "https://fluent-fox.site/"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "3000",
+                "priceCurrency": "UAH",
+                "availability": "https://schema.org/InStock",
+                "url": "https://fluent-fox.site/#prices"
+              }
+            }
+          ],
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "UAH",
+            "lowPrice": "1800",
+            "highPrice": "3600",
+            "offerCount": 3,
+            "availability": "https://schema.org/InStock",
+            "url": "https://fluent-fox.site/#prices",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "UAH",
+              "price": "1800",
+              "billingDuration": "P1M"
+            }
+          }
+        },
+        {
+          "@type": "Course",
+          "@id": "https://fluent-fox.site/#course-13-18",
+          "name": "Англійська для підлітків 13–18 років",
+          "description": "Англійська для підлітків 13–18 років: підготовка до НМТ та Cambridge-іспитів (KET, PET, FCE), розмовні клуби, есе. 150+ занять, рівень B1 → B2.",
+          "url": "https://fluent-fox.site/#program",
+          "provider": {
+            "@id": "https://fluent-fox.site/#organization"
+          },
+          "educationalLevel": "Advanced",
+          "typicalAgeRange": "13-18",
+          "teaches": "підготовка до НМТ, Cambridge KET PET FCE, есе, дискусії, академічна лексика",
+          "inLanguage": "uk",
+          "availableLanguage": [
+            "uk",
+            "ru"
+          ],
+          "courseMode": "online",
+          "educationalCredentialAwarded": "Сертифікат FluentFox — рівень B2 (CEFR)",
+          "hasCourseInstance": [
+            {
+              "@type": "CourseInstance",
+              "name": "Група — 1 заняття на тиждень",
+              "courseMode": "online",
+              "courseWorkload": "PT1H30M",
+              "inLanguage": "uk",
+              "location": {
+                "@type": "VirtualLocation",
+                "url": "https://fluent-fox.site/"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "1800",
+                "priceCurrency": "UAH",
+                "availability": "https://schema.org/InStock",
+                "url": "https://fluent-fox.site/#prices"
+              }
+            },
+            {
+              "@type": "CourseInstance",
+              "name": "Група — 2 заняття на тиждень",
+              "courseMode": "online",
+              "courseWorkload": "PT3H",
+              "inLanguage": "uk",
+              "location": {
+                "@type": "VirtualLocation",
+                "url": "https://fluent-fox.site/"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "3600",
+                "priceCurrency": "UAH",
+                "availability": "https://schema.org/InStock",
+                "url": "https://fluent-fox.site/#prices"
+              }
+            },
+            {
+              "@type": "CourseInstance",
+              "name": "Індивідуальні заняття",
+              "courseMode": "online",
+              "courseWorkload": "PT1H30M",
+              "inLanguage": "uk",
+              "location": {
+                "@type": "VirtualLocation",
+                "url": "https://fluent-fox.site/"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "3000",
+                "priceCurrency": "UAH",
+                "availability": "https://schema.org/InStock",
+                "url": "https://fluent-fox.site/#prices"
+              }
+            }
+          ],
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "UAH",
+            "lowPrice": "1800",
+            "highPrice": "3600",
+            "offerCount": 3,
+            "availability": "https://schema.org/InStock",
+            "url": "https://fluent-fox.site/#prices",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "UAH",
+              "price": "1800",
+              "billingDuration": "P1M"
+            }
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://fluent-fox.site/#faq",
+          "isPartOf": {
+            "@id": "https://fluent-fox.site/#webpage"
+          },
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "З якого віку можна записатись?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід: ігровий для малюків, комунікативний для школярів, профільний для підлітків."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Що потрібно для занять онлайн?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Комп'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet. Ніяких додаткових програм встановлювати не треба."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Як проходять групові заняття?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання в онлайн-платформі. Будь-який рівень — від нуля до просунутого."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Чи можна перенести урок?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Так, урок можна перенести за 12 годин до початку. Ми розуміємо, що плани змінюються."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Коли буде видно перший результат?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Перші помітні результати — вже після 1 місяця регулярних занять. За 3–6 місяців — впевнене спілкування та помітний ріст рівня."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Чи є знижки та акції?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім'ї — 15% знижки на другу дитину. Слідкуйте за нашим Instagram!"
+              }
+            }
+          ]
         }
+      ]
     }
     </script>
 
