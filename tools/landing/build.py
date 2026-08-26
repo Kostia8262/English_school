@@ -111,12 +111,22 @@ def render_block(b):
     if kind == "table":
         head, rows = b[1], b[2]
         th = "".join(
-            '<th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3"%s</th>'
-            % attr_ru(uk, ru) for uk, ru in head)
+            '<th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3'
+            '%s"%s</th>'
+            % (" whitespace-nowrap" if max(len(uk), len(ru)) <= 24 else "",
+               attr_ru(uk, ru))
+            for uk, ru in head)
+        # «3 600 грн» у вузькій колонці розривалося на два рядки й читалося як
+        # два різні числа. Короткі клітинки не переносимо; довгі лишаємо як є,
+        # інакше таблиця розсуне себе далеко за межі екрана.
+        def cell(uk, ru):
+            nowrap = " whitespace-nowrap" if max(len(uk), len(ru)) <= 24 else ""
+            return ('<td class="px-4 py-3 text-sm text-gray-600 align-top%s"%s</td>'
+                    % (nowrap, attr_ru(uk, ru)))
+
         tr = "\n".join(
-            "          <tr class=\"border-t border-fox-100\">%s</tr>" % "".join(
-                '<td class="px-4 py-3 text-sm text-gray-600 align-top"%s</td>'
-                % attr_ru(uk, ru) for uk, ru in row)
+            "          <tr class=\"border-t border-fox-100\">%s</tr>"
+            % "".join(cell(uk, ru) for uk, ru in row)
             for row in rows)
         # overflow-x-auto обов'язковий: на 375 px таблиця з трьох колонок інакше
         # розсуває сторінку й ламає горизонтальний скрол усього документа.
@@ -435,6 +445,12 @@ def render_page(p):
               '    <li class="text-gray-600 font-semibold"%s</li>\n'
               '  </ol>\n</nav>\n' % attr_ru(p["crumb_uk"], p["crumb_ru"]))
 
+    # Друга кнопка героя за замовчуванням веде на ціни — але на самій сторінці
+    # цін це посилання саме на себе, тому там вона змінюється на пробний урок.
+    cta2 = p.get("cta2") or (("/probnyi-urok", "Пробний урок", "Пробный урок")
+                             if p["slug"] == "tsiny"
+                             else ("/tsiny", "Дивитись ціни", "Смотреть цены"))
+
     hero = ('\n<section class="pt-8 pb-8 md:pb-14">\n'
             '  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">\n'
             '    <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4"%s</span>\n'
@@ -442,12 +458,13 @@ def render_page(p):
             '    <p class="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mb-8"%s</p>\n'
             '    <div class="flex flex-wrap gap-3">\n'
             '      <a href="/#form" class="inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200" data-ru="Бесплатный урок">Безкоштовний урок</a>\n'
-            '      <a href="/tsiny" class="inline-flex items-center bg-white hover:bg-gray-50 text-gray-800 font-bold text-base px-7 py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200" data-ru="Смотреть цены">Дивитись ціни</a>\n'
+            '      <a href="%s" class="inline-flex items-center bg-white hover:bg-gray-50 text-gray-800 font-bold text-base px-7 py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"%s</a>\n'
             '    </div>\n'
             '  </div>\n</section>\n'
             % (attr_ru(p["badge_uk"], p["badge_ru"]),
                attr_ru(p["h1_uk"], p["h1_ru"]),
-               attr_ru(p["lead_uk"], p["lead_ru"])))
+               attr_ru(p["lead_uk"], p["lead_ru"]),
+               cta2[0], attr_ru(cta2[1], cta2[2])))
 
     body = "\n".join(render_block(b) for b in p["blocks"])
     main = ('\n<main>\n<section class="pb-8 md:pb-20">\n'
