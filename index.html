@@ -77,6 +77,21 @@
 <link rel="stylesheet" href="/css/style.css?v=20260826" fetchpriority="high"/>
 <!-- ═══ Alpine.js CDN ═══ -->
     <script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
+    <script>
+    /* Запобіжник на випадок, коли Alpine не приїхав: CDN недоступний, мережа
+       відвалилась, блокувальник вирізав unpkg. Досі це означало білий екран —
+       весь <body> схований через x-cloak і показати його нікому. Тепер в
+       розмітці лежить український текст, тож є що показати: за три секунди
+       без Alpine просто знімаємо x-cloak.
+
+       Російськомовний відвідувач побачить у цьому разі українську — але це
+       незрівнянно краще за порожню сторінку. */
+    setTimeout(function () {
+        if (window.Alpine) return;
+        document.documentElement.classList.add('no-alpine');
+        document.body.removeAttribute('x-cloak');
+    }, 3000);
+    </script>
 
     <!-- ═══ Schema.org ═══
          Один @graph замість чотирьох окремих блоків. Раніше Organization,
@@ -1165,6 +1180,20 @@
         }
 
         [x-cloak] { display: none !important; }
+
+        /* Аварійний режим: Alpine не приїхав, сторінку показуємо без нього.
+           Тоді треба сховати все, що він тримає закритим, — інакше відвідувач
+           бачить відкриту модалку, розгорнуте меню й червоні помилки на
+           порожній формі. Блоки в <template x-for> без Alpine не малюються
+           взагалі, тож лишаються шапка, герой, телефони й форма: не весь сайт,
+           але дорога до дзвінка ціла. */
+        .no-alpine [x-show="modalOpen"],
+        .no-alpine [x-show="menuOpen"],
+        .no-alpine [x-show="formSuccess"],
+        .no-alpine [x-show="formLoading"],
+        .no-alpine [x-show="formError"],
+        .no-alpine [x-show="formErrors.name"],
+        .no-alpine [x-show="formErrors.phone"] { display: none !important; }
         * { scroll-behavior: smooth; }
 
         /* ── Gradient text ──────────────────────────────────────── */
@@ -1492,15 +1521,15 @@
         <!-- Mobile menu -->
         <div x-show="menuOpen" x-transition class="nav:hidden pb-4 border-t border-gray-100 mobile-menu-enter">
             <div class="flex flex-col gap-1 pt-3">
-                <a href="#about"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.about"></a>
-                <a href="#program"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.program"></a>
-                <a href="#prices"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.prices"></a>
-                <a href="#reviews"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.reviews"></a>
-                <a href="#contacts" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.contacts"></a>
-                <a href="blog/"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.blog"></a>
+                <a href="#about"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.about">Про нас</a>
+                <a href="#program"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.program">Програма</a>
+                <a href="#prices"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.prices">Ціни</a>
+                <a href="#reviews"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.reviews">Відгуки</a>
+                <a href="#contacts" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.contacts">Контакти</a>
+                <a href="blog/"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.blog">Блог</a>
                 <a href="#" @click.prevent="menuOpen=false; modalOpen=true"
                    class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200"
-                   x-text="t.nav.trial"></a>
+                   x-text="t.nav.trial">Пробний урок</a>
                 <!-- Language in mobile menu -->
                 <div class="flex items-center gap-3 px-3 pt-3 mt-1 border-t border-gray-100">
                     <span class="text-xs text-gray-400 font-semibold">UA / RU</span>
@@ -1551,10 +1580,10 @@
                 <div class="flex gap-2 md:gap-3">
                     <a href="#" @click.prevent="modalOpen=true"
                        class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black text-sm md:text-base px-4 md:px-7 py-3 md:py-3.5 rounded-full shadow-fox hover:shadow-fox-lg transition-all duration-200 hover:-translate-y-1 whitespace-nowrap flex-none"
-                       x-text="t.hero.cta1"></a>
+                       x-text="t.hero.cta1">Безкоштовний урок</a>
                     <a href="#about"
                        class="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-bold text-sm md:text-base px-4 md:px-7 py-3 md:py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 whitespace-nowrap flex-none"
-                       x-text="t.hero.cta2"></a>
+                       x-text="t.hero.cta2">Дізнатись більше</a>
                 </div>
             </div>
 
@@ -1595,7 +1624,7 @@
                          :style="`transform:translate(${px * -16}px, ${py * -16}px)`">
                         <span class="text-fox-500 text-base leading-none">⭐</span>
                         <span class="font-black text-sm text-gray-800">4.9</span>
-                        <span class="text-2xs text-gray-400 font-medium" x-text="t.hero.ratingLabel"></span>
+                        <span class="text-2xs text-gray-400 font-medium" x-text="t.hero.ratingLabel">рейтинг</span>
                     </div>
 
                     <!-- Floating card: mini lesson-window mockup (independent parallax) -->
@@ -1621,7 +1650,7 @@
                     <!-- Floating badge: students count (independent parallax) -->
                     <div class="absolute -bottom-3 -right-8 bg-fox-500 text-white rounded-2xl shadow-fox-sm px-3 py-2 text-sm font-bold transition-transform duration-300"
                          :style="`transform:translate(${px * -12}px, ${py * 16}px)`"
-                         x-text="t.hero.studentsBadge"></div>
+                         x-text="t.hero.studentsBadge">500+ учнів</div>
 
                     <!-- Decorative star (independent parallax) -->
                     <div class="absolute top-10 left-1/2 text-violet-400 text-xl leading-none transition-transform duration-300"
@@ -1664,9 +1693,9 @@
 
         <!-- Section header -->
         <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.ages.label"></span>
+            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.ages.label">Вікові групи</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.ages.title"></h2>
-            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.ages.subtitle"></p>
+            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.ages.subtitle">Адаптована програма для кожного етапу розвитку дитини</p>
         </div>
 
         <div class="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
@@ -1702,7 +1731,7 @@
 
                     <!-- CEFR progression track + result -->
                     <div class="mt-auto pt-5 border-t border-gray-100">
-                        <p class="text-2xs font-black text-gray-400 uppercase tracking-widest mb-2" x-text="t.ages.levelLabel"></p>
+                        <p class="text-2xs font-black text-gray-400 uppercase tracking-widest mb-2" x-text="t.ages.levelLabel">Цільовий рівень CEFR</p>
                         <div class="flex gap-1.5 mb-4">
                             <template x-for="lv in age.track" :key="lv.l">
                                 <div class="flex-1 text-center">
@@ -1713,7 +1742,7 @@
                         </div>
 
                         <div class="hidden md:block bg-fox-50 rounded-xl px-4 py-3">
-                            <p class="text-2xs font-black text-fox-600 uppercase tracking-widest mb-1" x-text="t.ages.resultLabel"></p>
+                            <p class="text-2xs font-black text-fox-600 uppercase tracking-widest mb-1" x-text="t.ages.resultLabel">Результат</p>
                             <p class="text-sm text-gray-700 leading-tight" x-text="age.result"></p>
                         </div>
 
@@ -1733,9 +1762,9 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.how.label"></span>
+            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.how.label">Як це працює</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.how.title"></h2>
-            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.how.subtitle"></p>
+            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.how.subtitle">Від першого дзвінка до першого уроку — за одну годину</p>
         </div>
 
         <!-- DESKTOP: horizontal timeline (md+) -->
@@ -1873,9 +1902,9 @@
 
         <!-- Section header (light pattern) -->
         <div class="text-center mb-14">
-            <span class="hidden md:inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.prog.label"></span>
+            <span class="hidden md:inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.prog.label">Програма</span>
             <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.prog.title"></h2>
-            <p class="text-gray-500 text-sm sm:text-base md:text-lg" x-text="t.prog.subtitle"></p>
+            <p class="text-gray-500 text-sm sm:text-base md:text-lg" x-text="t.prog.subtitle">Детальна програма на 150+ занять для кожної вікової групи</p>
         </div>
 
         <!-- 2-column grid -->
@@ -2110,9 +2139,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.adv.label"></span>
+            <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.adv.label">Переваги</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white mb-3 leading-tight" x-text="t.adv.title"></h2>
-            <p class="text-gray-400 text-sm sm:text-base md:text-lg" x-text="t.adv.subtitle"></p>
+            <p class="text-gray-400 text-sm sm:text-base md:text-lg" x-text="t.adv.subtitle">Бо результат видно вже з першого місяця занять</p>
         </div>
 
         <!-- 6 пунктів, 3 колонки -->
@@ -2151,9 +2180,9 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.pricing.label"></span>
+            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.pricing.label">Ціни</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.pricing.title"></h2>
-            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.pricing.subtitle"></p>
+            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.pricing.subtitle">Без прихованих платежів і зайвих умов</p>
         </div>
 
         <div class="flex md:grid md:grid-cols-3 gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pt-6 -mt-6 pb-4 md:pb-0">
@@ -2187,12 +2216,12 @@
                     <a href="#" @click.prevent="modalOpen=true"
                        class="btn-action block text-center font-black text-sm py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox-sm hover:shadow-fox"
                        :class="plan.highlight ? 'bg-white text-fox-600 hover:bg-gray-50' : 'bg-fox-500 hover:bg-fox-600 text-white'"
-                       x-text="t.pricing.cta"></a>
+                       x-text="t.pricing.cta">Записатись</a>
                 </div>
             </template>
         </div>
 
-        <p class="text-center text-sm text-gray-400 mt-6" x-text="t.pricing.note"></p>
+        <p class="text-center text-sm text-gray-400 mt-6" x-text="t.pricing.note">* Перший пробний урок — безкоштовно. При записі двох дітей з родини — знижка 15% на другу дитину.</p>
     </div>
 </section>
 
@@ -2202,9 +2231,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.teachers.label"></span>
+            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.teachers.label">Вчителі</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.teachers.title"></h2>
-            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.teachers.subtitle"></p>
+            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.teachers.subtitle">Сертифіковані вчителі з досвідом роботи з дітьми та підлітками</p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2246,7 +2275,7 @@
 
             <!-- Results list -->
             <div>
-                <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-5" x-text="t.results.label"></span>
+                <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-5" x-text="t.results.label">Результати</span>
                 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-8" x-text="t.results.title"></h2>
                 <ul class="space-y-4">
                     <template x-for="(item, i) in t.results.items" :key="i">
@@ -2291,17 +2320,17 @@
                                     </div>
 
                                     <!-- Certificate label -->
-                                    <div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase z-10 mb-1.5 md:mb-5" style="color:#D4AF37;" x-text="t.results.certLabel"></div>
+                                    <div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase z-10 mb-1.5 md:mb-5" style="color:#D4AF37;" x-text="t.results.certLabel">Сертифікат</div>
 
                                     <!-- Name area -->
                                     <div class="z-10 mb-1.5 md:mb-5 flex items-baseline gap-1.5 md:flex-col md:gap-0">
-                                        <p class="text-2xs md:text-xs md:mb-2" style="color:#8899BB;" x-text="t.results.certGiven"></p>
+                                        <p class="text-2xs md:text-xs md:mb-2" style="color:#8899BB;" x-text="t.results.certGiven">Видано учню:</p>
                                         <p class="font-black text-sm md:text-xl text-white">[Ім'я учня]</p>
                                     </div>
 
                                     <!-- Completed text -->
                                     <div class="z-10 mb-1.5 md:mb-4 flex items-center gap-1.5 md:block">
-                                        <p class="text-2xs md:text-xs md:mb-2" style="color:#8899BB;" x-text="t.results.certCompleted"></p>
+                                        <p class="text-2xs md:text-xs md:mb-2" style="color:#8899BB;" x-text="t.results.certCompleted">Успішно завершив курс:</p>
                                         <div class="px-2.5 py-1 md:px-4 md:py-1.5 rounded-xl border text-2xs md:text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
                                             English A1 → A2
                                         </div>
@@ -2314,17 +2343,17 @@
                                             <!-- Director -->
                                             <div class="text-left">
                                                 <div class="w-14 h-px mb-1" style="background:#D4AF37;opacity:0.4;"></div>
-                                                <div class="text-2xs md:text-xs" style="color:#5566AA;" x-text="t.results.certDirector"></div>
+                                                <div class="text-2xs md:text-xs" style="color:#5566AA;" x-text="t.results.certDirector">Директор</div>
                                             </div>
                                             <!-- Wax seal -->
                                             <div class="w-9 h-9 md:w-12 md:h-12 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#D4AF37; color:#D4AF37;">
                                                 <div class="text-2xs font-black leading-none">FF</div>
-                                                <div class="text-2xs leading-none mt-0.5" x-text="t.results.certYear"></div>
+                                                <div class="text-2xs leading-none mt-0.5" x-text="t.results.certYear">2026</div>
                                             </div>
                                             <!-- Date -->
                                             <div class="text-right">
                                                 <div class="w-14 h-px mb-1 ml-auto" style="background:#D4AF37;opacity:0.4;"></div>
-                                                <div class="text-2xs md:text-xs" style="color:#5566AA;" x-text="t.results.certDate"></div>
+                                                <div class="text-2xs md:text-xs" style="color:#5566AA;" x-text="t.results.certDate">Дата</div>
                                             </div>
                                         </div>
                                     </div>
@@ -2345,9 +2374,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.reviews.label"></span>
+            <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.reviews.label">Відгуки</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.reviews.title"></h2>
-            <p class="text-gray-500 text-sm sm:text-base md:text-lg" x-text="t.reviews.subtitle"></p>
+            <p class="text-gray-500 text-sm sm:text-base md:text-lg" x-text="t.reviews.subtitle">Реальні відгуки реальних сімей</p>
         </div>
 
         <!-- Reviews: mobile swipe slider + desktop paged grid -->
@@ -2420,7 +2449,7 @@
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.faq.label"></span>
+            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.faq.label">Запитання</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.faq.title"></h2>
         </div>
 
@@ -2449,9 +2478,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="lang==='uk'?'Корисні статті':'Полезные статьи'"></span>
+            <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="lang==='uk'?'Корисні статті':'Полезные статьи'">Корисні статті</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white mb-3 leading-tight" x-text="lang==='uk'?'Поради батькам від наших вчителів':'Советы родителям от наших учителей'"></h2>
-            <p class="text-gray-400 text-sm sm:text-base md:text-lg" x-text="lang==='uk'?'Практичні матеріали про навчання дітей англійській мові':'Практические материалы об обучении детей английскому языку'"></p>
+            <p class="text-gray-400 text-sm sm:text-base md:text-lg" x-text="lang==='uk'?'Практичні матеріали про навчання дітей англійській мові':'Практические материалы об обучении детей английскому языку'">Практичні матеріали про навчання дітей англійській мові</p>
         </div>
 
         <!-- MOBILE: horizontal swipe slider -->
@@ -2462,13 +2491,13 @@
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
                         <span class="text-3xl leading-none">📚</span>
-                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Методи навчання':'Методы обучения'"></span>
+                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Методи навчання':'Методы обучения'">Методи навчання</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як навчити дитину англійської онлайн: 7 методів, які дають результат':'Как научить ребёнка английскому онлайн: 7 методов, которые работают'"></h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Чому одні діти вчать із задоволенням, а інші відмовляються? Підходи, які справді працюють.':'Почему одни дети учат с удовольствием, а другие отказываются? Подходы, которые работают.'"></p>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Чому одні діти вчать із задоволенням, а інші відмовляються? Підходи, які справді працюють.':'Почему одни дети учат с удовольствием, а другие отказываются? Подходы, которые работают.'">Чому одні діти вчать із задоволенням, а інші відмовляються? Підходи, які справді працюють.</p>
                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'15 лип 2026':'15 июл 2026'"></span>
-                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'15 лип 2026':'15 июл 2026'">15 лип 2026</span>
+                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'">Читати →</span>
                     </div>
                 </div>
             </a>
@@ -2478,13 +2507,13 @@
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
                         <span class="text-3xl leading-none">📝</span>
-                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'НМТ та іспити':'НМТ и экзамены'"></span>
+                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'НМТ та іспити':'НМТ и экзамены'">НМТ та іспити</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Підготовка до НМТ з англійської 2025: покроковий план':'Подготовка к НМТ по английскому 2025: пошаговый план'"></h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Структура іспиту, топ-теми з граматики та стратегія підготовки від вчителів FluentFox.':'Структура экзамена, ключевые темы и стратегия подготовки от учителей FluentFox.'"></p>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Структура іспиту, топ-теми з граматики та стратегія підготовки від вчителів FluentFox.':'Структура экзамена, ключевые темы и стратегия подготовки от учителей FluentFox.'">Структура іспиту, топ-теми з граматики та стратегія підготовки від вчителів FluentFox.</p>
                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'10 лип 2026':'10 июл 2026'"></span>
-                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'10 лип 2026':'10 июл 2026'">10 лип 2026</span>
+                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'">Читати →</span>
                     </div>
                 </div>
             </a>
@@ -2494,13 +2523,13 @@
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
                         <span class="text-3xl leading-none">🚀</span>
-                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Мотивація':'Мотивация'"></span>
+                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Мотивація':'Мотивация'">Мотивація</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як мотивувати дитину вивчати англійську: 8 прийомів для батьків':'Как мотивировать ребёнка учить английский: 8 приёмов для родителей'"></h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Дитина відмовляється йти на урок? Реальні прийоми без теоретизування.':'Ребёнок отказывается идти на урок? Реальные приёмы без теоретизирования.'"></p>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Дитина відмовляється йти на урок? Реальні прийоми без теоретизування.':'Ребёнок отказывается идти на урок? Реальные приёмы без теоретизирования.'">Дитина відмовляється йти на урок? Реальні прийоми без теоретизування.</p>
                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'5 лип 2026':'5 июл 2026'"></span>
-                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'5 лип 2026':'5 июл 2026'">5 лип 2026</span>
+                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'">Читати →</span>
                     </div>
                 </div>
             </a>
@@ -2515,13 +2544,13 @@
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
                         <span class="text-3xl leading-none">📚</span>
-                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Методи навчання':'Методы обучения'"></span>
+                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Методи навчання':'Методы обучения'">Методи навчання</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як навчити дитину англійської онлайн: 7 методів, які дають результат':'Как научить ребёнка английскому онлайн: 7 методов, которые работают'"></h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Чому одні діти вчать із задоволенням, а інші відмовляються? Підходи, які справді працюють.':'Почему одни дети учат с удовольствием, а другие отказываются? Подходы, которые работают.'"></p>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Чому одні діти вчать із задоволенням, а інші відмовляються? Підходи, які справді працюють.':'Почему одни дети учат с удовольствием, а другие отказываются? Подходы, которые работают.'">Чому одні діти вчать із задоволенням, а інші відмовляються? Підходи, які справді працюють.</p>
                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'15 лип 2026':'15 июл 2026'"></span>
-                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'15 лип 2026':'15 июл 2026'">15 лип 2026</span>
+                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'">Читати →</span>
                     </div>
                 </div>
             </a>
@@ -2533,13 +2562,13 @@
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
                         <span class="text-3xl leading-none">📝</span>
-                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'НМТ та іспити':'НМТ и экзамены'"></span>
+                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'НМТ та іспити':'НМТ и экзамены'">НМТ та іспити</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Підготовка до НМТ з англійської 2025: покроковий план':'Подготовка к НМТ по английскому 2025: пошаговый план'"></h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Структура іспиту, топ-теми з граматики та стратегія підготовки від вчителів FluentFox.':'Структура экзамена, ключевые темы и стратегия подготовки от учителей FluentFox.'"></p>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Структура іспиту, топ-теми з граматики та стратегія підготовки від вчителів FluentFox.':'Структура экзамена, ключевые темы и стратегия подготовки от учителей FluentFox.'">Структура іспиту, топ-теми з граматики та стратегія підготовки від вчителів FluentFox.</p>
                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'10 лип 2026':'10 июл 2026'"></span>
-                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'10 лип 2026':'10 июл 2026'">10 лип 2026</span>
+                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'">Читати →</span>
                     </div>
                 </div>
             </a>
@@ -2551,13 +2580,13 @@
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
                         <span class="text-3xl leading-none">🚀</span>
-                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Мотивація':'Мотивация'"></span>
+                        <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Мотивація':'Мотивация'">Мотивація</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як мотивувати дитину вивчати англійську: 8 прийомів для батьків':'Как мотивировать ребёнка учить английский: 8 приёмов для родителей'"></h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Дитина відмовляється йти на урок? Реальні прийоми без теоретизування.':'Ребёнок отказывается идти на урок? Реальные приёмы без теоретизирования.'"></p>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk'?'Дитина відмовляється йти на урок? Реальні прийоми без теоретизування.':'Ребёнок отказывается идти на урок? Реальные приёмы без теоретизирования.'">Дитина відмовляється йти на урок? Реальні прийоми без теоретизування.</p>
                     <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'5 лип 2026':'5 июл 2026'"></span>
-                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
+                        <span class="text-xs text-gray-400" x-text="lang==='uk'?'5 лип 2026':'5 июл 2026'">5 лип 2026</span>
+                        <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'">Читати →</span>
                     </div>
                 </div>
             </a>
@@ -2565,7 +2594,7 @@
 
         <div class="text-center">
             <a href="blog/" class="inline-flex items-center gap-2 bg-white text-fox-600 hover:bg-fox-50 font-black px-6 py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-lg">
-                <span x-text="lang==='uk'?'Усі статті':'Все статьи'"></span>
+                <span x-text="lang==='uk'?'Усі статті':'Все статьи'">Усі статті</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </a>
         </div>
@@ -2678,16 +2707,16 @@
             <!-- ── Left: contact info ── -->
             <div class="pt-2 min-w-0">
                 <h2 class="text-2xl sm:text-3xl md:text-5xl font-black text-gray-900 leading-tight mb-4">
-                    <span x-text="t.form.titleLine1"></span><br>
-                    <span class="gradient-text" x-text="t.form.titleLine2"></span>
+                    <span x-text="t.form.titleLine1">Запишіться на</span><br>
+                    <span class="gradient-text" x-text="t.form.titleLine2">пробний урок</span>
                 </h2>
-                <p class="text-gray-500 text-sm sm:text-base md:text-lg leading-relaxed mb-4 md:mb-10" x-text="t.form.subtitle"></p>
+                <p class="text-gray-500 text-sm sm:text-base md:text-lg leading-relaxed mb-4 md:mb-10" x-text="t.form.subtitle">Залиш заявку — передзвонимо протягом 30 хвилин, запишемо дитину на безкоштовне перше заняття.</p>
 
                 <!-- Phones (hidden on mobile) -->
                 <div class="hidden md:block">
 
                 <!-- Phones -->
-                <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3" x-text="t.form.phonesLabel"></p>
+                <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3" x-text="t.form.phonesLabel">Телефони</p>
                 <div class="space-y-3 mb-8">
                     <!-- Phone 1 -->
                     <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -2724,11 +2753,11 @@
                 </div>
 
                 <!-- Email -->
-                <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2" x-text="t.form.emailLabel"></p>
+                <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2" x-text="t.form.emailLabel">Пошта</p>
                 <a href="mailto:fluent.fox.study@gmail.com" class="font-bold text-fox-500 hover:text-fox-600 transition-colors mb-8 block">fluent.fox.study@gmail.com</a>
 
                 <!-- Socials -->
-                <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3 mt-6" x-text="t.form.socialLabel"></p>
+                <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3 mt-6" x-text="t.form.socialLabel">Слідкуйте за нами</p>
                 <div class="flex flex-wrap gap-2">
                     <a href="https://www.facebook.com/profile.php?id=61591810049590" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 bg-white hover:border-fox-300 transition-colors text-sm font-bold text-gray-700">
                         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
@@ -2759,7 +2788,7 @@
                     <div x-show="formSuccess" x-transition class="text-center py-10">
                         <div class="text-5xl mb-4">🦊</div>
                         <h3 class="text-xl font-black text-gray-900 mb-2" x-text="t.form.successTitle"></h3>
-                        <p class="text-gray-500" x-text="t.form.successText"></p>
+                        <p class="text-gray-500" x-text="t.form.successText">Ми зв'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.</p>
                     </div>
 
                     <!-- Form -->
@@ -2769,17 +2798,17 @@
                         <div class="grid grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-1.5">
-                                    <span x-text="t.form.nameLabel"></span> <span class="text-fox-500">*</span>
+                                    <span x-text="t.form.nameLabel">Ім'я дитини</span> <span class="text-fox-500">*</span>
                                 </label>
                                 <input x-model="formData.name" type="text"
                                        :placeholder="t.form.namePlaceholder"
                                        @input="formErrors.name = false"
                                        :class="formErrors.name ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-gray-50'"
                                        class="form-input w-full border-2 rounded-xl px-4 py-3 text-sm text-gray-800 font-medium transition-all duration-200">
-                                <p x-show="formErrors.name" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.nameError"></p>
+                                <p x-show="formErrors.name" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.nameError">Введіть ім'я дитини (мін. 2 символи)</p>
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
+                                <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel">Вік</label>
                                 <input x-model="formData.childAge" type="number" min="6" max="18"
                                        placeholder="9"
                                        class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 font-medium transition-all duration-200">
@@ -2789,7 +2818,7 @@
                         <!-- Phone with prefix -->
                         <div>
                             <label class="block text-sm font-bold text-gray-700 mb-1.5">
-                                <span x-text="t.form.phoneLabel2"></span> <span class="text-fox-500">*</span>
+                                <span x-text="t.form.phoneLabel2">Ваш телефон</span> <span class="text-fox-500">*</span>
                             </label>
                             <div class="flex">
                                 <div class="flex items-center gap-1.5 bg-gray-100 border-2 border-r-0 border-gray-200 rounded-l-xl px-3 whitespace-nowrap shrink-0">
@@ -2802,28 +2831,28 @@
                                        :class="formErrors.phone ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-gray-50'"
                                        class="form-input flex-1 min-w-0 border-2 rounded-r-xl px-4 py-3 text-sm text-gray-800 font-medium transition-all duration-200">
                             </div>
-                            <p x-show="formErrors.phone" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.phoneError"></p>
+                            <p x-show="formErrors.phone" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.phoneError">Введіть коректний номер — 9 цифр після +380</p>
                         </div>
 
                         <!-- Error -->
                         <div x-show="formError" x-transition
                              class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-600 text-sm"
-                             x-text="t.form.errorText"></div>
+                             x-text="t.form.errorText">Щось пішло не так. Спробуйте ще раз або зателефонуйте нам.</div>
 
                         <!-- Submit -->
                         <button type="submit"
                                 :disabled="formLoading"
                                 class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-base">
-                            <span x-show="!formLoading" x-text="t.form.submit"></span>
+                            <span x-show="!formLoading" x-text="t.form.submit">Безкоштовний урок</span>
                             <span x-show="formLoading" class="flex items-center justify-center gap-2">
                                 <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
-                                <span x-text="t.form.sending"></span>
+                                <span x-text="t.form.sending">Відправляємо...</span>
                             </span>
                         </button>
 
                         <!-- Messenger alternative -->
                         <div class="text-center">
-                            <p class="text-xs text-gray-400 mb-3" x-text="t.form.orWrite"></p>
+                            <p class="text-xs text-gray-400 mb-3" x-text="t.form.orWrite">або напишіть нам напряму</p>
                             <div class="flex flex-wrap justify-center gap-2">
                                 <a href="viber://chat?number=%2B380954624672"
                                    class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5"
@@ -2846,7 +2875,7 @@
                             </div>
                         </div>
 
-                        <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore"></span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink"></a><span x-text="t.form.privacyMiddle"></span><a href="offer.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.offerLink"></a><span x-text="t.form.privacyAfter"></span></p>
+                        <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore">Натискаючи кнопку, ви погоджуєтесь з </span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink">політикою конфіденційності</a><span x-text="t.form.privacyMiddle"> та </span><a href="offer.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.offerLink">публічною офертою</a><span x-text="t.form.privacyAfter">.</span></p>
                     </form>
                 </div>
             </div>
@@ -2897,17 +2926,17 @@
                     <span class="font-black text-lg text-gray-900">FluentFox</span>
                 </div>
                 <h3 class="text-2xl font-black text-gray-900 leading-tight" x-text="t.modal.title"></h3>
-                <p class="text-gray-500 text-sm mt-1" x-text="t.modal.subtitle"></p>
+                <p class="text-gray-500 text-sm mt-1" x-text="t.modal.subtitle">Передзвонимо протягом 30 хвилин</p>
             </div>
 
             <!-- Success -->
             <div x-show="formSuccess" x-transition class="text-center py-8">
                 <div class="text-5xl mb-3">🦊</div>
                 <h4 class="text-xl font-black text-gray-900 mb-1" x-text="t.form.successTitle"></h4>
-                <p class="text-gray-500 text-sm" x-text="t.form.successText"></p>
+                <p class="text-gray-500 text-sm" x-text="t.form.successText">Ми зв'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.</p>
                 <button @click="modalOpen=false; formSuccess=false"
                         class="mt-5 px-6 py-2.5 bg-fox-500 hover:bg-fox-600 text-white font-black rounded-full shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5 transition-all duration-200"
-                        x-text="t.modal.close"></button>
+                        x-text="t.modal.close">Закрити</button>
             </div>
 
             <!-- Form -->
@@ -2916,17 +2945,17 @@
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-1.5">
-                            <span x-text="t.form.nameLabel"></span> <span class="text-fox-500">*</span>
+                            <span x-text="t.form.nameLabel">Ім'я дитини</span> <span class="text-fox-500">*</span>
                         </label>
                         <input x-model="formData.name" type="text"
                                :placeholder="t.form.namePlaceholder"
                                @input="formErrors.name = false"
                                :class="formErrors.name ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-gray-50'"
                                class="form-input w-full border-2 rounded-xl px-4 py-3 text-xs font-medium transition-all duration-200">
-                        <p x-show="formErrors.name" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.nameError"></p>
+                        <p x-show="formErrors.name" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.nameError">Введіть ім'я дитини (мін. 2 символи)</p>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel"></label>
+                        <label class="block text-sm font-bold text-gray-700 mb-1.5" x-text="t.form.ageLabel">Вік</label>
                         <input x-model="formData.childAge" type="number" min="6" max="18"
                                placeholder="9"
                                class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-xs font-medium transition-all duration-200">
@@ -2936,7 +2965,7 @@
                 <!-- Phone -->
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-1.5">
-                        <span x-text="t.form.phoneLabel2"></span> <span class="text-fox-500">*</span>
+                        <span x-text="t.form.phoneLabel2">Ваш телефон</span> <span class="text-fox-500">*</span>
                     </label>
                     <div class="flex">
                         <div class="flex items-center gap-1.5 bg-gray-100 border-2 border-r-0 border-gray-200 rounded-l-xl px-3 whitespace-nowrap shrink-0">
@@ -2949,28 +2978,28 @@
                                :class="formErrors.phone ? 'border-red-400 bg-red-50' : 'border-gray-200 bg-gray-50'"
                                class="form-input flex-1 min-w-0 border-2 rounded-r-xl px-4 py-3 text-xs font-medium transition-all duration-200">
                     </div>
-                    <p x-show="formErrors.phone" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.phoneError"></p>
+                    <p x-show="formErrors.phone" x-transition class="mt-1 text-xs text-red-500 font-medium" x-text="t.form.phoneError">Введіть коректний номер — 9 цифр після +380</p>
                 </div>
 
                 <!-- Error -->
                 <div x-show="formError" x-transition
                      class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-600 text-sm"
-                     x-text="t.form.errorText"></div>
+                     x-text="t.form.errorText">Щось пішло не так. Спробуйте ще раз або зателефонуйте нам.</div>
 
                 <!-- Submit -->
                 <button type="submit"
                         :disabled="formLoading"
                         class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-sm">
-                    <span x-show="!formLoading" x-text="t.form.submit"></span>
+                    <span x-show="!formLoading" x-text="t.form.submit">Безкоштовний урок</span>
                     <span x-show="formLoading" class="flex items-center justify-center gap-2">
                         <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
-                        <span x-text="t.form.sending"></span>
+                        <span x-text="t.form.sending">Відправляємо...</span>
                     </span>
                 </button>
 
                 <!-- Messengers -->
                 <div class="text-center">
-                    <p class="text-xs text-gray-400 mb-2" x-text="t.form.orWrite"></p>
+                    <p class="text-xs text-gray-400 mb-2" x-text="t.form.orWrite">або напишіть нам напряму</p>
                     <div class="flex flex-wrap justify-center gap-2">
                         <a href="viber://chat?number=%2B380954624672" class="flex items-center gap-1.5 px-4 py-2 rounded-xl border-2 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5" style="border-color:#7360F2;color:#7360F2;">
                             <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
@@ -2987,7 +3016,7 @@
                     </div>
                 </div>
 
-                <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore"></span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink"></a><span x-text="t.form.privacyMiddle"></span><a href="offer.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.offerLink"></a><span x-text="t.form.privacyAfter"></span></p>
+                <p class="text-xs text-gray-400 text-center"><span x-text="t.form.privacyBefore">Натискаючи кнопку, ви погоджуєтесь з </span><a href="privacy.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.privacyLink">політикою конфіденційності</a><span x-text="t.form.privacyMiddle"> та </span><a href="offer.html" class="underline hover:text-fox-500 transition-colors" x-text="t.form.offerLink">публічною офертою</a><span x-text="t.form.privacyAfter">.</span></p>
             </form>
         </div>
     </div>
@@ -3005,7 +3034,7 @@
                     <span class="text-3xl">🦊</span>
                     <span class="text-2xl font-black text-white">Fluent<span class="text-fox-400">Fox</span></span>
                 </a>
-                <p class="text-base leading-relaxed max-w-xs" x-text="t.footer.tagline"></p>
+                <p class="text-base leading-relaxed max-w-xs" x-text="t.footer.tagline">Вивчай англійську з хитрістю лиса!</p>
                 <!-- Social icons -->
                 <div class="flex gap-3 mt-4">
                     <a href="https://www.instagram.com/fluent.fox.study/" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white">
@@ -3024,25 +3053,25 @@
             <div>
                 <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" x-text="t.footer.navTitle"></h4>
                 <ul class="space-y-2 text-base">
-                    <li><a href="#about"    class="hover:text-fox-400 transition-colors" x-text="t.nav.about"></a></li>
-                    <li><a href="#program"  class="hover:text-fox-400 transition-colors" x-text="t.nav.program"></a></li>
-                    <li><a href="#prices"   class="hover:text-fox-400 transition-colors" x-text="t.nav.prices"></a></li>
-                    <li><a href="#reviews"  class="hover:text-fox-400 transition-colors" x-text="t.nav.reviews"></a></li>
-                    <li><a href="blog/"     class="hover:text-fox-400 transition-colors" x-text="t.nav.blog"></a></li>
+                    <li><a href="#about"    class="hover:text-fox-400 transition-colors" x-text="t.nav.about">Про нас</a></li>
+                    <li><a href="#program"  class="hover:text-fox-400 transition-colors" x-text="t.nav.program">Програма</a></li>
+                    <li><a href="#prices"   class="hover:text-fox-400 transition-colors" x-text="t.nav.prices">Ціни</a></li>
+                    <li><a href="#reviews"  class="hover:text-fox-400 transition-colors" x-text="t.nav.reviews">Відгуки</a></li>
+                    <li><a href="blog/"     class="hover:text-fox-400 transition-colors" x-text="t.nav.blog">Блог</a></li>
                 </ul>
 
                 <h4 class="text-white font-black text-base mb-4 mt-6 uppercase tracking-wide" x-text="lang==='uk'?'Розділи':'Разделы'"></h4>
                 <ul class="space-y-2 text-base">
-                    <li><a :href="lang==='ru'?'/anhliyska-6-8-rokiv?lang=ru':'/anhliyska-6-8-rokiv'"     class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська 6–8 років':'Английский 6–8 лет'"></a></li>
-                    <li><a :href="lang==='ru'?'/anhliyska-9-12-rokiv?lang=ru':'/anhliyska-9-12-rokiv'"    class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська 9–12 років':'Английский 9–12 лет'"></a></li>
-                    <li><a :href="lang==='ru'?'/anhliyska-13-18-rokiv?lang=ru':'/anhliyska-13-18-rokiv'"   class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська 13–18 років':'Английский 13–18 лет'"></a></li>
-                    <li><a :href="lang==='ru'?'/pidhotovka-do-nmt?lang=ru':'/pidhotovka-do-nmt'"       class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Підготовка до НМТ':'Подготовка к НМТ'"></a></li>
-                    <li><a :href="lang==='ru'?'/cambridge?lang=ru':'/cambridge'"               class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Іспити Cambridge':'Экзамены Cambridge'"></a></li>
-                    <li><a :href="lang==='ru'?'/dnipro?lang=ru':'/dnipro'"                  class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська у Дніпрі':'Английский в Днепре'"></a></li>
-                    <li><a :href="lang==='ru'?'/tsiny?lang=ru':'/tsiny'"                   class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни та знижки':'Цены и скидки'"></a></li>
-                    <li><a :href="lang==='ru'?'/vidhuky?lang=ru':'/vidhuky'"                 class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a></li>
-                    <li><a :href="lang==='ru'?'/pro-shkolu?lang=ru':'/pro-shkolu'"              class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про школу':'О школе'"></a></li>
-                    <li><a :href="lang==='ru'?'/probnyi-urok?lang=ru':'/probnyi-urok'"            class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a></li>
+                    <li><a :href="lang==='ru'?'/anhliyska-6-8-rokiv?lang=ru':'/anhliyska-6-8-rokiv'"     class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська 6–8 років':'Английский 6–8 лет'">Англійська 6–8 років</a></li>
+                    <li><a :href="lang==='ru'?'/anhliyska-9-12-rokiv?lang=ru':'/anhliyska-9-12-rokiv'"    class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська 9–12 років':'Английский 9–12 лет'">Англійська 9–12 років</a></li>
+                    <li><a :href="lang==='ru'?'/anhliyska-13-18-rokiv?lang=ru':'/anhliyska-13-18-rokiv'"   class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська 13–18 років':'Английский 13–18 лет'">Англійська 13–18 років</a></li>
+                    <li><a :href="lang==='ru'?'/pidhotovka-do-nmt?lang=ru':'/pidhotovka-do-nmt'"       class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Підготовка до НМТ':'Подготовка к НМТ'">Підготовка до НМТ</a></li>
+                    <li><a :href="lang==='ru'?'/cambridge?lang=ru':'/cambridge'"               class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Іспити Cambridge':'Экзамены Cambridge'">Іспити Cambridge</a></li>
+                    <li><a :href="lang==='ru'?'/dnipro?lang=ru':'/dnipro'"                  class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська у Дніпрі':'Английский в Днепре'">Англійська у Дніпрі</a></li>
+                    <li><a :href="lang==='ru'?'/tsiny?lang=ru':'/tsiny'"                   class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни та знижки':'Цены и скидки'">Ціни та знижки</a></li>
+                    <li><a :href="lang==='ru'?'/vidhuky?lang=ru':'/vidhuky'"                 class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Відгуки':'Отзывы'">Відгуки</a></li>
+                    <li><a :href="lang==='ru'?'/pro-shkolu?lang=ru':'/pro-shkolu'"              class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про школу':'О школе'">Про школу</a></li>
+                    <li><a :href="lang==='ru'?'/probnyi-urok?lang=ru':'/probnyi-urok'"            class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Пробний урок':'Пробный урок'">Пробний урок</a></li>
                 </ul>
 
                 <h4 class="text-white font-black text-base mb-4 mt-6 uppercase tracking-wide" x-text="t.footer.partnersTitle"></h4>
@@ -3060,7 +3089,7 @@
                     <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a></li>
                     <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380682522876" class="hover:text-fox-400 transition-colors">+38 (068) 252-28-76</a></li>
                     <li class="flex items-center gap-2"><span>✉️</span> <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors">fluent.fox.study@gmail.com</a></li>
-                    <li class="flex items-center gap-2"><span>⏰</span> <span x-text="t.footer.hours"></span></li>
+                    <li class="flex items-center gap-2"><span>⏰</span> <span x-text="t.footer.hours">Пн–Сб: 9:00–21:00</span></li>
                 </ul>
             </div>
         </div>
@@ -3111,7 +3140,7 @@
 
         <!-- Copyright + FOP -->
         <div class="border-t border-gray-800 pt-5 space-y-1.5 text-sm text-gray-500 text-center md:text-left">
-            <p x-text="t.footer.copyright"></p>
+            <p x-text="t.footer.copyright">© 2026 FluentFox. Всі права захищені.</p>
             <p>ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,
                <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a>,
                <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors">fluent.fox.study@gmail.com</a>
