@@ -69,6 +69,12 @@
 .prose strong{font-weight:800;color:#111827}
 .callout{background:#FFF5EF;border-left:4px solid #FF6B35;border-radius:0 1rem 1rem 0;padding:1rem 1.25rem;margin:1.5rem 0}
 .callout p{margin:0;color:#374151}
+.course-link{background:#FFF5EF;border:1px solid #FFE8D6;border-radius:1rem;padding:1.1rem 1.3rem;margin:1.75rem 0}
+.course-link p{margin:0;color:#374151}
+.course-link .cl-label{font-size:.6875rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#BF3C0F;margin-bottom:.35rem}
+.course-link .cl-title{font-size:1rem;font-weight:800;color:#111827;line-height:1.45;margin-bottom:.7rem}
+.course-link a{display:inline-flex;align-items:center;gap:.4rem;font-size:.9375rem;font-weight:900;color:#E54E1A;text-decoration:none}
+.course-link a:hover{color:#BF3C0F}
 </style>
 </head>
 <body x-data="blogApp()" x-cloak class="font-sans antialiased bg-cream">
@@ -78,21 +84,21 @@
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-2">
+      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2">
         <span class="text-3xl">🦊</span>
         <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
       </a>
       <div class="hidden md:flex items-center gap-6">
-        <a href="/#about"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
-        <a href="/#prices"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a href="/blog/"    class="text-sm font-semibold text-fox-500">Блог</a>
+        <a :href="lang==='ru' ? '/pro-shkolu?lang=ru' : '/pro-shkolu'"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
+        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'"    class="text-sm font-semibold text-fox-500">Блог</a>
       </div>
       <div class="flex items-center gap-3">
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
           <button @click="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
           <button @click="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
         </div>
-        <a href="/#form" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
       </div>
     </div>
   </nav>
@@ -104,9 +110,9 @@
 
     <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8">
-      <a href="/" class="hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
+      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
       <span>/</span>
-      <a href="/blog/" class="hover:text-fox-500 transition-colors">Блог</a>
+      <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'" class="hover:text-fox-500 transition-colors">Блог</a>
       <span>/</span>
       <span class="text-gray-600" x-text="lang==='uk'?'Мотивація':'Мотивация'"></span>
     </nav>
@@ -132,6 +138,11 @@
         <p>Розуміння на слух — пасивний навик: мозок розпізнає знайомі слова без ризику. Говоріння — активна дія на публіці, де кожна помилка потенційно видима іншим. Це нормальний розрив, і майже всі діти проходять через нього — питання лише в тому, як довго він триває.</p>
         <p>У сором'язливих дітей і підлітків цей розрив часто посилюється соціальним страхом: не «я не знаю слово», а «однокласники подумають, що я дурний». Це вже не мовна проблема, а емоційна — і вирішувати її потрібно інакше.</p>
 
+      <div class="course-link">
+        <p class="cl-label">За цією темою</p>
+        <p class="cl-title">На пробному уроці вчитель бачить, чи мовчить дитина від страху, чи від браку слів, — це різні задачі.</p>
+        <a href="/probnyi-urok">Записатись на пробний урок &rarr;</a>
+      </div>
         <h2>Що підсилює страх помилки — і чого уникати</h2>
         <p>Виправлення посеред фрази зупиняє думку дитини і закріплює відчуття «я роблю щось не так». Краще дати дитині договорити, а потім м'яко проговорити правильний варіант — без акценту на тому, що було неправильно.</p>
         <p>Порівняння з іншими дітьми («а от твоя однокласниця вже вільно розмовляє») працює проти мотивації майже завжди. Мозок сприймає це не як стимул, а як підтвердження власної невдачі.</p>
@@ -164,7 +175,7 @@
         <div class="text-3xl mb-3">🦊</div>
         <h2 class="text-xl md:text-2xl font-black mb-2 leading-tight">Малі групи, де помилятися — нормально</h2>
         <p class="text-white/80 mb-6 text-sm leading-relaxed">У FluentFox групи до 6 учнів — саме для того, щоб кожна дитина встигала говорити і не боялася спробувати.</p>
-        <a href="/#form" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">Безкоштовний пробний урок</a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">Безкоштовний пробний урок</a>
       </div>
 
       <!-- Related -->
@@ -204,6 +215,11 @@
         <p>Понимание на слух — пассивный навык: мозг распознаёт знакомые слова без риска. Говорение — активное действие на публике, где каждая ошибка потенциально видна другим. Это нормальный разрыв, и почти все дети проходят через него — вопрос лишь в том, как долго он длится.</p>
         <p>У застенчивых детей и подростков этот разрыв часто усиливается социальным страхом: не «я не знаю слово», а «одноклассники подумают, что я глупый». Это уже не языковая проблема, а эмоциональная — и решать её нужно иначе.</p>
 
+      <div class="course-link">
+        <p class="cl-label">По этой теме</p>
+        <p class="cl-title">На пробном уроке преподаватель видит, молчит ли ребёнок от страха или от нехватки слов, — это разные задачи.</p>
+        <a href="/probnyi-urok?lang=ru">Записаться на пробный урок &rarr;</a>
+      </div>
         <h2>Что усиливает страх ошибки — и чего избегать</h2>
         <p>Исправление посреди фразы останавливает мысль ребёнка и закрепляет ощущение «я делаю что-то не так». Лучше дать ребёнку договорить, а потом мягко проговорить правильный вариант — без акцента на том, что было неправильно.</p>
         <p>Сравнение с другими детьми («а вот твоя одноклассница уже свободно разговаривает») работает против мотивации почти всегда. Мозг воспринимает это не как стимул, а как подтверждение собственной неудачи.</p>
@@ -235,7 +251,7 @@
         <div class="text-3xl mb-3">🦊</div>
         <h2 class="text-xl md:text-2xl font-black mb-2 leading-tight">Маленькие группы, где ошибаться — нормально</h2>
         <p class="text-white/80 mb-6 text-sm leading-relaxed">В FluentFox группы до 6 учеников — именно для того, чтобы каждый ребёнок успевал говорить и не боялся пробовать.</p>
-        <a href="/#form" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">Бесплатный пробный урок</a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">Бесплатный пробный урок</a>
       </div>
 
       <div class="mt-12">
@@ -260,15 +276,15 @@
 <footer class="bg-gray-950 text-gray-400 py-10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-      <a href="/" class="flex items-center gap-2">
+      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2">
         <span class="text-2xl">🦊</span>
         <span class="text-xl font-black text-white">Fluent<span class="text-fox-500">Fox</span></span>
       </a>
       <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-        <a href="/" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
-        <a href="/#prices" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a href="/blog/" class="text-fox-400">Блог</a>
-        <a href="/#form" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
+        <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
+        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'" class="text-fox-400">Блог</a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
       </div>
       <p class="text-xs text-gray-600">© 2026 FluentFox</p>
     </div>

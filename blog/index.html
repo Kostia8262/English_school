@@ -96,22 +96,22 @@
 <header class="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-sm border-b border-white/10">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-2 group">
+      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2 group">
         <span class="text-3xl group-hover:scale-110 transition-transform duration-200">🦊</span>
         <span class="text-2xl font-black text-white">Fluent<span class="gradient-text">Fox</span></span>
       </a>
       <div class="hidden md:flex items-center gap-6">
-        <a href="/#about"   class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
-        <a href="/#prices"  class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a href="/#reviews" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
-        <a href="/blog/"    class="text-sm font-semibold text-fox-400" x-text="lang==='uk'?'Блог':'Блог'"></a>
+        <a :href="lang==='ru' ? '/pro-shkolu?lang=ru' : '/pro-shkolu'"   class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
+        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'"  class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a :href="lang==='ru' ? '/vidhuky?lang=ru' : '/vidhuky'" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
+        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'"    class="text-sm font-semibold text-fox-400" x-text="lang==='uk'?'Блог':'Блог'"></a>
       </div>
       <div class="flex items-center gap-3">
         <div class="flex items-center bg-white/10 rounded-full p-0.5 text-sm font-bold">
           <button @click="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-200'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
           <button @click="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-200'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
         </div>
-        <a href="/#form" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
         <button @click="menuOpen=!menuOpen" class="md:hidden p-2 text-gray-300" aria-label="Menu">
           <svg x-show="!menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
           <svg x-show="menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -120,11 +120,11 @@
     </div>
     <div x-show="menuOpen" x-transition class="md:hidden pb-4 border-t border-white/10">
       <div class="flex flex-col gap-1 pt-3">
-        <a href="/#about"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Про нас':'О нас'"></a>
-        <a href="/#prices"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a href="/#reviews" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
-        <a href="/blog/"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-fox-400 hover:bg-white/5 font-semibold transition-colors text-sm">Блог</a>
-        <a href="/#form" class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm text-sm" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
+        <a :href="lang==='ru' ? '/pro-shkolu?lang=ru' : '/pro-shkolu'"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Про нас':'О нас'"></a>
+        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a :href="lang==='ru' ? '/vidhuky?lang=ru' : '/vidhuky'" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
+        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-fox-400 hover:bg-white/5 font-semibold transition-colors text-sm">Блог</a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm text-sm" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
       </div>
     </div>
   </nav>
@@ -191,7 +191,7 @@
     <div class="text-4xl mb-4">🦊</div>
     <h2 class="text-2xl md:text-3xl font-black text-white mb-3 leading-tight" x-text="lang==='uk'?'Хочете результату, а не просто статей?':'Хотите результата, а не просто статей?'"></h2>
     <p class="text-orange-100 mb-6" x-text="lang==='uk'?'Запишіться на безкоштовний пробний урок — ми підберемо вчителя та програму під вашу дитину':'Запишитесь на бесплатный пробный урок — мы подберём учителя и программу под вашего ребёнка'"></p>
-    <a href="/#form" class="inline-flex items-center gap-2 bg-white text-fox-600 hover:bg-fox-50 font-black px-7 py-3.5 rounded-full shadow-lg transition-all duration-200 hover:-translate-y-1" x-text="lang==='uk'?'Безкоштовний пробний урок':'Бесплатный пробный урок'"></a>
+    <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="inline-flex items-center gap-2 bg-white text-fox-600 hover:bg-fox-50 font-black px-7 py-3.5 rounded-full shadow-lg transition-all duration-200 hover:-translate-y-1" x-text="lang==='uk'?'Безкоштовний пробний урок':'Бесплатный пробный урок'"></a>
   </div>
 </section>
 
@@ -199,14 +199,14 @@
 <footer class="bg-gray-950 text-gray-400 py-10 border-t border-white/10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-      <a href="/" class="flex items-center gap-2">
+      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2">
         <span class="text-2xl">🦊</span>
         <span class="text-xl font-black text-white">Fluent<span class="text-fox-400">Fox</span></span>
       </a>
       <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-        <a href="/" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
-        <a href="/#prices" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a href="/blog/" class="text-fox-400">Блог</a>
+        <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
+        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'" class="text-fox-400">Блог</a>
         <a href="/privacy.html" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Конфіденційність':'Конфиденциальность'"></a>
       </div>
       <p class="text-xs text-gray-600">© 2026 FluentFox</p>

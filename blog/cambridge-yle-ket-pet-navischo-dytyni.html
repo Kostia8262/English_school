@@ -72,6 +72,12 @@
 .price-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.9rem}
 .price-table th{background:#FFF5EF;color:#BF3C0F;font-weight:800;text-align:left;padding:.6rem .75rem;border-bottom:2px solid #FFE8D6}
 .price-table td{padding:.6rem .75rem;border-bottom:1px solid #F3F4F6;color:#374151}
+.course-link{background:#FFF5EF;border:1px solid #FFE8D6;border-radius:1rem;padding:1.1rem 1.3rem;margin:1.75rem 0}
+.course-link p{margin:0;color:#374151}
+.course-link .cl-label{font-size:.6875rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#BF3C0F;margin-bottom:.35rem}
+.course-link .cl-title{font-size:1rem;font-weight:800;color:#111827;line-height:1.45;margin-bottom:.7rem}
+.course-link a{display:inline-flex;align-items:center;gap:.4rem;font-size:.9375rem;font-weight:900;color:#E54E1A;text-decoration:none}
+.course-link a:hover{color:#BF3C0F}
 </style>
 </head>
 <body x-data="blogApp()" x-cloak class="font-sans antialiased bg-cream">
@@ -81,21 +87,21 @@
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href="/" class="flex items-center gap-2">
+      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2">
         <span class="text-3xl">🦊</span>
         <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
       </a>
       <div class="hidden md:flex items-center gap-6">
-        <a href="/#about"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
-        <a href="/#prices"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a href="/blog/"    class="text-sm font-semibold text-fox-500">Блог</a>
+        <a :href="lang==='ru' ? '/pro-shkolu?lang=ru' : '/pro-shkolu'"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
+        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'"    class="text-sm font-semibold text-fox-500">Блог</a>
       </div>
       <div class="flex items-center gap-3">
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
           <button @click="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
           <button @click="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
         </div>
-        <a href="/#form" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
       </div>
     </div>
   </nav>
@@ -107,9 +113,9 @@
 
     <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8">
-      <a href="/" class="hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
+      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
       <span>/</span>
-      <a href="/blog/" class="hover:text-fox-500 transition-colors">Блог</a>
+      <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'" class="hover:text-fox-500 transition-colors">Блог</a>
       <span>/</span>
       <span class="text-gray-600" x-text="lang==='uk'?'НМТ та іспити':'НМТ и экзамены'"></span>
     </nav>
@@ -139,6 +145,11 @@
         <h3>З якого віку можна складати Cambridge YLE?</h3>
         <p>Офіційних вікових обмежень немає, але за рівнем складності Starters підходить дітям від 6–7 років, Movers — від 8–9, Flyers — від 10–12, залежно від того, скільки часу дитина вже вчить англійську.</p>
 
+      <div class="course-link">
+        <p class="cl-label">За цією темою</p>
+        <p class="cl-title">Ми готуємо до всіх рівнів — від Starters до B2 First. Підготовка входить у звичайний курс, окремого тарифу немає.</p>
+        <a href="/cambridge">Підготовка до Cambridge &rarr;</a>
+      </div>
         <h2>KET і PET: перші «дорослі» іспити</h2>
         <p>KET (Key English Test) підтверджує рівень A2, PET (Preliminary English Test) — рівень B1. На відміну від YLE, тут уже є чотири секції — Reading, Writing, Listening, Speaking — і формат ближчий до іспитів для дорослих на кшталт IELTS чи FCE.</p>
         <p>KET зазвичай складають діти 11–14 років, PET — 13–16, але це залежить не від віку, а від реального рівня. Дитина, яка почала вчити англійську з 6 років у комунікативному форматі, може дійти до PET уже у 12–13.</p>
@@ -165,7 +176,7 @@
         <div class="text-3xl mb-3">🦊</div>
         <h2 class="text-xl md:text-2xl font-black mb-2 leading-tight">Дізнайтесь, до якого іспиту готова ваша дитина</h2>
         <p class="text-white/80 mb-6 text-sm leading-relaxed">На безкоштовному пробному уроці вчитель визначить рівень дитини та порадить, коли і до якого Cambridge-іспиту готуватися.</p>
-        <a href="/#form" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">Безкоштовний пробний урок</a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">Безкоштовний пробний урок</a>
       </div>
 
       <!-- Related -->
@@ -209,6 +220,11 @@
         <h3>С какого возраста можно сдавать Cambridge YLE?</h3>
         <p>Официальных возрастных ограничений нет, но по уровню сложности Starters подходит детям от 6–7 лет, Movers — от 8–9, Flyers — от 10–12, в зависимости от того, сколько времени ребёнок уже учит английский.</p>
 
+      <div class="course-link">
+        <p class="cl-label">По этой теме</p>
+        <p class="cl-title">Мы готовим ко всем уровням — от Starters до B2 First. Подготовка входит в обычный курс, отдельного тарифа нет.</p>
+        <a href="/cambridge?lang=ru">Подготовка к Cambridge &rarr;</a>
+      </div>
         <h2>KET и PET: первые «взрослые» экзамены</h2>
         <p>KET (Key English Test) подтверждает уровень A2, PET (Preliminary English Test) — уровень B1. В отличие от YLE, здесь уже есть четыре секции — Reading, Writing, Listening, Speaking — и формат ближе к экзаменам для взрослых вроде IELTS или FCE.</p>
         <p>KET обычно сдают дети 11–14 лет, PET — 13–16, но это зависит не от возраста, а от реального уровня. Ребёнок, который начал учить английский с 6 лет в коммуникативном формате, может дойти до PET уже в 12–13.</p>
@@ -234,7 +250,7 @@
         <div class="text-3xl mb-3">🦊</div>
         <h2 class="text-xl md:text-2xl font-black mb-2 leading-tight">Узнайте, к какому экзамену готов ваш ребёнок</h2>
         <p class="text-white/80 mb-6 text-sm leading-relaxed">На бесплатном пробном уроке учитель определит уровень ребёнка и посоветует, когда и к какому Cambridge-экзамену готовиться.</p>
-        <a href="/#form" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">Бесплатный пробный урок</a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">Бесплатный пробный урок</a>
       </div>
 
       <div class="mt-12">
@@ -259,15 +275,15 @@
 <footer class="bg-gray-950 text-gray-400 py-10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-      <a href="/" class="flex items-center gap-2">
+      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2">
         <span class="text-2xl">🦊</span>
         <span class="text-xl font-black text-white">Fluent<span class="text-fox-500">Fox</span></span>
       </a>
       <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-        <a href="/" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
-        <a href="/#prices" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a href="/blog/" class="text-fox-400">Блог</a>
-        <a href="/#form" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
+        <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
+        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
+        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'" class="text-fox-400">Блог</a>
+        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
       </div>
       <p class="text-xs text-gray-600">© 2026 FluentFox</p>
     </div>

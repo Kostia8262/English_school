@@ -142,6 +142,23 @@ def render_blocks(blocks, lang):
                 '          <figcaption>%s — %s</figcaption>\n'
                 '        </figure>' % (rich(b[2 + i]), esc(name), esc(job)))
 
+        elif kind == "courselink":
+            # Контекстне посилання на профільну посадкову. Посилання з меню,
+            # однакове на всіх сторінках, Google майже не враховує — вагу несе
+            # саме таке, з тіла тексту, оточене релевантними словами.
+            _, page, t_uk, t_ru, cta_uk, cta_ru = b
+            href = page if lang == "uk" else page + "?lang=ru"
+            out.append(
+                '        <div class="course-link">\n'
+                '          <p class="cl-label">%s</p>\n'
+                '          <p class="cl-title">%s</p>\n'
+                '          <a href="%s">%s &rarr;</a>\n'
+                '        </div>'
+                % ("За цією темою" if lang == "uk" else "По этой теме",
+                   esc(t_uk if lang == "uk" else t_ru),
+                   href,
+                   esc(cta_uk if lang == "uk" else cta_ru)))
+
         elif kind == "table":
             head, rows = b[1], b[2]
             th = "".join("<th scope=\"col\">%s</th>" % esc(c[i]) for c in head)
@@ -176,6 +193,8 @@ def word_count(blocks, faq, lang):
             words += len(strip_tags(b[1 + i]).split())
             words += len(strip_tags(b[3 + i]).split())
         elif kind == "expert":
+            words += len(strip_tags(b[2 + i]).split())
+        elif kind == "courselink":
             words += len(strip_tags(b[2 + i]).split())
         elif kind == "table":
             for row in b[2]:
@@ -340,7 +359,7 @@ def render_side(a, lang):
         <div class="text-3xl mb-3">&#129418;</div>
         <h2 class="text-xl md:text-2xl font-black mb-2 leading-tight">%(cta_h)s</h2>
         <p class="text-white/80 mb-6 text-sm leading-relaxed">%(cta_p)s</p>
-        <a href="/#form%(lang_q)s" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">%(cta_b)s</a>
+        <a href="%(form_href)s" class="inline-block bg-white text-fox-600 font-black px-6 py-3 rounded-full hover:bg-fox-50 transition-all duration-200 hover:-translate-y-0.5 shadow-lg">%(cta_b)s</a>
       </div>
 
 %(related)s""" % {
@@ -355,7 +374,7 @@ def render_side(a, lang):
         "cta_h": esc(cta[0 + i * 3]),
         "cta_p": esc(cta[1 + i * 3]),
         "cta_b": esc(cta[2 + i * 3]),
-        "lang_q": "" if lang == "uk" else "?lang=ru",
+        "form_href": "/#form" if lang == "uk" else "/?lang=ru#form",
         "related": render_related(a, lang),
     }
 
