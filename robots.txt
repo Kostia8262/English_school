@@ -1,4 +1,61 @@
+# robots.txt — FluentFox
+# https://fluent-fox.site
+
+# ── Пошукові системи: повний доступ ───────────────────────────────────────────
 User-agent: *
 Allow: /
 
+# Технічні файли, які не мають потрапляти у видачу
+Disallow: /404.html
+Disallow: /*.json$
+
+# ── AI-краулери: свідомо дозволені ────────────────────────────────────────────
+# Вони не виконують JS, тому читають статичний <noscript>-блок і /llms.txt.
+# Саме заради них ці два артефакти й існують — закривати їх було б марнуванням
+# уже зробленої роботи.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── SEO-скрапери: закриті ─────────────────────────────────────────────────────
+# Не приносять трафіку, але з'їдають ліміт обходу на shared-хостингу.
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+# ── Карта сайту ───────────────────────────────────────────────────────────────
 Sitemap: https://fluent-fox.site/sitemap.xml

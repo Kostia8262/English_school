@@ -53,7 +53,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <link rel="preload" as="image" href="hero-photo.webp" type="image/webp">
+    <!-- media обов'язковий: саме фото стоїть у блоці hidden lg:flex, тож без
+         умови мобільний браузер тягнув 97 КБ картинки, яку ніколи не покаже -->
+    <link rel="preload" as="image" href="hero-photo.webp" type="image/webp" media="(min-width: 1024px)">
 
     <!-- Dynamic meta for ru version -->
     <script>
@@ -808,7 +810,7 @@
                     <div class="absolute inset-0 rounded-full border-8 border-white shadow-fox-xl overflow-hidden bg-gradient-to-br from-fox-100 via-cream to-violet-100">
                         <picture>
                             <source srcset="hero-photo.webp" type="image/webp">
-                            <img src="hero-photo.png" :alt="t.hero.photoAlt" class="w-full h-full object-cover" width="900" height="900" loading="eager" fetchpriority="high">
+                            <img src="hero-photo.png" alt="Мама з донькою навчаються англійської онлайн з FluentFox" :alt="t.hero.photoAlt" class="w-full h-full object-cover" width="900" height="900" loading="eager" fetchpriority="high">
                         </picture>
                     </div>
 
@@ -1797,11 +1799,11 @@
     <div class="absolute inset-0 pointer-events-none select-none hidden md:block">
         <!-- Double-decker bus — left, bottom-aligned -->
         <div class="absolute left-0 bottom-0 flex items-end" style="height:75%; max-width:340px; transform:translateX(-8%)">
-            <img src="bus.svg" alt="" class="h-full w-auto object-contain drop-shadow-2xl" style="filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25))">
+            <img src="bus.svg" alt="" loading="lazy" decoding="async" width="5000" height="5000" class="h-full w-auto object-contain drop-shadow-2xl" style="filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25))">
         </div>
         <!-- Big Ben — right, bottom-aligned -->
         <div class="absolute right-0 bottom-0 flex items-end" style="height:110%; max-width:220px; transform:translateX(12%)">
-            <img src="bigben.svg" alt="" class="h-full w-auto object-contain" style="filter: drop-shadow(0 8px 32px rgba(0,0,0,0.2))">
+            <img src="bigben.svg" alt="" loading="lazy" decoding="async" width="2050" height="2196" class="h-full w-auto object-contain" style="filter: drop-shadow(0 8px 32px rgba(0,0,0,0.2))">
         </div>
     </div>
 

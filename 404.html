@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title data-ru="404 — Страница не найдена | FluentFox">404 — Сторінку не знайдено | FluentFox</title>
+<meta name="robots" content="noindex, follow"/>
+<meta name="description" content="Сторінку не знайдено. Поверніться на головну FluentFox — онлайн-школа англійської для дітей 6–18 років."/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>"/>
+<meta name="theme-color" content="#FF6B35"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;900&display=swap" rel="stylesheet"/>
+<style>
+/* Сторінка автономна: ні Tailwind, ні Alpine сюди не підключаються.
+   Помилка має відмалюватися навіть тоді, коли зламана віддача статики або
+   недоступний CDN — саме в такий момент користувач сюди й потрапляє.
+   Токени скопійовані з дизайн-системи index.html: правиш там — синхронізуй тут. */
+:root{
+  --fox-50:#FFF5EF; --fox-100:#FFE8D6; --fox-200:#FFCAAA;
+  --fox-500:#FF6B35; --fox-600:#E54E1A;
+  --violet-50:#F4F0FF; --violet-100:#EAE2FF; --violet-500:#7C3AED;
+  --cream:#FFFBF7; --gray-900:#111827; --gray-600:#4B5563; --gray-500:#6B7280;
+  --shadow-fox:0 8px 24px rgba(255,107,53,.18);
+  --shadow-fox-lg:0 20px 40px rgba(255,107,53,.22);
+  --duration-base:200ms;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:linear-gradient(140deg,var(--fox-50) 0%,var(--cream) 50%,var(--violet-50) 100%);
+  color:var(--gray-900);min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:2rem 1rem;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:34rem;width:100%;text-align:center;position:relative}
+.blob{position:absolute;border-radius:2rem;filter:blur(48px);opacity:.5;z-index:0}
+.blob--a{width:16rem;height:16rem;background:var(--fox-100);top:-4rem;left:-5rem}
+.blob--b{width:13rem;height:13rem;background:var(--violet-100);bottom:-3rem;right:-4rem}
+.content{position:relative;z-index:1}
+.fox{font-size:4.5rem;line-height:1;display:block;margin-bottom:.5rem}
+.code{
+  font-size:5rem;font-weight:900;line-height:1;letter-spacing:-.02em;margin-bottom:1rem;
+  background:linear-gradient(135deg,var(--fox-500) 0%,var(--fox-600) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+h1{font-size:1.5rem;font-weight:900;line-height:1.25;margin-bottom:.75rem}
+p{font-size:1rem;font-weight:500;line-height:1.625;color:var(--gray-600);margin-bottom:2rem}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:2.5rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.875rem 1.75rem;border-radius:9999px;
+  font-weight:900;font-size:1rem;text-decoration:none;
+  transition:all var(--duration-base) ease;
+}
+.btn--primary{background:var(--fox-500);color:#fff;box-shadow:var(--shadow-fox)}
+.btn--primary:hover{background:var(--fox-600);box-shadow:var(--shadow-fox-lg);transform:translateY(-4px)}
+.btn--secondary{background:#fff;color:#1F2937;border:1px solid #E5E7EB;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.btn--secondary:hover{background:#F9FAFB;box-shadow:0 4px 6px rgba(0,0,0,.07);transform:translateY(-4px)}
+.links{border-top:1px solid var(--fox-100);padding-top:1.5rem}
+.links-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-500);margin-bottom:.875rem}
+.links-row{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.chip{
+  display:inline-block;padding:.375rem 1rem;border-radius:9999px;
+  background:#fff;border:1px solid var(--fox-200);color:var(--fox-600);
+  font-size:.875rem;font-weight:700;text-decoration:none;
+  transition:all var(--duration-base) ease;
+}
+.chip:hover{background:var(--fox-500);border-color:var(--fox-500);color:#fff}
+@media (min-width:640px){ h1{font-size:1.875rem} .code{font-size:6rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="blob blob--a" aria-hidden="true"></span>
+  <span class="blob blob--b" aria-hidden="true"></span>
+
+  <div class="content">
+    <span class="fox" aria-hidden="true">🦊</span>
+    <div class="code">404</div>
+
+    <h1 data-ru="Такой страницы нет">Такої сторінки немає</h1>
+    <p data-ru="Лисёнок обыскал весь сайт, но эту страницу не нашёл. Возможно, ссылка устарела или в адресе опечатка.">Лисеня обшукало весь сайт, але цієї сторінки не знайшло. Можливо, посилання застаріло або в адресі є помилка.</p>
+
+    <div class="actions">
+      <a class="btn btn--primary" href="/" data-ru="На главную">На головну</a>
+      <a class="btn btn--secondary" href="/#form" data-ru="Пробный урок">Пробний урок</a>
+    </div>
+
+    <div class="links">
+      <div class="links-title" data-ru="Полезные разделы">Корисні розділи</div>
+      <div class="links-row">
+        <a class="chip" href="/#about"   data-ru="О школе">Про школу</a>
+        <a class="chip" href="/#program" data-ru="Программа">Програма</a>
+        <a class="chip" href="/#prices"  data-ru="Цены">Ціни</a>
+        <a class="chip" href="/#reviews" data-ru="Отзывы">Відгуки</a>
+        <a class="chip" href="/blog/">Блог</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ?lang=ru — той самий контракт, що й на решті сайту. Без Alpine: на сторінці
+   помилки зайва залежність від CDN — це ризик побачити порожній екран. */
+(function(){
+  if (new URLSearchParams(location.search).get('lang') !== 'ru') return;
+  document.documentElement.lang = 'ru';
+  document.querySelectorAll('[data-ru]').forEach(function(el){ el.textContent = el.dataset.ru; });
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    /* через URL, а не конкатенацією: у половини посилань є #якір, і дописаний
+       у хвіст ?lang=ru опинився б усередині фрагмента, а не в запиті */
+    var u = new URL(a.href);
+    u.searchParams.set('lang', 'ru');
+    a.href = u.toString();
+  });
+})();
+</script>
+</body>
+</html>

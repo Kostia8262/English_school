@@ -1,99 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- Українська та російська версії — це одна сторінка з ?lang=ru, а не дві різні
+     адреси. Раніше кожна стояла окремим <loc>, і карта заявляла 22 сторінки
+     замість 11: Google зводив пару довше, ніж міг би, а обхід витрачався двічі.
+     Тепер мовна пара оголошена через xhtml:link — так само, як у сусідньої школи.
 
-  <!-- Main -->
+     Юридичні сторінки (privacy/offer/terms/returns/cookies) свідомо не входять
+     у карту: вони несуть <meta name="robots" content="noindex">. Карта, яка
+     кличе обійти закриту сторінку, — суперечність: Search Console позначає такі
+     адреси як «виключено тегом noindex», а ліміт обходу згорає намарно. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://fluent-fox.site/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/"/>
   </url>
 
-  <!-- Main (Russian) -->
-  <url>
-    <loc>https://fluent-fox.site/?lang=ru</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Blog listing -->
   <url>
     <loc>https://fluent-fox.site/blog/</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/"/>
   </url>
 
-  <!-- Blog articles -->
   <url>
     <loc>https://fluent-fox.site/blog/yak-navchyty-dytynu-anhliyskoyi-onlayn.html</loc>
-    <lastmod>2026-07-15</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/yak-navchyty-dytynu-anhliyskoyi-onlayn.html?lang=ru</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/yak-navchyty-dytynu-anhliyskoyi-onlayn.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/yak-navchyty-dytynu-anhliyskoyi-onlayn.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/yak-navchyty-dytynu-anhliyskoyi-onlayn.html"/>
   </url>
 
   <url>
     <loc>https://fluent-fox.site/blog/z-yakoho-viku-pochynaty-anhliyskoyu.html</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/z-yakoho-viku-pochynaty-anhliyskoyu.html?lang=ru</loc>
-    <lastmod>2026-07-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/z-yakoho-viku-pochynaty-anhliyskoyu.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/z-yakoho-viku-pochynaty-anhliyskoyu.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/z-yakoho-viku-pochynaty-anhliyskoyu.html"/>
   </url>
 
   <url>
     <loc>https://fluent-fox.site/blog/pidhotovka-do-nmt-anhliyskoyi-2025.html</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/pidhotovka-do-nmt-anhliyskoyi-2025.html?lang=ru</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/pidhotovka-do-nmt-anhliyskoyi-2025.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/pidhotovka-do-nmt-anhliyskoyi-2025.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/pidhotovka-do-nmt-anhliyskoyi-2025.html"/>
   </url>
 
   <url>
     <loc>https://fluent-fox.site/blog/hrupovi-chy-indyvidualni-zanyattya.html</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/hrupovi-chy-indyvidualni-zanyattya.html?lang=ru</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/hrupovi-chy-indyvidualni-zanyattya.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/hrupovi-chy-indyvidualni-zanyattya.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/hrupovi-chy-indyvidualni-zanyattya.html"/>
   </url>
 
   <url>
     <loc>https://fluent-fox.site/blog/yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html</loc>
-    <lastmod>2026-07-05</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html?lang=ru</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html"/>
   </url>
 
   <url>
@@ -101,13 +86,9 @@
     <lastmod>2026-07-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/skilky-koshtuye-anhliyska-dytyni-onlayn.html?lang=ru</loc>
-    <lastmod>2026-07-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/skilky-koshtuye-anhliyska-dytyni-onlayn.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/skilky-koshtuye-anhliyska-dytyni-onlayn.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/skilky-koshtuye-anhliyska-dytyni-onlayn.html"/>
   </url>
 
   <url>
@@ -115,13 +96,9 @@
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/cambridge-yle-ket-pet-navischo-dytyni.html?lang=ru</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/cambridge-yle-ket-pet-navischo-dytyni.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/cambridge-yle-ket-pet-navischo-dytyni.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/cambridge-yle-ket-pet-navischo-dytyni.html"/>
   </url>
 
   <url>
@@ -129,13 +106,9 @@
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/skilky-chasu-zagovoryty-anhliyskoyu.html?lang=ru</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/skilky-chasu-zagovoryty-anhliyskoyu.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/skilky-chasu-zagovoryty-anhliyskoyu.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/skilky-chasu-zagovoryty-anhliyskoyu.html"/>
   </url>
 
   <url>
@@ -143,13 +116,9 @@
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/skilky-domashky-z-anhliyskoyi.html?lang=ru</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/skilky-domashky-z-anhliyskoyi.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/skilky-domashky-z-anhliyskoyi.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/skilky-domashky-z-anhliyskoyi.html"/>
   </url>
 
   <url>
@@ -157,49 +126,9 @@
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/blog/dytyna-boyitsya-hovoryty-anhliyskoyu.html?lang=ru</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- Legal pages -->
-  <url>
-    <loc>https://fluent-fox.site/privacy.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/offer.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/terms.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/returns.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://fluent-fox.site/cookies.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-fox.site/blog/dytyna-boyitsya-hovoryty-anhliyskoyu.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-fox.site/blog/dytyna-boyitsya-hovoryty-anhliyskoyu.html?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/blog/dytyna-boyitsya-hovoryty-anhliyskoyu.html"/>
   </url>
 
 </urlset>
