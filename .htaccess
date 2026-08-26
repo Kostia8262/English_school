@@ -36,6 +36,8 @@
 # Без цього рядка Hostinger віддає власну англомовну заглушку — чужий бренд
 # на нашому домені і жодного шляху назад на сайт.
 ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+ErrorDocument 503 /503.html
 
 # ── 3. Стиснення ───────────────────────────────────────────────────────────
 # LiteSpeed вже віддає brotli для HTML; блок лишається як запобіжник на
@@ -77,9 +79,25 @@ ErrorDocument 404 /404.html
     Header set Cache-Control "public, max-age=86400"
   </FilesMatch>
 
-  # ── 5. Заголовки безпеки ──────────────────────────────────────────────────
-  # CSP свідомо не ставимо: сайт тягне Tailwind, Alpine, GTM і Google Fonts
-  # з чужих доменів, і надто сувора політика зламала б сторінку мовчки.
+  # ── 5. Політика вмісту ────────────────────────────────────────────────────
+  # Раніше CSP тут не було: Tailwind приїжджав компілятором з CDN, і будь-яка
+  # сувора політика ламала б сторінку мовчки. Після переходу на складений
+  # css/style.css зовнішніх джерел лишилося рівно чотири, і їх можна перелічити.
+  #
+  # 'unsafe-eval' у script-src потрібен Alpine: вирази з x-text та @click він
+  # компілює через new Function. Прибрати його можна лише переїздом на
+  # CSP-збірку Alpine, а це переписування всіх виразів на сторінці.
+  # 'unsafe-inline' — через вбудований сніпет GTM і скрипти в <head>.
+  # Політика все одно робить головне: скрипт із чужого домену не завантажиться.
+  #
+  # script.google.com і script.googleusercontent.com — туди форма шле заявку
+  # (fetch, mode: no-cors). Прибрати їх з connect-src означає мовчки зламати
+  # запис на пробний урок; сам збій при no-cors навіть не видно в коді.
+  #
+  # УВАГА: нові теги в GTM (піксель Meta, Hotjar тощо) ця політика заблокує,
+  # доки їхній домен не додано в script-src і connect-src.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://script.google.com https://script.googleusercontent.com; frame-src https://www.googletagmanager.com; frame-ancestors 'self'; form-action 'self' https://script.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   Header set X-Frame-Options "SAMEORIGIN"
