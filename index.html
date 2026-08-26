@@ -67,6 +67,10 @@
             document.querySelector('meta[property="og:description"]').content='Учи английский вместе с FluentFox — игровой подход, малые группы, живые учителя. Первый урок бесплатно!';
             document.querySelector('link[rel="canonical"]').href='https://fluent-fox.site/?lang=ru';
             document.querySelector('meta[property="og:url"]').content='https://fluent-fox.site/?lang=ru';
+            // og:locale лишався uk_UA на російській версії — месенджери й
+            // соцмережі саме за ним визначають мову прев'ю.
+            var ogl=document.querySelector('meta[property="og:locale"]'); if(ogl) ogl.content='ru_RU';
+            var ogla=document.querySelector('meta[property="og:locale:alternate"]'); if(ogla) ogla.content='uk_UA';
             document.documentElement.lang='ru';
         }
     })();
@@ -2618,9 +2622,9 @@
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <!-- Header -->
-        <span class="inline-block bg-white/20 border border-white/30 text-white font-bold text-xs px-4 py-1.5 rounded-full mb-4 tracking-widest uppercase">Підготовка до іспитів</span>
-        <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-3">Готуємо до міжнародних іспитів</h2>
-        <p class="text-orange-100 text-base mb-10 max-w-xl mx-auto">Cambridge YLE, IELTS, TOEFL та інші — ваша дитина буде готова</p>
+        <span class="inline-block bg-white/20 border border-white/30 text-white font-bold text-xs px-4 py-1.5 rounded-full mb-4 tracking-widest uppercase" x-text="t.exams.label">Підготовка до іспитів</span>
+        <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-3" x-text="t.exams.title">Готуємо до міжнародних іспитів</h2>
+        <p class="text-orange-100 text-base mb-10 max-w-xl mx-auto" x-text="t.exams.subtitle">Cambridge YLE, IELTS, TOEFL та інші — ваша дитина буде готова</p>
 
         <!-- Scrolling exam logos -->
         <div class="marquee-fade overflow-hidden -mx-4">
@@ -3089,7 +3093,7 @@
                     <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a></li>
                     <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380682522876" class="hover:text-fox-400 transition-colors">+38 (068) 252-28-76</a></li>
                     <li class="flex items-center gap-2"><span>✉️</span> <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors">fluent.fox.study@gmail.com</a></li>
-                    <li class="flex items-center gap-2"><span>⏰</span> <span x-text="t.footer.hours">Пн–Сб: 9:00–21:00</span></li>
+                    <li class="flex items-center gap-2"><span>⏰</span> <span x-text="t.footer.hours">Пн–Пт: 9:00–20:00, Сб: 10:00–18:00</span></li>
                 </ul>
             </div>
         </div>
@@ -3141,7 +3145,7 @@
         <!-- Copyright + FOP -->
         <div class="border-t border-gray-800 pt-5 space-y-1.5 text-sm text-gray-500 text-center md:text-left">
             <p x-text="t.footer.copyright">© 2026 FluentFox. Всі права захищені.</p>
-            <p>ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,
+            <p><span x-text="t.footer.legalEntity">ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,</span>
                <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a>,
                <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors">fluent.fox.study@gmail.com</a>
             </p>
@@ -3497,12 +3501,19 @@ uk: {
         errorText:      'Щось пішло не так. Спробуйте ще раз або зателефонуйте нам.',
     },
 
+    exams: {
+        label:    'Підготовка до іспитів',
+        title:    'Готуємо до міжнародних іспитів',
+        subtitle: 'Cambridge YLE, IELTS, TOEFL та інші — ваша дитина буде готова',
+    },
+
     footer: {
         tagline:      'Вивчай англійську з хитрістю лиса!',
         navTitle:     'Навігація',
         contactTitle: 'Контакти',
-        hours:        'Пн–Сб: 9:00–21:00',
+        hours:        'Пн–Пт: 9:00–20:00, Сб: 10:00–18:00',
         copyright:    '© 2026 FluentFox. Всі права захищені.',
+        legalEntity:  'ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,',
         partnersTitle: 'Партнери',
         partners: [
             { label: 'Школа програмування', href: 'https://mycomputer.education/' },
@@ -3706,7 +3717,7 @@ ru: {
             {
                 avatar: '👩‍🏫',
                 bg:     'linear-gradient(135deg, #FFF0E8, #FFD6C0)',
-                name:   'Катерина В.',
+                name:   'Екатерина В.',
                 cert:   'CELTA • 5 лет опыта',
                 desc:   'Специализируется на детях 6–10 лет. Каждый урок превращает в маленький праздник с играми и песнями.',
                 tags:   ['6–10 лет', 'Игровой метод', 'Начинающие'],
@@ -3858,12 +3869,19 @@ ru: {
         errorText:    'Что-то пошло не так. Попробуйте ещё раз или позвоните нам.',
     },
 
+    exams: {
+        label:    'Подготовка к экзаменам',
+        title:    'Готовим к международным экзаменам',
+        subtitle: 'Cambridge YLE, IELTS, TOEFL и другие — ваш ребёнок будет готов',
+    },
+
     footer: {
         tagline:      'Учи английский с хитростью лиса!',
         navTitle:     'Навигация',
         contactTitle: 'Контакты',
-        hours:        'Пн–Сб: 9:00–21:00',
+        hours:        'Пн–Пт: 9:00–20:00, Сб: 10:00–18:00',
         copyright:    '© 2026 FluentFox. Все права защищены.',
+        legalEntity:  'ФЛП Пименов К.Ю., ИНН 3498404577, г. Днепр, пр. А. Поля 28а,',
         partnersTitle: 'Партнёры',
         partners: [
             { label: 'Школа программирования', href: 'https://mycomputer.education/' },

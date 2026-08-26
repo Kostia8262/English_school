@@ -66,8 +66,13 @@
     if (canonical) canonical.setAttribute('href', withLangAbs(canonical.href, RU));
     var ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) ogUrl.content = withLangAbs(ogUrl.content, RU);
+    // ru_RU, а не ru_UA: Facebook і месенджери розбирають лише перелік
+    // підтримуваних локалей, і ru_UA у ньому немає — тег просто ігнорується.
+    // На головній і в статтях блогу стоїть те саме значення.
     var ogLocale = document.querySelector('meta[property="og:locale"]');
-    if (ogLocale) ogLocale.content = 'ru_UA';
+    if (ogLocale) ogLocale.content = 'ru_RU';
+    var ogLocaleAlt = document.querySelector('meta[property="og:locale:alternate"]');
+    if (ogLocaleAlt) ogLocaleAlt.content = 'uk_UA';
 
     document.querySelectorAll('a[href]').forEach(function (a) {
       var raw = a.getAttribute('href');
