@@ -31,7 +31,7 @@ ORG = BASE + "/#organization"
 
 # Версія в query до style.css. Піднімати руками разом зі складанням CSS,
 # інакше повернені відвідувачі побачать сторінку зі старими стилями.
-CSS_VERSION = "20260826"
+CSS_VERSION = "20260826b"
 
 
 # ── дрібні помічники ─────────────────────────────────────────────────────────
@@ -374,7 +374,7 @@ FOOTER = """
   </div>
 </footer>
 
-<script src="/js/lang.js" defer></script>
+<script src="/js/lang.js?v=%(cssv)s" defer></script>
 </body>
 </html>
 """
@@ -488,8 +488,12 @@ def render_page(p):
             '%s\n'
             '  </div>\n</section>\n' % body)
 
+    # FOOTER не проходить через %-форматування, тому версію для /js/lang.js
+    # підставляємо тут. Без неї скрипт кешується на рік як immutable, і
+    # правка в ньому не доходить до тих, хто вже був на сайті.
     return (head + HEADER + crumbs + hero + main + render_faq(p) + CTA
-            + render_related(p) + "</main>\n" + FOOTER)
+            + render_related(p) + "</main>\n"
+            + FOOTER.replace("%(cssv)s", CSS_VERSION))
 
 
 def main():

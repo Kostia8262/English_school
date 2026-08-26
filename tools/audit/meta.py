@@ -87,7 +87,7 @@ def check(path, rel):
     # головній через querySelector('title'), у статтях через document.title,
     # а на посадкових вона взагалі винесена в зовнішній /js/lang.js. Шукаємо
     # усі три, інакше перевірка сама себе обманює.
-    external = 'src="/js/lang.js"' in s
+    external = '/js/lang.js' in s   # з версією в query або без неї
     swaps_title = bool(re.search(r"document\.title\s*=", s)) or         bool(re.search(r"querySelector\(\s*'title'\s*\)", s))
     swaps_lang = bool(re.search(r"documentElement\.lang\s*=\s*'ru'", s))
 
