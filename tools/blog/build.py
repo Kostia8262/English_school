@@ -32,6 +32,8 @@ ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
 
 import articles as A  # noqa: E402
+import queue as Q  # noqa: E402
+import site_index as IDX  # noqa: E402
 
 BASE = "https://fluent-fox.site"
 ORG = BASE + "/#organization"
@@ -173,6 +175,13 @@ def render_blocks(blocks, lang):
                 '            <tbody>\n%s\n            </tbody>\n'
                 '          </table>\n        </div>' % (th, tr))
 
+        elif kind == "html":
+            # Готова розмітка статті, що приїхала конвеєром мережі. Теги вже
+            # перевірені за білим списком у queue.py, тож тут вона просто
+            # лягає в .prose як є — це єдиний блок, який не збирається з
+            # частин, і єдиний, який пише не людина.
+            out.append(b[1 + i])
+
         else:
             raise ValueError("невідомий блок: " + kind)
 
@@ -200,14 +209,31 @@ def word_count(blocks, faq, lang):
             for row in b[2]:
                 for c in row:
                     words += len(strip_tags(c[i]).split())
+        elif kind == "html":
+            words += len(re.sub(r"<[^>]+>", " ", b[1 + i]).split())
     for q in faq:
         words += len(q[0 + i * 2].split()) + len(q[1 + i * 2].split())
     return words
 
 
+def _minutes(words):
+    return max(1, int(round(words / 190.0)))
+
+
+def plural(n, forms):
+    """forms = (одна, дві, п'ять) — українська й російська відмінюються однаково."""
+    if n % 10 == 1 and n % 100 != 11:
+        return forms[0]
+    if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14:
+        return forms[1]
+    return forms[2]
+
+
 def read_time(words, lang):
-    mins = max(1, int(round(words / 190.0)))
-    return ("%d хвилин читання" % mins) if lang == "uk" else ("%d минут чтения" % mins)
+    mins = _minutes(words)
+    if lang == "uk":
+        return "%d %s читання" % (mins, plural(mins, ("хвилина", "хвилини", "хвилин")))
+    return "%d %s чтения" % (mins, plural(mins, ("минута", "минуты", "минут")))
 
 
 # ── розмітка ─────────────────────────────────────────────────────────────────
@@ -402,9 +428,59 @@ def render(a):
     }
 
 
+def card(a, prev):
+    """Картка статті для лістингу.
+
+    Що вважається порахованим, а що — написаним, тут розділено навмисно. Дата,
+    час читання і заголовок беруться зі статті: вони або обчислюються, або
+    мають збігатися з нею дослівно. А от анонс на картці, емодзі й вкладка —
+    це окремий текст, коротший за meta description і написаний під сітку
+    карток; у статей, що писалися руками, він живе в listing.json, і
+    складання не має права затирати його описом зі сторінки.
+    """
+    from_queue = a.get("_from_queue")
+    return {
+        "slug": a["slug"] + ".html",
+        "emoji": a.get("emoji") or prev.get("emoji") or "🦊",
+        "accent": a.get("accent") or prev.get("accent") or "fox",
+        "catKey": a.get("catKey") or prev.get("catKey") or "methods",
+        "date": fmt_date(a["published"], "uk"),
+        "dateRu": fmt_date(a["published"], "ru"),
+        "readTime": "%d хв читання" % _minutes(a["_words_uk"]),
+        "readTimeRu": "%d мин чтения" % _minutes(a["_words_ru"]),
+        "category": a["category_uk"],
+        "categoryRu": a["category_ru"],
+        "title": a["title_uk"],
+        "titleRu": a["title_ru"],
+        "excerpt": a["desc_uk"] if from_queue else (prev.get("excerpt") or a["desc_uk"]),
+        "excerptRu": a["desc_ru"] if from_queue else (prev.get("excerptRu") or a["desc_ru"]),
+        "published": a["published"],
+        "modified": a.get("modified") or prev.get("modified") or a["published"],
+    }
+
+
+def related_for(slug, entries, limit=4):
+    """Чотири сусідні статті під текстом.
+
+    У статей, що писалися руками, перелінковка підібрана за темою і лежить у
+    самій статті. Стаття з черги такого переліку не має, і вимагати його від
+    агента — зайвий спосіб зламати прогон: беремо чотири найсвіжіші чужі
+    статті, бо порожній підвал гірший за неідеально дібраний.
+    """
+    picked = [e for e in entries if e["slug"] != slug + ".html"][:limit]
+    return [(e["slug"][:-5], e["emoji"], e["title"], e["titleRu"]) for e in picked]
+
+
 def main():
+    entries = IDX.load_entries()
+    by_slug = {e["slug"]: e for e in entries}
+
+    queued = [Q.to_art(x, sorted(PEOPLE)) for x in Q.load()]
+    for a in queued:
+        a["related"] = related_for(a["slug"], entries)
+
     built = []
-    for a in A.ARTICLES:
+    for a in list(A.ARTICLES) + queued:
         for lang in ("uk", "ru"):
             w = word_count(a["blocks"], a.get("faq", []), lang)
             a["_words_" + lang] = w
@@ -414,8 +490,16 @@ def main():
         path = os.path.join(ROOT, "blog", a["slug"] + ".html")
         io.open(path, "w", encoding="utf-8", newline="\n").write(html)
         built.append(a)
+        entries = IDX.upsert(entries, card(a, by_slug.get(a["slug"] + ".html", {})))
 
-    print("зібрано статей: %d\n" % len(built))
+    # Сторінка, на яку ніхто не посилається, для пошуку не існує: лістинг,
+    # noscript-перелік, розмітка блогу і карта сайту оновлюються тут же, одним
+    # проходом, щоб між «стаття складена» і «на неї можна прийти» не лишалося
+    # ручного кроку.
+    IDX.save_entries(entries)
+    IDX.apply(entries)
+
+    print("зібрано статей: %d (з черги: %d)\n" % (len(built), len(queued)))
     print("  %-46s %-18s %6s %6s" % ("слаг", "автор", "слів uk", "слів ru"))
     for a in built:
         flag = "" if a["_words_uk"] >= 1000 and a["_words_ru"] >= 1000 else "  <-- МЕНШЕ 1000"
