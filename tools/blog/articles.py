@@ -18,6 +18,8 @@ from art_yak_obraty_shkolu import ART as OBRATY
 from art_nosiy_movy import ART as NOSIY
 from art_multyky_ta_ihry import ART as MULTYKY
 from art_skilky_sliv import ART as SLOVA
+from art_chytannya_fonika import ART as FONIKA
+from art_onlayn_chy_ochno import ART as FORMAT
 
 ARTICLES = [
     SHKILNA,
@@ -25,4 +27,6 @@ ARTICLES = [
     NOSIY,
     MULTYKY,
     SLOVA,
+    FONIKA,
+    FORMAT,
 ]

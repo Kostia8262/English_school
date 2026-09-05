@@ -478,6 +478,13 @@ def main():
     queued = [Q.to_art(x, sorted(PEOPLE)) for x in Q.load()]
     for a in queued:
         a["related"] = related_for(a["slug"], entries)
+        # Стаття з конвєєра часто приїжджає без дати, і тоді її ставлять за
+        # днем складання. Але складання відбувається щоразу, коли в блозі з'являється
+        # будь-що нове — і без цього рядка вже опублікована стаття щоразу молодшала б
+        # на кілька днів — разом із datePublished у розмітці й lastmod у карті сайту.
+        prev = by_slug.get(a["slug"] + ".html")
+        if a.pop("_dated_by_default", False) and prev:
+            a["published"] = prev["published"]
 
     built = []
     for a in list(A.ARTICLES) + queued:

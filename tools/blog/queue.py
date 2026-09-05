@@ -117,6 +117,9 @@ def to_art(article, authors):
         "author": author,
         "published": article.get("published")
                      or datetime.datetime.utcnow().strftime("%Y-%m-%d"),
+        # Звідси build.py дізнається, що дата взята з годинника, а не з JSON. Без цього
+        # будь-яке перескладання блогу пересувало б усі статті з черги на сьогодні.
+        "_dated_by_default": not article.get("published"),
         "title_uk": title_uk,
         "title_ru": title_ru,
         "meta_title_uk": article.get("meta_title_uk") or _meta(title_uk),
