@@ -25,14 +25,26 @@ import io
 import json
 import os
 import re
-import subprocess
 import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
-LANDING = ["anhliyska-6-8-rokiv", "anhliyska-9-12-rokiv", "anhliyska-13-18-rokiv",
-           "pidhotovka-do-nmt", "cambridge", "tsiny", "vidhuky", "pro-shkolu",
-           "probnyi-urok", "dnipro"]
+def clean_urls():
+    """Слуги посадкових сторінок — з .htaccess, а не окремим списком тут.
+
+    Копія списку розходиться з оригіналом на першій же новій сторінці, і
+    перевірка тихо перестає дивитися на те, що з'явилося останнім."""
+    src = io.open(os.path.join(ROOT, ".htaccess"), encoding="utf-8").read()
+    m = re.search(r"RewriteRule \^\(([^)]+)\)\$ \$1\.html", src)
+    return m.group(1).split("|") if m else []
+
+
+LANDING = clean_urls()
+
+# Головна перейшла на той самий контракт, що й посадкові: українська текстом,
+# російська в data-ru. Доти вона малювалася через Alpine, і перевіряти її
+# доводилося окремо — тепер це та сама перевірка.
+BILINGUAL = LANDING + ["index"]
 
 # Як відрізнити справжній пропуск від законного збігу.
 #
@@ -55,40 +67,30 @@ WATCH = {"Катерина В.", "Катерина", "Олена", "Артем",
 
 problems = []
 review = []   # не помилки, але варто глянути очима
-stats = {"ключів TRANS": 0, "посадкових": 0, "data-ru": 0, "статей": 0}
+stats = {"ключів TRANS": 0, "сторінок data-ru": 0, "data-ru": 0, "статей": 0}
 
 
 def note(where, msg):
     problems.append((where, msg))
 
 
-# ── 1. index.html: словник TRANS ─────────────────────────────────────────────
+# ── 1. Словник головної ──────────────────────────────────────────────────────
 def check_trans():
-    js = os.path.join(ROOT, "tools", "audit", "_dump_trans.js")
-    io.open(js, "w", encoding="utf-8", newline="\n").write(
-        "const fs=require('fs');\n"
-        "const src=fs.readFileSync(process.argv[2],'utf8');\n"
-        "const a=src.indexOf('const TRANS = {');\n"
-        "const b=src.indexOf('}; /* end TRANS */', a);\n"
-        "if(a<0||b<0){console.error('TRANS не знайдено');process.exit(1);}\n"
-        "const body=src.slice(a,b+2).replace(/^const TRANS = /,'').replace(/;$/,'');\n"
-        "process.stdout.write(JSON.stringify(eval('('+body+')')));\n")
-    try:
-        out = subprocess.check_output(
-            ["node", js, os.path.join(ROOT, "index.html")])
-    except (OSError, subprocess.CalledProcessError) as e:
-        note("index.html", "не вдалося прочитати TRANS: %s" % e)
-        return
-    finally:
-        try:
-            os.remove(js)
-        except OSError:
-            pass
+    """Словник, з якого складається головна.
 
-    d = json.loads(out.decode("utf-8"))
+    Раніше він лежав інлайном в index.html і читався запуском node. Тепер це
+    tools/home/trans.json — джерело для tools/home/build.py, тож і перевіряти
+    треба саме його: у самій сторінці тексту вже немає, є готовий результат.
+    """
+    path = os.path.join(ROOT, "tools", "home", "trans.json")
+    if not os.path.exists(path):
+        note("tools/home/trans.json", "файла немає — головну нема з чого складати")
+        return
+    d = json.load(io.open(path, encoding="utf-8"))
+
     uk, ru = d.get("uk"), d.get("ru")
     if not uk or not ru:
-        note("index.html", "у TRANS немає гілки uk або ru")
+        note("trans.json", "немає гілки uk або ru")
         return
 
     same = []
@@ -128,7 +130,7 @@ def check_trans():
 
     walk(uk, ru)
     if same:
-        review.append(("словнику TRANS", len(same),
+        review.append(("словнику головної", len(same),
                        [p + " = «" + v[:34] + "»" for p, v in same[:5]]))
 
 
@@ -138,13 +140,13 @@ ATTR_RU = re.compile(r'data-ru="([^"]*)"')
 
 
 def check_landing():
-    for slug in LANDING:
+    for slug in BILINGUAL:
         path = os.path.join(ROOT, slug + ".html")
         if not os.path.exists(path):
             note(slug + ".html", "файла немає")
             continue
         s = io.open(path, encoding="utf-8").read()
-        stats["посадкових"] += 1
+        stats["сторінок data-ru"] += 1
 
         found = ATTR_RU.findall(s)
         stats["data-ru"] += len(found)

@@ -22,11 +22,22 @@ import sys
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 # Адреси без .html, які віддає .htaccess внутрішнім переписуванням.
-CLEAN_URLS = [
-    "anhliyska-6-8-rokiv", "anhliyska-9-12-rokiv", "anhliyska-13-18-rokiv",
-    "pidhotovka-do-nmt", "cambridge", "tsiny", "vidhuky", "pro-shkolu",
-    "probnyi-urok", "dnipro",
-]
+#
+# Список читається з самого .htaccess, а не дублюється тут руками. Копія
+# розходиться з оригіналом на першій же новій сторінці: слуг додали в правило
+# перепису, забули додати сюди — і перевірка починає звітувати про «биті»
+# посилання на сторінки, які насправді відкриваються.
+def clean_urls():
+    src = io.open(os.path.join(ROOT, ".htaccess"), encoding="utf-8").read()
+    m = re.search(r"RewriteRule \^\(([^)]+)\)\$ \$1\.html", src)
+    if not m:
+        sys.stderr.write("links.py: у .htaccess не знайдено правило "
+                         "безрозширенних адрес\n")
+        return []
+    return m.group(1).split("|")
+
+
+CLEAN_URLS = clean_urls()
 
 # Те, що існує, але файлом на диску не є.
 VIRTUAL = {"/", "/blog/"}

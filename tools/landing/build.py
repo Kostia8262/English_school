@@ -25,13 +25,14 @@ import content as C          # noqa: E402  — хелпери + три віко�
 import pages_exams          # noqa: E402,F401  — НМТ і Cambridge, дописують C.PAGES
 import pages_service        # noqa: E402,F401  — ціни, відгуки, школа, пробний урок
 import pages_dnipro         # noqa: E402,F401  — локальна сторінка з двома класами
+import pages_generic        # noqa: E402,F401  — курси, онлайн, репетитор, розмовна
 
 BASE = "https://fluent-fox.site"
 ORG = BASE + "/#organization"
 
 # Версія в query до style.css. Піднімати руками разом зі складанням CSS,
 # інакше повернені відвідувачі побачать сторінку зі старими стилями.
-CSS_VERSION = "20260826b"
+CSS_VERSION = "20260906"
 
 
 # ── дрібні помічники ─────────────────────────────────────────────────────────
@@ -346,6 +347,10 @@ FOOTER = """
           <li><a href="/anhliyska-6-8-rokiv" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский 6–8 лет">Англійська 6–8 років</a></li>
           <li><a href="/anhliyska-9-12-rokiv" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский 9–12 лет">Англійська 9–12 років</a></li>
           <li><a href="/anhliyska-13-18-rokiv" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский 13–18 лет">Англійська 13–18 років</a></li>
+          <li><a href="/kursy-anhliyskoyi-dlya-ditey" class="hover:text-fox-400 transition-colors duration-200" data-ru="Курсы английского">Курси англійської</a></li>
+          <li><a href="/anhliyska-onlayn-dlya-ditey" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский онлайн">Англійська онлайн</a></li>
+          <li><a href="/repetytor-z-anhliyskoyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Репетитор по английскому">Репетитор з англійської</a></li>
+          <li><a href="/rozmovna-anhliyska-dlya-ditey" class="hover:text-fox-400 transition-colors duration-200" data-ru="Разговорный английский">Розмовна англійська</a></li>
           <li><a href="/pidhotovka-do-nmt" class="hover:text-fox-400 transition-colors duration-200" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
           <li><a href="/cambridge" class="hover:text-fox-400 transition-colors duration-200" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
           <li><a href="/dnipro" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский в Днепре">Англійська у Дніпрі</a></li>
