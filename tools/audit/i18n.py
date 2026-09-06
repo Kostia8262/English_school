@@ -221,6 +221,39 @@ def check_blog():
 
 
 # ── 4. Готові російські файли ────────────────────────────────────────────────
+def load(name, rel):
+    """Імпорт генератора під власним іменем.
+
+    Обидва генератори називаються build.py, тож звичайний `import build` узяв
+    би той, який трапиться першим у sys.path, і перевірка тихо звіряла б
+    посадкові кодом головної."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        name, os.path.join(ROOT, rel.replace("/", os.sep)))
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def ru_graph_step(slug, html):
+    """Крок після пост-процесора — той самий, що й у складанні."""
+    if slug == "index":
+        sys.path.insert(0, os.path.join(ROOT, "tools", "home"))
+        return load("home_build", "tools/home/build.py").ru_html(html)
+    if slug == "blog/index":
+        sys.path.insert(0, os.path.join(ROOT, "tools", "blog"))
+        site_index = load("blog_site_index", "tools/blog/site_index.py")
+        return site_index.ru_index_html(html, site_index.load_entries())
+    sys.path.insert(0, os.path.join(ROOT, "tools", "landing"))
+    landing = load("landing_build", "tools/landing/build.py")
+    page = next((p for p in landing.C.PAGES if p["slug"] == slug), None)
+    if page is None:
+        note(slug, "сторінки немає серед посадкових — граф не перевірено")
+        return html
+    return landing.ru_html(html, page)
+
+
 def check_ru_pages():
     """Російська версія тепер лежить окремим файлом, а не збирається в браузері.
 
@@ -252,13 +285,11 @@ def check_ru_pages():
         stats["російських сторінок"] += 1
         want, _ = ru_pages.render(io.open(uk_path, encoding="utf-8").read(),
                                   slug + ".html")
-        if slug == "blog/index":
-            # У лістингу є ще один крок після пост-процесора: російський граф
-            # ld+json, який той скласти не може — перекласти назви статей йому
-            # нізвідки. Повторюємо весь конвеєр, а не половину.
-            sys.path.insert(0, os.path.join(ROOT, "tools", "blog"))
-            import site_index
-            want = site_index.ru_index_html(want, site_index.load_entries())
+        # Після пост-процесора в кожної сторінки є ще один крок — власний граф
+        # ld+json, якого той скласти не може: перекласти назви йому нізвідки.
+        # Повторюємо весь конвеєр, а не половину, інакше сторінка тут завжди
+        # виглядатиме відсталою.
+        want = ru_graph_step(slug, want)
         if want != io.open(ru_path, encoding="utf-8").read():
             note(slug + ".ru.html", "відстала від української версії — "
                                     "перескладіть tools/i18n/ru_pages.py")

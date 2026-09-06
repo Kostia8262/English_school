@@ -790,6 +790,30 @@ def main():
     sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
     import ru_pages
     ru_pages.build([OUT])
+    path = ru_pages.ru_path(OUT)
+    html = io.open(path, encoding="utf-8").read()
+    io.open(path, "w", encoding="utf-8", newline="\n").write(ru_html(html))
+
+
+# Сутності головної, які не належать саме цій сторінці: школа, сайт і два очні
+# класи існують незалежно від мови, якою про них написано, тож `@id` у них
+# один на обидві версії. Свої в головної тільки три — сама сторінка, її FAQ і
+# курси, які вона описує.
+SHARED_IDS = ("#organization", "#website", "#branch-polia", "#branch-budivelnykiv",
+              "#course-6-8", "#course-9-12", "#course-13-18")
+
+
+def ru_html(html):
+    """Крок, якого пост-процесор зробити не може: власний граф ld+json.
+
+    Винесено окремо, бо цим самим кодом користується аудит — він звіряє
+    російські сторінки, перескладаючи їх у пам'яті, і має повторити весь
+    конвеєр, а не половину."""
+    sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
+    import graph
+    nodes = graph.localize(graph.read(html), own=graph.BASE + "/",
+                           shared=SHARED_IDS)
+    return graph.replace(html, graph.dumps(nodes))
 
     # Дата головної в карті сайту. Модуль проходить усю карту, крім статей
     # блогу — у тих дата береться з джерела статті і має власного господаря

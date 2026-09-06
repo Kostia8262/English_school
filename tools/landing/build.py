@@ -26,6 +26,7 @@ sys.path.insert(0, os.path.join(ROOT, "tools", "sitemap"))
 
 from assets import ASSET_VERSION  # noqa: E402  — спільна версія ?v= для всього сайту
 import ru_pages as RU        # noqa: E402  — російські версії тих самих сторінок
+import graph as GRAPH        # noqa: E402  — переклад розмітки Schema.org
 import lastmod as LASTMOD    # noqa: E402  — дати в sitemap.xml за вмістом
 import content as C          # noqa: E402  — хелпери + три вікові сторінки
 import pages_exams          # noqa: E402,F401  — НМТ і Cambridge, дописують C.PAGES
@@ -243,7 +244,17 @@ def render_agegroups(p):
 
 # ── розмітка ─────────────────────────────────────────────────────────────────
 
-def build_graph(p):
+def build_graph(p, lang="uk"):
+    """Граф сторінки. Російська версія — той самий граф, перекладений за
+    словником: див. tools/i18n/graph.py, там і пояснено чому саме так."""
+    nodes = graph_nodes(p)
+    if lang == "ru":
+        nodes = GRAPH.localize(nodes, own="%s/%s" % (BASE, p["slug"]))
+    return json.dumps({"@context": "https://schema.org", "@graph": nodes},
+                      ensure_ascii=False, separators=(",", ":"))
+
+
+def graph_nodes(p):
     url = "%s/%s" % (BASE, p["slug"])
     graph = [
         {
@@ -281,8 +292,7 @@ def build_graph(p):
                 for q, a, _, _ in p["faq"]
             ],
         })
-    return json.dumps({"@context": "https://schema.org", "@graph": graph},
-                      ensure_ascii=False, separators=(",", ":"))
+    return graph
 
 
 # ── каркас ───────────────────────────────────────────────────────────────────
@@ -616,7 +626,20 @@ def main():
     # рано чи пізно лишилися б від попередньої правки: складання мовчить, а на
     # сайті половина сторінок перекладена, половина ні.
     RU.build(paths, quiet=True)
+    for p in C.PAGES:
+        path = RU.ru_path(os.path.join(ROOT, p["slug"] + ".html"))
+        html = io.open(path, encoding="utf-8").read()
+        io.open(path, "w", encoding="utf-8", newline="\n").write(ru_html(html, p))
     print("російські версії: %d файлів" % len(paths))
+
+
+def ru_html(html, p):
+    """Крок, якого пост-процесор зробити не може: власний граф ld+json.
+
+    Винесено окремо, бо цим самим кодом користується аудит — він звіряє
+    російські сторінки, перескладаючи їх у пам'яті, і має повторити весь
+    конвеєр, а не половину."""
+    return GRAPH.replace(html, build_graph(p, "ru"))
 
     # Дати в карті сайту — теж тут, з тієї ж причини: окремою командою вони
     # лишилися б від позаминулого складання. Переставляються лише там, де
