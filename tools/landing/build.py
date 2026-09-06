@@ -161,6 +161,85 @@ def render_block(b):
     raise ValueError("невідомий блок: " + kind)
 
 
+# ── вікові картки на всю ширину ─────────────────────────────
+
+def render_agegroups(p):
+    """Секція з вікових карток — та сама, що колись відкривала головну.
+
+    Не блок, а окрема секція: всередині max-w-3xl три такі картки стиснулися б
+    до 230 px, а в них і чипси формату, і шкала CEFR на чотири поділки. Тому
+    вона малюється поза колонкою тексту, одразу під геро, і повторює верстку
+    головної один в один — з тією різницею, що текст тут статичний, а російська
+    версія живе в data-ru, як і на решті сторінки.
+
+    .card-lift сюди не годиться: цей клас оголошено в <style> головної, а не в
+    style.css. Той самий підйом зібрано утилітами.
+    """
+    if not p.get("agegroups"):
+        return ""
+    g = C.AGE_GROUPS
+    cards = []
+    for c in g["cards"]:
+        chips = "".join(
+            '<span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 '
+            'text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full"%s</span>'
+            % attr_ru(uk, ru) for uk, ru in c["format"])
+        items = "\n".join(
+            '            <li class="flex items-start gap-2 text-sm text-gray-600">'
+            '<span class="w-5 h-5 rounded-full bg-fox-50 flex items-center justify-center '
+            'flex-shrink-0 mt-0.5"><svg class="w-3 h-3 text-fox-500" fill="none" '
+            'stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true">'
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>'
+            '</span><span%s</span></li>' % attr_ru(uk, ru) for uk, ru in c["items"])
+        track = "".join(
+            '<div class="flex-1 text-center">'
+            '<div class="h-1.5 rounded-full mb-1.5 %s"></div>'
+            '<span class="text-2xs font-bold %s">%s</span></div>'
+            % ("bg-fox-500" if on else "bg-gray-100",
+               "text-fox-600" if on else "text-gray-300", lv)
+            for lv, on in c["track"])
+        cards.append(
+            '        <div class="bg-white border-2 border-gray-100 rounded-3xl p-8 shadow-sm '
+            'flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-fox-lg">\n'
+            '          <div class="flex items-center justify-between mb-5">\n'
+            '            <div class="w-14 h-14 rounded-2xl bg-fox-50 border-2 border-fox-100 '
+            'flex items-center justify-center text-3xl" aria-hidden="true">%s</div>\n'
+            '            <div class="inline-block bg-fox-50 text-fox-600 font-bold text-xs '
+            'px-3 py-1 rounded-full"%s</div>\n'
+            '          </div>\n'
+            '          <h3 class="text-xl font-black text-gray-900 mb-4"%s</h3>\n'
+            '          <div class="flex flex-wrap gap-2 mb-5">%s</div>\n'
+            '          <ul class="flex flex-col gap-2 mb-6">\n%s\n          </ul>\n'
+            '          <div class="mt-auto pt-5 border-t border-gray-100">\n'
+            '            <p class="text-2xs font-black text-gray-400 uppercase tracking-widest mb-2"%s</p>\n'
+            '            <div class="flex gap-1.5 mb-4">%s</div>\n'
+            '            <div class="bg-fox-50 rounded-xl px-4 py-3">\n'
+            '              <p class="text-2xs font-black text-fox-600 uppercase tracking-widest mb-1"%s</p>\n'
+            '              <p class="text-sm text-gray-700 leading-tight"%s</p>\n'
+            '            </div>\n'
+            '            <a href="%s" class="inline-flex items-center gap-1.5 mt-4 text-sm '
+            'font-black text-fox-600 hover:text-fox-700 transition-colors duration-200"%s</a>\n'
+            '          </div>\n'
+            '        </div>'
+            % (c["emoji"], attr_ru(*c["range"]), attr_ru(*c["title"]), chips, items,
+               attr_ru(*g["level_label"]), track,
+               attr_ru(*g["result_label"]), attr_ru(*c["result"]), c["href"],
+               attr_ru(g["more"][0] + " →", g["more"][1] + " →")))
+
+    return ('\n<section class="py-12 md:py-20 bg-fox-50">\n'
+            '  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">\n'
+            '    <div class="text-center mb-10 md:mb-14">\n'
+            '      <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 '
+            'py-1.5 rounded-full mb-4 shadow-sm"%s</span>\n'
+            '      <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3"%s</h2>\n'
+            '      <p class="text-gray-500 text-base md:text-lg max-w-xl mx-auto"%s</p>\n'
+            '    </div>\n'
+            '    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">\n%s\n    </div>\n'
+            '  </div>\n</section>\n'
+            % (attr_ru(*g["label"]), attr_ru(*g["title"]), attr_ru(*g["subtitle"]),
+               "\n".join(cards)))
+
+
 # ── розмітка ─────────────────────────────────────────────────────────────────
 
 def build_graph(p):
@@ -500,7 +579,7 @@ def render_page(p):
                cta2[0], attr_ru(cta2[1], cta2[2])))
 
     body = "\n".join(render_block(b) for b in p["blocks"])
-    main = ('\n<main>\n<section class="pb-8 md:pb-20">\n'
+    main = ('\n<main>\n' + render_agegroups(p) + '<section class="pb-8 md:pb-20">\n'
             '  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">\n'
             '%s\n'
             '  </div>\n</section>\n' % body)
