@@ -30,6 +30,9 @@ from art_hrupovi import ART as HRUPOVI
 from art_domashka import ART as DOMASHKA
 from art_zagovoryty import ART as ZAGOVORYTY
 from art_motyvatsiya import ART as MOTYVATSIYA
+from art_strah import ART as STRAH
+from art_vik import ART as VIK
+from art_navchyty_onlayn import ART as NAVCHYTY
 
 ARTICLES = [
     SHKILNA,
@@ -49,4 +52,7 @@ ARTICLES = [
     DOMASHKA,
     ZAGOVORYTY,
     MOTYVATSIYA,
+    STRAH,
+    VIK,
+    NAVCHYTY,
 ]
