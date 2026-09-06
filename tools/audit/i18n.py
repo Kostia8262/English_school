@@ -252,6 +252,13 @@ def check_ru_pages():
         stats["російських сторінок"] += 1
         want, _ = ru_pages.render(io.open(uk_path, encoding="utf-8").read(),
                                   slug + ".html")
+        if slug == "blog/index":
+            # У лістингу є ще один крок після пост-процесора: російський граф
+            # ld+json, який той скласти не може — перекласти назви статей йому
+            # нізвідки. Повторюємо весь конвеєр, а не половину.
+            sys.path.insert(0, os.path.join(ROOT, "tools", "blog"))
+            import site_index
+            want = site_index.ru_index_html(want, site_index.load_entries())
         if want != io.open(ru_path, encoding="utf-8").read():
             note(slug + ".ru.html", "відстала від української версії — "
                                     "перескладіть tools/i18n/ru_pages.py")

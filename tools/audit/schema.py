@@ -73,11 +73,11 @@ def collect_files():
             # файлі немає. Це відома прогалина: російський граф має збиратися
             # в генераторі, а не правитися постфактум.
             #
-            # Стаття блогу — інша річ: кожна мова складається окремо і має
-            # власний граф із власними @id, назвами потрібною мовою і
-            # правильним inLanguage. Його перевіряти треба.
-            article = os.path.basename(base) == "blog" and f != "index.ru.html"
-            if f.endswith(".ru.html") and not article:
+            # Блог — інша річ: там кожна мова має власний граф із власними
+            # @id, назвами потрібною мовою і правильним inLanguage. У статті
+            # його складає build.py, у лістингу — site_index.py уже поверх
+            # роботи пост-процесора. Його перевіряти треба.
+            if f.endswith(".ru.html") and os.path.basename(base) != "blog":
                 continue
             out.append(os.path.join(base, f))
     return sorted(out)

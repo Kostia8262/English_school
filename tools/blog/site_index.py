@@ -174,6 +174,79 @@ def update_index(entries):
     sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
     import ru_pages
     ru_pages.build([path], quiet=True)
+    update_ru_index(entries)
+
+
+def update_ru_index(entries):
+    """Переписує граф у російському лістингу.
+
+    Пост-процесор ld+json не чіпає — і не може: перекласти назви йому нізвідки.
+    Через це російський лістинг оголошував себе українською сторінкою
+    (`inLanguage: uk`) під українською ж назвою, ще й з тим самим `@id`, що й
+    українська версія — тобто дві адреси називали себе однією сутністю.
+
+    Тут усе, чого пост-процесору бракує, уже є: назви статей російською лежать
+    у listing.json, а назва й опис самої сторінки — у щойно складеному файлі,
+    куди їх поклав той самий пост-процесор."""
+    path = os.path.join(ROOT, "blog", "index.ru.html")
+    html = io.open(path, encoding="utf-8").read()
+    io.open(path, "w", encoding="utf-8", newline="\n").write(
+        ru_index_html(html, entries))
+
+
+def ru_index_html(html, entries):
+    """Чиста половина update_ru_index: тим самим кодом користується аудит.
+
+    Він звіряє російські сторінки, перескладаючи їх у пам'яті, і має повторити
+    весь конвеєр, а не половину, — інакше лістинг у нього завжди «відсталий»."""
+    m = re.search(r'<script type="application/ld\+json">(\{.*?"@type":\["CollectionPage".*?\})</script>',
+                  html, re.S)
+    if not m:
+        raise ValueError("не знайдено JSON-LD російського лістингу")
+
+    title = re.search(r"<title>(.*?)</title>", html, re.S).group(1)
+    desc = re.search(r'<meta name="description" content="([^"]*)"', html).group(1)
+
+    data = json.loads(m.group(1))
+    for node in data["@graph"]:
+        types = node.get("@type")
+        types = types if isinstance(types, list) else [types]
+        for key in ("@id", "url"):
+            if key in node:
+                node[key] = _ru_url(node[key])
+        if "inLanguage" in node:
+            node["inLanguage"] = "ru"
+        if "breadcrumb" in node:
+            node["breadcrumb"] = {"@id": _ru_url(node["breadcrumb"]["@id"])}
+
+        if "Blog" in types or "CollectionPage" in types:
+            node["name"] = title
+            node["description"] = desc
+            node["blogPost"] = [
+                {"@id": "%s%s?lang=ru#article" % (BLOG, e["slug"])} for e in entries]
+        if "BreadcrumbList" in types:
+            names = {BASE + "/": "Главная", BLOG: "Блог"}
+            for item in node["itemListElement"]:
+                ref = item["item"]
+                ref["name"] = names.get(ref["@id"], ref["name"])
+                ref["@id"] = _ru_url(ref["@id"])
+        if "ItemList" in types:
+            node["name"] = "Статьи блога FluentFox"
+            node["itemListElement"] = [
+                {"@type": "ListItem", "position": n + 1,
+                 "url": BLOG + e["slug"] + "?lang=ru", "name": e["titleRu"]}
+                for n, e in enumerate(entries)]
+
+    graph = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    return html[:m.start(1)] + graph + html[m.end(1):]
+
+
+def _ru_url(url):
+    """Адреса російської версії. Якір зберігається: він іде після ?lang=ru."""
+    if "lang=ru" in url or not url.startswith(BASE):
+        return url
+    base, sep, frag = url.partition("#")
+    return base + ("&" if "?" in base else "?") + "lang=ru" + sep + frag
 
 
 # ── sitemap.xml ──────────────────────────────────────────────────────────────
