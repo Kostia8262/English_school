@@ -173,39 +173,50 @@ def check_landing():
                  % (len(untranslated), " | ".join(t[:44] for t in untranslated[:3])))
 
 
-# ── 3. Статті блогу: два мовні блоки ─────────────────────────────────────────
+# ── 3. Статті блогу: два окремі файли ────────────────────────────────────────
+def article_text(path):
+    s = io.open(path, encoding="utf-8").read()
+    main = s[s.find("<main"):s.find("</main>")]
+    main = re.sub(r"<(script|style)\b.*?</\1>", " ", main, flags=re.S)
+    return re.sub(r"<[^>]+>", " ", main)
+
+
 def check_blog():
+    """Стаття тепер складається двома файлами — по одному на мову.
+
+    Доти обидві мови лежали в одному файлі під `x-show`, і перевірка шукала
+    саме мовні блоки. Тепер шукати треба інше: чи існує російський файл узагалі
+    і чи не лишилася в ньому українська."""
     d = os.path.join(ROOT, "blog")
     for f in sorted(os.listdir(d)):
-        if not f.endswith(".html") or f == "index.html":
+        if not f.endswith(".html") or f.endswith(".ru.html") or f == "index.html":
             continue
-        s = io.open(os.path.join(d, f), encoding="utf-8").read()
         stats["статей"] += 1
 
-        for lang in ("uk", "ru"):
-            marker = "x-show=\"lang === '%s'\"" % lang
-            if marker not in s:
-                note("blog/" + f, "немає блоку %s" % lang)
-                continue
-            i = s.index(marker)
-            # Беремо приблизний обсяг блоку — до наступного мовного маркера
-            # або до кінця <main>.
-            rest = s[i:]
-            nxt = rest.find("x-show=\"lang === '", 10)
-            chunk = rest[:nxt] if nxt > 0 else rest[:rest.find("</main>")]
-            text = re.sub(r"<[^>]+>", " ", chunk)
-            words = len(text.split())
-            if words < 300:
-                note("blog/" + f, "блок %s підозріло короткий: %d слів" % (lang, words))
+        ru = os.path.join(d, f[:-len(".html")] + ".ru.html")
+        if not os.path.exists(ru):
+            note("blog/" + f, "немає російської версії — ?lang=ru віддасть українську")
+            continue
 
-        # У російському блоці не має бути суто українських літер у тексті.
-        i = s.index("x-show=\"lang === 'ru'\"")
-        ru_chunk = s[i:s.find("</main>", i)]
-        ru_text = re.sub(r"<[^>]+>", " ", ru_chunk)
-        bad = [w for w in ru_text.split() if CYR_UK.search(w)]
+        for lang, path in (("uk", os.path.join(d, f)), ("ru", ru)):
+            words = len(article_text(path).split())
+            if words < 300:
+                note("blog/" + f, "версія %s підозріло коротка: %d слів" % (lang, words))
+
+        # Alpine з блогу знято: якщо директива десь лишилася, текст під нею для
+        # читача без JS не існує.
+        for lang, path in (("uk", os.path.join(d, f)), ("ru", ru)):
+            s = io.open(path, encoding="utf-8").read()
+            left = re.findall(r"x-(?:show|text|data|for)=", s)
+            if left:
+                note("blog/" + os.path.basename(path),
+                     "лишилися директиви Alpine: %d" % len(left))
+
+        # У російському файлі не має бути суто українських літер у тексті.
+        bad = [w for w in article_text(ru).split() if CYR_UK.search(w)]
         if len(bad) > 3:
-            note("blog/" + f,
-                 "у російському блоці українські слова (%d): %s"
+            note("blog/" + os.path.basename(ru),
+                 "українські слова в російській версії (%d): %s"
                  % (len(bad), ", ".join(bad[:5])))
 
 
@@ -231,9 +242,9 @@ def check_ru_pages():
     elif uk_rule and uk_rule.group(1) != ru_rule.group(1):
         note(".htaccess", "списки слугів у правилах uk і ru розійшлися")
 
-    for slug in BILINGUAL:
-        uk_path = os.path.join(ROOT, slug + ".html")
-        ru_path = os.path.join(ROOT, slug + ".ru.html")
+    for slug in BILINGUAL + ["blog/index"]:
+        uk_path = os.path.join(ROOT, slug.replace("/", os.sep) + ".html")
+        ru_path = os.path.join(ROOT, slug.replace("/", os.sep) + ".ru.html")
         if not os.path.exists(ru_path):
             note(slug + ".ru.html",
                  "російської версії немає — ?lang=ru віддасть українську")

@@ -76,6 +76,55 @@ PEOPLE = {
 }
 
 
+# ── шапка, підвал і підписи ──────────────────────────────────────────────────
+#
+# Раніше кожне посилання жило в шаблоні двічі — `:href` для адреси і `x-text`
+# для підпису — а мову підставляв Alpine уже в браузері. Тепер стаття
+# складається окремим файлом на кожну мову, тож підпис і адреса відомі під час
+# складання, і тримати їх треба в одному місці.
+
+NAV = [
+    ("/pro-shkolu", "Про нас", "О нас"),
+    ("/tsiny", "Ціни", "Цены"),
+]
+
+FOOTER_LINKS = [
+    ("/", "Головна", "Главная"),
+    ("/kursy-anhliyskoyi-dlya-ditey", "Курси англійської", "Курсы английского"),
+    ("/anhliyska-onlayn-dlya-ditey", "Англійська онлайн", "Английский онлайн"),
+    ("/repetytor-z-anhliyskoyi", "Репетитор з англійської", "Репетитор по английскому"),
+    ("/rozmovna-anhliyska-dlya-ditey", "Розмовна англійська", "Разговорный английский"),
+    ("/tsiny", "Ціни", "Цены"),
+    ("/pro-shkolu", "Про школу", "О школе"),
+    ("/blog/", "Блог", "Блог"),
+    ("/probnyi-urok", "Пробний урок", "Пробный урок"),
+]
+
+LABELS = {
+    "uk": {
+        "home": "Головна", "blog": "Блог", "trial": "Пробний урок",
+        "crumbs": "Хлібні крихти", "doshkolyaryk": "Центр «Дошколярик»",
+        "og_image_alt": "FluentFox — онлайн-школа англійської для дітей",
+        "og_locale": "uk_UA", "og_locale_alt": "ru_RU",
+    },
+    "ru": {
+        "home": "Главная", "blog": "Блог", "trial": "Пробный урок",
+        "crumbs": "Хлебные крошки", "doshkolyaryk": "Центр «Дошколярик»",
+        "og_image_alt": "FluentFox — онлайн-школа английского для детей",
+        # ru_RU, а не ru_UA: месенджери розбирають лише перелік підтримуваних
+        # локалей, і ru_UA у ньому немає — тег просто ігнорується.
+        "og_locale": "ru_RU", "og_locale_alt": "uk_UA",
+    },
+}
+
+
+def href(path, lang):
+    """Внутрішня адреса потрібною мовою."""
+    if lang != "ru":
+        return path
+    return path + ("&" if "?" in path else "?") + "lang=ru"
+
+
 def esc(s):
     return (s.replace("&", "&amp;").replace("<", "&lt;")
              .replace(">", "&gt;").replace('"', "&quot;"))
@@ -240,17 +289,28 @@ def read_time(words, lang):
 
 # ── розмітка ─────────────────────────────────────────────────────────────────
 
-def build_graph(a):
-    url = "%s/blog/%s" % (BASE, a["slug"])
+def build_graph(a, lang):
+    """Граф однієї мовної версії.
+
+    Мова тут не косметика: доти обидві версії статті жили в одному файлі й
+    ділили один граф, у якому стояло `inLanguage: uk` і український заголовок —
+    тобто російська сторінка описувала себе українською. Тепер версії — різні
+    файли за різними адресами, і `@id` теж мусять різнитися, інакше дві
+    сторінки оголошують себе однією сутністю."""
+    i = 0 if lang == "uk" else 1
+    url = href("%s/blog/%s" % (BASE, a["slug"]), lang)
+    L = LABELS[lang]
     person = PEOPLE[a["author"]]
+    title = a["title_uk"] if lang == "uk" else a["title_ru"]
+    desc = a["desc_uk"] if lang == "uk" else a["desc_ru"]
     graph = [
         {
             "@type": "WebPage",
             "@id": url + "#webpage",
             "url": url,
-            "name": a["title_uk"],
-            "description": a["desc_uk"],
-            "inLanguage": "uk",
+            "name": title,
+            "description": desc,
+            "inLanguage": lang,
             "isPartOf": {"@id": BASE + "/#website"},
             "breadcrumb": {"@id": url + "#breadcrumb"},
             "primaryImageOfPage": {"@type": "ImageObject", "url": BASE + "/og-image.jpg"},
@@ -260,29 +320,31 @@ def build_graph(a):
             "@id": url + "#breadcrumb",
             "itemListElement": [
                 {"@type": "ListItem", "position": 1,
-                 "item": {"@id": BASE + "/", "name": "Головна"}},
+                 "item": {"@id": href(BASE + "/", lang), "name": L["home"]}},
                 {"@type": "ListItem", "position": 2,
-                 "item": {"@id": BASE + "/blog/", "name": "Блог"}},
+                 "item": {"@id": href(BASE + "/blog/", lang), "name": L["blog"]}},
                 {"@type": "ListItem", "position": 3,
-                 "item": {"@id": url, "name": a["title_uk"]}},
+                 "item": {"@id": url, "name": title}},
             ],
         },
         {
             "@type": "Article",
             "@id": url + "#article",
-            "headline": a["title_uk"],
-            "description": a["desc_uk"],
+            "headline": title,
+            "description": desc,
             "url": url,
-            "inLanguage": "uk",
+            "inLanguage": lang,
             "datePublished": a["published"],
             "dateModified": a.get("modified", a["published"]),
-            "articleSection": a["category_uk"],
-            "wordCount": a["_words_uk"],
+            "articleSection": a["category_uk"] if lang == "uk" else a["category_ru"],
+            "wordCount": a["_words_" + lang],
             "author": {
                 "@type": "Person",
+                # @id один на обидві мови навмисно: це та сама людина, що й
+                # серед вчителів на головній.
                 "@id": BASE + "/#teacher-" + person["slug"],
-                "name": a["author"],
-                "jobTitle": person["job_uk"],
+                "name": a["author"] if lang == "uk" else person["name_ru"],
+                "jobTitle": person["job_uk"] if lang == "uk" else person["job_ru"],
                 "worksFor": {"@id": ORG},
             },
             "publisher": {"@id": ORG},
@@ -293,14 +355,17 @@ def build_graph(a):
         },
     ]
 
-    if a.get("howto"):
+    # HowTo написаний тільки українською — у даних статті російського варіанта
+    # немає. На російській сторінці він і не з'являється: краще без блоку, ніж
+    # блок українською під `inLanguage: ru`.
+    if a.get("howto") and lang == "uk":
         h = a["howto"]
         graph.append({
             "@type": "HowTo",
             "@id": url + "#howto",
             "name": h["name"],
             "description": h["description"],
-            "inLanguage": "uk",
+            "inLanguage": lang,
             "step": [
                 {"@type": "HowToStep", "position": n + 1, "name": s[0], "text": s[1]}
                 for n, s in enumerate(h["steps"])
@@ -313,9 +378,9 @@ def build_graph(a):
             "@id": url + "#faq",
             "isPartOf": {"@id": url + "#webpage"},
             "mainEntity": [
-                {"@type": "Question", "name": q,
-                 "acceptedAnswer": {"@type": "Answer", "text": ans}}
-                for q, ans, _, _ in a["faq"]
+                {"@type": "Question", "name": q[0 + i * 2],
+                 "acceptedAnswer": {"@type": "Answer", "text": q[1 + i * 2]}}
+                for q in a["faq"]
             ],
         })
 
@@ -407,27 +472,75 @@ def render_side(a, lang):
     }
 
 
-def render(a):
+ACTIVE = "bg-white shadow text-fox-600"
+IDLE = "text-gray-400 hover:text-gray-600"
+
+
+def render_nav(lang):
+    """Посилання шапки. «Блог» — поточний розділ, тому без адреси."""
+    out = [
+        '        <a href="%s" class="text-sm font-semibold text-gray-600 '
+        'hover:text-fox-500 transition-colors">%s</a>'
+        % (href(path, lang), esc(uk if lang == "uk" else ru))
+        for path, uk, ru in NAV
+    ]
+    out.append('        <a href="%s" class="text-sm font-semibold text-fox-500">%s</a>'
+               % (href("/blog/", lang), esc(LABELS[lang]["blog"])))
+    return "\n".join(out)
+
+
+def render_footer(lang):
+    return "\n".join(
+        '        <a href="%s" class="%s">%s</a>'
+        % (href(path, lang),
+           "text-fox-400" if path == "/blog/"
+           else "hover:text-fox-400 transition-colors",
+           esc(uk if lang == "uk" else ru))
+        for path, uk, ru in FOOTER_LINKS)
+
+
+def render(a, lang):
+    """Одна мовна версія статті — окремим файлом.
+
+    Доти обидві мови лежали в одному файлі під `x-show`, і російську показував
+    Alpine уже в браузері. Тобто читач без JS бачив дві мови поспіль, а файл
+    важив удвічі більше, ніж потрібно кожному з них."""
     url = "%s/blog/%s" % (BASE, a["slug"])
+    L = LABELS[lang]
+    uk = lang == "uk"
     return TPL % {
         "assetv": ASSET_VERSION,
-        "title_uk": esc(a["meta_title_uk"]),
-        "title_ru": a["meta_title_ru"].replace("'", "\\'"),
-        "desc_uk": esc(a["desc_uk"]),
-        "desc_ru": a["desc_ru"].replace("'", "\\'"),
-        "og_desc_uk": esc(a["og_desc_uk"]),
-        "og_title_uk": esc(a["title_uk"]),
-        "url": url,
+        "lang": lang,
+        "title": esc(a["meta_title_uk"] if uk else a["meta_title_ru"]),
+        "desc": esc(a["desc_uk"] if uk else a["desc_ru"]),
+        "og_title": esc(a["title_uk"] if uk else a["title_ru"]),
+        "og_desc": esc(a["og_desc_uk"] if uk else a["desc_ru"]),
+        "og_image_alt": esc(L["og_image_alt"]),
+        "og_locale": L["og_locale"],
+        "og_locale_alt": L["og_locale_alt"],
+        "url_self": href(url, lang),
+        "url_uk": url,
+        "url_ru": href(url, "ru"),
+        "sw_uk": ACTIVE if uk else IDLE,
+        "sw_ru": IDLE if uk else ACTIVE,
         "base": BASE,
+        "home": href("/", lang),
+        "blog": href("/blog/", lang),
+        "form": href("/", lang) + "#form",
+        "nav": render_nav(lang),
+        "footer": render_footer(lang),
         "published": a["published"],
         "modified": a.get("modified", a["published"]),
-        "section": esc(a["category_uk"]),
-        "author": esc(a["author"]),
-        "graph": build_graph(a),
-        "crumb_uk": esc(a["category_uk"]),
-        "crumb_ru": esc(a["category_ru"]),
-        "uk": render_side(a, "uk"),
-        "ru": render_side(a, "ru"),
+        "section": esc(a["category_uk"] if uk else a["category_ru"]),
+        "author": esc(a["author"] if uk else PEOPLE[a["author"]]["name_ru"]),
+        "graph": build_graph(a, lang),
+        "crumb": esc(a["category_uk"] if uk else a["category_ru"]),
+        "l_home": esc(L["home"]),
+        "l_blog": esc(L["blog"]),
+        "l_trial": esc(L["trial"]),
+        "l_crumbs": esc(L["crumbs"]),
+        "l_doshkolyaryk": esc(L["doshkolyaryk"]),
+        "body": render_side(a, lang),
     }
 
 
@@ -579,9 +692,10 @@ def main():
     link_related(built, entries)
 
     for a in built:
-        html = render(a)
-        path = os.path.join(ROOT, "blog", a["slug"] + ".html")
-        io.open(path, "w", encoding="utf-8", newline="\n").write(html)
+        for lang in ("uk", "ru"):
+            name = a["slug"] + (".html" if lang == "uk" else ".ru.html")
+            path = os.path.join(ROOT, "blog", name)
+            io.open(path, "w", encoding="utf-8", newline="\n").write(render(a, lang))
 
     # Сторінка, на яку ніхто не посилається, для пошуку не існує: лістинг,
     # noscript-перелік, розмітка блогу і карта сайту оновлюються тут же, одним

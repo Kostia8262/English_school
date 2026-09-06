@@ -7,9 +7,10 @@
 весь важіль, який у нас є. Тому кожну статтю треба вписати ще у чотири місця, і
 всі чотири лежать не там, де текст:
 
-  * `blog/index.html` → `const articles` (картки, які малює Alpine);
-  * `blog/index.html` → `<noscript>` (той самий список для тих, хто не виконує JS,
-    а це саме GPTBot, ClaudeBot і PerplexityBot);
+  * `blog/index.html` → картки статей у розмітці (раніше це був масив, по
+    якому Alpine малював їх уже в браузері, плюс дубль у `<noscript>` для тих,
+    хто скриптів не виконує; тепер картки просто лежать у сторінці);
+  * `blog/index.ru.html` → те саме російською, збирається пост-процесором;
   * `blog/index.html` → JSON-LD: `blogPost` у CollectionPage і `itemListElement`
     у ItemList;
   * `sitemap.xml` → свій `<url>` з hreflang uk/ru/x-default.
@@ -30,6 +31,7 @@ import io
 import json
 import os
 import re
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
@@ -64,42 +66,61 @@ def upsert(entries, entry):
 
 # ── blog/index.html ──────────────────────────────────────────────────────────
 
-def _js(s):
-    return s.replace("\\", "\\\\").replace("'", "\\'")
+CARD = """      <a href="/blog/%(slug)s" data-card-cat="%(cat_key)s" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r %(accent)s"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">%(emoji)s</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full"%(cat_ru)s>%(cat)s</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1"%(title_ru)s>%(title)s</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4"%(excerpt_ru)s>%(excerpt)s</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span%(date_ru)s>%(date)s</span>
+              <span>·</span>
+              <span%(read_ru)s>%(read)s</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>"""
 
 
-def render_articles_js(entries):
-    out = ["const articles = ["]
+def _pair(uk, ru):
+    """Український текст плюс `data-ru`, якщо російський відрізняється."""
+    return (' data-ru="%s"' % _esc(ru)) if ru and ru != uk else ""
+
+
+def render_cards(entries):
+    """Картки статей готовою розміткою.
+
+    Доти вони малювалися циклом Alpine по масиву `articles` у кінці файлу.
+    Через це в лістингу не було жодного заголовка статті: ні для краулера без
+    JS, ні для Google, який виконує скрипти, але спершу читає порожній HTML.
+    Двадцять одна картка в розмітці коштує 12 КБ — дешевше, ніж масив, який
+    вони заміняють."""
+    out = []
     for e in entries:
-        out.append("  {")
-        out.append("    slug: '%s'," % _js(e["slug"]))
-        out.append("    emoji: '%s', accent: '%s', catKey: '%s',"
-                   % (_js(e["emoji"]), _js(e["accent"]), _js(e["catKey"])))
-        out.append("    date: '%s', dateRu: '%s',"
-                   % (_js(e["date"]), _js(e["dateRu"])))
-        out.append("    readTime: '%s', readTimeRu: '%s',"
-                   % (_js(e["readTime"]), _js(e["readTimeRu"])))
-        out.append("    category: '%s', categoryRu: '%s',"
-                   % (_js(e["category"]), _js(e["categoryRu"])))
-        out.append("    title: '%s'," % _js(e["title"]))
-        out.append("    titleRu: '%s'," % _js(e["titleRu"]))
-        out.append("    excerpt: '%s'," % _js(e["excerpt"]))
-        out.append("    excerptRu: '%s'," % _js(e["excerptRu"]))
-        out.append("  },")
-    out.append("];")
+        out.append(CARD % {
+            "slug": e["slug"],
+            "cat_key": e["catKey"],
+            "accent": ("from-fox-500 to-fox-600" if e["accent"] == "fox"
+                       else "from-violet-500 to-violet-600"),
+            "emoji": e["emoji"],
+            "cat": _esc(e["category"]), "cat_ru": _pair(e["category"], e["categoryRu"]),
+            "title": _esc(e["title"]), "title_ru": _pair(e["title"], e["titleRu"]),
+            "excerpt": _esc(e["excerpt"]),
+            "excerpt_ru": _pair(e["excerpt"], e["excerptRu"]),
+            "date": _esc(e["date"]), "date_ru": _pair(e["date"], e["dateRu"]),
+            "read": _esc(e["readTime"]), "read_ru": _pair(e["readTime"], e["readTimeRu"]),
+        })
     return "\n".join(out)
 
 
 def _esc(s):
     return (s.replace("&", "&amp;").replace("<", "&lt;")
              .replace(">", "&gt;").replace('"', "&quot;"))
-
-
-def render_noscript_list(entries):
-    items = "\n".join(
-        '    <li><a href="%s">%s</a></li>' % (e["slug"], _esc(e["title"]))
-        for e in entries)
-    return "  <ul>\n%s\n  </ul>" % items
 
 
 def render_jsonld(raw, entries):
@@ -136,10 +157,9 @@ def update_index(entries):
     path = os.path.join(ROOT, "blog", "index.html")
     html = io.open(path, encoding="utf-8").read()
 
-    html = _replace_once(html, r"const articles = \[.*?\n\];",
-                         render_articles_js(entries), "const articles")
-    html = _replace_once(html, r"  <ul>\n(?:    <li><a href=\"[^\"]+\">.*?\n)+  </ul>",
-                         render_noscript_list(entries), "noscript <ul>")
+    html = _replace_once(html, r"<!-- КАРТКИ -->.*?<!-- /КАРТКИ -->",
+                         "<!-- КАРТКИ -->\n%s\n<!-- /КАРТКИ -->"
+                         % render_cards(entries), "картки статей")
 
     m = re.search(r'<script type="application/ld\+json">(\{.*?"@type":\["CollectionPage".*?\})</script>',
                   html, re.S)
@@ -148,6 +168,12 @@ def update_index(entries):
     html = html[:m.start(1)] + render_jsonld(m.group(1), entries) + html[m.end(1):]
 
     io.open(path, "w", encoding="utf-8", newline="\n").write(html)
+
+    # Російська версія лістингу — окремим файлом, тим самим пост-процесором, що
+    # й для головної та посадкових.
+    sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
+    import ru_pages
+    ru_pages.build([path], quiet=True)
 
 
 # ── sitemap.xml ──────────────────────────────────────────────────────────────

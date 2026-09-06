@@ -58,9 +58,7 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 <link rel="preload" as="style" href="/css/style.css?v=20260906g"/>
 <link rel="stylesheet" href="/css/style.css?v=20260906g" fetchpriority="high"/>
-<script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
 <style>
-[x-cloak]{display:none!important}
 .gradient-text{background:linear-gradient(135deg,#FF6B35,#E54E1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .card-lift{transition:transform .3s ease,box-shadow .3s ease}
 .card-lift:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(255,107,53,0.18)}
@@ -68,76 +66,44 @@
 .scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
 </style>
 </head>
-<body x-data="blogApp()" x-cloak class="font-sans antialiased bg-gray-950 text-gray-300">
-
-<noscript>
-<main style="max-width:800px;margin:0 auto;padding:2rem 1rem;font-family:sans-serif;line-height:1.6;color:#e5e7eb;background:#030712">
-  <h1>Блог FluentFox — корисні статті про англійську для дітей</h1>
-  <p>Практичні поради від вчителів FluentFox: методи навчання, підготовка до іспитів, мотивація, вік початку навчання, формат занять.</p>
-  <p>Статті тут пишуть викладачі FluentFox — ті самі, що ведуть групи. Кожен текст виріс із питання, яке батьки ставлять на пробному уроці або в чаті посеред курсу: чому дитина мовчить після шести років школи, скільки слів вона має знати у вісім, чи потрібен носій мови, як не перевантажити тиждень у вересні.</p>
-  <p>Ми не переказуємо методички і не даємо порад «загалом»: у кожній статті є конкретні цифри, строки й те, що можна перевірити вдома за десять хвилин. Статті розкладені за темами — методи навчання, вік і розвиток, НМТ та іспити, формат занять, мотивація і вибір школи.</p>
-  <ul>
-    <li><a href="yak-dopomohty-z-anhliyskoyu-vdoma">Як допомогти дитині з англійською, якщо ви самі її не знаєте</a></li>
-    <li><a href="pohani-otsinky-z-anhliyskoyi">Погані оцінки з англійської: як знайти причину, а не винного</a></li>
-    <li><a href="rivni-anhliyskoyi-u-dytyny">Рівні англійської A1–C1: як зрозуміти, де зараз ваша дитина</a></li>
-    <li><a href="onlayn-chy-ochni-zanyattya-anhliyskoyu">Онлайн чи очні заняття англійською: що обрати дитині</a></li>
-    <li><a href="yak-navchyty-dytynu-chytaty-anhliyskoyu">Як навчити дитину читати англійською: фоніка крок за кроком</a></li>
-    <li><a href="skilky-navantazhennia-vytrymuie-dytyna-u-veresni">Школа і курси англійської одночасно: скільки навантаження витримує дитина у вересні</a></li>
-    <li><a href="chomu-dytyna-ne-hovoryt-pislya-shkoly">Дитина вчить англійську в школі шість років і не говорить. Чому так виходить</a></li>
-    <li><a href="yak-obraty-onlayn-shkolu-anhliyskoyi">Як обрати онлайн-школу англійської для дитини: дев'ять питань перед оплатою</a></li>
-    <li><a href="chy-potriben-dytyni-nosiy-movy">Чи потрібен дитині вчитель-носій мови — і коли він швидше зашкодить</a></li>
-    <li><a href="multyky-ta-ihry-anhliyskoyu">Чи вивчить дитина англійську з мультиків та ігор</a></li>
-    <li><a href="skilky-sliv-maye-znaty-dytyna">Скільки англійських слів має знати дитина у 8, 12 і 16 років</a></li>
-    <li><a href="yak-navchyty-dytynu-anhliyskoyi-onlayn">Як навчити дитину англійської онлайн: 7 методів, які дають результат</a></li>
-    <li><a href="z-yakoho-viku-pochynaty-anhliyskoyu">З якого віку починати вивчати англійську: відповідає педагог</a></li>
-    <li><a href="pidhotovka-do-nmt-anhliyskoyi-2025">Підготовка до НМТ з англійської 2025: покроковий план</a></li>
-    <li><a href="hrupovi-chy-indyvidualni-zanyattya">Групові або індивідуальні заняття: що вибрати для дитини</a></li>
-    <li><a href="yak-motyvuvaty-dytynu-vchyty-anhliyskoyu">Як мотивувати дитину вивчати англійську: 8 прийомів для батьків</a></li>
-    <li><a href="skilky-koshtuye-anhliyska-dytyni-onlayn">Скільки коштує англійська для дитини онлайн у 2026 році</a></li>
-    <li><a href="cambridge-yle-ket-pet-navischo-dytyni">Що таке Cambridge YLE, KET і PET і навіщо вони дитині</a></li>
-    <li><a href="skilky-chasu-zagovoryty-anhliyskoyu">Скільки часу потрібно дитині, щоб заговорити англійською</a></li>
-    <li><a href="skilky-domashky-z-anhliyskoyi">Скільки домашки з англійської має бути у дитини</a></li>
-    <li><a href="dytyna-boyitsya-hovoryty-anhliyskoyu">Дитина боїться говорити англійською: що робити батькам</a></li>
-  </ul>
-</main>
-</noscript>
+<body class="font-sans antialiased bg-gray-950 text-gray-300">
 
 <!-- Header -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-sm border-b border-white/10">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2 group">
+      <a href="/" class="flex items-center gap-2 group">
         <span class="text-3xl group-hover:scale-110 transition-transform duration-200">🦊</span>
         <span class="text-2xl font-black text-white">Fluent<span class="gradient-text">Fox</span></span>
       </a>
       <div class="hidden md:flex items-center gap-6">
-        <a :href="lang==='ru' ? '/pro-shkolu?lang=ru' : '/pro-shkolu'"   class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'"></a>
-        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'"  class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a :href="lang==='ru' ? '/vidhuky?lang=ru' : '/vidhuky'" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
-        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'"    class="text-sm font-semibold text-fox-400" x-text="lang==='uk'?'Блог':'Блог'"></a>
+        <a href="/pro-shkolu" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" data-ru="О нас">Про нас</a>
+        <a href="/tsiny" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" data-ru="Цены">Ціни</a>
+        <a href="/vidhuky" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" data-ru="Отзывы">Відгуки</a>
+        <a href="/blog/" class="text-sm font-semibold text-fox-400">Блог</a>
       </div>
       <div class="flex items-center gap-3">
         <div class="flex items-center bg-white/10 rounded-full p-0.5 text-sm font-bold">
-          <!-- Посилання, а не кнопка: кнопку, що міняє адресу, краулер не
-               натискає, і ?lang=ru діставався лише з hreflang. Перехід
-               скасовує Alpine — мову блог перемикає на місці. -->
-          <a href="/blog/" hreflang="uk" @click.prevent="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-200'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
-          <a href="/blog/?lang=ru" hreflang="ru" @click.prevent="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-200'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
+          <!-- Справжні посилання: мова — це окремий файл на сервері, тож
+               перехід має відбутися насправді. hreflang тут не для краси —
+               по ньому складальник російської версії розуміє, що адресу цього
+               посилання чіпати не можна. -->
+          <a href="/blog/" hreflang="uk" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200 bg-white shadow text-fox-600">UA</a>
+          <a href="/blog/?lang=ru" hreflang="ru" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200 text-gray-400 hover:text-gray-200">RU</a>
         </div>
-        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
-        <button @click="menuOpen=!menuOpen" class="md:hidden p-2 text-gray-300" aria-label="Menu">
-          <svg x-show="!menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          <svg x-show="menuOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        <a href="/#form" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" data-ru="Пробный урок">Пробний урок</a>
+        <button type="button" id="burger" class="md:hidden p-2 text-gray-300" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
       </div>
     </div>
-    <div x-show="menuOpen" x-transition class="md:hidden pb-4 border-t border-white/10">
+    <div id="mobileMenu" hidden class="md:hidden pb-4 border-t border-white/10">
       <div class="flex flex-col gap-1 pt-3">
-        <a :href="lang==='ru' ? '/pro-shkolu?lang=ru' : '/pro-shkolu'"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Про нас':'О нас'"></a>
-        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a :href="lang==='ru' ? '/vidhuky?lang=ru' : '/vidhuky'" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" x-text="lang==='uk'?'Відгуки':'Отзывы'"></a>
-        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-fox-400 hover:bg-white/5 font-semibold transition-colors text-sm">Блог</a>
-        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm text-sm" x-text="lang==='uk'?'Пробний урок':'Пробный урок'"></a>
+        <a href="/pro-shkolu" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="О нас">Про нас</a>
+        <a href="/tsiny" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="Цены">Ціни</a>
+        <a href="/vidhuky" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="Отзывы">Відгуки</a>
+        <a href="/blog/" class="px-3 py-2 rounded-xl text-fox-400 hover:bg-white/5 font-semibold transition-colors text-sm">Блог</a>
+        <a href="/#form" class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm text-sm" data-ru="Пробный урок">Пробний урок</a>
       </div>
     </div>
   </nav>
@@ -146,9 +112,9 @@
 <!-- Hero -->
 <section class="pt-24 pb-10 md:pt-28 md:pb-16" style="background:radial-gradient(ellipse at 75% 15%, rgba(124,58,237,0.22) 0%, transparent 55%), #030712;">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="lang==='uk'?'Блог FluentFox':'Блог FluentFox'"></span>
-    <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-white leading-tight mb-4" x-text="lang==='uk'?'Корисні статті про англійську для дітей':'Полезные статьи об английском для детей'"></h1>
-    <p class="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed" x-text="lang==='uk'?'Практичні поради від вчителів FluentFox: методи навчання, підготовка до іспитів, мотивація та багато іншого':'Практические советы от учителей FluentFox: методы обучения, подготовка к экзаменам, мотивация и многое другое'"></p>
+    <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-4">Блог FluentFox</span>
+    <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-white leading-tight mb-4" data-ru="Полезные статьи об английском для детей">Корисні статті про англійську для дітей</h1>
+    <p class="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed" data-ru="Практические советы от учителей FluentFox: методы обучения, подготовка к экзаменам, мотивация и многое другое">Практичні поради від вчителів FluentFox: методи навчання, підготовка до іспитів, мотивація та багато іншого</p>
   </div>
 </section>
 
@@ -156,12 +122,13 @@
 <section class="bg-gray-950 pt-4 pb-8 sticky top-16 z-40 border-b border-white/5">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex gap-2 overflow-x-auto scrollbar-hide -mx-4 px-4">
-      <template x-for="cat in categories" :key="cat.key">
-        <button @click="activeCat = cat.key"
-                :class="activeCat === cat.key ? 'bg-fox-500 text-white' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200'"
-                class="shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200"
-                x-text="lang==='uk' ? cat.label : cat.labelRu"></button>
-      </template>
+      <button type="button" data-cat="all" class="shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 bg-fox-500 text-white" data-ru="Все">Усі</button>
+      <button type="button" data-cat="methods" class="shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200" data-ru="Методы обучения">Методи навчання</button>
+      <button type="button" data-cat="age" class="shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200" data-ru="Возраст и развитие">Вік і розвиток</button>
+      <button type="button" data-cat="exams" class="shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200" data-ru="НМТ и экзамены">НМТ та іспити</button>
+      <button type="button" data-cat="format" class="shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200" data-ru="Формат занятий">Формат занять</button>
+      <button type="button" data-cat="motivation" class="shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200" data-ru="Мотивация">Мотивація</button>
+      <button type="button" data-cat="choice" class="shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200" data-ru="Выбор школы">Вибір школи</button>
     </div>
   </div>
 </section>
@@ -173,35 +140,417 @@
          має брати запит «статті про англійську для дітей», це надто тонко —
          пошуковик бачив самі заголовки карток і жодного зв'язного тексту. -->
     <div class="max-w-3xl mb-12 space-y-4">
-      <p class="text-base text-gray-400 leading-relaxed" x-text="lang==='uk'?'Статті тут пишуть викладачі FluentFox — ті самі, що ведуть групи. Кожен текст виріс із питання, яке батьки ставлять на пробному уроці або в чаті посеред курсу: чому дитина мовчить після шести років школи, скільки слів вона має знати у вісім, чи потрібен носій мови, як не перевантажити тиждень у вересні.':'Статьи здесь пишут преподаватели FluentFox — те же, что ведут группы. Каждый текст вырос из вопроса, который родители задают на пробном уроке или в чате посреди курса: почему ребёнок молчит после шести лет школы, сколько слов он должен знать в восемь, нужен ли носитель языка, как не перегрузить неделю в сентябре.'"></p>
-      <p class="text-base text-gray-400 leading-relaxed" x-text="lang==='uk'?'Ми не переказуємо методички і не даємо порад «загалом»: у кожній статті є конкретні цифри, строки й те, що можна перевірити вдома за десять хвилин. Статті розкладені за темами — методи навчання, вік і розвиток, НМТ та іспити, формат занять, мотивація і вибір школи.':'Мы не пересказываем методички и не даём советов «в общем»: в каждой статье есть конкретные цифры, сроки и то, что можно проверить дома за десять минут. Статьи разложены по темам — методы обучения, возраст и развитие, НМТ и экзамены, формат занятий, мотивация и выбор школы.'"></p>
+      <p class="text-base text-gray-400 leading-relaxed" data-ru="Статьи здесь пишут преподаватели FluentFox — те же, что ведут группы. Каждый текст вырос из вопроса, который родители задают на пробном уроке или в чате посреди курса: почему ребёнок молчит после шести лет школы, сколько слов он должен знать в восемь, нужен ли носитель языка, как не перегрузить неделю в сентябре.">Статті тут пишуть викладачі FluentFox — ті самі, що ведуть групи. Кожен текст виріс із питання, яке батьки ставлять на пробному уроці або в чаті посеред курсу: чому дитина мовчить після шести років школи, скільки слів вона має знати у вісім, чи потрібен носій мови, як не перевантажити тиждень у вересні.</p>
+      <p class="text-base text-gray-400 leading-relaxed" data-ru="Мы не пересказываем методички и не даём советов «в общем»: в каждой статье есть конкретные цифры, сроки и то, что можно проверить дома за десять минут. Статьи разложены по темам — методы обучения, возраст и развитие, НМТ и экзамены, формат занятий, мотивация и выбор школы.">Ми не переказуємо методички і не даємо порад «загалом»: у кожній статті є конкретні цифри, строки й те, що можна перевірити вдома за десять хвилин. Статті розкладені за темами — методи навчання, вік і розвиток, НМТ та іспити, формат занять, мотивація і вибір школи.</p>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <template x-for="post in filteredArticles()" :key="post.slug">
-        <a :href="post.slug + (lang==='ru' ? '?lang=ru' : '')"
-           class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
-          <!-- Card color bar -->
-          <div class="h-2 w-full" :class="post.accent === 'fox' ? 'bg-gradient-to-r from-fox-500 to-fox-600' : 'bg-gradient-to-r from-violet-500 to-violet-600'"></div>
-          <div class="p-6 flex flex-col flex-1">
-            <div class="flex items-start justify-between mb-4">
-              <span class="text-3xl leading-none" x-text="post.emoji"></span>
-              <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk' ? post.category : post.categoryRu"></span>
-            </div>
-            <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" x-text="lang==='uk' ? post.title : post.titleRu"></h2>
-            <p class="text-sm text-gray-500 leading-relaxed mb-4" x-text="lang==='uk' ? post.excerpt : post.excerptRu"></p>
-            <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
-              <div class="flex items-center gap-2 text-xs text-gray-400">
-                <span x-text="lang==='uk' ? post.date : post.dateRu"></span>
-                <span>·</span>
-                <span x-text="lang==='uk' ? post.readTime : post.readTimeRu"></span>
-              </div>
-              <span class="text-fox-500 font-bold text-xs" x-text="lang==='uk'?'Читати →':'Читать →'"></span>
-            </div>
+    <!-- Картки складаються генератором: tools/blog/site_index.py. Раніше тут
+         стояв цикл Alpine по масиву в кінці файлу, і в самій сторінці не було
+         жодного заголовка статті — ані для краулера без JS, ані для Google,
+         який усе-таки виконує скрипти, але бачить порожній HTML першим. -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="cards">
+<!-- КАРТКИ -->
+      <a href="/blog/yak-dopomohty-z-anhliyskoyu-vdoma" data-card-cat="methods" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">🏠</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Методы обучения">Методи навчання</span>
           </div>
-        </a>
-      </template>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Как помочь ребёнку с английским, если вы сами его не знаете">Як допомогти дитині з англійською, якщо ви самі її не знаєте</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Семь вещей, которые родитель делает для английского ребёнка, не зная ни одного слова — и почему две из них работают лучше, чем если бы вы язык знали. Без упражнений, переводов и проверки домашки.">Сім речей, які батько робить для англійської дитини, не знаючи жодного слова — і чому дві з них працюють краще, ніж якби ви мову знали. Без вправ, перекладів і перевірки домашки.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="6 сентября 2026">6 вересня 2026</span>
+              <span>·</span>
+              <span data-ru="7 мин чтения">7 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/pohani-otsinky-z-anhliyskoyi" data-card-cat="motivation" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">📉</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Мотивация">Мотивація</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Плохие оценки по английскому: как найти причину, а не виноватого">Погані оцінки з англійської: як знайти причину, а не винного</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Пять причин, из-за которых ребёнок не тянет английский в школе, и как отличить пробел в базе от страха и от скуки. Каждая лечится по-разному, и репетитор нужен не во всех пяти.">П'ять причин, через які дитина не тягне англійську в школі, і як відрізнити прогалину в базі від страху й від нудьги. Кожна лікується по-різному, і репетитор потрібен не в усіх п'яти.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="6 сентября 2026">6 вересня 2026</span>
+              <span>·</span>
+              <span data-ru="8 мин чтения">8 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/rivni-anhliyskoyi-u-dytyny" data-card-cat="exams" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">📊</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="НМТ и экзамены">НМТ та іспити</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Уровни английского A1–C1: как понять, где сейчас ваш ребёнок">Рівні англійської A1–C1: як зрозуміти, де зараз ваша дитина</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Что на самом деле значат A1, A2 и B1, почему школьная оценка не показывает уровень и четыре проверки, которыми родитель может понять, где ребёнок сейчас — без тестов и сертификатов.">Що насправді означають A1, A2 і B1, чому шкільна оцінка не показує рівень і чотири перевірки, якими батько може зрозуміти, де дитина зараз — без тестів і сертифікатів.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="6 сентября 2026">6 вересня 2026</span>
+              <span>·</span>
+              <span data-ru="8 мин чтения">8 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/onlayn-chy-ochni-zanyattya-anhliyskoyu" data-card-cat="format" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">💻</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Формат занятий">Формат занять</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Онлайн или очные занятия английским: что выбрать ребёнку">Онлайн чи очні заняття англійською: що обрати дитині</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Чем формат правда отличается для ребёнка: сколько он говорит, как держит внимание, что с дисциплиной и дорогой. Разбор по критериям, а не общими словами.">Чим формат справді відрізняється для дитини: скільки вона говорить, як тримає увагу, що з дисципліною й дорогою. Розбір за критеріями, а не за загальними словами.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="5 сентября 2026">5 вересня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">6 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/yak-navchyty-dytynu-chytaty-anhliyskoyu" data-card-cat="methods" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">📖</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Методы обучения">Методи навчання</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Как научить ребёнка читать по-английски: фоника шаг за шагом">Як навчити дитину читати англійською: фоніка крок за кроком</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Почему выученный алфавит не даёт чтения, в каком порядке ставить звуки и буквосочетания и сколько времени ребёнку нужно, чтобы прочитать незнакомое слово самостоятельно.">Чому вивчений алфавіт не дає читання, у якому порядку ставити звуки й буквосполучення і скільки часу дитині потрібно, щоб прочитати незнайоме слово самостійно.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="1 сентября 2026">1 вересня 2026</span>
+              <span>·</span>
+              <span data-ru="7 мин чтения">7 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/skilky-navantazhennia-vytrymuie-dytyna-u-veresni" data-card-cat="format" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">📅</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Формат занятий">Формат занять</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Школа и курсы английского одновременно: сколько нагрузки выдерживает ребёнок в сентябре">Школа і курси англійської одночасно: скільки навантаження витримує дитина у вересні</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="В сентябре к школе сразу добавляются кружки и курсы. Разбираем, как не перегрузить ребёнка и где в расписании реально есть место для английского.">У вересні до школи одразу додаються гуртки й курси. Розбираємо, як не перевантажити дитину і де в тижневому розкладі справді є місце для англійської.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="4 сентября 2026">4 вересня 2026</span>
+              <span>·</span>
+              <span data-ru="5 мин чтения">5 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/chomu-dytyna-ne-hovoryt-pislya-shkoly" data-card-cat="methods" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">📣</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Методы обучения">Методи навчання</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Ребёнок учит английский в школе шесть лет и не говорит. Почему так выходит">Дитина вчить англійську в школі шість років і не говорить. Чому так виходить</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="В классе на тридцать детей на речь одного приходится меньше минуты за урок. Считаем, где именно школьная программа теряет говорение.">У класі на тридцять дітей на мовлення одного припадає менше хвилини за урок. Рахуємо, де саме шкільна програма втрачає говоріння.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="26 августа 2026">26 серпня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">6 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/yak-obraty-onlayn-shkolu-anhliyskoyi" data-card-cat="choice" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">🔍</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Выбор школы">Вибір школи</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Как выбрать онлайн-школу английского для ребёнка: девять вопросов перед оплатой">Як обрати онлайн-школу англійської для дитини: дев'ять питань перед оплатою</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Девять вопросов, которые стоит задать до оплаты первого месяца — и три ответа, после которых стоит попрощаться.">Дев'ять питань, які варто поставити до оплати першого місяця — і три відповіді, після яких варто попрощатися.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="26 августа 2026">26 серпня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">6 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/chy-potriben-dytyni-nosiy-movy" data-card-cat="choice" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">🌐</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Выбор школы">Вибір школи</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Нужен ли ребёнку учитель-носитель языка — и когда он скорее навредит">Чи потрібен дитині вчитель-носій мови — і коли він швидше зашкодить</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Носитель стоит дороже и считается лучшим по умолчанию. Объясняем, с какого возраста это действительно так, а когда лишь добавляет цены.">Носій коштує дорожче й вважається кращим за замовчуванням. Пояснюємо, з якого віку це справді так, а коли лише додає ціни.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="26 августа 2026">26 серпня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">5 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/multyky-ta-ihry-anhliyskoyu" data-card-cat="methods" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">🎬</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Методы обучения">Методи навчання</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Выучит ли ребёнок английский по мультикам и играм">Чи вивчить дитина англійську з мультиків та ігор</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Ребёнок смотрит полгода и не говорит. Почему пассивный просмотр языку не учит — и что изменить, чтобы экран всё-таки работал.">Дитина дивиться пів року й не говорить. Чому пасивний перегляд мови не вчить — і що змінити, щоб екран усе-таки працював.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="26 августа 2026">26 серпня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">5 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/skilky-sliv-maye-znaty-dytyna" data-card-cat="methods" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">🔤</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Методы обучения">Методи навчання</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Сколько английских слов должен знать ребёнок в 8, 12 и 16 лет">Скільки англійських слів має знати дитина у 8, 12 і 16 років</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Ориентиры по уровням A1–B2, разница между активным и пассивным запасом и домашняя проверка объёма за десять минут.">Орієнтири за рівнями A1–B2, різниця між активним і пасивним запасом і домашня перевірка обсягу за десять хвилин.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="26 августа 2026">26 серпня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">6 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/yak-navchyty-dytynu-anhliyskoyi-onlayn" data-card-cat="methods" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">📚</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Методы обучения">Методи навчання</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Как научить ребёнка английскому онлайн: 7 методов, которые дают результат">Як навчити дитину англійської онлайн: 7 методів, які дають результат</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Почему одни дети учат английский с удовольствием, а другие отказываются открывать учебник? Разбираем семь проверенных подходов.">Чому одні діти вчать англійську із задоволенням, а інші відмовляються відкривати підручник? Розбираємо сім перевірених підходів.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="15 июля 2026">15 липня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">6 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/z-yakoho-viku-pochynaty-anhliyskoyu" data-card-cat="age" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">🎂</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Возраст и развитие">Вік і розвиток</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="С какого возраста начинать учить английский: отвечает педагог">З якого віку починати вивчати англійську: відповідає педагог</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Родители спрашивают: «Не рано?» или «Не поздно?». Что говорят исследования и наш опыт работы с 500+ детьми.">Батьки питають: «Чи не рано?» або «Чи не пізно?». Що кажуть дослідження та наш досвід роботи з 500+ дітьми.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="12 июля 2026">12 липня 2026</span>
+              <span>·</span>
+              <span data-ru="5 мин чтения">5 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/pidhotovka-do-nmt-anhliyskoyi-2025" data-card-cat="exams" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">📝</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="НМТ и экзамены">НМТ та іспити</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Подготовка к НМТ по английскому 2025: пошаговый план">Підготовка до НМТ з англійської 2025: покроковий план</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Структура экзамена, пять грамматических тем из каждого варианта и три сценария подготовки — за год, за полгода и за три месяца.">Структура іспиту, п'ять граматичних тем із кожного варіанту й три сценарії підготовки — за рік, за півроку й за три місяці.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="10 июля 2026">10 липня 2026</span>
+              <span>·</span>
+              <span data-ru="7 мин чтения">7 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/hrupovi-chy-indyvidualni-zanyattya" data-card-cat="format" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">👥</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Формат занятий">Формат занять</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Групповые или индивидуальные занятия: что выбрать для ребёнка">Групові або індивідуальні заняття: що вибрати для дитини</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Цена, темп, социализация — сравниваем два формата по шести критериям и объясняем, когда что лучше.">Ціна, темп, соціалізація — порівнюємо два формати за шістьма критеріями та розповідаємо, коли що краще.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="8 июля 2026">8 липня 2026</span>
+              <span>·</span>
+              <span data-ru="7 мин чтения">6 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/yak-motyvuvaty-dytynu-vchyty-anhliyskoyu" data-card-cat="motivation" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">🚀</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Мотивация">Мотивація</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Как мотивировать ребёнка учить английский: 8 приёмов для родителей">Як мотивувати дитину вивчати англійську: 8 прийомів для батьків</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Ребёнок снова отказывается идти на урок? Реальные приёмы без теоретизирования — только то, что проверили наши учителя.">Дитина знову відмовляється йти на урок? Реальні прийоми без теоретизування — тільки те, що перевірили наші вчителі.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="5 июля 2026">5 липня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">5 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/skilky-koshtuye-anhliyska-dytyni-onlayn" data-card-cat="format" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">💰</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Формат занятий">Формат занять</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Сколько стоит английский для ребёнка онлайн в 2026 году">Скільки коштує англійська для дитини онлайн у 2026 році</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Групповые, индивидуальные, разговорные клубы — разбираем реальные цены на рынке и от чего они зависят.">Групові, індивідуальні, розмовні клуби — розбираємо реальні ціни на ринку та від чого вони залежать.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="20 июля 2026">20 липня 2026</span>
+              <span>·</span>
+              <span data-ru="7 мин чтения">7 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/cambridge-yle-ket-pet-navischo-dytyni" data-card-cat="exams" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">🏅</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="НМТ и экзамены">НМТ та іспити</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Что такое Cambridge YLE, KET и PET и зачем они ребёнку">Що таке Cambridge YLE, KET і PET і навіщо вони дитині</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Разбираем разницу между экзаменами Cambridge English, с какого возраста их сдавать и нужны ли они, если ребёнок не едет учиться за границу.">Розбираємо різницю між іспитами Cambridge English, з якого віку їх складати і чи потрібні вони, якщо дитина не їде вчитися за кордон.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="21 июля 2026">21 липня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">6 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/skilky-chasu-zagovoryty-anhliyskoyu" data-card-cat="age" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">⏱</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Возраст и развитие">Вік і розвиток</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Сколько времени нужно ребёнку, чтобы заговорить по-английски">Скільки часу потрібно дитині, щоб заговорити англійською</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Реалистичные сроки по уровням CEFR и что на самом деле влияет на скорость прогресса — кроме количества занятий.">Реалістичні терміни за рівнями CEFR і що насправді впливає на швидкість прогресу — крім кількості занять.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="22 июля 2026">22 липня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">6 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/skilky-domashky-z-anhliyskoyi" data-card-cat="methods" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-fox-500 to-fox-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">✏️</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Методы обучения">Методи навчання</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Сколько домашних заданий по английскому должно быть у ребёнка">Скільки домашки з англійської має бути у дитини</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Почему «больше упражнений» не значит «быстрее прогресс» и как выглядит домашка, которая реально работает.">Чому «більше вправ» не означає «швидший прогрес» і як виглядає домашка, яка реально працює.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="23 июля 2026">23 липня 2026</span>
+              <span>·</span>
+              <span data-ru="6 мин чтения">6 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/blog/dytyna-boyitsya-hovoryty-anhliyskoyu" data-card-cat="motivation" class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/20">
+        <div class="h-2 w-full bg-gradient-to-r from-violet-500 to-violet-600"></div>
+        <div class="p-6 flex flex-col flex-1">
+          <div class="flex items-start justify-between mb-4">
+            <span class="text-3xl leading-none" aria-hidden="true">🙈</span>
+            <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" data-ru="Мотивация">Мотивація</span>
+          </div>
+          <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1" data-ru="Ребёнок боится говорить по-английски: что делать родителям">Дитина боїться говорити англійською: що робити батькам</h2>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4" data-ru="Страх ошибки — главная причина молчания на уроках. Приёмы, которые снимают этот блок без давления на ребёнка.">Страх помилки — головна причина мовчання на уроках. Прийоми, які знімають цей блок без тиску на дитину.</p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+            <div class="flex items-center gap-2 text-xs text-gray-400">
+              <span data-ru="24 июля 2026">24 липня 2026</span>
+              <span>·</span>
+              <span data-ru="5 мин чтения">5 хв читання</span>
+            </div>
+            <span class="text-fox-500 font-bold text-xs" data-ru="Читать →">Читати →</span>
+          </div>
+        </div>
+      </a>
+<!-- /КАРТКИ -->
     </div>
-    <p x-show="filteredArticles().length === 0" class="text-center text-gray-500 py-16" x-text="lang==='uk'?'У цій категорії поки немає статей':'В этой категории пока нет статей'"></p>
+    <p id="cardsEmpty" hidden class="text-center text-gray-500 py-16" data-ru="В этой категории пока нет статей">У цій категорії поки немає статей</p>
   </div>
 </section>
 
@@ -209,9 +558,9 @@
 <section class="py-16 bg-gradient-to-br from-fox-500 to-fox-700">
   <div class="max-w-3xl mx-auto px-4 text-center">
     <div class="text-4xl mb-4">🦊</div>
-    <h2 class="text-2xl md:text-3xl font-black text-white mb-3 leading-tight" x-text="lang==='uk'?'Хочете результату, а не просто статей?':'Хотите результата, а не просто статей?'"></h2>
-    <p class="text-orange-100 mb-6" x-text="lang==='uk'?'Запишіться на безкоштовний пробний урок — ми підберемо вчителя та програму під вашу дитину':'Запишитесь на бесплатный пробный урок — мы подберём учителя и программу под вашего ребёнка'"></p>
-    <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="inline-flex items-center gap-2 bg-white text-fox-600 hover:bg-fox-50 font-black px-7 py-3.5 rounded-full shadow-lg transition-all duration-200 hover:-translate-y-1" x-text="lang==='uk'?'Безкоштовний пробний урок':'Бесплатный пробный урок'"></a>
+    <h2 class="text-2xl md:text-3xl font-black text-white mb-3 leading-tight" data-ru="Хотите результата, а не просто статей?">Хочете результату, а не просто статей?</h2>
+    <p class="text-orange-100 mb-6" data-ru="Запишитесь на бесплатный пробный урок — мы подберём учителя и программу под вашего ребёнка">Запишіться на безкоштовний пробний урок — ми підберемо вчителя та програму під вашу дитину</p>
+    <a href="/#form" class="inline-flex items-center gap-2 bg-white text-fox-600 hover:bg-fox-50 font-black px-7 py-3.5 rounded-full shadow-lg transition-all duration-200 hover:-translate-y-1" data-ru="Бесплатный пробный урок">Безкоштовний пробний урок</a>
   </div>
 </section>
 
@@ -219,20 +568,20 @@
 <footer class="bg-gray-950 text-gray-400 py-10 border-t border-white/10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2">
+      <a href="/" class="flex items-center gap-2">
         <span class="text-2xl">🦊</span>
         <span class="text-xl font-black text-white">Fluent<span class="text-fox-400">Fox</span></span>
       </a>
       <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-        <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'"></a>
-        <a :href="lang==='ru' ? '/kursy-anhliyskoyi-dlya-ditey?lang=ru' : '/kursy-anhliyskoyi-dlya-ditey'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Курси англійської':'Курсы английского'"></a>
-        <a :href="lang==='ru' ? '/anhliyska-onlayn-dlya-ditey?lang=ru' : '/anhliyska-onlayn-dlya-ditey'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська онлайн':'Английский онлайн'"></a>
-        <a :href="lang==='ru' ? '/repetytor-z-anhliyskoyi?lang=ru' : '/repetytor-z-anhliyskoyi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Репетитор з англійської':'Репетитор по английскому'"></a>
-        <a :href="lang==='ru' ? '/rozmovna-anhliyska-dlya-ditey?lang=ru' : '/rozmovna-anhliyska-dlya-ditey'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Розмовна англійська':'Разговорный английский'"></a>
-        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'"></a>
-        <a :href="lang==='ru' ? '/pro-shkolu?lang=ru' : '/pro-shkolu'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про школу':'О школе'"></a>
-        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'" class="text-fox-400">Блог</a>
-        <a href="/privacy.html" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Конфіденційність':'Конфиденциальность'"></a>
+        <a href="/" class="hover:text-fox-400 transition-colors" data-ru="Главная">Головна</a>
+        <a href="/kursy-anhliyskoyi-dlya-ditey" class="hover:text-fox-400 transition-colors" data-ru="Курсы английского">Курси англійської</a>
+        <a href="/anhliyska-onlayn-dlya-ditey" class="hover:text-fox-400 transition-colors" data-ru="Английский онлайн">Англійська онлайн</a>
+        <a href="/repetytor-z-anhliyskoyi" class="hover:text-fox-400 transition-colors" data-ru="Репетитор по английскому">Репетитор з англійської</a>
+        <a href="/rozmovna-anhliyska-dlya-ditey" class="hover:text-fox-400 transition-colors" data-ru="Разговорный английский">Розмовна англійська</a>
+        <a href="/tsiny" class="hover:text-fox-400 transition-colors" data-ru="Цены">Ціни</a>
+        <a href="/pro-shkolu" class="hover:text-fox-400 transition-colors" data-ru="О школе">Про школу</a>
+        <a href="/blog/" class="text-fox-400">Блог</a>
+        <a href="/privacy.html" class="hover:text-fox-400 transition-colors" data-ru="Конфиденциальность">Конфіденційність</a>
         <a href="https://child.mycomputer.education/" target="_blank" rel="noopener" class="hover:text-fox-400 transition-colors">Центр «Дошколярик»</a>
       </div>
       <p class="text-xs text-gray-600">© 2026 FluentFox</p>
@@ -240,270 +589,7 @@
   </div>
 </footer>
 
-<script>
-const categories = [
-  { key: 'all',        label: 'Усі',              labelRu: 'Все' },
-  { key: 'methods',    label: 'Методи навчання',   labelRu: 'Методы обучения' },
-  { key: 'age',        label: 'Вік і розвиток',    labelRu: 'Возраст и развитие' },
-  { key: 'exams',      label: 'НМТ та іспити',     labelRu: 'НМТ и экзамены' },
-  { key: 'format',     label: 'Формат занять',     labelRu: 'Формат занятий' },
-  { key: 'motivation', label: 'Мотивація',         labelRu: 'Мотивация' },
-  { key: 'choice',     label: 'Вибір школи',       labelRu: 'Выбор школы' },
-];
-
-const articles = [
-  {
-    slug: 'yak-dopomohty-z-anhliyskoyu-vdoma',
-    emoji: '🏠', accent: 'violet', catKey: 'methods',
-    date: '6 вересня 2026', dateRu: '6 сентября 2026',
-    readTime: '7 хв читання', readTimeRu: '7 мин чтения',
-    category: 'Методи навчання', categoryRu: 'Методы обучения',
-    title: 'Як допомогти дитині з англійською, якщо ви самі її не знаєте',
-    titleRu: 'Как помочь ребёнку с английским, если вы сами его не знаете',
-    excerpt: 'Сім речей, які батько робить для англійської дитини, не знаючи жодного слова — і чому дві з них працюють краще, ніж якби ви мову знали. Без вправ, перекладів і перевірки домашки.',
-    excerptRu: 'Семь вещей, которые родитель делает для английского ребёнка, не зная ни одного слова — и почему две из них работают лучше, чем если бы вы язык знали. Без упражнений, переводов и проверки домашки.',
-  },
-  {
-    slug: 'pohani-otsinky-z-anhliyskoyi',
-    emoji: '📉', accent: 'fox', catKey: 'motivation',
-    date: '6 вересня 2026', dateRu: '6 сентября 2026',
-    readTime: '8 хв читання', readTimeRu: '8 мин чтения',
-    category: 'Мотивація', categoryRu: 'Мотивация',
-    title: 'Погані оцінки з англійської: як знайти причину, а не винного',
-    titleRu: 'Плохие оценки по английскому: как найти причину, а не виноватого',
-    excerpt: 'П\'ять причин, через які дитина не тягне англійську в школі, і як відрізнити прогалину в базі від страху й від нудьги. Кожна лікується по-різному, і репетитор потрібен не в усіх п\'яти.',
-    excerptRu: 'Пять причин, из-за которых ребёнок не тянет английский в школе, и как отличить пробел в базе от страха и от скуки. Каждая лечится по-разному, и репетитор нужен не во всех пяти.',
-  },
-  {
-    slug: 'rivni-anhliyskoyi-u-dytyny',
-    emoji: '📊', accent: 'violet', catKey: 'exams',
-    date: '6 вересня 2026', dateRu: '6 сентября 2026',
-    readTime: '8 хв читання', readTimeRu: '8 мин чтения',
-    category: 'НМТ та іспити', categoryRu: 'НМТ и экзамены',
-    title: 'Рівні англійської A1–C1: як зрозуміти, де зараз ваша дитина',
-    titleRu: 'Уровни английского A1–C1: как понять, где сейчас ваш ребёнок',
-    excerpt: 'Що насправді означають A1, A2 і B1, чому шкільна оцінка не показує рівень і чотири перевірки, якими батько може зрозуміти, де дитина зараз — без тестів і сертифікатів.',
-    excerptRu: 'Что на самом деле значат A1, A2 и B1, почему школьная оценка не показывает уровень и четыре проверки, которыми родитель может понять, где ребёнок сейчас — без тестов и сертификатов.',
-  },
-  {
-    slug: 'onlayn-chy-ochni-zanyattya-anhliyskoyu',
-    emoji: '💻', accent: 'violet', catKey: 'format',
-    date: '5 вересня 2026', dateRu: '5 сентября 2026',
-    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Формат занять', categoryRu: 'Формат занятий',
-    title: 'Онлайн чи очні заняття англійською: що обрати дитині',
-    titleRu: 'Онлайн или очные занятия английским: что выбрать ребёнку',
-    excerpt: 'Чим формат справді відрізняється для дитини: скільки вона говорить, як тримає увагу, що з дисципліною й дорогою. Розбір за критеріями, а не за загальними словами.',
-    excerptRu: 'Чем формат правда отличается для ребёнка: сколько он говорит, как держит внимание, что с дисциплиной и дорогой. Разбор по критериям, а не общими словами.',
-  },
-  {
-    slug: 'yak-navchyty-dytynu-chytaty-anhliyskoyu',
-    emoji: '📖', accent: 'fox', catKey: 'methods',
-    date: '1 вересня 2026', dateRu: '1 сентября 2026',
-    readTime: '7 хв читання', readTimeRu: '7 мин чтения',
-    category: 'Методи навчання', categoryRu: 'Методы обучения',
-    title: 'Як навчити дитину читати англійською: фоніка крок за кроком',
-    titleRu: 'Как научить ребёнка читать по-английски: фоника шаг за шагом',
-    excerpt: 'Чому вивчений алфавіт не дає читання, у якому порядку ставити звуки й буквосполучення і скільки часу дитині потрібно, щоб прочитати незнайоме слово самостійно.',
-    excerptRu: 'Почему выученный алфавит не даёт чтения, в каком порядке ставить звуки и буквосочетания и сколько времени ребёнку нужно, чтобы прочитать незнакомое слово самостоятельно.',
-  },
-  {
-    slug: 'skilky-navantazhennia-vytrymuie-dytyna-u-veresni',
-    emoji: '📅', accent: 'fox', catKey: 'format',
-    date: '4 вересня 2026', dateRu: '4 сентября 2026',
-    readTime: '5 хв читання', readTimeRu: '5 мин чтения',
-    category: 'Формат занять', categoryRu: 'Формат занятий',
-    title: 'Школа і курси англійської одночасно: скільки навантаження витримує дитина у вересні',
-    titleRu: 'Школа и курсы английского одновременно: сколько нагрузки выдерживает ребёнок в сентябре',
-    excerpt: 'У вересні до школи одразу додаються гуртки й курси. Розбираємо, як не перевантажити дитину і де в тижневому розкладі справді є місце для англійської.',
-    excerptRu: 'В сентябре к школе сразу добавляются кружки и курсы. Разбираем, как не перегрузить ребёнка и где в расписании реально есть место для английского.',
-  },
-  {
-    slug: 'chomu-dytyna-ne-hovoryt-pislya-shkoly',
-    emoji: '📣', accent: 'fox', catKey: 'methods',
-    date: '26 серпня 2026', dateRu: '26 августа 2026',
-    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Методи навчання', categoryRu: 'Методы обучения',
-    title: 'Дитина вчить англійську в школі шість років і не говорить. Чому так виходить',
-    titleRu: 'Ребёнок учит английский в школе шесть лет и не говорит. Почему так выходит',
-    excerpt: 'У класі на тридцять дітей на мовлення одного припадає менше хвилини за урок. Рахуємо, де саме шкільна програма втрачає говоріння.',
-    excerptRu: 'В классе на тридцать детей на речь одного приходится меньше минуты за урок. Считаем, где именно школьная программа теряет говорение.',
-  },
-  {
-    slug: 'yak-obraty-onlayn-shkolu-anhliyskoyi',
-    emoji: '🔍', accent: 'violet', catKey: 'choice',
-    date: '26 серпня 2026', dateRu: '26 августа 2026',
-    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Вибір школи', categoryRu: 'Выбор школы',
-    title: 'Як обрати онлайн-школу англійської для дитини: дев\'ять питань перед оплатою',
-    titleRu: 'Как выбрать онлайн-школу английского для ребёнка: девять вопросов перед оплатой',
-    excerpt: 'Дев\'ять питань, які варто поставити до оплати першого місяця — і три відповіді, після яких варто попрощатися.',
-    excerptRu: 'Девять вопросов, которые стоит задать до оплаты первого месяца — и три ответа, после которых стоит попрощаться.',
-  },
-  {
-    slug: 'chy-potriben-dytyni-nosiy-movy',
-    emoji: '🌐', accent: 'fox', catKey: 'choice',
-    date: '26 серпня 2026', dateRu: '26 августа 2026',
-    readTime: '5 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Вибір школи', categoryRu: 'Выбор школы',
-    title: 'Чи потрібен дитині вчитель-носій мови — і коли він швидше зашкодить',
-    titleRu: 'Нужен ли ребёнку учитель-носитель языка — и когда он скорее навредит',
-    excerpt: 'Носій коштує дорожче й вважається кращим за замовчуванням. Пояснюємо, з якого віку це справді так, а коли лише додає ціни.',
-    excerptRu: 'Носитель стоит дороже и считается лучшим по умолчанию. Объясняем, с какого возраста это действительно так, а когда лишь добавляет цены.',
-  },
-  {
-    slug: 'multyky-ta-ihry-anhliyskoyu',
-    emoji: '🎬', accent: 'violet', catKey: 'methods',
-    date: '26 серпня 2026', dateRu: '26 августа 2026',
-    readTime: '5 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Методи навчання', categoryRu: 'Методы обучения',
-    title: 'Чи вивчить дитина англійську з мультиків та ігор',
-    titleRu: 'Выучит ли ребёнок английский по мультикам и играм',
-    excerpt: 'Дитина дивиться пів року й не говорить. Чому пасивний перегляд мови не вчить — і що змінити, щоб екран усе-таки працював.',
-    excerptRu: 'Ребёнок смотрит полгода и не говорит. Почему пассивный просмотр языку не учит — и что изменить, чтобы экран всё-таки работал.',
-  },
-  {
-    slug: 'skilky-sliv-maye-znaty-dytyna',
-    emoji: '🔤', accent: 'fox', catKey: 'methods',
-    date: '26 серпня 2026', dateRu: '26 августа 2026',
-    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Методи навчання', categoryRu: 'Методы обучения',
-    title: 'Скільки англійських слів має знати дитина у 8, 12 і 16 років',
-    titleRu: 'Сколько английских слов должен знать ребёнок в 8, 12 и 16 лет',
-    excerpt: 'Орієнтири за рівнями A1–B2, різниця між активним і пасивним запасом і домашня перевірка обсягу за десять хвилин.',
-    excerptRu: 'Ориентиры по уровням A1–B2, разница между активным и пассивным запасом и домашняя проверка объёма за десять минут.',
-  },
-  {
-    slug: 'yak-navchyty-dytynu-anhliyskoyi-onlayn',
-    emoji: '📚', accent: 'fox', catKey: 'methods',
-    date: '15 липня 2026', dateRu: '15 июля 2026',
-    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Методи навчання', categoryRu: 'Методы обучения',
-    title: 'Як навчити дитину англійської онлайн: 7 методів, які дають результат',
-    titleRu: 'Как научить ребёнка английскому онлайн: 7 методов, которые дают результат',
-    excerpt: 'Чому одні діти вчать англійську із задоволенням, а інші відмовляються відкривати підручник? Розбираємо сім перевірених підходів.',
-    excerptRu: 'Почему одни дети учат английский с удовольствием, а другие отказываются открывать учебник? Разбираем семь проверенных подходов.',
-  },
-  {
-    slug: 'z-yakoho-viku-pochynaty-anhliyskoyu',
-    emoji: '🎂', accent: 'violet', catKey: 'age',
-    date: '12 липня 2026', dateRu: '12 июля 2026',
-    readTime: '5 хв читання', readTimeRu: '5 мин чтения',
-    category: 'Вік і розвиток', categoryRu: 'Возраст и развитие',
-    title: 'З якого віку починати вивчати англійську: відповідає педагог',
-    titleRu: 'С какого возраста начинать учить английский: отвечает педагог',
-    excerpt: 'Батьки питають: «Чи не рано?» або «Чи не пізно?». Що кажуть дослідження та наш досвід роботи з 500+ дітьми.',
-    excerptRu: 'Родители спрашивают: «Не рано?» или «Не поздно?». Что говорят исследования и наш опыт работы с 500+ детьми.',
-  },
-  {
-    slug: 'pidhotovka-do-nmt-anhliyskoyi-2025',
-    emoji: '📝', accent: 'fox', catKey: 'exams',
-    date: '10 липня 2026', dateRu: '10 июля 2026',
-    readTime: '7 хв читання', readTimeRu: '7 мин чтения',
-    category: 'НМТ та іспити', categoryRu: 'НМТ и экзамены',
-    title: 'Підготовка до НМТ з англійської 2025: покроковий план',
-    titleRu: 'Подготовка к НМТ по английскому 2025: пошаговый план',
-    excerpt: 'Структура іспиту, п\'ять граматичних тем із кожного варіанту й три сценарії підготовки — за рік, за півроку й за три місяці.',
-    excerptRu: 'Структура экзамена, пять грамматических тем из каждого варианта и три сценария подготовки — за год, за полгода и за три месяца.',
-  },
-  {
-    slug: 'hrupovi-chy-indyvidualni-zanyattya',
-    emoji: '👥', accent: 'violet', catKey: 'format',
-    date: '8 липня 2026', dateRu: '8 июля 2026',
-    readTime: '6 хв читання', readTimeRu: '7 мин чтения',
-    category: 'Формат занять', categoryRu: 'Формат занятий',
-    title: 'Групові або індивідуальні заняття: що вибрати для дитини',
-    titleRu: 'Групповые или индивидуальные занятия: что выбрать для ребёнка',
-    excerpt: 'Ціна, темп, соціалізація — порівнюємо два формати за шістьма критеріями та розповідаємо, коли що краще.',
-    excerptRu: 'Цена, темп, социализация — сравниваем два формата по шести критериям и объясняем, когда что лучше.',
-  },
-  {
-    slug: 'yak-motyvuvaty-dytynu-vchyty-anhliyskoyu',
-    emoji: '🚀', accent: 'fox', catKey: 'motivation',
-    date: '5 липня 2026', dateRu: '5 июля 2026',
-    readTime: '5 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Мотивація', categoryRu: 'Мотивация',
-    title: 'Як мотивувати дитину вивчати англійську: 8 прийомів для батьків',
-    titleRu: 'Как мотивировать ребёнка учить английский: 8 приёмов для родителей',
-    excerpt: 'Дитина знову відмовляється йти на урок? Реальні прийоми без теоретизування — тільки те, що перевірили наші вчителі.',
-    excerptRu: 'Ребёнок снова отказывается идти на урок? Реальные приёмы без теоретизирования — только то, что проверили наши учителя.',
-  },
-  {
-    slug: 'skilky-koshtuye-anhliyska-dytyni-onlayn',
-    emoji: '💰', accent: 'violet', catKey: 'format',
-    date: '20 липня 2026', dateRu: '20 июля 2026',
-    readTime: '7 хв читання', readTimeRu: '7 мин чтения',
-    category: 'Формат занять', categoryRu: 'Формат занятий',
-    title: 'Скільки коштує англійська для дитини онлайн у 2026 році',
-    titleRu: 'Сколько стоит английский для ребёнка онлайн в 2026 году',
-    excerpt: 'Групові, індивідуальні, розмовні клуби — розбираємо реальні ціни на ринку та від чого вони залежать.',
-    excerptRu: 'Групповые, индивидуальные, разговорные клубы — разбираем реальные цены на рынке и от чего они зависят.',
-  },
-  {
-    slug: 'cambridge-yle-ket-pet-navischo-dytyni',
-    emoji: '🏅', accent: 'fox', catKey: 'exams',
-    date: '21 липня 2026', dateRu: '21 июля 2026',
-    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
-    category: 'НМТ та іспити', categoryRu: 'НМТ и экзамены',
-    title: 'Що таке Cambridge YLE, KET і PET і навіщо вони дитині',
-    titleRu: 'Что такое Cambridge YLE, KET и PET и зачем они ребёнку',
-    excerpt: 'Розбираємо різницю між іспитами Cambridge English, з якого віку їх складати і чи потрібні вони, якщо дитина не їде вчитися за кордон.',
-    excerptRu: 'Разбираем разницу между экзаменами Cambridge English, с какого возраста их сдавать и нужны ли они, если ребёнок не едет учиться за границу.',
-  },
-  {
-    slug: 'skilky-chasu-zagovoryty-anhliyskoyu',
-    emoji: '⏱', accent: 'violet', catKey: 'age',
-    date: '22 липня 2026', dateRu: '22 июля 2026',
-    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Вік і розвиток', categoryRu: 'Возраст и развитие',
-    title: 'Скільки часу потрібно дитині, щоб заговорити англійською',
-    titleRu: 'Сколько времени нужно ребёнку, чтобы заговорить по-английски',
-    excerpt: 'Реалістичні терміни за рівнями CEFR і що насправді впливає на швидкість прогресу — крім кількості занять.',
-    excerptRu: 'Реалистичные сроки по уровням CEFR и что на самом деле влияет на скорость прогресса — кроме количества занятий.',
-  },
-  {
-    slug: 'skilky-domashky-z-anhliyskoyi',
-    emoji: '✏️', accent: 'fox', catKey: 'methods',
-    date: '23 липня 2026', dateRu: '23 июля 2026',
-    readTime: '6 хв читання', readTimeRu: '6 мин чтения',
-    category: 'Методи навчання', categoryRu: 'Методы обучения',
-    title: 'Скільки домашки з англійської має бути у дитини',
-    titleRu: 'Сколько домашних заданий по английскому должно быть у ребёнка',
-    excerpt: 'Чому «більше вправ» не означає «швидший прогрес» і як виглядає домашка, яка реально працює.',
-    excerptRu: 'Почему «больше упражнений» не значит «быстрее прогресс» и как выглядит домашка, которая реально работает.',
-  },
-  {
-    slug: 'dytyna-boyitsya-hovoryty-anhliyskoyu',
-    emoji: '🙈', accent: 'violet', catKey: 'motivation',
-    date: '24 липня 2026', dateRu: '24 июля 2026',
-    readTime: '5 хв читання', readTimeRu: '5 мин чтения',
-    category: 'Мотивація', categoryRu: 'Мотивация',
-    title: 'Дитина боїться говорити англійською: що робити батькам',
-    titleRu: 'Ребёнок боится говорить по-английски: что делать родителям',
-    excerpt: 'Страх помилки — головна причина мовчання на уроках. Прийоми, які знімають цей блок без тиску на дитину.',
-    excerptRu: 'Страх ошибки — главная причина молчания на уроках. Приёмы, которые снимают этот блок без давления на ребёнка.',
-  },
-];
-
-function blogApp() {
-  return {
-    lang: new URLSearchParams(location.search).get('lang') || 'uk',
-    menuOpen: false,
-    activeCat: 'all',
-    categories,
-    filteredArticles() {
-      return this.activeCat === 'all' ? articles : articles.filter(a => a.catKey === this.activeCat);
-    },
-    setLang(l) {
-      this.lang = l;
-      const url = new URL(location.href);
-      if (l === 'ru') url.searchParams.set('lang','ru');
-      else url.searchParams.delete('lang');
-      history.replaceState(null,'',url.toString());
-      document.documentElement.lang = l;
-    }
-  };
-}
-</script>
+<script src="/js/lang.js?v=20260906g" defer></script>
+<script src="/js/blog.js?v=20260906g" defer></script>
 </body>
 </html>

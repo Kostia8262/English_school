@@ -496,6 +496,11 @@ def apply_links(doc):
         href = t[3].get("href")
         if not is_internal(href):
             continue
+        # Посилання, яке саме оголошує свою мову, не чіпаємо: це перемикач
+        # мови. Дописати йому ?lang=ru означало б, що з російської сторінки
+        # обидві кнопки ведуть на російську і повернутися нікуди.
+        if "hreflang" in t[3]:
+            continue
         # Перемикач мови — теж <a>, і саме йому ?lang=ru дописувати не можна:
         # кнопка «UA» веде на українську адресу й має нею лишитися. Дзеркало
         # тієї самої перевірки в applyRu() у js/lang.js.
@@ -550,8 +555,12 @@ def site_pages():
     src = io.open(os.path.join(ROOT, ".htaccess"), encoding="utf-8").read()
     m = re.search(r"RewriteRule \^\(([^)]+)\)\$ \$1\.html", src)
     slugs = m.group(1).split("|") if m else []
+    # Лістинг блогу теж тут: він єдиний у blog/, хто проходить через цей
+    # пост-процесор. Статті складаються двома файлами в самому генераторі —
+    # у них в абзацах є вкладена розмітка, а data-ru її не тримає.
     return ([os.path.join(ROOT, "index.html")]
-            + [os.path.join(ROOT, s + ".html") for s in slugs])
+            + [os.path.join(ROOT, s + ".html") for s in slugs]
+            + [os.path.join(ROOT, "blog", "index.html")])
 
 
 def main():

@@ -51,11 +51,19 @@
   RewriteRule ^ /?lang=ru [R=301,L]
   RewriteCond %{THE_REQUEST} \s/+(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey)\.ru\.html[\s?] [NC]
   RewriteRule ^ /%1?lang=ru [R=301,L]
+  # Лістинг блогу і стаття. Слуги не перелічуємо з тієї ж причини, що й вище,
+  # а index виключено явно: у нього адреса /blog/, а не /blog/index.
+  RewriteCond %{THE_REQUEST} \s/+blog/index\.ru\.html[\s?] [NC]
+  RewriteRule ^ /blog/?lang=ru [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+blog/(?!index\.ru\.html)([a-z0-9-]+)\.ru\.html[\s?] [NC]
+  RewriteRule ^ /blog/%1?lang=ru [R=301,L]
 
   # Саме переписування. Стоїть перед українським правилом: інакше ^(слуги)$
   # спрацює першим і російську версію ніхто не побачить.
   RewriteCond %{QUERY_STRING} (^|&)lang=ru(&|$)
   RewriteRule ^$ index.ru.html [L]
+  RewriteCond %{QUERY_STRING} (^|&)lang=ru(&|$)
+  RewriteRule ^blog/$ blog/index.ru.html [L]
   RewriteCond %{QUERY_STRING} (^|&)lang=ru(&|$)
   RewriteRule ^(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey)$ $1.ru.html [L]
 
@@ -65,6 +73,13 @@
   # Те саме для статті блогу. Умова на -f обов'язкова: без неї /blog/будь-що
   # переписувалось би на неіснуючий файл, і замість 404 читач діставав би
   # порожню сторінку від сервера.
+  #
+  # Російська версія статті — теж окремий файл, і теж перед українським
+  # правилом. Стаття більше не тримає обидві мови в одному файлі під x-show:
+  # складається дві, по одній на мову (tools/blog/build.py).
+  RewriteCond %{QUERY_STRING} (^|&)lang=ru(&|$)
+  RewriteCond %{REQUEST_FILENAME}.ru.html -f
+  RewriteRule ^blog/([a-z0-9-]+)$ blog/$1.ru.html [L]
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^blog/([a-z0-9-]+)$ blog/$1.html [L]
 
@@ -132,10 +147,13 @@ ErrorDocument 503 /503.html
   # fonts.gstatic.com — з font-src. Немає й frame-src: єдиним кадром на сайті
   # був noscript-iframe порожнього контейнера GTM, і його теж прибрано.
   #
-  # 'unsafe-eval' у script-src потрібен Alpine: вирази з x-text та @click він
-  # компілює через new Function. Прибрати його можна лише переїздом на
-  # CSP-збірку Alpine, а це переписування всіх виразів на сторінці.
-  # 'unsafe-inline' — через вбудований сніпет GTM і скрипти в <head>.
+  # 'unsafe-eval' і unpkg.com пішли разом з Alpine. Він лишався тільки в
+  # блозі — лістинг малював картки циклом x-for, стаття тримала дві мови під
+  # x-show — і саме заради його виразів, які компілюються через new Function,
+  # у політиці стояв 'unsafe-eval'. Блог тепер складається статично, тож
+  # найширший дозвіл у політиці й останній чужий домен у script-src зникли
+  # самі собою.
+  # 'unsafe-inline' лишається — через вбудований сніпет GTM і скрипти в <head>.
   # Політика все одно робить головне: скрипт із чужого домену не завантажиться.
   #
   # script.google.com і script.googleusercontent.com браузеру більше не потрібні:
@@ -147,7 +165,7 @@ ErrorDocument 503 /503.html
   #
   # УВАГА: нові теги в GTM (піксель Meta, Hotjar тощо) ця політика заблокує,
   # доки їхній домен не додано в script-src і connect-src.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://unpkg.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://script.google.com https://script.googleusercontent.com; frame-ancestors 'self'; form-action 'self' https://script.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://script.google.com https://script.googleusercontent.com; frame-ancestors 'self'; form-action 'self' https://script.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"

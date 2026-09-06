@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="%(lang)s">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>%(title_uk)s</title>
-<meta name="description" content="%(desc_uk)s"/>
+<title>%(title)s</title>
+<meta name="description" content="%(desc)s"/>
 <meta name="robots" content="index, follow"/>
 <meta name="author" content="%(author)s"/>
-<link rel="canonical" href="%(url)s"/>
-<link rel="alternate" hreflang="uk" href="%(url)s"/>
-<link rel="alternate" hreflang="ru" href="%(url)s?lang=ru"/>
-<link rel="alternate" hreflang="x-default" href="%(url)s"/>
+<link rel="canonical" href="%(url_self)s"/>
+<link rel="alternate" hreflang="uk" href="%(url_uk)s"/>
+<link rel="alternate" hreflang="ru" href="%(url_ru)s"/>
+<link rel="alternate" hreflang="x-default" href="%(url_uk)s"/>
 <meta property="og:type" content="article"/>
 <meta property="og:site_name" content="FluentFox"/>
-<meta property="og:title" content="%(og_title_uk)s"/>
-<meta property="og:description" content="%(og_desc_uk)s"/>
-<meta property="og:url" content="%(url)s"/>
+<meta property="og:title" content="%(og_title)s"/>
+<meta property="og:description" content="%(og_desc)s"/>
+<meta property="og:url" content="%(url_self)s"/>
 <meta property="og:image" content="%(base)s/og-image.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="FluentFox — онлайн-школа англійської для дітей"/>
-<meta property="og:locale" content="uk_UA"/>
-<meta property="og:locale:alternate" content="ru_UA"/>
+<meta property="og:image:alt" content="%(og_image_alt)s"/>
+<meta property="og:locale" content="%(og_locale)s"/>
+<meta property="og:locale:alternate" content="%(og_locale_alt)s"/>
 <meta property="article:published_time" content="%(published)s"/>
 <meta property="article:modified_time" content="%(modified)s"/>
 <meta property="article:section" content="%(section)s"/>
 <meta property="article:author" content="%(author)s"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="%(og_title_uk)s"/>
-<meta name="twitter:description" content="%(og_desc_uk)s"/>
+<meta name="twitter:title" content="%(og_title)s"/>
+<meta name="twitter:description" content="%(og_desc)s"/>
 <meta name="twitter:image" content="%(base)s/og-image.jpg"/>
 <!-- ═══ Favicon ═══ -->
 <link rel="icon" href="/favicon.ico" sizes="any"/>
@@ -43,31 +43,13 @@
 
 <script type="application/ld+json">%(graph)s</script>
 
-<script>
-/* ?lang=ru — title і description підміняються до відмальовки, інакше в історії
-   браузера й у метриці лишається український заголовок російської сторінки. */
-(function(){
-  if(new URLSearchParams(location.search).get('lang')!=='ru') return;
-  // Без цього атрибут lang у html лишається 'uk' на російській сторінці —
-  // а це те, за чим і браузер, і пошуковик визначають мову документа.
-  document.documentElement.lang='ru';
-  document.title='%(title_ru)s';
-  var d=document.querySelector('meta[name="description"]'); if(d) d.content='%(desc_ru)s';
-  var ot=document.querySelector('meta[property="og:title"]'); if(ot) ot.content='%(title_ru)s';
-  var od=document.querySelector('meta[property="og:description"]'); if(od) od.content='%(desc_ru)s';
-  var ol=document.querySelector('meta[property="og:locale"]'); if(ol) ol.content='ru_RU';
-})();
-</script>
-
 <!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
      cyrillic несе весь текст сторінки, тому її беремо наперед, не
      чекаючи, доки браузер дочитає таблицю стилів. -->
 <link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 <link rel="preload" as="style" href="/css/style.css?v=%(assetv)s"/>
 <link rel="stylesheet" href="/css/style.css?v=%(assetv)s" fetchpriority="high"/>
-<script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
 <style>
-[x-cloak]{display:none!important}
 .gradient-text{background:linear-gradient(135deg,#FF6B35,#E54E1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .prose h2{font-size:1.375rem;font-weight:900;color:#111827;margin-top:2rem;margin-bottom:.75rem;line-height:1.25;padding-left:.875rem;border-left:4px solid #FF6B35}
 .prose h3{font-size:1.125rem;font-weight:800;color:#374151;margin-top:1.5rem;margin-bottom:.5rem}
@@ -102,29 +84,27 @@
 .table-wrap td{padding:.75rem 1rem;font-size:.9375rem;color:#374151;border-top:1px solid #FFE8D6;line-height:1.6}
 </style>
 </head>
-<body x-data="blogApp()" x-cloak class="font-sans antialiased bg-cream">
+<body class="font-sans antialiased bg-cream">
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2">
+      <a href="%(home)s" class="flex items-center gap-2">
         <span class="text-3xl">&#129418;</span>
         <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
       </a>
       <div class="hidden md:flex items-center gap-6">
-        <a :href="lang==='ru' ? '/pro-shkolu?lang=ru' : '/pro-shkolu'" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Про нас':'О нас'">Про нас</a>
-        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'">Ціни</a>
-        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'" class="text-sm font-semibold text-fox-500">Блог</a>
+%(nav)s
       </div>
       <div class="flex items-center gap-3">
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <!-- Посилання, а не кнопка: кнопку, що міняє адресу, краулер не
-               натискає, і ?lang=ru діставався лише з hreflang. Перехід
-               скасовує Alpine — мову блог перемикає на місці. -->
-          <a href="%(url)s" hreflang="uk" @click.prevent="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
-          <a href="%(url)s?lang=ru" hreflang="ru" @click.prevent="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
+          <!-- Звичайні посилання, без перехоплення кліку. Мова тепер — це
+               окремий файл на сервері, тож перехід має відбутися насправді:
+               саме так її бачить і краулер, і читач без JS. -->
+          <a href="%(url_uk)s" hreflang="uk" class="px-2.5 py-1 rounded-full transition-all duration-200 %(sw_uk)s">UA</a>
+          <a href="%(url_ru)s" hreflang="ru" class="px-2.5 py-1 rounded-full transition-all duration-200 %(sw_ru)s">RU</a>
         </div>
-        <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'">Пробний урок</a>
+        <a href="%(form)s" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5">%(l_trial)s</a>
       </div>
     </div>
   </nav>
@@ -133,19 +113,13 @@
 <main class="pt-24 pb-20">
   <div class="max-w-3xl mx-auto px-4 sm:px-6">
 
-    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8" aria-label="Хлібні крихти">
-      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="hover:text-fox-500 transition-colors" x-text="lang==='uk'?'Головна':'Главная'">Головна</a>
-      <span>/</span><a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'" class="hover:text-fox-500 transition-colors">Блог</a>
-      <span>/</span><span class="text-gray-600" x-text="lang==='uk'?'%(crumb_uk)s':'%(crumb_ru)s'">%(crumb_uk)s</span>
+    <nav class="flex items-center gap-2 text-sm text-gray-400 mb-8" aria-label="%(l_crumbs)s">
+      <a href="%(home)s" class="hover:text-fox-500 transition-colors">%(l_home)s</a>
+      <span>/</span><a href="%(blog)s" class="hover:text-fox-500 transition-colors">%(l_blog)s</a>
+      <span>/</span><span class="text-gray-600">%(crumb)s</span>
     </nav>
 
-    <div x-show="lang === 'uk'">
-%(uk)s
-    </div>
-
-    <div x-show="lang === 'ru'" style="display:none">
-%(ru)s
-    </div>
+%(body)s
 
   </div>
 </main>
@@ -153,29 +127,18 @@
 <footer class="bg-gray-950 text-gray-400 py-10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-      <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="flex items-center gap-2">
+      <a href="%(home)s" class="flex items-center gap-2">
         <span class="text-2xl">&#129418;</span>
         <span class="text-xl font-black text-white">Fluent<span class="text-fox-500">Fox</span></span>
       </a>
       <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-        <a :href="lang==='ru' ? '/?lang=ru' : '/'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Головна':'Главная'">Головна</a>
-        <a :href="lang==='ru' ? '/kursy-anhliyskoyi-dlya-ditey?lang=ru' : '/kursy-anhliyskoyi-dlya-ditey'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Курси англійської':'Курсы английского'">Курси англійської</a>
-        <a :href="lang==='ru' ? '/anhliyska-onlayn-dlya-ditey?lang=ru' : '/anhliyska-onlayn-dlya-ditey'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська онлайн':'Английский онлайн'">Англійська онлайн</a>
-        <a :href="lang==='ru' ? '/repetytor-z-anhliyskoyi?lang=ru' : '/repetytor-z-anhliyskoyi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Репетитор з англійської':'Репетитор по английскому'">Репетитор з англійської</a>
-        <a :href="lang==='ru' ? '/rozmovna-anhliyska-dlya-ditey?lang=ru' : '/rozmovna-anhliyska-dlya-ditey'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Розмовна англійська':'Разговорный английский'">Розмовна англійська</a>
-        <a :href="lang==='ru' ? '/tsiny?lang=ru' : '/tsiny'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Ціни':'Цены'">Ціни</a>
-        <a :href="lang==='ru' ? '/pro-shkolu?lang=ru' : '/pro-shkolu'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Про школу':'О школе'">Про школу</a>
-        <a :href="lang==='ru' ? '/blog/?lang=ru' : '/blog/'" class="text-fox-400">Блог</a>
-        <a :href="lang==='ru' ? '/probnyi-urok?lang=ru' : '/probnyi-urok'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Пробний урок':'Пробный урок'">Пробний урок</a>
-        <a href="https://child.mycomputer.education/" target="_blank" rel="noopener" class="hover:text-fox-400 transition-colors">Центр «Дошколярик»</a>
+%(footer)s
+        <a href="https://child.mycomputer.education/" target="_blank" rel="noopener" class="hover:text-fox-400 transition-colors">%(l_doshkolyaryk)s</a>
       </div>
       <p class="text-xs text-gray-600">&copy; 2026 FluentFox</p>
     </div>
   </div>
 </footer>
 
-<script>
-function blogApp(){return{lang:new URLSearchParams(location.search).get('lang')||'uk',setLang(l){this.lang=l;const u=new URL(location.href);if(l==='ru')u.searchParams.set('lang','ru');else u.searchParams.delete('lang');history.replaceState(null,'',u.toString());document.documentElement.lang=l;const c=document.querySelector('link[rel="canonical"]');if(c)c.href=u.toString();const og=document.querySelector('meta[property="og:url"]');if(og)og.content=u.toString();}}}
-</script>
 </body>
 </html>

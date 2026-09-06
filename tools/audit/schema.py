@@ -63,11 +63,23 @@ def collect_files():
         dirs[:] = [d for d in dirs
                    if d not in (".git", "node_modules", "tools", "src", "__pycache__")]
         for f in files:
-            # .ru.html не перевіряємо: розмітка в ній та сама, що в
-            # українському файлі, — див. коментар у links.py.
-            if (f.endswith(".html") and not f.startswith("_")
-                    and not f.endswith(".ru.html")):
-                out.append(os.path.join(base, f))
+            if not f.endswith(".html") or f.startswith("_"):
+                continue
+            # Сторінки, зібрані пост-процесором (головна, посадкові й лістинг
+            # блогу), несуть той самий граф, що й українські: ld+json він не
+            # чіпає. Перевіряти його вдруге нема сенсу — і не можна: canonical
+            # у них із ?lang=ru, а url у графі лишився без нього, і перевірка
+            # «url = canonical» впала б на розбіжності, якої в українському
+            # файлі немає. Це відома прогалина: російський граф має збиратися
+            # в генераторі, а не правитися постфактум.
+            #
+            # Стаття блогу — інша річ: кожна мова складається окремо і має
+            # власний граф із власними @id, назвами потрібною мовою і
+            # правильним inLanguage. Його перевіряти треба.
+            article = os.path.basename(base) == "blog" and f != "index.ru.html"
+            if f.endswith(".ru.html") and not article:
+                continue
+            out.append(os.path.join(base, f))
     return sorted(out)
 
 

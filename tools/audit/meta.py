@@ -103,32 +103,61 @@ def check(path, rel):
     if 'application/ld+json' not in s:
         add("немає розмітки ld+json")
 
-    # Російські метадані. Підміна може бути записана трьома способами — на
-    # головній через querySelector('title'), у статтях через document.title,
-    # а на посадкових вона взагалі винесена в зовнішній /js/lang.js. Шукаємо
-    # усі три, інакше перевірка сама себе обманює.
-    external = '/js/lang.js' in s   # з версією в query або без неї
-    swaps_title = bool(re.search(r"document\.title\s*=", s)) or         bool(re.search(r"querySelector\(\s*'title'\s*\)", s))
-    swaps_lang = bool(re.search(r"documentElement\.lang\s*=\s*'ru'", s))
+    # Російські метадані. Де їх шукати — залежить від того, чи є в сторінки
+    # готова російська версія окремим файлом.
+    #
+    # Якщо є — вона й є російська сторінка, і перевіряти треба саме її: те, що
+    # відвідувач і краулер отримають на ?lang=ru. Підміна в самому файлі при
+    # цьому лишається запобіжником на випадок, якщо переписування зламається,
+    # і окремої перевірки не потребує: i18n.py звіряє .ru.html з українським
+    # файлом байт у байт, а зробити це, не застосувавши підміну, неможливо.
+    #
+    # Якщо ні — правила старі: російська існує лише як робота скрипта, і
+    # перевіряти можна тільки те, що ця робота записана.
+    ru_path = path[:-len(".html")] + ".ru.html"
 
-    if "ru" in langs and not (swaps_title or external):
-        add("hreflang обіцяє ru, але title російською не підміняється")
-    if not (swaps_lang or external):
-        add("атрибут lang не перемикається на ru")
+    if os.path.exists(ru_path):
+        r = io.open(ru_path, encoding="utf-8").read()
+        if not re.search(r'<html[^>]*\slang="ru"', r):
+            add("у російській версії lang не «ru»")
+        ru_title = meta(r, r"<title>([^<]*)</title>")
+        if not ru_title:
+            add("у російській версії немає title")
+        elif ru_title == title:
+            add("title російської версії не відрізняється від української")
+        ru_desc = meta(r, r'<meta name="description" content="([^"]*)"')
+        ru_canon = meta(r, r'<link rel="canonical" href="([^"]*)"')
+        if ru_canon and "lang=ru" not in ru_canon:
+            add("canonical російської версії не вказує сам на себе")
+    else:
+        # Підміна може бути записана трьома способами — на головній через
+        # querySelector('title'), у статтях через document.title, а на
+        # посадкових вона винесена в зовнішній /js/lang.js. Шукаємо усі три,
+        # інакше перевірка сама себе обманює.
+        external = '/js/lang.js' in s   # з версією в query або без неї
+        swaps_title = (bool(re.search(r"document\.title\s*=", s))
+                       or bool(re.search(r"querySelector\(\s*'title'\s*\)", s)))
+        swaps_lang = bool(re.search(r"documentElement\.lang\s*=\s*'ru'", s))
+
+        if "ru" in langs and not (swaps_title or external):
+            add("hreflang обіцяє ru, але title російською не підміняється")
+        if not (swaps_lang or external):
+            add("атрибут lang не перемикається на ru")
+
+        ru_desc = meta(s, DESC_RU_RE)
+        if ru_desc:
+            ru_desc = re.sub(r"\\(.)", r"\1", ru_desc)
 
     # Довжина російського опису. Перевірялася тільки українська — і саме тому
     # російські описи розповзлися далі за українські: у блозі до 195 знаків.
     # Це не «версія для перекладу», а сторінка, яка індексується окремим
     # hreflang і має власний сніпет у видачі, тож межа для неї та сама.
-    ru_desc = meta(s, DESC_RU_RE)
     if not ru_desc:
         if "ru" in langs:
-            add("hreflang обіцяє ru, але description російською не підміняється")
-    else:
-        ru_desc = re.sub(r"\\(.)", r"\1", ru_desc)
-        if not (DESC_MIN <= len(ru_desc) <= DESC_MAX):
-            add("російський description %d знаків (норма %d–%d)"
-                % (len(ru_desc), DESC_MIN, DESC_MAX))
+            add("hreflang обіцяє ru, але російського description немає")
+    elif not (DESC_MIN <= len(ru_desc) <= DESC_MAX):
+        add("російський description %d знаків (норма %d–%d)"
+            % (len(ru_desc), DESC_MIN, DESC_MAX))
 
 
 def main():
@@ -139,7 +168,7 @@ def main():
               if f.endswith(".html") and f != "index.html"
               and not f.startswith("_") and not f.endswith(".ru.html")]
     files += ["blog/" + f for f in sorted(os.listdir(os.path.join(ROOT, "blog")))
-              if f.endswith(".html")]
+              if f.endswith(".html") and not f.endswith(".ru.html")]
 
     for rel in files:
         p = os.path.join(ROOT, rel.replace("/", os.sep))
