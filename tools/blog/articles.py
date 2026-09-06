@@ -20,6 +20,9 @@ from art_multyky_ta_ihry import ART as MULTYKY
 from art_skilky_sliv import ART as SLOVA
 from art_chytannya_fonika import ART as FONIKA
 from art_onlayn_chy_ochno import ART as FORMAT
+from art_rivni_anhliyskoyi import ART as RIVNI
+from art_pohani_otsinky import ART as OTSINKY
+from art_dopomoha_vdoma import ART as VDOMA
 
 ARTICLES = [
     SHKILNA,
@@ -29,4 +32,7 @@ ARTICLES = [
     SLOVA,
     FONIKA,
     FORMAT,
+    RIVNI,
+    OTSINKY,
+    VDOMA,
 ]
