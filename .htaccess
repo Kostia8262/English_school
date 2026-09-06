@@ -22,6 +22,18 @@
   RewriteCond %{THE_REQUEST} \s/+(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey)\.html[\s?] [NC]
   RewriteRule ^ /%1 [R=301,L]
 
+  # ── Статті блогу без .html ──────────────────────────────────────────────
+  # Посадкові живуть за /tsiny, а стаття — за /blog/z-yakoho-viku-....html:
+  # сайт виглядав зібраним із двох різних епох, і саме адреса статті йде в
+  # месенджер, коли її радять знайомим. Слуги тут не перелічені, як вище:
+  # статті додаються щотижня, а перелік у правилі — ще один файл, який колись
+  # забудуть оновити.
+  #
+  # index.html виключено явно: його на /blog/ переводить окреме правило в
+  # кінці блоку, і без цього виключення сюди потрапив би і він.
+  RewriteCond %{THE_REQUEST} \s/+blog/(?!index\.html)([a-z0-9-]+)\.html[\s?] [NC]
+  RewriteRule ^ /blog/%1 [R=301,L]
+
   # ── Російська версія ────────────────────────────────────────────────────
   # Досі російської сторінки на сервері не існувало: у файлі лежала українська,
   # а переклад підставляв js/lang.js уже в браузері. Той, хто скриптів не
@@ -49,6 +61,12 @@
 
   # І лише потім внутрішнє переписування на реальний файл.
   RewriteRule ^(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey)$ $1.html [L]
+
+  # Те саме для статті блогу. Умова на -f обов'язкова: без неї /blog/будь-що
+  # переписувалось би на неіснуючий файл, і замість 404 читач діставав би
+  # порожню сторінку від сервера.
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^blog/([a-z0-9-]+)$ blog/$1.html [L]
 
   # /index.html → /  (і /blog/index.html → /blog/)
   # Умова на THE_REQUEST важлива: вона дивиться на те, що написав клієнт, а не

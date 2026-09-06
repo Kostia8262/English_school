@@ -38,8 +38,15 @@ def main() -> None:
     ico = ROOT / "favicon.ico"
     resized(src, 256).save(ico, sizes=[(s, s) for s in ICO_SIZES])
 
+    # Палітра замість повного RGBA. Джерело — плоска ілюстрація на 3869
+    # кольорів, з яких 192×192 після LANCZOS робив майже 7500 і важив 38 КБ —
+    # утричі більше за 96×96. Різниці на іконці в 16–48 px не видно взагалі,
+    # а на ярлику Android її треба шукати навмисно. FASTOCTREE, а не
+    # стандартний метод: тільки він зберігає альфа-канал, а логотип
+    # прозорий по краях.
     for size in PNG_SIZES:
-        resized(src, size).save(ROOT / f"favicon-{size}x{size}.png", optimize=True)
+        img = resized(src, size).quantize(colors=256, method=Image.Quantize.FASTOCTREE)
+        img.save(ROOT / f"favicon-{size}x{size}.png", optimize=True)
 
     # apple-touch-icon — непрозорий, з невеликим полем по краях.
     apple = Image.new("RGBA", (180, 180), CREAM)

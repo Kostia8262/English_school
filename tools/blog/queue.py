@@ -81,6 +81,18 @@ def check_html(html, where):
             raise ValueError("%s: заборонений тег <%s>" % (where, tag))
 
 
+# Посилання на сусідню статтю всередині тексту. Конвеєр пише їх у старому
+# вигляді — з .html на кінці, — і мережа не має причин знати, що у нас адреси
+# змінилися: сайтів у неї шістнадцять, а формат один. Тому розширення
+# знімається тут, на вході. Без цього кожна нова стаття приносила б із собою
+# по два посилання, які ловлять 301 замість того, щоб вести прямо.
+BLOG_LINK = re.compile(r'(href="(?:https://fluent-fox\.site)?/blog/[a-z0-9-]+)\.html(")')
+
+
+def strip_html_ext(html):
+    return BLOG_LINK.sub(r"\1\2", html)
+
+
 def cat_key(article):
     if article.get("catKey"):
         return article["catKey"]
@@ -129,7 +141,8 @@ def to_art(article, authors):
         "og_desc_uk": article.get("og_desc_uk") or article["excerpt"],
         "og_desc_ru": article.get("og_desc_ru") or article["excerpt_ru"],
         "cta": tuple(article["cta"]) if article.get("cta") else DEFAULT_CTA,
-        "blocks": [("html", article["content"], article["content_ru"])],
+        "blocks": [("html", strip_html_ext(article["content"]),
+                    strip_html_ext(article["content_ru"]))],
         "emoji": article.get("coverEmoji") or "🦊",
         "catKey": cat_key(article),
         "accent": article.get("accent") or "fox",

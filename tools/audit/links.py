@@ -39,6 +39,29 @@ def clean_urls():
 
 CLEAN_URLS = clean_urls()
 
+
+def blog_clean_urls():
+    """Стаття блогу теж живе за адресою без .html.
+
+    Правило в .htaccess для неї загальне — `^blog/([a-z0-9-]+)$` з перевіркою
+    на існування файлу, — бо статті додаються щотижня, і перелік слугів у
+    правилі був би ще одним файлом, який колись забудуть оновити. Тому слуги
+    беруться з диска, а з .htaccess звіряється лише те, що правило взагалі є:
+    без нього кожне таке посилання стало б 404, і перевірка має про це сказати,
+    а не мовчки вважати адресу робочою.
+    """
+    src = io.open(os.path.join(ROOT, ".htaccess"), encoding="utf-8").read()
+    if "RewriteRule ^blog/([a-z0-9-]+)$ blog/$1.html" not in src:
+        sys.stderr.write("links.py: у .htaccess не знайдено правило "
+                         "безрозширенних адрес блогу\n")
+        return []
+    blog = os.path.join(ROOT, "blog")
+    return ["blog/" + f[:-5] for f in os.listdir(blog)
+            if f.endswith(".html") and f != "index.html"]
+
+
+CLEAN_URLS += blog_clean_urls()
+
 # Те, що існує, але файлом на диску не є.
 VIRTUAL = {"/", "/blog/"}
 

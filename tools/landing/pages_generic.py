@@ -356,6 +356,7 @@ PAGES.append({
                        "Zoom або Google Meet: групи до 6 учнів, урок 1 година 30 хвилин, "
                        "рівні від A0 до B2.",
         "url": BASE + "/anhliyska-onlayn-dlya-ditey",
+        "image": BASE + "/og-image.jpg",
         "provider": {"@id": ORG},
         "educationalLevel": "Beginner",
         "typicalAgeRange": "6-18",
@@ -380,7 +381,7 @@ PAGES.append({
         ("/kursy-anhliyskoyi-dlya-ditey", "📚", "Курси англійської для дітей: програма",
          "Курсы английского для детей: программа"),
         ("/dnipro", "📍", "Очні класи в Дніпрі", "Очные классы в Днепре"),
-        ("/blog/yak-obraty-onlayn-shkolu-anhliyskoyi.html", "🔍",
+        ("/blog/yak-obraty-onlayn-shkolu-anhliyskoyi", "🔍",
          "Як обрати онлайн-школу англійської", "Как выбрать онлайн-школу английского"),
     ],
 })
@@ -535,6 +536,7 @@ PAGES.append({
                        "або очно в Дніпрі: програма під конкретну задачу, 500 грн за "
                        "годину, 3000 грн на місяць.",
         "url": BASE + "/repetytor-z-anhliyskoyi",
+        "image": BASE + "/og-image.jpg",
         "provider": {"@id": ORG},
         "educationalLevel": "Beginner",
         "typicalAgeRange": "6-18",
@@ -559,7 +561,7 @@ PAGES.append({
         ("/pidhotovka-do-nmt", "📝", "Підготовка до НМТ з англійської",
          "Подготовка к НМТ по английскому"),
         ("/tsiny", "💰", "Ціни та знижки", "Цены и скидки"),
-        ("/blog/hrupovi-chy-indyvidualni-zanyattya.html", "⚖️",
+        ("/blog/hrupovi-chy-indyvidualni-zanyattya", "⚖️",
          "Група чи індивідуально: що обрати", "Группа или индивидуально: что выбрать"),
     ],
 })
@@ -741,9 +743,9 @@ PAGES.append({
         "rozmovna-anhliyska-dlya-ditey")],
     "related": [
         ("/kursy-anhliyskoyi-dlya-ditey", "📚", "Усі курси за віком", "Все курсы по возрасту"),
-        ("/blog/dytyna-boyitsya-hovoryty-anhliyskoyu.html", "😰",
+        ("/blog/dytyna-boyitsya-hovoryty-anhliyskoyu", "😰",
          "Дитина боїться говорити англійською", "Ребёнок боится говорить по-английски"),
-        ("/blog/skilky-chasu-zagovoryty-anhliyskoyu.html", "⏳",
+        ("/blog/skilky-chasu-zagovoryty-anhliyskoyu", "⏳",
          "Скільки часу потрібно, щоб заговорити", "Сколько времени нужно, чтобы заговорить"),
     ],
 })

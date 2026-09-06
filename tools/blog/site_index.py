@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Списки, у яких стаття має з'явитися після складання.
 
-Сама стаття — це файл `blog/<slug>.html`, і його робить build.py. Але сторінка,
+Сама стаття — це файл `blog/<slug>.html` (читач бачить її за адресою
+без розширення, /blog/<slug>), і його робить build.py. Але сторінка,
 на яку ніхто не посилається, для пошуку не існує: посилання й свіжа карта сайту —
 весь важіль, який у нас є. Тому кожну статтю треба вписати ще у чотири місця, і
 всі чотири лежать не там, де текст:
@@ -137,7 +138,7 @@ def update_index(entries):
 
     html = _replace_once(html, r"const articles = \[.*?\n\];",
                          render_articles_js(entries), "const articles")
-    html = _replace_once(html, r"  <ul>\n(?:    <li><a href=\"[^\"]+\.html\">.*?\n)+  </ul>",
+    html = _replace_once(html, r"  <ul>\n(?:    <li><a href=\"[^\"]+\">.*?\n)+  </ul>",
                          render_noscript_list(entries), "noscript <ul>")
 
     m = re.search(r'<script type="application/ld\+json">(\{.*?"@type":\["CollectionPage".*?\})</script>',
@@ -170,7 +171,7 @@ def update_sitemap(entries):
 
     # Адреса самого лістингу (/blog/) — не стаття, її не чіпаємо.
     article_url = re.compile(
-        r"  <url>\s*\n\s*<loc>" + re.escape(BLOG) + r"[^<]+\.html</loc>.*?</url>\n",
+        r"  <url>\s*\n\s*<loc>" + re.escape(BLOG) + r"[^<]+</loc>.*?</url>\n",
         re.S)
     xml, removed = article_url.subn("", xml)
     if not removed:
@@ -198,7 +199,7 @@ def update_articles_json(entries):
     """
     path = os.path.join(ROOT, "blog", "articles.json")
     payload = {"articles": [{
-        "slug": e["slug"][:-5] if e["slug"].endswith(".html") else e["slug"],
+        "slug": e["slug"],
         "title": e["title"],
         "title_ru": e["titleRu"],
         "excerpt": e["excerpt"],

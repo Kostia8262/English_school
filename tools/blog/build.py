@@ -241,7 +241,7 @@ def read_time(words, lang):
 # ── розмітка ─────────────────────────────────────────────────────────────────
 
 def build_graph(a):
-    url = "%s/blog/%s.html" % (BASE, a["slug"])
+    url = "%s/blog/%s" % (BASE, a["slug"])
     person = PEOPLE[a["author"]]
     graph = [
         {
@@ -342,7 +342,7 @@ def render_related(a, lang):
     suffix = "" if lang == "uk" else "?lang=ru"
     title = "Читайте також" if lang == "uk" else "Читайте также"
     cards = "\n".join(
-        '          <a href="%s.html%s" class="bg-white rounded-2xl p-5 border border-gray-100 hover:border-fox-200 transition-colors">\n'
+        '          <a href="/blog/%s%s" class="bg-white rounded-2xl p-5 border border-gray-100 hover:border-fox-200 transition-colors">\n'
         '            <span class="text-2xl">%s</span>\n'
         '            <p class="font-black text-gray-900 text-sm mt-2 leading-tight">%s</p>\n'
         '          </a>' % (slug, suffix, emoji, esc(t[i]))
@@ -408,7 +408,7 @@ def render_side(a, lang):
 
 
 def render(a):
-    url = "%s/blog/%s.html" % (BASE, a["slug"])
+    url = "%s/blog/%s" % (BASE, a["slug"])
     return TPL % {
         "assetv": ASSET_VERSION,
         "title_uk": esc(a["meta_title_uk"]),
@@ -449,7 +449,7 @@ def card(a, prev):
     """
     from_queue = a.get("_from_queue")
     entry = {
-        "slug": a["slug"] + ".html",
+        "slug": a["slug"],
         "emoji": a.get("emoji") or prev.get("emoji") or "🦊",
         "accent": a.get("accent") or prev.get("accent") or "fox",
         "catKey": a.get("catKey") or prev.get("catKey") or "methods",
@@ -508,7 +508,7 @@ def link_related(arts, entries):
     got = dict((e["slug"], 0) for e in entries)
 
     for a in arts:
-        me = a["slug"] + ".html"
+        me = a["slug"]
         ring = by_cat[entries[pos[me]]["catKey"]]
         picked = []
         i = [e["slug"] for e in ring].index(me)
@@ -522,7 +522,7 @@ def link_related(arts, entries):
 
     total = len(entries)
     for a in arts:
-        me = a["slug"] + ".html"
+        me = a["slug"]
         picked = picks[me]
         seen = set([me]) | set(e["slug"] for e in picked)
         while len(picked) < RELATED_TOTAL and len(seen) < total:
@@ -532,7 +532,7 @@ def link_related(arts, entries):
             picked.append(e)
             seen.add(e["slug"])
             got[e["slug"]] += 1
-        a["related"] = [(e["slug"][:-5], e["emoji"], e["title"], e["titleRu"])
+        a["related"] = [(e["slug"], e["emoji"], e["title"], e["titleRu"])
                         for e in picked]
 
 
@@ -546,8 +546,8 @@ def incoming(arts, entries):
     n = dict((e["slug"], 0) for e in entries)
     for a in arts:
         for r in a["related"]:
-            if r[0] + ".html" in n:
-                n[r[0] + ".html"] += 1
+            if r[0] in n:
+                n[r[0]] += 1
     return n
 
 
@@ -561,7 +561,7 @@ def main():
         # днем складання. Але складання відбувається щоразу, коли в блозі з'являється
         # будь-що нове — і без цього рядка вже опублікована стаття щоразу молодшала б
         # на кілька днів — разом із datePublished у розмітці й lastmod у карті сайту.
-        prev = by_slug.get(a["slug"] + ".html")
+        prev = by_slug.get(a["slug"])
         if a.pop("_dated_by_default", False) and prev:
             a["published"] = prev["published"]
 
@@ -571,7 +571,7 @@ def main():
             w = word_count(a["blocks"], a.get("faq", []), lang)
             a["_words_" + lang] = w
             a["_read_" + lang] = read_time(w, lang)
-        entries = IDX.upsert(entries, card(a, by_slug.get(a["slug"] + ".html", {})))
+        entries = IDX.upsert(entries, card(a, by_slug.get(a["slug"], {})))
 
     # Складання йде у два проходи навмисно: перелінковка мусить бачити картки
     # всіх статей, включно з тією, що приїхала з черги хвилину тому. Порахувати
@@ -598,11 +598,11 @@ def main():
         flag = "" if a["_words_uk"] >= 1000 and a["_words_ru"] >= 1000 else "  <-- МЕНШЕ 1000"
         # Вхідні посилання рахуються тут же: стаття, на яку веде менше трьох
         # сусідів, для пошуку майже не існує, і мовчати про це складання не має.
-        if links[a["slug"] + ".html"] < RELATED_SAME_CAT:
+        if links[a["slug"]] < RELATED_SAME_CAT:
             flag += "  <-- МАЛО ВХІДНИХ"
         print("  %-46s %-18s %6d %6d %5d%s"
               % (a["slug"], a["author"], a["_words_uk"], a["_words_ru"],
-                 links[a["slug"] + ".html"], flag))
+                 links[a["slug"]], flag))
 
 
 if __name__ == "__main__":

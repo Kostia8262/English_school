@@ -1,6 +1,6 @@
 [
  {
-  "slug": "yak-dopomohty-z-anhliyskoyu-vdoma.html",
+  "slug": "yak-dopomohty-z-anhliyskoyu-vdoma",
   "emoji": "🏠",
   "accent": "violet",
   "catKey": "methods",
@@ -18,7 +18,7 @@
   "modified": "2026-09-06"
  },
  {
-  "slug": "pohani-otsinky-z-anhliyskoyi.html",
+  "slug": "pohani-otsinky-z-anhliyskoyi",
   "emoji": "📉",
   "accent": "fox",
   "catKey": "motivation",
@@ -36,7 +36,7 @@
   "modified": "2026-09-06"
  },
  {
-  "slug": "rivni-anhliyskoyi-u-dytyny.html",
+  "slug": "rivni-anhliyskoyi-u-dytyny",
   "emoji": "📊",
   "accent": "violet",
   "catKey": "exams",
@@ -54,7 +54,7 @@
   "modified": "2026-09-06"
  },
  {
-  "slug": "onlayn-chy-ochni-zanyattya-anhliyskoyu.html",
+  "slug": "onlayn-chy-ochni-zanyattya-anhliyskoyu",
   "emoji": "💻",
   "accent": "violet",
   "catKey": "format",
@@ -72,7 +72,7 @@
   "modified": "2026-09-05"
  },
  {
-  "slug": "yak-navchyty-dytynu-chytaty-anhliyskoyu.html",
+  "slug": "yak-navchyty-dytynu-chytaty-anhliyskoyu",
   "emoji": "📖",
   "accent": "fox",
   "catKey": "methods",
@@ -90,7 +90,7 @@
   "modified": "2026-09-01"
  },
  {
-  "slug": "skilky-navantazhennia-vytrymuie-dytyna-u-veresni.html",
+  "slug": "skilky-navantazhennia-vytrymuie-dytyna-u-veresni",
   "emoji": "📅",
   "accent": "fox",
   "catKey": "format",
@@ -108,7 +108,7 @@
   "modified": "2026-09-04"
  },
  {
-  "slug": "chomu-dytyna-ne-hovoryt-pislya-shkoly.html",
+  "slug": "chomu-dytyna-ne-hovoryt-pislya-shkoly",
   "emoji": "📣",
   "accent": "fox",
   "catKey": "methods",
@@ -126,7 +126,7 @@
   "modified": "2026-08-26"
  },
  {
-  "slug": "yak-obraty-onlayn-shkolu-anhliyskoyi.html",
+  "slug": "yak-obraty-onlayn-shkolu-anhliyskoyi",
   "emoji": "🔍",
   "accent": "violet",
   "catKey": "choice",
@@ -144,7 +144,7 @@
   "modified": "2026-08-26"
  },
  {
-  "slug": "chy-potriben-dytyni-nosiy-movy.html",
+  "slug": "chy-potriben-dytyni-nosiy-movy",
   "emoji": "🌐",
   "accent": "fox",
   "catKey": "choice",
@@ -162,7 +162,7 @@
   "modified": "2026-08-26"
  },
  {
-  "slug": "multyky-ta-ihry-anhliyskoyu.html",
+  "slug": "multyky-ta-ihry-anhliyskoyu",
   "emoji": "🎬",
   "accent": "violet",
   "catKey": "methods",
@@ -180,7 +180,7 @@
   "modified": "2026-08-26"
  },
  {
-  "slug": "skilky-sliv-maye-znaty-dytyna.html",
+  "slug": "skilky-sliv-maye-znaty-dytyna",
   "emoji": "🔤",
   "accent": "fox",
   "catKey": "methods",
@@ -198,7 +198,7 @@
   "modified": "2026-08-26"
  },
  {
-  "slug": "yak-navchyty-dytynu-anhliyskoyi-onlayn.html",
+  "slug": "yak-navchyty-dytynu-anhliyskoyi-onlayn",
   "emoji": "📚",
   "accent": "fox",
   "catKey": "methods",
@@ -218,7 +218,7 @@
   "llmsDesc": "перевірені підходи від вчителів FluentFox для дітей 6–18 років"
  },
  {
-  "slug": "z-yakoho-viku-pochynaty-anhliyskoyu.html",
+  "slug": "z-yakoho-viku-pochynaty-anhliyskoyu",
   "emoji": "🎂",
   "accent": "violet",
   "catKey": "age",
@@ -238,7 +238,7 @@
   "llmsDesc": "що кажуть дослідження та досвід роботи з 500+ дітьми про ідеальний вік старту"
  },
  {
-  "slug": "pidhotovka-do-nmt-anhliyskoyi-2025.html",
+  "slug": "pidhotovka-do-nmt-anhliyskoyi-2025",
   "emoji": "📝",
   "accent": "fox",
   "catKey": "exams",
@@ -258,7 +258,7 @@
   "llmsDesc": "структура іспиту, топ-теми з граматики, стратегія підготовки за 3/6/12 місяців"
  },
  {
-  "slug": "hrupovi-chy-indyvidualni-zanyattya.html",
+  "slug": "hrupovi-chy-indyvidualni-zanyattya",
   "emoji": "👥",
   "accent": "violet",
   "catKey": "format",
@@ -278,7 +278,7 @@
   "llmsDesc": "порівняння двох форматів за ціною, темпом, ефективністю"
  },
  {
-  "slug": "yak-motyvuvaty-dytynu-vchyty-anhliyskoyu.html",
+  "slug": "yak-motyvuvaty-dytynu-vchyty-anhliyskoyu",
   "emoji": "🚀",
   "accent": "fox",
   "catKey": "motivation",
@@ -298,7 +298,7 @@
   "llmsDesc": "практичні прийоми від вчителів без нотацій і покарань"
  },
  {
-  "slug": "skilky-koshtuye-anhliyska-dytyni-onlayn.html",
+  "slug": "skilky-koshtuye-anhliyska-dytyni-onlayn",
   "emoji": "💰",
   "accent": "violet",
   "catKey": "format",
@@ -318,7 +318,7 @@
   "llmsDesc": "реальні ціни FluentFox — 1800/3600/3000 грн залежно від формату — і від чого залежить вартість на ринку"
  },
  {
-  "slug": "cambridge-yle-ket-pet-navischo-dytyni.html",
+  "slug": "cambridge-yle-ket-pet-navischo-dytyni",
   "emoji": "🏅",
   "accent": "fox",
   "catKey": "exams",
@@ -338,7 +338,7 @@
   "llmsDesc": "різниця між іспитами, вік складання, як вони пов'язані з підготовкою до НМТ"
  },
  {
-  "slug": "skilky-chasu-zagovoryty-anhliyskoyu.html",
+  "slug": "skilky-chasu-zagovoryty-anhliyskoyu",
   "emoji": "⏱",
   "accent": "violet",
   "catKey": "age",
@@ -358,7 +358,7 @@
   "llmsDesc": "реалістичні терміни за рівнями CEFR (A1–B2) та що впливає на швидкість прогресу"
  },
  {
-  "slug": "skilky-domashky-z-anhliyskoyi.html",
+  "slug": "skilky-domashky-z-anhliyskoyi",
   "emoji": "✏️",
   "accent": "fox",
   "catKey": "methods",
@@ -378,7 +378,7 @@
   "llmsDesc": "10–25 хвилин на день залежно від віку, і чому більше не означає ефективніше"
  },
  {
-  "slug": "dytyna-boyitsya-hovoryty-anhliyskoyu.html",
+  "slug": "dytyna-boyitsya-hovoryty-anhliyskoyu",
   "emoji": "🙈",
   "accent": "violet",
   "catKey": "motivation",
