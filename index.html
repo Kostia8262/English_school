@@ -80,8 +80,8 @@
     </script>
 
     <!-- ═══ Tailwind CSS CDN ═══ -->
-<link rel="preload" as="style" href="/css/style.css?v=20260906"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906b"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906b" fetchpriority="high"/>
 
     <!-- ═══ Schema.org ═══
          Один @graph замість чотирьох окремих блоків. Раніше Organization,
@@ -6061,13 +6061,16 @@
 <section class="py-10 md:py-16 bg-gradient-to-br from-fox-500 to-fox-700 relative overflow-hidden">
     <!-- Quality SVG illustrations (desktop only — hidden on mobile to avoid overlap) -->
     <div class="absolute inset-0 pointer-events-none select-none hidden md:block">
-        <!-- Double-decker bus — left, bottom-aligned -->
-        <div class="absolute left-0 bottom-0 flex items-end" style="height:75%; max-width:340px; transform:translateX(-8%)">
-            <img class="h-full w-auto object-contain drop-shadow-2xl" src="bus.svg" alt loading="lazy" decoding="async" width="5000" height="5000" style="filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25))">
+        <!-- Double-decker bus — left, bottom-aligned.
+             Both illustrations are warm orange/red, i.e. the same hue as the section
+             gradient, so they need a cream halo behind them and a light rim around
+             them — without those two the silhouettes disappear into the background. -->
+        <div class="absolute left-0 bottom-0 flex items-end" style="height:75%; max-width:340px; transform:translateX(-8%); background:radial-gradient(ellipse 70% 58% at 52% 62%, rgba(255,251,247,0.34), rgba(255,251,247,0.12) 50%, rgba(255,251,247,0) 82%)">
+            <img class="h-full w-auto object-contain" src="bus.svg" alt loading="lazy" decoding="async" width="5000" height="5000" style="filter: drop-shadow(1.5px 0 0 rgba(255,251,247,0.95)) drop-shadow(-1.5px 0 0 rgba(255,251,247,0.95)) drop-shadow(0 1.5px 0 rgba(255,251,247,0.95)) drop-shadow(0 -1.5px 0 rgba(255,251,247,0.95)) drop-shadow(0 10px 24px rgba(0,0,0,0.3))">
         </div>
         <!-- Big Ben — right, bottom-aligned -->
-        <div class="absolute right-0 bottom-0 flex items-end" style="height:110%; max-width:220px; transform:translateX(12%)">
-            <img class="h-full w-auto object-contain" src="bigben.svg" alt loading="lazy" decoding="async" width="2050" height="2196" style="filter: drop-shadow(0 8px 32px rgba(0,0,0,0.2))">
+        <div class="absolute right-0 bottom-0 flex items-end" style="height:110%; max-width:220px; transform:translateX(12%); background:radial-gradient(ellipse 66% 54% at 44% 66%, rgba(255,251,247,0.32), rgba(255,251,247,0.11) 50%, rgba(255,251,247,0) 82%)">
+            <img class="h-full w-auto object-contain" src="bigben.svg" alt loading="lazy" decoding="async" width="2050" height="2196" style="filter: drop-shadow(1.5px 0 0 rgba(255,251,247,0.95)) drop-shadow(-1.5px 0 0 rgba(255,251,247,0.95)) drop-shadow(0 1.5px 0 rgba(255,251,247,0.95)) drop-shadow(0 -1.5px 0 rgba(255,251,247,0.95)) drop-shadow(0 10px 28px rgba(0,0,0,0.28))">
         </div>
     </div>
 
@@ -6626,7 +6629,7 @@
 
 
 <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
-<script src="/js/lang.js?v=20260906" defer></script>
-<script src="/js/home.js?v=20260906" defer></script>
+<script src="/js/lang.js?v=20260906b" defer></script>
+<script src="/js/home.js?v=20260906b" defer></script>
 </body>
 </html>

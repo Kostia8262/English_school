@@ -231,7 +231,14 @@
       show(one('[data-submit-label]', form), false);
       show(one('[data-submit-spinner]', form), true);
 
-      var body = new FormData();
+      /* URLSearchParams, а не FormData — різниця тут не косметична.
+         Apps Script на /exec відповідає редиректом на script.googleusercontent.com,
+         і після цього редиректу відповідь на multipart-запит браузер прочитати
+         не може — fetch падає з Failed to fetch. Те саме тіло в
+         application/x-www-form-urlencoded проходить і читається. Перевірено
+         06.09.2026 прямо на fluent-fox.site під бойовою CSP. Скрипт читає
+         e.parameter, тож йому все одно, яким чином прийшли поля. */
+      var body = new URLSearchParams();
       body.append('name', name.value.trim());
       body.append('phone', phone.value.trim());
       body.append('childAge', age ? age.value : '');
@@ -239,11 +246,31 @@
       body.append('lang', document.documentElement.lang || 'uk');
       body.append('timestamp', new Date().toLocaleString('uk-UA'));
 
-      /* mode: 'no-cors' → відповідь непрозора, прочитати її не можна, але
-         Apps Script запит отримує й рядок у таблицю пише. Через це «успіх»
-         тут означає «запит пішов», а не «сервер підтвердив». */
-      fetch(SCRIPT_URL, { method: 'POST', body: body, mode: 'no-cors' })
-        .then(function () {
+      /* Тут стояв mode: 'no-cors'. Відповідь була непрозорою, тому .then()
+         спрацьовував завжди — і форма показувала «Заявку прийнято» навіть
+         тоді, коли сервер відмовив. Саме так у сусідньій мережі два місяці
+         тихо губилися заявки.
+
+         Apps Script віддає Access-Control-Allow-Origin: * і на /exec, і на
+         редиректі, куди той веде, а urlencoded — тип із безпечного
+         списку, тож preflight не шлеться. Звичайний запит читається, і
+         «успіх» тепер означає «сервер підтвердив», а не «запит пішов».
+
+         Зворотний бік свідомий: якщо запит дійшов, а відповідь прочитати
+         не вдалося, людина побачить помилку при записаній заявці й подзвонить
+         або надішле ще раз. Це дешевше за зворотне — втрачену заявку, про
+         яку ніхто ніколи не дізнається. */
+      fetch(SCRIPT_URL, { method: 'POST', body: body })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.text();
+        })
+        .then(function (text) {
+          /* Apps Script відповідає {"result":"success"}. Будь-що інше — відмова
+             або його власна сторінка помилки, яка приходить з кодом 200. */
+          if (text.indexOf('"success"') === -1) {
+            throw new Error(String(text).slice(0, 200));
+          }
           show(form, false);
           show(success, true);
           if (typeof gtag !== 'undefined') {
@@ -252,7 +279,10 @@
           }
           form.reset();
         })
-        .catch(function () { show(failed, true); })
+        .catch(function (err) {
+          show(failed, true);
+          if (window.console) console.error('[lead] заявка не пройшла:', err && err.message);
+        })
         .then(function () {
           if (submit) submit.disabled = false;
           show(one('[data-submit-label]', form), true);

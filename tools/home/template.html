@@ -195,17 +195,6 @@
             "https://www.facebook.com/profile.php?id=61591810049590",
             "https://t.me/fluentfox_ua"
           ],
-          "employee": [
-            {
-              "@id": "https://fluent-fox.site/#teacher-voloshyna"
-            },
-            {
-              "@id": "https://fluent-fox.site/#teacher-marchenko"
-            },
-            {
-              "@id": "https://fluent-fox.site/#teacher-dorozhenko"
-            }
-          ],
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Курси англійської мови онлайн",
@@ -502,68 +491,11 @@
             "@type": "ImageObject",
             "url": "https://fluent-fox.site/og-image.jpg"
           }
-        },
-        {
-          "@type": "Person",
-          "@id": "https://fluent-fox.site/#teacher-voloshyna",
-          "name": "Катерина Волошина",
-          "jobTitle": "Вчителька англійської, CELTA",
-          "description": "Спеціалізується на дітях 6–10 років. Кожен урок перетворює на маленьке свято з іграми та піснями. 5 років досвіду.",
-          "worksFor": {
-            "@id": "https://fluent-fox.site/#organization"
-          },
-          "knowsLanguage": [
-            "en",
-            "uk"
-          ],
-          "hasCredential": [
-            {
-              "@type": "EducationalOccupationalCredential",
-              "credentialCategory": "certificate",
-              "name": "CELTA"
-            }
+        }
           ]
-        },
-        {
-          "@type": "Person",
-          "@id": "https://fluent-fox.site/#teacher-marchenko",
-          "name": "Олена Марченко",
-          "jobTitle": "Вчителька англійської, TEFL",
-          "description": "Веде підліткові програми та підготовку до НМТ і Cambridge YLE. Знає, як мотивувати підлітків. 7 років досвіду.",
-          "worksFor": {
-            "@id": "https://fluent-fox.site/#organization"
-          },
-          "knowsLanguage": [
-            "en",
-            "uk"
-          ],
-          "hasCredential": [
-            {
-              "@type": "EducationalOccupationalCredential",
-              "credentialCategory": "certificate",
-              "name": "TEFL"
-            }
+        }
           ]
-        },
-        {
-          "@type": "Person",
-          "@id": "https://fluent-fox.site/#teacher-dorozhenko",
-          "name": "Артем Дороженко",
-          "jobTitle": "Вчитель англійської, MA Linguistics",
-          "description": "Інтенсивні курси для підлітків 13–18 років. Фокус на розмовній практиці та реальному спілкуванні. 4 роки досвіду.",
-          "worksFor": {
-            "@id": "https://fluent-fox.site/#organization"
-          },
-          "knowsLanguage": [
-            "en",
-            "uk"
-          ],
-          "hasCredential": [
-            {
-              "@type": "EducationalOccupationalCredential",
-              "credentialCategory": "certificate",
-              "name": "MA Linguistics"
-            }
+        }
           ]
         },
         {
@@ -2224,39 +2156,6 @@
 </section>
 
 
-<!-- ═══════════════════════ TEACHERS ═══════════════════════ -->
-<section id="teachers" class="py-8 md:py-20 bg-fox-50 hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="text-center mb-10 md:mb-14">
-            <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm" x-text="t.teachers.label">Вчителі</span>
-            <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.teachers.title"></h2>
-            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto" x-text="t.teachers.subtitle">Сертифіковані вчителі з досвідом роботи з дітьми та підлітками</p>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <template x-for="(teacher, i) in t.teachers.list" :key="i">
-                <div class="card-lift bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm">
-                    <!-- Photo placeholder -->
-                    <div class="h-52 flex items-center justify-center text-5xl"
-                         :style="'background:' + teacher.bg">
-                        <span x-text="teacher.avatar"></span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-black text-gray-900 mb-0.5" x-text="teacher.name"></h3>
-                        <div class="text-fox-500 font-bold text-sm mb-3" x-text="teacher.cert"></div>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-4" x-text="teacher.desc"></p>
-                        <div class="flex flex-wrap gap-1.5">
-                            <template x-for="tag in teacher.tags" :key="tag">
-                                <span class="bg-fox-50 text-fox-700 text-xs font-bold px-2.5 py-1 rounded-full" x-text="tag"></span>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </template>
-        </div>
-    </div>
-</section>
 
 
 <!-- ═══════════════════════ RESULTS + CERTIFICATE ═══════════════════════ -->
@@ -2608,13 +2507,16 @@
 <section class="py-10 md:py-16 bg-gradient-to-br from-fox-500 to-fox-700 relative overflow-hidden">
     <!-- Quality SVG illustrations (desktop only — hidden on mobile to avoid overlap) -->
     <div class="absolute inset-0 pointer-events-none select-none hidden md:block">
-        <!-- Double-decker bus — left, bottom-aligned -->
-        <div class="absolute left-0 bottom-0 flex items-end" style="height:75%; max-width:340px; transform:translateX(-8%)">
-            <img src="bus.svg" alt="" loading="lazy" decoding="async" width="5000" height="5000" class="h-full w-auto object-contain drop-shadow-2xl" style="filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25))">
+        <!-- Double-decker bus — left, bottom-aligned.
+             Both illustrations are warm orange/red, i.e. the same hue as the section
+             gradient, so they need a cream halo behind them and a light rim around
+             them — without those two the silhouettes disappear into the background. -->
+        <div class="absolute left-0 bottom-0 flex items-end" style="height:75%; max-width:340px; transform:translateX(-8%); background:radial-gradient(ellipse 70% 58% at 52% 62%, rgba(255,251,247,0.34), rgba(255,251,247,0.12) 50%, rgba(255,251,247,0) 82%)">
+            <img src="bus.svg" alt="" loading="lazy" decoding="async" width="5000" height="5000" class="h-full w-auto object-contain" style="filter: drop-shadow(1.5px 0 0 rgba(255,251,247,0.95)) drop-shadow(-1.5px 0 0 rgba(255,251,247,0.95)) drop-shadow(0 1.5px 0 rgba(255,251,247,0.95)) drop-shadow(0 -1.5px 0 rgba(255,251,247,0.95)) drop-shadow(0 10px 24px rgba(0,0,0,0.3))">
         </div>
         <!-- Big Ben — right, bottom-aligned -->
-        <div class="absolute right-0 bottom-0 flex items-end" style="height:110%; max-width:220px; transform:translateX(12%)">
-            <img src="bigben.svg" alt="" loading="lazy" decoding="async" width="2050" height="2196" class="h-full w-auto object-contain" style="filter: drop-shadow(0 8px 32px rgba(0,0,0,0.2))">
+        <div class="absolute right-0 bottom-0 flex items-end" style="height:110%; max-width:220px; transform:translateX(12%); background:radial-gradient(ellipse 66% 54% at 44% 66%, rgba(255,251,247,0.32), rgba(255,251,247,0.11) 50%, rgba(255,251,247,0) 82%)">
+            <img src="bigben.svg" alt="" loading="lazy" decoding="async" width="2050" height="2196" class="h-full w-auto object-contain" style="filter: drop-shadow(1.5px 0 0 rgba(255,251,247,0.95)) drop-shadow(-1.5px 0 0 rgba(255,251,247,0.95)) drop-shadow(0 1.5px 0 rgba(255,251,247,0.95)) drop-shadow(0 -1.5px 0 rgba(255,251,247,0.95)) drop-shadow(0 10px 28px rgba(0,0,0,0.28))">
         </div>
     </div>
 
@@ -3169,7 +3071,6 @@ uk: {
         about:    'Про нас',
         program:  'Програма',
         prices:   'Ціни',
-        teachers: 'Вчителі',
         reviews:  'Відгуки',
         contacts: 'Контакти',
         blog:     'Блог',
@@ -3343,37 +3244,6 @@ uk: {
         ],
     },
 
-    teachers: {
-        label:    'Вчителі',
-        title:    'Закохані в мову та дітей',
-        subtitle: 'Сертифіковані вчителі з досвідом роботи з дітьми та підлітками',
-        list: [
-            {
-                avatar: '👩‍🏫',
-                bg:     'linear-gradient(135deg, #FFF0E8, #FFD6C0)',
-                name:   'Катерина В.',
-                cert:   'CELTA • 5 років досвіду',
-                desc:   'Спеціалізується на дітях 6–10 років. Кожен урок перетворює на маленьке свято з іграми та піснями.',
-                tags:   ['6–10 років', 'Ігровий метод', 'Початківці'],
-            },
-            {
-                avatar: '👩‍💻',
-                bg:     'linear-gradient(135deg, #F4F0FF, #DDD6FE)',
-                name:   'Олена М.',
-                cert:   'TEFL • 7 років досвіду',
-                desc:   'Ведеться підліткові програми та підготовка до НМТ і Cambridge YLE. Знає, як мотивувати підлітків.',
-                tags:   ['11–18 років', 'НМТ', 'Cambridge YLE'],
-            },
-            {
-                avatar: '👨‍🎓',
-                bg:     'linear-gradient(135deg, #F0FFF4, #C6F6D5)',
-                name:   'Артем Д.',
-                cert:   'MA Linguistics • 4 роки',
-                desc:   'Інтенсивні курси для підлітків 13–18 років. Фокус на розмовній практиці та реальному спілкуванні.',
-                tags:   ['13–18 років', 'Інтенсив', 'Розмовна практика'],
-            },
-        ],
-    },
 
     modal: {
         title:    'Запишіться на пробний урок',
@@ -3538,7 +3408,6 @@ ru: {
         about:    'О нас',
         program:  'Программа',
         prices:   'Цены',
-        teachers: 'Учителя',
         reviews:  'Отзывы',
         contacts: 'Контакты',
         blog:     'Блог',
@@ -3712,37 +3581,6 @@ ru: {
         ],
     },
 
-    teachers: {
-        label:    'Учителя',
-        title:    'Влюблённые в язык и детей',
-        subtitle: 'Сертифицированные учителя с опытом работы с детьми и подростками',
-        list: [
-            {
-                avatar: '👩‍🏫',
-                bg:     'linear-gradient(135deg, #FFF0E8, #FFD6C0)',
-                name:   'Екатерина В.',
-                cert:   'CELTA • 5 лет опыта',
-                desc:   'Специализируется на детях 6–10 лет. Каждый урок превращает в маленький праздник с играми и песнями.',
-                tags:   ['6–10 лет', 'Игровой метод', 'Начинающие'],
-            },
-            {
-                avatar: '👩‍💻',
-                bg:     'linear-gradient(135deg, #F4F0FF, #DDD6FE)',
-                name:   'Елена М.',
-                cert:   'TEFL • 7 лет опыта',
-                desc:   'Ведёт подростковые программы и подготовку к НМТ и Cambridge YLE. Знает, как мотивировать подростков.',
-                tags:   ['11–18 лет', 'НМТ', 'Cambridge YLE'],
-            },
-            {
-                avatar: '👨‍🎓',
-                bg:     'linear-gradient(135deg, #F0FFF4, #C6F6D5)',
-                name:   'Артём Д.',
-                cert:   'MA Linguistics • 4 года',
-                desc:   'Интенсивные курсы для подростков 13–18 лет. Фокус на разговорной практике и реальном общении.',
-                tags:   ['13–18 лет', 'Интенсив', 'Разговорная практика'],
-            },
-        ],
-    },
 
     modal: {
         title:    'Запишитесь на пробный урок',
@@ -3995,6 +3833,10 @@ function app() {
             this.formError   = false;
 
             /*
+             * УВАГА: цей блок складальник викидає (build.py прибирає весь
+             * <script> з TRANSLATIONS), тож адреса нижче — мертва копія.
+             * Живий приймач заявок живе в js/home.js. Правити треба там.
+             *
              * Google Apps Script Web App URL.
              * To set up:
              *   1. Open Google Sheets → Extensions → Apps Script
