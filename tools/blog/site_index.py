@@ -74,7 +74,7 @@ CARD = """      <a href="/blog/%(slug)s" data-card-cat="%(cat_key)s" class="card
             <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full"%(cat_ru)s>%(cat)s</span>
           </div>
           <h2 class="text-base font-black text-gray-900 leading-tight mb-3 flex-1"%(title_ru)s>%(title)s</h2>
-          <p class="text-sm text-gray-500 leading-relaxed mb-4"%(excerpt_ru)s>%(excerpt)s</p>
+          <p class="hidden sm:block text-sm text-gray-500 leading-relaxed mb-4"%(excerpt_ru)s>%(excerpt)s</p>
           <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
             <div class="flex items-center gap-2 text-xs text-gray-400">
               <span%(date_ru)s>%(date)s</span>
