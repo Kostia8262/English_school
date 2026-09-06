@@ -23,6 +23,9 @@ from art_onlayn_chy_ochno import ART as FORMAT
 from art_rivni_anhliyskoyi import ART as RIVNI
 from art_pohani_otsinky import ART as OTSINKY
 from art_dopomoha_vdoma import ART as VDOMA
+from art_tsiny import ART as TSINY
+from art_nmt import ART as NMT
+from art_cambridge import ART as CAMBRIDGE
 
 ARTICLES = [
     SHKILNA,
@@ -35,4 +38,7 @@ ARTICLES = [
     RIVNI,
     OTSINKY,
     VDOMA,
+    TSINY,
+    NMT,
+    CAMBRIDGE,
 ]
