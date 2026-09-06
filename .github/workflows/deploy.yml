@@ -36,3 +36,36 @@ jobs:
             --exclude='tailwind.config.js' \
             -e "ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no" \
             ./ ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}:/home/u260300169/domains/fluent-fox.site/public_html/
+
+      # Конфіг приймача заявок кладеться НЕ в public_html, а на рівень вище:
+      # rsync вище крок чистить public_html через --delete, і файл із токеном
+      # там не пережив би жодної викатки. Заодно він недосяжний по HTTP.
+      #
+      # Крок мовчки нічого не робить, якщо секрету немає: перезаписати робочий
+      # конфіг порожнім токеном — гірше, ніж не чіпати його зовсім.
+      - name: Покласти конфіг приймача заявок
+        env:
+          SSHPASS:   ${{ secrets.SFTP_PASSWORD }}
+          CRM_TOKEN: ${{ secrets.CRM_ADMIN_TOKEN }}
+          SHEET_URL: https://script.google.com/macros/s/AKfycbxAA1T6SIdTeldgSFmT-3HUEfRBUIq7-v79uGBe3UbVnTQBlespZMrsgNQMqmZKCzEGqA/exec
+        run: |
+          if [ -z "$CRM_TOKEN" ]; then
+            echo "::warning title=CRM_ADMIN_TOKEN не заданий::lead-config.php не чіпали — заявки підуть тільки в Google-таблицю"
+            exit 0
+          fi
+          # base64 замість екранування лапок: на виході тільки A-Za-z0-9+/=,
+          # тож рядок не розірве PHP-літерал, хай яким буде токен.
+          token=$(printf '%s' "$CRM_TOKEN" | base64 -w0)
+          {
+            echo "<?php"
+            echo "// Складає деплой із секрету CRM_ADMIN_TOKEN. Руками не правити:"
+            echo "// наступна викатка перезапише. Зразок — api/lead-config.sample.php."
+            echo "return ["
+            echo "    'crm_token' => base64_decode('${token}'),"
+            echo "    'crm_url'   => 'https://mycomputer.education/api/leads/admin',"
+            echo "    'sheet_url' => '${SHEET_URL}',"
+            echo "];"
+          } | sshpass -e ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no \
+                ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }} \
+                "cat > /home/u260300169/domains/fluent-fox.site/lead-config.php && chmod 600 /home/u260300169/domains/fluent-fox.site/lead-config.php"
+          echo "Конфіг оновлено."
