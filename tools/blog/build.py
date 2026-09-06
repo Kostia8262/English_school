@@ -472,16 +472,83 @@ def card(a, prev):
     return entry
 
 
-def related_for(slug, entries, limit=4):
-    """Чотири сусідні статті під текстом.
+RELATED_SAME_CAT = 3
+RELATED_TOTAL = 4
 
-    У статей, що писалися руками, перелінковка підібрана за темою і лежить у
-    самій статті. Стаття з черги такого переліку не має, і вимагати його від
-    агента — зайвий спосіб зламати прогон: беремо чотири найсвіжіші чужі
-    статті, бо порожній підвал гірший за неідеально дібраний.
+
+def link_related(arts, entries):
+    """«Читайте також» рахується з кільця, а не пишеться руками.
+
+    Раніше цей перелік лежав у самій статті й після написання не мінявся
+    ніколи. Тому кожна нова стаття приходила в блог сиротою: сама вела на
+    чотирьох сусідів, а на неї не вів ніхто — крім лістингу. Серпнева масова
+    перелінковка виправила це руками, і все, що вийшло після неї, знову
+    лишилося з однією вхідною посилкою.
+
+    Тепер сусіди беруться з кільця категорії: стаття веде на три наступні
+    статті своєї рубрики за порядком лістингу. Кільце симетричне — у категорії
+    з k статей кожна не лише веде на min(3, k-1) сусідів, а й сама стільки ж
+    разів згадана, тож нова стаття вбудовується в сітку сама.
+
+    Четверта картка (а в малій рубриці — друга, третя й четверта) добирається
+    не за порядком, а за потребою: береться стаття, на яку поки що веде
+    найменше посилань. Без цього кроку кільце лишало б сиріт у рубриках із
+    двох статей — і найгірше саме там, де другу статтю рубрики складання ще не
+    перескладає, тож відповісти посиланням вона не може.
+
+    Рахується після того, як картки всіх статей уже лежать у `entries`:
+    інакше стаття з черги не потрапила б у власне кільце.
     """
-    picked = [e for e in entries if e["slug"] != slug + ".html"][:limit]
-    return [(e["slug"][:-5], e["emoji"], e["title"], e["titleRu"]) for e in picked]
+    pos = dict((e["slug"], i) for i, e in enumerate(entries))
+    by_cat = {}
+    for e in entries:
+        by_cat.setdefault(e["catKey"], []).append(e)
+
+    picks = {}
+    got = dict((e["slug"], 0) for e in entries)
+
+    for a in arts:
+        me = a["slug"] + ".html"
+        ring = by_cat[entries[pos[me]]["catKey"]]
+        picked = []
+        i = [e["slug"] for e in ring].index(me)
+        for j in range(1, len(ring)):
+            if len(picked) >= RELATED_SAME_CAT:
+                break
+            e = ring[(i + j) % len(ring)]
+            picked.append(e)
+            got[e["slug"]] += 1
+        picks[me] = picked
+
+    total = len(entries)
+    for a in arts:
+        me = a["slug"] + ".html"
+        picked = picks[me]
+        seen = set([me]) | set(e["slug"] for e in picked)
+        while len(picked) < RELATED_TOTAL and len(seen) < total:
+            e = min((e for e in entries if e["slug"] not in seen),
+                    key=lambda e: (got[e["slug"]],
+                                   (pos[e["slug"]] - pos[me]) % total))
+            picked.append(e)
+            seen.add(e["slug"])
+            got[e["slug"]] += 1
+        a["related"] = [(e["slug"][:-5], e["emoji"], e["title"], e["titleRu"])
+                        for e in picked]
+
+
+def incoming(arts, entries):
+    """Скільки статей веде на кожну — щоб сирота не пройшла непоміченою.
+
+    Рахуються лише посилання зі статей, які складання перескладає. Ті кілька
+    статей, що ще лежать готовим HTML і в генератор не перенесені, посилаються
+    зі свого боку самі, і тут їх не видно — число нижче реального, не вище.
+    """
+    n = dict((e["slug"], 0) for e in entries)
+    for a in arts:
+        for r in a["related"]:
+            if r[0] + ".html" in n:
+                n[r[0] + ".html"] += 1
+    return n
 
 
 def main():
@@ -490,7 +557,6 @@ def main():
 
     queued = [Q.to_art(x, sorted(PEOPLE)) for x in Q.load()]
     for a in queued:
-        a["related"] = related_for(a["slug"], entries)
         # Стаття з конвєєра часто приїжджає без дати, і тоді її ставлять за
         # днем складання. Але складання відбувається щоразу, коли в блозі з'являється
         # будь-що нове — і без цього рядка вже опублікована стаття щоразу молодшала б
@@ -499,18 +565,23 @@ def main():
         if a.pop("_dated_by_default", False) and prev:
             a["published"] = prev["published"]
 
-    built = []
-    for a in list(A.ARTICLES) + queued:
+    built = list(A.ARTICLES) + queued
+    for a in built:
         for lang in ("uk", "ru"):
             w = word_count(a["blocks"], a.get("faq", []), lang)
             a["_words_" + lang] = w
             a["_read_" + lang] = read_time(w, lang)
+        entries = IDX.upsert(entries, card(a, by_slug.get(a["slug"] + ".html", {})))
 
+    # Складання йде у два проходи навмисно: перелінковка мусить бачити картки
+    # всіх статей, включно з тією, що приїхала з черги хвилину тому. Порахувати
+    # її до upsert означало б знову випустити нову статтю з кільця.
+    link_related(built, entries)
+
+    for a in built:
         html = render(a)
         path = os.path.join(ROOT, "blog", a["slug"] + ".html")
         io.open(path, "w", encoding="utf-8", newline="\n").write(html)
-        built.append(a)
-        entries = IDX.upsert(entries, card(a, by_slug.get(a["slug"] + ".html", {})))
 
     # Сторінка, на яку ніхто не посилається, для пошуку не існує: лістинг,
     # noscript-перелік, розмітка блогу і карта сайту оновлюються тут же, одним
@@ -519,12 +590,19 @@ def main():
     IDX.save_entries(entries)
     IDX.apply(entries)
 
+    links = incoming(built, entries)
     print("зібрано статей: %d (з черги: %d)\n" % (len(built), len(queued)))
-    print("  %-46s %-18s %6s %6s" % ("слаг", "автор", "слів uk", "слів ru"))
+    print("  %-46s %-18s %6s %6s %5s"
+          % ("слаг", "автор", "слів uk", "слів ru", "вхід"))
     for a in built:
         flag = "" if a["_words_uk"] >= 1000 and a["_words_ru"] >= 1000 else "  <-- МЕНШЕ 1000"
-        print("  %-46s %-18s %6d %6d%s"
-              % (a["slug"], a["author"], a["_words_uk"], a["_words_ru"], flag))
+        # Вхідні посилання рахуються тут же: стаття, на яку веде менше трьох
+        # сусідів, для пошуку майже не існує, і мовчати про це складання не має.
+        if links[a["slug"] + ".html"] < RELATED_SAME_CAT:
+            flag += "  <-- МАЛО ВХІДНИХ"
+        print("  %-46s %-18s %6d %6d %5d%s"
+              % (a["slug"], a["author"], a["_words_uk"], a["_words_ru"],
+                 links[a["slug"] + ".html"], flag))
 
 
 if __name__ == "__main__":
