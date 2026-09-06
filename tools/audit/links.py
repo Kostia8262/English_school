@@ -60,7 +60,12 @@ def collect_files():
         dirs[:] = [d for d in dirs
                    if d not in (".git", "node_modules", "tools", "src", "__pycache__")]
         for f in files:
-            if f.endswith(".html") and not f.startswith("_"):
+            # .ru.html — механічна проєкція сусіднього файлу, зібрана
+            # tools/i18n/ru_pages.py. Перевіряти її тут означало б
+            # рахувати кожну знахідку двічі; за її відповідність
+            # оригіналу відповідає окрема перевірка в i18n.py.
+            if (f.endswith(".html") and not f.startswith("_")
+                    and not f.endswith(".ru.html")):
                 out.append(os.path.join(base, f))
     return sorted(out)
 

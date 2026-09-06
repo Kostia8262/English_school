@@ -63,7 +63,10 @@ def collect_files():
         dirs[:] = [d for d in dirs
                    if d not in (".git", "node_modules", "tools", "src", "__pycache__")]
         for f in files:
-            if f.endswith(".html") and not f.startswith("_"):
+            # .ru.html не перевіряємо: розмітка в ній та сама, що в
+            # українському файлі, — див. коментар у links.py.
+            if (f.endswith(".html") and not f.startswith("_")
+                    and not f.endswith(".ru.html")):
                 out.append(os.path.join(base, f))
     return sorted(out)
 

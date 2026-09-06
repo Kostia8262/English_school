@@ -781,6 +781,12 @@ def main():
                      % (len(out.encode("utf-8")), len(static),
                         out.count("data-ru=")))
 
+    # Російська версія — окремим файлом, одразу тут: складати її окремою
+    # командою означає рано чи пізно лишити на сайті вчорашню.
+    sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
+    import ru_pages
+    ru_pages.build([OUT])
+
 
 if __name__ == "__main__":
     main()

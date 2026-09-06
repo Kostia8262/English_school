@@ -47,7 +47,8 @@ def collect_files():
         dirs[:] = [d for d in dirs
                    if d not in (".git", "node_modules", "src", "__pycache__")]
         for f in files:
-            if f.startswith("_"):
+            # .ru.html повторює цифри сусіднього файлу — див. links.py.
+            if f.startswith("_") or f.endswith(".ru.html"):
                 continue
             if f.endswith((".html", ".txt")) or (
                     f.endswith(".py") and os.sep + "landing" in base):

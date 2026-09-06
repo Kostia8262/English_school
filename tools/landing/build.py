@@ -20,7 +20,9 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
 
+import ru_pages as RU        # noqa: E402  — російські версії тих самих сторінок
 import content as C          # noqa: E402  — хелпери + три вікові сторінки
 import pages_exams          # noqa: E402,F401  — НМТ і Cambridge, дописують C.PAGES
 import pages_service        # noqa: E402,F401  — ціни, відгуки, школа, пробний урок
@@ -594,15 +596,23 @@ def render_page(p):
 
 def main():
     built = []
+    paths = []
     for p in C.PAGES:
         html = render_page(p)
         path = os.path.join(ROOT, p["slug"] + ".html")
         io.open(path, "w", encoding="utf-8", newline="\n").write(html)
+        paths.append(path)
         built.append((p["slug"], len(html), len(p["blocks"]), len(p.get("faq", []))))
 
     print("зібрано %d сторінок:" % len(built))
     for slug, size, blocks, faq in built:
         print("  /%-24s %6d Б  блоків: %-2d  FAQ: %d" % (slug, size, blocks, faq))
+
+    # Російські версії — окремими файлами, одразу тут. Окремою командою вони
+    # рано чи пізно лишилися б від попередньої правки: складання мовчить, а на
+    # сайті половина сторінок перекладена, половина ні.
+    RU.build(paths, quiet=True)
+    print("російські версії: %d файлів" % len(paths))
 
 
 if __name__ == "__main__":

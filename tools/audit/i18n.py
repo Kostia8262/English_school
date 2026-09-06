@@ -67,7 +67,8 @@ WATCH = {"Катерина В.", "Катерина", "Олена", "Артем",
 
 problems = []
 review = []   # не помилки, але варто глянути очима
-stats = {"ключів TRANS": 0, "сторінок data-ru": 0, "data-ru": 0, "статей": 0}
+stats = {"ключів TRANS": 0, "сторінок data-ru": 0, "data-ru": 0, "статей": 0,
+         "російських сторінок": 0}
 
 
 def note(where, msg):
@@ -208,10 +209,48 @@ def check_blog():
                  % (len(bad), ", ".join(bad[:5])))
 
 
+# ── 4. Готові російські файли ────────────────────────────────────────────────
+def check_ru_pages():
+    """Російська версія тепер лежить окремим файлом, а не збирається в браузері.
+
+    Перевіряти тут нічого, крім одного: чи не відстала вона від української.
+    Файл складається пост-процесором, тож правильна відповідь відома — беремо
+    український файл, проганяємо через той самий пост-процесор і порівнюємо
+    байт у байт. Ця перевірка існує рівно тому, що забути перескладання легко,
+    а помітити наслідок — ні: сторінка віддається, просто вчорашня."""
+    sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
+    import ru_pages
+
+    # Слуги в українському й російському правилах .htaccess мають збігатися,
+    # інакше нова сторінка отримає російську версію у файлі, але не в конфігу.
+    src = io.open(os.path.join(ROOT, ".htaccess"), encoding="utf-8").read()
+    uk_rule = re.search(r"RewriteRule \^\(([^)]+)\)\$ \$1\.html", src)
+    ru_rule = re.search(r"RewriteRule \^\(([^)]+)\)\$ \$1\.ru\.html", src)
+    if not ru_rule:
+        note(".htaccess", "немає правила, яке віддає .ru.html на ?lang=ru")
+    elif uk_rule and uk_rule.group(1) != ru_rule.group(1):
+        note(".htaccess", "списки слугів у правилах uk і ru розійшлися")
+
+    for slug in BILINGUAL:
+        uk_path = os.path.join(ROOT, slug + ".html")
+        ru_path = os.path.join(ROOT, slug + ".ru.html")
+        if not os.path.exists(ru_path):
+            note(slug + ".ru.html",
+                 "російської версії немає — ?lang=ru віддасть українську")
+            continue
+        stats["російських сторінок"] += 1
+        want, _ = ru_pages.render(io.open(uk_path, encoding="utf-8").read(),
+                                  slug + ".html")
+        if want != io.open(ru_path, encoding="utf-8").read():
+            note(slug + ".ru.html", "відстала від української версії — "
+                                    "перескладіть tools/i18n/ru_pages.py")
+
+
 def main():
     check_trans()
     check_landing()
     check_blog()
+    check_ru_pages()
 
     print("оглянуто: " + ", ".join("%s %d" % (k, v) for k, v in stats.items()))
     print()

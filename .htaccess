@@ -22,6 +22,31 @@
   RewriteCond %{THE_REQUEST} \s/+(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey)\.html[\s?] [NC]
   RewriteRule ^ /%1 [R=301,L]
 
+  # ── Російська версія ────────────────────────────────────────────────────
+  # Досі російської сторінки на сервері не існувало: у файлі лежала українська,
+  # а переклад підставляв js/lang.js уже в браузері. Той, хто скриптів не
+  # виконує — GPTBot, ClaudeBot, PerplexityBot — отримував на /tsiny?lang=ru
+  # українську сторінку під українським <title>, хоч hreflang і обіцяв
+  # російську. Тепер поруч лежить готовий tsiny.ru.html (складає
+  # tools/i18n/ru_pages.py), і на запит із ?lang=ru віддається саме він.
+  #
+  # Адреса при цьому не змінюється: переписування внутрішнє, у рядку браузера
+  # лишається /tsiny?lang=ru — той самий URL, на який указує hreflang.
+  #
+  # Спершу 301 з прямої адреси файлу — інакше кожна сторінка знову існувала б
+  # за двома адресами, тобто рівно той дубль, заради якого стоять правила вище.
+  RewriteCond %{THE_REQUEST} \s/+index\.ru\.html[\s?] [NC]
+  RewriteRule ^ /?lang=ru [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey)\.ru\.html[\s?] [NC]
+  RewriteRule ^ /%1?lang=ru [R=301,L]
+
+  # Саме переписування. Стоїть перед українським правилом: інакше ^(слуги)$
+  # спрацює першим і російську версію ніхто не побачить.
+  RewriteCond %{QUERY_STRING} (^|&)lang=ru(&|$)
+  RewriteRule ^$ index.ru.html [L]
+  RewriteCond %{QUERY_STRING} (^|&)lang=ru(&|$)
+  RewriteRule ^(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey)$ $1.ru.html [L]
+
   # І лише потім внутрішнє переписування на реальний файл.
   RewriteRule ^(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey)$ $1.html [L]
 

@@ -98,9 +98,12 @@ def check(path, rel):
 
 
 def main():
+    # .ru.html сюди не потрапляє: у ній підміна мета-тегів уже зроблена, і
+    # перевірка «чи підміняється title» на ній не має сенсу.
     files = ["index.html"]
     files += [f for f in sorted(os.listdir(ROOT))
-              if f.endswith(".html") and f != "index.html" and not f.startswith("_")]
+              if f.endswith(".html") and f != "index.html"
+              and not f.startswith("_") and not f.endswith(".ru.html")]
     files += ["blog/" + f for f in sorted(os.listdir(os.path.join(ROOT, "blog")))
               if f.endswith(".html")]
 
