@@ -437,9 +437,15 @@ def card(a, prev):
     це окремий текст, коротший за meta description і написаний під сітку
     карток; у статей, що писалися руками, він живе в listing.json, і
     складання не має права затирати його описом зі сторінки.
+
+    Те саме стосується llmsTitle і llmsDesc — коротких рядків для llms.txt.
+    Поки перші десять статей не збиралися звідси, їхні записи ніхто не
+    перезаписував, і пропуск цих двох полів тут нічого не ламав. Щойно таку
+    статтю переносять у генератор, картка перезбирається — і без цих рядків
+    llms.txt мовчки підмінив би написані від руки описи анонсом із лістингу.
     """
     from_queue = a.get("_from_queue")
-    return {
+    entry = {
         "slug": a["slug"] + ".html",
         "emoji": a.get("emoji") or prev.get("emoji") or "🦊",
         "accent": a.get("accent") or prev.get("accent") or "fox",
@@ -457,6 +463,10 @@ def card(a, prev):
         "published": a["published"],
         "modified": a.get("modified") or prev.get("modified") or a["published"],
     }
+    for k in ("llmsTitle", "llmsDesc"):
+        if prev.get(k):
+            entry[k] = prev[k]
+    return entry
 
 
 def related_for(slug, entries, limit=4):
