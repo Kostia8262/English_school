@@ -30,7 +30,9 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(ROOT, "tools"))
 
+from assets import ASSET_VERSION  # noqa: E402  — спільна версія ?v= для всього сайту
 import articles as A  # noqa: E402
 import queue as Q  # noqa: E402
 import site_index as IDX  # noqa: E402
@@ -408,6 +410,7 @@ def render_side(a, lang):
 def render(a):
     url = "%s/blog/%s.html" % (BASE, a["slug"])
     return TPL % {
+        "assetv": ASSET_VERSION,
         "title_uk": esc(a["meta_title_uk"]),
         "title_ru": a["meta_title_ru"].replace("'", "\\'"),
         "desc_uk": esc(a["desc_uk"]),

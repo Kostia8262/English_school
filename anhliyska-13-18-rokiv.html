@@ -4,9 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
-<!-- Google Analytics 4 -->
+<!-- Google Analytics 4. Контейнера GTM тут більше немає: він був порожній
+     («tags»:[]), тобто 331 КБ рушія на кожне завантаження не робили нічого,
+     а лічильник і так стоїть прямим gtag.js. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 
@@ -41,9 +41,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
+     cyrillic несе весь текст сторінки, тому її беремо наперед, не чекаючи,
+     доки браузер дочитає таблицю стилів. -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://fluent-fox.site/anhliyska-13-18-rokiv#webpage","url":"https://fluent-fox.site/anhliyska-13-18-rokiv","name":"Англійська для підлітків 13–18 років онлайн — FluentFox","description":"Англійська для підлітків 13–18 років онлайн: розмовні клуби, підготовка до НМТ і Cambridge, есе та академічна лексика. Групи до 6 учнів, B1 → B2. Перший урок безкоштовно.","inLanguage":"uk","isPartOf":{"@id":"https://fluent-fox.site/#website"},"breadcrumb":{"@id":"https://fluent-fox.site/anhliyska-13-18-rokiv#breadcrumb"},"about":{"@id":"https://fluent-fox.site/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://fluent-fox.site/og-image.jpg"}},{"@type":"BreadcrumbList","@id":"https://fluent-fox.site/anhliyska-13-18-rokiv#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://fluent-fox.site/","name":"Головна"}},{"@type":"ListItem","position":2,"item":{"@id":"https://fluent-fox.site/anhliyska-13-18-rokiv","name":"Англійська 13–18 років"}}]},{"@type":"Course","@id":"https://fluent-fox.site/anhliyska-13-18-rokiv#course","sameAs":"https://fluent-fox.site/#course-13-18","name":"Англійська для підлітків 13–18 років","description":"Онлайн-курс англійської для підлітків 13–18 років: розмовні клуби, підготовка до НМТ і Cambridge-іспитів, есе. 150 занять, рівень B1 → B2, групи до 6 учнів.","url":"https://fluent-fox.site/anhliyska-13-18-rokiv","provider":{"@id":"https://fluent-fox.site/#organization"},"educationalLevel":"Advanced","typicalAgeRange":"13-18","teaches":"підготовка до НМТ, Cambridge KET PET FCE, есе, дискусії","inLanguage":"uk","availableLanguage":["uk","ru"],"courseMode":["online","onsite"],"hasCourseInstance":[{"@type":"CourseInstance","name":"Група — 1 заняття на тиждень","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"uk","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/"},{"@type":"Place","name":"FluentFox — просп. Олександра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Олександра Поля, 28А","addressLocality":"Дніпро","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — вул. Будівельників","address":{"@type":"PostalAddress","streetAddress":"вулиця Будівельників, 25","addressLocality":"Дніпро","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"1800","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny"}},{"@type":"CourseInstance","name":"Група — 2 заняття на тиждень","courseMode":["online","onsite"],"courseWorkload":"PT3H","inLanguage":"uk","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/"},{"@type":"Place","name":"FluentFox — просп. Олександра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Олександра Поля, 28А","addressLocality":"Дніпро","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — вул. Будівельників","address":{"@type":"PostalAddress","streetAddress":"вулиця Будівельників, 25","addressLocality":"Дніпро","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3600","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny"}},{"@type":"CourseInstance","name":"Індивідуальні заняття","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"uk","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/"},{"@type":"Place","name":"FluentFox — просп. Олександра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Олександра Поля, 28А","addressLocality":"Дніпро","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — вул. Будівельників","address":{"@type":"PostalAddress","streetAddress":"вулиця Будівельників, 25","addressLocality":"Дніпро","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3000","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny"}}],"offers":{"@type":"AggregateOffer","priceCurrency":"UAH","lowPrice":"1800","highPrice":"3600","offerCount":3,"availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny","priceSpecification":{"@type":"UnitPriceSpecification","priceCurrency":"UAH","price":"1800","billingDuration":"P1M"}}},{"@type":"FAQPage","@id":"https://fluent-fox.site/anhliyska-13-18-rokiv#faq","isPartOf":{"@id":"https://fluent-fox.site/anhliyska-13-18-rokiv#webpage"},"mainEntity":[{"@type":"Question","name":"Чи можна прийти лише на підготовку до НМТ, без повного курсу?","acceptedAnswer":{"@type":"Answer","text":"Так. Для 11 класу є окремий індивідуальний формат — 500 грн за годину, програма будується під конкретні прогалини, а не під загальну послідовність. Деталі — на сторінці підготовки до НМТ."}},{"@type":"Question","name":"Підліток не хоче вчити англійську. Що ви робите?","acceptedAnswer":{"@type":"Answer","text":"Не вмовляємо. На пробному уроці вчитель шукає, де англійська перетинається з тим, що підлітку вже цікаво, — гра, музика, блогери, вступ за кордон. Мотивація з'являється не від слів «це знадобиться», а від першого разу, коли він щось зрозумів без перекладу."}},{"@type":"Question","name":"У нас рівень нижчий за B1. Візьмете?","acceptedAnswer":{"@type":"Answer","text":"Так. Вікова група й рівень — різні речі. Якщо підліток на A2, він піде в групу свого рівня, а не свого класу. Рівень визначаємо на безкоштовному пробному уроці."}},{"@type":"Question","name":"Скільки часу до B2?","acceptedAnswer":{"@type":"Answer","text":"З рівня B1 при двох заняттях на тиждень — близько року. З A2 — приблизно два. B2 — це рівень, на якому вже здають FCE й вступають до європейських університетів, і швидких шляхів до нього немає."}},{"@type":"Question","name":"Чи заважатимуть заняття школі?","acceptedAnswer":{"@type":"Answer","text":"Розклад підбираємо під школу й репетиторів, а не навпаки. Домашнє завдання — 15–25 хвилин, це свідомо небагато: підліток у випускних класах і так перевантажений."}}]}]}</script>
 
@@ -59,8 +60,8 @@
 })();
 </script>
 
-<link rel="preload" as="style" href="/css/style.css?v=20260906"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906g"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906g" fetchpriority="high"/>
 <style>
   * { scroll-behavior: smooth; }
   .gradient-text {
@@ -75,7 +76,6 @@
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-fox-100">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,9 +95,14 @@
 
       <div class="flex items-center gap-3">
         <a href="tel:+380954624672" class="hidden nav:inline text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors duration-200">+38 (095) 462-46-72</a>
+        <!-- Перемикач мови — посилання, а не кнопка. Кнопку, що міняє
+             location.href, краулер не натискає: єдиною дорогою до ?lang=ru
+             лишалися hreflang і карта сайту. Цього досить, щоб адресу знали,
+             і замало, щоб вона отримувала вагу перелінковки. Клік усе одно
+             перехоплює js/lang.js — щоб не загубити якір і решту запиту. -->
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <button type="button" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
-          <button type="button" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+          <a href="/anhliyska-13-18-rokiv" hreflang="uk" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
+          <a href="/anhliyska-13-18-rokiv?lang=ru" hreflang="ru" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
         </div>
         <a href="/probnyi-urok" class="hidden sm:inline-flex bg-fox-500 hover:bg-fox-600 text-white font-black text-sm px-4 py-2 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap" data-ru="Пробный урок">Пробний урок</a>
         <button type="button" id="burger" class="nav:hidden flex flex-col gap-1 p-2 -mr-2" aria-label="Меню" data-ru-aria="Меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -351,6 +356,6 @@
   </div>
 </footer>
 
-<script src="/js/lang.js?v=20260906" defer></script>
+<script src="/js/lang.js?v=20260906g" defer></script>
 </body>
 </html>

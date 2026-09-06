@@ -12,9 +12,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;900&display=swap" rel="stylesheet"/>
+<!-- Сторінка не тягне Tailwind, тому @font-face бере з окремого файла.
+     Раніше тут стояла таблиця з fonts.googleapis.com — блокувальний
+     запит на чужий домен заради трьох вагів. -->
+<link rel="stylesheet" href="/css/fonts.css?v=20260906g"/>
 <style>
 /* Сторінка автономна: ні Tailwind, ні Alpine сюди не підключаються.
    Помилка має відмалюватися навіть тоді, коли зламана віддача статики або

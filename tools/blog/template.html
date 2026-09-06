@@ -37,8 +37,6 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35"/>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
@@ -61,11 +59,12 @@
 })();
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-<link rel="preload" as="style" href="/css/style.css?v=20260906"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906" fetchpriority="high"/>
+<!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
+     cyrillic несе весь текст сторінки, тому її беремо наперед, не
+     чекаючи, доки браузер дочитає таблицю стилів. -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
+<link rel="preload" as="style" href="/css/style.css?v=%(assetv)s"/>
+<link rel="stylesheet" href="/css/style.css?v=%(assetv)s" fetchpriority="high"/>
 <script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
 <style>
 [x-cloak]{display:none!important}
@@ -104,7 +103,6 @@
 </style>
 </head>
 <body x-data="blogApp()" x-cloak class="font-sans antialiased bg-cream">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -120,8 +118,11 @@
       </div>
       <div class="flex items-center gap-3">
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <button @click="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
-          <button @click="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+          <!-- Посилання, а не кнопка: кнопку, що міняє адресу, краулер не
+               натискає, і ?lang=ru діставався лише з hreflang. Перехід
+               скасовує Alpine — мову блог перемикає на місці. -->
+          <a href="%(url)s" hreflang="uk" @click.prevent="setLang('uk')" :class="lang==='uk'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
+          <a href="%(url)s?lang=ru" hreflang="ru" @click.prevent="setLang('ru')" :class="lang==='ru'?'bg-white shadow text-fox-600':'text-gray-400 hover:text-gray-600'" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
         </div>
         <a :href="lang==='ru' ? '/?lang=ru#form' : '/#form'" class="hidden md:inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" x-text="lang==='uk'?'Пробний урок':'Пробный урок'">Пробний урок</a>
       </div>

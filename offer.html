@@ -12,8 +12,10 @@
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Сторінка не тягне Tailwind, тому @font-face бере з окремого файла.
+     Раніше тут стояла таблиця з fonts.googleapis.com — блокувальний
+     запит на чужий домен заради трьох вагів. -->
+<link rel="stylesheet" href="/css/fonts.css?v=20260906g"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Nunito',Arial,sans-serif;background:#FFF5EF;color:#1a1a2e;line-height:1.8;font-size:15px}
@@ -38,14 +40,11 @@ strong{font-weight:700;color:#0f0f1a}
 .doc-nav{margin-top:36px;padding:16px 18px;background:#FFF9F5;border-radius:10px;font-size:13px;line-height:2;border:1px solid #FFE8D6}
 .doc-nav a{color:#E54E1A}.doc-nav a:hover{text-decoration:underline}
 </style>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 </head>
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrap">
 <a href="/" class="back">← FluentFox</a>
 <h1>ПУБЛІЧНИЙ ДОГОВІР ПРО НАДАННЯ ПОСЛУГ</h1>

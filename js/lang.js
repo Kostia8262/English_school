@@ -77,6 +77,9 @@
     document.querySelectorAll('a[href]').forEach(function (a) {
       var raw = a.getAttribute('href');
       if (!raw || raw.charAt(0) === '#') return;
+      // Перемикач мови — теж посилання, і саме йому ?lang=ru дописувати не
+      // можна: кнопка «UA» веде на українську адресу і має нею лишитися.
+      if (a.hasAttribute('data-lang-btn')) return;
       if (/^(https?:)?\/\//.test(raw) && new URL(raw, location.href).origin !== location.origin) return;
       if (/^(tel:|mailto:)/.test(raw)) return;
       a.setAttribute('href', withLang(raw, RU));
@@ -84,8 +87,13 @@
   }
 
   function wireSwitcher() {
+    // Сам по собі перемикач працює й без цього: це звичайні посилання на
+    // /сторінку та /сторінку?lang=ru. Обробник потрібен, щоб не загубити
+    // якір і решту запиту — читач, який дійшов до #faq, після перемикання
+    // мови має лишитися там само, а не поїхати на початок сторінки.
     document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
         location.href = withLang(location.href, btn.dataset.langBtn);
       });
     });

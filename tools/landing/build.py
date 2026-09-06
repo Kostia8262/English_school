@@ -20,9 +20,11 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(ROOT, "tools"))
 sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
 sys.path.insert(0, os.path.join(ROOT, "tools", "sitemap"))
 
+from assets import ASSET_VERSION  # noqa: E402  — спільна версія ?v= для всього сайту
 import ru_pages as RU        # noqa: E402  — російські версії тих самих сторінок
 import lastmod as LASTMOD    # noqa: E402  — дати в sitemap.xml за вмістом
 import content as C          # noqa: E402  — хелпери + три вікові сторінки
@@ -33,11 +35,6 @@ import pages_generic        # noqa: E402,F401  — курси, онлайн, р�
 
 BASE = "https://fluent-fox.site"
 ORG = BASE + "/#organization"
-
-# Версія в query до style.css. Піднімати руками разом зі складанням CSS,
-# інакше повернені відвідувачі побачать сторінку зі старими стилями.
-CSS_VERSION = "20260906"
-
 
 # ── дрібні помічники ─────────────────────────────────────────────────────────
 
@@ -296,9 +293,9 @@ HEAD = """<!DOCTYPE html>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){{w[l]=w[l]||[];w[l].push({{'gtm.start':new Date().getTime(),event:'gtm.js'}});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
-<!-- Google Analytics 4 -->
+<!-- Google Analytics 4. Контейнера GTM тут більше немає: він був порожній
+     («tags»:[]), тобто 331 КБ рушія на кожне завантаження не робили нічого,
+     а лічильник і так стоїть прямим gtag.js. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 
@@ -333,9 +330,10 @@ HEAD = """<!DOCTYPE html>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
+     cyrillic несе весь текст сторінки, тому її беремо наперед, не чекаючи,
+     доки браузер дочитає таблицю стилів. -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 
 <script type="application/ld+json">{graph}</script>
 
@@ -351,8 +349,8 @@ HEAD = """<!DOCTYPE html>
 }})();
 </script>
 
-<link rel="preload" as="style" href="/css/style.css?v={cssv}"/>
-<link rel="stylesheet" href="/css/style.css?v={cssv}" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v={assetv}"/>
+<link rel="stylesheet" href="/css/style.css?v={assetv}" fetchpriority="high"/>
 <style>
   * {{ scroll-behavior: smooth; }}
   .gradient-text {{
@@ -367,7 +365,6 @@ HEAD = """<!DOCTYPE html>
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 """
 
 HEADER = """
@@ -389,9 +386,14 @@ HEADER = """
 
       <div class="flex items-center gap-3">
         <a href="tel:+380954624672" class="hidden nav:inline text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors duration-200">+38 (095) 462-46-72</a>
+        <!-- Перемикач мови — посилання, а не кнопка. Кнопку, що міняє
+             location.href, краулер не натискає: єдиною дорогою до ?lang=ru
+             лишалися hreflang і карта сайту. Цього досить, щоб адресу знали,
+             і замало, щоб вона отримувала вагу перелінковки. Клік усе одно
+             перехоплює js/lang.js — щоб не загубити якір і решту запиту. -->
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <button type="button" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
-          <button type="button" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+          <a href="%(path)s" hreflang="uk" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
+          <a href="%(path)s?lang=ru" hreflang="ru" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
         </div>
         <a href="/probnyi-urok" class="hidden sm:inline-flex bg-fox-500 hover:bg-fox-600 text-white font-black text-sm px-4 py-2 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap" data-ru="Пробный урок">Пробний урок</a>
         <button type="button" id="burger" class="nav:hidden flex flex-col gap-1 p-2 -mr-2" aria-label="Меню" data-ru-aria="Меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -474,7 +476,7 @@ FOOTER = """
   </div>
 </footer>
 
-<script src="/js/lang.js?v=%(cssv)s" defer></script>
+<script src="/js/lang.js?v=%(assetv)s" defer></script>
 </body>
 </html>
 """
@@ -552,7 +554,7 @@ def render_page(p):
         desc_uk=esc(p["desc_uk"]), desc_ru=p["desc_ru"].replace("'", "\\'"),
         og_title_uk=esc(p.get("og_uk", p["title_uk"])),
         og_title_ru=p.get("og_ru", p["title_ru"]).replace("'", "\\'"),
-        url=url, base=BASE, graph=build_graph(p), cssv=CSS_VERSION)
+        url=url, base=BASE, graph=build_graph(p), assetv=ASSET_VERSION)
 
     crumbs = ('\n<nav class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6" aria-label="Хлібні крихти" data-ru-aria="Хлебные крошки">\n'
               '  <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-400">\n'
@@ -591,9 +593,10 @@ def render_page(p):
     # FOOTER не проходить через %-форматування, тому версію для /js/lang.js
     # підставляємо тут. Без неї скрипт кешується на рік як immutable, і
     # правка в ньому не доходить до тих, хто вже був на сайті.
-    return (head + HEADER + crumbs + hero + main + render_faq(p) + CTA
+    return (head + HEADER.replace("%(path)s", "/" + p["slug"])
+            + crumbs + hero + main + render_faq(p) + CTA
             + render_related(p) + "</main>\n"
-            + FOOTER.replace("%(cssv)s", CSS_VERSION))
+            + FOOTER.replace("%(assetv)s", ASSET_VERSION))
 
 
 def main():

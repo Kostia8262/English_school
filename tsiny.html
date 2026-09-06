@@ -4,9 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
-<!-- Google Analytics 4 -->
+<!-- Google Analytics 4. Контейнера GTM тут більше немає: він був порожній
+     («tags»:[]), тобто 331 КБ рушія на кожне завантаження не робили нічого,
+     а лічильник і так стоїть прямим gtag.js. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 
@@ -41,9 +41,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
+     cyrillic несе весь текст сторінки, тому її беремо наперед, не чекаючи,
+     доки браузер дочитає таблицю стилів. -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://fluent-fox.site/tsiny#webpage","url":"https://fluent-fox.site/tsiny","name":"Ціни на англійську для дітей онлайн — FluentFox","description":"Група — 1800 або 3600 грн на місяць, індивідуально — 3000 грн. Це 300 грн за годину в групі й 500 індивідуально. Знижка 15% на другу дитину.","inLanguage":"uk","isPartOf":{"@id":"https://fluent-fox.site/#website"},"breadcrumb":{"@id":"https://fluent-fox.site/tsiny#breadcrumb"},"about":{"@id":"https://fluent-fox.site/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://fluent-fox.site/og-image.jpg"}},{"@type":"BreadcrumbList","@id":"https://fluent-fox.site/tsiny#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://fluent-fox.site/","name":"Головна"}},{"@type":"ListItem","position":2,"item":{"@id":"https://fluent-fox.site/tsiny","name":"Ціни"}}]},{"@type":"OfferCatalog","@id":"https://fluent-fox.site/tsiny#catalog","name":"Тарифи на навчання англійської мови","url":"https://fluent-fox.site/tsiny","provider":{"@id":"https://fluent-fox.site/#organization"},"itemListElement":[{"@type":"Offer","name":"Група — 1 заняття на тиждень","price":"1800","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny","priceSpecification":{"@type":"UnitPriceSpecification","priceCurrency":"UAH","price":"1800","billingDuration":"P1M"}},{"@type":"Offer","name":"Група — 2 заняття на тиждень","price":"3600","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny","priceSpecification":{"@type":"UnitPriceSpecification","priceCurrency":"UAH","price":"3600","billingDuration":"P1M"}},{"@type":"Offer","name":"Індивідуальні заняття","price":"3000","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny","priceSpecification":{"@type":"UnitPriceSpecification","priceCurrency":"UAH","price":"3000","billingDuration":"P1M"}}]},{"@type":"FAQPage","@id":"https://fluent-fox.site/tsiny#faq","isPartOf":{"@id":"https://fluent-fox.site/tsiny#webpage"},"mainEntity":[{"@type":"Question","name":"Скільки коштує англійська для дитини онлайн?","acceptedAnswer":{"@type":"Answer","text":"Група один раз на тиждень — 1800 грн на місяць, два рази — 3600 грн, індивідуально — 3000 грн на місяць. У перерахунку на годину це 300 грн у групі й 500 грн індивідуально. Перший пробний урок безкоштовний."}},{"@type":"Question","name":"Чи є знижки?","acceptedAnswer":{"@type":"Answer","text":"Дві. При оплаті одразу за три місяці — 10%. При записі другої дитини з тієї самої родини — 15% на її навчання. Знижки сумуються."}},{"@type":"Question","name":"Як відбувається оплата?","acceptedAnswer":{"@type":"Answer","text":"Раз на місяць, наперед. Після пробного уроку ви обираєте формат і розклад, і лише тоді оплачуєте перший місяць — до пробного уроку платити не потрібно нічого."}},{"@type":"Question","name":"Що буде з оплатою, якщо дитина пропустить урок?","acceptedAnswer":{"@type":"Answer","text":"Урок, перенесений за 12 годин до початку, не згорає. Якщо пропуск стався без попередження, урок вважається проведеним — але вчитель усе одно надішле матеріали теми й розбере її на початку наступного заняття."}},{"@type":"Question","name":"Чи можна повернути гроші?","acceptedAnswer":{"@type":"Answer","text":"Так, умови повернення описані в окремому документі — «Повернення коштів» у підвалі сайту. Коротко: невикористані оплачені уроки повертаються."}}]}]}</script>
 
@@ -59,8 +60,8 @@
 })();
 </script>
 
-<link rel="preload" as="style" href="/css/style.css?v=20260906"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906g"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906g" fetchpriority="high"/>
 <style>
   * { scroll-behavior: smooth; }
   .gradient-text {
@@ -75,7 +76,6 @@
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-fox-100">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,9 +95,14 @@
 
       <div class="flex items-center gap-3">
         <a href="tel:+380954624672" class="hidden nav:inline text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors duration-200">+38 (095) 462-46-72</a>
+        <!-- Перемикач мови — посилання, а не кнопка. Кнопку, що міняє
+             location.href, краулер не натискає: єдиною дорогою до ?lang=ru
+             лишалися hreflang і карта сайту. Цього досить, щоб адресу знали,
+             і замало, щоб вона отримувала вагу перелінковки. Клік усе одно
+             перехоплює js/lang.js — щоб не загубити якір і решту запиту. -->
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <button type="button" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
-          <button type="button" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+          <a href="/tsiny" hreflang="uk" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
+          <a href="/tsiny?lang=ru" hreflang="ru" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
         </div>
         <a href="/probnyi-urok" class="hidden sm:inline-flex bg-fox-500 hover:bg-fox-600 text-white font-black text-sm px-4 py-2 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap" data-ru="Пробный урок">Пробний урок</a>
         <button type="button" id="burger" class="nav:hidden flex flex-col gap-1 p-2 -mr-2" aria-label="Меню" data-ru-aria="Меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -308,6 +313,6 @@
   </div>
 </footer>
 
-<script src="/js/lang.js?v=20260906" defer></script>
+<script src="/js/lang.js?v=20260906g" defer></script>
 </body>
 </html>

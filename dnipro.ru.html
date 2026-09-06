@@ -4,9 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
-<!-- Google Analytics 4 -->
+<!-- Google Analytics 4. Контейнера GTM тут більше немає: він був порожній
+     («tags»:[]), тобто 331 КБ рушія на кожне завантаження не робили нічого,
+     а лічильник і так стоїть прямим gtag.js. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 
@@ -41,9 +41,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
+     cyrillic несе весь текст сторінки, тому її беремо наперед, не чекаючи,
+     доки браузер дочитає таблицю стилів. -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://fluent-fox.site/dnipro#webpage","url":"https://fluent-fox.site/dnipro","name":"Англійська для дітей у Дніпрі — очно та онлайн | FluentFox","description":"Онлайн-школа англійської для дітей 6–18 років із двома очними класами в Дніпрі: просп. О. Поля, 28А та вул. Будівельників, 25. Групи до 6 учнів.","inLanguage":"uk","isPartOf":{"@id":"https://fluent-fox.site/#website"},"breadcrumb":{"@id":"https://fluent-fox.site/dnipro#breadcrumb"},"about":{"@id":"https://fluent-fox.site/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://fluent-fox.site/og-image.jpg"}},{"@type":"BreadcrumbList","@id":"https://fluent-fox.site/dnipro#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://fluent-fox.site/","name":"Головна"}},{"@type":"ListItem","position":2,"item":{"@id":"https://fluent-fox.site/dnipro","name":"Дніпро"}}]},{"@type":["EducationalOrganization","LocalBusiness"],"@id":"https://fluent-fox.site/dnipro#local-polia","name":"FluentFox — просп. Олександра Поля","url":"https://fluent-fox.site/dnipro","parentOrganization":{"@id":"https://fluent-fox.site/#organization"},"telephone":"+380682522876","email":"fluent.fox.study@gmail.com","priceRange":"1800–3600 UAH","currenciesAccepted":"UAH","address":{"@type":"PostalAddress","streetAddress":"проспект Олександра Поля, 28А","addressLocality":"Дніпро","addressRegion":"Дніпропетровська область","postalCode":"49001","addressCountry":"UA"},"hasMap":"https://www.google.com/maps/search/?api=1&query=%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%B0%20%D0%9F%D0%BE%D0%BB%D1%8F%2C%2028%D0%90%2C%20%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE","areaServed":{"@type":"City","name":"Дніпро"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"10:00","closes":"18:00"}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Курси англійської для дітей у Дніпрі","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Course","name":"Англійська для дітей 6–8 років","url":"https://fluent-fox.site/anhliyska-6-8-rokiv","provider":{"@id":"https://fluent-fox.site/dnipro#local-polia"}}},{"@type":"Offer","itemOffered":{"@type":"Course","name":"Англійська для дітей 9–12 років","url":"https://fluent-fox.site/anhliyska-9-12-rokiv","provider":{"@id":"https://fluent-fox.site/dnipro#local-polia"}}},{"@type":"Offer","itemOffered":{"@type":"Course","name":"Англійська для підлітків 13–18 років","url":"https://fluent-fox.site/anhliyska-13-18-rokiv","provider":{"@id":"https://fluent-fox.site/dnipro#local-polia"}}},{"@type":"Offer","itemOffered":{"@type":"Course","name":"Підготовка до НМТ з англійської","url":"https://fluent-fox.site/pidhotovka-do-nmt","provider":{"@id":"https://fluent-fox.site/dnipro#local-polia"}}}]}},{"@type":["EducationalOrganization","LocalBusiness"],"@id":"https://fluent-fox.site/dnipro#local-budivelnykiv","name":"FluentFox — вул. Будівельників","url":"https://fluent-fox.site/dnipro","parentOrganization":{"@id":"https://fluent-fox.site/#organization"},"telephone":"+380954624672","email":"fluent.fox.study@gmail.com","priceRange":"1800–3600 UAH","currenciesAccepted":"UAH","address":{"@type":"PostalAddress","streetAddress":"вулиця Будівельників, 25","addressLocality":"Дніпро","addressRegion":"Дніпропетровська область","postalCode":"49000","addressCountry":"UA"},"hasMap":"https://www.google.com/maps/search/?api=1&query=%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%91%D1%83%D0%B4%D1%96%D0%B2%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA%D1%96%D0%B2%2C%2025%2C%20%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE","areaServed":{"@type":"City","name":"Дніпро"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"10:00","closes":"18:00"}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Курси англійської для дітей у Дніпрі","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Course","name":"Англійська для дітей 6–8 років","url":"https://fluent-fox.site/anhliyska-6-8-rokiv","provider":{"@id":"https://fluent-fox.site/dnipro#local-budivelnykiv"}}},{"@type":"Offer","itemOffered":{"@type":"Course","name":"Англійська для дітей 9–12 років","url":"https://fluent-fox.site/anhliyska-9-12-rokiv","provider":{"@id":"https://fluent-fox.site/dnipro#local-budivelnykiv"}}},{"@type":"Offer","itemOffered":{"@type":"Course","name":"Англійська для підлітків 13–18 років","url":"https://fluent-fox.site/anhliyska-13-18-rokiv","provider":{"@id":"https://fluent-fox.site/dnipro#local-budivelnykiv"}}},{"@type":"Offer","itemOffered":{"@type":"Course","name":"Підготовка до НМТ з англійської","url":"https://fluent-fox.site/pidhotovka-do-nmt","provider":{"@id":"https://fluent-fox.site/dnipro#local-budivelnykiv"}}}]}},{"@type":"FAQPage","@id":"https://fluent-fox.site/dnipro#faq","isPartOf":{"@id":"https://fluent-fox.site/dnipro#webpage"},"mainEntity":[{"@type":"Question","name":"Де саме у Дніпрі проходять заняття?","acceptedAnswer":{"@type":"Answer","text":"У двох класах: проспект Олександра Поля, 28А — це центр міста, і вулиця Будівельників, 25. Програма, розмір групи та ціна в обох однакові; обираєте той, до якого зручніше діставатися."}},{"@type":"Question","name":"Очні заняття дорожчі за онлайн?","acceptedAnswer":{"@type":"Answer","text":"Ні, ціна однакова: 1800 грн на місяць за групу раз на тиждень, 3600 грн за групу двічі на тиждень, 3000 грн за індивідуальні заняття. Формат на вартість не впливає."}},{"@type":"Question","name":"Чи можна перейти з очного формату на онлайн і навпаки?","acceptedAnswer":{"@type":"Answer","text":"Так, і посеред курсу теж. Дитина лишається у своїй групі — просто підключається з дому замість класу. Попередьте вчителя, щоб він підготував матеріали під потрібний формат."}},{"@type":"Question","name":"Чи потрібно приносити щось на очне заняття?","acceptedAnswer":{"@type":"Answer","text":"Тільки зошит і ручку. Підручники й роздаткові матеріали є в класі, а доступ до онлайн-платформи для домашніх завдань входить у вартість."}},{"@type":"Question","name":"Чи можна прийти на пробне заняття очно?","acceptedAnswer":{"@type":"Answer","text":"Так, перший урок безкоштовний і в класі теж — він проходить як звичайне заняття, разом із групою. Платити до нього не потрібно нічого."}},{"@type":"Question","name":"Що з заняттями під час повітряних тривог?","acceptedAnswer":{"@type":"Answer","text":"Очна група спускається в укриття, після відбою урок продовжується або переноситься — оплачене заняття не згорає. В онлайні так само: якщо зв'язок перервався, урок добирається іншого дня."}}]}]}</script>
 
@@ -51,8 +52,8 @@
      браузера й у метриці лишається український заголовок російської сторінки -->
 
 
-<link rel="preload" as="style" href="/css/style.css?v=20260906"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906g"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906g" fetchpriority="high"/>
 <style>
   * { scroll-behavior: smooth; }
   .gradient-text {
@@ -67,7 +68,6 @@
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-fox-100">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,9 +87,14 @@
 
       <div class="flex items-center gap-3">
         <a href="tel:+380954624672" class="hidden nav:inline text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors duration-200">+38 (095) 462-46-72</a>
+        <!-- Перемикач мови — посилання, а не кнопка. Кнопку, що міняє
+             location.href, краулер не натискає: єдиною дорогою до ?lang=ru
+             лишалися hreflang і карта сайту. Цього досить, щоб адресу знали,
+             і замало, щоб вона отримувала вагу перелінковки. Клік усе одно
+             перехоплює js/lang.js — щоб не загубити якір і решту запиту. -->
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <button type="button" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
-          <button type="button" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+          <a href="/dnipro" hreflang="uk" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
+          <a href="/dnipro?lang=ru" hreflang="ru" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
         </div>
         <a href="/probnyi-urok?lang=ru" class="hidden sm:inline-flex bg-fox-500 hover:bg-fox-600 text-white font-black text-sm px-4 py-2 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap">Пробный урок</a>
         <button type="button" id="burger" class="nav:hidden flex flex-col gap-1 p-2 -mr-2" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -342,6 +347,6 @@
   </div>
 </footer>
 
-<script src="/js/lang.js?v=20260906" defer></script>
+<script src="/js/lang.js?v=20260906g" defer></script>
 </body>
 </html>

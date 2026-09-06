@@ -42,9 +42,12 @@ TEMPLATE = os.path.join(HERE, "template.html")
 TRANS_JSON = os.path.join(HERE, "trans.json")
 OUT = os.path.join(ROOT, "index.html")
 
-# Версія в query до style.css і до скриптів. Піднімати руками разом зі
-# складанням CSS — інакше повернені відвідувачі отримають старий файл.
-ASSET_VERSION = "20260906e"
+# Версія в query до style.css і до скриптів — спільна для всіх генераторів.
+# Раніше вона жила окремо тут, окремо в tools/landing і числом усередині
+# шаблону блогу: файл style.css один, а ключ кешу в трьох місцях різний, і
+# відвідувач качав його стільки разів, скільки типів сторінок обійшов.
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+from assets import ASSET_VERSION
 
 LANGS = ("uk", "ru")
 
@@ -729,8 +732,9 @@ def strip_alpine_runtime(head):
     # Запобіжник на випадок ненавантаженого Alpine більше не потрібен: текст
     # тепер лежить у розмітці й видно його без жодного скрипта.
     head = re.sub(r"\s*<script>\s*/\* Запобіжник.*?</script>", "", head, flags=re.S)
-    head = head.replace('href="/css/style.css?v=20260826"',
-                        'href="/css/style.css?v=%s"' % ASSET_VERSION)
+    # Сентинел, а не чергове число: інакше в шаблоні лежить версія, схожа
+    # на справжню, і tools/audit/assets.py щоразу лаявся б на неї.
+    head = head.replace("?v=%(assetv)s", "?v=" + ASSET_VERSION)
     return head
 
 

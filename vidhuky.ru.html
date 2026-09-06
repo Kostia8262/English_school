@@ -4,9 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
-<!-- Google Analytics 4 -->
+<!-- Google Analytics 4. Контейнера GTM тут більше немає: він був порожній
+     («tags»:[]), тобто 331 КБ рушія на кожне завантаження не робили нічого,
+     а лічильник і так стоїть прямим gtag.js. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 
@@ -41,9 +41,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
+     cyrillic несе весь текст сторінки, тому її беремо наперед, не чекаючи,
+     доки браузер дочитає таблицю стилів. -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://fluent-fox.site/vidhuky#webpage","url":"https://fluent-fox.site/vidhuky","name":"Відгуки про школу англійської FluentFox","description":"Відгуки батьків про онлайн-школу англійської FluentFox: результати НМТ, Cambridge KET, як діти долають страх говорити. Середня оцінка 4.9 з 5.","inLanguage":"uk","isPartOf":{"@id":"https://fluent-fox.site/#website"},"breadcrumb":{"@id":"https://fluent-fox.site/vidhuky#breadcrumb"},"about":{"@id":"https://fluent-fox.site/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://fluent-fox.site/og-image.jpg"}},{"@type":"BreadcrumbList","@id":"https://fluent-fox.site/vidhuky#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://fluent-fox.site/","name":"Головна"}},{"@type":"ListItem","position":2,"item":{"@id":"https://fluent-fox.site/vidhuky","name":"Відгуки"}}]},{"@type":"ItemList","@id":"https://fluent-fox.site/vidhuky#reviews","name":"Відгуки про FluentFox","numberOfItems":6,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Review","author":{"@type":"Person","name":"Ірина К."},"datePublished":"2026-03-15","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Перед першим заняттям Соня тиснула мене за руку і шептала «мамо, не хочу». Після третього уроку — сама сіла за планшет і повторювала слова з вчителькою. Зараз вже 4-й місяць, і вона засмучується, якщо заняття скасовують.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}}},{"@type":"ListItem","position":2,"item":{"@type":"Review","author":{"@type":"Person","name":"Олег Т."},"datePublished":"2026-04-02","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Максим готувався до Cambridge KET і шкільних іспитів одночасно. Вчителька склала окремий план під кожне завдання, після кожного уроку надсилала розбір помилок. Склав KET на Merit, а в школі отримав річну «відмінно». Дуже структурований підхід.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}}},{"@type":"ListItem","position":3,"item":{"@type":"Review","author":{"@type":"Person","name":"Марина В."},"datePublished":"2026-05-10","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Готувались до НМТ з нуля за 4 місяці. Вчителька підібрала програму під конкретні завдання іспиту, щотижня розбирали помилки. Дарина склала на 183 бали. Вже записую молодшого сина.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}}},{"@type":"ListItem","position":4,"item":{"@type":"Review","author":{"@type":"Person","name":"Тетяна Л."},"datePublished":"2026-04-20","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Льоша соромився говорити навіть зі мною по-українськи, а тут — англійська! Думала, нічого не вийде. Зараз вчителька в школі питає, де він так добре навчився. Не знаю як FluentFox це робить, але це точно працює.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}}},{"@type":"ListItem","position":5,"item":{"@type":"Review","author":{"@type":"Person","name":"Андрій С."},"datePublished":"2026-06-01","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Аліна займалась рік у групі. Спочатку боялась відкрити рота, а тепер за сімейною вечерею виправляє мою вимову. На день народження попросила додаткові заняття. Ось такий результат.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}}},{"@type":"ListItem","position":6,"item":{"@type":"Review","author":{"@type":"Person","name":"Наталія Б."},"datePublished":"2026-05-28","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Записала відразу двох синів у різні групи — зі знижкою на другу дитину виходить вигідно. Обоє займаються вже 7 місяців. Старший читає в оригіналі, а молодший просить перемикати мультики на англійську і сміється, що я не розумію.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}}}]},{"@type":"FAQPage","@id":"https://fluent-fox.site/vidhuky#faq","isPartOf":{"@id":"https://fluent-fox.site/vidhuky#webpage"},"mainEntity":[{"@type":"Question","name":"Де ще можна почитати відгуки про FluentFox?","acceptedAnswer":{"@type":"Answer","text":"В Instagram і Facebook школи — там батьки пишуть у коментарях і в директ. Посилання на обидві сторінки є в підвалі сайту."}},{"@type":"Question","name":"Чи можна поспілкуватися з чинними учнями?","acceptedAnswer":{"@type":"Answer","text":"Так. Напишіть нам, і ми запитаємо в родини дозволу — багато батьків погоджуються розповісти про свій досвід. Це чесніший спосіб перевірити школу, ніж будь-який текст на сайті."}},{"@type":"Question","name":"Що робити, якщо нам не сподобається?","acceptedAnswer":{"@type":"Answer","text":"Пробний урок безкоштовний саме для цього — щоб побачити вчителя й формат до того, як платити. Якщо не підійде конкретний викладач, ми запропонуємо іншого: у школі працює п'ятнадцять вчителів."}}]}]}</script>
 
@@ -51,8 +52,8 @@
      браузера й у метриці лишається український заголовок російської сторінки -->
 
 
-<link rel="preload" as="style" href="/css/style.css?v=20260906"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906g"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906g" fetchpriority="high"/>
 <style>
   * { scroll-behavior: smooth; }
   .gradient-text {
@@ -67,7 +68,6 @@
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-fox-100">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,9 +87,14 @@
 
       <div class="flex items-center gap-3">
         <a href="tel:+380954624672" class="hidden nav:inline text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors duration-200">+38 (095) 462-46-72</a>
+        <!-- Перемикач мови — посилання, а не кнопка. Кнопку, що міняє
+             location.href, краулер не натискає: єдиною дорогою до ?lang=ru
+             лишалися hreflang і карта сайту. Цього досить, щоб адресу знали,
+             і замало, щоб вона отримувала вагу перелінковки. Клік усе одно
+             перехоплює js/lang.js — щоб не загубити якір і решту запиту. -->
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <button type="button" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
-          <button type="button" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+          <a href="/vidhuky" hreflang="uk" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
+          <a href="/vidhuky?lang=ru" hreflang="ru" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
         </div>
         <a href="/probnyi-urok?lang=ru" class="hidden sm:inline-flex bg-fox-500 hover:bg-fox-600 text-white font-black text-sm px-4 py-2 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap">Пробный урок</a>
         <button type="button" id="burger" class="nav:hidden flex flex-col gap-1 p-2 -mr-2" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -296,6 +301,6 @@
   </div>
 </footer>
 
-<script src="/js/lang.js?v=20260906" defer></script>
+<script src="/js/lang.js?v=20260906g" defer></script>
 </body>
 </html>

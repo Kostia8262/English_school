@@ -4,9 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
-<!-- Google Analytics 4 -->
+<!-- Google Analytics 4. Контейнера GTM тут більше немає: він був порожній
+     («tags»:[]), тобто 331 КБ рушія на кожне завантаження не робили нічого,
+     а лічильник і так стоїть прямим gtag.js. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 
@@ -41,9 +41,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
+     cyrillic несе весь текст сторінки, тому її беремо наперед, не чекаючи,
+     доки браузер дочитає таблицю стилів. -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://fluent-fox.site/cambridge#webpage","url":"https://fluent-fox.site/cambridge","name":"Підготовка до Cambridge: YLE, KET, PET, FCE — FluentFox","description":"Підготовка дітей до Cambridge English: Starters, Movers, Flyers, A2 Key, B1 Preliminary, B2 First. Онлайн, групи до 6 учнів. Що дає сертифікат і коли його складати.","inLanguage":"uk","isPartOf":{"@id":"https://fluent-fox.site/#website"},"breadcrumb":{"@id":"https://fluent-fox.site/cambridge#breadcrumb"},"about":{"@id":"https://fluent-fox.site/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://fluent-fox.site/og-image.jpg"}},{"@type":"BreadcrumbList","@id":"https://fluent-fox.site/cambridge#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://fluent-fox.site/","name":"Головна"}},{"@type":"ListItem","position":2,"item":{"@id":"https://fluent-fox.site/cambridge","name":"Іспити Cambridge"}}]},{"@type":"FAQPage","@id":"https://fluent-fox.site/cambridge#faq","isPartOf":{"@id":"https://fluent-fox.site/cambridge#webpage"},"mainEntity":[{"@type":"Question","name":"З якого віку можна складати Cambridge?","acceptedAnswer":{"@type":"Answer","text":"Starters складають із семи років — це формат без оцінок, з наліпками й картинками, щоб перший іспит у житті не був стресом. Дорослі формати з балами починаються з A2 Key приблизно з одинадцяти років."}},{"@type":"Question","name":"Чи є у сертифіката термін дії?","acceptedAnswer":{"@type":"Answer","text":"Немає. На відміну від IELTS і TOEFL, які втрачають силу за два роки, Cambridge-сертифікат безстроковий. Це одна з причин, чому його має сенс складати саме у шкільному віці."}},{"@type":"Question","name":"Скільки коштує сам іспит?","acceptedAnswer":{"@type":"Answer","text":"Вартість встановлює екзаменаційний центр, а не школа, і вона змінюється щороку. Ми підкажемо актуальні ціни й найближчий акредитований центр тоді, коли дитина буде готова реєструватися."}},{"@type":"Question","name":"Скільки часу потрібно на підготовку?","acceptedAnswer":{"@type":"Answer","text":"Якщо рівень дитини вже відповідає іспиту — три-чотири місяці на сам формат. Якщо рівень нижчий, спершу треба дорости: між A2 і B1 при двох заняттях на тиждень проходить приблизно рік."}},{"@type":"Question","name":"Чи потрібен Cambridge, якщо дитина складатиме НМТ?","acceptedAnswer":{"@type":"Answer","text":"Не обов'язково — це різні цілі. НМТ потрібен для вступу в Україні, Cambridge лишається з дитиною назавжди й знадобиться за кордоном. Якщо часу вистачає лише на одне, у випускному класі логічніше зосередитись на НМТ."}}]}]}</script>
 
@@ -51,8 +52,8 @@
      браузера й у метриці лишається український заголовок російської сторінки -->
 
 
-<link rel="preload" as="style" href="/css/style.css?v=20260906"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906g"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906g" fetchpriority="high"/>
 <style>
   * { scroll-behavior: smooth; }
   .gradient-text {
@@ -67,7 +68,6 @@
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-fox-100">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,9 +87,14 @@
 
       <div class="flex items-center gap-3">
         <a href="tel:+380954624672" class="hidden nav:inline text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors duration-200">+38 (095) 462-46-72</a>
+        <!-- Перемикач мови — посилання, а не кнопка. Кнопку, що міняє
+             location.href, краулер не натискає: єдиною дорогою до ?lang=ru
+             лишалися hreflang і карта сайту. Цього досить, щоб адресу знали,
+             і замало, щоб вона отримувала вагу перелінковки. Клік усе одно
+             перехоплює js/lang.js — щоб не загубити якір і решту запиту. -->
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <button type="button" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
-          <button type="button" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+          <a href="/cambridge" hreflang="uk" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
+          <a href="/cambridge?lang=ru" hreflang="ru" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
         </div>
         <a href="/probnyi-urok?lang=ru" class="hidden sm:inline-flex bg-fox-500 hover:bg-fox-600 text-white font-black text-sm px-4 py-2 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap">Пробный урок</a>
         <button type="button" id="burger" class="nav:hidden flex flex-col gap-1 p-2 -mr-2" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -331,6 +336,6 @@
   </div>
 </footer>
 
-<script src="/js/lang.js?v=20260906" defer></script>
+<script src="/js/lang.js?v=20260906g" defer></script>
 </body>
 </html>

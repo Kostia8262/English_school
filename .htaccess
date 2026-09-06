@@ -107,7 +107,12 @@ ErrorDocument 503 /503.html
   # ── 5. Політика вмісту ────────────────────────────────────────────────────
   # Раніше CSP тут не було: Tailwind приїжджав компілятором з CDN, і будь-яка
   # сувора політика ламала б сторінку мовчки. Після переходу на складений
-  # css/style.css зовнішніх джерел лишилося рівно чотири, і їх можна перелічити.
+  # css/style.css зовнішніх джерел лишилося небагато, і їх можна перелічити.
+  #
+  # Шрифтів у переліку більше немає: Nunito лежить у /fonts і підключається
+  # своїм @font-face, тому fonts.googleapis.com пішов зі style-src, а
+  # fonts.gstatic.com — з font-src. Немає й frame-src: єдиним кадром на сайті
+  # був noscript-iframe порожнього контейнера GTM, і його теж прибрано.
   #
   # 'unsafe-eval' у script-src потрібен Alpine: вирази з x-text та @click він
   # компілює через new Function. Прибрати його можна лише переїздом на
@@ -124,7 +129,7 @@ ErrorDocument 503 /503.html
   #
   # УВАГА: нові теги в GTM (піксель Meta, Hotjar тощо) ця політика заблокує,
   # доки їхній домен не додано в script-src і connect-src.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://script.google.com https://script.googleusercontent.com; frame-src https://www.googletagmanager.com; frame-ancestors 'self'; form-action 'self' https://script.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://unpkg.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://script.google.com https://script.googleusercontent.com; frame-ancestors 'self'; form-action 'self' https://script.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"

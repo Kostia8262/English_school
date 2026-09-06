@@ -496,6 +496,11 @@ def apply_links(doc):
         href = t[3].get("href")
         if not is_internal(href):
             continue
+        # Перемикач мови — теж <a>, і саме йому ?lang=ru дописувати не можна:
+        # кнопка «UA» веде на українську адресу й має нею лишитися. Дзеркало
+        # тієї самої перевірки в applyRu() у js/lang.js.
+        if "data-lang-btn" in t[3]:
+            continue
         doc.retag(i, lambda s, h=href: set_attr(s, "href", with_lang(h)))
         n += 1
     return n

@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- ═══ Google Tag Manager ═══ -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
-
     <!-- ═══ Google Analytics 4 ═══ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
@@ -51,10 +48,11 @@
 
     <meta name="theme-color" content="#FF6B35">
 
-    <!-- ═══ Google Fonts ═══ -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- ═══ Шрифт ═══ -->
+    <!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
+         cyrillic несе весь текст сторінки, тому її беремо наперед, не
+         чекаючи, доки браузер дочитає таблицю стилів. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 
     <!-- media обов'язковий: саме фото стоїть у блоці hidden lg:flex, тож без
          умови мобільний браузер тягнув 97 КБ картинки, яку ніколи не покаже -->
@@ -64,8 +62,8 @@
     
 
     <!-- ═══ Tailwind CSS CDN ═══ -->
-<link rel="preload" as="style" href="/css/style.css?v=20260906e"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906e" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906g"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906g" fetchpriority="high"/>
 
     <!-- ═══ Schema.org ═══
          Один @graph замість чотирьох окремих блоків. Раніше Organization,
@@ -1193,8 +1191,6 @@
      Alpine.js app root
 ════════════════════════════════════════════════ -->
 <body class="font-sans antialiased text-gray-800 bg-cream">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- ═══ Static content fallback for non-JS crawlers / AI agents (GPTBot, ClaudeBot, etc. don't execute JS) ═══ -->
   
@@ -1230,13 +1226,15 @@
                     <a class="hidden nav:block text-sm text-gray-400 hover:text-fox-500 transition-colors tracking-tight" href="tel:+380682522876">+38 (068) 252-28-76</a>
                 </div>
                 <!-- Language switcher: desktop only -->
+                <!-- Перемикач мови — посилання, а не кнопка. Кнопку, що міняє
+                     location.href, краулер не натискає: єдиною дорогою до
+                     ?lang=ru лишалися hreflang і карта сайту. Цього досить, щоб
+                     адресу знали, і замало, щоб вона отримувала вагу
+                     перелінковки. Клік усе одно перехоплює js/lang.js — щоб не
+                     загубити якір і решту запиту. -->
                 <div class="hidden nav:flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-                    <button class="px-2.5 py-1 rounded-full transition-all duration-200 bg-white shadow text-fox-600" data-lang-btn="uk">
-                        UA
-                    </button>
-                    <button class="px-2.5 py-1 rounded-full transition-all duration-200 text-gray-400 hover:text-gray-600" data-lang-btn="ru">
-                        RU
-                    </button>
+                    <a class="px-2.5 py-1 rounded-full transition-all duration-200 bg-white shadow text-fox-600" href="/" hreflang="uk" data-lang-btn="uk">UA</a>
+                    <a class="px-2.5 py-1 rounded-full transition-all duration-200 text-gray-400 hover:text-gray-600" href="/?lang=ru" hreflang="ru" data-lang-btn="ru">RU</a>
                 </div>
 
                 <!-- CTA button desktop -->
@@ -1268,8 +1266,8 @@
                 <div class="flex items-center gap-3 px-3 pt-3 mt-1 border-t border-gray-100">
                     <span class="text-xs text-gray-400 font-semibold">Язык</span>
                     <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-                        <button class="px-2.5 py-1 rounded-full transition-all duration-200 bg-white shadow text-fox-600" data-lang-btn="uk">UA</button>
-                        <button class="px-2.5 py-1 rounded-full transition-all duration-200 text-gray-400 hover:text-gray-600" data-lang-btn="ru">RU</button>
+                        <a class="px-2.5 py-1 rounded-full transition-all duration-200 bg-white shadow text-fox-600" href="/" hreflang="uk" data-lang-btn="uk">UA</a>
+                        <a class="px-2.5 py-1 rounded-full transition-all duration-200 text-gray-400 hover:text-gray-600" href="/?lang=ru" hreflang="ru" data-lang-btn="ru">RU</a>
                     </div>
                 </div>
             </div>
@@ -6459,7 +6457,7 @@
 
 
 <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
-<script src="/js/lang.js?v=20260906e" defer></script>
-<script src="/js/home.js?v=20260906e" defer></script>
+<script src="/js/lang.js?v=20260906g" defer></script>
+<script src="/js/home.js?v=20260906g" defer></script>
 </body>
 </html>

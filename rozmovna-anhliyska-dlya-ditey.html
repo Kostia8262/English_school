@@ -4,9 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MLTS9FQ3');</script>
-<!-- Google Analytics 4 -->
+<!-- Google Analytics 4. Контейнера GTM тут більше немає: він був порожній
+     («tags»:[]), тобто 331 КБ рушія на кожне завантаження не робили нічого,
+     а лічильник і так стоїть прямим gtag.js. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 
@@ -41,9 +41,10 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
+     cyrillic несе весь текст сторінки, тому її беремо наперед, не чекаючи,
+     доки браузер дочитає таблицю стилів. -->
+<link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey#webpage","url":"https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey","name":"Розмовна англійська для дітей онлайн — FluentFox","description":"Розмовна англійська для дітей 6–18 років: групи до 6 учнів, чверть уроку говорить сама дитина, розмовні клуби за рівнями. Перший урок безкоштовний.","inLanguage":"uk","isPartOf":{"@id":"https://fluent-fox.site/#website"},"breadcrumb":{"@id":"https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey#breadcrumb"},"about":{"@id":"https://fluent-fox.site/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://fluent-fox.site/og-image.jpg"}},{"@type":"BreadcrumbList","@id":"https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://fluent-fox.site/","name":"Головна"}},{"@type":"ListItem","position":2,"item":{"@id":"https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey","name":"Розмовна англійська"}}]},{"@type":"Course","@id":"https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey#course","sameAs":"https://fluent-fox.site/#course-speaking","name":"Розмовна англійська для дітей 6–18 років","description":"Розмовна практика англійською для дітей і підлітків 6–18 років: групи до 6 учнів, робота в парах, дискусії, розбір помилок після завдання.","url":"https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey","provider":{"@id":"https://fluent-fox.site/#organization"},"educationalLevel":"Beginner","typicalAgeRange":"6-18","teaches":"говоріння, аудіювання, лексика, вимова","inLanguage":"uk","availableLanguage":["uk","ru"],"courseMode":["online","onsite"],"hasCourseInstance":[{"@type":"CourseInstance","name":"Група — 1 заняття на тиждень","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"uk","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/"},{"@type":"Place","name":"FluentFox — просп. Олександра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Олександра Поля, 28А","addressLocality":"Дніпро","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — вул. Будівельників","address":{"@type":"PostalAddress","streetAddress":"вулиця Будівельників, 25","addressLocality":"Дніпро","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"1800","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny"}},{"@type":"CourseInstance","name":"Група — 2 заняття на тиждень","courseMode":["online","onsite"],"courseWorkload":"PT3H","inLanguage":"uk","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/"},{"@type":"Place","name":"FluentFox — просп. Олександра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Олександра Поля, 28А","addressLocality":"Дніпро","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — вул. Будівельників","address":{"@type":"PostalAddress","streetAddress":"вулиця Будівельників, 25","addressLocality":"Дніпро","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3600","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny"}},{"@type":"CourseInstance","name":"Індивідуальні заняття","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"uk","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/"},{"@type":"Place","name":"FluentFox — просп. Олександра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Олександра Поля, 28А","addressLocality":"Дніпро","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — вул. Будівельників","address":{"@type":"PostalAddress","streetAddress":"вулиця Будівельників, 25","addressLocality":"Дніпро","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3000","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny"}}],"offers":{"@type":"AggregateOffer","priceCurrency":"UAH","lowPrice":"1800","highPrice":"3600","offerCount":3,"availability":"https://schema.org/InStock","url":"https://fluent-fox.site/tsiny","priceSpecification":{"@type":"UnitPriceSpecification","priceCurrency":"UAH","price":"1800","billingDuration":"P1M"}}},{"@type":"FAQPage","@id":"https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey#faq","isPartOf":{"@id":"https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey#webpage"},"mainEntity":[{"@type":"Question","name":"Чи є у вас окремий розмовний клуб?","acceptedAnswer":{"@type":"Answer","text":"Розмовна практика вбудована в кожен урок усіх трьох програм, окремої оплати за неї немає. Продавати говоріння окремим курсом означало б визнати, що на звичайних уроках діти мовчать."}},{"@type":"Question","name":"Дитина знає граматику краще за однокласників, але мовчить. З чого почати?","acceptedAnswer":{"@type":"Answer","text":"З пробного уроку — на ньому видно, яка саме з трьох причин мовчання працює. Найчастіше в такої дитини третя: вона знає забагато правил і перевіряє кожну фразу на правильність, перш ніж сказати. Це знімається практикою, де помилка нічого не коштує."}},{"@type":"Question","name":"Чи не заважає група — може, віч-на-віч дитина говорила б більше?","acceptedAnswer":{"@type":"Answer","text":"Кількість хвилин — так, більше. Якість — ні. З учителем дитина говорить у передбачуваному ритмі: питання, відповідь, питання. З ровесником доводиться реагувати на несподіване, а це і є розмова. Оптимально — почати індивідуально й перейти в групу, щойно зникне страх."}},{"@type":"Question","name":"Як допомогти дитині говорити вдома?","acceptedAnswer":{"@type":"Answer","text":"Не питати «як буде англійською?» — це перетворює розмову на іспит. Працює інше: дивитись разом коротке відео англійською й переказувати одне одному, що зрозуміли, обома мовами. Дитина говорить, але не відчуває перевірки."}},{"@type":"Question","name":"З якого віку є сенс у розмовних заняттях?","acceptedAnswer":{"@type":"Answer","text":"З самого початку, з 6–8 років. У цьому віці дитина ще не боїться звучати смішно — вона так само помиляється й рідною мовою. Найважче розговорити підлітка, який мовчав шість шкільних років: там доводиться спершу знімати звичку боятись, а вже потім вчити."}}]}]}</script>
 
@@ -59,8 +60,8 @@
 })();
 </script>
 
-<link rel="preload" as="style" href="/css/style.css?v=20260906"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906g"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906g" fetchpriority="high"/>
 <style>
   * { scroll-behavior: smooth; }
   .gradient-text {
@@ -75,7 +76,6 @@
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLTS9FQ3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-fox-100">
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,9 +95,14 @@
 
       <div class="flex items-center gap-3">
         <a href="tel:+380954624672" class="hidden nav:inline text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors duration-200">+38 (095) 462-46-72</a>
+        <!-- Перемикач мови — посилання, а не кнопка. Кнопку, що міняє
+             location.href, краулер не натискає: єдиною дорогою до ?lang=ru
+             лишалися hreflang і карта сайту. Цього досить, щоб адресу знали,
+             і замало, щоб вона отримувала вагу перелінковки. Клік усе одно
+             перехоплює js/lang.js — щоб не загубити якір і решту запиту. -->
         <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
-          <button type="button" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</button>
-          <button type="button" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</button>
+          <a href="/rozmovna-anhliyska-dlya-ditey" hreflang="uk" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
+          <a href="/rozmovna-anhliyska-dlya-ditey?lang=ru" hreflang="ru" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
         </div>
         <a href="/probnyi-urok" class="hidden sm:inline-flex bg-fox-500 hover:bg-fox-600 text-white font-black text-sm px-4 py-2 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap" data-ru="Пробный урок">Пробний урок</a>
         <button type="button" id="burger" class="nav:hidden flex flex-col gap-1 p-2 -mr-2" aria-label="Меню" data-ru-aria="Меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -353,6 +358,6 @@
   </div>
 </footer>
 
-<script src="/js/lang.js?v=20260906" defer></script>
+<script src="/js/lang.js?v=20260906g" defer></script>
 </body>
 </html>
