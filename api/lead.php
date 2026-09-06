@@ -107,8 +107,18 @@ function normalize_phone(string $raw): ?string
 
 function clean(string $s, int $max): string
 {
-    $s = trim(preg_replace('/[\x00-\x1F\x7F]+/u', ' ', $s) ?? '');
-    return mb_substr($s, 0, $max);
+    // Невалідний UTF-8 раніше з'їдав значення цілком: preg_replace з /u повертає
+    // null на битих байтах, і ім'я ставало порожнім — людина бачила «Вкажіть
+    // імʼя», хоча вписала його. З браузера таке тіло не прийде, але тиха втрата
+    // заявки через технічну дрібницю — рівно те, заради чого цей файл і заведений.
+    if (!mb_check_encoding($s, 'UTF-8')) {
+        $s = mb_convert_encoding($s, 'UTF-8', 'UTF-8');
+    }
+    $stripped = preg_replace('/[[:cntrl:]]+/u', ' ', $s);
+    if ($stripped === null) {
+        $stripped = preg_replace('/[[:cntrl:]]+/', ' ', $s) ?? $s;
+    }
+    return mb_substr(trim($stripped), 0, $max);
 }
 
 /**
