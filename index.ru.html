@@ -62,8 +62,8 @@
     
 
     <!-- ═══ Tailwind CSS CDN ═══ -->
-<link rel="preload" as="style" href="/css/style.css?v=20260906h"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906h" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906i"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906i" fetchpriority="high"/>
 
     <!-- ═══ Schema.org ═══
          Один @graph замість чотирьох окремих блоків. Раніше Organization,
@@ -939,7 +939,7 @@
 
 
 <!-- ═══════════════════════ PROGRAM (TABS) ═══════════════════════ -->
-<section class="py-20 bg-gradient-to-b from-fox-50 to-white relative overflow-hidden" id="program">
+<section class="py-8 md:py-20 bg-gradient-to-b from-fox-50 to-white relative overflow-hidden" id="program">
     <!-- Subtle decorative glows -->
     <div class="absolute inset-0 pointer-events-none">
         <div class="absolute -top-20 -right-20 w-80 h-80 bg-fox-500/6 rounded-full blur-3xl"></div>
@@ -949,7 +949,7 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <!-- Section header (light pattern) -->
-        <div class="text-center mb-14">
+        <div class="text-center mb-8 md:mb-14">
             <span class="hidden md:inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4">Программа</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3">Что изучает ваш ребёнок</h2>
             <p class="text-gray-500 text-sm sm:text-base md:text-lg">Детальная программа на 150+ занятий для каждой возрастной группы</p>
@@ -5350,10 +5350,10 @@
 <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <footer class="bg-gray-950 text-gray-400 py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mb-10">
 
-            <!-- Brand -->
-            <div class="md:col-span-2">
+            <!-- Brand + contacts -->
+            <div>
                 <a class="flex items-center gap-2 mb-3" href="#">
                     <span class="text-3xl">🦊</span>
                     <span class="text-2xl font-black text-white">Fluent<span class="text-fox-400">Fox</span></span>
@@ -5371,9 +5371,16 @@
                         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
                     </a>
                 </div>
+                <h4 class="text-white font-black text-base mb-4 mt-6 uppercase tracking-wide">Контакты</h4>
+                <ul class="space-y-2 text-base">
+                    <li class="flex items-center gap-2"><span>📞</span> <a class="hover:text-fox-400 transition-colors" href="tel:+380954624672">+38 (095) 462-46-72</a></li>
+                    <li class="flex items-center gap-2"><span>📞</span> <a class="hover:text-fox-400 transition-colors" href="tel:+380682522876">+38 (068) 252-28-76</a></li>
+                    <li class="flex items-center gap-2"><span>✉️</span> <a class="hover:text-fox-400 transition-colors" href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a></li>
+                    <li class="flex items-center gap-2"><span>⏰</span> <span>Пн–Пт: 9:00–20:00, Сб: 10:00–18:00</span></li>
+                </ul>
             </div>
 
-            <!-- Nav links -->
+            <!-- Nav + partners -->
             <div>
                 <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide">Навигация</h4>
                 <ul class="space-y-2 text-base">
@@ -5382,24 +5389,6 @@
                     <li><a class="hover:text-fox-400 transition-colors" href="#prices">Цены</a></li>
                     <li><a class="hover:text-fox-400 transition-colors" href="#reviews">Отзывы</a></li>
                     <li><a class="hover:text-fox-400 transition-colors" href="blog/?lang=ru">Блог</a></li>
-                </ul>
-
-                <h4 class="text-white font-black text-base mb-4 mt-6 uppercase tracking-wide">Разделы</h4>
-                <ul class="space-y-2 text-base">
-                    <li><a class="hover:text-fox-400 transition-colors" href="/anhliyska-6-8-rokiv?lang=ru">Английский 6–8 лет</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/anhliyska-9-12-rokiv?lang=ru">Английский 9–12 лет</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/anhliyska-13-18-rokiv?lang=ru">Английский 13–18 лет</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/kursy-anhliyskoyi-dlya-ditey?lang=ru">Курсы английского</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/anhliyska-onlayn-dlya-ditey?lang=ru">Английский онлайн</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/repetytor-z-anhliyskoyi?lang=ru">Репетитор по английскому</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/rozmovna-anhliyska-dlya-ditey?lang=ru">Разговорный английский</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/pidhotovka-do-nmt?lang=ru">Подготовка к НМТ</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/cambridge?lang=ru">Экзамены Cambridge</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/dnipro?lang=ru">Английский в Днепре</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/tsiny?lang=ru">Цены и скидки</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/vidhuky?lang=ru">Отзывы</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/pro-shkolu?lang=ru">О школе</a></li>
-                    <li><a class="hover:text-fox-400 transition-colors" href="/probnyi-urok?lang=ru">Пробный урок</a></li>
                 </ul>
 
                 <h4 class="text-white font-black text-base mb-4 mt-6 uppercase tracking-wide">Партнёры</h4>
@@ -5414,14 +5403,24 @@
                 </ul>
             </div>
 
-            <!-- Contacts -->
-            <div>
-                <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide">Контакты</h4>
-                <ul class="space-y-2 text-base">
-                    <li class="flex items-center gap-2"><span>📞</span> <a class="hover:text-fox-400 transition-colors" href="tel:+380954624672">+38 (095) 462-46-72</a></li>
-                    <li class="flex items-center gap-2"><span>📞</span> <a class="hover:text-fox-400 transition-colors" href="tel:+380682522876">+38 (068) 252-28-76</a></li>
-                    <li class="flex items-center gap-2"><span>✉️</span> <a class="hover:text-fox-400 transition-colors" href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a></li>
-                    <li class="flex items-center gap-2"><span>⏰</span> <span>Пн–Пт: 9:00–20:00, Сб: 10:00–18:00</span></li>
+            <!-- Sections: two inner columns -->
+            <div class="sm:col-span-2">
+                <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide">Разделы</h4>
+                <ul class="sm:columns-2 gap-x-6 space-y-2 text-base [&>li]:break-inside-avoid">
+                    <li><a class="hover:text-fox-400 transition-colors" href="/anhliyska-6-8-rokiv?lang=ru">Английский 6–8 лет</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/anhliyska-9-12-rokiv?lang=ru">Английский 9–12 лет</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/anhliyska-13-18-rokiv?lang=ru">Английский 13–18 лет</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/kursy-anhliyskoyi-dlya-ditey?lang=ru">Курсы английского</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/anhliyska-onlayn-dlya-ditey?lang=ru">Английский онлайн</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/repetytor-z-anhliyskoyi?lang=ru">Репетитор по английскому</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/rozmovna-anhliyska-dlya-ditey?lang=ru">Разговорный английский</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/pidhotovka-do-nmt?lang=ru">Подготовка к НМТ</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/cambridge?lang=ru">Экзамены Cambridge</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/dnipro?lang=ru">Английский в Днепре</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/tsiny?lang=ru">Цены и скидки</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/vidhuky?lang=ru">Отзывы</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/pro-shkolu?lang=ru">О школе</a></li>
+                    <li><a class="hover:text-fox-400 transition-colors" href="/probnyi-urok?lang=ru">Пробный урок</a></li>
                 </ul>
             </div>
         </div>
@@ -5487,7 +5486,7 @@
 
 
 <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
-<script src="/js/lang.js?v=20260906h" defer></script>
-<script src="/js/home.js?v=20260906h" defer></script>
+<script src="/js/lang.js?v=20260906i" defer></script>
+<script src="/js/home.js?v=20260906i" defer></script>
 </body>
 </html>
