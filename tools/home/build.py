@@ -44,7 +44,7 @@ OUT = os.path.join(ROOT, "index.html")
 
 # Версія в query до style.css і до скриптів. Піднімати руками разом зі
 # складанням CSS — інакше повернені відвідувачі отримають старий файл.
-ASSET_VERSION = "20260906b"
+ASSET_VERSION = "20260906c"
 
 LANGS = ("uk", "ru")
 

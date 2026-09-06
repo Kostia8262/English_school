@@ -182,7 +182,11 @@
 
   /* ── Форма запису ───────────────────────────────────────────────────── */
 
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAA1T6SIdTeldgSFmT-3HUEfRBUIq7-v79uGBe3UbVnTQBlespZMrsgNQMqmZKCzEGqA/exec';
+  /* Свій же домен. Раніше тут був прямий адрес Google Apps Script — і
+     заявка жила рядком у таблиці, без статусу, без «передзвонили»
+     і без будь-якого нагадування. Тепер заявка йде в api/lead.php, а той
+     розкладає її в CRM «Мій комп'ютер» і дублює в ту саму таблицю. */
+  var LEAD_URL = '/api/lead.php';
 
   var INPUT_BAD = ['border-red-400', 'bg-red-50'];
   var INPUT_OK = ['border-gray-200', 'bg-gray-50'];
@@ -231,13 +235,6 @@
       show(one('[data-submit-label]', form), false);
       show(one('[data-submit-spinner]', form), true);
 
-      /* URLSearchParams, а не FormData — різниця тут не косметична.
-         Apps Script на /exec відповідає редиректом на script.googleusercontent.com,
-         і після цього редиректу відповідь на multipart-запит браузер прочитати
-         не може — fetch падає з Failed to fetch. Те саме тіло в
-         application/x-www-form-urlencoded проходить і читається. Перевірено
-         06.09.2026 прямо на fluent-fox.site під бойовою CSP. Скрипт читає
-         e.parameter, тож йому все одно, яким чином прийшли поля. */
       var body = new URLSearchParams();
       body.append('name', name.value.trim());
       body.append('phone', phone.value.trim());
@@ -246,31 +243,25 @@
       body.append('lang', document.documentElement.lang || 'uk');
       body.append('timestamp', new Date().toLocaleString('uk-UA'));
 
-      /* Тут стояв mode: 'no-cors'. Відповідь була непрозорою, тому .then()
-         спрацьовував завжди — і форма показувала «Заявку прийнято» навіть
-         тоді, коли сервер відмовив. Саме так у сусідньій мережі два місяці
-         тихо губилися заявки.
-
-         Apps Script віддає Access-Control-Allow-Origin: * і на /exec, і на
-         редиректі, куди той веде, а urlencoded — тип із безпечного
-         списку, тож preflight не шлеться. Звичайний запит читається, і
-         «успіх» тепер означає «сервер підтвердив», а не «запит пішов».
-
-         Зворотний бік свідомий: якщо запит дійшов, а відповідь прочитати
-         не вдалося, людина побачить помилку при записаній заявці й подзвонить
-         або надішле ще раз. Це дешевше за зворотне — втрачену заявку, про
-         яку ніхто ніколи не дізнається. */
-      fetch(SCRIPT_URL, { method: 'POST', body: body })
+      /* Запит свій-до-свого: ні CORS, ні preflight, ні редиректів — відповідь
+         читається завжди. Це й було головною причиною переїзду: раніше тут
+         стояв mode: 'no-cors', відповідь була непрозорою, і форма показувала
+         «Заявку прийнято» навіть тоді, коли сервер відмовив. */
+      fetch(LEAD_URL, { method: 'POST', body: body })
         .then(function (res) {
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          return res.text();
+          return res.text().then(function (text) {
+            var data = null;
+            try { data = JSON.parse(text); } catch (e) { /* розберемо нижче */ }
+            /* Успіх — тільки за явним підтвердженням. Двісті від
+               сторінки хостингу чи від невиконаного PHP не має
+               читатись як «заявка прийнята». */
+            if (!res.ok || !data || data.result !== 'success') {
+              throw new Error((data && data.message) || ('HTTP ' + res.status + ' ' + text.slice(0, 160)));
+            }
+            return data;
+          });
         })
-        .then(function (text) {
-          /* Apps Script відповідає {"result":"success"}. Будь-що інше — відмова
-             або його власна сторінка помилки, яка приходить з кодом 200. */
-          if (text.indexOf('"success"') === -1) {
-            throw new Error(String(text).slice(0, 200));
-          }
+        .then(function () {
           show(form, false);
           show(success, true);
           if (typeof gtag !== 'undefined') {
