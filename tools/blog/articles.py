@@ -26,6 +26,10 @@ from art_dopomoha_vdoma import ART as VDOMA
 from art_tsiny import ART as TSINY
 from art_nmt import ART as NMT
 from art_cambridge import ART as CAMBRIDGE
+from art_hrupovi import ART as HRUPOVI
+from art_domashka import ART as DOMASHKA
+from art_zagovoryty import ART as ZAGOVORYTY
+from art_motyvatsiya import ART as MOTYVATSIYA
 
 ARTICLES = [
     SHKILNA,
@@ -41,4 +45,8 @@ ARTICLES = [
     TSINY,
     NMT,
     CAMBRIDGE,
+    HRUPOVI,
+    DOMASHKA,
+    ZAGOVORYTY,
+    MOTYVATSIYA,
 ]
