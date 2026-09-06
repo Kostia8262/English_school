@@ -47,18 +47,18 @@
      cyrillic несе весь текст сторінки, тому її беремо наперед, не
      чекаючи, доки браузер дочитає таблицю стилів. -->
 <link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
-<link rel="preload" as="style" href="/css/style.css?v=20260906h"/>
-<link rel="stylesheet" href="/css/style.css?v=20260906h" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260906l"/>
+<link rel="stylesheet" href="/css/style.css?v=20260906l" fetchpriority="high"/>
 <style>
 .gradient-text{background:linear-gradient(135deg,#FF6B35,#E54E1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.prose h2{font-size:1.375rem;font-weight:900;color:#111827;margin-top:2rem;margin-bottom:.75rem;line-height:1.25;padding-left:.875rem;border-left:4px solid #FF6B35}
+.prose h2{font-size:1.25rem;font-weight:900;color:#111827;margin-top:2rem;margin-bottom:.75rem;line-height:1.25;padding-left:.875rem;border-left:4px solid #FF6B35}
 .prose h3{font-size:1.125rem;font-weight:800;color:#374151;margin-top:1.5rem;margin-bottom:.5rem}
 .prose h3.qa-q{color:#BF3C0F}
-.prose p{color:#374151;line-height:1.75;margin-bottom:1rem;font-size:1rem}
+.prose p{color:#374151;line-height:1.625;margin-bottom:1rem;font-size:1rem}
 .prose ul,.prose ol{margin:.75rem 0 1rem 0;display:flex;flex-direction:column;gap:.5rem;padding-left:0}
 .prose ul{list-style:none}
 .prose ol{list-style:none;counter-reset:step}
-.prose li{position:relative;padding-left:1.5rem;color:#374151;line-height:1.7;font-size:1rem}
+.prose li{position:relative;padding-left:1.5rem;color:#374151;line-height:1.625;font-size:1rem}
 .prose ul li::before{content:'';position:absolute;left:0;top:.55em;width:.5rem;height:.5rem;border-radius:50%;background:#FF6B35}
 .prose ol li{counter-increment:step;padding-left:2rem}
 .prose ol li::before{content:counter(step);position:absolute;left:0;top:.1em;width:1.35rem;height:1.35rem;border-radius:50%;background:#FFE8D6;color:#BF3C0F;font-size:.8rem;font-weight:900;display:flex;align-items:center;justify-content:center}
@@ -91,7 +91,10 @@
     <div class="flex items-center justify-between h-16">
       <a href="/" class="flex items-center gap-2">
         <span class="text-3xl">&#129418;</span>
-        <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
+        <span class="flex flex-col leading-none">
+          <span class="text-2xl font-black text-gray-900 leading-none">Fluent<span class="gradient-text">Fox</span></span>
+          <span class="text-2xs font-bold uppercase tracking-widest text-gray-500 mt-1">English School</span>
+        </span>
       </a>
       <div class="hidden md:flex items-center gap-6">
         <a href="/pro-shkolu" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors">Про нас</a>
@@ -214,8 +217,11 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
       <a href="/" class="flex items-center gap-2">
-        <span class="text-2xl">&#129418;</span>
-        <span class="text-xl font-black text-white">Fluent<span class="text-fox-500">Fox</span></span>
+        <span class="text-3xl">&#129418;</span>
+        <span class="flex flex-col leading-none">
+          <span class="text-xl font-black text-white leading-none">Fluent<span class="text-fox-500">Fox</span></span>
+          <span class="text-2xs font-bold uppercase tracking-widest text-gray-400 mt-1">English School</span>
+        </span>
       </a>
       <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm">
         <a href="/" class="hover:text-fox-400 transition-colors">Головна</a>

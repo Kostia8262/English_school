@@ -69,8 +69,8 @@ def render_block(b):
     kind = b[0]
 
     if kind == "h2":
-        return ('      <h2 class="text-2xl md:text-4xl font-black text-gray-900 '
-                'leading-tight mb-4 mt-12 first:mt-0"%s</h2>' % attr_ru(b[1], b[2]))
+        return ('      <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 '
+                'leading-tight mb-4 mt-8 sm:mt-12 first:mt-0"%s</h2>' % attr_ru(b[1], b[2]))
 
     if kind == "h3":
         return ('      <h3 class="text-xl font-black text-gray-900 leading-tight '
@@ -233,7 +233,7 @@ def render_agegroups(p):
             '    <div class="text-center mb-10 md:mb-14">\n'
             '      <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 '
             'py-1.5 rounded-full mb-4 shadow-sm"%s</span>\n'
-            '      <h2 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-3"%s</h2>\n'
+            '      <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3"%s</h2>\n'
             '      <p class="text-gray-500 text-base md:text-lg max-w-xl mx-auto"%s</p>\n'
             '    </div>\n'
             '    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">\n%s\n    </div>\n'
@@ -383,7 +383,10 @@ HEADER = """
     <div class="flex items-center justify-between h-16">
       <a href="/" class="flex items-center gap-2 flex-none">
         <span class="text-3xl" aria-hidden="true">&#129418;</span>
-        <span class="text-2xl font-black text-gray-900">Fluent<span class="gradient-text">Fox</span></span>
+        <span class="flex flex-col leading-none">
+          <span class="text-2xl font-black text-gray-900 leading-none">Fluent<span class="gradient-text">Fox</span></span>
+          <span class="text-2xs font-bold uppercase tracking-widest text-gray-500 mt-1">English School</span>
+        </span>
       </a>
 
       <ul class="hidden nav:flex items-center gap-6">
@@ -435,8 +438,11 @@ FOOTER = """
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
       <div>
         <a href="/" class="flex items-center gap-2 mb-3">
-          <span class="text-2xl" aria-hidden="true">&#129418;</span>
-          <span class="text-xl font-black text-white">Fluent<span class="text-fox-500">Fox</span></span>
+          <span class="text-3xl" aria-hidden="true">&#129418;</span>
+          <span class="flex flex-col leading-none">
+            <span class="text-xl font-black text-white leading-none">Fluent<span class="text-fox-500">Fox</span></span>
+            <span class="text-2xs font-bold uppercase tracking-widest text-gray-400 mt-1">English School</span>
+          </span>
         </a>
         <p class="text-sm leading-relaxed" data-ru="Онлайн-школа английского языка для детей и подростков 6–18 лет.">Онлайн-школа англійської мови для дітей та підлітків 6–18 років.</p>
       </div>
@@ -507,9 +513,9 @@ def render_faq(p):
     return """
 <section class="py-8 md:py-20 bg-fox-50">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-14">
+    <div class="text-center mb-8 md:mb-14">
       <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" data-ru="Вопросы">Питання</span>
-      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-3 leading-tight" data-ru="Частые вопросы">Часті питання</h2>
+      <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 mb-3 leading-tight" data-ru="Частые вопросы">Часті питання</h2>
     </div>
     <div class="flex flex-col gap-4">
 %s
@@ -533,7 +539,7 @@ def render_related(p):
     return """
 <section class="py-8 md:py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-2xl md:text-3xl font-black text-gray-900 mb-8 leading-tight" data-ru="Читайте также">Читайте також</h2>
+    <h2 class="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 mb-6 sm:mb-8 leading-tight" data-ru="Читайте также">Читайте також</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 %s
     </div>
@@ -545,7 +551,7 @@ def render_related(p):
 CTA = """
 <section class="py-8 md:py-16 bg-gradient-to-br from-fox-500 to-fox-600">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-2xl md:text-4xl font-black text-white mb-3 leading-tight" data-ru="Первый урок — бесплатно">Перший урок — безкоштовно</h2>
+    <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white mb-3 leading-tight" data-ru="Первый урок — бесплатно">Перший урок — безкоштовно</h2>
     <p class="text-base md:text-lg text-white/90 leading-relaxed mb-8" data-ru="Познакомимся с ребёнком, определим уровень и покажем, как проходят занятия. Без оплаты и без обязательств.">Познайомимось з дитиною, визначимо рівень і покажемо, як минають заняття. Без оплати та без зобов'язань.</p>
     <div class="flex flex-wrap gap-3 justify-center">
       <a href="/#form" class="inline-flex items-center bg-white text-fox-600 hover:bg-fox-50 font-black text-base px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200" data-ru="Записаться на урок">Записатись на урок</a>
@@ -581,7 +587,7 @@ def render_page(p):
     hero = ('\n<section class="pt-8 pb-8 md:pb-14">\n'
             '  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">\n'
             '    <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4"%s</span>\n'
-            '    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-5 max-w-3xl"%s</h1>\n'
+            '    <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-5 max-w-3xl"%s</h1>\n'
             '    <p class="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mb-8"%s</p>\n'
             '    <div class="flex flex-wrap gap-3">\n'
             '      <a href="/#form" class="inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200" data-ru="Бесплатный урок">Безкоштовний урок</a>\n'
