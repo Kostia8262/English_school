@@ -47,6 +47,7 @@ jobs:
         env:
           SSHPASS:   ${{ secrets.SFTP_PASSWORD }}
           CRM_TOKEN: ${{ secrets.CRM_ADMIN_TOKEN }}
+          CANARY:    ${{ secrets.CANARY_TOKEN }}
           SHEET_URL: https://script.google.com/macros/s/AKfycbxAA1T6SIdTeldgSFmT-3HUEfRBUIq7-v79uGBe3UbVnTQBlespZMrsgNQMqmZKCzEGqA/exec
         run: |
           if [ -z "$CRM_TOKEN" ]; then
@@ -56,6 +57,7 @@ jobs:
           # base64 замість екранування лапок: на виході тільки A-Za-z0-9+/=,
           # тож рядок не розірве PHP-літерал, хай яким буде токен.
           token=$(printf '%s' "$CRM_TOKEN" | base64 -w0)
+          canary=$(printf '%s' "$CANARY" | base64 -w0)
           {
             echo "<?php"
             echo "// Складає деплой із секрету CRM_ADMIN_TOKEN. Руками не правити:"
@@ -64,6 +66,7 @@ jobs:
             echo "    'crm_token' => base64_decode('${token}'),"
             echo "    'crm_url'   => 'https://mycomputer.education/api/leads/admin',"
             echo "    'sheet_url' => '${SHEET_URL}',"
+            echo "    'canary_token' => base64_decode('${canary}'),"
             echo "];"
           } | sshpass -e ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no \
                 ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }} \

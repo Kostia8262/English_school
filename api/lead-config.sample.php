@@ -20,4 +20,9 @@ return [
     'crm_token' => 'ТУТ_MAIN_ADMIN_TOKEN',
     'crm_url'   => 'https://mycomputer.education/api/leads/admin',
     'sheet_url' => 'https://script.google.com/macros/s/AKfycbxAA1T6SIdTeldgSFmT-3HUEfRBUIq7-v79uGBe3UbVnTQBlespZMrsgNQMqmZKCzEGqA/exec',
+
+    // Той самий CANARY_TOKEN, що й у сайтів мережі — інакше сторож
+    // доставки не зможе перевірити цей сайт, а не завести сміттєвий лід.
+    // Немає — перевірка просто вимкнена, заявки це ніяк не чіпає.
+    'canary_token' => '',
 ];

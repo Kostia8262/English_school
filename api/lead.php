@@ -17,7 +17,8 @@
  *
  * Токен CRM у репозиторій не потрапляє. Він лежить у lead-config.php на рівень
  * вище за public_html — rsync деплою чистить тільки public_html, тож файл
- * переживає викатки. Зразок конфіга див. у api/lead-config.sample.php.
+ * переживає викатки. Кладе його деплой із секрету CRM_ADMIN_TOKEN; зразок для
+ * ручної установки — api/lead-config.sample.php.
  */
 
 declare(strict_types=1);
@@ -25,10 +26,12 @@ declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
-const LOG_NAME    = 'lead-errors.log';
-const RATE_MAX    = 10;          // заявок з однієї адреси
-const RATE_WINDOW = 15 * 60;     // за 15 хвилин — та сама норма, що в CRM
-const TIMEOUT     = 8;           // секунд на кожного отримувача
+const LOG_NAME       = 'lead-errors.log';
+const RATE_MAX       = 10;          // заявок з однієї адреси
+const RATE_WINDOW    = 15 * 60;     // за 15 хвилин — та сама норма, що в CRM
+const TIMEOUT        = 8;           // секунд на кожного отримувача
+const CANARY_HEADER  = 'HTTP_X_CANARY';
+const CANARY_MIN_LEN = 16;
 
 /** Каталог поруч із lead-config.php: на рівень вище за public_html. */
 function private_dir(): string
@@ -36,12 +39,16 @@ function private_dir(): string
     return dirname(__DIR__, 2);
 }
 
-function fail(int $code, string $message, array $extra = []): void
+function respond(int $code, array $payload): void
 {
     http_response_code($code);
-    echo json_encode(['result' => 'error', 'message' => $message] + $extra,
-                     JSON_UNESCAPED_UNICODE);
+    echo json_encode($payload, JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+function fail(int $code, string $message, array $extra = []): void
+{
+    respond($code, ['result' => 'error', 'message' => $message] + $extra);
 }
 
 /**
@@ -131,11 +138,22 @@ function post_to(string $url, string $body, array $headers): array
     return [$code >= 200 && $code < 300, $code, (string) $out];
 }
 
-// ── Перевірки запиту ────────────────────────────────────────────────────────
+// ── Проба канарейки ─────────────────────────────────────────────────────────
+// GET сюди шле сторож доставки — питає, чи знає цей сайт про канарейку.
+// Питання не формальне: якщо деплой не доїхав і код тут старий, заголовок
+// x-canary буде проігноровано, і нічна перевірка заведе в CRM сміттєвий лід.
+// Тому сторож спершу питає, і лише отримавши відповідь, шле заявку.
+// Секрету проба не потребує й нічого про нього не повідомляє.
+
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET') {
+    respond(200, ['canary' => true, 'probe' => true]);
+}
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     fail(405, 'Method not allowed');
 }
+
+// ── Конфіг ──────────────────────────────────────────────────────────────────
 
 $config_path = private_dir() . '/lead-config.php';
 if (!is_readable($config_path)) {
@@ -147,10 +165,32 @@ if (!is_readable($config_path)) {
 }
 $config = require $config_path;
 
+// ── Заявка сторожа ──────────────────────────────────────────────────────────
+// Правило дослівно те саме, що в server/canary.js мережі: запит із заголовком
+// x-canary НЕ створює заявку НІКОЛИ. Не збігся секрет або його не задано —
+// 503 і вихід. Інакше сторож, що потрапив на сайт із ненастроєним секретом,
+// щоночі мовчки складав би в базу сміттєвий лід.
+
+$is_canary = isset($_SERVER[CANARY_HEADER]);
+if ($is_canary) {
+    $secret = (string) ($config['canary_token'] ?? '');
+    if (strlen($secret) < CANARY_MIN_LEN
+        || !hash_equals($secret, (string) $_SERVER[CANARY_HEADER])) {
+        respond(503, [
+            'canary' => false,
+            'error'  => 'canary_token не заданий на сайті або не збігся',
+        ]);
+    }
+}
+
+// Ліміт канарейки не стосується: вона ходить раз на добу й не повинна
+// з'їдати квоту живих відвідувачів, а живий відвідувач — її.
 $ip = (string) ($_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0');
-if (rate_limited($ip)) {
+if (!$is_canary && rate_limited($ip)) {
     fail(429, 'Забагато спроб. Спробуйте за 15 хвилин або зателефонуйте нам.');
 }
+
+// ── Розбір заявки ───────────────────────────────────────────────────────────
 
 $name  = clean((string) ($_POST['name'] ?? ''), 120);
 $phone = normalize_phone((string) ($_POST['phone'] ?? ''));
@@ -174,9 +214,10 @@ if ($age < 3 || $age > 99) {
 // походження — у панелі заявка позначена як FluentFox, а не як заявка хаба.
 
 $crm_url = (string) ($config['crm_url'] ?? 'https://mycomputer.education/api/leads/admin');
+$crm     = ['configured' => !empty($config['crm_token']), 'reached' => false, 'accepted' => false];
 $crm_ok  = false;
 
-if (!empty($config['crm_token'])) {
+if ($crm['configured']) {
     $payload = [
         'child_name' => $name,
         'phone'      => $phone,
@@ -190,17 +231,52 @@ if (!empty($config['crm_token'])) {
         $payload['age'] = $age;
     }
 
+    $headers = ['Content-Type: application/json', 'x-admin-token: ' . $config['crm_token']];
+    if ($is_canary) {
+        // Той самий заголовок передається далі: CRM його впізнає й теж нічого
+        // не запише. Форвард при цьому справжній — перевіряється саме він.
+        $headers[] = 'x-canary: ' . $_SERVER[CANARY_HEADER];
+    }
+
+    $started = microtime(true);
     [$crm_ok, $code, $body] = post_to(
         $crm_url,
         json_encode($payload, JSON_UNESCAPED_UNICODE) ?: '{}',
-        ['Content-Type: application/json', 'x-admin-token: ' . $config['crm_token']]
+        $headers
     );
+    $crm['reached'] = $code > 0;
+    $crm['status']  = $code;
+    $crm['ms']      = (int) round((microtime(true) - $started) * 1000);
 
-    if (!$crm_ok) {
-        log_problem(sprintf('CRM FAIL http=%d %s | %s', $code, substr($body, 0, 300), $phone));
+    if ($is_canary) {
+        // Прийнято — лише за явним підтвердженням CRM. Двохсотка від чужої
+        // заглушки чи сторінки-редиректа не має читатись як «доставка жива».
+        $json = json_decode($body, true);
+        $crm['accepted'] = is_array($json)
+                           && ($json['canary'] ?? null) === true
+                           && ($json['accepted'] ?? null) === true;
+        if (!$crm['accepted']) {
+            $crm['error'] = mb_substr(is_array($json) && isset($json['error'])
+                                      ? (string) $json['error'] : $body, 0, 200);
+        }
+    } else {
+        $crm['accepted'] = $crm_ok;
+        if (!$crm_ok) {
+            $crm['error'] = mb_substr($body, 0, 200);
+            log_problem(sprintf('CRM FAIL http=%d %s | %s', $code, substr($body, 0, 300), $phone));
+        }
     }
 } else {
-    log_problem('CRM SKIP: crm_token не заданий у lead-config.php');
+    $crm['error'] = 'crm_token не заданий у lead-config.php';
+    if (!$is_canary) {
+        log_problem('CRM SKIP: ' . $crm['error']);
+    }
+}
+
+// Далі — запис. Канарейці сюди не можна: усе, що вона мала перевірити (шлях
+// живий, токен приймають, CRM відповідає), уже позаду.
+if ($is_canary) {
+    respond(200, ['canary' => true, 'written' => false, 'crm' => $crm]);
 }
 
 // ── Отримувач 2: Google-таблиця ─────────────────────────────────────────────
@@ -232,14 +308,13 @@ if (!empty($config['sheet_url'])) {
 // відповідаємо помилкою чесно — форма покаже червоний блок і телефон.
 
 if ($crm_ok || $sheet_ok) {
-    echo json_encode([
+    respond(200, [
         'result' => 'success',
         'stored' => array_values(array_filter([
             $crm_ok ? 'crm' : null,
             $sheet_ok ? 'sheet' : null,
         ])),
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
+    ]);
 }
 
 log_problem('LOST ' . $name . ' ' . $phone . ' — не прийняв ніхто');
