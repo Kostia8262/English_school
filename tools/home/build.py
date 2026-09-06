@@ -787,6 +787,13 @@ def main():
     import ru_pages
     ru_pages.build([OUT])
 
+    # Дата головної в карті сайту. Модуль проходить усю карту, крім статей
+    # блогу — у тих дата береться з джерела статті і має власного господаря
+    # (site_index.update_sitemap). Переставляє тільки те, де змінився вміст.
+    sys.path.insert(0, os.path.join(ROOT, "tools", "sitemap"))
+    import lastmod
+    lastmod.refresh()
+
 
 if __name__ == "__main__":
     main()

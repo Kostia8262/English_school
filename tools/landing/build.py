@@ -21,8 +21,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
+sys.path.insert(0, os.path.join(ROOT, "tools", "sitemap"))
 
 import ru_pages as RU        # noqa: E402  — російські версії тих самих сторінок
+import lastmod as LASTMOD    # noqa: E402  — дати в sitemap.xml за вмістом
 import content as C          # noqa: E402  — хелпери + три вікові сторінки
 import pages_exams          # noqa: E402,F401  — НМТ і Cambridge, дописують C.PAGES
 import pages_service        # noqa: E402,F401  — ціни, відгуки, школа, пробний урок
@@ -613,6 +615,11 @@ def main():
     # сайті половина сторінок перекладена, половина ні.
     RU.build(paths, quiet=True)
     print("російські версії: %d файлів" % len(paths))
+
+    # Дати в карті сайту — теж тут, з тієї ж причини: окремою командою вони
+    # лишилися б від позаминулого складання. Переставляються лише там, де
+    # змінився вміст, тож зайвий запуск нічого не зрушить.
+    LASTMOD.refresh()
 
 
 if __name__ == "__main__":
