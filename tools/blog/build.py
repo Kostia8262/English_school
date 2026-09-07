@@ -402,19 +402,55 @@ def render_faq(a, lang):
     return "        <h2>%s</h2>\n%s" % (title, items)
 
 
+RELATED_CARD = (
+    '          <a href="/blog/%(slug)s%(suffix)s" class="card-lift snap-start shrink-0 w-64 sm:w-72 bg-white rounded-3xl overflow-hidden flex flex-col shadow-sm">\n'
+    '            <div class="h-2 w-full bg-gradient-to-r %(accent)s"></div>\n'
+    '            <div class="p-6 flex flex-col flex-1">\n'
+    '              <div class="flex items-start justify-between gap-3 mb-4">\n'
+    '                <span class="text-3xl leading-none" aria-hidden="true">%(emoji)s</span>\n'
+    '                <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full">%(cat)s</span>\n'
+    '              </div>\n'
+    '              <p class="text-base font-black text-gray-900 leading-tight mb-3 flex-1">%(title)s</p>\n'
+    '              <div class="flex items-center justify-between gap-2 pt-4 border-t border-gray-100 mt-auto">\n'
+    '                <span class="text-xs text-gray-400">%(read)s</span>\n'
+    '                <span class="text-fox-500 font-bold text-xs">%(more)s</span>\n'
+    '              </div>\n'
+    '            </div>\n'
+    '          </a>'
+)
+
+
 def render_related(a, lang):
-    i = 0 if lang == "uk" else 1
-    suffix = "" if lang == "uk" else "?lang=ru"
-    title = "Читайте також" if lang == "uk" else "Читайте также"
+    """«Читайте також» — така сама стрічка карток, як у лістингу.
+
+    Була сітка 2x2: чотири однакові білі прямокутники з емодзі й заголовком,
+    які нічим не схожі на картку статті в блозі й нічого про статтю не
+    кажуть. Тепер це та сама картка, що в лістингу — акцентна смужка, рубрика,
+    час читання — і горизонтальний слайдер, яким на сайті вже показані вікові
+    групи, тарифи й відгуки. Слайдер, а не сітка: колонка статті вузька
+    (max-w-3xl), і повноцінна картка в сітці з двох колонок туди не влазить.
+    """
+    uk = lang == "uk"
+    suffix = "" if uk else "?lang=ru"
+    title = "Читайте також" if uk else "Читайте также"
+    more = "Читати &rarr;" if uk else "Читать &rarr;"
     cards = "\n".join(
-        '          <a href="/blog/%s%s" class="bg-white rounded-2xl p-5 border border-gray-100 hover:border-fox-200 transition-colors">\n'
-        '            <span class="text-2xl">%s</span>\n'
-        '            <p class="font-black text-gray-900 text-sm mt-2 leading-tight">%s</p>\n'
-        '          </a>' % (slug, suffix, emoji, esc(t[i]))
-        for slug, emoji, t in [(r[0], r[1], (r[2], r[3])) for r in a["related"]])
+        RELATED_CARD % {
+            "slug": r["slug"],
+            "suffix": suffix,
+            "accent": ("from-fox-500 to-fox-600" if r["accent"] == "fox"
+                       else "from-violet-500 to-violet-600"),
+            "emoji": r["emoji"],
+            "cat": esc(r["cat"] if uk else r["catRu"]),
+            "title": esc(r["title"] if uk else r["titleRu"]),
+            "read": esc(r["read"] if uk else r["readRu"]),
+            "more": more,
+        } for r in a["related"])
     return ('      <div class="mt-12">\n'
             '        <h3 class="text-lg font-black text-gray-900 mb-4">%s</h3>\n'
-            '        <div class="grid sm:grid-cols-2 gap-4">\n%s\n        </div>\n'
+            '        <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory '
+            'scrollbar-hide -mx-4 px-4 sm:-mx-6 sm:px-6 pt-1 pb-4">\n%s\n'
+            '        </div>\n'
             '      </div>' % (title, cards))
 
 
@@ -645,7 +681,11 @@ def link_related(arts, entries):
             picked.append(e)
             seen.add(e["slug"])
             got[e["slug"]] += 1
-        a["related"] = [(e["slug"], e["emoji"], e["title"], e["titleRu"])
+        a["related"] = [{"slug": e["slug"], "emoji": e["emoji"],
+                         "accent": e["accent"], "cat": e["category"],
+                         "catRu": e["categoryRu"], "title": e["title"],
+                         "titleRu": e["titleRu"], "read": e["readTime"],
+                         "readRu": e["readTimeRu"]}
                         for e in picked]
 
 
@@ -659,8 +699,8 @@ def incoming(arts, entries):
     n = dict((e["slug"], 0) for e in entries)
     for a in arts:
         for r in a["related"]:
-            if r[0] in n:
-                n[r[0]] += 1
+            if r["slug"] in n:
+                n[r["slug"]] += 1
     return n
 
 
