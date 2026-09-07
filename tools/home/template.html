@@ -3011,7 +3011,7 @@
      згадувався лише в реквізитах ФОП у підвалі. Для Google це сторінка без
      географії: ні країни, ні міста. Тут обидва сигнали стоять текстом —
      і адреси збігаються з тим, що лежить у LocalBusiness на /dnipro. -->
-<section id="geo" class="py-8 md:py-20 bg-white">
+<section id="geo" class="py-8 md:py-20 bg-gradient-to-b from-white to-fox-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="text-center mb-10 md:mb-14">
@@ -3020,38 +3020,40 @@
             <p class="text-gray-500 text-sm sm:text-base md:text-lg" x-text="t.geo.subtitle">Формат обираєте ви</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch mb-8 md:mb-10">
 
-            <!-- ── Онлайн ── -->
-            <div class="bg-fox-50 rounded-3xl p-5 sm:p-8">
-                <div class="text-3xl md:text-4xl mb-3 md:mb-4">🌍</div>
-                <h3 class="text-xl font-black text-gray-900 mb-2 md:mb-3 leading-tight" x-text="t.geo.onlineTitle">Онлайн по всій Україні</h3>
-                <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-5 md:mb-6" x-text="t.geo.onlineText"></p>
-                <ul class="space-y-2 md:space-y-3">
-                    <template x-for="item in t.geo.onlineItems" :key="item">
-                        <li class="flex items-start gap-2 text-sm font-semibold text-gray-700">
-                            <span class="text-fox-500">✓</span><span x-text="item"></span>
-                        </li>
-                    </template>
-                </ul>
+            <!-- ── Онлайн: основний формат, тому темна картка ── -->
+            <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 bg-gray-950 shadow-2xl shadow-black/60" style="background: radial-gradient(ellipse at 10% 0%, rgba(255,107,53,0.32) 0%, transparent 55%), radial-gradient(ellipse at 100% 100%, rgba(124,58,237,0.26) 0%, transparent 55%), #030712;">
+                <div class="relative z-10">
+                    <div class="w-14 h-14 rounded-2xl bg-fox-500 flex items-center justify-center text-2xl mb-5 shadow-fox">🌍</div>
+                    <h3 class="text-xl md:text-2xl font-black text-white mb-3 leading-tight" x-text="t.geo.onlineTitle">Онлайн по всій Україні</h3>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-6" x-text="t.geo.onlineText"></p>
+                    <ul class="space-y-4">
+                        <template x-for="item in t.geo.onlineItems" :key="item">
+                            <li class="flex items-start gap-3 text-sm font-semibold text-gray-200">
+                                <span class="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-fox-500 text-white text-xs font-black flex items-center justify-center">✓</span><span x-text="item"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
             </div>
 
             <!-- ── Очно ── -->
-            <div class="bg-gray-50 rounded-3xl p-5 sm:p-8">
-                <div class="text-3xl md:text-4xl mb-3 md:mb-4">📍</div>
-                <h3 class="text-xl font-black text-gray-900 mb-2 md:mb-3 leading-tight" x-text="t.geo.offlineTitle">Два очні класи в Дніпрі</h3>
-                <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-5 md:mb-6" x-text="t.geo.offlineText"></p>
-                <div class="space-y-3 md:space-y-4 mb-5 md:mb-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-fox-100 shadow-lg shadow-black/10 flex flex-col">
+                <div class="w-14 h-14 rounded-2xl bg-fox-50 flex items-center justify-center text-2xl mb-5">📍</div>
+                <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-3 leading-tight" x-text="t.geo.offlineTitle">Два очні класи в Дніпрі</h3>
+                <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-6" x-text="t.geo.offlineText"></p>
+                <div class="grid sm:grid-cols-2 gap-4 mb-6">
                     <template x-for="b in t.geo.branches" :key="b.addr">
-                        <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
-                            <p class="font-black text-gray-900 text-base mb-1" x-text="b.addr"></p>
-                            <p class="text-sm font-medium text-gray-500 mb-2" x-text="b.note"></p>
-                            <a :href="'tel:' + b.tel" class="text-sm font-bold text-fox-500 hover:text-fox-600 transition-colors" x-text="b.phone"></a>
+                        <div class="bg-fox-50 rounded-2xl p-6 border border-fox-100">
+                            <p class="font-black text-gray-900 text-base mb-1 leading-tight" x-text="b.addr"></p>
+                            <p class="text-sm font-medium text-gray-500 mb-3" x-text="b.note"></p>
+                            <a :href="'tel:' + b.tel" class="text-sm font-bold text-fox-600 hover:text-fox-700 transition-colors duration-200" x-text="b.phone"></a>
                         </div>
                     </template>
                 </div>
-                <p class="text-sm font-medium text-gray-500 mb-5 md:mb-6"><span x-text="t.geo.hoursLabel">Графік обох класів</span>: <span x-text="t.geo.hours">Пн–Пт 9:00–20:00, Сб 10:00–18:00</span></p>
-                <a :href="lang==='ru'?'/dnipro?lang=ru':'/dnipro'" class="inline-block bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 px-4 py-2 rounded-full font-bold text-sm shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200" x-text="t.geo.moreLabel">Англійська для дітей у Дніпрі</a>
+                <p class="text-sm font-medium text-gray-500 mb-6 mt-auto pt-6 border-t border-gray-100"><span x-text="t.geo.hoursLabel">Графік обох класів</span>: <span class="text-gray-700 font-semibold" x-text="t.geo.hours">Пн–Пт 9:00–20:00, Сб 10:00–18:00</span></p>
+                <a :href="lang==='ru'?'/dnipro?lang=ru':'/dnipro'" class="self-start inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white px-5 py-3 rounded-full font-black text-sm shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200" x-text="t.geo.moreLabel">Англійська для дітей у Дніпрі</a>
             </div>
         </div>
 
