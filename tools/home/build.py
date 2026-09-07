@@ -198,7 +198,7 @@ def wrap(v):
 _KNOWN_FUNCS = {
     # Єдина функція шаблону, яку доводиться рахувати під час складання:
     # скільки сторінок виходить із відгуків по два на сторінку.
-    "reviewPageCount()": lambda scope: (len(scope["t"]["reviews"]["list"]) + 1) // 2,
+    "reviewPageCount()": lambda scope: (len(scope["t"]["reviews"]["list"]) + 2) // 3,
 }
 
 

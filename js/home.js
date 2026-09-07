@@ -134,18 +134,51 @@
     });
   }
 
-  /* ── Відгуки: посторінково по два ───────────────────────────────────── */
+  /* ── Відгуки: посторінково по три ───────────────────────────────────── */
+
+  var REVIEWS_PER_PAGE = 3;
 
   var reviewPage = 0;
   var reviewCards = all('[data-review-card]');
-  var reviewPages = Math.ceil(reviewCards.length / 2);
+  var reviewGrid = one('[data-review-grid]');
+  var reviewPages = Math.ceil(reviewCards.length / REVIEWS_PER_PAGE);
+
+  function paintReviewCards(page) {
+    reviewCards.forEach(function (card) {
+      var i = Number(card.dataset.reviewCard);
+      show(card, i >= page * REVIEWS_PER_PAGE
+                 && i < page * REVIEWS_PER_PAGE + REVIEWS_PER_PAGE);
+    });
+  }
+
+  /* Висота сітки фіксується по найвищій сторінці.
+
+     Відгуки різної довжини, а сторінка показує рівно три з них, тож без
+     цього блок підстрибував угору-вниз на кожному перемиканні: сторінка з
+     довгим відгуком вища за сторінку з короткими, і разом із сіткою
+     смикався весь низ екрана.
+
+     Міряємо, а не задаємо число руками: тексти відгуків живуть у
+     trans.json і змінюються, а висота залежить ще й від ширини вікна та
+     від того, чи вже підвантажився шрифт. */
+  function lockReviewHeight() {
+    if (!reviewGrid || !reviewPages) return;
+    reviewGrid.style.minHeight = '';
+    // offsetParent === null означає, що сітка схована зовсім: на телефоні
+    // замість неї працює свайп-слайдер, і міряти там нічого.
+    if (!reviewGrid.offsetParent) return;
+    var tallest = 0;
+    for (var p = 0; p < reviewPages; p++) {
+      paintReviewCards(p);
+      tallest = Math.max(tallest, reviewGrid.offsetHeight);
+    }
+    paintReviewCards(reviewPage);
+    reviewGrid.style.minHeight = tallest + 'px';
+  }
 
   function setReviewPage(page) {
     reviewPage = Math.max(0, Math.min(page, reviewPages - 1));
-    reviewCards.forEach(function (card) {
-      var i = Number(card.dataset.reviewCard);
-      show(card, i >= reviewPage * 2 && i < reviewPage * 2 + 2);
-    });
+    paintReviewCards(reviewPage);
     all('[data-review-dot]').forEach(function (dot) {
       swapClasses(dot, Number(dot.dataset.reviewDot) === reviewPage,
                   ['bg-fox-500', 'w-5'], ['bg-gray-200', 'w-2']);
@@ -353,6 +386,17 @@
     currentModule = window.innerWidth < 768 ? null : 0;
     setModule(currentModule);
     setReviewPage(0);
+    lockReviewHeight();
+    // Шрифт локальний, але приїжджає окремим файлом: до нього рядки вужчі, і
+    // заміряна висота була б меншою за справжню.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(lockReviewHeight);
+    }
+    var reviewResize;
+    window.addEventListener('resize', function () {
+      clearTimeout(reviewResize);
+      reviewResize = setTimeout(lockReviewHeight, 150);
+    });
     wireParallax();
     all('[data-lead-form]').forEach(wireForm);
   }
