@@ -80,8 +80,8 @@
     </script>
 
     <!-- ═══ Tailwind CSS CDN ═══ -->
-<link rel="preload" as="style" href="/css/style.css?v=20260907c"/>
-<link rel="stylesheet" href="/css/style.css?v=20260907c" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260907d"/>
+<link rel="stylesheet" href="/css/style.css?v=20260907d" fetchpriority="high"/>
 
     <!-- ═══ Schema.org ═══
          Один @graph замість чотирьох окремих блоків. Раніше Organization,
@@ -5322,7 +5322,7 @@
 
 
 <!-- ═══════════════════════ RESULTS + CERTIFICATE ═══════════════════════ -->
-<section class="py-8 md:py-20 bg-gray-950 relative overflow-hidden" style="background: radial-gradient(ellipse at 75% 15%, rgba(124,58,237,0.28) 0%, transparent 55%), radial-gradient(ellipse at 15% 85%, rgba(255,107,53,0.18) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(15,27,61,0.6) 0%, transparent 80%), #030712;">
+<section class="py-8 md:py-14 bg-gray-950 relative overflow-hidden" style="background: radial-gradient(ellipse at 75% 15%, rgba(124,58,237,0.28) 0%, transparent 55%), radial-gradient(ellipse at 15% 85%, rgba(255,107,53,0.18) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(15,27,61,0.6) 0%, transparent 80%), #030712;">
     <!-- Decorative glows -->
     <div class="absolute top-0 right-0 w-96 h-96 rounded-full -translate-y-1/3 translate-x-1/3" style="background: radial-gradient(circle, rgba(124,58,237,0.35) 0%, transparent 70%);"></div>
     <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full translate-y-1/3 -translate-x-1/3" style="background: radial-gradient(circle, rgba(255,107,53,0.25) 0%, transparent 70%);"></div>
@@ -5331,12 +5331,12 @@
     <div class="absolute inset-0 opacity-5" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;); background-size: 150px 150px;"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid md:grid-cols-2 gap-14 items-center">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
 
             <!-- Results list -->
             <div>
                 <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-5" data-ru="Результаты">Результати</span>
-                <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-8" data-ru="Что умеет ваш ребёнок после наших уроков">Що вміє ваша дитина після наших уроків</h2>
+                <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-6" data-ru="Что умеет ваш ребёнок после наших уроков">Що вміє ваша дитина після наших уроків</h2>
                 <ul class="space-y-4">
                     
                         <li class="flex items-center gap-4">
@@ -5362,9 +5362,9 @@
                 </ul>
             </div>
 
-            <!-- Certificate mockup — premium -->
+            <!-- Certificate mockup — premium, landscape -->
             <div class="flex justify-center">
-                <div class="relative w-72 md:w-80" style="filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));">
+                <div class="relative w-72 md:w-full md:max-w-xl" style="filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));">
                     <!-- Outer card -->
                     <div class="relative rounded-2xl overflow-hidden" style="background:#0F1B3D; padding:2px;">
                         <!-- Gold rim -->
@@ -5372,7 +5372,7 @@
                             <div class="rounded-xl overflow-hidden" style="background:#0F1B3D;">
 
                                 <!-- Inner content -->
-                                <div class="relative p-4 md:p-8 flex flex-col items-center text-center md:min-h-[380px]" style="gap:0;">
+                                <div class="relative p-4 md:p-6 flex flex-col items-center text-center" style="gap:0;">
 
                                     <!-- Corner ornaments -->
                                     <svg class="absolute top-2 left-2 md:top-3 md:left-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 0 L14 0"/></svg>
@@ -5383,37 +5383,46 @@
                                     <!-- Background glow -->
                                     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,var(--fox-500),transparent)"></div>
 
-                                    <!-- Logo -->
-                                    <div class="mt-1 md:mt-6 mb-1.5 md:mb-3 w-9 h-9 md:w-14 md:h-14 rounded-full flex items-center justify-center text-base md:text-2xl shadow-fox z-10" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));">🦊</div>
-                                    <div class="text-white font-black text-sm md:text-base tracking-widest z-10">FLUENT<span style="color:#D4AF37">FOX</span></div>
+                                    <!-- Desktop: two columns — brand | content -->
+                                    <div class="w-full flex flex-col items-center md:flex-row md:items-center md:gap-6 md:text-left">
 
-                                    <!-- Gold divider -->
-                                    <div class="flex items-center gap-2 w-full my-1.5 md:my-4 z-10">
-                                        <div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#D4AF37)"></div>
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="#D4AF37"><polygon points="6,0 7.5,4.5 12,4.5 8.5,7 10,12 6,9 2,12 3.5,7 0,4.5 4.5,4.5"/></svg>
-                                        <div class="h-px flex-1" style="background:linear-gradient(to left,transparent,#D4AF37)"></div>
-                                    </div>
+                                        <!-- Brand column -->
+                                        <div class="flex flex-col items-center w-full md:w-36 md:flex-shrink-0 z-10">
+                                            <div class="mt-1 md:mt-0 mb-1.5 md:mb-2 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-xl shadow-fox" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));">🦊</div>
+                                            <div class="text-white font-black text-sm tracking-widest">FLUENT<span style="color:#D4AF37">FOX</span></div>
 
-                                    <!-- Certificate label -->
-                                    <div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase z-10 mb-1.5 md:mb-5" style="color:#D4AF37;" data-ru="Сертификат">Сертифікат</div>
+                                            <!-- Gold divider -->
+                                            <div class="flex items-center gap-2 w-full my-1.5 md:my-2">
+                                                <div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#D4AF37)"></div>
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="#D4AF37"><polygon points="6,0 7.5,4.5 12,4.5 8.5,7 10,12 6,9 2,12 3.5,7 0,4.5 4.5,4.5"/></svg>
+                                                <div class="h-px flex-1" style="background:linear-gradient(to left,transparent,#D4AF37)"></div>
+                                            </div>
 
-                                    <!-- Name area -->
-                                    <div class="z-10 mb-1.5 md:mb-5 flex items-baseline gap-1.5 md:flex-col md:gap-0">
-                                        <p class="text-2xs md:text-xs md:mb-2" style="color:#8899BB;" data-ru="Выдан ученику:">Видано учню:</p>
-                                        <p class="font-black text-sm md:text-xl text-white">[Ім'я учня]</p>
-                                    </div>
+                                            <!-- Certificate label -->
+                                            <div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase mb-1.5 md:mb-0" style="color:#D4AF37;" data-ru="Сертификат">Сертифікат</div>
+                                        </div>
 
-                                    <!-- Completed text -->
-                                    <div class="z-10 mb-1.5 md:mb-4 flex items-center gap-1.5 md:block">
-                                        <p class="text-2xs md:text-xs md:mb-2" style="color:#8899BB;" data-ru="Успешно завершил курс:">Успішно завершив курс:</p>
-                                        <div class="px-2.5 py-1 md:px-4 md:py-1.5 rounded-xl border text-2xs md:text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
-                                            English A1 → A2
+                                        <!-- Content column -->
+                                        <div class="w-full md:flex-1 flex flex-col items-center md:items-start z-10">
+                                            <!-- Name area -->
+                                            <div class="mb-1.5 md:mb-3 flex items-baseline gap-1.5 md:flex-col md:gap-0 md:items-start">
+                                                <p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;" data-ru="Выдан ученику:">Видано учню:</p>
+                                                <p class="font-black text-sm md:text-lg text-white">[Ім'я учня]</p>
+                                            </div>
+
+                                            <!-- Completed text -->
+                                            <div class="flex items-center gap-1.5 md:flex-col md:gap-0 md:items-start">
+                                                <p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;" data-ru="Успешно завершил курс:">Успішно завершив курс:</p>
+                                                <div class="px-2.5 py-1 md:px-4 md:py-1.5 rounded-xl border text-2xs md:text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
+                                                    English A1 → A2
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <!-- Bottom divider + seal row -->
-                                    <div class="w-full mt-auto z-10">
-                                        <div class="h-px w-full mb-1.5 md:mb-4" style="background:linear-gradient(to right,transparent,#D4AF37,transparent)"></div>
+                                    <div class="w-full mt-1.5 md:mt-4 z-10">
+                                        <div class="h-px w-full mb-1.5 md:mb-2" style="background:linear-gradient(to right,transparent,#D4AF37,transparent)"></div>
                                         <div class="flex items-center justify-between">
                                             <!-- Director -->
                                             <div class="text-left">
@@ -5421,7 +5430,7 @@
                                                 <div class="text-2xs md:text-xs" style="color:#5566AA;">Директор</div>
                                             </div>
                                             <!-- Wax seal -->
-                                            <div class="w-9 h-9 md:w-12 md:h-12 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#D4AF37; color:#D4AF37;">
+                                            <div class="w-9 h-9 md:w-10 md:h-10 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#D4AF37; color:#D4AF37;">
                                                 <div class="text-2xs font-black leading-none">FF</div>
                                                 <div class="text-2xs leading-none mt-0.5">2026</div>
                                             </div>
@@ -6622,7 +6631,7 @@
 
 
 <!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
-<script src="/js/lang.js?v=20260907c" defer></script>
-<script src="/js/home.js?v=20260907c" defer></script>
+<script src="/js/lang.js?v=20260907d" defer></script>
+<script src="/js/home.js?v=20260907d" defer></script>
 </body>
 </html>
