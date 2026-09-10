@@ -535,6 +535,21 @@ def render_footer(lang):
         for path, uk, ru in FOOTER_LINKS)
 
 
+BRAND = " — FluentFox"
+TITLE_MAX = 60
+
+
+def meta_title(t):
+    """Заголовок вкладки: бренд у кінці, поки він вміщається в 60 символів.
+
+    Частина статей носила бренд, частина ні — його дописував лише конвеєр
+    черги, а `meta_title_*` зі старих art_*.py йшли в <title> як є. У видачі
+    сусідні сніппети однієї й тієї ж школи виглядали як із різних сайтів."""
+    if t.endswith(BRAND):
+        t = t[:-len(BRAND)]
+    return t + BRAND if len(t) + len(BRAND) <= TITLE_MAX else t
+
+
 def render(a, lang):
     """Одна мовна версія статті — окремим файлом.
 
@@ -547,7 +562,7 @@ def render(a, lang):
     return TPL % {
         "assetv": ASSET_VERSION,
         "lang": lang,
-        "title": esc(a["meta_title_uk"] if uk else a["meta_title_ru"]),
+        "title": esc(meta_title(a["meta_title_uk"] if uk else a["meta_title_ru"])),
         "desc": esc(a["desc_uk"] if uk else a["desc_ru"]),
         "og_title": esc(a["title_uk"] if uk else a["title_ru"]),
         "og_desc": esc(a["og_desc_uk"] if uk else a["desc_ru"]),

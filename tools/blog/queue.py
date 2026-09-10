@@ -74,6 +74,11 @@ DEFAULT_CTA = (
 REQUIRED = ("slug", "title", "title_ru", "excerpt", "excerpt_ru",
             "content", "content_ru", "category", "category_ru")
 
+# Стеля для <title> і скільки з неї лишається заголовку, коли build.py
+# допише бренд.
+TITLE_MAX = 60
+META_MAX = TITLE_MAX - len(" — FluentFox")
+
 
 def check_html(html, where):
     for tag in TAG_RE.findall(html):
@@ -156,10 +161,25 @@ def to_art(article, authors):
 
 
 def _meta(title):
-    """Заголовок для <title>: сайт у кінці, але не довше 60 символів."""
-    tail = " — FluentFox"
-    room = 60 - len(tail)
-    return (title if len(title) <= room else title[:room - 1].rstrip() + "…") + tail
+    """Заголовок статті → заголовок для <title>, не довший за 60 символів.
+
+    Бренд додає build.py — тут лише вкорочення. Раніше довгий заголовок різало
+    рівно по 48-му символу, і в пошуку висіло «…одночасно: скільки на…»: обрив
+    посеред слова читається як помилка сайту, а не як скорочення. Тепер спершу
+    пробуємо змістовну частину до двокрапки чи тире — вона майже завжди і є
+    самостійним заголовком, — і лише тоді ріжемо по межі слова."""
+    if len(title) <= META_MAX:
+        return title
+    if len(title) <= TITLE_MAX:
+        # З брендом не вміщається, сам по собі — так. Повний заголовок
+        # інформативніший за огризок до двокрапки: бренд відпаде в build.py.
+        return title
+    for sep in (":", " — ", " –", ". "):
+        head = title.split(sep)[0].strip()
+        if 20 <= len(head) <= META_MAX:
+            return head
+    cut = title[:META_MAX].rsplit(" ", 1)[0].rstrip(" ,:;—-")
+    return cut
 
 
 def load():
