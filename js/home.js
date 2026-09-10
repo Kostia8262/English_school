@@ -44,7 +44,13 @@
   var menuOpen = false;
 
   var HEADER_ON = ['shadow-md', 'bg-white/95', 'backdrop-blur-sm'];
-  var HEADER_OFF = ['bg-transparent'];
+  /* До прокрутки шапка прозора тільки на десктопі: там під нею широкий світлий
+     герой і логотип читається. На телефоні хедер накладався просто на текст —
+     тому знизу md заливка стоїть завжди, а `md:bg-transparent` знімає її на
+     великих екранах. Класи навмисно перетинаються з HEADER_ON: swapClasses
+     спершу знімає набір іншого стану, потім додає свій, тож проміжного кадру
+     без фону не буває. */
+  var HEADER_OFF = ['bg-white/95', 'backdrop-blur-sm', 'md:bg-transparent'];
 
   function paintHeader() {
     swapClasses(header, window.scrollY > 60 || menuOpen, HEADER_ON, HEADER_OFF);

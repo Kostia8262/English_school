@@ -332,7 +332,8 @@ SHOW_HOOKS = {
 
 # :class із участю стану → (яку гілку взяти на старті, гачок).
 CLASS_HOOKS = {
-    "(scrolled || menuOpen) ? 'shadow-md bg-white/95 backdrop-blur-sm' : 'bg-transparent'":
+    "(scrolled || menuOpen) ? 'shadow-md bg-white/95 backdrop-blur-sm' "
+    ": 'bg-white/95 backdrop-blur-sm md:bg-transparent'":
         ("no", ' data-header'),
     "lang==='uk' ? 'bg-white shadow text-fox-600' : 'text-gray-400 hover:text-gray-600'":
         ("yes", ""),

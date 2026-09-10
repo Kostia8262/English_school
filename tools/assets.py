@@ -17,4 +17,4 @@
 """
 from __future__ import unicode_literals
 
-ASSET_VERSION = "20260907f"
+ASSET_VERSION = "20260907g"
