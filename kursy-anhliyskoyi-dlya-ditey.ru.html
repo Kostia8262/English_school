@@ -52,8 +52,8 @@
      браузера й у метриці лишається український заголовок російської сторінки -->
 
 
-<link rel="preload" as="style" href="/css/style.css?v=20260907g"/>
-<link rel="stylesheet" href="/css/style.css?v=20260907g" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260914s"/>
+<link rel="stylesheet" href="/css/style.css?v=20260914s" fetchpriority="high"/>
 <style>
   * { scroll-behavior: smooth; }
   .gradient-text {
@@ -434,6 +434,25 @@
         </ul>
       </div>
     </div>
+    <!-- Підписка на листи: адреса йде в панель розсилки мережі (smm.mycomputer.education),
+         яка одразу додає людину в базу й надсилає вітальний лист. Код тексту згоди —
+         data-consent: змінили текст згоди — змінюйте код. Обробник — /js/subscribe.js. -->
+    <div class="border-t border-gray-800 py-6 grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,440px)] md:gap-10 md:items-start">
+      <div>
+        <p class="text-base font-black text-white">Письма от FluentFox</p>
+        <p class="text-sm leading-relaxed text-gray-400 mt-1 max-w-md">Новые курсы, разговорные клубы и советы, как поддержать английский дома. Отписаться — в один клик.</p>
+      </div>
+      <form data-subscribe data-school="fluentfox" data-consent="footer-2026-09" data-endpoint="https://smm.mycomputer.education/s/subscribe" novalidate class="flex flex-col gap-2 min-w-0">
+        <div class="flex flex-col sm:flex-row gap-2 min-w-0">
+          <label for="footerSubscribeEmail" class="sr-only">Ваш email</label>
+          <input id="footerSubscribeEmail" type="email" name="email" inputmode="email" autocomplete="email" required placeholder="Ваш email" class="w-full sm:w-auto sm:flex-1 min-w-0 h-12 px-5 rounded-full bg-gray-900 border border-gray-700 text-white text-base placeholder-gray-500 transition-colors focus:outline-none focus:border-fox-500 focus:ring-2 focus:ring-fox-500/30 aria-[invalid=true]:border-red-500">
+          <input class="sr-only" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="h-12 px-7 rounded-full bg-fox-500 hover:bg-fox-600 text-white font-black transition-colors duration-200 disabled:opacity-60">Подписаться</button>
+        </div>
+        <p class="text-xs leading-relaxed text-gray-500"><span>Нажимая «Подписаться», вы соглашаетесь получать письма и с</span> <a href="/privacy.html?lang=ru" class="underline hover:text-fox-400 transition-colors">политикой конфиденциальности</a>.</p>
+        <p data-subscribe-status role="status" aria-live="polite" class="text-sm text-gray-300 empty:hidden data-[state=ok]:text-green-400 data-[state=error]:text-red-400 [&_button]:font-bold [&_button]:underline [&_button]:text-fox-400"></p>
+      </form>
+    </div>
     <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs">
         <a href="/privacy.html?lang=ru" class="hover:text-fox-400 transition-colors duration-200">Конфиденциальность</a>
@@ -445,6 +464,7 @@
   </div>
 </footer>
 
-<script src="/js/lang.js?v=20260907g" defer></script>
+<script src="/js/lang.js?v=20260914s" defer></script>
+<script src="/js/subscribe.js?v=20260914s" defer></script>
 </body>
 </html>

@@ -535,6 +535,15 @@ def render_footer(lang):
         for path, uk, ru in FOOTER_LINKS)
 
 
+from subscribe_block import SUBSCRIBE
+
+
+def render_subscribe(lang):
+    """Блок подписки в подвале статьи — на языке статьи, без data-ru: у каждой
+    мовы свой файл. Разметка та же, что у главной и посадочных."""
+    return SUBSCRIBE[lang]
+
+
 BRAND = " — FluentFox"
 TITLE_MAX = 60
 
@@ -580,6 +589,7 @@ def render(a, lang):
         "form": href("/", lang) + "#form",
         "nav": render_nav(lang),
         "footer": render_footer(lang),
+        "subscribe": render_subscribe(lang),
         "published": a["published"],
         "modified": a.get("modified", a["published"]),
         "section": esc(a["category_uk"] if uk else a["category_ru"]),

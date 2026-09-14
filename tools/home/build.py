@@ -770,8 +770,9 @@ def main():
 
     head = strip_alpine_runtime(head)
     scripts = ('\n<script src="/js/lang.js?v=%s" defer></script>'
-               '\n<script src="/js/home.js?v=%s" defer></script>\n'
-               % (ASSET_VERSION, ASSET_VERSION))
+               '\n<script src="/js/home.js?v=%s" defer></script>'
+               '\n<script src="/js/subscribe.js?v=%s" defer></script>\n'
+               % (ASSET_VERSION, ASSET_VERSION, ASSET_VERSION))
 
     out = ('%s<body class="font-sans antialiased text-gray-800 bg-cream">%s%s</body>\n</html>\n'
            % (head, rendered.rstrip(), scripts))
