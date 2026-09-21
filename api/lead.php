@@ -453,7 +453,6 @@ if (!empty($config['sheet_url'])) {
 // Але коштує він нічого, а поруч у лог лягає рядок MAIL FAIL — і це вже
 // не мовчання.
 
-$mailed = null;
 $notify = trim((string) ($config['notify_email'] ?? ''));
 if ($notify !== '' && !$crm_ok) {
     [$sent, $mail_err] = mail_lead($notify, [
@@ -465,7 +464,6 @@ if ($notify !== '' && !$crm_ok) {
         $crm_ok   ? 'CRM' : null,
         $sheet_ok ? 'Google-таблиця' : null,
     ])));
-    $mailed = $sent;
     if (!$sent) {
         log_problem('MAIL FAIL ' . $notify . ' | ' . $phone . ' | ' . $mail_err);
     }
@@ -477,18 +475,13 @@ if ($notify !== '' && !$crm_ok) {
 // відповідаємо помилкою чесно — форма покаже червоний блок і телефон.
 
 if ($crm_ok || $sheet_ok) {
-    // `mailed` — діагностика, а не частина контракту: форма читає тільки
-    // `result`. Стоїть тут, бо логу з хостингу не видно нічим, окрім SFTP, а
-    // без причини відмови «лист не дійшов» не полагодити. Прибрати, щойно
-    // відправка встоїться.
     respond(200, [
         'result' => 'success',
         'stored' => array_values(array_filter([
             $crm_ok ? 'crm' : null,
             $sheet_ok ? 'sheet' : null,
         ])),
-        'mailed' => $mailed,
-    ] + ($mailed === false ? ['mail_error' => mb_substr((string) $mail_err, 0, 200)] : []));
+    ]);
 }
 
 log_problem('LOST ' . $name . ' ' . $phone . ' — не прийняв ніхто');
