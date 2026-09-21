@@ -455,15 +455,15 @@ if (!empty($config['sheet_url'])) {
 
 $notify = trim((string) ($config['notify_email'] ?? ''));
 if ($notify !== '' && !$crm_ok) {
+    // Перелік того, куди заявка таки лягла, — тут це щонайбільше таблиця:
+    // CRM сюди не потрапляє за визначенням, бо блок працює лише тоді, коли
+    // вона заявку й не взяла.
     [$sent, $mail_err] = mail_lead($notify, [
         'name'  => $name,
         'phone' => $phone,
         'age'   => $age,
         'lang'  => $lang,
-    ], array_values(array_filter([
-        $crm_ok   ? 'CRM' : null,
-        $sheet_ok ? 'Google-таблиця' : null,
-    ])));
+    ], $sheet_ok ? ['Google-таблиця'] : []);
     if (!$sent) {
         log_problem('MAIL FAIL ' . $notify . ' | ' . $phone . ' | ' . $mail_err);
     }
