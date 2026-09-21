@@ -17,6 +17,12 @@ import os
 import re
 import sys
 
+try:
+    from html import unescape
+except ImportError:                                # Python 2
+    from HTMLParser import HTMLParser
+    unescape = HTMLParser().unescape
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 BASE = "https://fluent-fox.site"
 
@@ -38,6 +44,63 @@ REQUIRED = {
     "ItemList": ["itemListElement"],
     "OfferCatalog": ["itemListElement"],
 }
+
+
+SCRIPTS_RE = re.compile(r"<(script|style)\b.*?</\1>", re.S)
+TAG_RE = re.compile(r"<[^>]+>")
+# Рядкові теги прибираємо без сліду, решту — з пробілом замість тега. Інакше
+# «<em>teach</em>,» дає «teach ,», а в розмітці стоїть «teach,», і перевірка
+# лається на розбіжність, якої насправді немає.
+INLINE_RE = re.compile(r"</?(?:strong|em|b|i|span|a|small|sup|sub)\b[^>]*>", re.I)
+
+
+def visible_text(html):
+    """Текст, який бачить читач: без скриптів, тегів і значень атрибутів.
+
+    `data-ru` зникає разом із тегом — і це навмисно. На українській сторінці
+    видимий текст український, на російській російський, і питання FAQ має
+    збігатися саме з тим, що на цій сторінці показано.
+    """
+    body = html[html.find("<body"):]
+    body = SCRIPTS_RE.sub(" ", body)
+    body = INLINE_RE.sub("", body)
+    return re.sub(r"\s+", " ", unescape(TAG_RE.sub(" ", body)))
+
+
+def check_faq(rel, graph, html, errors):
+    """Питання й відповіді в розмітці мають бути на сторінці слово в слово.
+
+    Навіщо окрема перевірка. 21.09.2026 виявилося, що на головній FAQ жив у
+    двох місцях — видимий текст у trans.json, ld+json руками в шаблоні, — і
+    копії розійшлися: чотири відповіді з шести казали в розмітці одне, а на
+    сторінці інше, в обох мовах. Google таку розмітку відкидає, а попередня
+    перевірка бачила тільки те, що `mainEntity` не порожній.
+    """
+    faqs = [n for n in graph if "FAQPage" in types_of(n)]
+    if len(faqs) > 1:
+        errors.append((rel, "%d вузлів FAQPage — має бути один" % len(faqs)))
+    if not faqs:
+        return
+
+    text = visible_text(html)
+    ids = set(re.findall(r'\bid="([^"]+)"', html))
+
+    for node in faqs:
+        for q in node.get("mainEntity", []):
+            name = re.sub(r"\s+", " ", q.get("name", "")).strip()
+            answer = re.sub(r"\s+", " ",
+                            (q.get("acceptedAnswer") or {}).get("text", "")).strip()
+            if name and name not in text:
+                errors.append((rel, "питання з розмітки немає у видимому тексті: «%s»"
+                               % name[:70]))
+            if answer and answer not in text:
+                errors.append((rel, "відповідь у розмітці не збігається з текстом "
+                                    "сторінки: «%s»" % name[:60]))
+            url = q.get("url", "")
+            anchor = url.partition("#")[2]
+            if anchor and anchor not in ids:
+                errors.append((rel, "url питання веде на якір, якого немає: #%s"
+                               % anchor))
 
 
 def types_of(node):
@@ -137,6 +200,8 @@ def main():
                     errors.append((rel, "посилання @id у нікуди: %s" % n["@id"]))
             for node in graph:
                 walk(node, check_ref)
+
+            check_faq(rel, graph, s, errors)
 
             # url сторінки в графі має збігатися з canonical.
             page = next((n for n in graph if "WebPage" in types_of(n)

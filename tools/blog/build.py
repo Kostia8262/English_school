@@ -173,6 +173,7 @@ def fmt_date(iso, lang):
 def render_blocks(blocks, lang):
     i = 0 if lang == "uk" else 1
     out = []
+    qa_n = 0                      # номер інлайнового питання — для якоря
     for b in blocks:
         kind = b[0]
 
@@ -202,8 +203,9 @@ def render_blocks(blocks, lang):
         elif kind == "qa":
             # Питання-відповідь усередині тексту. GEO-гайд вимагає саме такий
             # блок: питання як заголовок, відповідь одразу під ним, без розгону.
-            out.append('        <h3 class="qa-q">%s</h3>\n        <p>%s</p>'
-                       % (esc(b[1 + i]), rich(b[3 + i])))
+            qa_n += 1
+            out.append('        <h3 class="qa-q" id="qa-%d">%s</h3>\n        <p>%s</p>'
+                       % (qa_n, esc(b[1 + i]), rich(b[3 + i])))
 
         elif kind == "expert":
             person = PEOPLE[b[1]]
@@ -394,16 +396,26 @@ def build_graph(a, lang):
             ],
         })
 
-    if a.get("faq"):
+    # Спершу питання з тіла статті, далі — секція «Часті питання»: той самий
+    # порядок, у якому вони стоять на сторінці.
+    qa = [(q[0 + i], q[2 + i], "qa") for q in inline_qa(a["blocks"])]
+    qa += [(q[0 + i * 2], q[1 + i * 2], "faq") for q in a.get("faq", [])]
+    if qa:
+        numbered = []
+        seen = {"qa": 0, "faq": 0}
+        for name, answer, kind in qa:
+            seen[kind] += 1
+            numbered.append({
+                "@type": "Question",
+                "name": strip_tags(name),
+                "url": "%s#%s-%d" % (url, kind, seen[kind]),
+                "acceptedAnswer": {"@type": "Answer", "text": strip_tags(answer)},
+            })
         graph.append({
             "@type": "FAQPage",
             "@id": url + "#faq",
             "isPartOf": {"@id": url + "#webpage"},
-            "mainEntity": [
-                {"@type": "Question", "name": q[0 + i * 2],
-                 "acceptedAnswer": {"@type": "Answer", "text": q[1 + i * 2]}}
-                for q in a["faq"]
-            ],
+            "mainEntity": numbered,
         })
 
     return json.dumps({"@context": "https://schema.org", "@graph": graph},
@@ -413,14 +425,28 @@ def build_graph(a, lang):
 TPL = io.open(os.path.join(HERE, "template.html"), encoding="utf-8").read()
 
 
+def inline_qa(blocks):
+    """Питання-відповіді, розкидані по тексту статті.
+
+    Блок `qa` малюється так само, як питання в кінці — заголовок і відповідь
+    під ним, — але в розмітку FAQPage доти не потрапляв: там були тільки
+    питання з `a["faq"]`. По сайту так губилося 26 готових пар на мову,
+    уже написаних і вже видимих на сторінці.
+
+    Повертає список `(q_uk, q_ru, a_uk, a_ru)` у порядку появи в тексті.
+    """
+    return [(b[1], b[2], b[3], b[4]) for b in blocks if b[0] == "qa"]
+
+
 def render_faq(a, lang):
     if not a.get("faq"):
         return ""
     i = 0 if lang == "uk" else 1
     title = "Часті питання" if lang == "uk" else "Частые вопросы"
     items = "\n".join(
-        '        <h3 class="qa-q">%s</h3>\n        <p>%s</p>'
-        % (esc(q[0 + i * 2]), rich(q[1 + i * 2])) for q in a["faq"])
+        '        <h3 class="qa-q" id="faq-%d">%s</h3>\n        <p>%s</p>'
+        % (n + 1, esc(q[0 + i * 2]), rich(q[1 + i * 2]))
+        for n, q in enumerate(a["faq"]))
     return "        <h2>%s</h2>\n%s" % (title, items)
 
 

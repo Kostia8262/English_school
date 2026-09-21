@@ -125,20 +125,9 @@
     });
   }
 
-  /* ── Часті питання ──────────────────────────────────────────────────── */
-
-  var openFaq = null;
-
-  function setFaq(index) {
-    openFaq = index;
-    all('[data-faq-panel]').forEach(function (el) {
-      show(el, index !== null && Number(el.dataset.faqPanel) === index);
-    });
-    all('[data-faq-icon]').forEach(function (el) {
-      el.classList.toggle('rotate-45',
-                          index !== null && Number(el.dataset.faqIcon) === index);
-    });
-  }
+  /* Часті питання сюди більше не входять: акордеон тримає нативний
+     <details>, як на посадкових сторінках. Доти відповіді лежали в
+     <div hidden>, і не відпрацював скрипт — відкрити їх було нічим. */
 
   /* ── Відгуки: посторінково по три ───────────────────────────────────── */
 
@@ -370,11 +359,6 @@
       var mod = Number(el.dataset.modToggle);
       currentModule = currentModule === mod ? null : mod;
       setModule(currentModule);
-      return;
-    }
-    if ((el = e.target.closest('[data-faq-toggle]'))) {
-      var faq = Number(el.dataset.faqToggle);
-      setFaq(openFaq === faq ? null : faq);
       return;
     }
     if ((el = e.target.closest('[data-review-page]'))) {

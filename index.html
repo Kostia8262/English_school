@@ -55,8 +55,8 @@ document.documentElement.lang='ru';
 }
 })();
 </script>
-<link rel="preload" as="style" href="/css/style.css?v=20260921a"/>
-<link rel="stylesheet" href="/css/style.css?v=20260921a" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260921b"/>
+<link rel="stylesheet" href="/css/style.css?v=20260921b" fetchpriority="high"/>
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
@@ -354,28 +354,6 @@ document.documentElement.lang='ru';
 "itemReviewed": {
 "@id": "https://fluent-fox.site/#organization"
 }
-}
-],
-"openingHoursSpecification": [
-{
-"@type": "OpeningHoursSpecification",
-"dayOfWeek": [
-"Monday",
-"Tuesday",
-"Wednesday",
-"Thursday",
-"Friday"
-],
-"opens": "09:00",
-"closes": "20:00"
-},
-{
-"@type": "OpeningHoursSpecification",
-"dayOfWeek": [
-"Saturday"
-],
-"opens": "10:00",
-"closes": "18:00"
 }
 ],
 "subOrganization": [
@@ -1049,6 +1027,7 @@ document.documentElement.lang='ru';
 {
 "@type": "Question",
 "name": "З якого віку можна записатись?",
+"url": "https://fluent-fox.site/#faq-1",
 "acceptedAnswer": {
 "@type": "Answer",
 "text": "Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід: ігровий для малюків, комунікативний для школярів, профільний для підлітків."
@@ -1057,6 +1036,7 @@ document.documentElement.lang='ru';
 {
 "@type": "Question",
 "name": "Що потрібно для занять онлайн?",
+"url": "https://fluent-fox.site/#faq-2",
 "acceptedAnswer": {
 "@type": "Answer",
 "text": "Комп'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet. Ніяких додаткових програм встановлювати не треба."
@@ -1065,6 +1045,7 @@ document.documentElement.lang='ru';
 {
 "@type": "Question",
 "name": "Як проходять групові заняття?",
+"url": "https://fluent-fox.site/#faq-3",
 "acceptedAnswer": {
 "@type": "Answer",
 "text": "Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання в онлайн-платформі. Будь-який рівень — від нуля до просунутого."
@@ -1073,6 +1054,7 @@ document.documentElement.lang='ru';
 {
 "@type": "Question",
 "name": "Чи можна перенести урок?",
+"url": "https://fluent-fox.site/#faq-4",
 "acceptedAnswer": {
 "@type": "Answer",
 "text": "Так, урок можна перенести за 12 годин до початку. Ми розуміємо, що плани змінюються."
@@ -1081,6 +1063,7 @@ document.documentElement.lang='ru';
 {
 "@type": "Question",
 "name": "Коли буде видно перший результат?",
+"url": "https://fluent-fox.site/#faq-5",
 "acceptedAnswer": {
 "@type": "Answer",
 "text": "Перші помітні результати — вже після 1 місяця регулярних занять. За 3–6 місяців — впевнене спілкування та помітний ріст рівня."
@@ -1089,6 +1072,7 @@ document.documentElement.lang='ru';
 {
 "@type": "Question",
 "name": "Чи є знижки та акції?",
+"url": "https://fluent-fox.site/#faq-6",
 "acceptedAnswer": {
 "@type": "Answer",
 "text": "Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім'ї — 15% знижки на другу дитину. Слідкуйте за нашим Instagram!"
@@ -1148,6 +1132,14 @@ background: linear-gradient(135deg, var(--violet-500) 0%, var(--violet-700) 100%
 -webkit-text-fill-color: transparent;
 background-clip: text;
 }
+/* ── FAQ: нативний акордеон ─────────────────────────────── */
+/* Маркер прибираємо в обох рушіях, плюс повертаємо на 45° — те саме,
+що раніше домальовував js/home.js, перемикаючи клас повороту.
+Назву того класу тут не пишемо: сканер Tailwind читає файл як
+текст і додав би до style.css правило, якого ніхто не викликає. */
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .faq-plus { transform: rotate(45deg); }
 /* ── Hero background ────────────────────────────────────── */
 .hero-bg {
 background: linear-gradient(140deg, var(--fox-50) 0%, var(--cream) 50%, var(--violet-50) 100%);
@@ -4545,67 +4537,55 @@ English A1 → A2
 </div>
 </div>
 </section>
-<section class="py-8 md:py-20 bg-fox-50">
+<section class="py-8 md:py-20 bg-fox-50" id="faq">
 <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center mb-6 md:mb-14">
 <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-3 md:mb-4 shadow-sm" data-ru="Вопросы">Запитання</span>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" data-ru="Ответы на частые вопросы">Відповіді на найчастіші запитання</h2>
 </div>
 <div class="space-y-2 md:space-y-3">
-<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-<button class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors" data-faq-toggle="0">
-<span class="font-bold text-gray-900 text-sm sm:text-base" data-ru="С какого возраста можно записаться?">З якого віку можна записатись?</span>
-<span class="text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" data-faq-icon="0">+</span>
-</button>
-<div hidden data-faq-panel="0">
-<div class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Мы принимаем детей от 6 до 18 лет. Для каждой возрастной группы — отдельная программа и подход.">Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід.</div>
-</div>
-</div>
-<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-<button class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors" data-faq-toggle="1">
-<span class="font-bold text-gray-900 text-sm sm:text-base" data-ru="Что нужно для занятий онлайн?">Що потрібно для занять онлайн?</span>
-<span class="text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" data-faq-icon="1">+</span>
-</button>
-<div hidden data-faq-panel="1">
-<div class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Компьютер или планшет, стабильный интернет и наушники с микрофоном. Платформа — Zoom или Google Meet.">Комп'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet.</div>
-</div>
-</div>
-<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-<button class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors" data-faq-toggle="2">
-<span class="font-bold text-gray-900 text-sm sm:text-base" data-ru="Как проходят групповые занятия?">Як проходять групові заняття?</span>
-<span class="text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" data-faq-icon="2">+</span>
-</button>
-<div hidden data-faq-panel="2">
-<div class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Группы до 6 детей, 1–2 раза в неделю по 1.5 часа. Игровая форма, коммуникативные упражнения, домашние задания. Любой уровень — от нуля до продвинутого.">Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання. Будь-який рівень — від нуля до просунутого.</div>
-</div>
-</div>
-<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-<button class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors" data-faq-toggle="3">
-<span class="font-bold text-gray-900 text-sm sm:text-base" data-ru="Можно ли перенести урок?">Чи можна перенести урок?</span>
-<span class="text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" data-faq-icon="3">+</span>
-</button>
-<div hidden data-faq-panel="3">
-<div class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Да, урок можно перенести за 12 часов до начала. Мы понимаем, что планы меняются.">Так, урок можна перенести за 12 годин до початку. Ми розуміємо, що плани змінюються.</div>
-</div>
-</div>
-<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-<button class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors" data-faq-toggle="4">
-<span class="font-bold text-gray-900 text-sm sm:text-base" data-ru="Когда будет виден первый результат?">Коли буде видно перший результат?</span>
-<span class="text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" data-faq-icon="4">+</span>
-</button>
-<div hidden data-faq-panel="4">
-<div class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Первые заметные результаты — уже после 1 месяца. За 3–6 месяцев — уверенное общение.">Перші помітні результати — вже після 1 місяця. За 3–6 місяців — впевнене спілкування.</div>
-</div>
-</div>
-<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-<button class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors" data-faq-toggle="5">
-<span class="font-bold text-gray-900 text-sm sm:text-base" data-ru="Есть ли скидки и акции?">Чи є знижки та акції?</span>
-<span class="text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" data-faq-icon="5">+</span>
-</button>
-<div hidden data-faq-panel="5">
-<div class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Да! При оплате за 3 месяца — скидка 10%. При записи двух детей из семьи — 15% скидки на второго ребёнка. Следите за нашим Instagram!">Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім'ї — 15% знижки на другу дитину. Слідкуйте за нашим Instagram!</div>
-</div>
-</div>
+<details class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm" id="faq-1">
+<summary class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors duration-200">
+<h3 class="font-bold text-gray-900 text-sm sm:text-base leading-tight" data-ru="С какого возраста можно записаться?">З якого віку можна записатись?</h3>
+<span class="faq-plus text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" aria-hidden="true">+</span>
+</summary>
+<p class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Мы принимаем детей от 6 до 18 лет. Для каждой возрастной группы — отдельная программа и подход: игровой для малышей, коммуникативный для школьников, профильный для подростков.">Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід: ігровий для малюків, комунікативний для школярів, профільний для підлітків.</p>
+</details>
+<details class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm" id="faq-2">
+<summary class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors duration-200">
+<h3 class="font-bold text-gray-900 text-sm sm:text-base leading-tight" data-ru="Что нужно для занятий онлайн?">Що потрібно для занять онлайн?</h3>
+<span class="faq-plus text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" aria-hidden="true">+</span>
+</summary>
+<p class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Компьютер или планшет, стабильный интернет и наушники с микрофоном. Платформа — Zoom или Google Meet. Никаких дополнительных программ устанавливать не нужно.">Комп'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet. Ніяких додаткових програм встановлювати не треба.</p>
+</details>
+<details class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm" id="faq-3">
+<summary class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors duration-200">
+<h3 class="font-bold text-gray-900 text-sm sm:text-base leading-tight" data-ru="Как проходят групповые занятия?">Як проходять групові заняття?</h3>
+<span class="faq-plus text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" aria-hidden="true">+</span>
+</summary>
+<p class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Группы до 6 детей, 1–2 раза в неделю по 1.5 часа. Игровая форма, коммуникативные упражнения, домашние задания в онлайн-платформе. Любой уровень — от нуля до продвинутого.">Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання в онлайн-платформі. Будь-який рівень — від нуля до просунутого.</p>
+</details>
+<details class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm" id="faq-4">
+<summary class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors duration-200">
+<h3 class="font-bold text-gray-900 text-sm sm:text-base leading-tight" data-ru="Можно ли перенести урок?">Чи можна перенести урок?</h3>
+<span class="faq-plus text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" aria-hidden="true">+</span>
+</summary>
+<p class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Да, урок можно перенести за 12 часов до начала. Мы понимаем, что планы меняются.">Так, урок можна перенести за 12 годин до початку. Ми розуміємо, що плани змінюються.</p>
+</details>
+<details class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm" id="faq-5">
+<summary class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors duration-200">
+<h3 class="font-bold text-gray-900 text-sm sm:text-base leading-tight" data-ru="Когда будет виден первый результат?">Коли буде видно перший результат?</h3>
+<span class="faq-plus text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" aria-hidden="true">+</span>
+</summary>
+<p class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Первые заметные результаты — уже после 1 месяца регулярных занятий. За 3–6 месяцев — уверенное общение и заметный рост уровня.">Перші помітні результати — вже після 1 місяця регулярних занять. За 3–6 місяців — впевнене спілкування та помітний ріст рівня.</p>
+</details>
+<details class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm" id="faq-6">
+<summary class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors duration-200">
+<h3 class="font-bold text-gray-900 text-sm sm:text-base leading-tight" data-ru="Есть ли скидки и акции?">Чи є знижки та акції?</h3>
+<span class="faq-plus text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" aria-hidden="true">+</span>
+</summary>
+<p class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Да! При оплате за 3 месяца — скидка 10%. При записи двух детей из семьи — 15% скидки на второго ребёнка. Следите за нашим Instagram!">Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім'ї — 15% знижки на другу дитину. Слідкуйте за нашим Instagram!</p>
+</details>
 </div>
 </div>
 </section>
@@ -5241,8 +5221,8 @@ Telegram
 </div>
 </div>
 </footer>
-<script src="/js/lang.js?v=20260921a" defer></script>
-<script src="/js/home.js?v=20260921a" defer></script>
-<script src="/js/subscribe.js?v=20260921a" defer></script>
+<script src="/js/lang.js?v=20260921b" defer></script>
+<script src="/js/home.js?v=20260921b" defer></script>
+<script src="/js/subscribe.js?v=20260921b" defer></script>
 </body>
 </html>

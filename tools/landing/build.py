@@ -247,12 +247,46 @@ def render_agegroups(p):
 
 def build_graph(p, lang="uk"):
     """Граф сторінки. Російська версія — той самий граф, перекладений за
-    словником: див. tools/i18n/graph.py, там і пояснено чому саме так."""
+    словником: див. tools/i18n/graph.py, там і пояснено чому саме так.
+
+    Виняток — FAQ. Решту графа перекладати справді нізвідки, а питання й
+    відповіді лежать тут-таки, обома мовами: у кожного запису чотири поля,
+    uk-питання, uk-відповідь, ru-питання, ru-відповідь. Ганяти їх через
+    словник означало б тримати той самий текст іще й там — і щоразу, коли на
+    сторінці з'являється нове питання, складання падало б, вимагаючи
+    переписати в graph_ru.json те, що вже написано. Тому вузол FAQPage
+    будується для російської сторінки одразу з російського тексту.
+    """
     nodes = graph_nodes(p)
     if lang == "ru":
-        nodes = GRAPH.localize(nodes, own="%s/%s" % (BASE, p["slug"]))
+        own = "%s/%s" % (BASE, p["slug"])
+        nodes = [n for n in nodes if n.get("@type") != "FAQPage"]
+        nodes = GRAPH.localize(nodes, own=own)
+        faq = faq_node(p, own + "?lang=ru", ru=True)
+        if faq:
+            nodes.append(faq)
     return json.dumps({"@context": "https://schema.org", "@graph": nodes},
                       ensure_ascii=False, separators=(",", ":"))
+
+
+def faq_node(p, url, ru=False):
+    """Вузол FAQPage. `url` веде на конкретну відповідь: номер у розмітці той
+    самий, що в `id` її <details>. Доти `@id` вузла закінчувався на `#faq`, а
+    елемента з таким `id` на сторінці не було взагалі."""
+    if not p.get("faq"):
+        return None
+    q_i, a_i = (2, 3) if ru else (0, 1)
+    return {
+        "@type": "FAQPage",
+        "@id": url + "#faq",
+        "isPartOf": {"@id": url + "#webpage"},
+        "mainEntity": [
+            {"@type": "Question", "name": item[q_i],
+             "url": "%s#faq-%d" % (url, i + 1),
+             "acceptedAnswer": {"@type": "Answer", "text": item[a_i]}}
+            for i, item in enumerate(p["faq"])
+        ],
+    }
 
 
 def graph_nodes(p):
@@ -282,17 +316,9 @@ def graph_nodes(p):
         },
     ]
     graph.extend(p.get("schema", []))
-    if p.get("faq"):
-        graph.append({
-            "@type": "FAQPage",
-            "@id": url + "#faq",
-            "isPartOf": {"@id": url + "#webpage"},
-            "mainEntity": [
-                {"@type": "Question", "name": q,
-                 "acceptedAnswer": {"@type": "Answer", "text": a}}
-                for q, a, _, _ in p["faq"]
-            ],
-        })
+    faq = faq_node(p, url)
+    if faq:
+        graph.append(faq)
     return graph
 
 
@@ -534,17 +560,17 @@ def render_faq(p):
     if not p.get("faq"):
         return ""
     items = "\n".join(
-        '        <details class="bg-white rounded-3xl border border-fox-100 px-6 py-4">\n'
+        '        <details class="bg-white rounded-3xl border border-fox-100 px-6 py-4" id="faq-%d">\n'
         '          <summary class="flex items-center justify-between gap-4">\n'
         '            <h3 class="text-base md:text-lg font-black text-gray-900 leading-tight"%s</h3>\n'
         '            <span class="faq-chevron flex-none text-fox-500 font-black transition-transform duration-200" aria-hidden="true">&#9662;</span>\n'
         '          </summary>\n'
         '          <p class="text-base text-gray-600 leading-relaxed mt-3"%s</p>\n'
         '        </details>'
-        % (attr_ru(q_uk, q_ru), attr_ru(a_uk, a_ru))
-        for q_uk, a_uk, q_ru, a_ru in p["faq"])
+        % (i + 1, attr_ru(q_uk, q_ru), attr_ru(a_uk, a_ru))
+        for i, (q_uk, a_uk, q_ru, a_ru) in enumerate(p["faq"]))
     return """
-<section class="py-8 md:py-20 bg-fox-50">
+<section class="py-8 md:py-20 bg-fox-50" id="faq">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-8 md:mb-14">
       <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" data-ru="Вопросы">Питання</span>
@@ -579,6 +605,40 @@ def render_related(p):
   </div>
 </section>
 """ % cards
+
+
+def render_seo(p):
+    """Підсумковий абзац унизу сторінки.
+
+    Навіщо. Такий абзац був лише на головній, а посадкові закінчувалися
+    картками «Читайте також» — тобто останнє, що бачив краулер, це три назви
+    чужих сторінок. Тут сторінка своїми словами каже, про що вона: формат,
+    ціна, вік, місто, — і звідти ж веде на суміжні сторінки контекстним
+    посиланням, а не назвою в картці.
+
+    Текст лежить у сторінці списком шматків: `(uk, ru)` — звичайний текст,
+    `(href, uk, ru)` — посилання. Складати його з готового HTML не можна:
+    увесь текст на цих сторінках екранується, а російська версія береться з
+    `data-ru`, тож посилання має бути окремим вузлом із власним перекладом.
+    """
+    if not p.get("seo"):
+        return ""
+    parts = []
+    for seg in p["seo"]:
+        if len(seg) == 3:
+            href, uk, ru = seg
+            parts.append('<a class="font-semibold text-fox-600 hover:text-fox-700 '
+                         'transition-colors duration-200" href="%s"%s</a>'
+                         % (href, attr_ru(uk, ru)))
+        else:
+            parts.append("<span%s</span>" % attr_ru(seg[0], seg[1]))
+    return ("""
+<section class="py-8 md:py-16 bg-gradient-to-b from-white to-fox-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <p class="text-sm sm:text-base leading-relaxed text-gray-500">%s</p>
+  </div>
+</section>
+""" % "".join(parts))
 
 
 CTA = """
@@ -643,7 +703,7 @@ def render_page(p):
     # правка в ньому не доходить до тих, хто вже був на сайті.
     return (head + HEADER.replace("%(path)s", "/" + p["slug"])
             + crumbs + hero + main + render_faq(p) + CTA
-            + render_related(p) + "</main>\n"
+            + render_related(p) + render_seo(p) + "</main>\n"
             + FOOTER.replace("%(assetv)s", ASSET_VERSION))
 
 

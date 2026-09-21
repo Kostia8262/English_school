@@ -288,7 +288,7 @@ def both(expr, ctx):
 # таблиці. Якщо ні — складання падає. Інакше живий перемикач тихо застигнув би
 # у початковому положенні, і помітили б це вже відвідувачі.
 
-STATE_VARS = ("scrolled", "menuOpen", "openFaq", "progTab", "openMod",
+STATE_VARS = ("scrolled", "menuOpen", "progTab", "openMod",
               "currentReview", "reviewPage", "modalOpen", "formData",
               "formErrors", "formLoading", "formSuccess", "formError")
 
@@ -353,7 +353,6 @@ LOOP_SHOW = {
                                     ' data-prog-panel="%s"' % evaluate("tab.key", c, "uk")),
     "openMod===mi": lambda c: (evaluate("mi", c, "uk") == 0,
                                ' data-mod-panel="%d"' % evaluate("mi", c, "uk")),
-    "openFaq===i": lambda c: (False, ' data-faq-panel="%d"' % evaluate("i", c, "uk")),
 }
 
 LOOP_CLASS = {
@@ -372,8 +371,6 @@ LOOP_CLASS = {
         lambda c: (evaluate("mi", c, "uk") == 0, ' data-mod-title="%d"' % evaluate("mi", c, "uk")),
     "openMod===mi ? 'rotate-180 text-fox-500' : 'text-gray-400'":
         lambda c: (evaluate("mi", c, "uk") == 0, ' data-mod-chevron="%d"' % evaluate("mi", c, "uk")),
-    "openFaq===i ? 'rotate-45' : ''":
-        lambda c: (False, ' data-faq-icon="%d"' % evaluate("i", c, "uk")),
     "reviewPage === i-1 ? 'bg-fox-500 w-5' : 'bg-gray-200 w-2'":
         lambda c: (evaluate("i", c, "uk") == 1,
                    ' data-review-dot="%d"' % (evaluate("i", c, "uk") - 1)),
@@ -384,8 +381,6 @@ LOOP_CLICK = {
         lambda c: ' data-prog-tab-btn="%s"' % evaluate("tab.key", c, "uk"),
     "openMod = openMod===mi ? null : mi":
         lambda c: ' data-mod-toggle="%d"' % evaluate("mi", c, "uk"),
-    "openFaq = openFaq===i ? null : i":
-        lambda c: ' data-faq-toggle="%d"' % evaluate("i", c, "uk"),
     "reviewPage = i - 1":
         lambda c: ' data-review-page="%d"' % (evaluate("i", c, "uk") - 1),
 }
@@ -740,6 +735,55 @@ def strip_alpine_runtime(head):
     return head
 
 
+BASE = "https://fluent-fox.site"
+
+
+def fill_faq_graph(head, items):
+    """Заповнює вузол FAQPage питаннями з trans.json.
+
+    Навіщо. Доти питання лежали на головній двічі: видимий текст брався з
+    trans.json, а ld+json був вписаний у шаблон руками. Копії розійшлися —
+    чотири відповіді з шести казали в розмітці одне, а на сторінці інше, і в
+    обох мовах. Google таку розмітку відкидає: вона зобов'язана збігатися з
+    видимим текстом. Тепер джерело одне, розійтися нема з чим.
+
+    `url` у кожного Question веде на свій `<details id="faq-N">` — ті самі
+    номери, що їх проставляє шаблон.
+    """
+    graph = json.loads(re.search(
+        r'<script type="application/ld\+json">\s*(\{.*?\})\s*</script>',
+        head, re.S).group(1))
+
+    faq = [n for n in graph["@graph"] if n.get("@type") == "FAQPage"]
+    if len(faq) != 1:
+        raise SystemExit("у шаблоні має бути рівно один вузол FAQPage, знайдено %d"
+                         % len(faq))
+    if faq[0]["mainEntity"]:
+        raise SystemExit("mainEntity у шаблоні має бути порожнім: його заповнює "
+                         "цей скрипт, а другої копії питань бути не повинно")
+
+    # Пояснення в JSON-LD лишається в шаблоні, а на сторінку не їде: чужої
+    # властивості в Schema.org немає, і валідатори на неї лаються.
+    faq[0].pop("_", None)
+
+    faq[0]["mainEntity"] = [
+        {
+            "@type": "Question",
+            "name": item["q"],
+            "url": "%s/#faq-%d" % (BASE, i + 1),
+            "acceptedAnswer": {"@type": "Answer", "text": item["a"]},
+        }
+        for i, item in enumerate(items)
+    ]
+
+    # indent=0 — рівно той вигляд, що виходив із шаблону після squeeze():
+    # переноси рядків є, відступів немає.
+    dumped = json.dumps(graph, ensure_ascii=False, indent=0)
+    m = re.search(r'<script type="application/ld\+json">\s*(\{.*?\})\s*</script>',
+                  head, re.S)
+    return head[:m.start(1)] + dumped + head[m.end(1):]
+
+
 def main():
     src = io.open(TEMPLATE, encoding="utf-8").read()
     trans = json.load(io.open(TRANS_JSON, encoding="utf-8"))
@@ -770,6 +814,7 @@ def main():
                          % sorted(set(left)))
 
     head = strip_alpine_runtime(head)
+    head = fill_faq_graph(head, trans["uk"]["faq"]["items"])
     scripts = ('\n<script src="/js/lang.js?v=%s" defer></script>'
                '\n<script src="/js/home.js?v=%s" defer></script>'
                '\n<script src="/js/subscribe.js?v=%s" defer></script>\n'
@@ -812,11 +857,31 @@ def ru_html(html):
 
     Винесено окремо, бо цим самим кодом користується аудит — він звіряє
     російські сторінки, перескладаючи їх у пам'яті, і має повторити весь
-    конвеєр, а не половину."""
+    конвеєр, а не половину.
+
+    FAQ повз словник. Решту графа перекладати справді нізвідки, а питання
+    лежать у trans.json обома мовами — ганяти їх ще й через graph_ru.json
+    означало б тримати третю копію того самого тексту, і кожне нове питання
+    валило б складання, доки його не перепишуть у словник.
+    """
     sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
     import graph
-    nodes = graph.localize(graph.read(html), own=graph.BASE + "/",
-                           shared=SHARED_IDS)
+    nodes = [n for n in graph.read(html) if n.get("@type") != "FAQPage"]
+    nodes = graph.localize(nodes, own=graph.BASE + "/", shared=SHARED_IDS)
+
+    trans = json.load(io.open(TRANS_JSON, encoding="utf-8"))
+    ru_url = graph.BASE + "/?lang=ru"
+    nodes.append({
+        "@type": "FAQPage",
+        "@id": ru_url + "#faq",
+        "isPartOf": {"@id": ru_url + "#webpage"},
+        "mainEntity": [
+            {"@type": "Question", "name": item["q"],
+             "url": "%s#faq-%d" % (ru_url, i + 1),
+             "acceptedAnswer": {"@type": "Answer", "text": item["a"]}}
+            for i, item in enumerate(trans["ru"]["faq"]["items"])
+        ],
+    })
     return graph.replace(html, graph.dumps(nodes))
 
     # Дата головної в карті сайту. Модуль проходить усю карту, крім статей
