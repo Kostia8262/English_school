@@ -180,7 +180,7 @@ function post_to(string $url, string $body, array $headers): array
  * конвертом; там, де хостинг його не дозволяє, `mail()` просто відмовить —
  * тому друга спроба без нього, інакше втратили б лист на рівному місці.
  */
-function mail_lead(string $to, array $lead, array $stored): bool
+function mail_lead(string $to, array $lead, array $stored): array
 {
     // Час явно київський. Сервер Hostinger живе в UTC, і лист із часом на три
     // години назад читається як позавчорашній. У мережі так само — там
@@ -263,7 +263,12 @@ function mail_lead(string $to, array $lead, array $stored): bool
     if (!$ok) {
         $ok = @mail($to, $subject, $body, $headers);
     }
-    return $ok;
+    // Причина відмови — єдине, що тут узагалі можна дізнатись: `mail()` сам
+    // повертає лише true/false, а текст лишається в останній помилці PHP.
+    // Без нього «лист не дійшов» нерозрізненне: чи то PHP відмовив, чи то
+    // лист прийняли й викинули далі — а це різні поломки й різні починки.
+    $err = $ok ? null : (error_get_last()['message'] ?? 'mail() повернув false без помилки');
+    return [$ok, $err];
 }
 
 // ── Проба канарейки ─────────────────────────────────────────────────────────
@@ -435,9 +440,10 @@ if (!empty($config['sheet_url'])) {
 // заявка лягла, а дізнатись це можна лише тут. Адреса — в конфізі, а не в
 // коді: репозиторій публічний, і адреса з нього поїхала б у спам-бази.
 
+$mailed = null;
 $notify = trim((string) ($config['notify_email'] ?? ''));
 if ($notify !== '') {
-    $sent = mail_lead($notify, [
+    [$sent, $mail_err] = mail_lead($notify, [
         'name'  => $name,
         'phone' => $phone,
         'age'   => $age,
@@ -446,8 +452,9 @@ if ($notify !== '') {
         $crm_ok   ? 'CRM' : null,
         $sheet_ok ? 'Google-таблиця' : null,
     ])));
+    $mailed = $sent;
     if (!$sent) {
-        log_problem('MAIL FAIL ' . $notify . ' | ' . $phone);
+        log_problem('MAIL FAIL ' . $notify . ' | ' . $phone . ' | ' . $mail_err);
     }
 }
 
@@ -457,13 +464,18 @@ if ($notify !== '') {
 // відповідаємо помилкою чесно — форма покаже червоний блок і телефон.
 
 if ($crm_ok || $sheet_ok) {
+    // `mailed` — діагностика, а не частина контракту: форма читає тільки
+    // `result`. Стоїть тут, бо логу з хостингу не видно нічим, окрім SFTP, а
+    // без причини відмови «лист не дійшов» не полагодити. Прибрати, щойно
+    // відправка встоїться.
     respond(200, [
         'result' => 'success',
         'stored' => array_values(array_filter([
             $crm_ok ? 'crm' : null,
             $sheet_ok ? 'sheet' : null,
         ])),
-    ]);
+        'mailed' => $mailed,
+    ] + ($mailed === false ? ['mail_error' => mb_substr((string) $mail_err, 0, 200)] : []));
 }
 
 log_problem('LOST ' . $name . ' ' . $phone . ' — не прийняв ніхто');
