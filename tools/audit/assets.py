@@ -37,6 +37,13 @@ PLACEHOLDER = re.compile(r"^(%\(\w+\)s|\{\w+\}|%s)$")
 VER = re.compile(r"""(?:/css/|/js/)[a-z0-9./-]+\?v=(%\(\w+\)s|\{\w+\}|%s|[^"'&\s)]+)""")
 GOOGLE_FONTS = re.compile(r"fonts\.(?:googleapis|gstatic)\.com")
 
+# Окремо — версія, яку php тримає константою, а не в рядку «?v=...».
+# 21.09.2026 саме через це api/lead.php лишився на попередній версії:
+# у джерелі там `?v={$v}`, і регулярка вище такого не бачить, тому бамп
+# пройшов повз нього мовчки. Сторінка, яку він віддає відвідувачу без
+# JS, тягнула старий style.css із чужим ключем кешу.
+PHP_CONST = re.compile(r"""ASSET_VERSION\s*=\s*['\"]([^'\"]+)['\"]""")
+
 
 def walk():
     for base, dirs, files in os.walk(ROOT):
@@ -55,6 +62,12 @@ def main():
     for path in walk():
         rel = os.path.relpath(path, ROOT).replace("\\", "/")
         src = io.open(path, encoding="utf-8").read()
+
+        if path.endswith(".php"):
+            for m in PHP_CONST.finditer(src):
+                if m.group(1) != ASSET_VERSION:
+                    bad.append("%s: ASSET_VERSION = %s замість %s"
+                               % (rel, m.group(1), ASSET_VERSION))
 
         for m in VER.finditer(src):
             v = m.group(1)

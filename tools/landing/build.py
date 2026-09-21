@@ -162,6 +162,63 @@ def render_block(b):
                 '        <p class="text-base text-gray-700 leading-relaxed font-semibold"%s</p>\n'
                 '      </div>' % attr_ru(b[1], b[2]))
 
+    if kind == "pay":
+        # Поле суми, призначення і дві кнопки шлюзів. Поведінка — js/pay.js:
+        # він шле суму на свій же /api/pay.php, той створює рахунок і повертає
+        # адресу сторінки оплати шлюзу, куди браузер просто переходить.
+        #
+        # Без скрипта кнопки не працюють, і це єдине місце на сайті, де так.
+        # Інакше й бути не може: рахунок підписується секретом мерчанта, а
+        # секрет живе на сервері. Тому поруч стоїть телефон — щоб людина без
+        # JS не впиралася в мертву кнопку, а знала, куди дзвонити.
+        _, note_uk, note_ru = b
+        return (
+            '      <div class="bg-white rounded-3xl border border-fox-100 p-6 sm:p-8 '
+            'shadow-sm mb-6 mt-4" data-pay>\n'
+            '        <div class="flex flex-col gap-4 mb-5">\n'
+            '          <label class="flex flex-col gap-2">\n'
+            '            <span class="text-sm font-bold text-gray-700"'
+            '%s</span>\n'
+            '            <input type="number" inputmode="decimal" min="1" max="100000" '
+            'step="1" value="1800" data-pay-amount '
+            'class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 '
+            'text-base font-medium text-gray-900 aria-[invalid=true]:border-red-400 '
+            'aria-[invalid=true]:bg-red-50 transition-colors duration-200"/>\n'
+            '          </label>\n'
+            '          <label class="flex flex-col gap-2">\n'
+            '            <span class="text-sm font-bold text-gray-700"%s</span>\n'
+            '            <input type="text" maxlength="120" data-pay-purpose '
+            'class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 '
+            'text-base font-medium text-gray-900 transition-colors duration-200"%s/>\n'
+            '          </label>\n'
+            '        </div>\n'
+            '        <div class="flex flex-col sm:flex-row gap-3">\n'
+            '          <button type="button" data-pay-provider="mono" '
+            'class="flex-1 bg-fox-500 hover:bg-fox-600 text-white font-black text-base '
+            'px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg hover:-translate-y-1 '
+            'transition-all duration-200 disabled:opacity-60 disabled:translate-y-0"'
+            '%s</button>\n'
+            '          <button type="button" data-pay-provider="wfp" '
+            'class="flex-1 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 '
+            'font-black text-base px-7 py-3.5 rounded-full shadow-sm hover:shadow-md '
+            'hover:-translate-y-1 transition-all duration-200 disabled:opacity-60 '
+            'disabled:translate-y-0"'
+            '%s</button>\n'
+            '        </div>\n'
+            '        <p class="text-sm text-gray-500 leading-relaxed mt-4 empty:hidden '
+            'data-[state=error]:text-red-600 data-[state=error]:font-semibold" '
+            'data-pay-status role="status" aria-live="polite"></p>\n'
+            '        <p class="text-sm text-gray-500 leading-relaxed mt-4"%s</p>\n'
+            '      </div>'
+            % (attr_ru("Сума, грн", "Сумма, грн"),
+               attr_ru("Призначення платежу", "Назначение платежа"),
+               ' placeholder="%s" data-ru-placeholder="%s"'
+               % (esc("Оплата навчання, Марія, вересень"),
+                  esc("Оплата обучения, Мария, сентябрь")),
+               attr_ru("Оплатити через MonoPay", "Оплатить через MonoPay"),
+               attr_ru("Оплатити через WayForPay", "Оплатить через WayForPay"),
+               attr_ru(note_uk, note_ru)))
+
     raise ValueError("невідомий блок: " + kind)
 
 
@@ -554,6 +611,7 @@ FOOTER = """
 
 <script src="/js/lang.js?v=%(assetv)s" defer></script>
 <script src="/js/subscribe.js?v=%(assetv)s" defer></script>
+<script src="/js/pay.js?v=%(assetv)s" defer></script>
 </body>
 </html>
 """
