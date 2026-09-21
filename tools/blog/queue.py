@@ -19,7 +19,13 @@ excerpt_ru, content, content_ru, category, category_ru, coverEmoji, author), і
   published — дата публікації (без неї береться день складання);
   faq       — [[питання_uk, відповідь_uk, питання_ru, відповідь_ru], ...],
               з нього збирається і видимий блок, і розмітка FAQPage;
-  catKey    — вкладка лістингу; без неї визначається за назвою категорії.
+  catKey    — вкладка лістингу; без неї визначається за назвою категорії;
+  courselink — [адреса, підпис_uk, підпис_ru, напис_на_посиланні_uk,
+              напис_на_посиланні_ru]: контекстне посилання на посадкову,
+              вставлене в середину тексту. Решту багатого формату агент не
+              пише, але без цього посилання стаття з черги має в тілі лише
+              сусідні статті — а вагу на комерційні сторінки переносить саме
+              посилання з тексту, не з підвалу.
 """
 from __future__ import unicode_literals
 
@@ -98,6 +104,42 @@ def strip_html_ext(html):
     return BLOG_LINK.sub(r"\1\2", html)
 
 
+H2_RE = re.compile(r"<\s*h2[\s>]", re.I)
+
+
+def _split_at_middle_h2(html):
+    """Розрізає текст перед серединним <h2>. Без такого <h2> — порожній хвіст."""
+    marks = [m.start() for m in H2_RE.finditer(html)]
+    if len(marks) < 2:
+        return html, ""
+    return html[:marks[len(marks) // 2]], html[marks[len(marks) // 2]:]
+
+
+def with_courselink(article, blocks):
+    """Вставляє courselink у середину тексту, якщо стаття його принесла.
+
+    Посадкова сторінка живе з посилань із тіла статей: ті, що в підвалі,
+    однакові на всіх сторінках, і ваги майже не несуть. Стаття з черги
+    приходить одним шматком HTML, тож місце для врізки шукається тут — перед
+    серединним <h2>, щоб вона не впиралася ні в перший абзац, ні у FAQ.
+    """
+    link = article.get("courselink")
+    if not link:
+        return blocks
+    if len(link) != 5:
+        raise ValueError("%s: courselink має бути з п'яти полів"
+                         % article.get("slug", "?"))
+    page, t_uk, t_ru, cta_uk, cta_ru = link
+    head_uk, tail_uk = _split_at_middle_h2(blocks[0][1])
+    head_ru, tail_ru = _split_at_middle_h2(blocks[0][2])
+    if not tail_uk or not tail_ru:
+        raise ValueError("%s: нема куди вставити courselink — менше двох <h2>"
+                         % article.get("slug", "?"))
+    return [("html", head_uk, head_ru),
+            ("courselink", page, t_uk, t_ru, cta_uk, cta_ru),
+            ("html", tail_uk, tail_ru)]
+
+
 def cat_key(article):
     if article.get("catKey"):
         return article["catKey"]
@@ -146,8 +188,9 @@ def to_art(article, authors):
         "og_desc_uk": article.get("og_desc_uk") or article["excerpt"],
         "og_desc_ru": article.get("og_desc_ru") or article["excerpt_ru"],
         "cta": tuple(article["cta"]) if article.get("cta") else DEFAULT_CTA,
-        "blocks": [("html", strip_html_ext(article["content"]),
-                    strip_html_ext(article["content_ru"]))],
+        "blocks": with_courselink(article,
+                   [("html", strip_html_ext(article["content"]),
+                    strip_html_ext(article["content_ru"]))]),
         "emoji": article.get("coverEmoji") or "🦊",
         "catKey": cat_key(article),
         "accent": article.get("accent") or "fox",
