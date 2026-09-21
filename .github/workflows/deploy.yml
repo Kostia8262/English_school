@@ -96,3 +96,40 @@ jobs:
                 ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }} \
                 "cat > /home/u260300169/domains/fluent-fox.site/lead-config.php && chmod 600 /home/u260300169/domains/fluent-fox.site/lead-config.php"
           echo "Конфіг оновлено."
+
+      # Те саме для ключів оплати: секрет мерчанта WayForPay і токен MonoPay
+      # дозволяють створювати рахунки від імені школи, тож у public_html їм
+      # місця немає так само, як токену CRM.
+      #
+      # Немає секретів — крок мовчить, api/pay.php відповідає 503 і нічого не
+      # створює, а кнопка на /oplata показує людині, що оплата тимчасово
+      # недоступна. Це навмисно: платіжний ендпоінт із порожнім ключем гірший
+      # за вимкнений.
+      - name: Покласти конфіг оплати
+        env:
+          SSHPASS:      ${{ secrets.SFTP_PASSWORD }}
+          WFP_MERCHANT: ${{ secrets.WFP_MERCHANT }}
+          WFP_SECRET:   ${{ secrets.WFP_SECRET }}
+          MONO_TOKEN:   ${{ secrets.MONO_TOKEN }}
+        run: |
+          if [ -z "$WFP_SECRET" ] && [ -z "$MONO_TOKEN" ]; then
+            echo "::warning title=Ключів оплати немає::pay-config.php не чіпали — кнопки на /oplata відповідатимуть 503"
+            exit 0
+          fi
+          # base64 з тієї ж причини, що й для токена CRM: на виході лише
+          # A-Za-z0-9+/=, тож ключ не розірве PHP-літерал.
+          merchant=$(printf '%s' "$WFP_MERCHANT" | base64 -w0)
+          secret=$(printf '%s' "$WFP_SECRET" | base64 -w0)
+          mono=$(printf '%s' "$MONO_TOKEN" | base64 -w0)
+          {
+            echo "<?php"
+            echo "// Складає деплой із секретів WFP_MERCHANT, WFP_SECRET, MONO_TOKEN."
+            echo "// Руками не правити: наступна викатка перезапише."
+            echo "// Зразок — api/pay-config.sample.php."
+            echo "return ["
+            echo "    'wfp_merchant' => base64_decode('${merchant}'),"
+            echo "    'wfp_secret'   => base64_decode('${secret}'),"
+            echo "    'mono_token'   => base64_decode('${mono}'),"
+            echo "];"
+          } | sshpass -e ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no                 ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}                 "cat > /home/u260300169/domains/fluent-fox.site/pay-config.php && chmod 600 /home/u260300169/domains/fluent-fox.site/pay-config.php"
+          echo "Конфіг оплати оновлено."

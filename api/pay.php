@@ -3,8 +3,8 @@
  * Створення рахунку на оплату: WayForPay і MonoPay.
  *
  * Навіщо цей файл, якщо в мережі вже є робоча інтеграція. Вона є — у
- * `my_computer_new/sites/*/server/wayforpay.js` і `server/mono-pay.js`, — але
- * перенести її сюди як є не можна: там Node за LiteSpeed-проксі, а FluentFox
+ * `my_computer_new/sites/<сайт>/server/wayforpay.js` і `server/mono-pay.js`, —
+ * але перенести її сюди як є не можна: там Node за LiteSpeed-проксі, а FluentFox
  * це статика на Hostinger, де з динаміки живе лише PHP. Тому тут той самий
  * протокол, переписаний на PHP, а не інший спосіб оплати.
  *
@@ -131,7 +131,7 @@ function post_json(string $url, string $body, array $headers): array
 /**
  * Підпис WayForPay: HMAC-MD5 на merchantSecretKey по полях, з'єднаних «;».
  * Порядок полів і їхній склад — з документації шлюзу; він же відтворений у
- * `sign()` в my_computer_new/sites/*/server/wayforpay.js, і зійтися вони
+ * `sign()` в my_computer_new/sites/<сайт>/server/wayforpay.js, і зійтися вони
  * зобов'язані символ у символ: акаунт мерчанта той самий.
  */
 function wfp_sign(string $secret, array $fields): string
