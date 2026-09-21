@@ -34,6 +34,7 @@ import pages_exams          # noqa: E402,F401  — НМТ і Cambridge, допи
 import pages_service        # noqa: E402,F401  — ціни, відгуки, школа, пробний урок
 import pages_dnipro         # noqa: E402,F401  — локальна сторінка з двома класами
 import pages_generic        # noqa: E402,F401  — курси, онлайн, репетитор, розмовна
+import pages_niche          # noqa: E402,F401  — англійська з нуля, діти за кордоном
 
 BASE = "https://fluent-fox.site"
 ORG = BASE + "/#organization"
@@ -495,6 +496,8 @@ FOOTER = """
           <li><a href="/anhliyska-onlayn-dlya-ditey" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский онлайн">Англійська онлайн</a></li>
           <li><a href="/repetytor-z-anhliyskoyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Репетитор по английскому">Репетитор з англійської</a></li>
           <li><a href="/rozmovna-anhliyska-dlya-ditey" class="hover:text-fox-400 transition-colors duration-200" data-ru="Разговорный английский">Розмовна англійська</a></li>
+          <li><a href="/anhliyska-z-nulya-dlya-ditey" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский с нуля">Англійська з нуля</a></li>
+          <li><a href="/anhliyska-dlya-ditey-za-kordonom" class="hover:text-fox-400 transition-colors duration-200" data-ru="Детям за рубежом">Дітям за кордоном</a></li>
           <li><a href="/pidhotovka-do-nmt" class="hover:text-fox-400 transition-colors duration-200" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
           <li><a href="/cambridge" class="hover:text-fox-400 transition-colors duration-200" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
           <li><a href="/dnipro" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский в Днепре">Англійська у Дніпрі</a></li>
