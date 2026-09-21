@@ -148,6 +148,124 @@ function post_to(string $url, string $body, array $headers): array
     return [$code >= 200 && $code < 300, $code, (string) $out];
 }
 
+/**
+ * Лист із заявкою. Третій отримувач — і єдиний, який нічого не вирішує.
+ *
+ * Навіщо. У CRM заявка видна лише тому, хто туди зайшов. Сайти мережі шлють
+ * такий лист самі, своїм кодом («[Дошколярик] Нова заявка: …» складає
+ * sites/child/main/mailer.py), і лише потім форвардять у CRM. FluentFox
+ * форвардить у POST /api/leads/admin, а той маршрут листа не шле: у хабі
+ * sendLeadNotification викликається рівно в одному місці — у публічному
+ * POST /api/leads. Тобто мовчання було не збоєм, а тим, як влаштований
+ * маршрут, і додати лист можна тільки тут.
+ *
+ * Чому результат не впливає на відповідь сторінці. `mail()` повертає true,
+ * коли лист прийняв MTA, а не коли його прочитали, — рівно та сама непрозора
+ * відповідь, через яку сторінка два місяці рапортувала успіх у нікуди. Лист
+ * тому й шлеться останнім і ніде не рахується: відвідувачу відповідають CRM і
+ * таблиця, які підтвердження дають.
+ *
+ * Шлеться навіть тоді, коли не прийняв ніхто: у такому разі лист — єдиний слід
+ * заявки, і рядок «УВАГА» в тілі про це каже прямо. Рівно цей випадок стався
+ * 14.09.2026, коли CRM тричі відповіла 401, таблиця заявку прийняла, і
+ * дізнатись про розбіжність не було звідки.
+ *
+ * Вигляд листа — той самий, що в мережі (sites/main/server/mailer.js): картка
+ * з кольоровою шапкою і таблицею полів, поруч текстова частина для тих, хто
+ * HTML не показує. Відмінності дві — колір шапки свій і рядок унизу про те,
+ * куди заявка лягла.
+ *
+ * From мусить бути на своєму домені: SPF домену — include:_spf.mail.hostinger.com,
+ * тож лист із чужої адреси не пройде вирівнювання. `-f` ставить ту саму адресу
+ * конвертом; там, де хостинг його не дозволяє, `mail()` просто відмовить —
+ * тому друга спроба без нього, інакше втратили б лист на рівному місці.
+ */
+function mail_lead(string $to, array $lead, array $stored): bool
+{
+    // Час явно київський. Сервер Hostinger живе в UTC, і лист із часом на три
+    // години назад читається як позавчорашній. У мережі так само — там
+    // toLocaleString('uk-UA', { timeZone: 'Europe/Kiev' }).
+    $time = (new DateTime('now', new DateTimeZone('Europe/Kyiv')))
+            ->format('d.m.Y, H:i:s');
+
+    $name  = $lead['name'];
+    $phone = $lead['phone'];
+    $age   = $lead['age'] > 0 ? $lead['age'] . ' років' : '—';
+    $langs = $lead['lang'] === 'ru' ? 'російська' : 'українська';
+    $note  = $stored
+        ? 'Записано: ' . implode(', ', $stored)
+        : 'УВАГА: заявку не прийняв жоден отримувач — ні CRM, ні таблиця.'
+          . ' У панелі її немає, цей лист — єдиний її слід.';
+
+    $text = "Нова заявка — FluentFox\n"
+          . "Дитина: {$name}, {$age}\n"
+          . "Курс: Англійська мова\n"
+          . "Телефон: {$phone}\n"
+          . "Мова сторінки: {$langs}\n"
+          . "Джерело: fluent-fox.site\n"
+          . "Час: {$time}\n"
+          . "\n{$note}\n";
+
+    // Ім'я приходить від відвідувача, тож у HTML воно йде тільки екранованим.
+    $h = static fn(string $s): string
+        => htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    $row = static fn(string $k, string $v): string
+        => '<tr><td style="padding:8px 0;color:#888;width:140px">' . $k
+           . '</td><td style="padding:8px 0">' . $v . '</td></tr>';
+
+    $html = '<!DOCTYPE html><html lang="uk"><head><meta charset="UTF-8"/></head>'
+          . '<body style="font-family:Arial,sans-serif;background:#f5f5f5;padding:20px">'
+          . '<div style="max-width:520px;margin:0 auto;background:#fff;border-radius:10px;'
+          . 'overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1)">'
+          . '<div style="background:#FF6B35;padding:20px 28px">'
+          . '<h2 style="color:#fff;margin:0;font-size:18px">🦊 Нова заявка — FluentFox</h2>'
+          . '</div><div style="padding:24px 28px"><table style="width:100%;border-collapse:collapse">'
+          . $row('Ім\'я дитини', '<strong>' . $h($name) . '</strong>')
+          . $row('Вік', $h($age))
+          . $row('Курс', 'Англійська мова')
+          . $row('Телефон', '<strong><a href="tel:' . $h($phone)
+                 . '" style="color:#FF6B35;text-decoration:none">' . $h($phone) . '</a></strong>')
+          . $row('Мова сторінки', $langs)
+          . $row('Джерело', 'fluent-fox.site')
+          . $row('Час', $time)
+          . '</table></div>'
+          . '<div style="background:' . ($stored ? '#fff7f3' : '#fff0f0')
+          . ';padding:16px 28px;border-top:1px solid #eee">'
+          . '<p style="margin:0 0 6px;color:#888;font-size:13px">Передзвоніть протягом 30 хвилин 📞</p>'
+          . '<p style="margin:0;color:' . ($stored ? '#888' : '#c0392b')
+          . ';font-size:13px">' . $h($note) . '</p>'
+          . '</div></div></body></html>';
+
+    // Тема з кирилицею мусить бути закодована, інакше поштовик покаже або
+    // питальники, або сам заголовок як текст. Вигляд теми — як у мережі:
+    // «📩 [джерело] Нова заявка: ім'я — курс».
+    $subject = '=?UTF-8?B?' . base64_encode(
+        '📩 [fluent-fox.site] Нова заявка: ' . $name . ' — Англійська мова'
+    ) . '?=';
+
+    $bound   = 'ff-' . bin2hex(random_bytes(8));
+    $headers = implode("\r\n", [
+        'From: FluentFox <zayavky@fluent-fox.site>',
+        'MIME-Version: 1.0',
+        'Content-Type: multipart/alternative; boundary="' . $bound . '"',
+    ]);
+    $body = "--{$bound}\r\n"
+          . "Content-Type: text/plain; charset=utf-8\r\n"
+          . "Content-Transfer-Encoding: 8bit\r\n\r\n"
+          . str_replace("\n", "\r\n", $text) . "\r\n"
+          . "--{$bound}\r\n"
+          . "Content-Type: text/html; charset=utf-8\r\n"
+          . "Content-Transfer-Encoding: 8bit\r\n\r\n"
+          . $html . "\r\n"
+          . "--{$bound}--\r\n";
+
+    $ok = @mail($to, $subject, $body, $headers, '-fzayavky@fluent-fox.site');
+    if (!$ok) {
+        $ok = @mail($to, $subject, $body, $headers);
+    }
+    return $ok;
+}
+
 // ── Проба канарейки ─────────────────────────────────────────────────────────
 // GET сюди шле сторож доставки — питає, чи знає цей сайт про канарейку.
 // Питання не формальне: якщо деплой не доїхав і код тут старий, заголовок
@@ -309,6 +427,27 @@ if (!empty($config['sheet_url'])) {
     $sheet_ok = $ok && str_contains($body, 'success');
     if (!$sheet_ok) {
         log_problem(sprintf('SHEET FAIL http=%d %s | %s', $code, substr($body, 0, 300), $phone));
+    }
+}
+
+// ── Отримувач 3: лист ───────────────────────────────────────────────────────
+// Стоїть після обох записів навмисно: у тілі листа є рядок про те, куди
+// заявка лягла, а дізнатись це можна лише тут. Адреса — в конфізі, а не в
+// коді: репозиторій публічний, і адреса з нього поїхала б у спам-бази.
+
+$notify = trim((string) ($config['notify_email'] ?? ''));
+if ($notify !== '') {
+    $sent = mail_lead($notify, [
+        'name'  => $name,
+        'phone' => $phone,
+        'age'   => $age,
+        'lang'  => $lang,
+    ], array_values(array_filter([
+        $crm_ok   ? 'CRM' : null,
+        $sheet_ok ? 'Google-таблиця' : null,
+    ])));
+    if (!$sent) {
+        log_problem('MAIL FAIL ' . $notify . ' | ' . $phone);
     }
 }
 

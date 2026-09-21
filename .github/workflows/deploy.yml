@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+  # Ручний запуск. Потрібен тоді, коли змінився не код, а секрет: конфіг
+  # приймача заявок складається саме тут, і без цього рядка його довелося б
+  # оновлювати порожнім комітом.
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -15,6 +19,17 @@ jobs:
 
       - name: Install sshpass and rsync
         run: sudo apt-get install -y sshpass rsync
+
+      # Синтаксис PHP — до rsync, а не після. Приймач заявок тут один файл, і
+      # помилка в ньому кладе не сторінку, а саме приймання: форма отримує
+      # порожню п'ятисотку, відвідувач — червоний блок, і дізнаємось ми про це
+      # від людини, яка не змогла записатись. Локально PHP на машині немає,
+      # тож ця перевірка — єдине місце, де помилку видно до прода.
+      - name: Перевірити синтаксис PHP
+        run: |
+          for f in $(find api -name '*.php'); do
+            php -l "$f"
+          done
 
       - name: Deploy via rsync over SSH
         env:
@@ -48,6 +63,10 @@ jobs:
           SSHPASS:   ${{ secrets.SFTP_PASSWORD }}
           CRM_TOKEN: ${{ secrets.CRM_ADMIN_TOKEN }}
           CANARY:    ${{ secrets.CANARY_TOKEN }}
+          # Адреса для дубля заявки листом. Секрет, а не рядок тут: репозиторій
+          # публічний, і адреса з нього поїхала б у спам-бази. Немає секрету —
+          # рядок у конфізі порожній, листи не шлються, заявки не страждають.
+          NOTIFY:    ${{ secrets.LEAD_NOTIFY_EMAIL }}
           SHEET_URL: https://script.google.com/macros/s/AKfycbxAA1T6SIdTeldgSFmT-3HUEfRBUIq7-v79uGBe3UbVnTQBlespZMrsgNQMqmZKCzEGqA/exec
         run: |
           if [ -z "$CRM_TOKEN" ]; then
@@ -58,6 +77,10 @@ jobs:
           # тож рядок не розірве PHP-літерал, хай яким буде токен.
           token=$(printf '%s' "$CRM_TOKEN" | base64 -w0)
           canary=$(printf '%s' "$CANARY" | base64 -w0)
+          notify=$(printf '%s' "$NOTIFY" | base64 -w0)
+          if [ -z "$NOTIFY" ]; then
+            echo "::warning title=LEAD_NOTIFY_EMAIL не заданий::дубль заявки листом вимкнено"
+          fi
           {
             echo "<?php"
             echo "// Складає деплой із секрету CRM_ADMIN_TOKEN. Руками не правити:"
@@ -67,6 +90,7 @@ jobs:
             echo "    'crm_url'   => 'https://mycomputer.education/api/leads/admin',"
             echo "    'sheet_url' => '${SHEET_URL}',"
             echo "    'canary_token' => base64_decode('${canary}'),"
+            echo "    'notify_email' => base64_decode('${notify}'),"
             echo "];"
           } | sshpass -e ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no \
                 ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }} \
