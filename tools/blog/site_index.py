@@ -37,6 +37,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 LISTING = os.path.join(HERE, "listing.json")
 
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+from html_min import squeeze  # noqa: E402
+
 BASE = "https://fluent-fox.site"
 BLOG = BASE + "/blog/"
 
@@ -167,7 +170,12 @@ def update_index(entries):
         raise ValueError("не знайдено JSON-LD лістингу")
     html = html[:m.start(1)] + render_jsonld(m.group(1), entries) + html[m.end(1):]
 
-    io.open(path, "w", encoding="utf-8", newline="\n").write(html)
+    # keep_comments: межі ділянки з картками позначені саме коментарями, і
+    # зрізати їх означає зламати додавання наступної статті — мовчки тут і
+    # голосно аж тоді, коли конвеєр мережі спробує покласти нову. Відступи
+    # при цьому йдуть, як і на решті сторінок.
+    io.open(path, "w", encoding="utf-8", newline="\n").write(
+        squeeze(html, keep_comments=True))
 
     # Російська версія лістингу — окремим файлом, тим самим пост-процесором, що
     # й для головної та посадкових.
@@ -190,6 +198,10 @@ def update_ru_index(entries):
     куди їх поклав той самий пост-процесор."""
     path = os.path.join(ROOT, "blog", "index.ru.html")
     html = io.open(path, encoding="utf-8").read()
+    # Без squeeze навмисно: файл уже складений із стиснутої української версії,
+    # а тут лише переписується граф. Зайвий виклик тут розсинхронив би цей файл
+    # з аудитом, який перескладає російські сторінки в пам'яті й звіряє байт у
+    # байт — а про squeeze він не знає.
     io.open(path, "w", encoding="utf-8", newline="\n").write(
         ru_index_html(html, entries))
 

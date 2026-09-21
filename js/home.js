@@ -255,6 +255,11 @@
       });
     });
 
+    /* Перевірку браузера вимикаємо звідси, а не в розмітці: тут вона зайва —
+       нижче своя, з підсвіткою полів. Але якщо цей скрипт не виконався,
+       форма лишається зі своїм `required` і браузер перевірить сам. */
+    form.noValidate = true;
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -278,7 +283,9 @@
       body.append('name', name.value.trim());
       body.append('phone', phone.value.trim());
       body.append('childAge', age ? age.value : '');
-      body.append('format', format ? format.value : 'group');
+      /* Тільки якщо поле справді є. Запасне 'group' означало не «обрали
+         групу», а «поля немає» — і йшло в CRM як вибір батьків. */
+      if (format) body.append('format', format.value);
       body.append('lang', document.documentElement.lang || 'uk');
       body.append('timestamp', new Date().toLocaleString('uk-UA'));
 

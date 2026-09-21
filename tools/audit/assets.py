@@ -42,7 +42,11 @@ def walk():
     for base, dirs, files in os.walk(ROOT):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
         for f in files:
-            if f.endswith((".html", ".py", ".js", ".css")):
+            # .php теж: сторінка, яку `api/lead.php` віддає відвідувачу без JS,
+            # підключає style.css і носить версію руками — рівно як юридичні
+            # сторінки й 404. Без цього рядка вона тихо розійшлася б із рештою
+            # сайту при першому ж бампі.
+            if f.endswith((".html", ".py", ".js", ".css", ".php")):
                 yield os.path.join(base, f)
 
 

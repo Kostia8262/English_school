@@ -3,17 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ═══ Google Analytics 4 ═══ -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
-<!-- ═══ SEO Primary ═══ -->
 <title>Онлайн-школа английского для детей по всей Украине</title>
 <meta name="description" content="Онлайн-школа английского для детей и подростков 6–18 лет: занятия по всей Украине и два очных класса в Днепре. Группы до 6 учеников, первый урок бесплатно.">
 <meta name="keywords" content="онлайн школа англійської для дітей, англійська для дітей онлайн по всій Україні, курси англійської для дітей онлайн, англійська для підлітків онлайн, англійська для дітей у Дніпрі, репетитор з англійської для дитини онлайн, FluentFox">
 <meta name="robots" content="index, follow">
 <meta name="author" content="FluentFox">
 <meta name="google-site-verification" content="NcBHVjpV7_i4lNVU-lqjlrveqRG5XbAQNFqYaAN7aNI">
-<!-- ═══ Open Graph ═══ -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FluentFox">
 <meta property="og:title" content="FluentFox — онлайн-школа английского для детей по всей Украине">
@@ -23,45 +20,25 @@
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://fluent-fox.site/?lang=ru">
 <meta property="og:locale" content="ru_RU">
-<!-- ru_RU, а не ru_UA: месенджери знають лише перелік локалей, ru_UA у ньому немає (див. tools/i18n/ru_pages.py). -->
 <meta property="og:locale:alternate" content="uk_UA">
-<!-- ═══ Twitter Card ═══ -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="FluentFox — онлайн-школа английского для детей по всей Украине">
 <meta name="twitter:description" content="Занятия онлайн по всей Украине и два очных класса в Днепре. Малые группы, живые учителя, первый урок бесплатно!">
 <meta name="twitter:image" content="https://fluent-fox.site/og-image.jpg">
-<!-- ═══ Canonical & Hreflang ═══ -->
 <link rel="canonical" href="https://fluent-fox.site/?lang=ru">
 <link rel="alternate" hreflang="uk" href="https://fluent-fox.site/">
 <link rel="alternate" hreflang="ru" href="https://fluent-fox.site/?lang=ru">
 <link rel="alternate" hreflang="x-default" href="https://fluent-fox.site/">
-<!-- ═══ Favicon ═══ -->
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"/>
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"/>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35">
-<!-- ═══ Шрифт ═══ -->
-<!-- Шрифт свій, правила @font-face — усередині style.css. Підмножина
-cyrillic несе весь текст сторінки, тому її беремо наперед, не
-чекаючи, доки браузер дочитає таблицю стилів. -->
 <link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
-<!-- media обов'язковий: саме фото стоїть у блоці hidden lg:flex, тож без
-умови мобільний браузер тягнув 97 КБ картинки, яку ніколи не покаже -->
 <link rel="preload" as="image" href="hero-photo.webp" type="image/webp" media="(min-width: 1024px)">
-<!-- Dynamic meta for ru version -->
 
-<!-- ═══ Tailwind CSS CDN ═══ -->
-<link rel="preload" as="style" href="/css/style.css?v=20260914s"/>
-<link rel="stylesheet" href="/css/style.css?v=20260914s" fetchpriority="high"/>
-<!-- ═══ Schema.org ═══
-Один @graph замість чотирьох окремих блоків. Раніше Organization,
-Course, FAQPage і WebSite не знали один про одного: у графі стояли
-три різні «FluentFox» без спільного @id, і зв'язок «цей курс веде ця
-школа, а в ній працюють ці вчителі» доводилося вгадувати. Тепер
-сутність одна, решта посилається на неї через @id — так само
-влаштована розмітка сусідньої школи програмування.
-══════════════════════ -->
+<link rel="preload" as="style" href="/css/style.css?v=20260921a"/>
+<link rel="stylesheet" href="/css/style.css?v=20260921a" fetchpriority="high"/>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://fluent-fox.site/#website","url":"https://fluent-fox.site/?lang=ru","name":"FluentFox","alternateName":"Онлайн-школа английского FluentFox","description":"Онлайн-школа английского языка для детей и подростков 6–18 лет по всей Украине","inLanguage":["uk","ru"],"publisher":{"@id":"https://fluent-fox.site/#organization"}},{"@type":"EducationalOrganization","@id":"https://fluent-fox.site/#organization","name":"FluentFox","alternateName":"Флуент Фокс","legalName":"ФОП Піменов К. Ю.","url":"https://fluent-fox.site/?lang=ru","description":"Онлайн-школа английского языка для детей и подростков 6–18 лет. Занятия по всей Украине и для украинских семей за рубежом; дополнительно работают два очных класса в Днепре. Группы до 6 учеников, первый урок бесплатно.","slogan":"Английский, который дети обожают","logo":{"@type":"ImageObject","url":"https://fluent-fox.site/logo.png","caption":"FluentFox"},"image":"https://fluent-fox.site/og-image.jpg","telephone":["+380954624672","+380682522876"],"email":"fluent.fox.study@gmail.com","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","addressRegion":"Днепропетровская область","postalCode":"49001","addressCountry":"UA"},"areaServed":[{"@type":"Country","name":"Ukraine"},{"@type":"AdministrativeArea","name":"Europe"}],"location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","addressRegion":"Днепропетровская область","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","addressRegion":"Днепропетровская область","postalCode":"49000","addressCountry":"UA"}}],"department":[{"@id":"https://fluent-fox.site/dnipro#local-polia"},{"@id":"https://fluent-fox.site/dnipro#local-budivelnykiv"}],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"10:00","closes":"18:00"}],"availableLanguage":["uk","ru","en"],"knowsLanguage":["uk","ru","en"],"priceRange":"1800–3600 UAH","currenciesAccepted":"UAH","contactPoint":[{"@type":"ContactPoint","telephone":"+380954624672","email":"fluent.fox.study@gmail.com","contactType":"customer service","areaServed":"UA","availableLanguage":["Ukrainian","Russian"]},{"@type":"ContactPoint","telephone":"+380682522876","contactType":"customer service","areaServed":"UA","availableLanguage":["Ukrainian","Russian"]}],"sameAs":["https://www.instagram.com/fluent.fox.study/","https://www.facebook.com/profile.php?id=61591810049590","https://t.me/fluentfox_ua"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Курсы английского языка онлайн","itemListElement":[{"@type":"Offer","itemOffered":{"@id":"https://fluent-fox.site/#course-6-8"}},{"@type":"Offer","itemOffered":{"@id":"https://fluent-fox.site/#course-9-12"}},{"@type":"Offer","itemOffered":{"@id":"https://fluent-fox.site/#course-13-18"}}]},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","bestRating":"5","worstRating":"1","ratingCount":"6","reviewCount":"6"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Ирина К."},"datePublished":"2026-03-15","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Перед первым занятием Соня держала меня за руку и шептала «мам, не хочу». После третьего урока — сама садилась за планшет и повторяла слова с учительницей. Сейчас уже 4-й месяц, и она расстраивается, если занятие отменяют.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}},{"@type":"Review","author":{"@type":"Person","name":"Олег Т."},"datePublished":"2026-04-02","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Максим готовился к Cambridge KET и школьным экзаменам одновременно. Учительница составила отдельный план под каждое задание, после каждого урока присылала разбор ошибок. Сдал KET на Merit, а в школе получил годовую пятёрку по английскому. Очень структурированный подход.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}},{"@type":"Review","author":{"@type":"Person","name":"Марина В."},"datePublished":"2026-05-10","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Готовились к НМТ с нуля за 4 месяца. Учительница подобрала программу под конкретные задания экзамена, каждую неделю разбирали ошибки. Дарина сдала на 183 балла. Уже записываю младшего сына.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}},{"@type":"Review","author":{"@type":"Person","name":"Татьяна Л."},"datePublished":"2026-04-20","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Лёша стеснялся говорить даже по-русски, а тут — английский! Думала, ничего не получится. Сейчас учительница в школе спрашивает, где он так хорошо научился. Не знаю как FluentFox это делает, но это точно работает.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}},{"@type":"Review","author":{"@type":"Person","name":"Андрей С."},"datePublished":"2026-06-01","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Алина занималась год в группе. Сначала боялась открыть рот, а теперь за семейным ужином исправляет моё произношение. На день рождения попросила дополнительные занятия. Вот такой результат.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}},{"@type":"Review","author":{"@type":"Person","name":"Наталья Б."},"datePublished":"2026-05-28","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5","worstRating":"1"},"reviewBody":"Записала сразу двух сыновей в разные группы — со скидкой на второго ребёнка выходит выгодно. Оба занимаются уже 7 месяцев. Старший читает в оригинале, а младший просит переключать мультики на английский и смеётся, что я не понимаю.","itemReviewed":{"@id":"https://fluent-fox.site/#organization"}}],"subOrganization":[{"@id":"https://fluent-fox.site/#branch-polia"},{"@id":"https://fluent-fox.site/#branch-budivelnykiv"}],"serviceArea":{"@type":"Country","name":"Ukraine"}},{"@type":["EducationalOrganization","LocalBusiness"],"@id":"https://fluent-fox.site/#branch-polia","name":"FluentFox — просп. Александра Поля","url":"https://fluent-fox.site/dnipro","parentOrganization":{"@id":"https://fluent-fox.site/#organization"},"telephone":"+380682522876","email":"fluent.fox.study@gmail.com","priceRange":"1800–3600 UAH","currenciesAccepted":"UAH","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","addressRegion":"Днепропетровская область","postalCode":"49001","addressCountry":"UA"},"hasMap":"https://www.google.com/maps/search/?api=1&query=%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%B0%20%D0%9F%D0%BE%D0%BB%D1%8F%2C%2028%D0%90%2C%20%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE","areaServed":{"@type":"City","name":"Днепр"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"10:00","closes":"18:00"}]},{"@type":["EducationalOrganization","LocalBusiness"],"@id":"https://fluent-fox.site/#branch-budivelnykiv","name":"FluentFox — ул. Строителей","url":"https://fluent-fox.site/dnipro","parentOrganization":{"@id":"https://fluent-fox.site/#organization"},"telephone":"+380954624672","email":"fluent.fox.study@gmail.com","priceRange":"1800–3600 UAH","currenciesAccepted":"UAH","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","addressRegion":"Днепропетровская область","postalCode":"49000","addressCountry":"UA"},"hasMap":"https://www.google.com/maps/search/?api=1&query=%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%91%D1%83%D0%B4%D1%96%D0%B2%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA%D1%96%D0%B2%2C%2025%2C%20%D0%94%D0%BD%D1%96%D0%BF%D1%80%D0%BE","areaServed":{"@type":"City","name":"Днепр"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"10:00","closes":"18:00"}]},{"@type":"WebPage","@id":"https://fluent-fox.site/?lang=ru#webpage","url":"https://fluent-fox.site/?lang=ru","name":"FluentFox — Онлайн-школа английского для детей и подростков","description":"FluentFox — онлайн-школа английского языка для детей 6–18 лет по всей Украине. Групповые и индивидуальные занятия, игровой подход, опытные учителя. Есть два очных класса в Днепре. Первый урок — бесплатно.","inLanguage":"ru","isPartOf":{"@id":"https://fluent-fox.site/#website"},"about":{"@id":"https://fluent-fox.site/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://fluent-fox.site/og-image.jpg"}},{"@type":"Course","@id":"https://fluent-fox.site/#course-6-8","name":"Английский для детей 6–8 лет","description":"Игровые онлайн-уроки английского для детей 6–8 лет: сказки, песни, фоника и первые слова. Программа на 150+ занятий, уровень A0 → A1. Группы до 6 учеников.","url":"https://fluent-fox.site/?lang=ru#program","image":"https://fluent-fox.site/og-image.jpg","provider":{"@id":"https://fluent-fox.site/#organization"},"educationalLevel":"Beginner","typicalAgeRange":"6-8","teaches":"фоника, алфавит, базовая лексика, произношение, простые фразы","inLanguage":"ru","availableLanguage":["uk","ru"],"courseMode":["online","onsite"],"educationalCredentialAwarded":"Сертификат FluentFox — уровень A1 (CEFR)","hasCourseInstance":[{"@type":"CourseInstance","name":"Группа — 1 занятие в неделю","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"ru","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"1800","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices"}},{"@type":"CourseInstance","name":"Группа — 2 занятия в неделю","courseMode":["online","onsite"],"courseWorkload":"PT3H","inLanguage":"ru","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3600","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices"}},{"@type":"CourseInstance","name":"Индивидуальные занятия","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"ru","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3000","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices"}}],"offers":{"@type":"AggregateOffer","priceCurrency":"UAH","lowPrice":"1800","highPrice":"3600","offerCount":3,"availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices","priceSpecification":{"@type":"UnitPriceSpecification","priceCurrency":"UAH","price":"1800","billingDuration":"P1M"}}},{"@type":"Course","@id":"https://fluent-fox.site/#course-9-12","name":"Английский для детей 9–12 лет","description":"Коммуникативная программа английского для детей 9–12 лет: разговорная практика, грамматика без скуки, чтение и аудирование. 150+ занятий, уровень A1 → B1.","url":"https://fluent-fox.site/?lang=ru#program","image":"https://fluent-fox.site/og-image.jpg","provider":{"@id":"https://fluent-fox.site/#organization"},"educationalLevel":"Intermediate","typicalAgeRange":"9-12","teaches":"грамматика, разговорная практика, чтение, аудирование, письмо","inLanguage":"ru","availableLanguage":["uk","ru"],"courseMode":["online","onsite"],"educationalCredentialAwarded":"Сертификат FluentFox — уровень B1 (CEFR)","hasCourseInstance":[{"@type":"CourseInstance","name":"Группа — 1 занятие в неделю","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"ru","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"1800","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices"}},{"@type":"CourseInstance","name":"Группа — 2 занятия в неделю","courseMode":["online","onsite"],"courseWorkload":"PT3H","inLanguage":"ru","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3600","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices"}},{"@type":"CourseInstance","name":"Индивидуальные занятия","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"ru","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3000","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices"}}],"offers":{"@type":"AggregateOffer","priceCurrency":"UAH","lowPrice":"1800","highPrice":"3600","offerCount":3,"availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices","priceSpecification":{"@type":"UnitPriceSpecification","priceCurrency":"UAH","price":"1800","billingDuration":"P1M"}}},{"@type":"Course","@id":"https://fluent-fox.site/#course-13-18","name":"Английский для подростков 13–18 лет","description":"Английский для подростков 13–18 лет: подготовка к НМТ и Cambridge-экзаменам (KET, PET, FCE), разговорные клубы, эссе. 150+ занятий, уровень B1 → B2.","url":"https://fluent-fox.site/?lang=ru#program","image":"https://fluent-fox.site/og-image.jpg","provider":{"@id":"https://fluent-fox.site/#organization"},"educationalLevel":"Advanced","typicalAgeRange":"13-18","teaches":"подготовка к НМТ, Cambridge KET PET FCE, эссе, дискуссии, академическая лексика","inLanguage":"ru","availableLanguage":["uk","ru"],"courseMode":["online","onsite"],"educationalCredentialAwarded":"Сертификат FluentFox — уровень B2 (CEFR)","hasCourseInstance":[{"@type":"CourseInstance","name":"Группа — 1 занятие в неделю","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"ru","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"1800","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices"}},{"@type":"CourseInstance","name":"Группа — 2 занятия в неделю","courseMode":["online","onsite"],"courseWorkload":"PT3H","inLanguage":"ru","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3600","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices"}},{"@type":"CourseInstance","name":"Индивидуальные занятия","courseMode":["online","onsite"],"courseWorkload":"PT1H30M","inLanguage":"ru","location":[{"@type":"VirtualLocation","url":"https://fluent-fox.site/?lang=ru"},{"@type":"Place","name":"FluentFox — просп. Александра Поля","address":{"@type":"PostalAddress","streetAddress":"проспект Александра Поля, 28А","addressLocality":"Днепр","postalCode":"49001","addressCountry":"UA"}},{"@type":"Place","name":"FluentFox — ул. Строителей","address":{"@type":"PostalAddress","streetAddress":"улица Строителей, 25","addressLocality":"Днепр","postalCode":"49000","addressCountry":"UA"}}],"offers":{"@type":"Offer","price":"3000","priceCurrency":"UAH","availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices"}}],"offers":{"@type":"AggregateOffer","priceCurrency":"UAH","lowPrice":"1800","highPrice":"3600","offerCount":3,"availability":"https://schema.org/InStock","url":"https://fluent-fox.site/?lang=ru#prices","priceSpecification":{"@type":"UnitPriceSpecification","priceCurrency":"UAH","price":"1800","billingDuration":"P1M"}}},{"@type":"FAQPage","@id":"https://fluent-fox.site/?lang=ru#faq","isPartOf":{"@id":"https://fluent-fox.site/?lang=ru#webpage"},"mainEntity":[{"@type":"Question","name":"С какого возраста можно записаться?","acceptedAnswer":{"@type":"Answer","text":"Мы принимаем детей от 6 до 18 лет. Для каждой возрастной группы — отдельная программа и подход: игровой для малышей, коммуникативный для школьников, профильный для подростков."}},{"@type":"Question","name":"Что нужно для занятий онлайн?","acceptedAnswer":{"@type":"Answer","text":"Компьютер или планшет, стабильный интернет и наушники с микрофоном. Платформа — Zoom или Google Meet. Никаких дополнительных программ устанавливать не нужно."}},{"@type":"Question","name":"Как проходят групповые занятия?","acceptedAnswer":{"@type":"Answer","text":"Группы до 6 детей, 1–2 раза в неделю по 1.5 часа. Игровая форма, коммуникативные упражнения, домашние задания в онлайн-платформе. Любой уровень — от нуля до продвинутого."}},{"@type":"Question","name":"Можно ли перенести урок?","acceptedAnswer":{"@type":"Answer","text":"Да, урок можно перенести за 12 часов до начала. Мы понимаем, что планы меняются."}},{"@type":"Question","name":"Когда будет виден первый результат?","acceptedAnswer":{"@type":"Answer","text":"Первые заметные результаты — уже после 1 месяца регулярных занятий. За 3–6 месяцев — уверенное общение и заметный рост уровня."}},{"@type":"Question","name":"Есть ли скидки и акции?","acceptedAnswer":{"@type":"Answer","text":"Да! При оплате за 3 месяца — скидка 10%. При записи двух детей из семьи — 15% скидки на второго ребёнка. Следите за нашим Instagram!"}}]}]}
 </script>
@@ -188,16 +165,10 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 .wave-bottom { margin-bottom: -2px; }
 </style>
 </head>
-<!-- ════════════════════════════════════════════════
-Alpine.js app root
-════════════════════════════════════════════════ -->
 <body class="font-sans antialiased text-gray-800 bg-cream">
-<!-- ═══ Static content fallback for non-JS crawlers / AI agents (GPTBot, ClaudeBot, etc. don't execute JS) ═══ -->
-<!-- ═══════════════════════ HEADER ═══════════════════════ -->
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm md:bg-transparent" data-header>
 <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex items-center justify-between h-16 nav:h-18">
-<!-- Logo -->
 <a class="flex items-center gap-2 group" href="#">
 <span class="text-3xl group-hover:scale-110 transition-transform duration-200">🦊</span>
 <span class="flex flex-col leading-none">
@@ -205,7 +176,6 @@ Alpine.js app root
 <span class="text-2xs font-bold uppercase tracking-widest text-gray-500 mt-1">English School</span>
 </span>
 </a>
-<!-- Desktop nav -->
 <div class="hidden nav:flex items-center gap-6">
 <a class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" href="#about">О нас</a>
 <a class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" href="#program">Программа</a>
@@ -213,28 +183,17 @@ Alpine.js app root
 <a class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" href="#contacts">Контакты</a>
 <a class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" href="blog/?lang=ru">Блог</a>
 </div>
-<!-- Right side -->
 <div class="flex items-center gap-3">
-<!-- Phone: number on mobile, column on desktop -->
 <a class="flex nav:hidden text-xs font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight whitespace-nowrap" href="tel:+380954624672">095 462-46-72</a>
 <div class="hidden nav:flex flex-col items-end gap-0 leading-tight mr-1">
 <a class="text-sm font-bold text-gray-700 hover:text-fox-500 transition-colors tracking-tight" href="tel:+380954624672">+38 (095) 462-46-72</a>
 <a class="hidden nav:block text-sm text-gray-400 hover:text-fox-500 transition-colors tracking-tight" href="tel:+380682522876">+38 (068) 252-28-76</a>
 </div>
-<!-- Language switcher: desktop only -->
-<!-- Перемикач мови — посилання, а не кнопка. Кнопку, що міняє
-location.href, краулер не натискає: єдиною дорогою до
-?lang=ru лишалися hreflang і карта сайту. Цього досить, щоб
-адресу знали, і замало, щоб вона отримувала вагу
-перелінковки. Клік усе одно перехоплює js/lang.js — щоб не
-загубити якір і решту запиту. -->
 <div class="hidden nav:flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
 <a class="px-2.5 py-1 rounded-full transition-all duration-200 bg-white shadow text-fox-600" href="/" hreflang="uk" data-lang-btn="uk">UA</a>
 <a class="px-2.5 py-1 rounded-full transition-all duration-200 text-gray-400 hover:text-gray-600" href="/?lang=ru" hreflang="ru" data-lang-btn="ru">RU</a>
 </div>
-<!-- CTA button desktop -->
 <a class="hidden nav:inline-flex items-center gap-1.5 bg-fox-500 hover:bg-fox-600 text-white text-sm font-black px-4 py-2 rounded-full transition-all duration-200 shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5" href="#" data-modal="open">Пробный урок</a>
-<!-- Hamburger -->
 <button class="nav:hidden p-2 transition-colors text-gray-700" aria-label="Menu" data-menu="toggle">
 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" data-menu-when="closed">
 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
@@ -245,7 +204,6 @@ location.href, краулер не натискає: єдиною дорогою
 </button>
 </div>
 </div>
-<!-- Mobile menu -->
 <div class="nav:hidden pb-4 border-t border-gray-100 mobile-menu-enter" hidden data-menu-when="open">
 <div class="flex flex-col gap-1 pt-3">
 <a class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" href="#about" data-menu="close">О нас</a>
@@ -254,7 +212,6 @@ location.href, краулер не натискає: єдиною дорогою
 <a class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" href="#contacts" data-menu="close">Контакты</a>
 <a class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" href="blog/?lang=ru" data-menu="close">Блог</a>
 <a class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200" href="#" data-menu="close" data-modal="open">Пробный урок</a>
-<!-- Language in mobile menu -->
 <div class="flex items-center gap-3 px-3 pt-3 mt-1 border-t border-gray-100">
 <span class="text-xs text-gray-400 font-semibold">Язык</span>
 <div class="flex items-center bg-gray-100 rounded-full p-0.5 text-sm font-bold">
@@ -266,17 +223,12 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </nav>
 </header>
-<!-- ═══════════════════════ HERO ═══════════════════════ -->
 <section class="hero-bg pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
-<!-- Decorative blobs -->
 <div class="absolute top-10 right-10 w-64 h-64 bg-fox-100 blob opacity-60 -z-0"></div>
 <div class="absolute bottom-0 left-0 w-48 h-48 bg-violet-100 blob opacity-50 -z-0" style="animation-delay:-3s"></div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="grid lg:grid-cols-2 gap-10 items-center">
-<!-- Text side -->
 <div>
-<!-- Badge — тільки на десктопі: на телефоні вона казала те саме,
-що кнопка під нею, і з'їдала верх першого екрана -->
 <div class="hidden md:inline-flex items-center bg-white border border-fox-200 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-6 shadow-sm">
 <span>Первый урок — бесплатно!</span>
 </div>
@@ -286,23 +238,19 @@ location.href, краулер не натискає: єдиною дорогою
 <span>которую они обожают</span>
 </h1>
 <p class="text-sm sm:text-base md:text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">Учим детей и подростков 6–18 лет. Игровой подход, живые учителя, результат уже за первый месяц.</p>
-<!-- Tags -->
 <div class="flex flex-wrap gap-2 mb-8">
 <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm">✓ Без скучных учебников</span>
 <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm">✓ Живые занятия онлайн</span>
 <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm">✓ Маленькие группы до 6 учеников</span>
 <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm">✓ Гарантия результата</span>
 </div>
-<!-- CTAs -->
 <div class="flex gap-2 md:gap-3">
 <a class="inline-flex items-center gap-2 bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-6 md:px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg transition-all duration-200 hover:-translate-y-1 whitespace-nowrap flex-none" href="#" data-modal="open">Бесплатный урок</a>
 <a class="hidden md:inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-bold text-sm md:text-base px-4 md:px-7 py-3 md:py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 whitespace-nowrap flex-none" href="#program">Узнать больше</a>
 </div>
 </div>
-<!-- Photo + parallax details side -->
 <div class="hidden lg:flex justify-center items-center">
 <div class="relative w-80 h-80 xl:w-96 xl:h-96" data-parallax>
-<!-- British flag backdrop (vector Union Jack) — signals English school; sits behind everything -->
 <div class="absolute left-1/2 top-1/2 w-[122%] h-[61%] -translate-x-1/2 -translate-y-1/2 rotate-[-6deg] rounded-2xl overflow-hidden border-4 border-white opacity-80 shadow-[0_18px_40px_rgba(1,33,105,0.20)]" aria-hidden="true">
 <svg class="w-full h-full" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice">
 <clipPath id="ujS"><rect width="60" height="30"/></clipPath>
@@ -316,22 +264,18 @@ location.href, краулер не натискає: єдиною дорогою
 </g>
 </svg>
 </div>
-<!-- Decorative outer ring (part of the fixed circle group — no parallax) -->
 <div class="absolute -inset-3.5 rounded-full border-2 border-violet-200/70"></div>
-<!-- Photo circle — stays fixed (no parallax) -->
 <div class="absolute inset-0 rounded-full border-8 border-white shadow-fox-xl overflow-hidden bg-gradient-to-br from-fox-100 via-cream to-violet-100">
 <picture>
 <source srcset="hero-photo.webp" type="image/webp">
 <img class="w-full h-full object-cover" src="hero-photo.jpg" alt="Мама с дочкой изучают английский онлайн с FluentFox" alt="Мама з донькою навчаються англійської онлайн з FluentFox" width="768" height="768" loading="eager" fetchpriority="high">
 </picture>
 </div>
-<!-- Floating card: rating (independent parallax) -->
 <div class="absolute -top-4 -left-10 bg-white rounded-2xl shadow-lg shadow-black/10 px-3 py-2 border border-gray-100 flex items-center gap-1.5 transition-transform duration-300" data-parallax-xy="-16,-16">
 <span class="text-fox-500 text-base leading-none">⭐</span>
 <span class="font-black text-sm text-gray-800">4.9</span>
 <span class="text-2xs text-gray-400 font-medium">рейтинг</span>
 </div>
-<!-- Floating card: mini lesson-window mockup (independent parallax) -->
 <div class="absolute -top-6 -right-12 bg-white rounded-2xl shadow-lg shadow-black/10 p-3 w-28 border border-gray-100 transition-transform duration-300" data-parallax-xy="20,14">
 <div class="flex gap-1 mb-2">
 <span class="w-1.5 h-1.5 rounded-full bg-fox-300"></span>
@@ -341,17 +285,13 @@ location.href, краулер не натискає: єдиною дорогою
 <div class="h-1.5 rounded-full bg-gray-100 mb-1.5 w-full"></div>
 <div class="h-1.5 rounded-full bg-gray-100 w-2/3"></div>
 </div>
-<!-- Floating card: vocabulary flashcard (independent parallax) -->
 <div class="absolute bottom-4 -left-14 bg-white rounded-2xl shadow-lg shadow-black/10 p-3 w-32 border border-gray-100 transition-transform duration-300" data-parallax-xy="24,-18">
 <span class="text-lg leading-none" aria-hidden="true">🔤</span>
 <div class="h-1.5 rounded-full bg-gray-100 mt-2 mb-1.5 w-full"></div>
 <div class="h-1.5 rounded-full bg-fox-100 w-1/2"></div>
 </div>
-<!-- Floating badge: students count (independent parallax) -->
 <div class="absolute -bottom-3 -right-8 bg-fox-500 text-white rounded-2xl shadow-fox-sm px-3 py-2 text-sm font-bold transition-transform duration-300" data-parallax-xy="-12,16">500+ учеников</div>
-<!-- Decorative star (independent parallax) -->
 <div class="absolute top-10 left-1/2 text-violet-400 text-xl leading-none transition-transform duration-300" aria-hidden="true" data-parallax-xy="26,20">★</div>
-<!-- Decorative squiggle (independent parallax) -->
 <svg class="absolute -bottom-7 right-10 w-10 h-6 text-fox-300 transition-transform duration-300" viewBox="0 0 40 20" fill="none" aria-hidden="true" data-parallax-xy="-20,-12">
 <path d="M2 10 Q10 2 18 10 T34 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
 </svg>
@@ -360,9 +300,7 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ STATS BAR ═══════════════════════ -->
 <section class="bg-british py-4 relative overflow-hidden">
-<!-- Same diagonal pattern as London strip -->
 <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background-image:repeating-linear-gradient(45deg,white 0,white 2px,transparent 0,transparent 16px),repeating-linear-gradient(-45deg,white 0,white 2px,transparent 0,transparent 16px)"></div>
 <div class="absolute inset-y-0 left-0 right-0 my-auto h-[3px] bg-white opacity-[0.08] pointer-events-none"></div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -386,12 +324,8 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ FOR WHOM (AGES) ═══════════════════════ -->
-<!-- Приховано 2026-09-06: блок переїхав на /kursy-anhliyskoyi-dlya-ditey.
-Лишаємо в шаблоні як є — щоб повернути, досить прибрати hidden. -->
 <section class="hidden py-8 md:py-20 bg-fox-50">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<!-- Section header -->
 <div class="text-center mb-10 md:mb-14">
 <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4 shadow-sm">Возрастные группы</span>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3">Три возрастные группы: от 6 до 18 лет</h2>
@@ -399,18 +333,15 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 <div class="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pb-4 md:pb-0">
 <div class="card-lift bg-white border-2 border-gray-100 rounded-3xl p-8 shadow-sm flex flex-col cursor-default snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto">
-<!-- Icon + age range -->
 <div class="flex items-center justify-between mb-5">
 <div class="w-14 h-14 rounded-2xl bg-fox-50 border-2 border-fox-100 flex items-center justify-center text-3xl">🐣</div>
 <div class="inline-block bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full">6–8 лет</div>
 </div>
 <h3 class="text-xl font-black text-gray-900 mb-4">Маленькие исследователи</h3>
-<!-- Format chips -->
 <div class="flex flex-wrap gap-2 mb-5">
 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full">1.5 часа урок</span>
 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full">2 раза / неделю</span>
 </div>
-<!-- Checklist -->
 <ul class="space-y-2 mb-6">
 <li class="flex items-start gap-2 text-sm text-gray-600">
 <span class="w-5 h-5 rounded-full bg-fox-50 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -437,7 +368,6 @@ location.href, краулер не натискає: єдиною дорогою
 <span>Развитие произношения</span>
 </li>
 </ul>
-<!-- CEFR progression track + result -->
 <div class="mt-auto pt-5 border-t border-gray-100">
 <p class="text-2xs font-black text-gray-400 uppercase tracking-widest mb-2">Целевой уровень CEFR</p>
 <div class="flex gap-1.5 mb-4">
@@ -466,18 +396,15 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="card-lift bg-white border-2 border-gray-100 rounded-3xl p-8 shadow-sm flex flex-col cursor-default snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto">
-<!-- Icon + age range -->
 <div class="flex items-center justify-between mb-5">
 <div class="w-14 h-14 rounded-2xl bg-fox-50 border-2 border-fox-100 flex items-center justify-center text-3xl">🚀</div>
 <div class="inline-block bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full">9–12 лет</div>
 </div>
 <h3 class="text-xl font-black text-gray-900 mb-4">Активные ученики</h3>
-<!-- Format chips -->
 <div class="flex flex-wrap gap-2 mb-5">
 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full">1.5 часа урок</span>
 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full">2 раза / неделю</span>
 </div>
-<!-- Checklist -->
 <ul class="space-y-2 mb-6">
 <li class="flex items-start gap-2 text-sm text-gray-600">
 <span class="w-5 h-5 rounded-full bg-fox-50 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -504,7 +431,6 @@ location.href, краулер не натискає: єдиною дорогою
 <span>Домашние задания онлайн</span>
 </li>
 </ul>
-<!-- CEFR progression track + result -->
 <div class="mt-auto pt-5 border-t border-gray-100">
 <p class="text-2xs font-black text-gray-400 uppercase tracking-widest mb-2">Целевой уровень CEFR</p>
 <div class="flex gap-1.5 mb-4">
@@ -533,18 +459,15 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="card-lift bg-white border-2 border-gray-100 rounded-3xl p-8 shadow-sm flex flex-col cursor-default snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto">
-<!-- Icon + age range -->
 <div class="flex items-center justify-between mb-5">
 <div class="w-14 h-14 rounded-2xl bg-fox-50 border-2 border-fox-100 flex items-center justify-center text-3xl">🎯</div>
 <div class="inline-block bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full">13–18 лет</div>
 </div>
 <h3 class="text-xl font-black text-gray-900 mb-4">Подростки-лидеры</h3>
-<!-- Format chips -->
 <div class="flex flex-wrap gap-2 mb-5">
 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full">1.5 часа урок</span>
 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full">2 раза / неделю</span>
 </div>
-<!-- Checklist -->
 <ul class="space-y-2 mb-6">
 <li class="flex items-start gap-2 text-sm text-gray-600">
 <span class="w-5 h-5 rounded-full bg-fox-50 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -571,7 +494,6 @@ location.href, краулер не натискає: єдиною дорогою
 <span>Письмо и эссе</span>
 </li>
 </ul>
-<!-- CEFR progression track + result -->
 <div class="mt-auto pt-5 border-t border-gray-100">
 <p class="text-2xs font-black text-gray-400 uppercase tracking-widest mb-2">Целевой уровень CEFR</p>
 <div class="flex gap-1.5 mb-4">
@@ -602,7 +524,6 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
 <section class="py-8 md:py-24 bg-white border-t border-fox-100" id="about">
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center mb-10 md:mb-14">
@@ -610,7 +531,6 @@ location.href, краулер не натискає: єдиною дорогою
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3">Начните обучение онлайн за 4 шага</h2>
 <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-xl mx-auto">От первого звонка до первого урока — за один час</p>
 </div>
-<!-- DESKTOP: horizontal timeline (md+) -->
 <div class="hidden md:block relative">
 <div class="absolute top-9 left-[12.5%] right-[12.5%] border-t-2 border-dashed border-fox-200 z-0 pointer-events-none"></div>
 <div class="grid grid-cols-4 gap-4 relative z-10">
@@ -648,7 +568,6 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 </div>
-<!-- MOBILE: compact vertical stepper -->
 <div class="md:hidden">
 <div class="relative flex items-start gap-3 pb-5">
 <div class="absolute left-[17px] top-[38px] bottom-0 w-0.5 bg-gradient-to-b from-fox-200 to-transparent z-0"></div>
@@ -697,14 +616,10 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ LONDON ACCENT STRIP ═══════════════════════ -->
 <div class="bg-british py-4 relative overflow-hidden">
-<!-- Union Jack diagonal pattern overlay -->
 <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background-image:repeating-linear-gradient(45deg,white 0,white 2px,transparent 0,transparent 16px),repeating-linear-gradient(-45deg,white 0,white 2px,transparent 0,transparent 16px)"></div>
-<!-- Horizontal bar -->
 <div class="absolute inset-y-0 left-0 right-0 my-auto h-[3px] bg-white opacity-[0.08] pointer-events-none"></div>
 <div class="max-w-5xl mx-auto px-6 flex items-center justify-center gap-6 md:gap-14 relative z-10">
-<!-- Big Ben SVG -->
 <svg class="h-11 w-auto text-white opacity-80 hidden md:block flex-shrink-0" viewBox="0 0 52 108" fill="currentColor">
 <rect x="12" y="90" width="28" height="18"/>
 <rect x="10" y="46" width="32" height="44"/>
@@ -719,7 +634,6 @@ location.href, краулер не натискає: єдиною дорогою
 <rect x="12" y="10" width="28" height="22"/>
 <polygon points="26,0 10,10 42,10"/>
 </svg>
-<!-- Double-decker bus SVG -->
 <svg class="h-9 w-auto text-white opacity-80 hidden sm:block flex-shrink-0" viewBox="0 0 180 72" fill="currentColor">
 <rect x="0" y="18" width="175" height="46" rx="7"/>
 <rect x="8" y="6" width="142" height="18" rx="5"/>
@@ -737,14 +651,12 @@ location.href, краулер не натискає: єдиною дорогою
 <circle cx="138" cy="61" r="11" fill="#9e0c1e"/>
 <circle cx="138" cy="61" r="6" fill="#7a0a18"/>
 </svg>
-<!-- Center text -->
 <div class="text-center">
 <p class="text-white font-black text-xs sm:text-sm md:text-base tracking-widest uppercase leading-tight">
 🇬🇧 &nbsp;Speak the Language of the World&nbsp; 🇬🇧
 </p>
 <p class="text-red-200 text-2xs md:text-xs mt-0.5 tracking-wider">Oxford · Cambridge · IELTS · British Council</p>
 </div>
-<!-- Phone booth SVG -->
 <svg class="h-11 w-auto text-white opacity-80 hidden sm:block flex-shrink-0" viewBox="0 0 38 108" fill="currentColor">
 <rect x="4" y="22" width="30" height="82" rx="3"/>
 <rect x="1" y="12" width="36" height="12" rx="2"/>
@@ -755,7 +667,6 @@ location.href, краулер не натискає: єдиною дорогою
 <rect x="7" y="24" width="24" height="5" rx="1" fill="rgba(255,255,255,0.45)"/>
 <line x1="19" y1="48" x2="19" y2="88" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
 </svg>
-<!-- Big Ben right (mirror) -->
 <svg class="h-11 w-auto text-white opacity-80 hidden md:block flex-shrink-0" viewBox="0 0 52 108" fill="currentColor">
 <rect x="12" y="90" width="28" height="18"/>
 <rect x="10" y="46" width="32" height="44"/>
@@ -772,58 +683,44 @@ location.href, краулер не натискає: єдиною дорогою
 </svg>
 </div>
 </div>
-<!-- ═══════════════════════ PROGRAM (TABS) ═══════════════════════ -->
 <section class="py-8 md:py-20 bg-gradient-to-b from-fox-50 to-white relative overflow-hidden" id="program">
-<!-- Subtle decorative glows -->
 <div class="absolute inset-0 pointer-events-none">
 <div class="absolute -top-20 -right-20 w-80 h-80 bg-fox-500/6 rounded-full blur-3xl"></div>
 <div class="absolute bottom-0 -left-20 w-72 h-72 bg-violet-500/4 rounded-full blur-3xl"></div>
 </div>
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<!-- Section header (light pattern) -->
 <div class="text-center mb-8 md:mb-14">
 <span class="hidden md:inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4">Программа</span>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3">Что изучает ваш ребёнок</h2>
 <p class="text-gray-500 text-sm sm:text-base md:text-lg">Детальная программа на 150+ занятий для каждой возрастной группы</p>
 </div>
-<!-- 2-column grid -->
 <div class="grid lg:grid-cols-5 gap-6 items-start">
-<!-- LEFT: tabs + accordion -->
 <div class="lg:col-span-3">
-<!-- Age-group tabs (white card, active = fox-orange) -->
 <div class="flex gap-1 bg-white rounded-2xl p-1 mb-5 border border-gray-200 shadow-sm">
 <button class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 text-center bg-fox-500 text-white shadow-fox-sm" data-prog-tab-btn="age6" data-prog-tab="age6">🐣 6–8 лет</button>
 <button class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 text-center text-gray-500 hover:text-gray-800 hover:bg-gray-50" data-prog-tab-btn="age9" data-prog-tab="age9">🚀 9–12 лет</button>
 <button class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 text-center text-gray-500 hover:text-gray-800 hover:bg-gray-50" data-prog-tab-btn="age13" data-prog-tab="age13">🎯 13–18 лет</button>
 </div>
-<!-- Content per tab -->
 <div data-prog-panel="age6">
-<!-- Level + total -->
 <div class="flex items-center gap-2 mb-4 px-0.5">
 <span class="bg-fox-50 text-fox-600 border border-fox-200 text-xs font-bold px-3 py-1 rounded-full">A0 → A1</span>
 <span class="text-gray-300 text-xs">·</span>
 <span class="text-gray-400 text-xs">150+ занятий по 1.5 ч</span>
 </div>
-<!-- Accordion list -->
 <div class="max-h-[600px] overflow-y-auto scrollbar-hide space-y-2 pr-0.5">
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-fox-300 shadow-fox-sm" data-mod-card="0">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 bg-fox-50" data-mod-toggle="0" data-mod-head="0">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-fox-500 shadow-fox-sm" data-mod-badge="0">
 <span class="font-black text-xs tabular-nums leading-none text-white" data-mod-num="0">01</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-900" data-mod-title="0">Знакомство с английским</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 rotate-180 text-fox-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="0">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div data-mod-panel="0">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -952,23 +849,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="1">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="1" data-mod-head="1">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="1">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="1">02</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="1">Первые предложения</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="1">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="1">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -1097,23 +989,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="2">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="2" data-mod-head="2">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="2">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="2">03</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="2">Песни, сказки, игры</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="2">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="2">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -1242,23 +1129,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="3">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="3" data-mod-head="3">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="3">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="3">04</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="3">Читаю и пишу</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="3">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="3">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -1387,23 +1269,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="4">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="4" data-mod-head="4">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="4">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="4">05</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="4">Подготовка к A1</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="4">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="4">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -1534,32 +1411,25 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div hidden data-prog-panel="age9">
-<!-- Level + total -->
 <div class="flex items-center gap-2 mb-4 px-0.5">
 <span class="bg-fox-50 text-fox-600 border border-fox-200 text-xs font-bold px-3 py-1 rounded-full">A1 → B1</span>
 <span class="text-gray-300 text-xs">·</span>
 <span class="text-gray-400 text-xs">150+ занятий по 1.5 ч</span>
 </div>
-<!-- Accordion list -->
 <div class="max-h-[600px] overflow-y-auto scrollbar-hide space-y-2 pr-0.5">
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-fox-300 shadow-fox-sm" data-mod-card="0">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 bg-fox-50" data-mod-toggle="0" data-mod-head="0">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-fox-500 shadow-fox-sm" data-mod-badge="0">
 <span class="font-black text-xs tabular-nums leading-none text-white" data-mod-num="0">01</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-900" data-mod-title="0">Грамматика без скуки</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 rotate-180 text-fox-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="0">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div data-mod-panel="0">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -1688,23 +1558,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="1">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="1" data-mod-head="1">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="1">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="1">02</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="1">Читаю и понимаю</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="1">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="1">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -1833,23 +1698,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="2">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="2" data-mod-head="2">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="2">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="2">03</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="2">Говорю уверенно</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="2">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="2">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -1978,23 +1838,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="3">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="3" data-mod-head="3">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="3">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="3">04</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="3">Пишу грамотно</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="3">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="3">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -2123,23 +1978,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="4">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="4" data-mod-head="4">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="4">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="4">05</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="4">Готовимся к B1</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="4">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="4">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -2270,32 +2120,25 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div hidden data-prog-panel="age13">
-<!-- Level + total -->
 <div class="flex items-center gap-2 mb-4 px-0.5">
 <span class="bg-fox-50 text-fox-600 border border-fox-200 text-xs font-bold px-3 py-1 rounded-full">B1 → B2</span>
 <span class="text-gray-300 text-xs">·</span>
 <span class="text-gray-400 text-xs">150+ занятий по 1.5 ч</span>
 </div>
-<!-- Accordion list -->
 <div class="max-h-[600px] overflow-y-auto scrollbar-hide space-y-2 pr-0.5">
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-fox-300 shadow-fox-sm" data-mod-card="0">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 bg-fox-50" data-mod-toggle="0" data-mod-head="0">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-fox-500 shadow-fox-sm" data-mod-badge="0">
 <span class="font-black text-xs tabular-nums leading-none text-white" data-mod-num="0">01</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-900" data-mod-title="0">Грамматика B1–B2</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 rotate-180 text-fox-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="0">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div data-mod-panel="0">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -2424,23 +2267,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="1">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="1" data-mod-head="1">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="1">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="1">02</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="1">Аудирование и чтение</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="1">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="1">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -2569,23 +2407,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="2">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="2" data-mod-head="2">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="2">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="2">03</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="2">Разговорная практика</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="2">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="2">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -2714,23 +2547,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="3">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="3" data-mod-head="3">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="3">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="3">04</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="3">Письмо B2</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="3">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="3">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -2859,23 +2687,18 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="rounded-2xl overflow-hidden border bg-white transition-all duration-300 border-gray-200 hover:border-gray-300" data-mod-card="4">
-<!-- Clickable header -->
 <button class="w-full flex items-center gap-3 px-4 py-3.5 text-left transition-colors duration-150 hover:bg-gray-50" data-mod-toggle="4" data-mod-head="4">
-<!-- Number badge -->
 <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-none transition-all duration-200 bg-gray-100" data-mod-badge="4">
 <span class="font-black text-xs tabular-nums leading-none text-gray-500" data-mod-num="4">05</span>
 </div>
-<!-- Title + count -->
 <div class="flex-1 min-w-0">
 <p class="font-black text-sm leading-tight transition-colors duration-200 text-gray-700" data-mod-title="4">НМТ и Cambridge</p>
 <p class="text-2xs text-gray-400 mt-0.5">30 занятий</p>
 </div>
-<!-- Chevron -->
 <svg class="w-4 h-4 flex-none transition-all duration-300 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" data-mod-chevron="4">
 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
 </svg>
 </button>
-<!-- Topic pill chips -->
 <div hidden data-mod-panel="4">
 <div class="border-t border-gray-100 px-4 py-4 bg-gray-50">
 <div class="flex flex-wrap gap-1.5">
@@ -3006,9 +2829,7 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 </div>
-<!-- RIGHT: info card + CTA (sticky) -->
 <div class="lg:col-span-2 lg:sticky lg:top-6 space-y-4">
-<!-- Course info card -->
 <div class="bg-white rounded-3xl p-6 shadow-md border border-gray-100">
 <div class="space-y-4">
 <div class="flex items-start gap-3">
@@ -3049,20 +2870,15 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 </div>
-<!-- CTA button -->
 <a class="block text-center bg-fox-500 hover:bg-fox-600 text-white font-black px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200 text-base" href="#" data-modal="open">Записаться на пробный урок</a>
 </div>
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ ADVANTAGES ═══════════════════════ -->
 <section class="py-8 md:py-20 bg-gray-950 relative overflow-hidden">
-<!-- Ambient glow fox-orange вгорі-зліва -->
 <div class="absolute -top-40 -left-40 w-96 h-96 bg-fox-500/10 rounded-full blur-3xl pointer-events-none"></div>
 <div class="absolute bottom-0 right-0 w-72 h-72 bg-fox-500/6 rounded-full blur-3xl pointer-events-none"></div>
-<!-- Декор: великий "?" праворуч вгорі -->
 <div class="absolute right-6 top-2 font-black leading-none pointer-events-none select-none" style="color:rgba(255,107,53,0.07); font-size:200px">?</div>
-<!-- Декор: сітка ромбів праворуч -->
 <div class="absolute right-0 top-0 h-full w-52 opacity-[0.1] pointer-events-none select-none">
 <svg width="100%" height="100%" viewBox="0 0 200 500" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#FF6B35" stroke-width="1.2">
 <g>
@@ -3129,7 +2945,6 @@ location.href, краулер не натискає: єдиною дорогою
 </g>
 </svg>
 </div>
-<!-- Декор: трикутники ліворуч -->
 <div class="absolute left-6 top-1/2 -translate-y-1/2 pointer-events-none select-none space-y-2 hidden lg:block">
 <div class="flex gap-2">
 <svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg>
@@ -3138,7 +2953,6 @@ location.href, краулер не натискає: єдиною дорогою
 <svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg>
 </div>
 </div>
-<!-- Декор: трикутники праворуч (нижче середини) -->
 <div class="absolute right-6 bottom-1/3 pointer-events-none select-none space-y-2 hidden lg:block">
 <div class="flex gap-2">
 <svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg><svg class="w-3 h-3 text-fox-500/25" viewBox="0 0 10 9" fill="currentColor"><polygon points="5,0 10,9 0,9"/></svg>
@@ -3153,22 +2967,14 @@ location.href, краулер не натискає: єдиною дорогою
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white mb-3 leading-tight">Почему родители выбирают FluentFox</h2>
 <p class="text-gray-400 text-sm sm:text-base md:text-lg">Результат заметен уже после первого месяца занятий</p>
 </div>
-<!-- 6 пунктів, 3 колонки -->
 <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 sm:gap-x-8 gap-y-6">
 <div class="flex-col md:flex-row items-start gap-2 md:gap-5 flex">
-<!-- Іконка: кружок fox-orange -->
 <div class="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.22)">
-<!-- 0: Освіта — мантія/диплом -->
 <svg class="w-6 h-6 text-fox-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
-<!-- 1: Спілкування — бульбашки чату -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
-<!-- 2: Кар'єра — портфель -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/></svg>
-<!-- 3: Майбутнє — кубок -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"/></svg>
-<!-- 4: Подорожі — глобус -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-<!-- 5: Ранній старт — прапор -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
 </div>
 <div>
@@ -3177,19 +2983,12 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="flex-col md:flex-row items-start gap-2 md:gap-5 flex">
-<!-- Іконка: кружок fox-orange -->
 <div class="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.22)">
-<!-- 0: Освіта — мантія/диплом -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
-<!-- 1: Спілкування — бульбашки чату -->
 <svg class="w-6 h-6 text-fox-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
-<!-- 2: Кар'єра — портфель -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/></svg>
-<!-- 3: Майбутнє — кубок -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"/></svg>
-<!-- 4: Подорожі — глобус -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-<!-- 5: Ранній старт — прапор -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
 </div>
 <div>
@@ -3198,19 +2997,12 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="flex-col md:flex-row items-start gap-2 md:gap-5 flex">
-<!-- Іконка: кружок fox-orange -->
 <div class="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.22)">
-<!-- 0: Освіта — мантія/диплом -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
-<!-- 1: Спілкування — бульбашки чату -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
-<!-- 2: Кар'єра — портфель -->
 <svg class="w-6 h-6 text-fox-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/></svg>
-<!-- 3: Майбутнє — кубок -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"/></svg>
-<!-- 4: Подорожі — глобус -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-<!-- 5: Ранній старт — прапор -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
 </div>
 <div>
@@ -3219,19 +3011,12 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="flex-col md:flex-row items-start gap-2 md:gap-5 flex">
-<!-- Іконка: кружок fox-orange -->
 <div class="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.22)">
-<!-- 0: Освіта — мантія/диплом -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
-<!-- 1: Спілкування — бульбашки чату -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
-<!-- 2: Кар'єра — портфель -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/></svg>
-<!-- 3: Майбутнє — кубок -->
 <svg class="w-6 h-6 text-fox-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"/></svg>
-<!-- 4: Подорожі — глобус -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-<!-- 5: Ранній старт — прапор -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
 </div>
 <div>
@@ -3240,19 +3025,12 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="flex-col md:flex-row items-start gap-2 md:gap-5 hidden md:flex">
-<!-- Іконка: кружок fox-orange -->
 <div class="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.22)">
-<!-- 0: Освіта — мантія/диплом -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
-<!-- 1: Спілкування — бульбашки чату -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
-<!-- 2: Кар'єра — портфель -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/></svg>
-<!-- 3: Майбутнє — кубок -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"/></svg>
-<!-- 4: Подорожі — глобус -->
 <svg class="w-6 h-6 text-fox-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-<!-- 5: Ранній старт — прапор -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
 </div>
 <div>
@@ -3261,19 +3039,12 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 <div class="flex-col md:flex-row items-start gap-2 md:gap-5 hidden md:flex">
-<!-- Іконка: кружок fox-orange -->
 <div class="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.12);border:1px solid rgba(255,107,53,0.22)">
-<!-- 0: Освіта — мантія/диплом -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 3.741-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
-<!-- 1: Спілкування — бульбашки чату -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
-<!-- 2: Кар'єра — портфель -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"/></svg>
-<!-- 3: Майбутнє — кубок -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"/></svg>
-<!-- 4: Подорожі — глобус -->
 <svg class="w-6 h-6 text-fox-400" hidden fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
-<!-- 5: Ранній старт — прапор -->
 <svg class="w-6 h-6 text-fox-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
 </div>
 <div>
@@ -3284,7 +3055,6 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ PRICING ═══════════════════════ -->
 <section class="py-8 md:py-20 bg-fox-50" id="prices">
 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center mb-10 md:mb-14">
@@ -3294,7 +3064,6 @@ location.href, краулер не натискає: єдиною дорогою
 </div>
 <div class="flex md:grid md:grid-cols-3 gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 pt-6 -mt-6 pb-4 md:pb-0">
 <div class="rounded-3xl p-8 relative flex flex-col snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto bg-white border-2 border-gray-200 card-lift shadow-sm">
-<!-- Popular badge -->
 <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-950 text-white text-xs font-black px-4 py-1 rounded-full shadow-sm" hidden>Популярный</div>
 <h3 class="text-xl font-black mb-1 text-gray-900">Группа 1×/неделю</h3>
 <p class="text-sm mb-6 text-gray-400">4 занятия в месяц · до 6 учеников</p>
@@ -3325,7 +3094,6 @@ location.href, краулер не натискає: єдиною дорогою
 <a class="btn-action block text-center font-black text-sm py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox-sm hover:shadow-fox bg-fox-500 hover:bg-fox-600 text-white" href="#" data-modal="open">Записаться</a>
 </div>
 <div class="rounded-3xl p-8 relative flex flex-col snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto price-highlight">
-<!-- Popular badge -->
 <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-950 text-white text-xs font-black px-4 py-1 rounded-full shadow-sm">Популярный</div>
 <h3 class="text-xl font-black mb-1 text-white">Группа 2×/неделю</h3>
 <p class="text-sm mb-6 text-orange-100">8 занятий в месяц · до 6 учеников</p>
@@ -3362,7 +3130,6 @@ location.href, краулер не натискає: єдиною дорогою
 <a class="btn-action block text-center font-black text-sm py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox-sm hover:shadow-fox bg-white text-fox-600 hover:bg-gray-50" href="#" data-modal="open">Записаться</a>
 </div>
 <div class="rounded-3xl p-8 relative flex flex-col snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto bg-white border-2 border-gray-200 card-lift shadow-sm">
-<!-- Popular badge -->
 <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-950 text-white text-xs font-black px-4 py-1 rounded-full shadow-sm" hidden>Популярный</div>
 <h3 class="text-xl font-black mb-1 text-gray-900">Индивидуально</h3>
 <p class="text-sm mb-6 text-gray-400">4 занятия в месяц · личный подход</p>
@@ -3402,17 +3169,13 @@ location.href, краулер не натискає: єдиною дорогою
 <p class="text-center text-sm text-gray-400 mt-6">* Первый пробный урок — бесплатно. При записи двух детей из семьи — скидка 15% на второго ребёнка.</p>
 </div>
 </section>
-<!-- ═══════════════════════ RESULTS + CERTIFICATE ═══════════════════════ -->
 <section class="py-8 md:py-14 bg-gray-950 relative overflow-hidden" style="background: radial-gradient(ellipse at 75% 15%, rgba(124,58,237,0.28) 0%, transparent 55%), radial-gradient(ellipse at 15% 85%, rgba(255,107,53,0.18) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(15,27,61,0.6) 0%, transparent 80%), #030712;">
-<!-- Decorative glows -->
 <div class="absolute top-0 right-0 w-96 h-96 rounded-full -translate-y-1/3 translate-x-1/3" style="background: radial-gradient(circle, rgba(124,58,237,0.35) 0%, transparent 70%);"></div>
 <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full translate-y-1/3 -translate-x-1/3" style="background: radial-gradient(circle, rgba(255,107,53,0.25) 0%, transparent 70%);"></div>
 <div class="absolute top-1/2 right-1/4 w-64 h-64 rounded-full -translate-y-1/2" style="background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);"></div>
-<!-- Noise texture overlay -->
 <div class="absolute inset-0 opacity-5" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;); background-size: 150px 150px;"></div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 <div class="grid md:grid-cols-2 gap-10 items-center">
-<!-- Results list -->
 <div>
 <span class="inline-block bg-fox-500/20 text-fox-400 font-bold text-sm px-4 py-1.5 rounded-full mb-5">Результаты</span>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-6">Что умеет ваш ребёнок после наших уроков</h2>
@@ -3435,46 +3198,33 @@ location.href, краулер не натискає: єдиною дорогою
 </li>
 </ul>
 </div>
-<!-- Certificate mockup — premium, landscape -->
 <div class="flex justify-center">
 <div class="relative w-72 md:w-full md:max-w-xl" style="filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));">
-<!-- Outer card -->
 <div class="relative rounded-2xl overflow-hidden" style="background:#0F1B3D; padding:2px;">
-<!-- Gold rim -->
 <div style="background: linear-gradient(135deg,#D4AF37,#F5E88A,#B8960C,#F5E88A,#D4AF37); padding:2px; border-radius:14px;">
 <div class="rounded-xl overflow-hidden" style="background:#0F1B3D;">
-<!-- Inner content -->
 <div class="relative p-4 md:p-6 flex flex-col items-center text-center" style="gap:0;">
-<!-- Corner ornaments -->
 <svg class="absolute top-2 left-2 md:top-3 md:left-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 0 L14 0"/></svg>
 <svg class="absolute top-2 right-2 md:top-3 md:right-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 0 L14 0"/></svg>
 <svg class="absolute bottom-2 left-2 md:bottom-3 md:left-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 28 L14 28"/></svg>
 <svg class="absolute bottom-2 right-2 md:bottom-3 md:right-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 28 L14 28"/></svg>
-<!-- Background glow -->
 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,var(--fox-500),transparent)"></div>
-<!-- Desktop: two columns — brand | content -->
 <div class="w-full flex flex-col items-center md:flex-row md:items-center md:gap-6 md:text-left">
-<!-- Brand column -->
 <div class="flex flex-col items-center w-full md:w-36 md:flex-shrink-0 z-10">
 <div class="mt-1 md:mt-0 mb-1.5 md:mb-2 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-xl shadow-fox" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));">🦊</div>
 <div class="text-white font-black text-sm tracking-widest">FLUENT<span style="color:#D4AF37">FOX</span></div>
-<!-- Gold divider -->
 <div class="flex items-center gap-2 w-full my-1.5 md:my-2">
 <div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#D4AF37)"></div>
 <svg width="12" height="12" viewBox="0 0 12 12" fill="#D4AF37"><polygon points="6,0 7.5,4.5 12,4.5 8.5,7 10,12 6,9 2,12 3.5,7 0,4.5 4.5,4.5"/></svg>
 <div class="h-px flex-1" style="background:linear-gradient(to left,transparent,#D4AF37)"></div>
 </div>
-<!-- Certificate label -->
 <div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase mb-1.5 md:mb-0" style="color:#D4AF37;">Сертификат</div>
 </div>
-<!-- Content column -->
 <div class="w-full md:flex-1 flex flex-col items-center md:items-start z-10">
-<!-- Name area -->
 <div class="mb-1.5 md:mb-3 flex items-baseline gap-1.5 md:flex-col md:gap-0 md:items-start">
 <p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;">Выдан ученику:</p>
 <p class="font-black text-sm md:text-lg text-white">[Ім'я учня]</p>
 </div>
-<!-- Completed text -->
 <div class="flex items-center gap-1.5 md:flex-col md:gap-0 md:items-start">
 <p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;">Успешно завершил курс:</p>
 <div class="px-2.5 py-1 md:px-4 md:py-1.5 rounded-xl border text-2xs md:text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
@@ -3483,21 +3233,17 @@ English A1 → A2
 </div>
 </div>
 </div>
-<!-- Bottom divider + seal row -->
 <div class="w-full mt-1.5 md:mt-4 z-10">
 <div class="h-px w-full mb-1.5 md:mb-2" style="background:linear-gradient(to right,transparent,#D4AF37,transparent)"></div>
 <div class="flex items-center justify-between">
-<!-- Director -->
 <div class="text-left">
 <div class="w-14 h-px mb-1" style="background:#D4AF37;opacity:0.4;"></div>
 <div class="text-2xs md:text-xs" style="color:#5566AA;">Директор</div>
 </div>
-<!-- Wax seal -->
 <div class="w-9 h-9 md:w-10 md:h-10 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#D4AF37; color:#D4AF37;">
 <div class="text-2xs font-black leading-none">FF</div>
 <div class="text-2xs leading-none mt-0.5">2026</div>
 </div>
-<!-- Date -->
 <div class="text-right">
 <div class="w-14 h-px mb-1 ml-auto" style="background:#D4AF37;opacity:0.4;"></div>
 <div class="text-2xs md:text-xs" style="color:#5566AA;">Дата</div>
@@ -3513,7 +3259,6 @@ English A1 → A2
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
 <section class="py-8 md:py-20 bg-white" id="reviews">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center mb-10 md:mb-14">
@@ -3521,9 +3266,7 @@ English A1 → A2
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3">Родители доверяют FluentFox</h2>
 <p class="text-gray-500 text-sm sm:text-base md:text-lg">Реальные отзывы реальных семей</p>
 </div>
-<!-- Reviews: mobile swipe slider + desktop paged grid -->
 <div>
-<!-- MOBILE: horizontal swipe slider (full list) -->
 <div class="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-4">
 <div class="card-lift bg-gray-50 rounded-3xl p-7 border border-gray-100 snap-center shrink-0 w-[85%]">
 <div class="flex gap-0.5 mb-4">
@@ -3628,13 +3371,8 @@ English A1 → A2
 </div>
 </div>
 </div>
-<!-- DESKTOP: 2-per-row paged grid -->
 <div class="hidden md:block">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5" data-review-grid>
-<!-- Усі відгуки лежать у розмітці, а не лише поточна пара:
-сторінка тепер статична, і те, що ховає пагінація, все одно
-має бути в HTML — інакше чотири з шести відгуків не
-потраплять ні в індекс, ні до краулера без JS. -->
 <div class="card-lift bg-gray-50 rounded-3xl p-5 lg:p-7 border border-gray-100" data-review-card="0">
 <div class="flex gap-0.5 mb-4">
 <span class="star text-lg">★</span>
@@ -3738,7 +3476,6 @@ English A1 → A2
 </div>
 </div>
 </div>
-<!-- Page navigation (arrows + dots) -->
 <div class="flex items-center justify-center gap-4 mt-8">
 <button class="w-9 h-9 rounded-full bg-fox-50 hover:bg-fox-100 disabled:opacity-30 disabled:cursor-not-allowed text-fox-600 flex items-center justify-center transition-colors text-xl leading-none" disabled data-review="prev">‹</button>
 <div class="flex gap-2">
@@ -3751,7 +3488,6 @@ English A1 → A2
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ FAQ ═══════════════════════ -->
 <section class="py-8 md:py-20 bg-fox-50">
 <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center mb-6 md:mb-14">
@@ -3816,7 +3552,6 @@ English A1 → A2
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ BLOG PREVIEW ═══════════════════════ -->
 <section class="py-8 md:py-20 bg-gray-950">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center mb-10 md:mb-14">
@@ -3824,7 +3559,6 @@ English A1 → A2
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white mb-3 leading-tight">Советы родителям от наших учителей</h2>
 <p class="text-gray-400 text-sm sm:text-base md:text-lg">Практические материалы об обучении детей английскому языку</p>
 </div>
-<!-- MOBILE: horizontal swipe slider -->
 <div class="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-4 mb-6">
 <a class="bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/10 snap-center shrink-0 w-[80%]" href="blog/yak-navchyty-dytynu-anhliyskoyi-onlayn?lang=ru">
 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
@@ -3872,9 +3606,7 @@ English A1 → A2
 </div>
 </a>
 </div>
-<!-- DESKTOP: 3-column grid -->
 <div class="hidden md:grid md:grid-cols-3 gap-6 mb-10">
-<!-- Card 1 -->
 <a class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/10" href="blog/yak-navchyty-dytynu-anhliyskoyi-onlayn?lang=ru">
 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
 <div class="p-6 flex flex-col flex-1">
@@ -3890,7 +3622,6 @@ English A1 → A2
 </div>
 </div>
 </a>
-<!-- Card 2 -->
 <a class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/10" href="blog/pidhotovka-do-nmt-anhliyskoyi-2025?lang=ru">
 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
 <div class="p-6 flex flex-col flex-1">
@@ -3906,7 +3637,6 @@ English A1 → A2
 </div>
 </div>
 </a>
-<!-- Card 3 -->
 <a class="card-lift bg-white rounded-3xl overflow-hidden flex flex-col shadow-lg shadow-black/10" href="blog/yak-motyvuvaty-dytynu-vchyty-anhliyskoyu?lang=ru">
 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
 <div class="p-6 flex flex-col flex-1">
@@ -3931,31 +3661,23 @@ English A1 → A2
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ CTA BANNER ═══════════════════════ -->
 <section class="py-10 md:py-16 bg-british relative overflow-hidden">
-<!-- Same red and the same diagonal pattern as the London strip and the stats bar -->
 <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background-image:repeating-linear-gradient(45deg,white 0,white 2px,transparent 0,transparent 16px),repeating-linear-gradient(-45deg,white 0,white 2px,transparent 0,transparent 16px)"></div>
-<!-- Quality SVG illustrations (desktop only — hidden on mobile to avoid overlap) -->
 <div class="absolute inset-0 pointer-events-none select-none hidden md:block">
-<!-- Double-decker bus — left, bottom-aligned -->
 <div class="absolute left-0 bottom-0 flex items-end" style="height:75%; max-width:340px; transform:translateX(-8%)">
 <img class="h-full w-auto object-contain drop-shadow-2xl" src="bus.svg" alt loading="lazy" decoding="async" width="5000" height="5000" style="filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25))">
 </div>
-<!-- Big Ben — right, bottom-aligned -->
 <div class="absolute right-0 bottom-0 flex items-end" style="height:110%; max-width:220px; transform:translateX(12%)">
 <img class="h-full w-auto object-contain" src="bigben.svg" alt loading="lazy" decoding="async" width="2050" height="2196" style="filter: drop-shadow(0 8px 32px rgba(0,0,0,0.2))">
 </div>
 </div>
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-<!-- Header -->
 <span class="inline-block bg-white/20 border border-white/30 text-white font-bold text-xs px-4 py-1.5 rounded-full mb-4 tracking-widest uppercase">Подготовка к экзаменам</span>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white leading-tight mb-3">Готовим к международным экзаменам</h2>
 <p class="text-orange-100 text-base mb-10 max-w-xl mx-auto">Cambridge YLE, IELTS, TOEFL и другие — ваш ребёнок будет готов</p>
-<!-- Scrolling exam logos -->
 <div class="marquee-fade overflow-hidden -mx-4">
 <div class="marquee-track flex gap-4 w-max px-4">
 <div class="flex gap-4">
-<!-- Cambridge English -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:170px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#003B5C">CE</div>
 <div class="text-left">
@@ -3963,7 +3685,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">YLE · KET · PET</div>
 </div>
 </div>
-<!-- Cambridge FCE/CAE -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:170px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#00539B">FCE</div>
 <div class="text-left">
@@ -3971,7 +3692,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">B2 First · C1 Advanced</div>
 </div>
 </div>
-<!-- IELTS -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#D12E2E">IE</div>
 <div class="text-left">
@@ -3979,7 +3699,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">Academic · General</div>
 </div>
 </div>
-<!-- TOEFL -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#003087">iBT</div>
 <div class="text-left">
@@ -3987,7 +3706,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">ETS · Online</div>
 </div>
 </div>
-<!-- Duolingo -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:160px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#58CC02">DET</div>
 <div class="text-left">
@@ -3995,7 +3713,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">English Test</div>
 </div>
 </div>
-<!-- YLE Starters -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-2xs flex-shrink-0" style="background:#F4A100">YLE</div>
 <div class="text-left">
@@ -4003,7 +3720,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">Starters · Movers · Flyers</div>
 </div>
 </div>
-<!-- Trinity -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-2xs flex-shrink-0" style="background:#6B21A8">TCL</div>
 <div class="text-left">
@@ -4011,7 +3727,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">GESE · ISE</div>
 </div>
 </div>
-<!-- PTE -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:140px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-2xs flex-shrink-0" style="background:#0099D6">PTE</div>
 <div class="text-left">
@@ -4021,7 +3736,6 @@ English A1 → A2
 </div>
 </div>
 <div class="flex gap-4">
-<!-- Cambridge English -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:170px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#003B5C">CE</div>
 <div class="text-left">
@@ -4029,7 +3743,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">YLE · KET · PET</div>
 </div>
 </div>
-<!-- Cambridge FCE/CAE -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:170px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#00539B">FCE</div>
 <div class="text-left">
@@ -4037,7 +3750,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">B2 First · C1 Advanced</div>
 </div>
 </div>
-<!-- IELTS -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#D12E2E">IE</div>
 <div class="text-left">
@@ -4045,7 +3757,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">Academic · General</div>
 </div>
 </div>
-<!-- TOEFL -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#003087">iBT</div>
 <div class="text-left">
@@ -4053,7 +3764,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">ETS · Online</div>
 </div>
 </div>
-<!-- Duolingo -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:160px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-xs flex-shrink-0" style="background:#58CC02">DET</div>
 <div class="text-left">
@@ -4061,7 +3771,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">English Test</div>
 </div>
 </div>
-<!-- YLE Starters -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-2xs flex-shrink-0" style="background:#F4A100">YLE</div>
 <div class="text-left">
@@ -4069,7 +3778,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">Starters · Movers · Flyers</div>
 </div>
 </div>
-<!-- Trinity -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:150px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-2xs flex-shrink-0" style="background:#6B21A8">TCL</div>
 <div class="text-left">
@@ -4077,7 +3785,6 @@ English A1 → A2
 <div class="text-gray-400 text-2xs">GESE · ISE</div>
 </div>
 </div>
-<!-- PTE -->
 <div class="flex-shrink-0 bg-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-black/10" style="min-width:140px">
 <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-2xs flex-shrink-0" style="background:#0099D6">PTE</div>
 <div class="text-left">
@@ -4090,23 +3797,18 @@ English A1 → A2
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ CONTACT + FORM ═══════════════════════ -->
 <section class="py-8 md:py-20 bg-gray-50" id="contacts">
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid md:grid-cols-2 gap-4 md:gap-12 items-start">
-<!-- ── Left: contact info ── -->
 <div class="pt-2 min-w-0">
 <h2 class="text-2xl sm:text-3xl md:text-5xl font-black text-gray-900 leading-tight mb-4">
 <span>Запишитесь на</span><br>
 <span class="gradient-text">пробный урок</span>
 </h2>
 <p class="text-gray-500 text-sm sm:text-base md:text-lg leading-relaxed mb-4 md:mb-10">Оставь заявку — перезвоним в течение 30 минут, запишем ребёнка на бесплатное первое занятие.</p>
-<!-- Phones (hidden on mobile) -->
 <div class="hidden md:block">
-<!-- Phones -->
 <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Телефоны</p>
 <div class="space-y-3 mb-8">
-<!-- Phone 1 -->
 <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
 <a class="font-black text-gray-900 text-xl hover:text-fox-500 transition-colors whitespace-nowrap" href="tel:+380954624672">+38 (095) 462-46-72</a>
 <div class="flex gap-1.5">
@@ -4121,7 +3823,6 @@ English A1 → A2
 </a>
 </div>
 </div>
-<!-- Phone 2 -->
 <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
 <a class="font-black text-gray-900 text-xl hover:text-fox-500 transition-colors whitespace-nowrap" href="tel:+380682522876">+38 (068) 252-28-76</a>
 <div class="flex gap-1.5">
@@ -4131,10 +3832,8 @@ English A1 → A2
 </div>
 </div>
 </div>
-<!-- Email -->
 <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Почта</p>
 <a class="font-bold text-fox-500 hover:text-fox-600 transition-colors mb-8 block" href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a>
-<!-- Socials -->
 <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3 mt-6">Следите за нами</p>
 <div class="flex flex-wrap gap-2">
 <a class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 bg-white hover:border-fox-300 transition-colors text-sm font-bold text-gray-700" href="https://www.facebook.com/profile.php?id=61591810049590" target="_blank" rel="noopener">
@@ -4155,26 +3854,22 @@ Facebook
 Instagram
 </a>
 </div>
-</div><!-- /hidden md:block -->
 </div>
-<!-- ── Right: form card ── -->
+</div>
 <div class="min-w-0" id="form">
 <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-lg border border-gray-100">
-<!-- Success state -->
 <div class="text-center py-10" hidden data-form-success>
 <div class="text-5xl mb-4">🦊</div>
 <h3 class="text-xl font-black text-gray-900 mb-2">Спасибо!</h3>
 <p class="text-gray-500">Мы свяжемся с вами в ближайшее время и договоримся об удобном времени для пробного урока.</p>
 </div>
-<!-- Form -->
-<form class="space-y-4" novalidate data-form-body data-lead-form>
-<!-- Name + Age row -->
+<form class="space-y-4" method="post" action="/api/lead.php" data-form-body data-lead-form>
 <div class="grid grid-cols-2 gap-3">
 <div>
 <label class="block text-sm font-bold text-gray-700 mb-1.5">
 <span>Имя ребёнка</span> <span class="text-fox-500">*</span>
 </label>
-<input class="form-input w-full border-2 rounded-xl px-4 py-3 text-sm text-gray-800 font-medium transition-all duration-200 border-gray-200 bg-gray-50" name="name" type="text" placeholder="Имя" data-form-input="name">
+<input class="form-input w-full border-2 rounded-xl px-4 py-3 text-sm text-gray-800 font-medium transition-all duration-200 border-gray-200 bg-gray-50" name="name" type="text" required placeholder="Имя" data-form-input="name">
 <p class="mt-1 text-xs text-red-500 font-medium" hidden data-form-error-for="name">Введите имя ребёнка (мин. 2 символа)</p>
 </div>
 <div>
@@ -4182,7 +3877,6 @@ Instagram
 <input class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 font-medium transition-all duration-200" name="childAge" type="number" min="6" max="18" placeholder="9">
 </div>
 </div>
-<!-- Phone with prefix -->
 <div>
 <label class="block text-sm font-bold text-gray-700 mb-1.5">
 <span>Ваш телефон</span> <span class="text-fox-500">*</span>
@@ -4192,13 +3886,11 @@ Instagram
 <svg class="w-4 h-3 shrink-0" viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="1" fill="#0057B7"/><rect y="1" width="3" height="1" fill="#FFD700"/></svg>
 <span class="text-sm font-bold text-gray-600">+380</span>
 </div>
-<input class="form-input flex-1 min-w-0 border-2 rounded-r-xl px-4 py-3 text-sm text-gray-800 font-medium transition-all duration-200 border-gray-200 bg-gray-50" name="phone" type="tel" placeholder="(XX) XXX-XX-XX" data-form-input="phone">
+<input class="form-input flex-1 min-w-0 border-2 rounded-r-xl px-4 py-3 text-sm text-gray-800 font-medium transition-all duration-200 border-gray-200 bg-gray-50" name="phone" type="tel" required placeholder="(XX) XXX-XX-XX" data-form-input="phone">
 </div>
 <p class="mt-1 text-xs text-red-500 font-medium" hidden data-form-error-for="phone">Введите корректный номер — 9 цифр после +380</p>
 </div>
-<!-- Error -->
 <div class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-600 text-sm" hidden data-form-failed>Что-то пошло не так. Попробуйте ещё раз или позвоните нам.</div>
-<!-- Submit -->
 <button class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-base" type="submit">
 <span data-submit-label>Бесплатный урок</span>
 <span class="flex items-center justify-center gap-2" hidden data-submit-spinner>
@@ -4206,7 +3898,6 @@ Instagram
 <span>Отправляем...</span>
 </span>
 </button>
-<!-- Messenger alternative -->
 <div class="text-center">
 <p class="text-xs text-gray-400 mb-3">или напишите нам напрямую</p>
 <div class="flex flex-wrap justify-center gap-2">
@@ -4231,19 +3922,15 @@ Telegram
 </div>
 </div>
 </section>
-<!-- ═══════════════════════ MODAL ═══════════════════════ -->
 <div class="fixed inset-0 z-[100] flex items-center justify-center p-4" hidden style="background:rgba(0,0,0,0.6); backdrop-filter:blur(4px);" data-modal-panel data-modal-backdrop>
 <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl relative overflow-hidden" hidden data-modal-panel>
-<!-- Decorative top strip -->
 <div class="h-1.5 w-full" style="background:linear-gradient(to right,var(--fox-500),var(--violet-500))"></div>
-<!-- Close button -->
 <button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors z-10" aria-label="Close" data-modal="close">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
 </svg>
 </button>
 <div class="p-7">
-<!-- Header -->
 <div class="mb-6">
 <div class="flex items-center gap-2 mb-2">
 <span class="text-2xl">🦊</span>
@@ -4252,22 +3939,19 @@ Telegram
 <h3 class="text-2xl font-black text-gray-900 leading-tight">Запишитесь на пробный урок</h3>
 <p class="text-gray-500 text-sm mt-1">Перезвоним в течение 30 минут</p>
 </div>
-<!-- Success -->
 <div class="text-center py-8" hidden data-form-success>
 <div class="text-5xl mb-3">🦊</div>
 <h4 class="text-xl font-black text-gray-900 mb-1">Спасибо!</h4>
 <p class="text-gray-500 text-sm">Мы свяжемся с вами в ближайшее время и договоримся об удобном времени для пробного урока.</p>
 <button class="mt-5 px-6 py-2.5 bg-fox-500 hover:bg-fox-600 text-white font-black rounded-full shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5 transition-all duration-200" data-modal="close" data-form-reset>Закрыть</button>
 </div>
-<!-- Form -->
-<form class="space-y-4" novalidate data-form-body data-lead-form>
-<!-- Name + Age -->
+<form class="space-y-4" method="post" action="/api/lead.php" data-form-body data-lead-form>
 <div class="grid grid-cols-2 gap-3">
 <div>
 <label class="block text-sm font-bold text-gray-700 mb-1.5">
 <span>Имя ребёнка</span> <span class="text-fox-500">*</span>
 </label>
-<input class="form-input w-full border-2 rounded-xl px-4 py-3 text-xs font-medium transition-all duration-200 border-gray-200 bg-gray-50" name="name" type="text" placeholder="Имя" data-form-input="name">
+<input class="form-input w-full border-2 rounded-xl px-4 py-3 text-xs font-medium transition-all duration-200 border-gray-200 bg-gray-50" name="name" type="text" required placeholder="Имя" data-form-input="name">
 <p class="mt-1 text-xs text-red-500 font-medium" hidden data-form-error-for="name">Введите имя ребёнка (мин. 2 символа)</p>
 </div>
 <div>
@@ -4275,7 +3959,6 @@ Telegram
 <input class="form-input w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 text-xs font-medium transition-all duration-200" name="childAge" type="number" min="6" max="18" placeholder="9">
 </div>
 </div>
-<!-- Phone -->
 <div>
 <label class="block text-sm font-bold text-gray-700 mb-1.5">
 <span>Ваш телефон</span> <span class="text-fox-500">*</span>
@@ -4285,13 +3968,11 @@ Telegram
 <svg class="w-4 h-3 shrink-0" viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="1" fill="#0057B7"/><rect y="1" width="3" height="1" fill="#FFD700"/></svg>
 <span class="text-sm font-bold text-gray-600">+380</span>
 </div>
-<input class="form-input flex-1 min-w-0 border-2 rounded-r-xl px-4 py-3 text-xs font-medium transition-all duration-200 border-gray-200 bg-gray-50" name="phone" type="tel" placeholder="(XX) XXX-XX-XX" data-form-input="phone">
+<input class="form-input flex-1 min-w-0 border-2 rounded-r-xl px-4 py-3 text-xs font-medium transition-all duration-200 border-gray-200 bg-gray-50" name="phone" type="tel" required placeholder="(XX) XXX-XX-XX" data-form-input="phone">
 </div>
 <p class="mt-1 text-xs text-red-500 font-medium" hidden data-form-error-for="phone">Введите корректный номер — 9 цифр после +380</p>
 </div>
-<!-- Error -->
 <div class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-600 text-sm" hidden data-form-failed>Что-то пошло не так. Попробуйте ещё раз или позвоните нам.</div>
-<!-- Submit -->
 <button class="w-full bg-fox-500 hover:bg-fox-600 disabled:opacity-60 text-white font-black py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox hover:shadow-fox-lg text-sm" type="submit">
 <span data-submit-label>Бесплатный урок</span>
 <span class="flex items-center justify-center gap-2" hidden data-submit-spinner>
@@ -4299,7 +3980,6 @@ Telegram
 <span>Отправляем...</span>
 </span>
 </button>
-<!-- Messengers -->
 <div class="text-center">
 <p class="text-xs text-gray-400 mb-2">или напишите нам напрямую</p>
 <div class="flex flex-wrap justify-center gap-2">
@@ -4322,12 +4002,6 @@ Telegram
 </div>
 </div>
 </div>
-<!-- ═══════════════════════ ГЕОГРАФІЯ ═══════════════════════ -->
-<!-- Навіщо блок. Сторінка бореться за «онлайн-школа англійської» по країні,
-але слова «Україна» у видимому тексті головної не було зовсім, а Дніпро
-згадувався лише в реквізитах ФОП у підвалі. Для Google це сторінка без
-географії: ні країни, ні міста. Тут обидва сигнали стоять текстом —
-і адреси збігаються з тим, що лежить у LocalBusiness на /dnipro. -->
 <section class="py-8 md:py-20 bg-gradient-to-b from-white to-fox-50" id="geo">
 <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center mb-10 md:mb-14">
@@ -4336,7 +4010,6 @@ Telegram
 <p class="text-gray-500 text-sm sm:text-base md:text-lg">Формат выбираете вы: программа, преподаватели и цена в обоих одинаковые</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch mb-8 md:mb-10">
-<!-- ── Онлайн: основний формат, тому темна картка ── -->
 <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 bg-gray-950 shadow-2xl shadow-black/60" style="background: radial-gradient(ellipse at 10% 0%, rgba(255,107,53,0.32) 0%, transparent 55%), radial-gradient(ellipse at 100% 100%, rgba(124,58,237,0.26) 0%, transparent 55%), #030712;">
 <div class="relative z-10">
 <div class="w-14 h-14 rounded-2xl bg-fox-500 flex items-center justify-center text-2xl mb-5 shadow-fox">🌍</div>
@@ -4358,7 +4031,6 @@ Telegram
 </ul>
 </div>
 </div>
-<!-- ── Очно ── -->
 <div class="bg-white rounded-3xl p-6 sm:p-8 border border-fox-100 shadow-lg shadow-black/10 flex flex-col">
 <div class="w-14 h-14 rounded-2xl bg-fox-50 flex items-center justify-center text-2xl mb-5">📍</div>
 <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-3 leading-tight">Два очных класса в Днепре</h3>
@@ -4382,11 +4054,9 @@ Telegram
 <p class="max-w-4xl mx-auto text-left sm:text-center text-sm sm:text-base leading-relaxed text-gray-500"><span>FluentFox — это онлайн-школа английского языка для детей и подростков 6–18 лет, работающая по всей Украине: </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/anhliyska-onlayn-dlya-ditey?lang=ru">занятия английским онлайн</a><span> проходят в группах до шести учеников или </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/repetytor-z-anhliyskoyi?lang=ru">индивидуально с репетитором</a><span>, а для семей из Днепра и области дополнительно работают два очных класса. Цена не зависит ни от города, ни от формата, и формат можно сменить даже посреди курса — ребёнок остаётся в своей группе. </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/probnyi-urok?lang=ru">Первый урок бесплатный</a><span> и онлайн, и в классе.</span></p>
 </div>
 </section>
-<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <footer class="bg-gray-950 text-gray-400 py-12">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mb-10">
-<!-- Brand -->
 <div>
 <a class="flex items-center gap-2 mb-3" href="#">
 <span class="text-3xl">🦊</span>
@@ -4396,7 +4066,6 @@ Telegram
 </span>
 </a>
 <p class="text-base leading-relaxed max-w-xs">Учи английский с хитростью лиса!</p>
-<!-- Social icons -->
 <div class="flex gap-3 mt-4">
 <a class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white" href="https://www.instagram.com/fluent.fox.study/" target="_blank" rel="noopener" aria-label="Instagram">
 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
@@ -4409,7 +4078,6 @@ Telegram
 </a>
 </div>
 </div>
-<!-- Nav + partners -->
 <div>
 <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide">Навигация</h4>
 <ul class="space-y-2 text-base">
@@ -4426,7 +4094,6 @@ Telegram
 <li><a class="hover:text-fox-400 transition-colors" href="https://child.mycomputer.education/" target="_blank" rel="noopener">Центр «Дошколярик»</a></li>
 </ul>
 </div>
-<!-- Sections -->
 <div>
 <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide">Разделы</h4>
 <ul class="space-y-2 text-base">
@@ -4446,7 +4113,6 @@ Telegram
 <li><a class="hover:text-fox-400 transition-colors" href="/probnyi-urok?lang=ru">Пробный урок</a></li>
 </ul>
 </div>
-<!-- Contacts -->
 <div>
 <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide">Контакты</h4>
 <ul class="space-y-2 text-base">
@@ -4457,9 +4123,6 @@ Telegram
 </ul>
 </div>
 </div>
-<!-- Підписка на листи: адреса йде в панель розсилки мережі (smm.mycomputer.education),
-яка одразу додає людину в базу й надсилає вітальний лист. Код тексту згоди —
-data-consent: змінили текст згоди — змінюйте код. Обробник — /js/subscribe.js. -->
 <div class="border-t border-gray-800 py-6 grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,440px)] md:gap-10 md:items-start">
 <div>
 <p class="text-base font-black text-white">Письма от FluentFox</p>
@@ -4476,16 +4139,13 @@ data-consent: змінили текст згоди — змінюйте код. 
 <p class="text-sm text-gray-300 empty:hidden data-[state=ok]:text-green-400 data-[state=error]:text-red-400 [&_button]:font-bold [&_button]:underline [&_button]:text-fox-400" data-subscribe-status role="status" aria-live="polite"></p>
 </form>
 </div>
-<!-- Payment methods -->
 <div class="border-t border-gray-800 pt-8 mb-5">
 <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-<!-- VISA -->
 <div class="bg-white rounded-xl px-2.5 py-1 h-8 flex items-center">
 <svg width="44" height="14" viewBox="0 0 44 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 <text x="0" y="12" font-family="Arial,sans-serif" font-weight="900" font-style="italic" font-size="14" fill="#1A1F71">VISA</text>
 </svg>
 </div>
-<!-- Mastercard -->
 <div class="bg-white rounded-xl px-2.5 py-1 h-8 flex items-center gap-1">
 <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="12" cy="10" r="10" fill="#EB001B"/>
@@ -4493,7 +4153,6 @@ data-consent: змінили текст згоди — змінюйте код. 
 <path d="M16 2.7a10 10 0 0 1 0 14.6A10 10 0 0 1 16 2.7z" fill="#FF5F00"/>
 </svg>
 </div>
-<!-- Apple Pay -->
 <div class="bg-white rounded-xl px-2.5 py-1 h-8 flex items-center gap-1.5 border border-gray-200">
 <svg width="10" height="12" viewBox="0 0 10 12" fill="#1D1D1F">
 <path d="M8.3 6.2c0-1.6 1.3-2.3 1.3-2.3C8.8 2.6 7.7 2.5 7.3 2.5c-1 0-1.8.6-2.3.6C4.5 3 3.7 2.5 2.8 2.5 1.2 2.5 0 3.8 0 5.7c0 1.1.4 2.2.9 3 .5.8 1 1.4 1.7 1.4.6 0 .9-.4 1.7-.4.8 0 1 .4 1.7.4.7 0 1.2-.6 1.7-1.3.5-.8.7-1.5.7-1.5-.3-.1-.8-.7-.9-1.1z"/>
@@ -4501,7 +4160,6 @@ data-consent: змінили текст згоди — змінюйте код. 
 </svg>
 <span class="text-base font-semibold text-gray-900">Pay</span>
 </div>
-<!-- Google Pay -->
 <div class="bg-white rounded-xl px-3 py-1 h-8 flex items-center">
 <svg width="44" height="18" viewBox="0 0 44 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 <text x="0" y="13" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#4285F4">G</text>
@@ -4510,7 +4168,6 @@ data-consent: змінили текст згоди — змінюйте код. 
 </div>
 </div>
 </div>
-<!-- Legal links -->
 <div class="border-t border-gray-800 py-4">
 <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm justify-center md:justify-start">
 <a class="hover:text-fox-400 transition-colors" href="privacy.html?lang=ru">Политика конфиденциальности</a>
@@ -4518,7 +4175,6 @@ data-consent: змінили текст згоди — змінюйте код. 
 <a class="hover:text-fox-400 transition-colors" href="returns.html?lang=ru">Правила возврата</a>
 </div>
 </div>
-<!-- Copyright + FOP -->
 <div class="border-t border-gray-800 pt-5 space-y-1.5 text-sm text-gray-500 text-center md:text-left">
 <p>© 2026 FluentFox. Все права защищены.</p>
 <p><span>ФЛП Пименов К.Ю., ИНН 3498404577, г. Днепр, пр. А. Поля 28а,</span>
@@ -4528,9 +4184,8 @@ data-consent: змінили текст згоди — змінюйте код. 
 </div>
 </div>
 </footer>
-<!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
-<script src="/js/lang.js?v=20260914s" defer></script>
-<script src="/js/home.js?v=20260914s" defer></script>
-<script src="/js/subscribe.js?v=20260914s" defer></script>
+<script src="/js/lang.js?v=20260921a" defer></script>
+<script src="/js/home.js?v=20260921a" defer></script>
+<script src="/js/subscribe.js?v=20260921a" defer></script>
 </body>
 </html>

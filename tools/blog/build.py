@@ -33,6 +33,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 
 from assets import ASSET_VERSION  # noqa: E402  — спільна версія ?v= для всього сайту
+from html_min import squeeze  # noqa: E402  — коментарі й відступи лишаються в джерелі
 import articles as A  # noqa: E402
 import queue as Q  # noqa: E402
 import site_index as IDX  # noqa: E402
@@ -760,7 +761,7 @@ def main():
         for lang in ("uk", "ru"):
             name = a["slug"] + (".html" if lang == "uk" else ".ru.html")
             path = os.path.join(ROOT, "blog", name)
-            io.open(path, "w", encoding="utf-8", newline="\n").write(render(a, lang))
+            io.open(path, "w", encoding="utf-8", newline="\n").write(squeeze(render(a, lang)))
 
     # Сторінка, на яку ніхто не посилається, для пошуку не існує: лістинг,
     # noscript-перелік, розмітка блогу і карта сайту оновлюються тут же, одним

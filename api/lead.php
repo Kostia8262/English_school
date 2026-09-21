@@ -23,8 +23,12 @@
 
 declare(strict_types=1);
 
-header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
+
+// Версія ассетів — руками, як на юридичних сторінках і на 404: цей файл не
+// складається генератором. Розходження ловить python tools/audit/assets.py,
+// який заради цього рядка й почав дивитись у .php.
+const ASSET_VERSION = '20260921a';
 
 const LOG_NAME       = 'lead-errors.log';
 const RATE_MAX       = 10;          // заявок з однієї адреси
@@ -39,11 +43,91 @@ function private_dir(): string
     return dirname(__DIR__, 2);
 }
 
+/**
+ * Чи це звичайна відправка форми, а не `fetch` зі сторінки.
+ *
+ * Навіщо розрізняти. У форми є `action` і `method`, тож без JS вона постить
+ * сюди сама — і людина побачить те, що ми відповімо. JSON у вікні браузера
+ * був би не кращим за колишню тиху втрату заявки.
+ *
+ * `Sec-Fetch-Dest` ставить браузер, а не сторінка, тому заголовок є й тоді,
+ * коли скрипти вимкнено — рівно той випадок, заради якого ця гілка й існує.
+ * Для браузера без `Sec-Fetch-*` лишається `Accept`: навігація просить html,
+ * `fetch` із js/home.js — ні.
+ */
+function is_navigation(): bool
+{
+    $dest = strtolower((string) ($_SERVER['HTTP_SEC_FETCH_DEST'] ?? ''));
+    if ($dest !== '') {
+        return $dest === 'document';
+    }
+    return str_contains(strtolower((string) ($_SERVER['HTTP_ACCEPT'] ?? '')), 'text/html');
+}
+
 function respond(int $code, array $payload): void
 {
     http_response_code($code);
+    if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && is_navigation()) {
+        header('Content-Type: text/html; charset=utf-8');
+        echo result_page(($payload['result'] ?? '') === 'success',
+                         (string) ($payload['message'] ?? ''));
+        exit;
+    }
+    header('Content-Type: application/json; charset=utf-8');
     echo json_encode($payload, JSON_UNESCAPED_UNICODE);
     exit;
+}
+
+/**
+ * Сторінка відповіді для того, хто надіслав форму без JS.
+ *
+ * Своїх стилів не тримає: підключає той самий style.css, що й решта сайту, і
+ * користується тими ж класами. Робити тут окремий вигляд означало б завести
+ * другу дизайн-систему заради сторінки, яку бачить меншість.
+ */
+function result_page(bool $ok, string $message): string
+{
+    $ru = ((string) ($_POST['lang'] ?? 'uk')) === 'ru';
+    $v  = ASSET_VERSION;
+
+    $title = $ok
+        ? ($ru ? 'Заявка принята' : 'Заявку прийнято')
+        : ($ru ? 'Заявка не отправилась' : 'Заявка не надіслалась');
+    $lead = $ok
+        ? ($ru ? 'Мы перезвоним в течение 30 минут и договоримся о времени пробного урока.'
+               : 'Ми передзвонимо протягом 30 хвилин і домовимось про час пробного уроку.')
+        : ($message !== '' ? $message
+                           : ($ru ? 'Попробуйте ещё раз или позвоните нам.'
+                                  : 'Спробуйте ще раз або зателефонуйте нам.'));
+    $back = $ru ? 'Вернуться на сайт' : 'Повернутись на сайт';
+    $call = $ru ? 'Позвонить' : 'Зателефонувати';
+    $home = $ru ? '/?lang=ru' : '/';
+    $h    = static fn(string $s): string
+        => htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
+    return '<!DOCTYPE html><html lang="' . ($ru ? 'ru' : 'uk') . '"><head>'
+         . '<meta charset="UTF-8">'
+         . '<meta name="viewport" content="width=device-width,initial-scale=1.0">'
+         . '<meta name="robots" content="noindex">'
+         . '<title>' . $h($title) . ' — FluentFox</title>'
+         . '<link rel="stylesheet" href="/css/style.css?v=' . $v . '">'
+         . '</head><body class="font-sans antialiased text-gray-800 bg-cream">'
+         . '<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">'
+         . '<div class="inline-flex items-center justify-center w-16 h-16 rounded-full '
+         . ($ok ? 'bg-fox-50 text-fox-600' : 'bg-gray-100 text-gray-500')
+         . ' text-3xl mb-6">' . ($ok ? '🦊' : '📞') . '</div>'
+         . '<h1 class="text-3xl md:text-4xl font-black text-gray-900 mb-3 leading-tight">'
+         . $h($title) . '</h1>'
+         . '<p class="text-gray-500 text-lg leading-relaxed mb-8">' . $h($lead) . '</p>'
+         . '<div class="flex flex-wrap items-center justify-center gap-3">'
+         . '<a href="' . $home . '" class="px-7 py-3.5 rounded-full font-black text-base '
+         . 'bg-fox-500 hover:bg-fox-600 text-white shadow-fox hover:shadow-fox-lg '
+         . 'hover:-translate-y-1 transition-all duration-200">' . $h($back) . '</a>'
+         . '<a href="tel:+380954624672" class="px-7 py-3.5 rounded-full font-black text-base '
+         . 'bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 shadow-sm '
+         . 'hover:shadow-md hover:-translate-y-1 transition-all duration-200">'
+         . $h($call) . ' +38 (095) 462-46-72</a>'
+         . '</div></main></body></html>';
 }
 
 function fail(int $code, string $message, array $extra = []): void
@@ -325,7 +409,11 @@ $name  = clean((string) ($_POST['name'] ?? ''), 120);
 $phone = normalize_phone((string) ($_POST['phone'] ?? ''));
 $age   = (int) ($_POST['childAge'] ?? 0);
 $lang  = ((string) ($_POST['lang'] ?? 'uk')) === 'ru' ? 'ru' : 'uk';
-$fmt   = clean((string) ($_POST['format'] ?? 'group'), 40);
+// Без запасного 'group'. Поля формату на сторінці немає жодного, тож запасне
+// значення означало не «обрали групу», а «ніхто нічого не обирав» — і саме
+// воно роками лягало в нотатки кожної заявки рядком «формат: group», ніби це
+// вибір батьків. Порожній рядок нижче просто випадає з нотаток.
+$fmt   = clean((string) ($_POST['format'] ?? ''), 40);
 
 if (mb_strlen($name) < 2) {
     fail(400, 'Вкажіть імʼя (мінімум 2 символи).');

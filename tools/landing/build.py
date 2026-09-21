@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
 sys.path.insert(0, os.path.join(ROOT, "tools", "sitemap"))
 
 from assets import ASSET_VERSION  # noqa: E402  — спільна версія ?v= для всього сайту
+from html_min import squeeze  # noqa: E402  — коментарі й відступи лишаються в джерелі
 import ru_pages as RU        # noqa: E402  — російські версії тих самих сторінок
 import graph as GRAPH        # noqa: E402  — переклад розмітки Schema.org
 import lastmod as LASTMOD    # noqa: E402  — дати в sitemap.xml за вмістом
@@ -639,7 +640,7 @@ def main():
     built = []
     paths = []
     for p in C.PAGES:
-        html = render_page(p)
+        html = squeeze(render_page(p))
         path = os.path.join(ROOT, p["slug"] + ".html")
         io.open(path, "w", encoding="utf-8", newline="\n").write(html)
         paths.append(path)
