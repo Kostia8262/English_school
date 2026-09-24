@@ -38,16 +38,16 @@ jobs:
             ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }} \
             'bash -s' <<'REMOTE'
           set -u
-          echo "=== Де можуть лежати логи ==="
-          for d in ~/logs ~/domains/fluent-fox.site/logs ~/.logs /var/log/apache2; do
-            if [ -d "$d" ]; then
-              echo "--- $d"
-              ls -la "$d" 2>/dev/null | head -20
-            fi
-          done
+          echo "=== Що схоже на лог у домашній теці ==="
+          # Тільки імена й розміри, вміст не чіпаємо. 24.09.2026 перший захід
+          # показав, що у звичних місцях логів немає взагалі: Hostinger на
+          # цьому плані тримає журнали доступу лише в hPanel, а на диску лежить
+          # сам тільки ~/.logs/mail.log.
+          find ~ -maxdepth 4 \( -name '*access*log*' -o -name '*.log' \) \
+               -type f -printf '%10s  %p\n' 2>/dev/null | head -20
 
-          # Беремо найбільший файл, схожий на access log, з тих самих місць.
-          LOG=$(ls -S ~/logs/*access* ~/domains/fluent-fox.site/logs/*access* 2>/dev/null | head -1)
+          LOG=$(find ~ -maxdepth 4 -name '*access*log*' -type f -printf '%s %p\n' 2>/dev/null \
+                | sort -rn | head -1 | cut -d' ' -f2-)
           if [ -z "${LOG:-}" ]; then
             echo
             echo "Access log не знайдено в жодному зі звичних місць."
