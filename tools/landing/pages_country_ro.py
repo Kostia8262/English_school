@@ -11,7 +11,7 @@
 from __future__ import unicode_literals
 
 from content import PAGES, BASE, ORG, course_offer, PRICE_CALLOUT
-from country_art import art, ring
+from country_art import art, ring, formats
 
 
 PAGES.append({
@@ -222,6 +222,10 @@ PAGES.append({
          "украинский счёт для этого не нужен. Сумма выставляется в гривне, и ваш банк "
          "пересчитает её из леев по своему курсу в момент оплаты."),
 
+        ] + formats(
+            "у Румунії", "в Румынии",
+            "У Румунії — коли родина часто в дорозі до України й зручніше мати графік, який можна зсунути під поїздку.",
+            "В Румынии — когда семья часто в дороге в Украину и удобнее иметь график, который можно сдвинуть под поездку.") + [
         ] + ring("anhliyska-dlya-ditey-u-rumuniyi") + [
         ("notelink",
          "Якщо дитина вчилася в нас до переїзду, писати нікуди не треба: група й час "

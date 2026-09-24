@@ -170,11 +170,19 @@ def render_block(b):
         # Ті самі пілюлі, що "chips", але кожна — посилання. Потрібні серії
         # країнових сторінок: вони мусять вести одна на одну з тіла, а не
         # лише з підвалу, бо вагу перелінковки несе саме тіло.
+        # Посилання на сторінку, якої ще немає, не малюємо. Перелік країн
+        # (country_art.COUNTRIES) — це дорожня карта: назва там з'являється
+        # раніше, ніж сама сторінка, і до 25.09 це давало чотирнадцять битих
+        # посилань в аудиті. Фільтр стоїть саме тут, бо рендеринг іде вже
+        # після імпорту всіх модулів, коли C.PAGES повний.
+        known = set("/" + p["slug"] for p in C.PAGES)
+        live = [(href, uk, ru) for href, uk, ru in b[1]
+                if not href.startswith("/") or href in known]
         items = "\n".join(
             '          <li><a href="%s" class="inline-block bg-fox-50 text-fox-600 '
             'font-bold text-sm px-4 py-1.5 rounded-full hover:bg-fox-100 '
             'transition-colors duration-200"%s</a></li>'
-            % (href, attr_ru(uk, ru)) for href, uk, ru in b[1])
+            % (href, attr_ru(uk, ru)) for href, uk, ru in live)
         return ('      <ul class="flex flex-wrap gap-2 mb-6 mt-4">\n%s\n      </ul>'
                 % items)
 

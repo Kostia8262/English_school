@@ -13,7 +13,7 @@
 from __future__ import unicode_literals
 
 from content import PAGES, BASE, ORG, course_offer, PRICE_CALLOUT
-from country_art import art, ring
+from country_art import art, ring, formats
 
 
 PAGES.append({
@@ -230,6 +230,10 @@ PAGES.append({
          "украинский счёт для этого не нужен. Сумма выставляется в гривне, и ваш банк "
          "пересчитает её из евро по своему курсу в момент оплаты."),
 
+        ] + formats(
+            "в Іспанії", "в Испании",
+            "В Іспанії — коли гуртки закінчуються після сьомої й навіть наш найпізніший груповий слот виявляється зарано.",
+            "В Испании — когда кружки заканчиваются после семи и даже наш самый поздний групповой слот оказывается слишком рано.") + [
         ] + ring("anhliyska-dlya-ditey-v-ispaniyi") + [
         ("notelink",
          "Найкорисніше в пробному уроці тут — підібрати час. Одразу видно, чи "

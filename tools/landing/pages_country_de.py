@@ -12,7 +12,7 @@
 from __future__ import unicode_literals
 
 from content import PAGES, BASE, ORG, course_offer, PRICE_CALLOUT
-from country_art import art, ring
+from country_art import art, ring, formats
 
 
 PAGES.append({
@@ -219,6 +219,10 @@ PAGES.append({
          "пересчитает её из евро по своему курсу в момент оплаты; отдельных «цен для "
          "зарубежья» нет, они одинаковы для всех."),
 
+        ] + formats(
+            "у Німеччині", "в Германии",
+            "У Німеччині — перші місяці в новій школі, коли дитина не витримує ще однієї групи, зате витримує одне заняття у свій час.",
+            "В Германии — первые месяцы в новой школе, когда ребёнок не выдерживает ещё одной группы, зато выдерживает одно занятие в своё время.") + [
         ] + ring("anhliyska-dlya-ditey-u-nimechchyni") + [
         ("notelink",
          "Який у дитини рівень англійської після року в німецькій школі, за "

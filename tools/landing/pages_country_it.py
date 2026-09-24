@@ -11,7 +11,7 @@
 from __future__ import unicode_literals
 
 from content import PAGES, BASE, ORG, course_offer, PRICE_CALLOUT
-from country_art import art, ring
+from country_art import art, ring, formats
 
 
 PAGES.append({
@@ -228,6 +228,10 @@ PAGES.append({
          "банком — украинский счёт для этого не нужен. Сумма выставляется в гривне, и "
          "ваш банк пересчитает её из евро по своему курсу в момент оплаты."),
 
+        ] + formats(
+            "в Італії", "в Италии",
+            "В Італії частіше за все — щоб поставити вимову: звук правлять на слух, і наодинці з учителем це йде швидше.",
+            "В Италии чаще всего — чтобы поставить произношение: звук правят на слух, и наедине с преподавателем это идёт быстрее.") + [
         ] + ring("anhliyska-dlya-ditey-v-italiyi") + [
         ("notelink",
          "Вимову не оцінити за розповіддю: батьки зазвичай чують, що дитина «говорить "

@@ -12,7 +12,7 @@
 from __future__ import unicode_literals
 
 from content import PAGES, BASE, ORG, course_offer, PRICE_CALLOUT
-from country_art import art, ring
+from country_art import art, ring, formats
 
 
 PAGES.append({
@@ -220,6 +220,10 @@ PAGES.append({
          "банком — украинский счёт для этого не нужен. Сумма выставляется в гривне, и "
          "ваш банк пересчитает её из евро по своему курсу в момент оплаты."),
 
+        ] + formats(
+            "у Франції", "во Франции",
+            "У Франції це найчастіший випадок серії: шкільний день не лишає вечора, і груповий слот просто не влазить у тиждень.",
+            "Во Франции это самый частый случай серии: школьный день не оставляет вечера, и групповой слот просто не влезает в неделю.") + [
         ] + ring("anhliyska-dlya-ditey-u-frantsiyi") + [
         ("notelink",
          "Найкорисніше, що дає пробний урок у Франції, — це не оцінка рівня, а "
