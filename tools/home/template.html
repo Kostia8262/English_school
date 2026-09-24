@@ -2275,7 +2275,7 @@
             <!-- MOBILE: horizontal swipe slider (full list) -->
             <div class="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-4">
                 <template x-for="(review, i) in t.reviews.list" :key="'m'+i">
-                    <div class="card-lift bg-gray-50 rounded-3xl p-7 border border-gray-100 snap-center shrink-0 w-[85%]">
+                    <div class="card-lift bg-white rounded-3xl p-7 border border-gray-200 snap-center shrink-0 w-[85%]">
                         <div class="flex gap-0.5 mb-4">
                             <template x-for="s in review.stars" :key="s">
                                 <span class="star text-lg">★</span>
@@ -2301,7 +2301,7 @@
                      має бути в HTML — інакше чотири з шести відгуків не
                      потраплять ні в індекс, ні до краулера без JS. -->
                 <template x-for="(review, i) in t.reviews.list" :key="i">
-                    <div :data-review-card="i" class="card-lift bg-gray-50 rounded-3xl p-5 lg:p-7 border border-gray-100">
+                    <div :data-review-card="i" class="card-lift bg-white rounded-3xl p-5 lg:p-7 border border-gray-100">
                         <div class="flex gap-0.5 mb-4">
                             <template x-for="s in review.stars" :key="s">
                                 <span class="star text-lg">★</span>
@@ -2378,8 +2378,8 @@
        <div class="hidden lg:block lg:col-span-5">
            <picture>
                <source srcset="faq-fox.webp 1x, faq-fox@2x.webp 2x" type="image/webp">
-               <img src="faq-fox.webp" width="520" height="646" loading="lazy" decoding="async"
-                    class="w-full rounded-3xl shadow-lg shadow-black/10"
+               <img src="faq-fox.webp" width="560" height="455" loading="lazy" decoding="async"
+                    class="w-full"
                     alt="Лисеня FluentFox уважно розглядає шкільну дошку зі словами HELLO та ENGLISH"
                     data-ru-alt="Лисёнок FluentFox внимательно разглядывает школьную доску со словами HELLO и ENGLISH">
            </picture>
@@ -2527,12 +2527,12 @@
     <!-- Quality SVG illustrations (desktop only — hidden on mobile to avoid overlap) -->
     <div class="absolute inset-0 pointer-events-none select-none hidden md:block">
         <!-- Double-decker bus — left, bottom-aligned -->
-        <div class="absolute left-0 bottom-0 flex items-end" style="height:75%; max-width:340px; transform:translateX(-8%)">
-            <img src="bus.svg" alt="" loading="lazy" decoding="async" width="5000" height="5000" class="h-full w-auto object-contain drop-shadow-2xl" style="filter: drop-shadow(0 8px 24px rgba(0,0,0,0.25))">
+        <div class="absolute left-0 bottom-0 flex items-end opacity-90" style="height:44%; max-width:240px; transform:translateX(-4%)">
+            <img src="/icons/london/bus.webp" alt="" loading="lazy" decoding="async" width="381" height="220" class="h-full w-auto object-contain">
         </div>
         <!-- Big Ben — right, bottom-aligned -->
-        <div class="absolute right-0 bottom-0 flex items-end" style="height:110%; max-width:220px; transform:translateX(12%)">
-            <img src="bigben.svg" alt="" loading="lazy" decoding="async" width="2050" height="2196" class="h-full w-auto object-contain" style="filter: drop-shadow(0 8px 32px rgba(0,0,0,0.2))">
+        <div class="absolute right-0 bottom-0 flex items-end opacity-90" style="height:78%; max-width:110px; transform:translateX(6%)">
+            <img src="/icons/london/bigben.webp" alt="" loading="lazy" decoding="async" width="59" height="220" class="h-full w-auto object-contain">
         </div>
     </div>
 

@@ -28,7 +28,7 @@ header('Cache-Control: no-store');
 // Версія ассетів — руками, як на юридичних сторінках і на 404: цей файл не
 // складається генератором. Розходження ловить python tools/audit/assets.py,
 // який заради цього рядка й почав дивитись у .php.
-const ASSET_VERSION = '20260924c';
+const ASSET_VERSION = '20260924d';
 
 const LOG_NAME       = 'lead-errors.log';
 const RATE_MAX       = 10;          // заявок з однієї адреси
