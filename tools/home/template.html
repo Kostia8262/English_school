@@ -10,7 +10,7 @@
 
     <!-- ═══ SEO Primary ═══ -->
     <title>Онлайн-школа англійської для дітей по всій Україні</title>
-    <meta name="description" content="Онлайн-школа англійської мови для дітей і підлітків 6–18 років: заняття по всій Україні та два очні класи в Дніпрі. Групи до 6 учнів, перший урок безкоштовно.">
+    <meta name="description" content="Онлайн-школа англійської мови для дітей і підлітків 6–18 років: заняття по всій Україні та два очні класи в Дніпрі. Групи до 5 учнів, перший урок безкоштовно.">
     <meta name="keywords" content="онлайн школа англійської для дітей, англійська для дітей онлайн по всій Україні, курси англійської для дітей онлайн, англійська для підлітків онлайн, англійська для дітей у Дніпрі, репетитор з англійської для дитини онлайн, FluentFox">
     <meta name="robots" content="index, follow">
     <meta name="author" content="FluentFox">
@@ -67,7 +67,7 @@
     (function(){
         if(new URLSearchParams(location.search).get('lang')==='ru'){
             document.querySelector('title').textContent='Онлайн-школа английского для детей по всей Украине';
-            document.querySelector('meta[name="description"]').content='Онлайн-школа английского для детей и подростков 6–18 лет: занятия по всей Украине и два очных класса в Днепре. Группы до 6 учеников, первый урок бесплатно.';
+            document.querySelector('meta[name="description"]').content='Онлайн-школа английского для детей и подростков 6–18 лет: занятия по всей Украине и два очных класса в Днепре. Группы до 5 учеников, первый урок бесплатно.';
             document.querySelector('meta[property="og:title"]').content='FluentFox — онлайн-школа английского для детей по всей Украине';
             document.querySelector('meta[property="og:description"]').content='Занятия онлайн по всей Украине и два очных класса в Днепре. Малые группы, живые учителя, первый урок бесплатно!';
             document.querySelector('meta[name="twitter:title"]').content='FluentFox — онлайн-школа английского для детей по всей Украине';
@@ -138,7 +138,7 @@
           "alternateName": "Флуент Фокс",
           "legalName": "ФОП Піменов К. Ю.",
           "url": "https://fluent-fox.site/",
-          "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років. Заняття по всій Україні та для українських родин за кордоном; додатково працюють два очні класи в Дніпрі. Групи до 6 учнів, перший урок безкоштовно.",
+          "description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років. Заняття по всій Україні та для українських родин за кордоном; додатково працюють два очні класи в Дніпрі. Групи до 5 учнів, перший урок безкоштовно.",
           "slogan": "Англійська, яку діти обожнюють",
           "logo": {
             "@type": "ImageObject",
@@ -570,7 +570,7 @@
           "@type": "Course",
           "@id": "https://fluent-fox.site/#course-6-8",
           "name": "Англійська для дітей 6–8 років",
-          "description": "Ігрові онлайн-уроки англійської для дітей 6–8 років: казки, пісні, фоніка та перші слова. Програма на 150+ занять, рівень A0 → A1. Групи до 6 учнів.",
+          "description": "Ігрові онлайн-уроки англійської для дітей 6–8 років: казки, пісні, фоніка та перші слова. Програма на 150+ занять, рівень A0 → A1. Групи до 5 учнів.",
           "url": "https://fluent-fox.site/#program",
           "image": "https://fluent-fox.site/og-image.jpg",
           "provider": {
@@ -1117,7 +1117,7 @@
             --violet-50:  #F4F0FF;
             --violet-500: #7C3AED;
             --violet-700: #5B21B6;
-            --gold:       #D4AF37;
+            --gold:       #B8960C;
             --cream:      #FFFBF7;
             --gray-950:   #030712;
 
@@ -1257,6 +1257,13 @@
 
         .wave-top  { margin-top: -2px; }
         .wave-bottom { margin-bottom: -2px; }
+
+/* Бланк сертифіката. Рамку, кути й розетку несе картинка, а не CSS, тому
+   під мобільний потрібен окремий файл: блок там майже квадратний, і
+   горизонтальний лист 2:1 при background-size:cover втрачав бокові
+   віньєтки — рамка обрізалася рівно по кутах. */
+.cert-sheet{background-image:url(/cert-sheet.webp)}
+@media (max-width:767px){.cert-sheet{background-image:url(/cert-sheet-sq.webp)}}
     </style>
 </head>
 
@@ -1270,7 +1277,7 @@
   <main style="max-width:800px;margin:0 auto;padding:2rem 1rem;font-family:sans-serif;line-height:1.6;color:#1f2937">
     <h1>FluentFox — Онлайн-школа англійської для дітей та підлітків</h1>
     <p>Курси англійської мови для дітей 6–18 років. Ігровий підхід, живі вчителі, результат вже за перший місяць.</p>
-    <ul><li>✓ Без нудних підручників</li><li>✓ Живі заняття онлайн</li><li>✓ Малі групи до 6 учнів</li><li>✓ Гарантія результату</li></ul>
+    <ul><li>✓ Без нудних підручників</li><li>✓ Живі заняття онлайн</li><li>✓ Малі групи до 5 учнів</li><li>✓ Гарантія результату</li></ul>
     <h2>Формати навчання</h2>
     <p>Основний формат — онлайн: заняття по всій Україні та для українських родин за кордоном. Додатково працюють два очні класи в Дніпрі — просп. Олександра Поля, 28А (+38 068 252-28-76) та вул. Будівельників, 25 (+38 095 462-46-72), Пн–Пт 9:00–20:00, Сб 10:00–18:00. Програма, розмір групи та ціна в обох форматах однакові; формат можна змінити навіть посеред курсу.</p>
     <h2>Англійська онлайн від 6 до 18 років</h2>
@@ -1343,11 +1350,11 @@
     <h2>Ціни на курси англійської онлайн</h2>
     <p>Без прихованих платежів і зайвих умов</p>
     <h3>Група 1×/тиждень — 1 800 грн/ місяць</h3>
-    <p>4 заняття на місяць · до 6 учнів</p>
-    <ul><li>300 грн за 1 годину</li><li>4 уроки по 1.5 години</li><li>Група до 6 учнів</li></ul>
+    <p>4 заняття на місяць · до 5 учнів</p>
+    <ul><li>300 грн за 1 годину</li><li>4 уроки по 1.5 години</li><li>Група до 5 учнів</li></ul>
     <h3>Група 2×/тиждень — 3 600 грн/ місяць</h3>
-    <p>8 занять на місяць · до 6 учнів</p>
-    <ul><li>300 грн за 1 годину</li><li>8 уроків по 1.5 години</li><li>Група до 6 учнів</li><li>Максимальний прогрес</li></ul>
+    <p>8 занять на місяць · до 5 учнів</p>
+    <ul><li>300 грн за 1 годину</li><li>8 уроків по 1.5 години</li><li>Група до 5 учнів</li><li>Максимальний прогрес</li></ul>
     <h3>Індивідуально — 3 000 грн/ місяць</h3>
     <p>4 заняття на місяць · особистий підхід</p>
     <ul><li>500 грн за 1 годину</li><li>4 уроки по 1.5 години</li><li>Повна увага вчителя</li><li>Індивідуальний план навчання</li></ul>
@@ -1368,7 +1375,7 @@
     <h3>Що потрібно для занять онлайн?</h3>
     <p>Комп'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet.</p>
     <h3>Як проходять групові заняття?</h3>
-    <p>Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання. Будь-який рівень — від нуля до просунутого.</p>
+    <p>Групи до 5 дітей, 1–2 рази на тиждень по 1 або 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання. Будь-який рівень — від нуля до просунутого.</p>
     <h3>Чи можна перенести урок?</h3>
     <p>Так, урок можна перенести за 12 годин до початку. Ми розуміємо, що плани змінюються.</p>
     <h3>Коли буде видно перший результат?</h3>
@@ -2174,20 +2181,14 @@
                     <!-- Outer card -->
                     <div class="relative rounded-2xl overflow-hidden" style="background:#0F1B3D; padding:2px;">
                         <!-- Gold rim -->
-                        <div style="background: linear-gradient(135deg,#D4AF37,#F5E88A,#B8960C,#F5E88A,#D4AF37); padding:2px; border-radius:14px;">
-                            <div class="rounded-xl overflow-hidden" style="background:#0F1B3D;">
+                        <div style="background: linear-gradient(135deg,#B8960C,#F5E88A,#B8960C,#F5E88A,#B8960C); padding:2px; border-radius:14px;">
+                            <div class="cert-sheet rounded-xl overflow-hidden bg-cover bg-center" style="background-color:#FEF5E3;">
 
                                 <!-- Inner content -->
                                 <div class="relative p-4 md:p-6 flex flex-col items-center text-center" style="gap:0;">
 
-                                    <!-- Corner ornaments -->
-                                    <svg class="absolute top-2 left-2 md:top-3 md:left-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 0 L14 0"/></svg>
-                                    <svg class="absolute top-2 right-2 md:top-3 md:right-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 0 L14 0"/></svg>
-                                    <svg class="absolute bottom-2 left-2 md:bottom-3 md:left-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 28 L14 28"/></svg>
-                                    <svg class="absolute bottom-2 right-2 md:bottom-3 md:right-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 28 L14 28"/></svg>
-
-                                    <!-- Background glow -->
-                                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,var(--fox-500),transparent)"></div>
+                                    <!-- Рамку, кути й розетку несе сам бланк (cert-sheet.webp),
+                                         тому чотири кутові SVG і сяйво тут більше не потрібні. -->
 
                                     <!-- Desktop: two columns — brand | content -->
                                     <div class="w-full flex flex-col items-center md:flex-row md:items-center md:gap-6 md:text-left">
@@ -2195,31 +2196,31 @@
                                         <!-- Brand column -->
                                         <div class="flex flex-col items-center w-full md:w-36 md:flex-shrink-0 z-10">
                                             <div class="mt-1 md:mt-0 mb-1.5 md:mb-2 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-xl shadow-fox overflow-hidden" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));"><img src="/logo.svg" alt="" width="48" height="48" class="w-7 h-7 md:w-9 md:h-9" loading="lazy" decoding="async"></div>
-                                            <div class="text-white font-black text-sm tracking-widest">FLUENT<span style="color:#D4AF37">FOX</span></div>
+                                            <div class="text-gray-950 font-black text-sm tracking-widest">FLUENT<span style="color:#B8960C">FOX</span></div>
 
                                             <!-- Gold divider -->
                                             <div class="flex items-center gap-2 w-full my-1.5 md:my-2">
-                                                <div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#D4AF37)"></div>
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="#D4AF37"><polygon points="6,0 7.5,4.5 12,4.5 8.5,7 10,12 6,9 2,12 3.5,7 0,4.5 4.5,4.5"/></svg>
-                                                <div class="h-px flex-1" style="background:linear-gradient(to left,transparent,#D4AF37)"></div>
+                                                <div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#B8960C)"></div>
+                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="#B8960C"><polygon points="6,0 7.5,4.5 12,4.5 8.5,7 10,12 6,9 2,12 3.5,7 0,4.5 4.5,4.5"/></svg>
+                                                <div class="h-px flex-1" style="background:linear-gradient(to left,transparent,#B8960C)"></div>
                                             </div>
 
                                             <!-- Certificate label -->
-                                            <div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase mb-1.5 md:mb-0" style="color:#D4AF37;" x-text="t.results.certLabel">Сертифікат</div>
+                                            <div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase mb-1.5 md:mb-0" style="color:#B8960C;" x-text="t.results.certLabel">Сертифікат</div>
                                         </div>
 
                                         <!-- Content column -->
                                         <div class="w-full md:flex-1 flex flex-col items-center md:items-start z-10">
                                             <!-- Name area -->
                                             <div class="mb-1.5 md:mb-3 flex items-baseline gap-1.5 md:flex-col md:gap-0 md:items-start">
-                                                <p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;" x-text="t.results.certGiven">Видано учню:</p>
-                                                <p class="font-black text-sm md:text-lg text-white" x-text="t.results.certName">[Ім'я учня]</p>
+                                                <p class="text-2xs md:text-xs md:mb-1" style="color:#8A7A63;" x-text="t.results.certGiven">Видано учню:</p>
+                                                <p class="font-black text-sm md:text-lg text-gray-950" x-text="t.results.certName">[Ім'я учня]</p>
                                             </div>
 
                                             <!-- Completed text -->
                                             <div class="flex items-center gap-1.5 md:flex-col md:gap-0 md:items-start">
-                                                <p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;" x-text="t.results.certCompleted">Успішно завершив курс:</p>
-                                                <div class="px-2.5 py-1 md:px-4 md:py-1.5 rounded-xl border text-2xs md:text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
+                                                <p class="text-2xs md:text-xs md:mb-1" style="color:#8A7A63;" x-text="t.results.certCompleted">Успішно завершив курс:</p>
+                                                <div class="px-2.5 py-1 md:px-4 md:py-1.5 rounded-xl border text-2xs md:text-sm font-black" style="border-color:#FF6B3560; background:#FF6B3514; color:#E54E1A;">
                                                     English A1 → A2
                                                 </div>
                                             </div>
@@ -2228,22 +2229,22 @@
 
                                     <!-- Bottom divider + seal row -->
                                     <div class="w-full mt-1.5 md:mt-4 z-10">
-                                        <div class="h-px w-full mb-1.5 md:mb-2" style="background:linear-gradient(to right,transparent,#D4AF37,transparent)"></div>
+                                        <div class="h-px w-full mb-1.5 md:mb-2" style="background:linear-gradient(to right,transparent,#B8960C,transparent)"></div>
                                         <div class="flex items-center justify-between">
                                             <!-- Director -->
                                             <div class="text-left">
-                                                <div class="w-14 h-px mb-1" style="background:#D4AF37;opacity:0.4;"></div>
-                                                <div class="text-2xs md:text-xs" style="color:#5566AA;" x-text="t.results.certDirector">Директор</div>
+                                                <div class="w-14 h-px mb-1" style="background:#B8960C;opacity:0.4;"></div>
+                                                <div class="text-2xs md:text-xs" style="color:#8A7A63;" x-text="t.results.certDirector">Директор</div>
                                             </div>
                                             <!-- Wax seal -->
-                                            <div class="w-9 h-9 md:w-10 md:h-10 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#D4AF37; color:#D4AF37;">
+                                            <div class="w-9 h-9 md:w-10 md:h-10 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#B8960C; color:#B8960C;">
                                                 <div class="text-2xs font-black leading-none">FF</div>
                                                 <div class="text-2xs leading-none mt-0.5" x-text="t.results.certYear">2026</div>
                                             </div>
                                             <!-- Date -->
                                             <div class="text-right">
-                                                <div class="w-14 h-px mb-1 ml-auto" style="background:#D4AF37;opacity:0.4;"></div>
-                                                <div class="text-2xs md:text-xs" style="color:#5566AA;" x-text="t.results.certDate">Дата</div>
+                                                <div class="w-14 h-px mb-1 ml-auto" style="background:#B8960C;opacity:0.4;"></div>
+                                                <div class="text-2xs md:text-xs" style="color:#8A7A63;" x-text="t.results.certDate">Дата</div>
                                             </div>
                                         </div>
                                     </div>
@@ -3180,7 +3181,7 @@ uk: {
         titleLine2:'для дітей та підлітків',
         titleLine3:'яку вони обожнюють',
         subtitle:  'Курси англійської мови для дітей 6–18 років. Ігровий підхід, живі вчителі, результат вже за перший місяць.',
-        tags:      ['✓ Без нудних підручників', '✓ Живі заняття онлайн', '✓ Малі групи до 6 учнів', '✓ Гарантія результату'],
+        tags:      ['✓ Без нудних підручників', '✓ Живі заняття онлайн', '✓ Малі групи до 5 учнів', '✓ Гарантія результату'],
         cta1:      'Безкоштовний урок',
         cta2:      'Дізнатись більше',
         ratingLabel:   'рейтинг',
@@ -3274,7 +3275,7 @@ uk: {
         info: [
             { emoji: '📅', label: 'Тривалість',  value: 'від 6 місяців · 2 рази/тиж' },
             { emoji: '🎓', label: 'Рівень',       value: 'A0 → B2 · будь-який рівень' },
-            { emoji: '👥', label: 'Група',        value: 'До 6 учнів · увага кожному' },
+            { emoji: '👥', label: 'Група',        value: 'До 5 учнів · увага кожному' },
             { emoji: '🌐', label: 'Формат',       value: 'Онлайн (Zoom / Google Meet)' },
         ],
         tabs: [
@@ -3317,18 +3318,18 @@ uk: {
             {
                 emoji:     '👥',
                 name:      'Група 1×/тиждень',
-                desc:      '4 заняття на місяць · до 6 учнів',
+                desc:      '4 заняття на місяць · до 5 учнів',
                 price:     '1 800 грн',
                 highlight: false,
-                features:  ['300 грн за 1 годину', '4 уроки по 1.5 години', 'Група до 6 учнів'],
+                features:  ['300 грн за 1 годину', '4 уроки по 1.5 години', 'Група до 5 учнів'],
             },
             {
                 emoji:     '⭐',
                 name:      'Група 2×/тиждень',
-                desc:      '8 занять на місяць · до 6 учнів',
+                desc:      '8 занять на місяць · до 5 учнів',
                 price:     '3 600 грн',
                 highlight: true,
-                features:  ['300 грн за 1 годину', '8 уроків по 1.5 години', 'Група до 6 учнів', 'Максимальний прогрес'],
+                features:  ['300 грн за 1 годину', '8 уроків по 1.5 години', 'Група до 5 учнів', 'Максимальний прогрес'],
             },
             {
                 emoji:     '💻',
@@ -3427,7 +3428,7 @@ uk: {
         items: [
             { q: 'З якого віку можна записатись?',          a: 'Ми приймаємо дітей від 6 до 18 років. Для кожної вікової групи — окрема програма та підхід.' },
             { q: 'Що потрібно для занять онлайн?',          a: 'Комп\'ютер або планшет, стабільний інтернет та навушники з мікрофоном. Платформа — Zoom або Google Meet.' },
-            { q: 'Як проходять групові заняття?',           a: 'Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання. Будь-який рівень — від нуля до просунутого.' },
+            { q: 'Як проходять групові заняття?',           a: 'Групи до 5 дітей, 1–2 рази на тиждень по 1 або 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання. Будь-який рівень — від нуля до просунутого.' },
             { q: 'Чи можна перенести урок?',               a: 'Так, урок можна перенести за 12 годин до початку. Ми розуміємо, що плани змінюються.' },
             { q: 'Коли буде видно перший результат?',      a: 'Перші помітні результати — вже після 1 місяця. За 3–6 місяців — впевнене спілкування.' },
             { q: 'Чи є знижки та акції?',                  a: 'Так! При оплаті за 3 місяці — знижка 10%. При записі двох дітей з сім\'ї — 15% знижки на другу дитину. Слідкуйте за нашим Instagram!' },
@@ -3517,7 +3518,7 @@ ru: {
         titleLine2:'для детей и подростков',
         titleLine3:'который они обожают',
         subtitle:  'Курсы английского языка для детей 6–18 лет. Игровой подход, живые учителя, результат уже за первый месяц.',
-        tags:      ['✓ Без скучных учебников', '✓ Живые занятия онлайн', '✓ Маленькие группы до 6 учеников', '✓ Гарантия результата'],
+        tags:      ['✓ Без скучных учебников', '✓ Живые занятия онлайн', '✓ Маленькие группы до 5 учеников', '✓ Гарантия результата'],
         cta1:      'Бесплатный урок',
         cta2:      'Узнать больше',
         ratingLabel:   'рейтинг',
@@ -3545,7 +3546,7 @@ ru: {
                 range:  '6–8 лет',
                 title:  'Маленькие исследователи',
                 desc:   'Сказки, песни и игры. Ребёнок полюбит английский с первого урока.',
-                format: ['1.5 часа урок', '2 раза / неделю'],
+                format: ['1–1–1.5 часа урок', '2 раза / неделю'],
                 items:  ['Игровая форма занятий', 'Лексика через песни и мультики', 'Алфавит и базовые слова', 'Развитие произношения'],
                 track:  [{l:'A1',on:true},{l:'A2',on:false},{l:'B1',on:false},{l:'B2',on:false}],
                 result: 'Понимает простые фразы, называет предметы и цвета на английском, поёт детские песни',
@@ -3556,7 +3557,7 @@ ru: {
                 range:  '9–12 лет',
                 title:  'Активные ученики',
                 desc:   'Разговорная практика, грамматика и подготовка к школьным тестам.',
-                format: ['1.5 часа урок', '2 раза / неделю'],
+                format: ['1–1–1.5 часа урок', '2 раза / неделю'],
                 items:  ['Грамматика без скуки', 'Разговорные клубы', 'Чтение и аудирование', 'Домашние задания онлайн'],
                 track:  [{l:'A1',on:true},{l:'A2',on:true},{l:'B1',on:true},{l:'B2',on:false}],
                 result: 'Ведёт простые диалоги, читает и пересказывает тексты, пишет короткие рассказы',
@@ -3567,7 +3568,7 @@ ru: {
                 range:  '13–18 лет',
                 title:  'Подростки-лидеры',
                 desc:   'Подготовка к НМТ, разговорные клубы, реальное общение со сверстниками.',
-                format: ['1.5 часа урок', '2 раза / неделю'],
+                format: ['1–1–1.5 часа урок', '2 раза / неделю'],
                 items:  ['Подготовка к НМТ', 'Cambridge YLE/KET', 'Общение на актуальные темы', 'Письмо и эссе'],
                 track:  [{l:'A1',on:true},{l:'A2',on:true},{l:'B1',on:true},{l:'B2',on:true}],
                 result: 'Свободно общается на бытовые темы, готов(а) к НМТ и международным экзаменам',
@@ -3611,7 +3612,7 @@ ru: {
         info: [
             { emoji: '📅', label: 'Длительность', value: 'от 6 месяцев · 2 раза/нед' },
             { emoji: '🎓', label: 'Уровень',      value: 'A0 → B2 · любой уровень' },
-            { emoji: '👥', label: 'Группа',       value: 'До 6 учеников · внимание каждому' },
+            { emoji: '👥', label: 'Группа',       value: 'До 5 учеников · внимание каждому' },
             { emoji: '🌐', label: 'Формат',       value: 'Онлайн (Zoom / Google Meet)' },
         ],
         tabs: [
@@ -3654,18 +3655,18 @@ ru: {
             {
                 emoji:     '👥',
                 name:      'Группа 1×/неделю',
-                desc:      '4 занятия в месяц · до 6 учеников',
+                desc:      '4 занятия в месяц · до 5 учеников',
                 price:     '1 800 грн',
                 highlight: false,
-                features:  ['300 грн за 1 час', '4 урока по 1.5 часа', 'Группа до 6 учеников'],
+                features:  ['300 грн за 1 час', '4 урока по 1.5 часа', 'Группа до 5 учеников'],
             },
             {
                 emoji:     '⭐',
                 name:      'Группа 2×/неделю',
-                desc:      '8 занятий в месяц · до 6 учеников',
+                desc:      '8 занятий в месяц · до 5 учеников',
                 price:     '3 600 грн',
                 highlight: true,
-                features:  ['300 грн за 1 час', '8 уроков по 1.5 часа', 'Группа до 6 учеников', 'Максимальный прогресс'],
+                features:  ['300 грн за 1 час', '8 уроков по 1.5 часа', 'Группа до 5 учеников', 'Максимальный прогресс'],
             },
             {
                 emoji:     '💻',
@@ -3764,7 +3765,7 @@ ru: {
         items: [
             { q: 'С какого возраста можно записаться?',       a: 'Мы принимаем детей от 6 до 18 лет. Для каждой возрастной группы — отдельная программа и подход.' },
             { q: 'Что нужно для занятий онлайн?',             a: 'Компьютер или планшет, стабильный интернет и наушники с микрофоном. Платформа — Zoom или Google Meet.' },
-            { q: 'Как проходят групповые занятия?',           a: 'Группы до 6 детей, 1–2 раза в неделю по 1.5 часа. Игровая форма, коммуникативные упражнения, домашние задания. Любой уровень — от нуля до продвинутого.' },
+            { q: 'Как проходят групповые занятия?',           a: 'Группы до 5 детей, 1–2 раза в неделю по 1 или 1.5 часа. Игровая форма, коммуникативные упражнения, домашние задания. Любой уровень — от нуля до продвинутого.' },
             { q: 'Можно ли перенести урок?',                  a: 'Да, урок можно перенести за 12 часов до начала. Мы понимаем, что планы меняются.' },
             { q: 'Когда будет виден первый результат?',       a: 'Первые заметные результаты — уже после 1 месяца. За 3–6 месяцев — уверенное общение.' },
             { q: 'Есть ли скидки и акции?',                  a: 'Да! При оплате за 3 месяца — скидка 10%. При записи двух детей из семьи — 15% скидки на второго ребёнка. Следите за нашим Instagram!' },

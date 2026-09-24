@@ -6,7 +6,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 <title>Онлайн-школа англійської для дітей по всій Україні</title>
-<meta name="description" content="Онлайн-школа англійської мови для дітей і підлітків 6–18 років: заняття по всій Україні та два очні класи в Дніпрі. Групи до 6 учнів, перший урок безкоштовно.">
+<meta name="description" content="Онлайн-школа англійської мови для дітей і підлітків 6–18 років: заняття по всій Україні та два очні класи в Дніпрі. Групи до 5 учнів, перший урок безкоштовно.">
 <meta name="keywords" content="онлайн школа англійської для дітей, англійська для дітей онлайн по всій Україні, курси англійської для дітей онлайн, англійська для підлітків онлайн, англійська для дітей у Дніпрі, репетитор з англійської для дитини онлайн, FluentFox">
 <meta name="robots" content="index, follow">
 <meta name="author" content="FluentFox">
@@ -40,7 +40,7 @@
 (function(){
 if(new URLSearchParams(location.search).get('lang')==='ru'){
 document.querySelector('title').textContent='Онлайн-школа английского для детей по всей Украине';
-document.querySelector('meta[name="description"]').content='Онлайн-школа английского для детей и подростков 6–18 лет: занятия по всей Украине и два очных класса в Днепре. Группы до 6 учеников, первый урок бесплатно.';
+document.querySelector('meta[name="description"]').content='Онлайн-школа английского для детей и подростков 6–18 лет: занятия по всей Украине и два очных класса в Днепре. Группы до 5 учеников, первый урок бесплатно.';
 document.querySelector('meta[property="og:title"]').content='FluentFox — онлайн-школа английского для детей по всей Украине';
 document.querySelector('meta[property="og:description"]').content='Занятия онлайн по всей Украине и два очных класса в Днепре. Малые группы, живые учителя, первый урок бесплатно!';
 document.querySelector('meta[name="twitter:title"]').content='FluentFox — онлайн-школа английского для детей по всей Украине';
@@ -83,7 +83,7 @@ document.documentElement.lang='ru';
 "alternateName": "Флуент Фокс",
 "legalName": "ФОП Піменов К. Ю.",
 "url": "https://fluent-fox.site/",
-"description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років. Заняття по всій Україні та для українських родин за кордоном; додатково працюють два очні класи в Дніпрі. Групи до 6 учнів, перший урок безкоштовно.",
+"description": "Онлайн-школа англійської мови для дітей та підлітків 6–18 років. Заняття по всій Україні та для українських родин за кордоном; додатково працюють два очні класи в Дніпрі. Групи до 5 учнів, перший урок безкоштовно.",
 "slogan": "Англійська, яку діти обожнюють",
 "logo": {
 "@type": "ImageObject",
@@ -493,7 +493,7 @@ document.documentElement.lang='ru';
 "@type": "Course",
 "@id": "https://fluent-fox.site/#course-6-8",
 "name": "Англійська для дітей 6–8 років",
-"description": "Ігрові онлайн-уроки англійської для дітей 6–8 років: казки, пісні, фоніка та перші слова. Програма на 150+ занять, рівень A0 → A1. Групи до 6 учнів.",
+"description": "Ігрові онлайн-уроки англійської для дітей 6–8 років: казки, пісні, фоніка та перші слова. Програма на 150+ занять, рівень A0 → A1. Групи до 5 учнів.",
 "url": "https://fluent-fox.site/#program",
 "image": "https://fluent-fox.site/og-image.jpg",
 "provider": {
@@ -1048,7 +1048,7 @@ document.documentElement.lang='ru';
 "url": "https://fluent-fox.site/#faq-3",
 "acceptedAnswer": {
 "@type": "Answer",
-"text": "Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання в онлайн-платформі. Будь-який рівень — від нуля до просунутого."
+"text": "Групи до 5 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання в онлайн-платформі. Будь-який рівень — від нуля до просунутого."
 }
 },
 {
@@ -1093,7 +1093,7 @@ document.documentElement.lang='ru';
 --violet-50:  #F4F0FF;
 --violet-500: #7C3AED;
 --violet-700: #5B21B6;
---gold:       #D4AF37;
+--gold:       #B8960C;
 --cream:      #FFFBF7;
 --gray-950:   #030712;
 /* ── Fox-tinted shadows ─────────────────────────────── */
@@ -1212,6 +1212,12 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 }
 .wave-top  { margin-top: -2px; }
 .wave-bottom { margin-bottom: -2px; }
+/* Бланк сертифіката. Рамку, кути й розетку несе картинка, а не CSS, тому
+під мобільний потрібен окремий файл: блок там майже квадратний, і
+горизонтальний лист 2:1 при background-size:cover втрачав бокові
+віньєтки — рамка обрізалася рівно по кутах. */
+.cert-sheet{background-image:url(/cert-sheet.webp)}
+@media (max-width:767px){.cert-sheet{background-image:url(/cert-sheet-sq.webp)}}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -1290,7 +1296,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <div class="flex flex-wrap gap-2 mb-8">
 <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm" data-ru="✓ Без скучных учебников">✓ Без нудних підручників</span>
 <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm" data-ru="✓ Живые занятия онлайн">✓ Живі заняття онлайн</span>
-<span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm" data-ru="✓ Маленькие группы до 6 учеников">✓ Малі групи до 6 учнів</span>
+<span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm" data-ru="✓ Маленькие группы до 5 учеников">✓ Малі групи до 5 учнів</span>
 <span class="inline-flex items-center gap-1.5 bg-white border border-gray-200 text-gray-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm" data-ru="✓ Гарантия результата">✓ Гарантія результату</span>
 </div>
 <div class="flex gap-2 md:gap-3">
@@ -1388,7 +1394,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </div>
 <h3 class="text-xl font-black text-gray-900 mb-4" data-ru="Маленькие исследователи">Маленькі дослідники</h3>
 <div class="flex flex-wrap gap-2 mb-5">
-<span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" data-ru="1.5 часа урок">1.5 год урок</span>
+<span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" data-ru="1–1.5 часа урок">1–1.5 год урок</span>
 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" data-ru="2 раза / неделю">2 рази / тиждень</span>
 </div>
 <ul class="space-y-2 mb-6">
@@ -1451,7 +1457,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </div>
 <h3 class="text-xl font-black text-gray-900 mb-4" data-ru="Активные ученики">Активні учні</h3>
 <div class="flex flex-wrap gap-2 mb-5">
-<span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" data-ru="1.5 часа урок">1.5 год урок</span>
+<span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" data-ru="1–1.5 часа урок">1–1.5 год урок</span>
 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" data-ru="2 раза / неделю">2 рази / тиждень</span>
 </div>
 <ul class="space-y-2 mb-6">
@@ -1514,7 +1520,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </div>
 <h3 class="text-xl font-black text-gray-900 mb-4" data-ru="Подростки-лидеры">Підлітки-лідери</h3>
 <div class="flex flex-wrap gap-2 mb-5">
-<span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" data-ru="1.5 часа урок">1.5 год урок</span>
+<span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" data-ru="1–1.5 часа урок">1–1.5 год урок</span>
 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-full" data-ru="2 раза / неделю">2 рази / тиждень</span>
 </div>
 <ul class="space-y-2 mb-6">
@@ -3863,7 +3869,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </div>
 <div>
 <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider" data-ru="Группа">Група</p>
-<p class="text-sm font-bold text-gray-900 mt-0.5 leading-relaxed" data-ru="До 6 учеников · внимание каждому">До 6 учнів · увага кожному</p>
+<p class="text-sm font-bold text-gray-900 mt-0.5 leading-relaxed" data-ru="До 5 учеников · внимание каждому">До 5 учнів · увага кожному</p>
 </div>
 </div>
 <div class="flex items-start gap-3">
@@ -4073,7 +4079,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <div class="rounded-3xl p-8 relative flex flex-col snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto bg-white border-2 border-gray-200 card-lift shadow-sm">
 <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-950 text-white text-xs font-black px-4 py-1 rounded-full shadow-sm" hidden data-ru="Популярный">Популярний</div>
 <h3 class="text-xl font-black mb-1 text-gray-900" data-ru="Группа 1×/неделю">Група 1×/тиждень</h3>
-<p class="text-sm mb-6 text-gray-400" data-ru="4 занятия в месяц · до 6 учеников">4 заняття на місяць · до 6 учнів</p>
+<p class="text-sm mb-6 text-gray-400" data-ru="4 занятия в месяц · до 5 учеников">4 заняття на місяць · до 5 учнів</p>
 <div class="mb-6">
 <span class="text-3xl font-black text-gray-900">1 800 грн</span>
 <span class="text-sm ml-1 text-gray-400" data-ru="/ месяц">/ місяць</span>
@@ -4095,7 +4101,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <span class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-fox-100">
 <svg class="w-3 h-3 text-fox-600" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
 </span>
-<span class="text-sm text-gray-600" data-ru="Группа до 6 учеников">Група до 6 учнів</span>
+<span class="text-sm text-gray-600" data-ru="Группа до 5 учеников">Група до 5 учнів</span>
 </li>
 </ul>
 <a class="btn-action block text-center font-black text-sm py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shadow-fox-sm hover:shadow-fox bg-fox-500 hover:bg-fox-600 text-white" href="#" data-ru="Записаться" data-modal="open">Записатись</a>
@@ -4103,7 +4109,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <div class="rounded-3xl p-8 relative flex flex-col snap-center shrink-0 w-[82%] sm:w-[46%] md:w-auto price-highlight">
 <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-950 text-white text-xs font-black px-4 py-1 rounded-full shadow-sm" data-ru="Популярный">Популярний</div>
 <h3 class="text-xl font-black mb-1 text-white" data-ru="Группа 2×/неделю">Група 2×/тиждень</h3>
-<p class="text-sm mb-6 text-orange-100" data-ru="8 занятий в месяц · до 6 учеников">8 занять на місяць · до 6 учнів</p>
+<p class="text-sm mb-6 text-orange-100" data-ru="8 занятий в месяц · до 5 учеников">8 занять на місяць · до 5 учнів</p>
 <div class="mb-6">
 <span class="text-3xl font-black text-white">3 600 грн</span>
 <span class="text-sm ml-1 text-orange-100" data-ru="/ месяц">/ місяць</span>
@@ -4125,7 +4131,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <span class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-white/25">
 <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
 </span>
-<span class="text-sm text-white" data-ru="Группа до 6 учеников">Група до 6 учнів</span>
+<span class="text-sm text-white" data-ru="Группа до 5 учеников">Група до 5 учнів</span>
 </li>
 <li class="flex items-start gap-2.5">
 <span class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-white/25">
@@ -4208,52 +4214,47 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <div class="flex justify-center">
 <div class="relative w-72 md:w-full md:max-w-xl" style="filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));">
 <div class="relative rounded-2xl overflow-hidden" style="background:#0F1B3D; padding:2px;">
-<div style="background: linear-gradient(135deg,#D4AF37,#F5E88A,#B8960C,#F5E88A,#D4AF37); padding:2px; border-radius:14px;">
-<div class="rounded-xl overflow-hidden" style="background:#0F1B3D;">
+<div style="background: linear-gradient(135deg,#B8960C,#F5E88A,#B8960C,#F5E88A,#B8960C); padding:2px; border-radius:14px;">
+<div class="cert-sheet rounded-xl overflow-hidden bg-cover bg-center" style="background-color:#FEF5E3;">
 <div class="relative p-4 md:p-6 flex flex-col items-center text-center" style="gap:0;">
-<svg class="absolute top-2 left-2 md:top-3 md:left-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 0 L14 0"/></svg>
-<svg class="absolute top-2 right-2 md:top-3 md:right-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 0 L14 0"/></svg>
-<svg class="absolute bottom-2 left-2 md:bottom-3 md:left-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 28 L14 28"/></svg>
-<svg class="absolute bottom-2 right-2 md:bottom-3 md:right-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 28 L14 28"/></svg>
-<div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,var(--fox-500),transparent)"></div>
 <div class="w-full flex flex-col items-center md:flex-row md:items-center md:gap-6 md:text-left">
 <div class="flex flex-col items-center w-full md:w-36 md:flex-shrink-0 z-10">
 <div class="mt-1 md:mt-0 mb-1.5 md:mb-2 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-xl shadow-fox overflow-hidden" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));"><img class="w-7 h-7 md:w-9 md:h-9" src="/logo.svg" alt width="48" height="48" loading="lazy" decoding="async"></div>
-<div class="text-white font-black text-sm tracking-widest">FLUENT<span style="color:#D4AF37">FOX</span></div>
+<div class="text-gray-950 font-black text-sm tracking-widest">FLUENT<span style="color:#B8960C">FOX</span></div>
 <div class="flex items-center gap-2 w-full my-1.5 md:my-2">
-<div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#D4AF37)"></div>
-<svg width="12" height="12" viewBox="0 0 12 12" fill="#D4AF37"><polygon points="6,0 7.5,4.5 12,4.5 8.5,7 10,12 6,9 2,12 3.5,7 0,4.5 4.5,4.5"/></svg>
-<div class="h-px flex-1" style="background:linear-gradient(to left,transparent,#D4AF37)"></div>
+<div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#B8960C)"></div>
+<svg width="12" height="12" viewBox="0 0 12 12" fill="#B8960C"><polygon points="6,0 7.5,4.5 12,4.5 8.5,7 10,12 6,9 2,12 3.5,7 0,4.5 4.5,4.5"/></svg>
+<div class="h-px flex-1" style="background:linear-gradient(to left,transparent,#B8960C)"></div>
 </div>
-<div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase mb-1.5 md:mb-0" style="color:#D4AF37;" data-ru="Сертификат">Сертифікат</div>
+<div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase mb-1.5 md:mb-0" style="color:#B8960C;" data-ru="Сертификат">Сертифікат</div>
 </div>
 <div class="w-full md:flex-1 flex flex-col items-center md:items-start z-10">
 <div class="mb-1.5 md:mb-3 flex items-baseline gap-1.5 md:flex-col md:gap-0 md:items-start">
-<p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;" data-ru="Выдан ученику:">Видано учню:</p>
-<p class="font-black text-sm md:text-lg text-white" data-ru="[Имя ученика]">[Ім'я учня]</p>
+<p class="text-2xs md:text-xs md:mb-1" style="color:#8A7A63;" data-ru="Выдан ученику:">Видано учню:</p>
+<p class="font-black text-sm md:text-lg text-gray-950" data-ru="[Имя ученика]">[Ім'я учня]</p>
 </div>
 <div class="flex items-center gap-1.5 md:flex-col md:gap-0 md:items-start">
-<p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;" data-ru="Успешно завершил курс:">Успішно завершив курс:</p>
-<div class="px-2.5 py-1 md:px-4 md:py-1.5 rounded-xl border text-2xs md:text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
+<p class="text-2xs md:text-xs md:mb-1" style="color:#8A7A63;" data-ru="Успешно завершил курс:">Успішно завершив курс:</p>
+<div class="px-2.5 py-1 md:px-4 md:py-1.5 rounded-xl border text-2xs md:text-sm font-black" style="border-color:#FF6B3560; background:#FF6B3514; color:#E54E1A;">
 English A1 → A2
 </div>
 </div>
 </div>
 </div>
 <div class="w-full mt-1.5 md:mt-4 z-10">
-<div class="h-px w-full mb-1.5 md:mb-2" style="background:linear-gradient(to right,transparent,#D4AF37,transparent)"></div>
+<div class="h-px w-full mb-1.5 md:mb-2" style="background:linear-gradient(to right,transparent,#B8960C,transparent)"></div>
 <div class="flex items-center justify-between">
 <div class="text-left">
-<div class="w-14 h-px mb-1" style="background:#D4AF37;opacity:0.4;"></div>
-<div class="text-2xs md:text-xs" style="color:#5566AA;">Директор</div>
+<div class="w-14 h-px mb-1" style="background:#B8960C;opacity:0.4;"></div>
+<div class="text-2xs md:text-xs" style="color:#8A7A63;">Директор</div>
 </div>
-<div class="w-9 h-9 md:w-10 md:h-10 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#D4AF37; color:#D4AF37;">
+<div class="w-9 h-9 md:w-10 md:h-10 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#B8960C; color:#B8960C;">
 <div class="text-2xs font-black leading-none">FF</div>
 <div class="text-2xs leading-none mt-0.5">2026</div>
 </div>
 <div class="text-right">
-<div class="w-14 h-px mb-1 ml-auto" style="background:#D4AF37;opacity:0.4;"></div>
-<div class="text-2xs md:text-xs" style="color:#5566AA;">Дата</div>
+<div class="w-14 h-px mb-1 ml-auto" style="background:#B8960C;opacity:0.4;"></div>
+<div class="text-2xs md:text-xs" style="color:#8A7A63;">Дата</div>
 </div>
 </div>
 </div>
@@ -4521,7 +4522,7 @@ English A1 → A2
 <h3 class="font-bold text-gray-900 text-sm sm:text-base leading-tight" data-ru="Как проходят групповые занятия?">Як проходять групові заняття?</h3>
 <span class="faq-plus text-fox-500 text-xl font-medium transition-transform duration-200 flex-shrink-0 ml-3" aria-hidden="true">+</span>
 </summary>
-<p class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Группы до 6 детей, 1–2 раза в неделю по 1.5 часа. Игровая форма, коммуникативные упражнения, домашние задания в онлайн-платформе. Любой уровень — от нуля до продвинутого.">Групи до 6 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання в онлайн-платформі. Будь-який рівень — від нуля до просунутого.</p>
+<p class="px-4 sm:px-6 pb-4 sm:pb-5 text-sm sm:text-base text-gray-500 leading-relaxed border-t border-gray-50 pt-3" data-ru="Группы до 5 детей, 1–2 раза в неделю по 1.5 часа. Игровая форма, коммуникативные упражнения, домашние задания в онлайн-платформе. Любой уровень — от нуля до продвинутого.">Групи до 5 дітей, 1–2 рази на тиждень по 1.5 години. Ігрова форма, комунікативні вправи, домашні завдання в онлайн-платформі. Будь-який рівень — від нуля до просунутого.</p>
 </details>
 <details class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm" id="faq-4">
 <summary class="w-full flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-gray-50 transition-colors duration-200">
@@ -5012,7 +5013,7 @@ Telegram
 <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-6" data-ru="Это основной формат школы. Ребёнок занимается из дома, а группу мы собираем не из района, а со всей страны — поэтому в ней шесть учеников одного уровня и возраста, а не «кто записался рядом». Занятия доступны в каждой области: Киев, Львов, Одесса, Харьков, Запорожье, Полтава, Винница, Ивано-Франковск, Черновцы, Ужгород. Семьи, которые уехали за границу, остаются в своих группах — время урока подбираем под их часовой пояс.">Це основний формат школи. Дитина займається з дому, а групу ми збираємо не з району, а з усієї країни — тому в ній шість учнів одного рівня й віку, а не «хто записався поруч». Заняття доступні в кожній області: Київ, Львів, Одеса, Харків, Запоріжжя, Полтава, Вінниця, Івано-Франківськ, Чернівці, Ужгород. Родини, які виїхали за кордон, лишаються у своїх групах — час уроку підбираємо під їхній часовий пояс.</p>
 <ul class="space-y-4">
 <li class="flex items-start gap-3 text-sm font-semibold text-gray-200">
-<span class="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-fox-500 text-white text-xs font-black flex items-center justify-center">✓</span><span data-ru="Группы до 6 учеников одного уровня — со всей страны, а не с одного двора">Групи до 6 учнів одного рівня — з усієї країни, а не з одного двору</span>
+<span class="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-fox-500 text-white text-xs font-black flex items-center justify-center">✓</span><span data-ru="Группы до 5 учеников одного уровня — со всей страны, а не с одного двора">Групи до 5 учнів одного рівня — з усієї країни, а не з одного двору</span>
 </li>
 <li class="flex items-start gap-3 text-sm font-semibold text-gray-200">
 <span class="shrink-0 mt-0.5 w-5 h-5 rounded-full bg-fox-500 text-white text-xs font-black flex items-center justify-center">✓</span><span data-ru="Запись каждого занятия: пропущенный урок не исчезает">Запис кожного заняття: пропущений урок не зникає</span>
@@ -5029,7 +5030,7 @@ Telegram
 <div class="bg-white rounded-3xl p-6 sm:p-8 border border-fox-100 shadow-lg shadow-black/10 flex flex-col">
 <div class="w-14 h-14 rounded-2xl bg-fox-50 flex items-center justify-center mb-5"><img class="w-8 h-8" src="/icons/pin.webp" alt width="64" height="64" loading="lazy" decoding="async"></div>
 <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-3 leading-tight" data-ru="Два очных класса в Днепре">Два очні класи в Дніпрі</h3>
-<p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-6" data-ru="Если до класса удобно дойти, ребёнок может учиться очно. Это та же программа на 150 занятий, те же группы до шести учеников и та же цена, что онлайн.">Якщо до класу зручно дійти, дитина може вчитися очно. Це та сама програма на 150 занять, ті самі групи до шести учнів і та сама ціна, що онлайн.</p>
+<p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-6" data-ru="Если до класса удобно дойти, ребёнок может учиться очно. Это та же программа на 150 занятий, те же группы до пяти учеников и та же цена, что онлайн.">Якщо до класу зручно дійти, дитина може вчитися очно. Це та сама програма на 150 занять, ті самі групи до п'яти учнів і та сама ціна, що онлайн.</p>
 <div class="grid sm:grid-cols-2 gap-4 mb-6">
 <div class="bg-fox-50 rounded-2xl p-6 border border-fox-100">
 <p class="font-black text-gray-900 text-base mb-1 leading-tight" data-ru="Просп. Александра Поля, 28А">Просп. Олександра Поля, 28А</p>
@@ -5046,7 +5047,7 @@ Telegram
 <a class="self-start inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white px-5 py-3 rounded-full font-black text-sm shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200" href="/dnipro" data-ru="Английский для детей в Днепре">Англійська для дітей у Дніпрі</a>
 </div>
 </div>
-<p class="max-w-4xl mx-auto text-left sm:text-center text-sm sm:text-base leading-relaxed text-gray-500"><span data-ru="FluentFox — это онлайн-школа английского языка для детей и подростков 6–18 лет, работающая по всей Украине: ">FluentFox — це онлайн-школа англійської мови для дітей і підлітків 6–18 років, яка працює по всій Україні: </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/anhliyska-onlayn-dlya-ditey" data-ru="занятия английским онлайн">заняття англійською онлайн</a><span data-ru=" проходят в группах до шести учеников одного уровня или "> проходять у групах до шести учнів одного рівня або </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/repetytor-z-anhliyskoyi" data-ru="индивидуально с репетитором">індивідуально з репетитором</a><span data-ru=", а для семей из Днепра и области дополнительно работают ">, а для родин із Дніпра та області додатково працюють </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/dnipro" data-ru="два очных класса">два очні класи</a><span data-ru=". Группу мы собираем не из района, а со всей страны, поэтому рядом с ребёнком сидят ровесники его уровня, а не те, кто записался рядом. ">. Групу ми збираємо не з району, а з усієї країни, тому поруч із дитиною сидять ровесники її рівня, а не ті, хто записався поруч. </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/kursy-anhliyskoyi-dlya-ditey" data-ru="Курсы английского для детей">Курси англійської для дітей</a><span data-ru=" построены как программа из 150 занятий и пяти модулей: в каждом возрасте она своя, но одного устройства — от песни и игры в шесть лет до НМТ и экзаменов Cambridge в выпускных классах. Урок длится полтора часа, минимум сорок минут из них говорит сам ребёнок, а каждое занятие остаётся записью, так что пропущенный урок не исчезает. Формат можно сменить даже посреди курса — ребёнок остаётся в своей группе. "> побудовані як програма зі 150 занять і п'яти модулів: у кожному віці вона своя, але однієї будови — від пісні й гри в шість років до НМТ та іспитів Cambridge у випускних класах. Урок триває півтори години, мінімум сорок хвилин із них говорить сама дитина, а кожне заняття лишається записом, тож пропущений урок не зникає. Формат можна змінити навіть посеред курсу — дитина лишається у своїй групі. </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/tsiny" data-ru="Цены на обучение">Ціни на навчання</a><span data-ru=" не зависят ни от города, ни от формата: 1800 грн в месяц за группу раз в неделю, 3600 грн за два, 3000 грн за индивидуальные занятия, материалы входят в стоимость. "> не залежать ні від міста, ні від формату: 1800 грн на місяць за групу раз на тиждень, 3600 грн за два, 3000 грн за індивідуальні заняття, матеріали входять у вартість. </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/probnyi-urok" data-ru="Первый урок бесплатный">Перший урок безкоштовний</a><span data-ru=" и онлайн, и в классе."> і в онлайні, і в класі.</span></p>
+<p class="max-w-4xl mx-auto text-left sm:text-center text-sm sm:text-base leading-relaxed text-gray-500"><span data-ru="FluentFox — это онлайн-школа английского языка для детей и подростков 6–18 лет, работающая по всей Украине: ">FluentFox — це онлайн-школа англійської мови для дітей і підлітків 6–18 років, яка працює по всій Україні: </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/anhliyska-onlayn-dlya-ditey" data-ru="занятия английским онлайн">заняття англійською онлайн</a><span data-ru=" проходят в группах до пяти учеников одного уровня или "> проходять у групах до п'яти учнів одного рівня або </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/repetytor-z-anhliyskoyi" data-ru="индивидуально с репетитором">індивідуально з репетитором</a><span data-ru=", а для семей из Днепра и области дополнительно работают ">, а для родин із Дніпра та області додатково працюють </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/dnipro" data-ru="два очных класса">два очні класи</a><span data-ru=". Группу мы собираем не из района, а со всей страны, поэтому рядом с ребёнком сидят ровесники его уровня, а не те, кто записался рядом. ">. Групу ми збираємо не з району, а з усієї країни, тому поруч із дитиною сидять ровесники її рівня, а не ті, хто записався поруч. </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/kursy-anhliyskoyi-dlya-ditey" data-ru="Курсы английского для детей">Курси англійської для дітей</a><span data-ru=" построены как программа из 150 занятий и пяти модулей: в каждом возрасте она своя, но одного устройства — от песни и игры в шесть лет до НМТ и экзаменов Cambridge в выпускных классах. Урок длится час или полтора, минимум сорок минут из них говорит сам ребёнок, а каждое занятие остаётся записью, так что пропущенный урок не исчезает. Формат можно сменить даже посреди курса — ребёнок остаётся в своей группе. "> побудовані як програма зі 150 занять і п'яти модулів: у кожному віці вона своя, але однієї будови — від пісні й гри в шість років до НМТ та іспитів Cambridge у випускних класах. Урок триває годину або півтори, мінімум сорок хвилин із них говорить сама дитина, а кожне заняття лишається записом, тож пропущений урок не зникає. Формат можна змінити навіть посеред курсу — дитина лишається у своїй групі. </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/tsiny" data-ru="Цены на обучение">Ціни на навчання</a><span data-ru=" не зависят ни от города, ни от формата: 1800 грн в месяц за группу раз в неделю, 3600 грн за два, 3000 грн за индивидуальные занятия, материалы входят в стоимость. "> не залежать ні від міста, ні від формату: 1800 грн на місяць за групу раз на тиждень, 3600 грн за два, 3000 грн за індивідуальні заняття, матеріали входять у вартість. </span><a class="font-semibold text-fox-600 hover:text-fox-700 transition-colors" href="/probnyi-urok" data-ru="Первый урок бесплатный">Перший урок безкоштовний</a><span data-ru=" и онлайн, и в классе."> і в онлайні, і в класі.</span></p>
 </div>
 </section>
 <footer class="bg-gray-950 text-gray-400 py-12">
