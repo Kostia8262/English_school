@@ -5,7 +5,11 @@
 завантажити файл за URL. data:-URI, який тут стояв раніше, він не бачить
 взагалі — тому у видачі був сірий глобус. Файли мають лежати на диску.
 
-  python tools/icons/build.py
+Джерело logo.png більше не намальоване вручну: воно рендериться з logo.svg
+(`npm run logo`), тому будь-який розмір тут різкий. Міняти знак треба в
+logo.svg, а не тут.
+
+  npm run logo && python tools/icons/build.py
 """
 from pathlib import Path
 
@@ -17,9 +21,15 @@ SOURCE = ROOT / "logo.png"
 # Тло для iOS: там прозорість заливається чорним, тому кладемо cream.
 CREAM = (255, 251, 247, 255)
 
-# 512 не робимо: джерело — 150 px, апскейл вийде мильним. PWA тут немає,
-# тому 192 достатньо для Android-ярлика.
-PNG_SIZES = [96, 192]
+# Фавікон їде кремовим кружком, а не прозорим. Знак — руда морда в чорних
+# окулярах: на темній вкладці Firefox чи Safari оправа зливається з тлом і
+# від лиса лишаються самі вуха. Кружок був у старому logo.png і зник разом
+# з ним, коли знак переїхав у вектор.
+DISC = CREAM
+
+# 512 для ярлика Android: джерело тепер вектор, мила не буде. PWA тут
+# немає, тож більше не потрібно.
+PNG_SIZES = [96, 192, 512]
 ICO_SIZES = [16, 32, 48]
 
 
@@ -31,12 +41,29 @@ def resized(img: Image.Image, size: int) -> Image.Image:
     return img.resize((size, size), Image.LANCZOS)
 
 
+def on_disc(img: Image.Image, size: int) -> Image.Image:
+    """Знак на кремовому кружку в межах квадрата size×size."""
+    from PIL import ImageDraw
+
+    out = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    mask = Image.new("L", (size * 4, size * 4), 0)
+    ImageDraw.Draw(mask).ellipse((0, 0, size * 4 - 1, size * 4 - 1), fill=255)
+    disc = Image.new("RGBA", (size, size), DISC)
+    out.paste(disc, (0, 0), mask.resize((size, size), Image.LANCZOS))
+
+    inner = round(size * 0.78)
+    mark = resized(img, inner)
+    off = (size - inner) // 2
+    out.paste(mark, (off, off), mark)
+    return out
+
+
 def main() -> None:
     src = load()
 
     # favicon.ico — те, що браузер і Гугл питають навіть без <link>.
     ico = ROOT / "favicon.ico"
-    resized(src, 256).save(ico, sizes=[(s, s) for s in ICO_SIZES])
+    on_disc(src, 256).save(ico, sizes=[(s, s) for s in ICO_SIZES])
 
     # Палітра замість повного RGBA. Джерело — плоска ілюстрація на 3869
     # кольорів, з яких 192×192 після LANCZOS робив майже 7500 і важив 38 КБ —
@@ -45,7 +72,7 @@ def main() -> None:
     # стандартний метод: тільки він зберігає альфа-канал, а логотип
     # прозорий по краях.
     for size in PNG_SIZES:
-        img = resized(src, size).quantize(colors=256, method=Image.Quantize.FASTOCTREE)
+        img = on_disc(src, size).quantize(colors=256, method=Image.Quantize.FASTOCTREE)
         img.save(ROOT / f"favicon-{size}x{size}.png", optimize=True)
 
     # apple-touch-icon — непрозорий, з невеликим полем по краях.

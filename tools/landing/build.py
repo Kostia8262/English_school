@@ -480,7 +480,7 @@ HEADER = """
   <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <a href="/" class="flex items-center gap-2 flex-none">
-        <span class="text-3xl" aria-hidden="true">&#129418;</span>
+        <img src="/logo.svg" alt="" width="36" height="36" class="w-9 h-9 flex-none" fetchpriority="high" decoding="async">
         <span class="flex flex-col leading-none">
           <span class="text-2xl font-black text-gray-900 leading-none">Fluent<span class="gradient-text">Fox</span></span>
           <span class="text-2xs font-bold uppercase tracking-widest text-gray-500 mt-1">English School</span>
@@ -540,7 +540,7 @@ FOOTER = """
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
       <div>
         <a href="/" class="flex items-center gap-2 mb-3">
-          <span class="text-3xl" aria-hidden="true">&#129418;</span>
+          <img src="/logo.svg" alt="" width="36" height="36" class="w-9 h-9 flex-none" loading="lazy" decoding="async">
           <span class="flex flex-col leading-none">
             <span class="text-xl font-black text-white leading-none">Fluent<span class="text-fox-500">Fox</span></span>
             <span class="text-2xs font-bold uppercase tracking-widest text-gray-400 mt-1">English School</span>

@@ -35,7 +35,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
 <meta name="theme-color" content="#FF6B35">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
-<link rel="preload" as="image" href="hero-photo.webp" type="image/webp" media="(min-width: 1024px)">
+<link rel="preload" as="image" href="hero-photo.webp" imagesrcset="hero-photo.webp 1x, hero-photo@2x.webp 2x" type="image/webp" media="(min-width: 1024px)">
 <script>
 (function(){
 if(new URLSearchParams(location.search).get('lang')==='ru'){
@@ -55,8 +55,8 @@ document.documentElement.lang='ru';
 }
 })();
 </script>
-<link rel="preload" as="style" href="/css/style.css?v=20260921c"/>
-<link rel="stylesheet" href="/css/style.css?v=20260921c" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260924a"/>
+<link rel="stylesheet" href="/css/style.css?v=20260924a" fetchpriority="high"/>
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
@@ -1219,7 +1219,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex items-center justify-between h-16 nav:h-18">
 <a class="flex items-center gap-2 group" href="#">
-<span class="text-3xl group-hover:scale-110 transition-transform duration-200">🦊</span>
+<img class="w-9 h-9 flex-none group-hover:scale-110 transition-transform duration-200" src="/logo.svg" alt width="36" height="36" fetchpriority="high" decoding="async">
 <span class="flex flex-col leading-none">
 <span class="text-2xl font-black text-gray-900 leading-none">Fluent<span class="gradient-text">Fox</span></span>
 <span class="text-2xs font-bold uppercase tracking-widest text-gray-500 mt-1">English School</span>
@@ -1316,8 +1316,8 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <div class="absolute -inset-3.5 rounded-full border-2 border-violet-200/70"></div>
 <div class="absolute inset-0 rounded-full border-8 border-white shadow-fox-xl overflow-hidden bg-gradient-to-br from-fox-100 via-cream to-violet-100">
 <picture>
-<source srcset="hero-photo.webp" type="image/webp">
-<img class="w-full h-full object-cover" src="hero-photo.jpg" alt="Мама з донькою навчаються англійської онлайн з FluentFox" alt="Мама з донькою навчаються англійської онлайн з FluentFox" data-ru-alt="Мама с дочкой изучают английский онлайн с FluentFox" width="768" height="768" loading="eager" fetchpriority="high">
+<source srcset="hero-photo.webp 1x, hero-photo@2x.webp 2x" type="image/webp">
+<img class="w-full h-full object-cover" src="hero-photo.jpg" srcset="hero-photo.jpg 1x, hero-photo@2x.jpg 2x" alt="Мама з донькою навчаються англійської онлайн з FluentFox" alt="Мама з донькою навчаються англійської онлайн з FluentFox" data-ru-alt="Мама с дочкой изучают английский онлайн с FluentFox" width="768" height="768" loading="eager" fetchpriority="high">
 </picture>
 </div>
 <div class="absolute -top-4 -left-10 bg-white rounded-2xl shadow-lg shadow-black/10 px-3 py-2 border border-gray-100 flex items-center gap-1.5 transition-transform duration-300" data-parallax-xy="-16,-16">
@@ -4260,7 +4260,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,var(--fox-500),transparent)"></div>
 <div class="w-full flex flex-col items-center md:flex-row md:items-center md:gap-6 md:text-left">
 <div class="flex flex-col items-center w-full md:w-36 md:flex-shrink-0 z-10">
-<div class="mt-1 md:mt-0 mb-1.5 md:mb-2 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-xl shadow-fox" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));">🦊</div>
+<div class="mt-1 md:mt-0 mb-1.5 md:mb-2 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-xl shadow-fox overflow-hidden" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));"><img class="w-7 h-7 md:w-9 md:h-9" src="/logo.svg" alt width="48" height="48" loading="lazy" decoding="async"></div>
 <div class="text-white font-black text-sm tracking-widest">FLUENT<span style="color:#D4AF37">FOX</span></div>
 <div class="flex items-center gap-2 w-full my-1.5 md:my-2">
 <div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#D4AF37)"></div>
@@ -4896,7 +4896,7 @@ Instagram
 <div class="min-w-0" id="form">
 <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-lg border border-gray-100">
 <div class="text-center py-10" hidden data-form-success>
-<div class="text-5xl mb-4">🦊</div>
+<img class="w-14 h-14 mx-auto mb-4" src="/logo.svg" alt width="56" height="56" loading="lazy" decoding="async">
 <h3 class="text-xl font-black text-gray-900 mb-2" data-ru="Спасибо!">Дякуємо!</h3>
 <p class="text-gray-500" data-ru="Мы свяжемся с вами в ближайшее время и договоримся об удобном времени для пробного урока.">Ми зв'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.</p>
 </div>
@@ -4970,14 +4970,14 @@ Telegram
 <div class="p-7">
 <div class="mb-6">
 <div class="flex items-center gap-2 mb-2">
-<span class="text-2xl">🦊</span>
+<img class="w-7 h-7 flex-none" src="/logo.svg" alt width="28" height="28" loading="lazy" decoding="async">
 <span class="font-black text-lg text-gray-900">FluentFox</span>
 </div>
 <h3 class="text-2xl font-black text-gray-900 leading-tight" data-ru="Запишитесь на пробный урок">Запишіться на пробний урок</h3>
 <p class="text-gray-500 text-sm mt-1" data-ru="Перезвоним в течение 30 минут">Передзвонимо протягом 30 хвилин</p>
 </div>
 <div class="text-center py-8" hidden data-form-success>
-<div class="text-5xl mb-3">🦊</div>
+<img class="w-14 h-14 mx-auto mb-3" src="/logo.svg" alt width="56" height="56" loading="lazy" decoding="async">
 <h4 class="text-xl font-black text-gray-900 mb-1" data-ru="Спасибо!">Дякуємо!</h4>
 <p class="text-gray-500 text-sm" data-ru="Мы свяжемся с вами в ближайшее время и договоримся об удобном времени для пробного урока.">Ми зв'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.</p>
 <button class="mt-5 px-6 py-2.5 bg-fox-500 hover:bg-fox-600 text-white font-black rounded-full shadow-fox-sm hover:shadow-fox hover:-translate-y-0.5 transition-all duration-200" data-ru="Закрыть" data-modal="close" data-form-reset>Закрити</button>
@@ -5096,7 +5096,7 @@ Telegram
 <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mb-10">
 <div>
 <a class="flex items-center gap-2 mb-3" href="#">
-<span class="text-3xl">🦊</span>
+<img class="w-9 h-9 flex-none" src="/logo.svg" alt width="36" height="36" loading="lazy" decoding="async">
 <span class="flex flex-col leading-none">
 <span class="text-2xl font-black text-white leading-none">Fluent<span class="text-fox-400">Fox</span></span>
 <span class="text-2xs font-bold uppercase tracking-widest text-gray-400 mt-1">English School</span>
@@ -5229,8 +5229,8 @@ Telegram
 </div>
 </div>
 </footer>
-<script src="/js/lang.js?v=20260921c" defer></script>
-<script src="/js/home.js?v=20260921c" defer></script>
-<script src="/js/subscribe.js?v=20260921c" defer></script>
+<script src="/js/lang.js?v=20260924a" defer></script>
+<script src="/js/home.js?v=20260924a" defer></script>
+<script src="/js/subscribe.js?v=20260924a" defer></script>
 </body>
 </html>

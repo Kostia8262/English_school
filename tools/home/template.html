@@ -56,8 +56,11 @@
     <link rel="preload" as="font" type="font/woff2" href="/fonts/nunito-cyrillic.woff2" crossorigin/>
 
     <!-- media обов'язковий: саме фото стоїть у блоці hidden lg:flex, тож без
-         умови мобільний браузер тягнув 97 КБ картинки, яку ніколи не покаже -->
-    <link rel="preload" as="image" href="hero-photo.webp" type="image/webp" media="(min-width: 1024px)">
+         умови мобільний браузер тягнув 97 КБ картинки, яку ніколи не покаже.
+         imagesrcset, а не сам href: ретина бере @2x (136 КБ), звичайний
+         екран — 1x (47 КБ). Без нього preload тягнув би одну версію, а
+         <picture> потім другу. -->
+    <link rel="preload" as="image" href="hero-photo.webp" imagesrcset="hero-photo.webp 1x, hero-photo@2x.webp 2x" type="image/webp" media="(min-width: 1024px)">
 
     <!-- Dynamic meta for ru version -->
     <script>
@@ -1420,7 +1423,7 @@
 
             <!-- Logo -->
             <a href="#" class="flex items-center gap-2 group">
-                <span class="text-3xl group-hover:scale-110 transition-transform duration-200">🦊</span>
+                <img src="/logo.svg" alt="" width="36" height="36" class="w-9 h-9 flex-none group-hover:scale-110 transition-transform duration-200" fetchpriority="high" decoding="async">
                 <span class="flex flex-col leading-none">
                     <span class="text-2xl font-black text-gray-900 leading-none">Fluent<span class="gradient-text">Fox</span></span>
                     <span class="text-2xs font-bold uppercase tracking-widest text-gray-500 mt-1">English School</span>
@@ -1575,8 +1578,8 @@
                     <!-- Photo circle — stays fixed (no parallax) -->
                     <div class="absolute inset-0 rounded-full border-8 border-white shadow-fox-xl overflow-hidden bg-gradient-to-br from-fox-100 via-cream to-violet-100">
                         <picture>
-                            <source srcset="hero-photo.webp" type="image/webp">
-                            <img src="hero-photo.jpg" alt="Мама з донькою навчаються англійської онлайн з FluentFox" :alt="t.hero.photoAlt" class="w-full h-full object-cover" width="768" height="768" loading="eager" fetchpriority="high">
+                            <source srcset="hero-photo.webp 1x, hero-photo@2x.webp 2x" type="image/webp">
+                            <img src="hero-photo.jpg" srcset="hero-photo.jpg 1x, hero-photo@2x.jpg 2x" alt="Мама з донькою навчаються англійської онлайн з FluentFox" :alt="t.hero.photoAlt" class="w-full h-full object-cover" width="768" height="768" loading="eager" fetchpriority="high">
                         </picture>
                     </div>
 
@@ -2242,7 +2245,7 @@
 
                                         <!-- Brand column -->
                                         <div class="flex flex-col items-center w-full md:w-36 md:flex-shrink-0 z-10">
-                                            <div class="mt-1 md:mt-0 mb-1.5 md:mb-2 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-xl shadow-fox" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));">🦊</div>
+                                            <div class="mt-1 md:mt-0 mb-1.5 md:mb-2 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-xl shadow-fox overflow-hidden" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));"><img src="/logo.svg" alt="" width="48" height="48" class="w-7 h-7 md:w-9 md:h-9" loading="lazy" decoding="async"></div>
                                             <div class="text-white font-black text-sm tracking-widest">FLUENT<span style="color:#D4AF37">FOX</span></div>
 
                                             <!-- Gold divider -->
@@ -2730,7 +2733,7 @@
 
                     <!-- Success state -->
                     <div x-show="formSuccess" x-transition class="text-center py-10">
-                        <div class="text-5xl mb-4">🦊</div>
+                        <img src="/logo.svg" alt="" width="56" height="56" class="w-14 h-14 mx-auto mb-4" loading="lazy" decoding="async">
                         <h3 class="text-xl font-black text-gray-900 mb-2" x-text="t.form.successTitle"></h3>
                         <p class="text-gray-500" x-text="t.form.successText">Ми зв'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.</p>
                     </div>
@@ -2872,7 +2875,7 @@
             <!-- Header -->
             <div class="mb-6">
                 <div class="flex items-center gap-2 mb-2">
-                    <span class="text-2xl">🦊</span>
+                    <img src="/logo.svg" alt="" width="28" height="28" class="w-7 h-7 flex-none" loading="lazy" decoding="async">
                     <span class="font-black text-lg text-gray-900">FluentFox</span>
                 </div>
                 <h3 class="text-2xl font-black text-gray-900 leading-tight" x-text="t.modal.title"></h3>
@@ -2881,7 +2884,7 @@
 
             <!-- Success -->
             <div x-show="formSuccess" x-transition class="text-center py-8">
-                <div class="text-5xl mb-3">🦊</div>
+                <img src="/logo.svg" alt="" width="56" height="56" class="w-14 h-14 mx-auto mb-3" loading="lazy" decoding="async">
                 <h4 class="text-xl font-black text-gray-900 mb-1" x-text="t.form.successTitle"></h4>
                 <p class="text-gray-500 text-sm" x-text="t.form.successText">Ми зв'яжемося з вами найближчим часом та домовимося про зручний час для пробного уроку.</p>
                 <button @click="modalOpen=false; formSuccess=false"
@@ -3044,7 +3047,7 @@
             <!-- Brand -->
             <div>
                 <a href="#" class="flex items-center gap-2 mb-3">
-                    <span class="text-3xl">🦊</span>
+                    <img src="/logo.svg" alt="" width="36" height="36" class="w-9 h-9 flex-none" loading="lazy" decoding="async">
                     <span class="flex flex-col leading-none">
                         <span class="text-2xl font-black text-white leading-none">Fluent<span class="text-fox-400">Fox</span></span>
                         <span class="text-2xs font-bold uppercase tracking-widest text-gray-400 mt-1">English School</span>
