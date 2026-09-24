@@ -1,0 +1,78 @@
+name: Замір обходів ІІ-ботів
+
+# Ручний запуск, не за розкладом. Це діагностика, а не сторож: питання «чи
+# ходять до нас GPTBot і ClaudeBot» ставлять раз на місяць, а не щогодини.
+#
+# Навіщо взагалі workflow, а не команда з машини. Доступ до хостингу живе в
+# секретах репозиторію (SFTP_HOST/USER/PASSWORD) — локально його немає, і
+# роздавати його по машинах заради читання логів не варто. Тут він уже є.
+#
+# ВАЖЛИВО: у відповідь друкуються ТІЛЬКИ підсумки — скільки разів заходив кожен
+# бот. Сирі рядки логів не друкуються ніколи: у них IP та шляхи живих
+# відвідувачів, а логи Actions у цьому репозиторії публічні. Сусідня мережа
+# зберігає ці дані так само згортками й з тієї ж причини.
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "За скільки останніх днів рахувати"
+        required: false
+        default: "30"
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Знайти лог і порахувати обходи
+        env:
+          SSHPASS: ${{ secrets.SFTP_PASSWORD }}
+          DAYS: ${{ inputs.days }}
+        run: |
+          # Де Hostinger тримає access log, залежить від плану, тож спершу
+          # дивимось, що взагалі є. Друкуємо лише імена файлів і їхній розмір.
+          sshpass -e ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no \
+            ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }} \
+            'bash -s' <<'REMOTE'
+          set -u
+          echo "=== Де можуть лежати логи ==="
+          for d in ~/logs ~/domains/fluent-fox.site/logs ~/.logs /var/log/apache2; do
+            if [ -d "$d" ]; then
+              echo "--- $d"
+              ls -la "$d" 2>/dev/null | head -20
+            fi
+          done
+
+          # Беремо найбільший файл, схожий на access log, з тих самих місць.
+          LOG=$(ls -S ~/logs/*access* ~/domains/fluent-fox.site/logs/*access* 2>/dev/null | head -1)
+          if [ -z "${LOG:-}" ]; then
+            echo
+            echo "Access log не знайдено в жодному зі звичних місць."
+            echo "Тоді його качають руками: hPanel → Файли → Журнали доступу."
+            exit 0
+          fi
+
+          echo
+          echo "=== Рахуємо по $LOG ==="
+          echo "Рядків усього: $(wc -l < "$LOG")"
+          echo
+          echo "Обходи ІІ-ботів:"
+          for bot in GPTBot OAI-SearchBot ChatGPT-User ClaudeBot Claude-SearchBot \
+                     PerplexityBot Google-Extended Applebot-Extended \
+                     Googlebot bingbot YandexBot; do
+            n=$(grep -c -- "$bot" "$LOG" 2>/dev/null || true)
+            printf '  %-20s %s\n' "$bot" "${n:-0}"
+          done
+
+          echo
+          echo "Живі переходи з ChatGPT (мітка utm_source=chatgpt.com):"
+          grep -c 'utm_source=chatgpt\.com' "$LOG" 2>/dev/null || echo 0
+
+          echo
+          echo "Перший і останній день у лозі:"
+          head -1 "$LOG" | grep -o '\[[^]]*\]' | head -1 || true
+          tail -1 "$LOG" | grep -o '\[[^]]*\]' | head -1 || true
+          REMOTE
