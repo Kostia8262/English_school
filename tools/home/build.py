@@ -357,20 +357,20 @@ LOOP_SHOW = {
 }
 
 LOOP_CLASS = {
-    "progTab===tab.key ? 'bg-fox-500 text-white shadow-fox-sm' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'":
+    "progTab===tab.key ? 'bg-fox-500 text-white shadow-fox' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'":
         lambda c: (evaluate("tab.key", c, "uk") == "age6",
                    ' data-prog-tab="%s"' % evaluate("tab.key", c, "uk")),
-    "openMod===mi ? 'border-fox-300 shadow-fox-sm' : 'border-gray-200 hover:border-gray-300'":
+    "openMod===mi ? 'border-fox-400 shadow-fox' : 'border-gray-300 hover:border-gray-400'":
         lambda c: (evaluate("mi", c, "uk") == 0, ' data-mod-card="%d"' % evaluate("mi", c, "uk")),
-    "openMod===mi ? 'bg-fox-50' : 'hover:bg-gray-50'":
+    "openMod===mi ? 'bg-fox-100' : 'hover:bg-gray-100'":
         lambda c: (evaluate("mi", c, "uk") == 0, ' data-mod-head="%d"' % evaluate("mi", c, "uk")),
-    "openMod===mi ? 'bg-fox-500 shadow-fox-sm' : 'bg-gray-100'":
+    "openMod===mi ? 'bg-fox-500 shadow-fox-sm' : 'bg-gray-200'":
         lambda c: (evaluate("mi", c, "uk") == 0, ' data-mod-badge="%d"' % evaluate("mi", c, "uk")),
-    "openMod===mi ? 'text-white' : 'text-gray-500'":
+    "openMod===mi ? 'text-white' : 'text-gray-700'":
         lambda c: (evaluate("mi", c, "uk") == 0, ' data-mod-num="%d"' % evaluate("mi", c, "uk")),
-    "openMod===mi ? 'text-gray-900' : 'text-gray-700'":
+    "openMod===mi ? 'text-gray-900' : 'text-gray-800'":
         lambda c: (evaluate("mi", c, "uk") == 0, ' data-mod-title="%d"' % evaluate("mi", c, "uk")),
-    "openMod===mi ? 'rotate-180 text-fox-500' : 'text-gray-400'":
+    "openMod===mi ? 'rotate-180 text-fox-600' : 'text-gray-500'":
         lambda c: (evaluate("mi", c, "uk") == 0, ' data-mod-chevron="%d"' % evaluate("mi", c, "uk")),
     "reviewPage === i-1 ? 'bg-fox-500 w-5' : 'bg-gray-200 w-2'":
         lambda c: (evaluate("i", c, "uk") == 1,

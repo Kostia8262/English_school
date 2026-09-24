@@ -73,8 +73,8 @@
 
   /* ── Вкладки програми ───────────────────────────────────────────────── */
 
-  var TAB_ON = ['bg-fox-500', 'text-white', 'shadow-fox-sm'];
-  var TAB_OFF = ['text-gray-500', 'hover:text-gray-800', 'hover:bg-gray-50'];
+  var TAB_ON = ['bg-fox-500', 'text-white', 'shadow-fox'];
+  var TAB_OFF = ['text-gray-600', 'hover:text-gray-900', 'hover:bg-gray-100'];
 
   function setProgTab(key) {
     all('[data-prog-tab-btn]').forEach(function (btn) {
@@ -97,25 +97,25 @@
     };
     all('[data-mod-card]').forEach(function (el) {
       swapClasses(el, eq(el, 'modCard'),
-                  ['border-fox-300', 'shadow-fox-sm'],
-                  ['border-gray-200', 'hover:border-gray-300']);
+                  ['border-fox-400', 'shadow-fox'],
+                  ['border-gray-300', 'hover:border-gray-400']);
     });
     all('[data-mod-head]').forEach(function (el) {
-      swapClasses(el, eq(el, 'modHead'), ['bg-fox-50'], ['hover:bg-gray-50']);
+      swapClasses(el, eq(el, 'modHead'), ['bg-fox-100'], ['hover:bg-gray-100']);
     });
     all('[data-mod-badge]').forEach(function (el) {
       swapClasses(el, eq(el, 'modBadge'),
-                  ['bg-fox-500', 'shadow-fox-sm'], ['bg-gray-100']);
+                  ['bg-fox-500', 'shadow-fox-sm'], ['bg-gray-200']);
     });
     all('[data-mod-num]').forEach(function (el) {
-      swapClasses(el, eq(el, 'modNum'), ['text-white'], ['text-gray-500']);
+      swapClasses(el, eq(el, 'modNum'), ['text-white'], ['text-gray-700']);
     });
     all('[data-mod-title]').forEach(function (el) {
-      swapClasses(el, eq(el, 'modTitle'), ['text-gray-900'], ['text-gray-700']);
+      swapClasses(el, eq(el, 'modTitle'), ['text-gray-900'], ['text-gray-800']);
     });
     all('[data-mod-chevron]').forEach(function (el) {
       swapClasses(el, eq(el, 'modChevron'),
-                  ['rotate-180', 'text-fox-500'], ['text-gray-400']);
+                  ['rotate-180', 'text-fox-600'], ['text-gray-500']);
     });
     all('[data-mod-panel]').forEach(function (el) {
       show(el, eq(el, 'modPanel'));
