@@ -330,6 +330,35 @@ def build_graph(p, lang="uk"):
     будується для російської сторінки одразу з російського тексту.
     """
     nodes = graph_nodes(p)
+
+    # Картка сторінки замість спільної, і своя на кожну мову. У словниках
+    # курсів `image` написаний рядком BASE + "/og-image.jpg" — лишилося з
+    # часів, коли картка на весь сайт була одна. Підміна тут, а не в семи
+    # файлах pages_*: інакше кожна нова сторінка приносила б стару адресу
+    # знову, а два з тих файлів пише сусідня вкладка.
+    #
+    # Мова важлива: GRAPH.localize не чіпає адреси, що кінчаються файлом,
+    # тому російський граф лишався б з українською карткою — на 19 сторінках
+    # з 19 саме так і було.
+    card = "%s/og/%s%s.jpg" % (BASE, p["slug"], "" if lang == "uk" else ".ru")
+    shared = BASE + "/og-image.jpg"
+    uk_card = "%s/og/%s.jpg" % (BASE, p["slug"])
+
+    def repoint(node):
+        if isinstance(node, list):
+            return [repoint(v) for v in node]
+        if not isinstance(node, dict):
+            return node
+        out = {}
+        for k, v in node.items():
+            if isinstance(v, str) and v in (shared, uk_card):
+                out[k] = card
+            else:
+                out[k] = repoint(v)
+        return out
+
+    nodes = repoint(nodes)
+
     if lang == "ru":
         own = "%s/%s" % (BASE, p["slug"])
         nodes = [n for n in nodes if n.get("@type") != "FAQPage"]

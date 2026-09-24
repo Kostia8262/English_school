@@ -888,6 +888,20 @@ def ru_html(html):
     nodes = [n for n in graph.read(html) if n.get("@type") != "FAQPage"]
     nodes = graph.localize(nodes, own=graph.BASE + "/", shared=SHARED_IDS)
 
+    # Картка російської сторінки — свій файл. graph.localize не чіпає адреси,
+    # що кінчаються файлом, тому в російському графі лишалася українська
+    # картка, хоча в мета-тегах ru_pages підставляє правильну.
+    uk_card, ru_card = graph.BASE + "/og/index.jpg", graph.BASE + "/og/index.ru.jpg"
+
+    def ru_cards(node):
+        if isinstance(node, list):
+            return [ru_cards(v) for v in node]
+        if not isinstance(node, dict):
+            return node
+        return {k: (ru_card if v == uk_card else ru_cards(v)) for k, v in node.items()}
+
+    nodes = ru_cards(nodes)
+
     trans = json.load(io.open(TRANS_JSON, encoding="utf-8"))
     ru_url = graph.BASE + "/?lang=ru"
     nodes.append({

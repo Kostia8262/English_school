@@ -313,6 +313,12 @@ def read_time(words, lang):
 
 # ── розмітка ─────────────────────────────────────────────────────────────────
 
+def og_card(a, lang):
+    """Адреса og-картки статті. Її малює tools/og/build.js із <h1> уже
+    зібраної сторінки; тут лише адреса, і своя на кожну мову."""
+    return "%s/og/blog-%s%s.jpg" % (BASE, a["slug"], "" if lang == "uk" else ".ru")
+
+
 def build_graph(a, lang):
     """Граф однієї мовної версії.
 
@@ -337,7 +343,7 @@ def build_graph(a, lang):
             "inLanguage": lang,
             "isPartOf": {"@id": BASE + "/#website"},
             "breadcrumb": {"@id": url + "#breadcrumb"},
-            "primaryImageOfPage": {"@type": "ImageObject", "url": BASE + "/og-image.jpg"},
+            "primaryImageOfPage": {"@type": "ImageObject", "url": og_card(a, lang)},
         },
         {
             "@type": "BreadcrumbList",
@@ -374,7 +380,7 @@ def build_graph(a, lang):
             "publisher": {"@id": ORG},
             "isPartOf": {"@id": url + "#webpage"},
             "mainEntityOfPage": {"@id": url + "#webpage"},
-            "image": {"@type": "ImageObject", "url": BASE + "/og-image.jpg",
+            "image": {"@type": "ImageObject", "url": og_card(a, lang),
                       "width": 1200, "height": 630},
         },
     ]
