@@ -830,10 +830,14 @@ def main():
 
     head = strip_alpine_runtime(head)
     head = fill_faq_graph(head, trans["uk"]["faq"]["items"])
+    # lead.js — форма запису й модалка; іде перед home.js, бо той кличе
+    # window.ffLead. Обидва defer, тож виконуються в порядку документа. Той
+    # самий файл підключають посадкові: форма тепер стоїть і на них.
     scripts = ('\n<script src="/js/lang.js?v=%s" defer></script>'
+               '\n<script src="/js/lead.js?v=%s" defer></script>'
                '\n<script src="/js/home.js?v=%s" defer></script>'
                '\n<script src="/js/subscribe.js?v=%s" defer></script>\n'
-               % (ASSET_VERSION, ASSET_VERSION, ASSET_VERSION))
+               % (ASSET_VERSION, ASSET_VERSION, ASSET_VERSION, ASSET_VERSION))
 
     out = ('%s<body class="font-sans antialiased text-gray-800 bg-cream">%s%s</body>\n</html>\n'
            % (head, rendered.rstrip(), scripts))

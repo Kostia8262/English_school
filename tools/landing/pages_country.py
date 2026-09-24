@@ -28,59 +28,31 @@ from content import PAGES, BASE, ORG, course_offer, PRICE_CALLOUT
 
 # ── Ілюстрація геро ─────────────────────────────────────────────────────────
 #
-# Чому інлайновий SVG, а не картинка. Малюнок тут несе зміст, а не настрій:
-# на ньому ті самі міста, що в тексті, і та сама різниця часу. Растр довелося
-# б віддавати в двох щільностях і тримати окремим файлом у кеші на рік;
-# інлайновий SVG важить близько двох кілобайт після gzip, лишається різким на
-# будь-якому екрані й не робить жодного запиту.
+# Спершу тут була схема країни, намальована інлайновим SVG. Вона працювала, але
+# виглядала як креслення: контур, точки, підписи — і нічого, що каже «школа для
+# дітей». Замінено на намальовану ілюстрацію (Magnific, модель Recraft V4.1):
+# силуэт Польщі у фірмовому оранжевому, три картки з іконками уроку й лисеня в
+# навушниках. Кремове тло малюнка збігається з тлом сторінки, тому картинка не
+# виглядає вклеєною.
 #
-# Кольори — утилітами Tailwind (`fill-fox-500`, `stroke-fox-200`), а не
-# `var(--fox-500)`: змінні дизайн-системи оголошені в інлайновому <style>
-# головної й у css/style.css їх немає, тож на посадковій такий SVG малюється
-# чорним. Через утиліти палітра та сама, що в решти сторінки.
+# Розмір: 440 px — стільки колонка й займає; @2x для щільних екранів. webp
+# важить 10 КБ, @2x — 23 КБ, jpg лежить поруч для старих браузерів. Шлях
+# абсолютний, бо адреси сторінок безрозширенні.
 #
-# Координати міст не намальовані на око: контур і точки перелічені з широти й
-# довготи лінійним переносом (bbox 14.07–24.15° сх. д., 49.0–54.84° пн. ш.) у
-# viewBox 460×400. Контур спрощений — це схема країни, а не мапа.
-#
-# Підписи всередині SVG мають data-ru: js/lang.js і tools/i18n/ru_pages.py
-# міняють текст будь-якому елементу з цим атрибутом, SVG не виняток.
+# Час і міста лишилися **текстом**, а не поїхали в картинку: їх читає пошук,
+# перекладає js/lang.js і бачить людина з вимкненими зображеннями.
 POLAND_ART = """      <div class="absolute -top-6 -right-4 w-32 h-32 bg-fox-100 rounded-4xl rotate-12 hidden sm:block" aria-hidden="true"></div>
       <div class="absolute -bottom-8 -left-6 w-28 h-28 bg-violet-100 rounded-full hidden sm:block" aria-hidden="true"></div>
-      <figure class="relative bg-gradient-to-br from-fox-50 to-white rounded-4xl border border-fox-100 p-5 sm:p-7 shadow-sm">
-        <svg viewBox="0 0 460 400" class="w-full h-auto" role="img" aria-label="Схема Польщі з містами, де живуть наші учні, і різниця часу з Києвом" data-ru-aria="Схема Польши с городами, где живут наши ученики, и разница времени с Киевом">
-          <path d="M 34.1 118.6 L 71.7 111.8 L 116.3 103.7 L 144.6 86.7 L 185.1 93.5 L 211.4 87.5 L 241.7 98.8 L 290.3 99.6 L 347.0 101.2 L 379.4 101.6 L 407.7 113.8 L 423.9 148.2 L 409.7 172.5 L 395.5 184.6 L 411.7 217.0 L 432.0 243.3 L 415.8 261.5 L 373.3 298.0 L 369.2 315.0 L 306.5 302.0 L 270.1 310.1 L 245.8 293.9 L 219.5 298.0 L 185.1 298.0 L 172.9 277.7 L 144.6 268.8 L 128.4 273.7 L 104.1 253.4 L 63.6 241.3 L 55.5 235.2 L 47.5 215.0 L 51.5 192.7 L 28.0 162.4 L 40.2 144.1 Z" class="fill-fox-100 stroke-fox-500" stroke-width="2.5" stroke-linejoin="round"/>
-          <circle cx="306.9" cy="187.5" r="16" class="fill-fox-200"/>
-          <circle cx="306.9" cy="187.5" r="7" class="fill-fox-500"/>
-          <text x="294" y="192" text-anchor="end" font-size="17" font-weight="900" class="fill-gray-900" data-ru="Варшава">Варшава</text>
-          <circle cx="263.6" cy="275.3" r="5.5" class="fill-fox-600"/>
-          <text x="274" y="281" font-size="15" font-weight="700" class="fill-gray-600" data-ru="Краков">Краків</text>
-          <circle cx="211.4" cy="101.6" r="5.5" class="fill-fox-600"/>
-          <text x="211.4" y="80" text-anchor="middle" font-size="15" font-weight="700" class="fill-gray-600" data-ru="Гданьск">Ґданськ</text>
-          <circle cx="145.8" cy="232.8" r="5.5" class="fill-fox-600"/>
-          <text x="136" y="238" text-anchor="end" font-size="15" font-weight="700" class="fill-gray-600" data-ru="Вроцлав">Вроцлав</text>
-          <circle cx="141.8" cy="180.2" r="5.5" class="fill-fox-600"/>
-          <text x="132" y="172" text-anchor="end" font-size="15" font-weight="700" class="fill-gray-600" data-ru="Познань">Познань</text>
-          <circle cx="370.0" cy="227.1" r="5.5" class="fill-fox-600"/>
-          <text x="381" y="233" font-size="15" font-weight="700" class="fill-gray-600" data-ru="Люблин">Люблін</text>
-          <g>
-            <rect x="16" y="14" width="150" height="56" rx="20" class="fill-white stroke-fox-200" stroke-width="2"/>
-            <path d="M 52 70 L 46 88 L 70 70 Z" class="fill-white stroke-fox-200" stroke-width="2"/>
-            <text x="91" y="51" text-anchor="middle" font-size="27" font-weight="900" class="fill-fox-600">Hello!</text>
-          </g>
-          <g>
-            <rect x="296" y="14" width="150" height="56" rx="20" class="fill-violet-500"/>
-            <path d="M 410 70 L 416 88 L 392 70 Z" class="fill-violet-500"/>
-            <text x="371" y="50" text-anchor="middle" font-size="25" font-weight="900" class="fill-white" data-ru="Привет!">Привіт!</text>
-          </g>
-          <g>
-            <rect x="18" y="338" width="176" height="48" rx="24" class="fill-white stroke-fox-200" stroke-width="2"/>
-            <text x="106" y="368" text-anchor="middle" font-size="16" font-weight="700" class="fill-gray-600" data-ru="18:00 в Киеве">18:00 у Києві</text>
-            <text x="212" y="370" text-anchor="middle" font-size="22" font-weight="900" class="fill-fox-500">&#8594;</text>
-            <rect x="232" y="338" width="176" height="48" rx="24" class="fill-fox-500"/>
-            <text x="320" y="368" text-anchor="middle" font-size="16" font-weight="900" class="fill-white" data-ru="17:00 у вас">17:00 у вас</text>
-          </g>
-        </svg>
+      <figure class="relative bg-white rounded-4xl border border-fox-100 p-4 sm:p-6 shadow-sm">
+        <picture>
+          <source srcset="/poland-hero.webp 1x, /poland-hero@2x.webp 2x" type="image/webp">
+          <img class="w-full h-auto rounded-3xl" src="/poland-hero.jpg" srcset="/poland-hero.jpg 1x, /poland-hero@2x.jpg 2x" alt="Мапа Польщі, іконки онлайн-уроку й лисеня FluentFox у навушниках" data-ru-alt="Карта Польши, иконки онлайн-урока и лисёнок FluentFox в наушниках" width="440" height="440" loading="eager" fetchpriority="high">
+        </picture>
+        <div class="flex flex-wrap items-center justify-center gap-2 mt-5">
+          <span class="bg-white border border-fox-100 text-gray-600 font-bold text-sm px-4 py-1.5 rounded-full" data-ru="18:00 в Киеве">18:00 у Києві</span>
+          <span class="text-fox-500 font-black" aria-hidden="true">&rarr;</span>
+          <span class="bg-fox-500 text-white font-black text-sm px-4 py-1.5 rounded-full" data-ru="17:00 у вас">17:00 у вас</span>
+        </div>
         <figcaption class="text-sm text-gray-500 leading-relaxed mt-4 text-center" data-ru="Наши ученики занимаются из Гданьска, Познани, Варшавы, Вроцлава, Люблина и Кракова — урок идёт по местному времени.">Наші учні вчаться з Ґданська, Познані, Варшави, Вроцлава, Любліна й Кракова — урок іде за місцевим часом.</figcaption>
       </figure>
 """

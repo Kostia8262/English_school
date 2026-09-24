@@ -37,6 +37,7 @@ import pages_dnipro         # noqa: E402,F401  — локальна сторін
 import pages_generic        # noqa: E402,F401  — курси, онлайн, репетитор, розмовна
 import pages_niche          # noqa: E402,F401  — англійська з нуля, діти за кордоном
 import pages_country        # noqa: E402,F401  — окремі країни: Польща
+import home_blocks          # noqa: E402  — контакти, статті й модалка з головної
 
 BASE = "https://fluent-fox.site"
 ORG = BASE + "/#organization"
@@ -471,6 +472,24 @@ HEAD = """<!DOCTYPE html>
   details > summary {{ list-style: none; cursor: pointer; }}
   details > summary::-webkit-details-marker {{ display: none; }}
   details[open] .faq-chevron {{ transform: rotate(180deg); }}
+
+  /* Далі — правила, без яких перенесені з головної блоки (контакти з формою
+     і модалка) працюють неправильно.
+
+     [hidden] з !important: і форма, і вікно ховаються саме цим атрибутом, а
+     в їхніх класах стоїть flex або grid — браузерне display:none для
+     [hidden] такий клас перебиває. Без цього рядка модалка з атрибутом
+     hidden лишалася на екрані затемненням; так і сталося на першій складанні.
+
+     Підсвітка поля у фокусі — те саме правило, що на головній. Дві змінні
+     оголошені тут, бо решта :root головної живе в її інлайновому <style>. */
+  :root {{ --fox-500: #FF6B35; --fox-ring: rgba(255,107,53,0.18); }}
+  [hidden] {{ display: none !important; }}
+  .form-input:focus {{
+    outline: none;
+    border-color: var(--fox-500) !important;
+    box-shadow: 0 0 0 3px var(--fox-ring);
+  }}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -511,7 +530,7 @@ HEADER = """
           <a href="%(path)s" hreflang="uk" data-lang-btn="uk" class="px-2.5 py-1 rounded-full transition-all duration-200">UA</a>
           <a href="%(path)s?lang=ru" hreflang="ru" data-lang-btn="ru" class="px-2.5 py-1 rounded-full transition-all duration-200">RU</a>
         </div>
-        <a href="/probnyi-urok" class="hidden sm:inline-flex bg-fox-500 hover:bg-fox-600 text-white font-black text-sm px-4 py-2 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap" data-ru="Пробный урок">Пробний урок</a>
+        <a href="/probnyi-urok" data-modal="open" class="hidden sm:inline-flex bg-fox-500 hover:bg-fox-600 text-white font-black text-sm px-4 py-2 rounded-full shadow-fox-sm hover:shadow-fox transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap" data-ru="Пробный урок">Пробний урок</a>
         <button type="button" id="burger" class="nav:hidden flex flex-col gap-1 p-2 -mr-2" aria-label="Меню" data-ru-aria="Меню" aria-expanded="false" aria-controls="mobileMenu">
           <span class="block w-5 h-0.5 bg-gray-800 rounded-full"></span>
           <span class="block w-5 h-0.5 bg-gray-800 rounded-full"></span>
@@ -637,6 +656,7 @@ FOOTER = """
 </footer>
 
 <script src="/js/lang.js?v=%(assetv)s" defer></script>
+<script src="/js/lead.js?v=%(assetv)s" defer></script>
 <script src="/js/subscribe.js?v=%(assetv)s" defer></script>
 <script src="/js/pay.js?v=%(assetv)s" defer></script>
 </body>
@@ -793,77 +813,18 @@ CTA = """
 """
 
 
-# Блок контактів — той самий, що на головній, але без форми заявки.
+# Блоки, перенесені з головної «один в один». Розмітки тут немає: її
+# витягує home_blocks із зібраного index.html, тож копія не розійдеться
+# з оригіналом.
 #
-# Форма живе на index.html і тільки там (дві копії: секція і модалка), а
-# посадкові ведуть на /#form — інакше на сайті було б шістнадцять форм, кожна
-# зі своїм полем «формат», і будь-яка правда про заявки перевірялася б у
-# шістнадцяти місцях. Тому тут — телефони з месенджерами, пошта, соцмережі й
-# адреса, а заявка одним посиланням туди, де форма справді одна.
-#
-# Інлайнові style= на іконках месенджерів — це фірмові кольори Viber,
-# WhatsApp і Telegram; вони не токени дизайн-системи й у конфіг не їдуть.
-CONTACTS = """
-<section id="contacts" class="py-10 md:py-20 bg-gray-50 border-t border-gray-100">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid gap-8 md:grid-cols-2 md:gap-12 items-start">
-      <div>
-        <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" data-ru="Контакты">Контакти</span>
-        <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" data-ru="Остались вопросы? Спросите">Залишились питання? Запитайте</h2>
-        <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-6" data-ru="Позвоните или напишите в мессенджер — ответим в рабочие часы. Расскажем про уровни, расписание и свободные группы, без «сначала оставьте заявку».">Зателефонуйте або напишіть у месенджер — відповімо в робочі години. Розкажемо про рівні, розклад і вільні групи, без «спершу залиште заявку».</p>
-        <p class="text-sm text-gray-500 leading-relaxed mb-6"><span class="font-bold text-gray-700" data-ru="Работаем">Працюємо</span>: <span data-ru="Пн–Пт 9:00–20:00, Сб 10:00–18:00">Пн–Пт 9:00–20:00, Сб 10:00–18:00</span></p>
-        <a href="/#form" class="inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200" data-ru="Записаться на пробный урок">Записатися на пробний урок</a>
-      </div>
-
-      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm">
-        <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3" data-ru="Телефоны">Телефони</p>
-        <div class="flex flex-col gap-4 mb-7">
-          <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <a href="tel:+380954624672" class="font-black text-gray-900 text-xl hover:text-fox-500 transition-colors duration-200 whitespace-nowrap">+38 (095) 462-46-72</a>
-            <div class="flex gap-1.5">
-              <a href="viber://chat?number=%2B380954624672" aria-label="Viber" title="Viber" class="w-9 h-9 rounded-full flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-80" style="background:#7360F2;">
-                <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
-              </a>
-              <a href="https://wa.me/380954624672" aria-label="WhatsApp" title="WhatsApp" class="w-9 h-9 rounded-full flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-80" style="background:#25D366;">
-                <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
-              </a>
-              <a href="https://t.me/Artist8262" aria-label="Telegram" title="Telegram" class="w-9 h-9 rounded-full flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-80" style="background:#2AABEE;">
-                <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M21.94 4.51l-2.98 14.06c-.22.99-.81 1.23-1.64.77l-4.53-3.34-2.19 2.1c-.24.24-.44.44-.9.44l.32-4.57 8.32-7.52c.36-.32-.08-.5-.56-.18L7.82 13.4l-4.43-1.39c-.96-.3-.98-.96.2-1.42l17.32-6.68c.8-.3 1.5.18 1.24 1.4z"/></svg>
-              </a>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <a href="tel:+380682522876" class="font-black text-gray-900 text-xl hover:text-fox-500 transition-colors duration-200 whitespace-nowrap">+38 (068) 252-28-76</a>
-            <div class="flex gap-1.5">
-              <a href="https://wa.me/380682522876" aria-label="WhatsApp" title="WhatsApp" class="w-9 h-9 rounded-full flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-80" style="background:#25D366;">
-                <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2" data-ru="Почта">Пошта</p>
-        <a href="mailto:fluent.fox.study@gmail.com" class="font-bold text-fox-500 hover:text-fox-600 transition-colors duration-200 block mb-7">fluent.fox.study@gmail.com</a>
-
-        <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2" data-ru="Очные классы">Очні класи</p>
-        <p class="text-base text-gray-600 leading-relaxed mb-7" data-ru="Днепр, пр. А. Поля 28а и ул. Панікахи 15. Основной формат — онлайн, по всей Украине и за рубежом.">Дніпро, пр. О. Поля 28а та вул. Панікахи 15. Основний формат — онлайн, по всій Україні та за кордоном.</p>
-
-        <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3" data-ru="Следите за нами">Слідкуйте за нами</p>
-        <div class="flex flex-wrap gap-2">
-          <a href="https://www.facebook.com/people/FluentFoxAcademy/61591810049590/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white hover:border-fox-300 transition-colors duration-200 text-sm font-bold text-gray-700">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
-            Facebook
-          </a>
-          <a href="https://www.instagram.com/fluent.fox.study/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white hover:border-fox-300 transition-colors duration-200 text-sm font-bold text-gray-700">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#D6249F" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
-            Instagram
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-"""
+# Форма заявки тепер стоїть і на посадкових — рішення власника від
+# 24.09.2026; доти правило було «форма лише на index.html, посадкові
+# ведуть на /#form». Що з цього випливає: копій форми на сайті стало
+# шістнадцять, усі йдуть в один api/lead.php, а сторінку, з якої прийшла
+# заявка, видно з поля `page` — його додає js/lead.js.
+CONTACTS = home_blocks.CONTACTS
+ARTICLES = home_blocks.ARTICLES
+MODAL = home_blocks.MODAL
 
 
 def render_page(p):
@@ -935,9 +896,10 @@ def render_page(p):
     # Контакти стоять після банера: людина вже прочитала сторінку й вирішує —
     # дзвонити чи писати. Якір #contacts, на нього веде пункт у шапці.
     return (head + HEADER.replace("%(path)s", "/" + p["slug"])
-            + crumbs + hero + main + render_faq(p) + CTA + CONTACTS
+            + crumbs + hero + main + render_faq(p) + CTA + CONTACTS + ARTICLES
             + render_related(p) + render_seo(p) + "</main>\n"
-            + FOOTER.replace("%(assetv)s", ASSET_VERSION))
+            + FOOTER.replace("%(assetv)s", ASSET_VERSION)
+                    .replace("</body>", MODAL + "</body>"))
 
 
 def main():
