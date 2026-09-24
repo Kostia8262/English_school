@@ -159,7 +159,7 @@ ErrorDocument 503 /503.html
   # тобто не кешував нічого. Тому звичайний `max-age=300`: правка на проді
   # стає видною протягом п'яти хвилин, і це ціна обходу.
   <FilesMatch "\.html$">
-    Header set Cache-Control "public, max-age=300, must-revalidate"
+    Header set Cache-Control "public, max-age=300"
   </FilesMatch>
   # sitemap.xml і llms.txt — з перевіркою, як HTML.
   #
