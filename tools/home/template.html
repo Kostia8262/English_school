@@ -3096,7 +3096,6 @@
                     <li><a :href="lang==='ru'?'/repetytor-z-anhliyskoyi?lang=ru':'/repetytor-z-anhliyskoyi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Репетитор з англійської':'Репетитор по английскому'">Репетитор з англійської</a></li>
                     <li><a :href="lang==='ru'?'/rozmovna-anhliyska-dlya-ditey?lang=ru':'/rozmovna-anhliyska-dlya-ditey'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Розмовна англійська':'Разговорный английский'">Розмовна англійська</a></li>
                     <li><a :href="lang==='ru'?'/anhliyska-z-nulya-dlya-ditey?lang=ru':'/anhliyska-z-nulya-dlya-ditey'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська з нуля':'Английский с нуля'">Англійська з нуля</a></li>
-                    <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-za-kordonom?lang=ru':'/anhliyska-dlya-ditey-za-kordonom'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Дітям за кордоном':'Детям за рубежом'">Дітям за кордоном</a></li>
                     <li><a :href="lang==='ru'?'/pidhotovka-do-nmt?lang=ru':'/pidhotovka-do-nmt'"       class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Підготовка до НМТ':'Подготовка к НМТ'">Підготовка до НМТ</a></li>
                     <li><a :href="lang==='ru'?'/cambridge?lang=ru':'/cambridge'"               class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Іспити Cambridge':'Экзамены Cambridge'">Іспити Cambridge</a></li>
                     <li><a :href="lang==='ru'?'/dnipro?lang=ru':'/dnipro'"                  class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська у Дніпрі':'Английский в Днепре'">Англійська у Дніпрі</a></li>
@@ -3117,6 +3116,16 @@
                     <li class="flex items-center gap-2"><span>⏰</span> <span x-text="t.footer.hours">Пн–Пт: 9:00–20:00, Сб: 10:00–18:00</span></li>
                 </ul>
             </div>
+        </div>
+
+        <!-- Країни: серія сторінок під країни, де живуть українські родини.
+             Окремий рядок, а не п'ята колонка — сітка підвалу тримає чотири. -->
+        <div class="border-t border-gray-800 pt-8 mb-8">
+            <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" x-text="lang==='uk'?'Дітям за кордоном':'Детям за рубежом'">Дітям за кордоном</h4>
+            <ul class="flex flex-wrap gap-x-6 gap-y-2 text-base">
+                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-u-polshchi?lang=ru':'/anhliyska-dlya-ditey-u-polshchi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Англійська у Польщі':'Английский в Польше'">Англійська у Польщі</a></li>
+                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-za-kordonom?lang=ru':'/anhliyska-dlya-ditey-za-kordonom'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Усі країни':'Все страны'">Усі країни</a></li>
+            </ul>
         </div>
 
         <!-- Підписка на листи: адреса йде в панель розсилки мережі (smm.mycomputer.education),

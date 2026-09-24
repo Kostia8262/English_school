@@ -19,7 +19,7 @@
   # Адреса /tsiny читається людиною і не розсипається при копіюванні в чат.
   # Спершу 301 з .html-варіанта — інакше та сама сторінка існувала б за двома
   # адресами одразу, тобто рівно той дубль, заради якого вище стоїть 301 з www.
-  RewriteCond %{THE_REQUEST} \s/+(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey|anhliyska-z-nulya-dlya-ditey|anhliyska-dlya-ditey-za-kordonom|oplata)\.html[\s?] [NC]
+  RewriteCond %{THE_REQUEST} \s/+(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey|anhliyska-z-nulya-dlya-ditey|anhliyska-dlya-ditey-za-kordonom|anhliyska-dlya-ditey-u-polshchi|oplata)\.html[\s?] [NC]
   RewriteRule ^ /%1 [R=301,L]
 
   # ── Статті блогу без .html ──────────────────────────────────────────────
@@ -49,7 +49,7 @@
   # за двома адресами, тобто рівно той дубль, заради якого стоять правила вище.
   RewriteCond %{THE_REQUEST} \s/+index\.ru\.html[\s?] [NC]
   RewriteRule ^ /?lang=ru [R=301,L]
-  RewriteCond %{THE_REQUEST} \s/+(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey|anhliyska-z-nulya-dlya-ditey|anhliyska-dlya-ditey-za-kordonom|oplata)\.ru\.html[\s?] [NC]
+  RewriteCond %{THE_REQUEST} \s/+(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey|anhliyska-z-nulya-dlya-ditey|anhliyska-dlya-ditey-za-kordonom|anhliyska-dlya-ditey-u-polshchi|oplata)\.ru\.html[\s?] [NC]
   RewriteRule ^ /%1?lang=ru [R=301,L]
   # Лістинг блогу і стаття. Слуги не перелічуємо з тієї ж причини, що й вище,
   # а index виключено явно: у нього адреса /blog/, а не /blog/index.
@@ -65,10 +65,10 @@
   RewriteCond %{QUERY_STRING} (^|&)lang=ru(&|$)
   RewriteRule ^blog/$ blog/index.ru.html [L]
   RewriteCond %{QUERY_STRING} (^|&)lang=ru(&|$)
-  RewriteRule ^(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey|anhliyska-z-nulya-dlya-ditey|anhliyska-dlya-ditey-za-kordonom|oplata)$ $1.ru.html [L]
+  RewriteRule ^(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey|anhliyska-z-nulya-dlya-ditey|anhliyska-dlya-ditey-za-kordonom|anhliyska-dlya-ditey-u-polshchi|oplata)$ $1.ru.html [L]
 
   # І лише потім внутрішнє переписування на реальний файл.
-  RewriteRule ^(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey|anhliyska-z-nulya-dlya-ditey|anhliyska-dlya-ditey-za-kordonom|oplata)$ $1.html [L]
+  RewriteRule ^(anhliyska-6-8-rokiv|anhliyska-9-12-rokiv|anhliyska-13-18-rokiv|pidhotovka-do-nmt|cambridge|tsiny|vidhuky|pro-shkolu|probnyi-urok|dnipro|kursy-anhliyskoyi-dlya-ditey|anhliyska-onlayn-dlya-ditey|repetytor-z-anhliyskoyi|rozmovna-anhliyska-dlya-ditey|anhliyska-z-nulya-dlya-ditey|anhliyska-dlya-ditey-za-kordonom|anhliyska-dlya-ditey-u-polshchi|oplata)$ $1.html [L]
 
   # Те саме для статті блогу. Умова на -f обов'язкова: без неї /blog/будь-що
   # переписувалось би на неіснуючий файл, і замість 404 читач діставав би

@@ -35,6 +35,7 @@ import pages_service        # noqa: E402,F401  — ціни, відгуки, ш�
 import pages_dnipro         # noqa: E402,F401  — локальна сторінка з двома класами
 import pages_generic        # noqa: E402,F401  — курси, онлайн, репетитор, розмовна
 import pages_niche          # noqa: E402,F401  — англійська з нуля, діти за кордоном
+import pages_country        # noqa: E402,F401  — окремі країни: Польща
 
 BASE = "https://fluent-fox.site"
 ORG = BASE + "/#organization"
@@ -156,6 +157,17 @@ def render_block(b):
                 'text-violet-600 hover:text-violet-500 transition-colors duration-200"%s</a>\n'
                 '      </div>'
                 % (attr_ru(uk, ru), href, attr_ru(l_uk + " →", l_ru + " →")))
+
+    if kind == "chips":
+        # Міста списком у тексті читаються як перелік, який хочеться проґавити;
+        # тими самими пілюлями, що й мітка секції, вони читаються як факт.
+        # Це не посилання — окремої сторінки під місто немає й не планується:
+        # заняття онлайн, і місто не змінює ні розклад, ні ціну.
+        items = "\n".join(
+            '          <li class="bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 '
+            'rounded-full"%s</li>' % attr_ru(uk, ru) for uk, ru in b[1])
+        return ('      <ul class="flex flex-wrap gap-2 mb-6 mt-4">\n%s\n      </ul>'
+                % items)
 
     if kind == "callout":
         return ('      <div class="bg-fox-50 border-l-4 border-fox-500 rounded-r-3xl px-6 py-5 mb-6 mt-4">\n'
@@ -554,7 +566,6 @@ FOOTER = """
           <li><a href="/repetytor-z-anhliyskoyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Репетитор по английскому">Репетитор з англійської</a></li>
           <li><a href="/rozmovna-anhliyska-dlya-ditey" class="hover:text-fox-400 transition-colors duration-200" data-ru="Разговорный английский">Розмовна англійська</a></li>
           <li><a href="/anhliyska-z-nulya-dlya-ditey" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский с нуля">Англійська з нуля</a></li>
-          <li><a href="/anhliyska-dlya-ditey-za-kordonom" class="hover:text-fox-400 transition-colors duration-200" data-ru="Детям за рубежом">Дітям за кордоном</a></li>
           <li><a href="/pidhotovka-do-nmt" class="hover:text-fox-400 transition-colors duration-200" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
           <li><a href="/cambridge" class="hover:text-fox-400 transition-colors duration-200" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
           <li><a href="/dnipro" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский в Днепре">Англійська у Дніпрі</a></li>
@@ -578,6 +589,17 @@ FOOTER = """
           <li data-ru="Днепр, пр. А. Поля 28а">Дніпро, пр. О. Поля 28а</li>
         </ul>
       </div>
+    </div>
+    <!-- Країни. Окремий рядок, а не ще одна колонка: колонок у сітці чотири, і
+         п'ята ламає її на планшеті. Тут росте серія сторінок під країни, де
+         живуть українські родини, тож рядок із переносом витримає і шість
+         посилань. -->
+    <div class="border-t border-gray-800 py-6">
+      <h3 class="text-sm font-black text-white mb-3" data-ru="Детям за рубежом">Дітям за кордоном</h3>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+        <li><a href="/anhliyska-dlya-ditey-u-polshchi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский в Польше">Англійська у Польщі</a></li>
+        <li><a href="/anhliyska-dlya-ditey-za-kordonom" class="hover:text-fox-400 transition-colors duration-200" data-ru="Все страны">Усі країни</a></li>
+      </ul>
     </div>
     <!-- Підписка на листи: адреса йде в панель розсилки мережі (smm.mycomputer.education),
          яка одразу додає людину в базу й надсилає вітальний лист. Код тексту згоди —
