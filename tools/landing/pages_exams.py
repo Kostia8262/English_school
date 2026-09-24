@@ -294,10 +294,10 @@ PAGES.append({
     "og_uk": "Підготовка до іспитів Cambridge для дітей",
     "og_ru": "Подготовка к экзаменам Cambridge для детей",
     "desc_uk": "Підготовка дітей до Cambridge English: Starters, Movers, Flyers, A2 Key, "
-               "B1 Preliminary, B2 First. Онлайн, групи до 6 учнів. Коли складати "
+               "B1 Preliminary, B2 First. Онлайн, групи до 5 учнів. Коли складати "
                "іспит.",
     "desc_ru": "Подготовка детей к экзаменам Cambridge: Starters, Movers, Flyers, KET, "
-               "PET, FCE. Онлайн, группы до 6 учеников. Что даёт сертификат и когда "
+               "PET, FCE. Онлайн, группы до 5 учеников. Что даёт сертификат и когда "
                "его сдавать.",
     "crumb_uk": "Іспити Cambridge",
     "crumb_ru": "Экзамены Cambridge",
