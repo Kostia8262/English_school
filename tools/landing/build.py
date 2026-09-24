@@ -491,8 +491,12 @@ HEADER = """
         <li><a href="/#about" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200" data-ru="О школе">Про школу</a></li>
         <li><a href="/#program" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200" data-ru="Программа">Програма</a></li>
         <li><a href="/tsiny" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200" data-ru="Цены">Ціни</a></li>
-        <li><a href="/vidhuky" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200" data-ru="Отзывы">Відгуки</a></li>
         <li><a href="/blog/" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200">Блог</a></li>
+        <!-- Замість «Відгуків» — контакти: блок із телефонами й месенджерами
+             тепер є на самій сторінці (#contacts), тож посилання веде на
+             екран нижче, а не на іншу сторінку. На /vidhuky досі ведуть
+             картки «Читайте також» і підвал. -->
+        <li><a href="#contacts" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200" data-ru="Контакты">Контакти</a></li>
       </ul>
 
       <div class="flex items-center gap-3">
@@ -667,17 +671,54 @@ def render_faq(p):
 """ % items
 
 
+def related_subtitle(href):
+    """Один рядок під назву картки — мітка тієї сторінки, її `badge`.
+
+    Навіщо так, а не четвертим полем у `related`. Картка з однією назвою не
+    каже нічого, крім того, що сторінка існує: три великі прямокутники
+    тримали три коротких рядки. Дописувати опис руками означало б четверте
+    поле в кожному з ~45 записів `related` по всіх сторінках — і ще одну
+    копію тексту, яка розійдеться з джерелом, як розійшлися колись FAQ. Тому
+    підпис беремо з самої цільової сторінки.
+
+    Саме `badge`, а не перше речення `desc`. По-перше, мітка коротка й
+    написана як мітка («Онлайн · Zoom або Google Meet»), а опис — як речення,
+    що переказує назву. По-друге, опис /tsiny містить «1800 або 3600 грн», і
+    з ним у картці сторінка діставала 3600 і 3000 без 1800 — перевірка
+    тарифної трійки в tools/audit/facts.py справедливо падала.
+
+    Для статей блогу сторінки в PAGES немає — там лишається сама мітка.
+    """
+    slug = href.lstrip("/")
+    if slug.startswith("blog/"):
+        return ("Стаття в блозі", "Статья в блоге")
+    for page in C.PAGES:
+        if page["slug"] == slug:
+            return (page["badge_uk"], page["badge_ru"])
+    return None
+
+
 def render_related(p):
     if not p.get("related"):
         return ""
-    cards = "\n".join(
-        '        <a href="%s" class="bg-white rounded-3xl p-6 border border-gray-100 '
-        'hover:border-fox-200 hover:-translate-y-1 shadow-sm hover:shadow-md '
-        'transition-all duration-300">\n'
-        '          <span class="text-2xl" aria-hidden="true">%s</span>\n'
-        '          <p class="font-black text-gray-900 text-base mt-2 leading-tight"%s</p>\n'
-        '        </a>' % (href, emoji, attr_ru(t_uk, t_ru))
-        for href, emoji, t_uk, t_ru in p["related"])
+    cards = []
+    for href, emoji, t_uk, t_ru in p["related"]:
+        sub = related_subtitle(href)
+        sub_html = ('\n          <p class="text-sm text-gray-500 leading-relaxed mt-2"%s</p>'
+                    % attr_ru(sub[0], sub[1])) if sub else ""
+        cards.append(
+            '        <a href="%s" class="group flex flex-col bg-white rounded-3xl p-6 '
+            'border border-gray-100 hover:border-fox-200 hover:-translate-y-1 shadow-sm '
+            'hover:shadow-md transition-all duration-300">\n'
+            '          <span class="w-12 h-12 rounded-2xl bg-fox-50 flex items-center '
+            'justify-center text-2xl mb-4" aria-hidden="true">%s</span>\n'
+            '          <p class="font-black text-gray-900 text-xl leading-tight"%s</p>'
+            '%s\n'
+            '          <span class="inline-flex items-center gap-1.5 text-sm font-black '
+            'text-fox-600 mt-auto pt-5"><span data-ru="Подробнее">Детальніше</span>'
+            '<span class="transition-transform duration-200 group-hover:translate-x-1" '
+            'aria-hidden="true">&rarr;</span></span>\n'
+            '        </a>' % (href, emoji, attr_ru(t_uk, t_ru), sub_html))
     return """
 <section class="py-8 md:py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -687,7 +728,7 @@ def render_related(p):
     </div>
   </div>
 </section>
-""" % cards
+""" % "\n".join(cards)
 
 
 def render_seo(p):
@@ -724,14 +765,100 @@ def render_seo(p):
 """ % "".join(parts))
 
 
+# Банер перед «Читайте також». Був рівним оранжевим прямокутником із двома
+# кнопками, з яких друга — темно-оранжева на оранжевому — читалася як
+# вимкнена. Тепер: мітка над заголовком, декоративні плями під вмістом
+# (overflow-hidden, тому за межі секції не виходять), контурна друга кнопка й
+# рядок із трьох фактів, які знімають страх «а що це мені буде коштувати».
 CTA = """
-<section class="py-8 md:py-16 bg-gradient-to-br from-fox-500 to-fox-600">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<section class="relative overflow-hidden py-10 md:py-16 bg-gradient-to-br from-fox-500 to-fox-600">
+  <div class="absolute -top-20 -right-12 w-64 h-64 bg-white/10 rounded-4xl rotate-12" aria-hidden="true"></div>
+  <div class="absolute -bottom-24 -left-16 w-72 h-72 bg-white/10 rounded-full" aria-hidden="true"></div>
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <span class="inline-block bg-white/15 text-white font-bold text-sm px-4 py-1.5 rounded-full mb-4" data-ru="Пробный урок">Пробний урок</span>
     <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-white mb-3 leading-tight" data-ru="Первый урок — бесплатно">Перший урок — безкоштовно</h2>
-    <p class="text-base md:text-lg text-white/90 leading-relaxed mb-8" data-ru="Познакомимся с ребёнком, определим уровень и покажем, как проходят занятия. Без оплаты и без обязательств.">Познайомимось з дитиною, визначимо рівень і покажемо, як минають заняття. Без оплати та без зобов'язань.</p>
+    <p class="text-base md:text-lg text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto" data-ru="Познакомимся с ребёнком, определим уровень и покажем, как проходят занятия. Без оплаты и без обязательств.">Познайомимось з дитиною, визначимо рівень і покажемо, як минають заняття. Без оплати та без зобов'язань.</p>
     <div class="flex flex-wrap gap-3 justify-center">
       <a href="/#form" class="inline-flex items-center bg-white text-fox-600 hover:bg-fox-50 font-black text-base px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200" data-ru="Записаться на урок">Записатись на урок</a>
-      <a href="tel:+380954624672" class="inline-flex items-center bg-fox-600 text-white hover:bg-fox-700 font-black text-base px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200" data-ru="Позвонить">Зателефонувати</a>
+      <a href="tel:+380954624672" class="inline-flex items-center gap-2 border-2 border-white/70 text-white hover:bg-white/10 hover:border-white font-black text-base px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5"><span aria-hidden="true">&#128222;</span><span data-ru="Позвонить">Зателефонувати</span></a>
+    </div>
+    <ul class="flex flex-wrap justify-center gap-x-7 gap-y-2 mt-8 text-sm font-semibold text-white/90">
+      <li class="inline-flex items-center gap-2"><span class="text-white font-black" aria-hidden="true">&#10003;</span><span data-ru="Без оплаты и карты">Без оплати й картки</span></li>
+      <li class="inline-flex items-center gap-2"><span class="text-white font-black" aria-hidden="true">&#10003;</span><span data-ru="Полный урок 1,5 часа">Повний урок 1,5 години</span></li>
+      <li class="inline-flex items-center gap-2"><span class="text-white font-black" aria-hidden="true">&#10003;</span><span data-ru="Уровень определяет преподаватель">Рівень визначає вчитель</span></li>
+    </ul>
+  </div>
+</section>
+"""
+
+
+# Блок контактів — той самий, що на головній, але без форми заявки.
+#
+# Форма живе на index.html і тільки там (дві копії: секція і модалка), а
+# посадкові ведуть на /#form — інакше на сайті було б шістнадцять форм, кожна
+# зі своїм полем «формат», і будь-яка правда про заявки перевірялася б у
+# шістнадцяти місцях. Тому тут — телефони з месенджерами, пошта, соцмережі й
+# адреса, а заявка одним посиланням туди, де форма справді одна.
+#
+# Інлайнові style= на іконках месенджерів — це фірмові кольори Viber,
+# WhatsApp і Telegram; вони не токени дизайн-системи й у конфіг не їдуть.
+CONTACTS = """
+<section id="contacts" class="py-10 md:py-20 bg-gray-50 border-t border-gray-100">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-8 md:grid-cols-2 md:gap-12 items-start">
+      <div>
+        <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" data-ru="Контакты">Контакти</span>
+        <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" data-ru="Остались вопросы? Спросите">Залишились питання? Запитайте</h2>
+        <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-6" data-ru="Позвоните или напишите в мессенджер — ответим в рабочие часы. Расскажем про уровни, расписание и свободные группы, без «сначала оставьте заявку».">Зателефонуйте або напишіть у месенджер — відповімо в робочі години. Розкажемо про рівні, розклад і вільні групи, без «спершу залиште заявку».</p>
+        <p class="text-sm text-gray-500 leading-relaxed mb-6"><span class="font-bold text-gray-700" data-ru="Работаем">Працюємо</span>: <span data-ru="Пн–Пт 9:00–20:00, Сб 10:00–18:00">Пн–Пт 9:00–20:00, Сб 10:00–18:00</span></p>
+        <a href="/#form" class="inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200" data-ru="Записаться на пробный урок">Записатися на пробний урок</a>
+      </div>
+
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+        <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3" data-ru="Телефоны">Телефони</p>
+        <div class="flex flex-col gap-4 mb-7">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <a href="tel:+380954624672" class="font-black text-gray-900 text-xl hover:text-fox-500 transition-colors duration-200 whitespace-nowrap">+38 (095) 462-46-72</a>
+            <div class="flex gap-1.5">
+              <a href="viber://chat?number=%2B380954624672" aria-label="Viber" title="Viber" class="w-9 h-9 rounded-full flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-80" style="background:#7360F2;">
+                <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M11.5 2C5.7 2 1 6.3 1 11.5c0 2.8 1.3 5.3 3.5 7.1v3.4l3.3-1.7c1 .3 2 .4 3.1.4C16.7 20.7 22 16.4 22 11.2S17.3 2 11.5 2zm5.4 12.8c-.3.7-1.6 1.4-2.2 1.5-.5.1-1.2.2-3.9-.9-3.3-1.3-5.4-4.6-5.6-4.8-.2-.2-1.4-1.8-1.4-3.4 0-1.6.9-2.4 1.2-2.7.3-.3.7-.5 1-.5h.7c.2 0 .5.1.8.7.3.7 1.1 2.4 1.2 2.6.1.2.1.5 0 .7-.1.2-.2.4-.4.6-.2.2-.4.4-.3.7.1.3.9 1.4 1.8 2.2 1.2 1 2.1 1.4 2.5 1.5.3.1.6.1.8-.1l.7-.8c.2-.3.5-.3.8-.2.3.1 2.1 1 2.5 1.2.4.2.6.3.7.5.2.3.1 1.2-.2 1.9z"/></svg>
+              </a>
+              <a href="https://wa.me/380954624672" aria-label="WhatsApp" title="WhatsApp" class="w-9 h-9 rounded-full flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-80" style="background:#25D366;">
+                <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
+              </a>
+              <a href="https://t.me/Artist8262" aria-label="Telegram" title="Telegram" class="w-9 h-9 rounded-full flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-80" style="background:#2AABEE;">
+                <svg viewBox="-3 -3 30 30" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M21.94 4.51l-2.98 14.06c-.22.99-.81 1.23-1.64.77l-4.53-3.34-2.19 2.1c-.24.24-.44.44-.9.44l.32-4.57 8.32-7.52c.36-.32-.08-.5-.56-.18L7.82 13.4l-4.43-1.39c-.96-.3-.98-.96.2-1.42l17.32-6.68c.8-.3 1.5.18 1.24 1.4z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <a href="tel:+380682522876" class="font-black text-gray-900 text-xl hover:text-fox-500 transition-colors duration-200 whitespace-nowrap">+38 (068) 252-28-76</a>
+            <div class="flex gap-1.5">
+              <a href="https://wa.me/380682522876" aria-label="WhatsApp" title="WhatsApp" class="w-9 h-9 rounded-full flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-80" style="background:#25D366;">
+                <svg viewBox="-1 -1 26 26" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M12.04 2.02c-5.52 0-10 4.48-10 10 0 1.76.46 3.48 1.34 5L2 22l5.05-1.32c1.47.8 3.12 1.22 4.79 1.22h.01c5.52 0 10-4.48 10-10s-4.48-9.9-10-9.9zm5.86 14.28c-.25.7-1.44 1.34-1.98 1.42-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.66-.15-.2-1.26-1.67-1.26-3.19s.8-2.27 1.08-2.58c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.15.13.33.02.53-.1.2-.16.33-.31.5-.15.18-.32.39-.46.53-.15.15-.31.31-.13.61.18.3.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.2.77-.9.98-1.21.2-.31.41-.26.69-.15.28.1 1.76.83 2.07.98.31.15.51.22.59.35.08.13.08.73-.17 1.43z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2" data-ru="Почта">Пошта</p>
+        <a href="mailto:fluent.fox.study@gmail.com" class="font-bold text-fox-500 hover:text-fox-600 transition-colors duration-200 block mb-7">fluent.fox.study@gmail.com</a>
+
+        <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-2" data-ru="Очные классы">Очні класи</p>
+        <p class="text-base text-gray-600 leading-relaxed mb-7" data-ru="Днепр, пр. А. Поля 28а и ул. Панікахи 15. Основной формат — онлайн, по всей Украине и за рубежом.">Дніпро, пр. О. Поля 28а та вул. Панікахи 15. Основний формат — онлайн, по всій Україні та за кордоном.</p>
+
+        <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-3" data-ru="Следите за нами">Слідкуйте за нами</p>
+        <div class="flex flex-wrap gap-2">
+          <a href="https://www.facebook.com/people/FluentFoxAcademy/61591810049590/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white hover:border-fox-300 transition-colors duration-200 text-sm font-bold text-gray-700">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
+            Facebook
+          </a>
+          <a href="https://www.instagram.com/fluent.fox.study/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white hover:border-fox-300 transition-colors duration-200 text-sm font-bold text-gray-700">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#D6249F" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+            Instagram
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -747,12 +874,15 @@ def render_page(p):
         og_title_ru=p.get("og_ru", p["title_ru"]).replace("'", "\\'"),
         url=url, base=BASE, graph=build_graph(p), assetv=ASSET_VERSION)
 
-    crumbs = ('\n<nav class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6" aria-label="Хлібні крихти" data-ru-aria="Хлебные крошки">\n'
-              '  <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-400">\n'
+    # Крихти йдуть по ширині геро: на сторінці з ілюстрацією геро широкий, і
+    # крихти у вузькій колонці висіли б із власним лівим краєм.
+    crumb_w = "max-w-6xl" if p.get("hero_art") else "max-w-3xl"
+    crumbs = (('\n<nav class="%s mx-auto px-4 sm:px-6 lg:px-8 pt-6" aria-label="Хлібні крихти" data-ru-aria="Хлебные крошки">\n' % crumb_w)
+              + ('  <ol class="flex flex-wrap items-center gap-2 text-sm text-gray-400">\n'
               '    <li><a href="/" class="hover:text-fox-500 transition-colors duration-200" data-ru="Главная">Головна</a></li>\n'
               '    <li aria-hidden="true">/</li>\n'
               '    <li class="text-gray-600 font-semibold"%s</li>\n'
-              '  </ol>\n</nav>\n' % attr_ru(p["crumb_uk"], p["crumb_ru"]))
+              '  </ol>\n</nav>\n' % attr_ru(p["crumb_uk"], p["crumb_ru"])))
 
     # Друга кнопка героя за замовчуванням веде на ціни — але на самій сторінці
     # цін це посилання саме на себе, тому там вона змінюється на пробний урок.
@@ -760,20 +890,37 @@ def render_page(p):
                              if p["slug"] == "tsiny"
                              else ("/tsiny", "Дивитись ціни", "Смотреть цены"))
 
-    hero = ('\n<section class="pt-8 pb-8 md:pb-14">\n'
-            '  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">\n'
-            '    <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4"%s</span>\n'
-            '    <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-5 max-w-3xl"%s</h1>\n'
-            '    <p class="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mb-8"%s</p>\n'
-            '    <div class="flex flex-wrap gap-3">\n'
-            '      <a href="/#form" class="inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200" data-ru="Бесплатный урок">Безкоштовний урок</a>\n'
-            '      <a href="%s" class="inline-flex items-center bg-white hover:bg-gray-50 text-gray-800 font-bold text-base px-7 py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"%s</a>\n'
-            '    </div>\n'
-            '  </div>\n</section>\n'
-            % (attr_ru(p["badge_uk"], p["badge_ru"]),
-               attr_ru(p["h1_uk"], p["h1_ru"]),
-               attr_ru(p["lead_uk"], p["lead_ru"]),
-               cta2[0], attr_ru(cta2[1], cta2[2])))
+    # Сторінка з ілюстрацією («hero_art») малює геро двома колонками й на всю
+    # ширину контейнера; решта лишається як була — вузька колонка під текст.
+    # Тіло статті в обох випадках max-w-3xl: широкий геро й вузька колонка
+    # тексту — звичайна редакційна розкладка, а не недогляд.
+    art = p.get("hero_art")
+    hero_text = (
+        '    <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4"%s</span>\n'
+        '    <h1 class="text-2xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-5"%s</h1>\n'
+        '    <p class="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mb-8"%s</p>\n'
+        '    <div class="flex flex-wrap gap-3">\n'
+        '      <a href="/#form" class="inline-flex items-center bg-fox-500 hover:bg-fox-600 text-white font-black text-base px-7 py-3.5 rounded-full shadow-fox hover:shadow-fox-lg hover:-translate-y-1 transition-all duration-200" data-ru="Бесплатный урок">Безкоштовний урок</a>\n'
+        '      <a href="%s" class="inline-flex items-center bg-white hover:bg-gray-50 text-gray-800 font-bold text-base px-7 py-3.5 rounded-full border border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"%s</a>\n'
+        '    </div>\n'
+        % (attr_ru(p["badge_uk"], p["badge_ru"]),
+           attr_ru(p["h1_uk"], p["h1_ru"]),
+           attr_ru(p["lead_uk"], p["lead_ru"]),
+           cta2[0], attr_ru(cta2[1], cta2[2])))
+
+    if art:
+        hero = ('\n<section class="pt-6 pb-8 md:pb-14">\n'
+                '  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">\n'
+                '    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-12 lg:items-center">\n'
+                '      <div>\n%s      </div>\n'
+                '      <div class="relative">\n%s      </div>\n'
+                '    </div>\n  </div>\n</section>\n'
+                % (hero_text.replace("\n    ", "\n        "), art))
+    else:
+        hero = ('\n<section class="pt-8 pb-8 md:pb-14">\n'
+                '  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">\n'
+                '%s'
+                '  </div>\n</section>\n' % hero_text)
 
     body = "\n".join(render_block(b) for b in p["blocks"])
     main = ('\n<main>\n' + render_agegroups(p) + '<section class="pb-8 md:pb-20">\n'
@@ -784,8 +931,10 @@ def render_page(p):
     # FOOTER не проходить через %-форматування, тому версію для /js/lang.js
     # підставляємо тут. Без неї скрипт кешується на рік як immutable, і
     # правка в ньому не доходить до тих, хто вже був на сайті.
+    # Контакти стоять після банера: людина вже прочитала сторінку й вирішує —
+    # дзвонити чи писати. Якір #contacts, на нього веде пункт у шапці.
     return (head + HEADER.replace("%(path)s", "/" + p["slug"])
-            + crumbs + hero + main + render_faq(p) + CTA
+            + crumbs + hero + main + render_faq(p) + CTA + CONTACTS
             + render_related(p) + render_seo(p) + "</main>\n"
             + FOOTER.replace("%(assetv)s", ASSET_VERSION))
 
