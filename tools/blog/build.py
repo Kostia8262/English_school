@@ -624,6 +624,9 @@ def render(a, lang):
         "og_title": esc(a["title_uk"] if uk else a["title_ru"]),
         "og_desc": esc(a["og_desc_uk"] if uk else a["desc_ru"]),
         "og_image_alt": esc(L["og_image_alt"]),
+        # Своя картка на статтю; складає tools/og/build.js із <h1> уже
+        # зібраної сторінки, тому тут лише адреса.
+        "og_image": "%s/og/blog-%s%s.jpg" % (BASE, a["slug"], "" if uk else ".ru"),
         "og_locale": L["og_locale"],
         "og_locale_alt": L["og_locale_alt"],
         "url_self": href(url, lang),

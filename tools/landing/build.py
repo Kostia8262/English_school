@@ -374,7 +374,7 @@ def graph_nodes(p):
             "isPartOf": {"@id": BASE + "/#website"},
             "breadcrumb": {"@id": url + "#breadcrumb"},
             "about": {"@id": ORG},
-            "primaryImageOfPage": {"@type": "ImageObject", "url": BASE + "/og-image.jpg"},
+            "primaryImageOfPage": {"@type": "ImageObject", "url": BASE + "/og/" + p["slug"] + ".jpg"},
         },
         {
             "@type": "BreadcrumbList",
@@ -422,7 +422,7 @@ HEAD = """<!DOCTYPE html>
 <meta property="og:title" content="{og_title_uk}"/>
 <meta property="og:description" content="{desc_uk}"/>
 <meta property="og:url" content="{url}"/>
-<meta property="og:image" content="{base}/og-image.jpg"/>
+<meta property="og:image" content="{base}/og/{slug}.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:image:alt" content="FluentFox — онлайн-школа англійської для дітей"/>
@@ -432,7 +432,7 @@ HEAD = """<!DOCTYPE html>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="{og_title_uk}"/>
 <meta name="twitter:description" content="{desc_uk}"/>
-<meta name="twitter:image" content="{base}/og-image.jpg"/>
+<meta name="twitter:image" content="{base}/og/{slug}.jpg"/>
 
 <!-- ═══ Favicon ═══ -->
 <link rel="icon" href="/favicon.ico" sizes="any"/>
@@ -834,7 +834,7 @@ def render_page(p):
         desc_uk=esc(p["desc_uk"]), desc_ru=p["desc_ru"].replace("'", "\\'"),
         og_title_uk=esc(p.get("og_uk", p["title_uk"])),
         og_title_ru=p.get("og_ru", p["title_ru"]).replace("'", "\\'"),
-        url=url, base=BASE, graph=build_graph(p), assetv=ASSET_VERSION)
+        url=url, base=BASE, slug=p["slug"], graph=build_graph(p), assetv=ASSET_VERSION)
 
     # Крихти йдуть по ширині геро: на сторінці з ілюстрацією геро широкий, і
     # крихти у вузькій колонці висіли б із власним лівим краєм.

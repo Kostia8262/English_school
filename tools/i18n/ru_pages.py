@@ -479,6 +479,19 @@ def apply_head(doc):
         url = doc.toks[j][3].get("content", "")
         doc.retag(j, lambda s, u=url: set_attr(s, "content", with_lang(u)))
 
+    # og-картка російської версії — свій файл: заголовок на ній той самий,
+    # що в <h1> цієї сторінки, тож українська картка під російським
+    # посиланням показувала б чужу мову.
+    for sel in ('meta[property="og:image"]', 'meta[name="twitter:image"]'):
+        j = doc.find(sel)
+        if j is None:
+            continue
+        key = "content"
+        url = doc.toks[j][3].get(key, "")
+        if "/og/" in url and url.endswith(".jpg") and not url.endswith(".ru.jpg"):
+            ru = url[:-len(".jpg")] + ".ru.jpg"
+            doc.retag(j, lambda st, u=ru, k=key: set_attr(st, k, u))
+
     # ru_RU, а не ru_UA: месенджери розбирають лише перелік підтримуваних
     # локалей, і ru_UA у ньому немає — тег просто ігнорується.
     for sel, val in (('meta[property="og:locale"]', "ru_RU"),

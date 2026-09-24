@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<!-- Шаблон og-картки. Її рендерить tools/og/build.js у справжньому браузері,
+     а не малює PIL: шрифт сайту — варіативний Nunito у woff2, і PIL його не
+     читає (fontTools не зливає варіативні сабсети, а кирилиця й латиниця тут
+     лежать окремими файлами). Браузер бере той самий css/fonts.css, що й
+     сторінки, тож набір у картці той самий, що у відвідувача. -->
+<link rel="stylesheet" href="../../css/fonts.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    width:1200px;height:630px;overflow:hidden;
+    font-family:Nunito,system-ui,sans-serif;
+    background:#FFFBF7;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:64px 72px;position:relative;
+  }
+  /* Кутова пляма — той самий прийом, що в герої сторінок */
+  .blob{
+    position:absolute;border-radius:9999px;pointer-events:none;
+    background:radial-gradient(circle,#FFE8D6 0%,rgba(255,232,214,0) 70%);
+  }
+  .blob--a{width:760px;height:760px;right:-240px;top:-300px}
+  .blob--b{width:520px;height:520px;left:-220px;bottom:-260px;
+           background:radial-gradient(circle,#EAE2FF 0%,rgba(234,226,255,0) 70%)}
+
+  .top{display:flex;align-items:center;gap:16px;position:relative}
+  .top img{width:64px;height:64px}
+  .brand{display:flex;flex-direction:column;line-height:1}
+  .brand b{font-size:34px;font-weight:900;color:#1A1A1D;letter-spacing:-.01em}
+  .brand b i{font-style:normal;color:#FF6B35}
+  .brand span{font-size:14px;font-weight:700;letter-spacing:.22em;
+              text-transform:uppercase;color:#9A9AA2;margin-top:6px}
+
+  .mid{display:flex;align-items:center;gap:56px;position:relative;flex:1;padding:34px 0}
+  h1{
+    font-weight:900;color:#1A1A1D;letter-spacing:-.02em;line-height:1.12;
+    font-size:64px;flex:1;
+  }
+  h1.long{font-size:54px}
+  h1.xlong{font-size:46px}
+  h1 em{font-style:normal;color:#FF6B35}
+
+  .art{
+    width:228px;height:228px;flex:none;border-radius:44px;
+    background:#FFF1E7;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 18px 40px rgba(255,107,53,.16);
+  }
+  .art img{width:132px;height:132px}
+
+  .foot{display:flex;align-items:center;justify-content:space-between;position:relative}
+  .foot .site{font-size:26px;font-weight:900;color:#FF6B35;letter-spacing:-.01em}
+  .foot .note{font-size:22px;font-weight:700;color:#7A7A82}
+  .rule{position:absolute;left:0;right:0;top:-26px;height:4px;border-radius:2px;
+        background:linear-gradient(to right,#FF6B35,#FFCAAA 48%,rgba(255,202,170,0))}
+</style>
+</head>
+<body>
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+
+  <div class="top">
+    <img id="logo" src="../../logo.svg" alt="">
+    <span class="brand"><b>Fluent<i>Fox</i></b><span id="tagline">English School</span></span>
+  </div>
+
+  <div class="mid">
+    <h1 id="title">Заголовок</h1>
+    <div class="art"><img id="icon" src="../../icons/cap.webp" alt=""></div>
+  </div>
+
+  <div class="foot">
+    <span class="rule"></span>
+    <span class="site">fluent-fox.site</span>
+    <span class="note" id="note">Онлайн по всій Україні</span>
+  </div>
+</body>
+</html>
