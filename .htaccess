@@ -113,7 +113,7 @@ ErrorDocument 503 /503.html
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault                      "access plus 1 month"
-  ExpiresByType text/html             "access plus 1 hour"
+  ExpiresByType text/html             "access plus 0 seconds"
   ExpiresByType text/css              "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
   ExpiresByType image/png             "access plus 1 year"
@@ -130,8 +130,21 @@ ErrorDocument 503 /503.html
   <FilesMatch "\.(png|jpe?g|webp|svg|ico|woff2?|css|js)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
+  # HTML не кешуємо «на час» — тільки з перевіркою.
+  #
+  # Було `max-age=3600`: після викатки сторінка лишалася старою до години —
+  # і на edge Hostinger, і в браузері. Власник двічі бачив на проді вчорашню
+  # версію після успішного деплою, а перевірка через `?param` цього не ловила,
+  # бо запит із новим рядком запиту йде повз кеш.
+  #
+  # `max-age=0, must-revalidate` не означає «качати щоразу»: браузер і edge
+  # питають сервер, той віддає 304 і нічого не передає, поки файл не змінився.
+  # Ціна — один умовний запит на перегляд, вигода — правка видно одразу.
+  #
+  # Ассети це не зачіпає: /css, /js, шрифти й картинки далі immutable на рік,
+  # їх версіонує `?v=` з tools/assets.py.
   <FilesMatch "\.html$">
-    Header set Cache-Control "public, max-age=3600, must-revalidate"
+    Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
   <FilesMatch "\.(xml|txt)$">
     Header set Cache-Control "public, max-age=86400"
