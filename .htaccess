@@ -122,8 +122,8 @@ ErrorDocument 503 /503.html
   ExpiresByType image/svg+xml         "access plus 1 year"
   ExpiresByType image/x-icon          "access plus 1 year"
   ExpiresByType font/woff2            "access plus 1 year"
-  ExpiresByType text/xml              "access plus 0 seconds"
-  ExpiresByType text/plain            "access plus 0 seconds"
+  ExpiresByType text/xml              "access plus 5 minutes"
+  ExpiresByType text/plain            "access plus 5 minutes"
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -167,8 +167,11 @@ ErrorDocument 503 /503.html
   # сторінок Search Console прочитала карту й побачила 41 адресу замість 49 —
   # їй дісталася копія з edge, закешована до деплою. Карта сайту й llms.txt
   # маленькі, віддавати їх з умовним запитом нічого не коштує.
+  # robots.txt, llms.txt і карта сайту — п'ять хвилин, як HTML, і без
+  # must-revalidate. Саме ці три файли краулер бере першими, а з
+  # `max-age=0` вони щоразу йдуть на сервер і впираються в лічильник GPTBot.
   <FilesMatch "\.(xml|txt)$">
-    Header set Cache-Control "public, max-age=0, must-revalidate"
+    Header set Cache-Control "public, max-age=300"
   </FilesMatch>
 
   # Сторінки помилок — без кешу, і це виняток із правила вище, а не дрібниця.
