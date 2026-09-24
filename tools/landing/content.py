@@ -73,9 +73,9 @@ def course_node(cid, name, desc, age, level, teaches, url):
              "offers": {"@type": "Offer", "price": "3600", "priceCurrency": "UAH",
                         "availability": "https://schema.org/InStock", "url": BASE + "/tsiny"}},
             {"@type": "CourseInstance", "name": "Індивідуальні заняття",
-             "courseMode": ["online", "onsite"], "courseWorkload": "PT1H30M", "inLanguage": "uk",
+             "courseMode": ["online", "onsite"], "courseWorkload": "PT1H", "inLanguage": "uk",
              "location": LOCATIONS,
-             "offers": {"@type": "Offer", "price": "3000", "priceCurrency": "UAH",
+             "offers": {"@type": "Offer", "price": "4000", "priceCurrency": "UAH",
                         "availability": "https://schema.org/InStock", "url": BASE + "/tsiny"}},
         ],
         "offers": course_offer(),
@@ -119,10 +119,10 @@ OFFLINE_NOTE = (
 PRICE_CALLOUT = (
     "callout",
     "Група 1 раз на тиждень — 1800 грн на місяць, 2 рази на тиждень — 3600 грн, "
-    "індивідуально — 3000 грн. Перший пробний урок безкоштовний, при записі "
+    "індивідуально — 4000 грн. Перший пробний урок безкоштовний, при записі "
     "другої дитини з родини — знижка 15%.",
     "Группа 1 раз в неделю — 1800 грн в месяц, 2 раза в неделю — 3600 грн, "
-    "индивидуально — 3000 грн. Первый пробный урок бесплатный, при записи "
+    "индивидуально — 4000 грн. Первый пробный урок бесплатный, при записи "
     "второго ребёнка из семьи — скидка 15%.",
 )
 
