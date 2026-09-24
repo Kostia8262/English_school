@@ -39,6 +39,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
 
 TEMPLATE = os.path.join(HERE, "template.html")
+
+# Перелік країн у підвалі спільний із посадковими, а живе він у
+# сусідньому генераторі — звідси доданий шлях.
+sys.path.insert(0, os.path.join(os.path.dirname(HERE), "landing"))
+import footer_countries  # noqa: E402
 TRANS_JSON = os.path.join(HERE, "trans.json")
 OUT = os.path.join(ROOT, "index.html")
 
@@ -801,6 +806,12 @@ def fill_faq_graph(head, items):
 
 def main():
     src = io.open(TEMPLATE, encoding="utf-8").read()
+
+    # Перелік країн у підвалі — з того самого джерела, що й у підвалі
+    # посадкових (tools/landing/footer_countries.py). Підставляємо до
+    # expand(), щоб директиви Alpine у ньому розгорнулися як і решта.
+    src = src.replace("<!--FOOTER_COUNTRIES-->",
+                      footer_countries.html_alpine())
     trans = json.load(io.open(TRANS_JSON, encoding="utf-8"))
 
     ctx = Ctx({lang: {"t": trans[lang], "lang": lang} for lang in LANGS})

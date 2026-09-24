@@ -36,6 +36,7 @@ import pages_service        # noqa: E402,F401  — ціни, відгуки, ш�
 import pages_dnipro         # noqa: E402,F401  — локальна сторінка з двома класами
 import pages_generic        # noqa: E402,F401  — курси, онлайн, репетитор, розмовна
 import pages_niche          # noqa: E402,F401  — англійська з нуля, діти за кордоном
+import footer_countries  # noqa: E402
 import pages_country        # noqa: E402,F401  — окремі країни: Польща
 import pages_country_de     # noqa: E402,F401  — Німеччина
 import pages_country_cz     # noqa: E402,F401  — Чехія
@@ -43,6 +44,20 @@ import pages_country_it     # noqa: E402,F401  — Італія
 import pages_country_ro     # noqa: E402,F401  — Румунія
 import pages_country_fr     # noqa: E402,F401  — Франція
 import pages_country_es     # noqa: E402,F401  — Іспанія
+import pages_country_gb     # noqa: E402,F401  — Велика Британія
+import pages_country_ie     # noqa: E402,F401  — Ірландія
+import pages_country_nl     # noqa: E402,F401  — Нідерланди
+import pages_country_at     # noqa: E402,F401  — Австрія
+import pages_country_sk     # noqa: E402,F401  — Словаччина
+import pages_country_bg     # noqa: E402,F401  — Болгарія
+import pages_country_pt     # noqa: E402,F401  — Португалія
+import pages_country_ch     # noqa: E402,F401  — Швейцарія
+import pages_country_md     # noqa: E402,F401  — Молдова
+import pages_country_hu     # noqa: E402,F401  — Угорщина
+import pages_country_ge     # noqa: E402,F401  — Грузія
+import pages_country_kz     # noqa: E402,F401  — Казахстан
+import pages_country_am     # noqa: E402,F401  — Вірменія
+import pages_country_kg     # noqa: E402,F401  — Киргизстан
 import home_blocks          # noqa: E402  — контакти, статті й модалка з головної
 
 BASE = "https://fluent-fox.site"
@@ -644,6 +659,8 @@ HEADER = """
 </header>
 """
 
+FOOTER_COUNTRIES_MARK = "<!--FOOTER_COUNTRIES-->"
+
 FOOTER = """
 <footer class="bg-gray-950 text-gray-400 py-10">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -704,22 +721,14 @@ FOOTER = """
         </ul>
       </div>
     </div>
-    <!-- Країни. Окремий рядок, а не ще одна колонка: колонок у сітці чотири, і
-         п'ята ламає її на планшеті. Тут росте серія сторінок під країни, де
-         живуть українські родини, тож рядок із переносом витримає і шість
-         посилань. -->
+    <!-- Країни. Окремий рядок під сіткою, а не ще одна її колонка: колонок
+         чотири, і п'ята ламає планшет. Сам перелік — сітка, бо країн у серії
+         21 і рядок із переносом злипається в суцільну стрічку. Розмітку дає
+         footer_countries.py з country_art.COUNTRIES, щоб нова країна
+         з'являлася тут і в підвалі головної одночасно. -->
     <div class="border-t border-gray-800 py-6">
       <h3 class="text-sm font-black text-white mb-3" data-ru="Детям за рубежом">Дітям за кордоном</h3>
-      <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-        <li><a href="/anhliyska-dlya-ditey-u-polshchi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Польша">Польща</a></li>
-        <li><a href="/anhliyska-dlya-ditey-u-nimechchyni" class="hover:text-fox-400 transition-colors duration-200" data-ru="Германия">Німеччина</a></li>
-        <li><a href="/anhliyska-dlya-ditey-u-chekhiyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Чехия">Чехія</a></li>
-        <li><a href="/anhliyska-dlya-ditey-v-italiyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Италия">Італія</a></li>
-        <li><a href="/anhliyska-dlya-ditey-u-rumuniyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Румыния">Румунія</a></li>
-        <li><a href="/anhliyska-dlya-ditey-u-frantsiyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Франция">Франція</a></li>
-        <li><a href="/anhliyska-dlya-ditey-v-ispaniyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Испания">Іспанія</a></li>
-        <li><a href="/anhliyska-dlya-ditey-za-kordonom" class="hover:text-fox-400 transition-colors duration-200" data-ru="Все страны">Усі країни</a></li>
-      </ul>
+      <!--FOOTER_COUNTRIES-->
     </div>
     <!-- Підписка на листи: адреса йде в панель розсилки мережі (smm.mycomputer.education),
          яка одразу додає людину в базу й надсилає вітальний лист. Код тексту згоди —
@@ -1006,6 +1015,8 @@ def render_page(p):
             # підсумковому абзаці, а він і несе вагу перелінковки.
             + render_seo(p) + "</main>\n"
             + FOOTER.replace("%(assetv)s", ASSET_VERSION)
+                    .replace(FOOTER_COUNTRIES_MARK,
+                             footer_countries.html_data_ru())
                     .replace("</body>", MODAL + "</body>"))
 
 

@@ -3127,19 +3127,13 @@
         </div>
 
         <!-- Країни: серія сторінок під країни, де живуть українські родини.
-             Окремий рядок, а не п'ята колонка — сітка підвалу тримає чотири. -->
+             Окремий рядок під сіткою, а не п'ята колонка — сітка тримає чотири.
+             Сам перелік іде в кілька колонок: країн 21. Розмітку підставляє
+             build.py із tools/landing/footer_countries.py, джерело одне з
+             підвалом посадкових. -->
         <div class="border-t border-gray-800 pt-8 mb-8">
             <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" x-text="lang==='uk'?'Дітям за кордоном':'Детям за рубежом'">Дітям за кордоном</h4>
-            <ul class="flex flex-wrap gap-x-6 gap-y-2 text-base">
-                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-u-polshchi?lang=ru':'/anhliyska-dlya-ditey-u-polshchi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Польща':'Польша'">Польща</a></li>
-                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-u-nimechchyni?lang=ru':'/anhliyska-dlya-ditey-u-nimechchyni'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Німеччина':'Германия'">Німеччина</a></li>
-                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-u-chekhiyi?lang=ru':'/anhliyska-dlya-ditey-u-chekhiyi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Чехія':'Чехия'">Чехія</a></li>
-                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-v-italiyi?lang=ru':'/anhliyska-dlya-ditey-v-italiyi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Італія':'Италия'">Італія</a></li>
-                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-u-rumuniyi?lang=ru':'/anhliyska-dlya-ditey-u-rumuniyi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Румунія':'Румыния'">Румунія</a></li>
-                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-u-frantsiyi?lang=ru':'/anhliyska-dlya-ditey-u-frantsiyi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Франція':'Франция'">Франція</a></li>
-                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-v-ispaniyi?lang=ru':'/anhliyska-dlya-ditey-v-ispaniyi'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Іспанія':'Испания'">Іспанія</a></li>
-                <li><a :href="lang==='ru'?'/anhliyska-dlya-ditey-za-kordonom?lang=ru':'/anhliyska-dlya-ditey-za-kordonom'" class="hover:text-fox-400 transition-colors" x-text="lang==='uk'?'Усі країни':'Все страны'">Усі країни</a></li>
-            </ul>
+            <!--FOOTER_COUNTRIES-->
         </div>
 
         <!-- Підписка на листи: адреса йде в панель розсилки мережі (smm.mycomputer.education),

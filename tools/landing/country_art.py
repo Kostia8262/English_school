@@ -47,6 +47,20 @@ COUNTRIES = [
     ("anhliyska-dlya-ditey-u-rumuniyi", "Румунія", "Румыния"),
     ("anhliyska-dlya-ditey-u-frantsiyi", "Франція", "Франция"),
     ("anhliyska-dlya-ditey-v-ispaniyi", "Іспанія", "Испания"),
+    ("anhliyska-dlya-ditey-u-velykobrytaniyi", "Велика Британія", "Великобритания"),
+    ("anhliyska-dlya-ditey-v-irlandiyi", "Ірландія", "Ирландия"),
+    ("anhliyska-dlya-ditey-u-niderlandakh", "Нідерланди", "Нидерланды"),
+    ("anhliyska-dlya-ditey-v-avstriyi", "Австрія", "Австрия"),
+    ("anhliyska-dlya-ditey-u-slovachchyni", "Словаччина", "Словакия"),
+    ("anhliyska-dlya-ditey-u-bolhariyi", "Болгарія", "Болгария"),
+    ("anhliyska-dlya-ditey-u-portuhaliyi", "Португалія", "Португалия"),
+    ("anhliyska-dlya-ditey-u-shveytsariyi", "Швейцарія", "Швейцария"),
+    ("anhliyska-dlya-ditey-u-moldovi", "Молдова", "Молдова"),
+    ("anhliyska-dlya-ditey-v-uhorshchyni", "Угорщина", "Венгрия"),
+    ("anhliyska-dlya-ditey-u-hruziyi", "Грузія", "Грузия"),
+    ("anhliyska-dlya-ditey-u-kazakhstani", "Казахстан", "Казахстан"),
+    ("anhliyska-dlya-ditey-u-virmeniyi", "Вірменія", "Армения"),
+    ("anhliyska-dlya-ditey-u-kyrhyzstani", "Киргизстан", "Кыргызстан"),
 ]
 
 
@@ -61,6 +75,20 @@ ANCHORS = {
     "anhliyska-dlya-ditey-u-rumuniyi": ("Англійська в Румунії", "Английский в Румынии"),
     "anhliyska-dlya-ditey-u-frantsiyi": ("Англійська у Франції", "Английский во Франции"),
     "anhliyska-dlya-ditey-v-ispaniyi": ("Англійська в Іспанії", "Английский в Испании"),
+    "anhliyska-dlya-ditey-u-velykobrytaniyi": ("Англійська у Великій Британії", "Английский в Великобритании"),
+    "anhliyska-dlya-ditey-v-irlandiyi": ("Англійська в Ірландії", "Английский в Ирландии"),
+    "anhliyska-dlya-ditey-u-niderlandakh": ("Англійська в Нідерландах", "Английский в Нидерландах"),
+    "anhliyska-dlya-ditey-v-avstriyi": ("Англійська в Австрії", "Английский в Австрии"),
+    "anhliyska-dlya-ditey-u-slovachchyni": ("Англійська у Словаччині", "Английский в Словакии"),
+    "anhliyska-dlya-ditey-u-bolhariyi": ("Англійська в Болгарії", "Английский в Болгарии"),
+    "anhliyska-dlya-ditey-u-portuhaliyi": ("Англійська в Португалії", "Английский в Португалии"),
+    "anhliyska-dlya-ditey-u-shveytsariyi": ("Англійська у Швейцарії", "Английский в Швейцарии"),
+    "anhliyska-dlya-ditey-u-moldovi": ("Англійська в Молдові", "Английский в Молдове"),
+    "anhliyska-dlya-ditey-v-uhorshchyni": ("Англійська в Угорщині", "Английский в Венгрии"),
+    "anhliyska-dlya-ditey-u-hruziyi": ("Англійська в Грузії", "Английский в Грузии"),
+    "anhliyska-dlya-ditey-u-kazakhstani": ("Англійська в Казахстані", "Английский в Казахстане"),
+    "anhliyska-dlya-ditey-u-virmeniyi": ("Англійська у Вірменії", "Английский в Армении"),
+    "anhliyska-dlya-ditey-u-kyrhyzstani": ("Англійська в Киргизстані", "Английский в Кыргызстане"),
 }
 
 
