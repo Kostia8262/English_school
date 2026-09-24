@@ -11,7 +11,9 @@
 | `Mozilla/5.0 (compatible; GPTBot/1.2)` — без адреси | **429** |
 | `Mozilla/5.0 (compatible; Bot/1.2; +https://openai.com/gptbot)` | 200 |
 | `OAI-SearchBot/1.0` — агент пошуку ChatGPT | 200 |
-| `ClaudeBot`, `PerplexityBot`, `bingbot` | 200 |
+| `ClaudeBot`, `Claude-SearchBot`, `PerplexityBot` | 200 |
+| `bingbot`, `Googlebot` | 200 |
+| `ChatGPT-User/1.0` — коли людина просить ChatGPT відкрити посилання | 200 |
 
 Блокується саме підпис `GPTBot/<версія>`, не швидкість і не адреса в UA.
 
@@ -95,10 +97,21 @@
   Telegram та `aggregateRating`;
 * у `.htaccess` немає жодного правила за User-Agent.
 
+## Ще один аргумент для підтримки
+
+Власна документація Hostinger про 429 каже дві речі, які прямо суперечать
+тому, що ми заміряли: «A 429 Too Many Requests response on a website behind
+Hostinger CDN almost always comes from the hosting server or a plugin, not
+from the CDN» і «search engine and AI crawlers are subject to the same DDoS
+protection as other visitors and are never limited at normal crawl rates».
+Перше підтверджує наш висновок (429 з сервера), друге — привід зняти
+обмеження: один запит на двадцять секунд це і є normal crawl rate.
+
 ## Що з цього справді зміниться
 
-`OAI-SearchBot`, яким ChatGPT дістає сторінки для відповідей із посиланнями,
-проходить уже зараз — тобто цитувати нас технічно може. `GPTBot`, яким OpenAI
+`OAI-SearchBot` і `ChatGPT-User` проходять уже зараз — тобто ChatGPT може і
+процитувати нас у відповіді з посиланням, і відкрити сторінку на прохання
+людини. `GPTBot`, яким OpenAI
 збирає корпус, не проходить зовсім, і поки так — сайт не потрапляє в знання
 моделі. Це варто зняти, але сам факт цитування ІІ тримається не на цьому, а на
 сторонніх згадках: агрегатори й списки шкіл. Технічна частина дає можливість,
