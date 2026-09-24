@@ -2341,9 +2341,14 @@
 
 <!-- ═══════════════════════ FAQ ═══════════════════════ -->
 <section class="py-8 md:py-20 bg-fox-50" id="faq">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:items-center">
+       <!-- До lg колонка лишається завширшки як колишній max-w-3xl:
+            контейнер секції став ширшим заради ілюстрації, і без цього
+            на планшеті картки питань розтягувалися через увесь екран. -->
+       <div class="lg:col-span-7 max-w-3xl w-full mx-auto lg:max-w-none">
 
-        <div class="text-center mb-6 md:mb-14">
+        <div class="text-center lg:text-left mb-6 md:mb-8">
             <span class="inline-block bg-white text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-3 md:mb-4 shadow-sm" x-text="t.faq.label">Запитання</span>
             <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-3" x-text="t.faq.title"></h2>
         </div>
@@ -2363,6 +2368,24 @@
                 </details>
             </template>
         </div>
+
+       </div>
+
+       <!-- Ілюстрація тримає праву колонку, щоб питання не висіли по центру
+            порожнього екрана. Ховається до lg: у смузі в одну колонку вона
+            відсовує сам список питань нижче згину, заради чого читач сюди й
+            прийшов. -->
+       <div class="hidden lg:block lg:col-span-5">
+           <picture>
+               <source srcset="faq-fox.webp 1x, faq-fox@2x.webp 2x" type="image/webp">
+               <img src="faq-fox.webp" width="520" height="646" loading="lazy" decoding="async"
+                    class="w-full rounded-3xl shadow-lg shadow-black/10"
+                    alt="Лисеня FluentFox уважно розглядає шкільну дошку зі словами HELLO та ENGLISH"
+                    data-ru-alt="Лисёнок FluentFox внимательно разглядывает школьную доску со словами HELLO и ENGLISH">
+           </picture>
+       </div>
+
+      </div>
     </div>
 </section>
 
