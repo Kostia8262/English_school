@@ -16,6 +16,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # Уся історія, а не один коміт: крок IndexNow нижче питає у git, які
+          # саме сторінки змінилися в цьому пуші. На мілкому клоні `git diff`
+          # по діапазону просто не має що порівнювати.
+          fetch-depth: 0
 
       - name: Install sshpass and rsync
         run: sudo apt-get install -y sshpass rsync
@@ -51,6 +56,27 @@ jobs:
             --exclude='tailwind.config.js' \
             -e "ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no" \
             ./ ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}:/home/u260300169/domains/fluent-fox.site/public_html/
+
+      # Сказати Bing, що сторінки змінилися, — протокол IndexNow. Саме після
+      # rsync, а не до: попросити переобійти адресу, за якою ще лежить старий
+      # файл, означає закріпити в індексі те, що ми щойно виправили.
+      #
+      # Крок не валить викатку: сайт уже на проді, а непроханий обхід — річ
+      # приємна, але не обов'язкова. Подаються тільки сторінки з цього пуша і
+      # тільки ті, що є в карті сайту (див. tools/indexnow/submit.py).
+      - name: Повідомити IndexNow про змінені сторінки
+        continue-on-error: true
+        run: |
+          before="${{ github.event.before }}"
+          # Перший пуш у гілку та force-push дають нулі або коміт, якого вже
+          # немає. Тоді подаємо всю карту: 84 адреси раз на такий випадок
+          # дешевше, ніж мовчки не подати нічого.
+          if [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ] \
+             || ! git cat-file -e "$before^{commit}" 2>/dev/null; then
+            python3 tools/indexnow/submit.py --all
+          else
+            python3 tools/indexnow/submit.py --changed "$before..${{ github.sha }}"
+          fi
 
       # Конфіг приймача заявок кладеться НЕ в public_html, а на рівень вище:
       # rsync вище крок чистить public_html через --delete, і файл із токеном
