@@ -822,6 +822,11 @@ CTA = """
 # ведуть на /#form». Що з цього випливає: копій форми на сайті стало
 # шістнадцять, усі йдуть в один api/lead.php, а сторінку, з якої прийшла
 # заявка, видно з поля `page` — його додає js/lead.js.
+# Після геро — та сама трійка, що на головній: смуга з цифрами, «як це
+# працює» і лондонська смуга. Прохання власника від 24.09.2026.
+STATS = home_blocks.STATS
+HOWITWORKS = home_blocks.HOWITWORKS
+STRIP = home_blocks.STRIP
 CONTACTS = home_blocks.CONTACTS
 ARTICLES = home_blocks.ARTICLES
 MODAL = home_blocks.MODAL
@@ -885,7 +890,7 @@ def render_page(p):
                 '  </div>\n</section>\n' % hero_text)
 
     body = "\n".join(render_block(b) for b in p["blocks"])
-    main = ('\n<main>\n' + render_agegroups(p) + '<section class="pb-8 md:pb-20">\n'
+    main = ('\n<main>\n' + render_agegroups(p) + '<section class="pt-8 pb-8 md:py-20">\n'
             '  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">\n'
             '%s\n'
             '  </div>\n</section>\n' % body)
@@ -896,8 +901,14 @@ def render_page(p):
     # Контакти стоять після банера: людина вже прочитала сторінку й вирішує —
     # дзвонити чи писати. Якір #contacts, на нього веде пункт у шапці.
     return (head + HEADER.replace("%(path)s", "/" + p["slug"])
-            + crumbs + hero + main + render_faq(p) + CTA + CONTACTS + ARTICLES
-            + render_related(p) + render_seo(p) + "</main>\n"
+            + crumbs + hero + STATS + HOWITWORKS + STRIP
+            + main + render_faq(p) + CTA + CONTACTS + ARTICLES
+            # Блок «Читайте також» прибрано 24.09.2026 за рішенням власника.
+            # Дані `related` і render_related лишились на місці — щоб
+            # повернути блок, досить знову додати виклик сюди. Посилання на
+            # сусідні сторінки нікуди не зникли: вони лишаються в
+            # підсумковому абзаці, а він і несе вагу перелінковки.
+            + render_seo(p) + "</main>\n"
             + FOOTER.replace("%(assetv)s", ASSET_VERSION)
                     .replace("</body>", MODAL + "</body>"))
 
