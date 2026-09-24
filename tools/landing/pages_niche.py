@@ -20,7 +20,7 @@
 """
 from __future__ import unicode_literals
 
-from country_art import COUNTRIES
+from country_art import links as country_links
 from content import (PAGES, BASE, ORG, course_node, course_offer,
                      FORMAT_TABLE, OFFLINE_NOTE, PRICE_CALLOUT, LOCATIONS)
 
@@ -384,7 +384,7 @@ PAGES.append({
          "есть своя: там точное время урока, города, из которых занимаются дети, "
          "оплата местной картой и то, чем именно английский в той стране даётся "
          "труднее."),
-        ("chiplinks", [("/" + slug, uk, ru) for slug, uk, ru in COUNTRIES]),
+        ("chiplinks", country_links()),
 
         ("h2", "Як це поєднується з місцевою школою",
                "Как это сочетается с местной школой"),

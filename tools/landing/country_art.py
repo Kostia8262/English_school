@@ -50,12 +50,32 @@ COUNTRIES = [
 ]
 
 
+# Текст посилання — не сама назва країни, а запит: «Англійська в Німеччині».
+# Анкор читає пошук, і назва країни в ньому важить більше за коротке слово в
+# пілюлі. Прийменник у кожної свій, тому перелічений, а не вгаданий правилом.
+ANCHORS = {
+    "anhliyska-dlya-ditey-u-polshchi": ("Англійська у Польщі", "Английский в Польше"),
+    "anhliyska-dlya-ditey-u-nimechchyni": ("Англійська в Німеччині", "Английский в Германии"),
+    "anhliyska-dlya-ditey-u-chekhiyi": ("Англійська в Чехії", "Английский в Чехии"),
+    "anhliyska-dlya-ditey-v-italiyi": ("Англійська в Італії", "Английский в Италии"),
+    "anhliyska-dlya-ditey-u-rumuniyi": ("Англійська в Румунії", "Английский в Румынии"),
+    "anhliyska-dlya-ditey-u-frantsiyi": ("Англійська у Франції", "Английский во Франции"),
+    "anhliyska-dlya-ditey-v-ispaniyi": ("Англійська в Іспанії", "Английский в Испании"),
+}
+
+
+def links(exclude=None):
+    """Перелік країн посиланнями для блоку `chiplinks`."""
+    out = [("/" + slug, ANCHORS[slug][0], ANCHORS[slug][1])
+           for slug, _uk, _ru in COUNTRIES if slug != exclude]
+    out.append(("/anhliyska-dlya-ditey-za-kordonom", "Інші країни",
+                "Другие страны"))
+    return out
+
+
 def ring(current_slug):
     """Блоки «а якщо ви в іншій країні» для країнової сторінки."""
-    others = [("/" + slug, uk, ru) for slug, uk, ru in COUNTRIES
-              if slug != current_slug]
-    others.append(("/anhliyska-dlya-ditey-za-kordonom", "Інші країни",
-                   "Другие страны"))
+    others = links(exclude=current_slug)
     return [
         ("h2", "А якщо ви в іншій країні", "А если вы в другой стране"),
         ("p",
