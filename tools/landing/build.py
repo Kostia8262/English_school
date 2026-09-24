@@ -37,6 +37,12 @@ import pages_dnipro         # noqa: E402,F401  — локальна сторін
 import pages_generic        # noqa: E402,F401  — курси, онлайн, репетитор, розмовна
 import pages_niche          # noqa: E402,F401  — англійська з нуля, діти за кордоном
 import pages_country        # noqa: E402,F401  — окремі країни: Польща
+import pages_country_de     # noqa: E402,F401  — Німеччина
+import pages_country_cz     # noqa: E402,F401  — Чехія
+import pages_country_it     # noqa: E402,F401  — Італія
+import pages_country_ro     # noqa: E402,F401  — Румунія
+import pages_country_fr     # noqa: E402,F401  — Франція
+import pages_country_es     # noqa: E402,F401  — Іспанія
 import home_blocks          # noqa: E402  — контакти, статті й модалка з головної
 
 BASE = "https://fluent-fox.site"
@@ -159,6 +165,18 @@ def render_block(b):
                 'text-violet-600 hover:text-violet-500 transition-colors duration-200"%s</a>\n'
                 '      </div>'
                 % (attr_ru(uk, ru), href, attr_ru(l_uk + " →", l_ru + " →")))
+
+    if kind == "chiplinks":
+        # Ті самі пілюлі, що "chips", але кожна — посилання. Потрібні серії
+        # країнових сторінок: вони мусять вести одна на одну з тіла, а не
+        # лише з підвалу, бо вагу перелінковки несе саме тіло.
+        items = "\n".join(
+            '          <li><a href="%s" class="inline-block bg-fox-50 text-fox-600 '
+            'font-bold text-sm px-4 py-1.5 rounded-full hover:bg-fox-100 '
+            'transition-colors duration-200"%s</a></li>'
+            % (href, attr_ru(uk, ru)) for href, uk, ru in b[1])
+        return ('      <ul class="flex flex-wrap gap-2 mb-6 mt-4">\n%s\n      </ul>'
+                % items)
 
     if kind == "chips":
         # Міста списком у тексті читаються як перелік, який хочеться проґавити;
@@ -650,7 +668,13 @@ FOOTER = """
     <div class="border-t border-gray-800 py-6">
       <h3 class="text-sm font-black text-white mb-3" data-ru="Детям за рубежом">Дітям за кордоном</h3>
       <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-        <li><a href="/anhliyska-dlya-ditey-u-polshchi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Английский в Польше">Англійська у Польщі</a></li>
+        <li><a href="/anhliyska-dlya-ditey-u-polshchi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Польша">Польща</a></li>
+        <li><a href="/anhliyska-dlya-ditey-u-nimechchyni" class="hover:text-fox-400 transition-colors duration-200" data-ru="Германия">Німеччина</a></li>
+        <li><a href="/anhliyska-dlya-ditey-u-chekhiyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Чехия">Чехія</a></li>
+        <li><a href="/anhliyska-dlya-ditey-v-italiyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Италия">Італія</a></li>
+        <li><a href="/anhliyska-dlya-ditey-u-rumuniyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Румыния">Румунія</a></li>
+        <li><a href="/anhliyska-dlya-ditey-u-frantsiyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Франция">Франція</a></li>
+        <li><a href="/anhliyska-dlya-ditey-v-ispaniyi" class="hover:text-fox-400 transition-colors duration-200" data-ru="Испания">Іспанія</a></li>
         <li><a href="/anhliyska-dlya-ditey-za-kordonom" class="hover:text-fox-400 transition-colors duration-200" data-ru="Все страны">Усі країни</a></li>
       </ul>
     </div>

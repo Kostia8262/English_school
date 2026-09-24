@@ -24,6 +24,7 @@ egzamin ósmoklasisty, matura й шкільні оцінки: школа так�
 from __future__ import unicode_literals
 
 from content import PAGES, BASE, ORG, course_offer, PRICE_CALLOUT
+from country_art import ring
 
 
 # ── Ілюстрація геро ─────────────────────────────────────────────────────────
@@ -249,6 +250,7 @@ PAGES.append({
          "пересчитает её из злотых по своему курсу в момент оплаты; отдельных «цен для "
          "зарубежья» нет, они одинаковы для всех."),
 
+        ] + ring("anhliyska-dlya-ditey-u-polshchi") + [
         ("notelink",
          "Який у дитини рівень англійської після переїзду, за розповіддю не зрозуміти — "
          "це видно на уроці. Вчитель дає завдання різної складності, дивиться, де дитина "
