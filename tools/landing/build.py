@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.join(ROOT, "tools", "i18n"))
 sys.path.insert(0, os.path.join(ROOT, "tools", "sitemap"))
 
 from assets import ASSET_VERSION  # noqa: E402  — спільна версія ?v= для всього сайту
+from icons_map import icon  # noqa: E402  — емодзі в джерелі, <img> на сторінці
 from html_min import squeeze  # noqa: E402  — коментарі й відступи лишаються в джерелі
 import ru_pages as RU        # noqa: E402  — російські версії тих самих сторінок
 import graph as GRAPH        # noqa: E402  — переклад розмітки Schema.org
@@ -95,11 +96,11 @@ def render_block(b):
     if kind == "cards":
         cards = "\n".join(
             '          <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm">\n'
-            '            <div class="text-3xl mb-3" aria-hidden="true">%s</div>\n'
+            '            %s\n'
             '            <h3 class="text-xl font-black text-gray-900 leading-tight mb-2"%s</h3>\n'
             '            <p class="text-sm text-gray-600 leading-relaxed"%s</p>\n'
             '          </div>'
-            % (emoji, attr_ru(t_uk, t_ru), attr_ru(d_uk, d_ru))
+            % (icon(emoji, "w-11 h-11 mb-3"), attr_ru(t_uk, t_ru), attr_ru(d_uk, d_ru))
             for emoji, t_uk, t_ru, d_uk, d_ru in b[1])
         return ('      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 mt-4">\n%s\n      </div>'
                 % cards)
@@ -294,7 +295,7 @@ def render_agegroups(p):
             'font-black text-fox-600 hover:text-fox-700 transition-colors duration-200"%s</a>\n'
             '          </div>\n'
             '        </div>'
-            % (c["emoji"], attr_ru(*c["range"]), attr_ru(*c["title"]), chips, items,
+            % (icon(c["emoji"], "w-11 h-11"), attr_ru(*c["range"]), attr_ru(*c["title"]), chips, items,
                attr_ru(*g["level_label"]), track,
                attr_ru(*g["result_label"]), attr_ru(*c["result"]), c["href"],
                attr_ru(g["more"][0] + " →", g["more"][1] + " →")))
@@ -589,7 +590,7 @@ FOOTER = """
         <ul class="flex flex-col gap-2 text-sm">
           <li><a href="tel:+380954624672" class="hover:text-fox-400 transition-colors duration-200">+38 (095) 462-46-72</a></li>
           <li><a href="tel:+380682522876" class="hover:text-fox-400 transition-colors duration-200">+38 (068) 252-28-76</a></li>
-          <li><a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors duration-200">fluent.fox.study@gmail.com</a></li>
+          <li class="min-w-0"><a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors duration-200 break-all">fluent.fox.study@gmail.com</a></li>
           <li data-ru="Днепр, пр. А. Поля 28а">Дніпро, пр. О. Поля 28а</li>
         </ul>
       </div>
@@ -711,14 +712,14 @@ def render_related(p):
             'border border-gray-100 hover:border-fox-200 hover:-translate-y-1 shadow-sm '
             'hover:shadow-md transition-all duration-300">\n'
             '          <span class="w-12 h-12 rounded-2xl bg-fox-50 flex items-center '
-            'justify-center text-2xl mb-4" aria-hidden="true">%s</span>\n'
+            'justify-center mb-4">%s</span>\n'
             '          <p class="font-black text-gray-900 text-xl leading-tight"%s</p>'
             '%s\n'
             '          <span class="inline-flex items-center gap-1.5 text-sm font-black '
             'text-fox-600 mt-auto pt-5"><span data-ru="Подробнее">Детальніше</span>'
             '<span class="transition-transform duration-200 group-hover:translate-x-1" '
             'aria-hidden="true">&rarr;</span></span>\n'
-            '        </a>' % (href, emoji, attr_ru(t_uk, t_ru), sub_html))
+            '        </a>' % (href, icon(emoji, "w-7 h-7"), attr_ru(t_uk, t_ru), sub_html))
     return """
 <section class="py-8 md:py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

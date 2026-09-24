@@ -49,6 +49,7 @@ OUT = os.path.join(ROOT, "index.html")
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 from assets import ASSET_VERSION
 from html_min import squeeze
+from icons_map import icon  # емодзі в словнику, <img> на сторінці
 
 LANGS = ("uk", "ru")
 
@@ -497,6 +498,11 @@ DROP_ATTRS = ("x-data", "x-cloak", "x-init", "x-effect", "x-ref", ":key",
               "x-transition")
 
 # Порожні елементи HTML: у них немає вмісту, отже x-text до них не приходить.
+class Raw(str):
+    """Готовий HTML, який не можна екранувати — на сьогодні це тільки <img>
+    іконки з x-icon. esc_text перетворив би його на видимі теги."""
+
+
 VOID = {"br", "img", "input", "hr", "meta", "link", "path", "polygon", "circle",
         "rect", "use", "stop", "source", "area", "col", "embed", "track", "wbr"}
 
@@ -544,7 +550,7 @@ def resolve(fragment, ctx):
         if text is not None:
             if name in VOID or selfclose:
                 raise ValueError("x-text на порожньому елементі <%s>" % name)
-            out.append(esc_text(text[0]))
+            out.append(text[0] if isinstance(text[0], Raw) else esc_text(text[0]))
             skip_tag = name
             skip_depth = 1
 
@@ -577,6 +583,15 @@ def process_attrs(attrs, ctx):
         if name == "x-text":
             uk, ru = both(value, ctx)
             text = (str(uk), str(ru))
+            continue
+
+        if name == "x-icon":
+            # "вираз|класи": вираз дає емодзі зі словника, класи — розмір на
+            # сторінці. Невідомий емодзі валить збірку в icons_map.
+            expr, _, cls = value.partition("|")
+            uk, _ru = both(expr.strip(), ctx)
+            img = Raw(icon(str(uk), cls.strip() or "w-8 h-8"))
+            text = (img, img)
             continue
 
         if name == "x-model":

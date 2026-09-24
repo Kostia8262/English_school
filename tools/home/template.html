@@ -1606,7 +1606,7 @@
                     <!-- Floating card: vocabulary flashcard (independent parallax) -->
                     <div class="absolute bottom-4 -left-14 bg-white rounded-2xl shadow-lg shadow-black/10 p-3 w-32 border border-gray-100 transition-transform duration-300"
                          :style="`transform:translate(${px * 24}px, ${py * -18}px)`">
-                        <span class="text-lg leading-none" aria-hidden="true">🔤</span>
+                        <img src="/icons/books.webp" alt="" width="64" height="64" class="w-5 h-5 flex-none" loading="lazy" decoding="async">
                         <div class="h-1.5 rounded-full bg-gray-100 mt-2 mb-1.5 w-full"></div>
                         <div class="h-1.5 rounded-full bg-fox-100 w-1/2"></div>
                     </div>
@@ -1670,7 +1670,7 @@
 
                     <!-- Icon + age range -->
                     <div class="flex items-center justify-between mb-5">
-                        <div class="w-14 h-14 rounded-2xl bg-fox-50 border-2 border-fox-100 flex items-center justify-center text-3xl" x-text="age.emoji"></div>
+                        <div class="w-14 h-14 rounded-2xl bg-fox-50 border-2 border-fox-100 flex items-center justify-center" x-icon="age.emoji|w-9 h-9"></div>
                         <div class="inline-block bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="age.range"></div>
                     </div>
 
@@ -1740,7 +1740,7 @@
                 <template x-for="(step, i) in t.how.steps" :key="i">
                     <div class="flex flex-col items-center text-center group cursor-default">
                         <div class="relative mb-6">
-                            <div class="w-[72px] h-[72px] rounded-2xl bg-white flex items-center justify-center text-3xl shadow-fox-sm border-2 border-fox-100 group-hover:border-fox-400 group-hover:shadow-fox-lg group-hover:-translate-y-1.5 transition-all duration-300 select-none" x-text="step.emoji"></div>
+                            <div class="w-[72px] h-[72px] rounded-2xl bg-white flex items-center justify-center text-3xl shadow-fox-sm border-2 border-fox-100 group-hover:border-fox-400 group-hover:shadow-fox-lg group-hover:-translate-y-1.5 transition-all duration-300 select-none" x-icon="step.emoji|w-10 h-10"></div>
                             <div class="absolute -bottom-2.5 -right-2.5 w-7 h-7 rounded-full bg-gradient-to-br from-fox-500 to-fox-600 text-white text-xs font-black flex items-center justify-center shadow-fox-sm" x-text="i+1"></div>
                         </div>
                         <h3 class="font-black text-gray-900 mb-1.5 leading-tight text-base" x-text="step.title"></h3>
@@ -1759,7 +1759,7 @@
                     <div class="flex-shrink-0 w-9 h-9 rounded-xl bg-fox-500 text-white font-black text-sm flex items-center justify-center shadow-fox-sm z-10" x-text="i+1"></div>
                     <div class="flex-1 pt-1">
                         <div class="flex items-center gap-2 mb-0.5">
-                            <span class="text-base select-none" x-text="step.emoji"></span>
+                            <span class="flex-none select-none" x-icon="step.emoji|w-5 h-5"></span>
                             <span class="font-black text-gray-900 text-sm" x-text="step.title"></span>
                         </div>
                         <p class="text-gray-400 text-xs leading-relaxed" x-text="step.desc"></p>
@@ -1884,8 +1884,9 @@
                     <template x-for="tab in t.prog.tabs" :key="tab.key">
                         <button @click="progTab=tab.key; openMod=(window.innerWidth < 768 ? null : 0)"
                                 :class="progTab===tab.key ? 'bg-fox-500 text-white shadow-fox-sm' : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'"
-                                class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 text-center"
-                                x-text="tab.emoji + ' ' + tab.label">
+                                class="flex-1 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 inline-flex items-center justify-center gap-1.5">
+                            <span class="flex-none" x-icon="tab.emoji|w-5 h-5"></span>
+                            <span x-text="tab.label"></span>
                         </button>
                     </template>
                 </div>
@@ -1979,7 +1980,7 @@
                         <template x-for="row in t.prog.info" :key="row.label">
                             <div class="flex items-start gap-3">
                                 <div class="w-10 h-10 rounded-2xl bg-fox-50 flex items-center justify-center text-xl flex-none">
-                                    <span x-text="row.emoji"></span>
+                                    <span class="flex-none" x-icon="row.emoji|w-6 h-6"></span>
                                 </div>
                                 <div>
                                     <p class="text-2xs font-bold text-gray-400 uppercase tracking-wider" x-text="row.label"></p>
@@ -2333,7 +2334,7 @@
                         </div>
                         <p class="text-sm text-gray-700 leading-relaxed mb-5 italic" x-text="'«' + review.text + '»'"></p>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg" :style="'background:' + review.color" x-text="review.avatar"></div>
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-base font-black text-fox-700 flex-none" :style="'background:' + review.color" x-text="review.avatar"></div>
                             <div>
                                 <div class="font-black text-gray-900 text-sm" x-text="review.name"></div>
                                 <div class="text-gray-400 text-xs" x-text="review.role"></div>
@@ -2359,7 +2360,7 @@
                         </div>
                         <p class="text-sm text-gray-700 leading-relaxed mb-5 italic" x-text="'«' + review.text + '»'"></p>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg" :style="'background:' + review.color" x-text="review.avatar"></div>
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-base font-black text-fox-700 flex-none" :style="'background:' + review.color" x-text="review.avatar"></div>
                             <div>
                                 <div class="font-black text-gray-900 text-sm" x-text="review.name"></div>
                                 <div class="text-gray-400 text-xs" x-text="review.role"></div>
@@ -2434,7 +2435,7 @@
                 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
-                        <span class="text-3xl leading-none">📚</span>
+                        <img src="/icons/books.webp" alt="" width="64" height="64" class="w-9 h-9" loading="lazy" decoding="async">
                         <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Методи навчання':'Методы обучения'">Методи навчання</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як навчити дитину англійської онлайн: 7 методів, які дають результат':'Как научить ребёнка английскому онлайн: 7 методов, которые работают'"></h3>
@@ -2450,7 +2451,7 @@
                 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
-                        <span class="text-3xl leading-none">📝</span>
+                        <img src="/icons/form.webp" alt="" width="64" height="64" class="w-9 h-9" loading="lazy" decoding="async">
                         <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'НМТ та іспити':'НМТ и экзамены'">НМТ та іспити</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Підготовка до НМТ з англійської 2025: покроковий план':'Подготовка к НМТ по английскому 2025: пошаговый план'"></h3>
@@ -2466,7 +2467,7 @@
                 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
-                        <span class="text-3xl leading-none">🚀</span>
+                        <img src="/icons/rocket.webp" alt="" width="64" height="64" class="w-9 h-9" loading="lazy" decoding="async">
                         <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Мотивація':'Мотивация'">Мотивація</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як мотивувати дитину вивчати англійську: 8 прийомів для батьків':'Как мотивировать ребёнка учить английский: 8 приёмов для родителей'"></h3>
@@ -2487,7 +2488,7 @@
                 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
-                        <span class="text-3xl leading-none">📚</span>
+                        <img src="/icons/books.webp" alt="" width="64" height="64" class="w-9 h-9" loading="lazy" decoding="async">
                         <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Методи навчання':'Методы обучения'">Методи навчання</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як навчити дитину англійської онлайн: 7 методів, які дають результат':'Как научить ребёнка английскому онлайн: 7 методов, которые работают'"></h3>
@@ -2505,7 +2506,7 @@
                 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
-                        <span class="text-3xl leading-none">📝</span>
+                        <img src="/icons/form.webp" alt="" width="64" height="64" class="w-9 h-9" loading="lazy" decoding="async">
                         <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'НМТ та іспити':'НМТ и экзамены'">НМТ та іспити</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Підготовка до НМТ з англійської 2025: покроковий план':'Подготовка к НМТ по английскому 2025: пошаговый план'"></h3>
@@ -2523,7 +2524,7 @@
                 <div class="h-1.5 bg-gradient-to-r from-fox-500 to-fox-600 w-full"></div>
                 <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-start justify-between mb-4">
-                        <span class="text-3xl leading-none">🚀</span>
+                        <img src="/icons/rocket.webp" alt="" width="64" height="64" class="w-9 h-9" loading="lazy" decoding="async">
                         <span class="bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full" x-text="lang==='uk'?'Мотивація':'Мотивация'">Мотивація</span>
                     </div>
                     <h3 class="text-base font-black text-gray-900 leading-tight mb-2 flex-1" x-text="lang==='uk'?'Як мотивувати дитину вивчати англійську: 8 прийомів для батьків':'Как мотивировать ребёнка учить английский: 8 приёмов для родителей'"></h3>
@@ -3002,7 +3003,7 @@
             <!-- ── Онлайн: основний формат, тому темна картка ── -->
             <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 bg-gray-950 shadow-2xl shadow-black/60" style="background: radial-gradient(ellipse at 10% 0%, rgba(255,107,53,0.32) 0%, transparent 55%), radial-gradient(ellipse at 100% 100%, rgba(124,58,237,0.26) 0%, transparent 55%), #030712;">
                 <div class="relative z-10">
-                    <div class="w-14 h-14 rounded-2xl bg-fox-500 flex items-center justify-center text-2xl mb-5 shadow-fox">🌍</div>
+                    <div class="w-14 h-14 rounded-2xl bg-fox-500 flex items-center justify-center mb-5 shadow-fox"><img src="/icons/earth.webp" alt="" width="64" height="64" class="w-8 h-8" loading="lazy" decoding="async"></div>
                     <h3 class="text-xl md:text-2xl font-black text-white mb-3 leading-tight" x-text="t.geo.onlineTitle">Онлайн по всій Україні</h3>
                     <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-6" x-text="t.geo.onlineText"></p>
                     <ul class="space-y-4">
@@ -3017,7 +3018,7 @@
 
             <!-- ── Очно ── -->
             <div class="bg-white rounded-3xl p-6 sm:p-8 border border-fox-100 shadow-lg shadow-black/10 flex flex-col">
-                <div class="w-14 h-14 rounded-2xl bg-fox-50 flex items-center justify-center text-2xl mb-5">📍</div>
+                <div class="w-14 h-14 rounded-2xl bg-fox-50 flex items-center justify-center mb-5"><img src="/icons/pin.webp" alt="" width="64" height="64" class="w-8 h-8" loading="lazy" decoding="async"></div>
                 <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-3 leading-tight" x-text="t.geo.offlineTitle">Два очні класи в Дніпрі</h3>
                 <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-6" x-text="t.geo.offlineText"></p>
                 <div class="grid sm:grid-cols-2 gap-4 mb-6">
@@ -3113,9 +3114,9 @@
             <div>
                 <h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" x-text="t.footer.contactTitle"></h4>
                 <ul class="space-y-2 text-base">
-                    <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a></li>
-                    <li class="flex items-center gap-2"><span>📞</span> <a href="tel:+380682522876" class="hover:text-fox-400 transition-colors">+38 (068) 252-28-76</a></li>
-                    <li class="flex items-center gap-2"><span>✉️</span> <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors">fluent.fox.study@gmail.com</a></li>
+                    <li class="flex items-center gap-2"><img src="/icons/phone.webp" alt="" width="64" height="64" class="w-4 h-4 flex-none" loading="lazy" decoding="async"> <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a></li>
+                    <li class="flex items-center gap-2"><img src="/icons/phone.webp" alt="" width="64" height="64" class="w-4 h-4 flex-none" loading="lazy" decoding="async"> <a href="tel:+380682522876" class="hover:text-fox-400 transition-colors">+38 (068) 252-28-76</a></li>
+                    <li class="flex items-center gap-2 min-w-0"><img src="/icons/mail.webp" alt="" width="64" height="64" class="w-4 h-4 flex-none" loading="lazy" decoding="async"> <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors break-all">fluent.fox.study@gmail.com</a></li>
                     <li class="flex items-center gap-2"><span>⏰</span> <span x-text="t.footer.hours">Пн–Пт: 9:00–20:00, Сб: 10:00–18:00</span></li>
                 </ul>
             </div>
@@ -3199,7 +3200,7 @@
             <p x-text="t.footer.copyright">© 2026 FluentFox. Всі права захищені.</p>
             <p><span x-text="t.footer.legalEntity">ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,</span>
                <a href="tel:+380954624672" class="hover:text-fox-400 transition-colors">+38 (095) 462-46-72</a>,
-               <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors">fluent.fox.study@gmail.com</a>
+               <a href="mailto:fluent.fox.study@gmail.com" class="hover:text-fox-400 transition-colors break-all">fluent.fox.study@gmail.com</a>
             </p>
         </div>
     </div>
