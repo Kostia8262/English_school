@@ -55,8 +55,8 @@ document.documentElement.lang='ru';
 }
 })();
 </script>
-<link rel="preload" as="style" href="/css/style.css?v=20260924f"/>
-<link rel="stylesheet" href="/css/style.css?v=20260924f" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260925a"/>
+<link rel="stylesheet" href="/css/style.css?v=20260925a" fetchpriority="high"/>
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
@@ -1144,6 +1144,10 @@ details[open] .faq-plus { transform: rotate(45deg); }
 .hero-bg {
 background: linear-gradient(140deg, var(--fox-50) 0%, var(--cream) 50%, var(--violet-50) 100%);
 }
+/* ── Дропдаун «Напрямки» ─────────────────────────────────── */
+.nav-dd > summary { list-style: none; }
+.nav-dd > summary::-webkit-details-marker { display: none; }
+.nav-dd[open] > summary .nav-dd-arrow { transform: rotate(180deg); }
 /* ── Card hover lift ────────────────────────────────────── */
 .card-lift {
 transition: transform var(--duration-slow) ease, box-shadow var(--duration-slow) ease;
@@ -1227,7 +1231,20 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </a>
 <div class="hidden nav:flex items-center gap-6">
 <a class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" href="#about" data-ru="О нас">Про нас</a>
-<a class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" href="#program" data-ru="Программа">Програма</a>
+<div class="relative">
+<details class="nav-dd">
+<summary class="flex items-center gap-1 text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors cursor-pointer">
+<span data-ru="Направления">Напрямки</span>
+<svg class="nav-dd-arrow w-4 h-4 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.6 7.5 10 11.9l4.4-4.4 1.4 1.4-5.8 5.8-5.8-5.8z"/></svg>
+</summary>
+<ul class="absolute left-0 top-full mt-2 w-64 bg-white border border-fox-100 rounded-3xl shadow-lg shadow-black/10 p-2">
+<li><a class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" href="/kursy-anhliyskoyi-dlya-ditey" data-ru="Групповые занятия">Групові заняття</a></li>
+<li><a class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" href="/repetytor-z-anhliyskoyi" data-ru="Индивидуальные занятия">Індивідуальні заняття</a></li>
+<li><a class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" href="/pidhotovka-do-nmt" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
+<li><a class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" href="/cambridge" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
+</ul>
+</details>
+</div>
 <a class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" href="#prices" data-ru="Цены">Ціни</a>
 <a class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" href="#contacts" data-ru="Контакты">Контакти</a>
 <a class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" href="blog/">Блог</a>
@@ -1256,7 +1273,18 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <div class="nav:hidden pb-4 border-t border-gray-100 mobile-menu-enter" hidden data-menu-when="open">
 <div class="flex flex-col gap-1 pt-3">
 <a class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" href="#about" data-ru="О нас" data-menu="close">Про нас</a>
-<a class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" href="#program" data-ru="Программа" data-menu="close">Програма</a>
+<details class="nav-dd px-3">
+<summary class="flex items-center gap-1 py-2 text-gray-700 font-semibold cursor-pointer">
+<span data-ru="Направления">Напрямки</span>
+<svg class="nav-dd-arrow w-4 h-4 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.6 7.5 10 11.9l4.4-4.4 1.4 1.4-5.8 5.8-5.8-5.8z"/></svg>
+</summary>
+<ul class="pl-3 border-l border-fox-100">
+<li><a class="block px-3 py-2 rounded-xl text-base font-semibold text-gray-600" href="/kursy-anhliyskoyi-dlya-ditey" data-ru="Групповые занятия">Групові заняття</a></li>
+<li><a class="block px-3 py-2 rounded-xl text-base font-semibold text-gray-600" href="/repetytor-z-anhliyskoyi" data-ru="Индивидуальные занятия">Індивідуальні заняття</a></li>
+<li><a class="block px-3 py-2 rounded-xl text-base font-semibold text-gray-600" href="/pidhotovka-do-nmt" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
+<li><a class="block px-3 py-2 rounded-xl text-base font-semibold text-gray-600" href="/cambridge" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
+</ul>
+</details>
 <a class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" href="#prices" data-ru="Цены" data-menu="close">Ціни</a>
 <a class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" href="#contacts" data-ru="Контакты" data-menu="close">Контакти</a>
 <a class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" href="blog/" data-menu="close">Блог</a>
@@ -5203,9 +5231,9 @@ Telegram
 </div>
 </div>
 </footer>
-<script src="/js/lang.js?v=20260924f" defer></script>
-<script src="/js/lead.js?v=20260924f" defer></script>
-<script src="/js/home.js?v=20260924f" defer></script>
-<script src="/js/subscribe.js?v=20260924f" defer></script>
+<script src="/js/lang.js?v=20260925a" defer></script>
+<script src="/js/lead.js?v=20260925a" defer></script>
+<script src="/js/home.js?v=20260925a" defer></script>
+<script src="/js/subscribe.js?v=20260925a" defer></script>
 </body>
 </html>

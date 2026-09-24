@@ -111,6 +111,29 @@
     });
   }
 
+  function wireDropdowns() {
+    // <details> сам по собі відкривається й закривається кліком по summary —
+    // без цього коду меню працює. Тут лише те, чого розмітка не вміє:
+    // закрити відкритий список кліком поза ним і клавішею Esc.
+    var dds = document.querySelectorAll('.nav-dd');
+    if (!dds.length) return;
+    function closeAll(except) {
+      dds.forEach(function (d) { if (d !== except) d.removeAttribute('open'); });
+    }
+    dds.forEach(function (d) {
+      var sum = d.querySelector('summary');
+      if (sum) sum.addEventListener('click', function () { closeAll(d); });
+    });
+    document.addEventListener('click', function (e) {
+      var inside = false;
+      dds.forEach(function (d) { if (d.contains(e.target)) inside = true; });
+      if (!inside) closeAll(null);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll(null);
+    });
+  }
+
   function markActive() {
     var lang = currentLang();
     document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
@@ -127,6 +150,7 @@
     markActive();
     wireSwitcher();
     wireBurger();
+    wireDropdowns();
   }
 
   if (document.readyState === 'loading') {

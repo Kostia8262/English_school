@@ -56,9 +56,13 @@ cyrillic несе весь текст сторінки, тому її берем
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
-<link rel="preload" as="style" href="/css/style.css?v=20260924f"/>
-<link rel="stylesheet" href="/css/style.css?v=20260924f" fetchpriority="high"/>
+<link rel="preload" as="style" href="/css/style.css?v=20260925a"/>
+<link rel="stylesheet" href="/css/style.css?v=20260925a" fetchpriority="high"/>
 <style>
+/* Дропдаун «Напрямки» — та сама розмітка, що на головній. */
+.nav-dd > summary { list-style: none; }
+.nav-dd > summary::-webkit-details-marker { display: none; }
+.nav-dd[open] > summary .nav-dd-arrow { transform: rotate(180deg); }
 .gradient-text{background:linear-gradient(135deg,#FF6B35,#E54E1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .card-lift{transition:transform .3s ease,box-shadow .3s ease}
 .card-lift:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(255,107,53,0.18)}
@@ -82,6 +86,17 @@ cyrillic несе весь текст сторінки, тому її берем
 <a href="/pro-shkolu" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" data-ru="О нас">Про нас</a>
 <a href="/tsiny" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" data-ru="Цены">Ціни</a>
 <a href="/vidhuky" class="text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors" data-ru="Отзывы">Відгуки</a>
+<div class="relative">
+<details class="nav-dd">
+<summary class="flex items-center gap-1 text-sm font-semibold text-gray-400 hover:text-fox-400 transition-colors cursor-pointer"><span data-ru="Направления">Напрямки</span><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="nav-dd-arrow w-4 h-4 transition-transform duration-200"><path d="M5.6 7.5 10 11.9l4.4-4.4 1.4 1.4-5.8 5.8-5.8-5.8z"/></svg></summary>
+<ul class="absolute left-0 top-full mt-2 w-64 bg-gray-950 border border-white/10 rounded-3xl shadow-2xl shadow-black/60 p-2 z-50">
+<li><a href="/kursy-anhliyskoyi-dlya-ditey" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-300 hover:bg-white/5 hover:text-fox-400 transition-colors duration-200" data-ru="Групповые занятия">Групові заняття</a></li>
+<li><a href="/repetytor-z-anhliyskoyi" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-300 hover:bg-white/5 hover:text-fox-400 transition-colors duration-200" data-ru="Индивидуальные занятия">Індивідуальні заняття</a></li>
+<li><a href="/pidhotovka-do-nmt" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-300 hover:bg-white/5 hover:text-fox-400 transition-colors duration-200" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
+<li><a href="/cambridge" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-300 hover:bg-white/5 hover:text-fox-400 transition-colors duration-200" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
+</ul>
+</details>
+</div>
 <a href="/blog/" class="text-sm font-semibold text-fox-400">Блог</a>
 </div>
 <div class="flex items-center gap-3">
@@ -104,6 +119,15 @@ cyrillic несе весь текст сторінки, тому її берем
 <a href="/pro-shkolu" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="О нас">Про нас</a>
 <a href="/tsiny" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="Цены">Ціни</a>
 <a href="/vidhuky" class="px-3 py-2 rounded-xl text-gray-300 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="Отзывы">Відгуки</a>
+<details class="nav-dd px-3">
+<summary class="flex items-center gap-1 py-2 text-gray-300 font-semibold text-sm cursor-pointer"><span data-ru="Направления">Напрямки</span><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="nav-dd-arrow w-4 h-4 transition-transform duration-200"><path d="M5.6 7.5 10 11.9l4.4-4.4 1.4 1.4-5.8 5.8-5.8-5.8z"/></svg></summary>
+<ul class="pl-3 border-l border-white/10">
+<li><a href="/kursy-anhliyskoyi-dlya-ditey" class="block px-3 py-2 rounded-xl text-gray-400 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="Групповые занятия">Групові заняття</a></li>
+<li><a href="/repetytor-z-anhliyskoyi" class="block px-3 py-2 rounded-xl text-gray-400 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="Индивидуальные занятия">Індивідуальні заняття</a></li>
+<li><a href="/pidhotovka-do-nmt" class="block px-3 py-2 rounded-xl text-gray-400 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
+<li><a href="/cambridge" class="block px-3 py-2 rounded-xl text-gray-400 hover:bg-white/5 font-semibold transition-colors text-sm" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
+</ul>
+</details>
 <a href="/blog/" class="px-3 py-2 rounded-xl text-fox-400 hover:bg-white/5 font-semibold transition-colors text-sm">Блог</a>
 <a href="/#form" class="mt-2 text-center bg-fox-500 hover:bg-fox-600 text-white font-black py-2.5 rounded-full shadow-fox-sm text-sm" data-ru="Пробный урок">Пробний урок</a>
 </div>
@@ -656,8 +680,8 @@ data-consent: змінили текст згоди — змінюйте код. 
 </div>
 </div>
 </footer>
-<script src="/js/lang.js?v=20260924f" defer></script>
-<script src="/js/blog.js?v=20260924f" defer></script>
-<script src="/js/subscribe.js?v=20260924f" defer></script>
+<script src="/js/lang.js?v=20260925a" defer></script>
+<script src="/js/blog.js?v=20260925a" defer></script>
+<script src="/js/subscribe.js?v=20260925a" defer></script>
 </body>
 </html>

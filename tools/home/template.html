@@ -1177,6 +1177,11 @@
             background: linear-gradient(140deg, var(--fox-50) 0%, var(--cream) 50%, var(--violet-50) 100%);
         }
 
+        /* ── Дропдаун «Напрямки» ─────────────────────────────────── */
+        .nav-dd > summary { list-style: none; }
+        .nav-dd > summary::-webkit-details-marker { display: none; }
+        .nav-dd[open] > summary .nav-dd-arrow { transform: rotate(180deg); }
+
         /* ── Card hover lift ────────────────────────────────────── */
         .card-lift {
             transition: transform var(--duration-slow) ease, box-shadow var(--duration-slow) ease;
@@ -1434,7 +1439,23 @@
             <!-- Desktop nav -->
             <div class="hidden nav:flex items-center gap-6">
                 <a href="#about"    class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.about">Про нас</a>
-                <a href="#program"  class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.program">Програма</a>
+                <!-- Напрямки: дропдаун на <details>, без Alpine і без скрипта.
+                     Пункти — звичайні <a>, тож читаються без запуску JS.
+                     Закриття по кліку поза меню й по Esc додає js/lang.js. -->
+                <div class="relative">
+                    <details class="nav-dd">
+                        <summary class="flex items-center gap-1 text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors cursor-pointer">
+                            <span data-ru="Направления">Напрямки</span>
+                            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="nav-dd-arrow w-4 h-4 transition-transform duration-200"><path d="M5.6 7.5 10 11.9l4.4-4.4 1.4 1.4-5.8 5.8-5.8-5.8z"/></svg>
+                        </summary>
+                        <ul class="absolute left-0 top-full mt-2 w-64 bg-white border border-fox-100 rounded-3xl shadow-lg shadow-black/10 p-2">
+                            <li><a href="/kursy-anhliyskoyi-dlya-ditey" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" data-ru="Групповые занятия">Групові заняття</a></li>
+                            <li><a href="/repetytor-z-anhliyskoyi" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" data-ru="Индивидуальные занятия">Індивідуальні заняття</a></li>
+                            <li><a href="/pidhotovka-do-nmt" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
+                            <li><a href="/cambridge" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
+                        </ul>
+                    </details>
+                </div>
                 <a href="#prices"   class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.prices">Ціни</a>
                 <a href="#contacts" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.contacts">Контакти</a>
                 <a href="blog/"     class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors" x-text="t.nav.blog">Блог</a>
@@ -1487,7 +1508,18 @@
         <div x-show="menuOpen" x-transition class="nav:hidden pb-4 border-t border-gray-100 mobile-menu-enter">
             <div class="flex flex-col gap-1 pt-3">
                 <a href="#about"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.about">Про нас</a>
-                <a href="#program"  @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.program">Програма</a>
+                <details class="nav-dd px-3">
+                    <summary class="flex items-center gap-1 py-2 text-gray-700 font-semibold cursor-pointer">
+                        <span data-ru="Направления">Напрямки</span>
+                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="nav-dd-arrow w-4 h-4 transition-transform duration-200"><path d="M5.6 7.5 10 11.9l4.4-4.4 1.4 1.4-5.8 5.8-5.8-5.8z"/></svg>
+                    </summary>
+                    <ul class="pl-3 border-l border-fox-100">
+                        <li><a href="/kursy-anhliyskoyi-dlya-ditey" class="block px-3 py-2 rounded-xl text-base font-semibold text-gray-600" data-ru="Групповые занятия">Групові заняття</a></li>
+                        <li><a href="/repetytor-z-anhliyskoyi" class="block px-3 py-2 rounded-xl text-base font-semibold text-gray-600" data-ru="Индивидуальные занятия">Індивідуальні заняття</a></li>
+                        <li><a href="/pidhotovka-do-nmt" class="block px-3 py-2 rounded-xl text-base font-semibold text-gray-600" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
+                        <li><a href="/cambridge" class="block px-3 py-2 rounded-xl text-base font-semibold text-gray-600" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
+                    </ul>
+                </details>
                 <a href="#prices"   @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.prices">Ціни</a>
                 <a href="#contacts" @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.contacts">Контакти</a>
                 <a href="blog/"    @click="menuOpen=false" class="px-3 py-2 rounded-xl text-gray-700 hover:bg-fox-50 font-semibold transition-colors" x-text="t.nav.blog">Блог</a>

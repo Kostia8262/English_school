@@ -50,6 +50,10 @@
 <link rel="preload" as="style" href="/css/style.css?v=%(assetv)s"/>
 <link rel="stylesheet" href="/css/style.css?v=%(assetv)s" fetchpriority="high"/>
 <style>
+/* Дропдаун «Напрямки» у шапці — та сама розмітка, що на головній. */
+.nav-dd > summary { list-style: none; }
+.nav-dd > summary::-webkit-details-marker { display: none; }
+.nav-dd[open] > summary .nav-dd-arrow { transform: rotate(180deg); }
 .gradient-text{background:linear-gradient(135deg,#FF6B35,#E54E1A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .prose h2{font-size:1.25rem;font-weight:900;color:#111827;margin-top:2rem;margin-bottom:.75rem;line-height:1.25;padding-left:.875rem;border-left:4px solid #FF6B35}
 .prose h3{font-size:1.125rem;font-weight:800;color:#374151;margin-top:1.5rem;margin-bottom:.5rem}

@@ -540,6 +540,11 @@ HEAD = """<!DOCTYPE html>
      оголошені тут, бо решта :root головної живе в її інлайновому <style>. */
   :root {{ --fox-500: #FF6B35; --fox-ring: rgba(255,107,53,0.18); }}
   [hidden] {{ display: none !important; }}
+  /* Дропдаун «Напрямки»: прибрати стрілку <summary> від браузера й
+     повернути свою, що перевертається у відкритому стані. */
+  .nav-dd > summary {{ list-style: none; }}
+  .nav-dd > summary::-webkit-details-marker {{ display: none; }}
+  .nav-dd[open] > summary .nav-dd-arrow {{ transform: rotate(180deg); }}
   .form-input:focus {{
     outline: none;
     border-color: var(--fox-500) !important;
@@ -564,7 +569,24 @@ HEADER = """
 
       <ul class="hidden nav:flex items-center gap-6">
         <li><a href="/#about" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200" data-ru="О школе">Про школу</a></li>
-        <li><a href="/#program" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200" data-ru="Программа">Програма</a></li>
+        <!-- Напрямки: дропдаун на <details>, а не на скрипті. Пункти — звичайні
+             <a> у розмітці, тож GPTBot і ClaudeBot бачать їх без запуску JS,
+             а читач без JS відкриває список кліком, як і з JS. Закриття по
+             кліку поза меню й по Esc додає js/lang.js — це вже надбудова. -->
+        <li class="relative">
+          <details class="nav-dd">
+            <summary class="flex items-center gap-1 text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200 cursor-pointer">
+              <span data-ru="Направления">Напрямки</span>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="nav-dd-arrow w-4 h-4 transition-transform duration-200"><path d="M5.6 7.5 10 11.9l4.4-4.4 1.4 1.4-5.8 5.8-5.8-5.8z"/></svg>
+            </summary>
+          <ul class="absolute left-0 top-full mt-2 w-64 bg-white border border-fox-100 rounded-3xl shadow-lg shadow-black/10 p-2">
+            <li><a href="/kursy-anhliyskoyi-dlya-ditey" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" data-ru="Групповые занятия">Групові заняття</a></li>
+            <li><a href="/repetytor-z-anhliyskoyi" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" data-ru="Индивидуальные занятия">Індивідуальні заняття</a></li>
+            <li><a href="/pidhotovka-do-nmt" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
+            <li><a href="/cambridge" class="block px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 transition-colors duration-200" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
+          </ul>
+          </details>
+        </li>
         <li><a href="/tsiny" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200" data-ru="Цены">Ціни</a></li>
         <li><a href="/blog/" class="text-sm font-semibold text-gray-600 hover:text-fox-500 transition-colors duration-200">Блог</a></li>
         <!-- Замість «Відгуків» — контакти: блок із телефонами й месенджерами
@@ -597,7 +619,20 @@ HEADER = """
     <div id="mobileMenu" hidden class="nav:hidden border-t border-fox-100 py-4">
       <ul class="flex flex-col gap-3">
         <li><a href="/#about" class="block text-base font-semibold text-gray-700 py-2" data-ru="О школе">Про школу</a></li>
-        <li><a href="/#program" class="block text-base font-semibold text-gray-700 py-2" data-ru="Программа">Програма</a></li>
+        <li>
+          <details class="nav-dd">
+            <summary class="flex items-center gap-1 text-base font-semibold text-gray-700 py-2 cursor-pointer">
+              <span data-ru="Направления">Напрямки</span>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="nav-dd-arrow w-4 h-4 transition-transform duration-200"><path d="M5.6 7.5 10 11.9l4.4-4.4 1.4 1.4-5.8 5.8-5.8-5.8z"/></svg>
+            </summary>
+            <ul class="pl-4 border-l border-fox-100 ml-1">
+            <li><a href="/kursy-anhliyskoyi-dlya-ditey" class="block text-base font-semibold text-gray-600 py-2" data-ru="Групповые занятия">Групові заняття</a></li>
+            <li><a href="/repetytor-z-anhliyskoyi" class="block text-base font-semibold text-gray-600 py-2" data-ru="Индивидуальные занятия">Індивідуальні заняття</a></li>
+            <li><a href="/pidhotovka-do-nmt" class="block text-base font-semibold text-gray-600 py-2" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
+            <li><a href="/cambridge" class="block text-base font-semibold text-gray-600 py-2" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
+            </ul>
+          </details>
+        </li>
         <li><a href="/tsiny" class="block text-base font-semibold text-gray-700 py-2" data-ru="Цены">Ціни</a></li>
         <li><a href="/vidhuky" class="block text-base font-semibold text-gray-700 py-2" data-ru="Отзывы">Відгуки</a></li>
         <li><a href="/blog/" class="block text-base font-semibold text-gray-700 py-2">Блог</a></li>

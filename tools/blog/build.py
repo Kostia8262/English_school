@@ -89,6 +89,15 @@ NAV = [
     ("/tsiny", "Ціни", "Цены"),
 ]
 
+# Напрямки — той самий дропдаун, що в шапці головної та посадових. Пункти
+# звичайні <a> у розмітці: стаття читається без JS, і меню теж.
+NAV_DIRECTIONS = [
+    ("/kursy-anhliyskoyi-dlya-ditey", "Групові заняття", "Групповые занятия"),
+    ("/repetytor-z-anhliyskoyi", "Індивідуальні заняття", "Индивидуальные занятия"),
+    ("/pidhotovka-do-nmt", "Підготовка до НМТ", "Подготовка к НМТ"),
+    ("/cambridge", "Іспити Cambridge", "Экзамены Cambridge"),
+]
+
 FOOTER_LINKS = [
     ("/", "Головна", "Главная"),
     ("/kursy-anhliyskoyi-dlya-ditey", "Курси англійської", "Курсы английского"),
@@ -574,6 +583,28 @@ def render_nav(lang):
         % (href(path, lang), esc(uk if lang == "uk" else ru))
         for path, uk, ru in NAV
     ]
+    items = "\n".join(
+        '            <li><a href="%s" class="block px-4 py-2 rounded-xl text-sm '
+        'font-semibold text-gray-700 hover:bg-fox-50 hover:text-fox-600 '
+        'transition-colors duration-200">%s</a></li>'
+        % (href(path, lang), esc(uk if lang == "uk" else ru))
+        for path, uk, ru in NAV_DIRECTIONS)
+    out.append(
+        '        <div class="relative">\n'
+        '          <details class="nav-dd">\n'
+        '            <summary class="flex items-center gap-1 text-sm font-semibold '
+        'text-gray-600 hover:text-fox-500 transition-colors cursor-pointer">%s'
+        '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" '
+        'class="nav-dd-arrow w-4 h-4 transition-transform duration-200">'
+        '<path d="M5.6 7.5 10 11.9l4.4-4.4 1.4 1.4-5.8 5.8-5.8-5.8z"/></svg>'
+        '</summary>\n'
+        '          <ul class="absolute left-0 top-full mt-2 w-64 bg-white '
+        'border border-fox-100 rounded-3xl shadow-lg shadow-black/10 p-2 z-50">\n'
+        '%s\n'
+        '          </ul>\n'
+        '          </details>\n'
+        '        </div>'
+        % (esc("Напрямки" if lang == "uk" else "Направления"), items))
     out.append('        <a href="%s" class="text-sm font-semibold text-fox-500">%s</a>'
                % (href("/blog/", lang), esc(LABELS[lang]["blog"])))
     return "\n".join(out)
