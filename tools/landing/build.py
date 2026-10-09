@@ -164,7 +164,7 @@ def render_block(b):
             for row in rows)
         # overflow-x-auto обов'язковий: на 375 px таблиця з трьох колонок інакше
         # розсуває сторінку й ламає горизонтальний скрол усього документа.
-        return ('      <div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">\n'
+        return ('      <div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">\n'
                 '        <table class="w-full min-w-[520px]">\n'
                 '          <thead class="bg-fox-50">%s</thead>\n'
                 '          <tbody>\n%s\n          </tbody>\n'
@@ -564,6 +564,23 @@ HEAD = """<!DOCTYPE html>
     outline: none;
     border-color: var(--fox-500) !important;
     box-shadow: 0 0 0 3px var(--fox-ring);
+  }}
+  /* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+     про це ніщо не повідомляло, текст правої колонки просто обрізався й
+     читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+     прилипають до вмісту (background-attachment: local) і ховають тінь там,
+     де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+  .tbl-scroll {{
+    background:
+      linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+      linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+      radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+      radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+    background-attachment: local, local, scroll, scroll;
+  }}
+  .tbl-scroll:focus-visible {{
+    outline: 2px solid var(--fox-500);
+    outline-offset: 2px;
   }}
 </style>
 </head>

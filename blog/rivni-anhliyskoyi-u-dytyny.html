@@ -74,7 +74,8 @@
 .course-link .cl-title{font-size:1rem;font-weight:800;color:#111827;line-height:1.45;margin-bottom:.7rem}
 .course-link a{display:inline-flex;align-items:center;gap:.4rem;font-size:.9375rem;font-weight:900;color:#E54E1A;text-decoration:none}
 .course-link a:hover{color:#BF3C0F}
-.table-wrap{overflow-x:auto;margin:1.5rem 0;border:1px solid #FFE8D6;border-radius:1rem;background:#fff}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;border:1px solid #FFE8D6;border-radius:1rem;background:linear-gradient(to right,#fff 40%,rgba(255,255,255,0)) 0 0/24px 100% no-repeat,linear-gradient(to left,#fff 40%,rgba(255,255,255,0)) 100% 0/24px 100% no-repeat,radial-gradient(farthest-side at 0 50%,rgba(17,24,39,.10),rgba(17,24,39,0)) 0 0/12px 100% no-repeat,radial-gradient(farthest-side at 100% 50%,rgba(17,24,39,.10),rgba(17,24,39,0)) 100% 0/12px 100% no-repeat,#fff;background-attachment:local,local,scroll,scroll,scroll}
+.table-wrap:focus-visible{outline:2px solid #FF6B35;outline-offset:2px}
 .table-wrap table{width:100%;min-width:34rem;border-collapse:collapse}
 .table-wrap th{text-align:left;font-size:.8125rem;font-weight:900;color:#111827;padding:.75rem 1rem;background:#FFF5EF;white-space:nowrap}
 .table-wrap td{padding:.75rem 1rem;font-size:.9375rem;color:#374151;border-top:1px solid #FFE8D6;line-height:1.6}
@@ -143,7 +144,7 @@
 <h2>Звідки взялися A1, A2 і B1</h2>
 <p>Це шкала CEFR — загальноєвропейські рекомендації з мовної освіти. Її придумували не для шкіл, а для того, щоб роботодавець у Португалії і університет у Німеччині однаково розуміли, що вміє людина з папірця. Шість щаблів: A1 і A2 — базовий користувач, B1 і B2 — незалежний, C1 і C2 — досвідчений.</p>
 <p>Головна особливість шкали, через яку її варто розуміти саме батькові: вона описана через <strong>«може зробити»</strong>, а не через «знає». У документі немає рядка «знає Present Perfect». Є рядок «може коротко пояснити й обґрунтувати свої плани й наміри». Тому дитина, яка вивчила всі часи напам'ять і не може розповісти, як минув її день, за цією шкалою не має B1 — хоч би що стояло в щоденнику.</p>
-<div class="table-wrap">
+<div class="table-wrap" tabindex="0">
 <table>
 <thead><tr><th scope="col">Рівень</th><th scope="col">Що дитина реально може</th><th scope="col">Іспит Cambridge</th></tr></thead>
 <tbody>

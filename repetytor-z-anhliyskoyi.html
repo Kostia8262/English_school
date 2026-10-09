@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -367,7 +384,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Цена и что входит">Ціна і що входить</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Индивидуальное занятие стоит 500 грн за час, месяц занятий дважды в неделю — 4000 грн за восемь уроков по часу. В эту сумму входят материалы, домашние задания в онлайн-платформе и разбор ошибок после каждого урока письменно. Рыночные объявления частных репетиторов в Днепре идут от 250 до 400 грн за час, но почти всегда без проверки домашних между уроками — и именно на этом теряется результат.">Індивідуальне заняття коштує 500 грн за годину, місяць занять двічі на тиждень — 4000 грн за вісім уроків по годині. У цю суму входять матеріали, домашні завдання в онлайн-платформі й розбір помилок після кожного уроку письмово. Ринкові оголошення приватних репетиторів у Дніпрі йдуть від 250 до 400 грн за годину, але майже завжди без перевірки домашніх між уроками — і саме на цьому втрачається результат.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Формат занятий">Формат занять</h2>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Как у нас">Як у нас</th></thead>
 <tbody>

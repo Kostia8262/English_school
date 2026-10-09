@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -317,7 +334,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <section class="pt-8 pb-8 md:py-20">
 <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Из чего состоит НМТ по английскому (бывшее ЗНО)">Із чого складається НМТ з англійської (колишнє ЗНО)</h2>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Часть">Частина</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Заданий">Завдань</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Время">Час</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Что проверяют">Що перевіряють</th></thead>
 <tbody>

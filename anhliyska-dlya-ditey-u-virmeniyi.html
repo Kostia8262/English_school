@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -330,7 +347,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Для ребёнка это ещё и час в неделе, когда всё понятно: и язык урока, и язык объяснения, и сверстники в группе. После дня, проведённого в чужом языке, такой час работает лучше, чем кажется по расписанию.">Для дитини це ще й година в тижні, коли все зрозуміло: і мова уроку, і мова пояснення, і однолітки в групі. Після дня, проведеного в чужій мові, така година працює краще, ніж здається за розкладом.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Время урока в Армении">Час уроку у Вірменії</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Армения опережает Киев, и разница непостоянна: страна часы не переводит, а Украина переводит. Летом разрыв один час, зимой два. Мы предупреждаем о сдвиге заранее и обычно переносим ребёнка в соседний слот, чтобы местное время урока оставалось тем же.">Вірменія випереджає Київ, і різниця не стала: країна годинники не переводить, а Україна переводить. Улітку розрив одна година, взимку дві. Ми попереджаємо про зсув заздалегідь і зазвичай переносимо дитину в сусідній слот, щоб місцевий час уроку лишався тим самим.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Слот по Киеву">Слот за Києвом</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В Армении летом">У Вірменії влітку</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В Армении зимой">У Вірменії взимку</th></thead>
 <tbody>
@@ -368,7 +385,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </ul>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Как проходят занятия для детей в Армении">Як проходять заняття для дітей у Вірменії</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="FluentFox — украинская онлайн-школа английского, и формат в Армении тот самый, что и для детей в Украине: меняется только время урока и язык, которым объясняют правило.">FluentFox — українська онлайн-школа англійської, і формат у Вірменії той самий, що й для дітей в Україні: змінюється лише час уроку та мова, якою пояснюють правило.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Как у нас">Як у нас</th></thead>
 <tbody>

@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -325,7 +342,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="В европейских странах серии разница с Киевом идёт в минус: киевский вечерний слот приходится там на послеобеденное время. В Казахстане наоборот — страна опережает Киев, и тот же слот 18:00 стал бы здесь двадцатым или двадцать первым часом. Для ребёнка это уже не учёба, а отбывание.">У європейських країнах серії різниця з Києвом іде в мінус: київський вечірній слот припадає там на пообіддя. У Казахстані навпаки — країна випереджає Київ, і той самий слот 18:00 став би тут двадцятою або двадцять першою годиною. Для дитини це вже не навчання, а відбування.</p>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Поэтому для Казахстана мы ведём отдельные дневные слоты по киевскому времени. Киевские 13:00–15:00 — это ваши 15:00–18:00, то есть обычное время после школы. Семье ничего не нужно пересчитывать самостоятельно: мы сразу называем время в вашем поясе.">Тому для Казахстану ми ведемо окремі денні слоти за київським часом. Київські 13:00–15:00 — це ваші 15:00–18:00, тобто звичайний час після школи. Родині нічого не треба перераховувати самостійно: ми одразу називаємо час у вашому поясі.</p>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Разница здесь непостоянна: Казахстан часы не переводит, а Украина переводит, поэтому летом разрыв два часа, зимой три. Мы предупреждаем о сдвиге заранее и обычно переносим ребёнка в соседний слот, чтобы местное время урока оставалось тем же.">Різниця тут не стала: Казахстан годинники не переводить, а Україна переводить, тож улітку розрив дві години, взимку три. Ми попереджаємо про зсув заздалегідь і зазвичай переносимо дитину в сусідній слот, щоб місцевий час уроку лишався тим самим.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Слот по Киеву">Слот за Києвом</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В Казахстане летом">У Казахстані влітку</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В Казахстане зимой">У Казахстані взимку</th></thead>
 <tbody>
@@ -367,7 +384,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </ul>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Как проходят занятия для детей в Казахстане">Як проходять заняття для дітей у Казахстані</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="FluentFox — украинская онлайн-школа английского, и формат в Казахстане тот самый, что и для детей в Украине: меняется только время урока и язык, которым объясняют правило.">FluentFox — українська онлайн-школа англійської, і формат у Казахстані той самий, що й для дітей в Україні: змінюється лише час уроку та мова, якою пояснюють правило.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Как у нас">Як у нас</th></thead>
 <tbody>

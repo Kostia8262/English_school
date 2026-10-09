@@ -74,7 +74,8 @@
 .course-link .cl-title{font-size:1rem;font-weight:800;color:#111827;line-height:1.45;margin-bottom:.7rem}
 .course-link a{display:inline-flex;align-items:center;gap:.4rem;font-size:.9375rem;font-weight:900;color:#E54E1A;text-decoration:none}
 .course-link a:hover{color:#BF3C0F}
-.table-wrap{overflow-x:auto;margin:1.5rem 0;border:1px solid #FFE8D6;border-radius:1rem;background:#fff}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;border:1px solid #FFE8D6;border-radius:1rem;background:linear-gradient(to right,#fff 40%,rgba(255,255,255,0)) 0 0/24px 100% no-repeat,linear-gradient(to left,#fff 40%,rgba(255,255,255,0)) 100% 0/24px 100% no-repeat,radial-gradient(farthest-side at 0 50%,rgba(17,24,39,.10),rgba(17,24,39,0)) 0 0/12px 100% no-repeat,radial-gradient(farthest-side at 100% 50%,rgba(17,24,39,.10),rgba(17,24,39,0)) 100% 0/12px 100% no-repeat,#fff;background-attachment:local,local,scroll,scroll,scroll}
+.table-wrap:focus-visible{outline:2px solid #FF6B35;outline-offset:2px}
 .table-wrap table{width:100%;min-width:34rem;border-collapse:collapse}
 .table-wrap th{text-align:left;font-size:.8125rem;font-weight:900;color:#111827;padding:.75rem 1rem;background:#FFF5EF;white-space:nowrap}
 .table-wrap td{padding:.75rem 1rem;font-size:.9375rem;color:#374151;border-top:1px solid #FFE8D6;line-height:1.6}
@@ -143,7 +144,7 @@
 <h2>Сколько минут ребёнок реально говорит на школьном уроке?</h2>
 <p>Посчитаем. Урок — 45 минут. В классе 25–30 детей. Даже если представить идеальный урок, где учитель отдал половину времени на устные ответы, — это 22 минуты на весь класс. Разделите на тридцать. Выходит меньше минуты на ребёнка. За неделю с тремя уроками — около двух минут речи.</p>
 <p>Это арифметика, а не претензия к учителям. При тридцати учениках иначе просто не бывает: чтобы дать каждому сказать три предложения, нужен урок на два часа. Поэтому реальная нагрузка смещается туда, где тридцать работ можно проверить за вечер, — в письмо и тесты.</p>
-<div class="table-wrap">
+<div class="table-wrap" tabindex="0">
 <table>
 <thead><tr><th scope="col">Что происходит</th><th scope="col">Класс 30 учеников</th><th scope="col">Группа 5 учеников</th></tr></thead>
 <tbody>

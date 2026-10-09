@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -327,7 +344,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="В Молдове для этой паузы нет ни одной технической причины. Время киевское — расписание не нужно пересобирать. Язык объяснения родной — ничего не нужно переводить. Группа та же, в которой ребёнок учился дома. То есть продолжить стоит ровно столько же усилий, сколько отложить.">У Молдові для цієї паузи немає жодної технічної причини. Час київський — розклад не треба перескладати. Мова пояснення рідна — нічого не треба перекладати. Група та сама, у якій дитина вчилася вдома. Тобто продовжити коштує рівно стільки ж зусиль, скільки відкласти.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Время урока в Молдове — то же, что в Киеве">Час уроку в Молдові — той самий, що в Києві</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Молдова живёт в том же часовом поясе, что и Украина, и переводит часы в те же даты. Ребёнок, который учился по вторникам и четвергам в 18:00, после переезда учится в те же вторники и четверги в 18:00 — с тем же преподавателем и теми же одноклассниками.">Молдова живе в тому самому часовому поясі, що й Україна, і переводить годинники в ті самі дати. Дитина, яка вчилася по вівторках і четвергах о 18:00, після переїзду вчиться в ті самі вівторки й четверги о 18:00 — із тим самим учителем і тими самими однокласниками.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Слот по Киеву">Слот за Києвом</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В Молдове">У Молдові</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Для кого удобно">Для кого зручно</th></thead>
 <tbody>
@@ -362,7 +379,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Здесь этого не происходит по простой причине: время урока одинаково по обе стороны границы. В поездке ребёнок заходит на то же занятие в тот же час — с телефона, планшета или ноутбука. Если урок всё-таки пропущен, остаётся запись, а перенести его можно, предупредив за 12 часов.">Тут цього не стається з простої причини: час уроку однаковий по обидва боки кордону. У поїздці дитина заходить на те саме заняття о тій самій годині — з телефона, планшета чи ноутбука. Якщо урок таки пропущено, лишається запис, а перенести його можна, попередивши за 12 годин.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Как проходят занятия для детей в Молдове">Як проходять заняття для дітей у Молдові</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="FluentFox — украинская онлайн-школа английского, и формат в Молдове тот самый, что и для детей в Украине: не меняется даже время урока.">FluentFox — українська онлайн-школа англійської, і формат у Молдові той самий, що й для дітей в Україні: не змінюється навіть час уроку.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Как у нас">Як у нас</th></thead>
 <tbody>

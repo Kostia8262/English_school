@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -324,7 +341,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Время: почему слоты здесь утренние">Час: чому слоти тут ранкові</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Разница с Киевом здесь самая большая во всей серии: три часа летом и четыре зимой, потому что Кыргызстан часы не переводит, а Украина переводит. Обычный киевский вечерний урок 18:00 пришёлся бы на десять вечера — время, когда ребёнку пора спать, а не учиться.">Різниця з Києвом тут найбільша з усієї серії: три години влітку й чотири взимку, бо Киргизстан годинники не переводить, а Україна переводить. Звичайний київський вечірній урок 18:00 припав би на десяту вечора — час, коли дитині час спати, а не вчитися.</p>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Поэтому для Кыргызстана мы ведём утренние киевские слоты. Киевские 10:00–12:00 — это ваши 13:00–16:00, то есть обычный день после школы. Семье ничего не нужно пересчитывать самостоятельно: мы сразу называем время в вашем поясе и предупреждаем о сезонном сдвиге заранее.">Тому для Киргизстану ми ведемо ранкові київські слоти. Київські 10:00–12:00 — це ваші 13:00–16:00, тобто звичайне пообіддя після школи. Родині нічого не треба перераховувати самостійно: ми одразу називаємо час у вашому поясі й попереджаємо про сезонний зсув заздалегідь.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Слот по Киеву">Слот за Києвом</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В Кыргызстане летом">У Киргизстані влітку</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В Кыргызстане зимой">У Киргизстані взимку</th></thead>
 <tbody>
@@ -368,7 +385,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </ul>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Как проходят занятия для детей в Кыргызстане">Як проходять заняття для дітей у Киргизстані</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="FluentFox — украинская онлайн-школа английского, и формат в Кыргызстане тот самый, что и для детей в Украине: меняется только время урока и язык, которым объясняют правило.">FluentFox — українська онлайн-школа англійської, і формат у Киргизстані той самий, що й для дітей в Україні: змінюється лише час уроку та мова, якою пояснюють правило.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Как у нас">Як у нас</th></thead>
 <tbody>

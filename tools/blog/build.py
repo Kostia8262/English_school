@@ -251,7 +251,7 @@ def render_blocks(blocks, lang):
                 % "".join("<td>%s</td>" % rich(c[i]) for c in row)
                 for row in rows)
             out.append(
-                '        <div class="table-wrap">\n'
+                '        <div class="table-wrap" tabindex="0">\n'
                 '          <table>\n'
                 '            <thead><tr>%s</tr></thead>\n'
                 '            <tbody>\n%s\n            </tbody>\n'

@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -326,7 +343,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Наш урок это звено убирает. Ведут его украиноязычные преподаватели с дипломами CELTA, TEFL и профильным лингвистическим образованием; само занятие идёт на английском, но как только правило не заходит, его объясняют языком, на котором ребёнок думает — украинским или русским, как удобно семье. Это один час в неделю, когда ничего не нужно переводить дважды.">Наш урок цю ланку прибирає. Ведуть його україномовні вчителі з дипломами CELTA, TEFL і профільною лінгвістичною освітою; саме заняття йде англійською, але щойно правило не заходить, його пояснюють мовою, якою дитина думає — українською чи російською, як зручно родині. Це одна година на тиждень, коли нічого не треба перекладати двічі.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Время урока в Польше: разница с Киевом — ровно час">Час уроку в Польщі: різниця з Києвом — рівно година</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Польша живёт на час позади Киева, и эта разница не меняется: обе страны переводят часы в одни и те же даты, так что весной и осенью расписание не «поедет». Практически это значит, что любой наш вечерний слот остаётся вечерним и у вас — никаких уроков в полдевятого и никаких утренних подъёмов ради английского.">Польща живе на годину позаду Києва, і ця різниця не змінюється: обидві країни переводять годинники в ті самі дати, тож навесні й восени розклад не «поїде». Практично це означає, що будь-який наш вечірній слот залишається вечірнім і у вас — жодних уроків о пів на дев'яту й жодних ранкових підйомів заради англійської.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Слот по Киеву">Слот за Києвом</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В Польше">У Польщі</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Для кого удобно">Для кого зручно</th></thead>
 <tbody>
@@ -365,7 +382,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </ul>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Как проходят занятия для детей в Польше">Як проходять заняття для дітей у Польщі</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="FluentFox — украинская онлайн-школа английского, и формат в Польше тот самый, что и для детей в Украине: меняется только время урока и язык, которым объясняют правило.">FluentFox — українська онлайн-школа англійської, і формат у Польщі той самий, що й для дітей в Україні: змінюється лише час уроку та мова, якою пояснюють правило.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Как у нас">Як у нас</th></thead>
 <tbody>
@@ -387,7 +404,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Счёт приходит ссылкой, оплата проходит картой через защищённый сервис WayForPay или через monobank. Карта может быть выпущена польским банком — украинский счёт для этого не нужен. Сумма выставляется в гривне, и ваш банк пересчитает её из злотых по своему курсу в момент оплаты; отдельных «цен для зарубежья» нет, они одинаковы для всех.">Рахунок приходить посиланням, оплата проходить карткою через захищений сервіс WayForPay або через monobank. Картка може бути видана польським банком — український рахунок для цього не потрібен. Сума виставляється в гривні, і ваш банк перерахує її зі злотих за своїм курсом у момент оплати; окремих «цін для закордону» немає, вони однакові для всіх.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Классический английский в Польше: группа или индивидуально">Класична англійська у Польщі: група чи індивідуально</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Программа одна — классический общий английский: 150 занятий, пять модулей, шкала CEFR от A0 до B2. Это не курс под один экзамен и не разговорный клуб без системы: ребёнок движется по уровням, и в конце каждого модуля видно, что именно добавилось. Различается только формат.">Програма одна — класична загальна англійська: 150 занять, п'ять модулів, шкала CEFR від A0 до B2. Це не курс під один іспит і не розмовний клуб без системи: дитина рухається рівнями, і наприкінці кожного модуля видно, що саме додалося. Різниться тільки формат.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap"></th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Группа до 5 учеников">Група до 5 учнів</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Индивидуально">Індивідуально</th></thead>
 <tbody>

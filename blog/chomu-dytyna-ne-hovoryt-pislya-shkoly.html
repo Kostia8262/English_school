@@ -74,7 +74,8 @@
 .course-link .cl-title{font-size:1rem;font-weight:800;color:#111827;line-height:1.45;margin-bottom:.7rem}
 .course-link a{display:inline-flex;align-items:center;gap:.4rem;font-size:.9375rem;font-weight:900;color:#E54E1A;text-decoration:none}
 .course-link a:hover{color:#BF3C0F}
-.table-wrap{overflow-x:auto;margin:1.5rem 0;border:1px solid #FFE8D6;border-radius:1rem;background:#fff}
+.table-wrap{overflow-x:auto;margin:1.5rem 0;border:1px solid #FFE8D6;border-radius:1rem;background:linear-gradient(to right,#fff 40%,rgba(255,255,255,0)) 0 0/24px 100% no-repeat,linear-gradient(to left,#fff 40%,rgba(255,255,255,0)) 100% 0/24px 100% no-repeat,radial-gradient(farthest-side at 0 50%,rgba(17,24,39,.10),rgba(17,24,39,0)) 0 0/12px 100% no-repeat,radial-gradient(farthest-side at 100% 50%,rgba(17,24,39,.10),rgba(17,24,39,0)) 100% 0/12px 100% no-repeat,#fff;background-attachment:local,local,scroll,scroll,scroll}
+.table-wrap:focus-visible{outline:2px solid #FF6B35;outline-offset:2px}
 .table-wrap table{width:100%;min-width:34rem;border-collapse:collapse}
 .table-wrap th{text-align:left;font-size:.8125rem;font-weight:900;color:#111827;padding:.75rem 1rem;background:#FFF5EF;white-space:nowrap}
 .table-wrap td{padding:.75rem 1rem;font-size:.9375rem;color:#374151;border-top:1px solid #FFE8D6;line-height:1.6}
@@ -143,7 +144,7 @@
 <h2>Скільки хвилин дитина реально говорить на шкільному уроці?</h2>
 <p>Порахуймо. Урок — 45 хвилин. У класі 25–30 дітей. Навіть якщо уявити ідеальний урок, де вчитель віддав половину часу на усні відповіді, — це 22 хвилини на весь клас. Поділіть на тридцять. Виходить менше хвилини на дитину. За тиждень із трьома уроками — близько двох хвилин мовлення.</p>
 <p>Це арифметика, а не претензія до вчителів. При тридцяти учнях інакше просто не буває: щоб дати кожному сказати три речення, потрібен урок на дві години. Тому реальне навантаження зміщується туди, де тридцять робіт можна перевірити за вечір, — у письмо й тести.</p>
-<div class="table-wrap">
+<div class="table-wrap" tabindex="0">
 <table>
 <thead><tr><th scope="col">Що відбувається</th><th scope="col">Клас 30 учнів</th><th scope="col">Група 5 учнів</th></tr></thead>
 <tbody>

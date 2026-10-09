@@ -69,6 +69,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -321,7 +338,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4">Когда английское правило объясняют по-французски, эта привычка ещё и получает подтверждение. На нашем уроке объяснение идёт на родном языке ребёнка, а произношение преподаватель правит на слух — пока привычка не застыла. Ведут занятия украиноязычные преподаватели с дипломами CELTA, TEFL и профильным лингвистическим образованием.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0">Время урока во Франции: разница с Киевом — ровно час</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4">Франция живёт на час позади Киева, и эта разница держится круглый год. Из-за длинного школьного дня слоты здесь берут более поздние, чем в остальной Европе.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Слот по Киеву</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Во Франции</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Для кого удобно</th></thead>
 <tbody>
@@ -354,7 +371,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4">Мы говорим об этом прямо, потому что группа дешевле и полезнее для говорения: в ней ребёнок слышит сверстников и отвечает не только преподавателю. Но занятие, на которое ребёнок приходит истощённым, не работает ни за какую цену. Если удобный групповой слот не найдётся, индивидуальные занятия — 4000 грн в месяц за восемь уроков по часу — решение на несколько месяцев, пока расписание не изменится. Для сравнения: группа раз в неделю стоит 1800 грн, дважды в неделю — 3600 грн.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0">Как проходят занятия для детей во Франции</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4">FluentFox — украинская онлайн-школа английского, и формат во Франции тот самый, что и для детей в Украине: меняется только время урока и язык, которым объясняют правило.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Как у нас</th></thead>
 <tbody>
@@ -376,7 +393,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4">Счёт приходит ссылкой, оплата проходит картой через защищённый сервис WayForPay или через monobank. Карта может быть выпущена французским банком — украинский счёт для этого не нужен. Сумма выставляется в гривне, и ваш банк пересчитает её из евро по своему курсу в момент оплаты.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0">Классический английский во Франции: группа или индивидуально</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4">Программа одна — классический общий английский: 150 занятий, пять модулей, шкала CEFR от A0 до B2. Это не курс под один экзамен и не разговорный клуб без системы: ребёнок движется по уровням, и в конце каждого модуля видно, что именно добавилось. Различается только формат.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap"></th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Группа до 5 учеников</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Индивидуально</th></thead>
 <tbody>

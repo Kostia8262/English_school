@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -325,7 +342,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </div>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="С какого возраста начинать с нуля">З якого віку починати з нуля</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Возраст не решает, получится или нет, — он решает, через что пойдёт обучение и где будет трудно. Шестилетний новичок и четырнадцатилетний идут к первому предложению разными дорогами, и скорость у них тоже разная.">Вік не вирішує, вийде чи ні, — він вирішує, через що піде навчання і де буде важко. Шестирічний початківець і чотирнадцятирічний ідуть до першого речення різними дорогами, і швидкість у них теж різна.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Возраст новичка">Вік початківця</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="На чём держится урок">На чому тримається урок</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Что даётся труднее">Що дається важче</th></thead>
 <tbody>
@@ -346,7 +363,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <li class="flex gap-3 items-start"><span class="text-fox-500 font-black mt-0.5 flex-none" aria-hidden="true">&#10003;</span><span class="text-base text-gray-600 leading-relaxed" data-ru="Каждое занятие остаётся записью, так что пропущенный урок не выпадает из курса">Кожне заняття лишається записом, тож пропущений урок не випадає з курсу</span></li>
 </ul>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Что ребёнок умеет через месяц, три и полгода">Що дитина вміє через місяць, три і пів року</h2>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Когда">Коли</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Что уже есть">Що вже є</th></thead>
 <tbody>
@@ -359,7 +376,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </div>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Цифры здесь ориентир, а не обещание: они предполагают два занятия в неделю и домашнее задание, которое ребёнок действительно делает. Одно занятие в неделю даёт тот же путь примерно вдвое дольше.">Цифри тут орієнтир, а не обіцянка: вони припускають два заняття на тиждень і домашнє завдання, яке дитина справді робить. Одне заняття на тиждень дає той самий шлях приблизно вдвічі довше.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Как проходят занятия">Як проходять заняття</h2>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Как у нас">Як у нас</th></thead>
 <tbody>

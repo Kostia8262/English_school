@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -327,7 +344,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Онлайн-урок к адресу не привязан вообще. Переехали из Варны под Софию или обратно — в обучении не меняется ничего: та же группа, тот же преподаватель, тот же день и час. Для ребёнка, у которого за год дважды меняется всё остальное, это единственная постоянная точка в неделе.">Онлайн-урок до адреси не прив'язаний узагалі. Переїхали з Варни під Софію чи назад — у навчанні не змінюється нічого: та сама група, той самий учитель, той самий день і час. Для дитини, у якої за рік двічі змінюється все інше, це єдина стала точка в тижні.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Время урока в Болгарии — то же, что в Киеве">Час уроку в Болгарії — той самий, що в Києві</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Болгария живёт в том же часовом поясе, что и Украина, и переводит часы в те же даты. Расписание после переезда не пересобирается: киевские 18:00 — это ваши 18:00, и так круглый год.">Болгарія живе в тому самому часовому поясі, що й Україна, і переводить годинники в ті самі дати. Розклад після переїзду не перескладається: київські 18:00 — це ваші 18:00, і так цілий рік.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Слот по Киеву">Слот за Києвом</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В Болгарии">У Болгарії</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Для кого удобно">Для кого зручно</th></thead>
 <tbody>
@@ -368,7 +385,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </ul>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Как проходят занятия для детей в Болгарии">Як проходять заняття для дітей у Болгарії</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="FluentFox — украинская онлайн-школа английского, и формат в Болгарии тот самый, что и для детей в Украине: меняется только язык, которым объясняют правило, — время урока не меняется даже оно.">FluentFox — українська онлайн-школа англійської, і формат у Болгарії той самий, що й для дітей в Україні: змінюється лише мова, якою пояснюють правило, — час уроку не змінюється навіть він.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Как у нас">Як у нас</th></thead>
 <tbody>

@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -321,7 +338,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Наши преподаватели украиноязычные, с дипломами CELTA, TEFL и профильным лингвистическим образованием. Урок идёт на английском, но когда правило не заходит, его объясняют на родном — и это тот один час в неделю, когда ребёнку ничего не нужно переводить дважды.">Наші вчителі україномовні, з дипломами CELTA, TEFL і профільною лінгвістичною освітою. Урок іде англійською, але коли правило не заходить, його пояснюють рідною — і це та одна година на тиждень, коли дитині нічого не треба перекладати двічі.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Время урока под ваш часовой пояс">Час уроку під ваш часовий пояс</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Расписание мы подбираем под вас, а не наоборот. Вот как выглядит обычный украинский вечерний слот — урок в 18:00 по Киеву — в городах, где сейчас живут наши ученики:">Розклад ми підбираємо під вас, а не навпаки. Ось як виглядає звичайний український вечірній слот — урок о 18:00 за Києвом — у містах, де зараз живуть наші учні:</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Где живёт ребёнок">Де живе дитина</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Разница с Киевом">Різниця з Києвом</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Урок в 18:00 по Киеву">Урок о 18:00 за Києвом</th></thead>
 <tbody>
@@ -370,7 +387,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Если семья вернётся">Якщо родина повернеться</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Программа привязана к шкале CEFR, а не к учебнику отдельной страны, поэтому уровень ребёнка читается и в Украине, и в Европе. Для подростков это значит, что дорога к НМТ не прервалась: государственная программа ведёт выпускника к B1, и от этой отметки видно, сколько осталось — независимо от того, в какой стране ребёнок провёл эти годы.">Програма прив'язана до шкали CEFR, а не до підручника окремої країни, тому рівень дитини читається і в Україні, і в Європі. Для підлітків це означає, що дорога до НМТ не перервалася: державна програма веде випускника до B1, і від цієї позначки видно, скільки лишилося — незалежно від того, у якій країні дитина провела ці роки.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Как проходят занятия">Як проходять заняття</h2>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Параметр</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Как у нас">Як у нас</th></thead>
 <tbody>

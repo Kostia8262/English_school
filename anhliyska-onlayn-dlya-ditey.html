@@ -77,6 +77,23 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
+про це ніщо не повідомляло, текст правої колонки просто обрізався й
+читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
+прилипають до вмісту (background-attachment: local) і ховають тінь там,
+де прокручувати вже нікуди. Без JS і без зайвого рядка тексту. */
+.tbl-scroll {
+background:
+linear-gradient(to right, #fff 40%, rgba(255,255,255,0)) 0 0 / 24px 100% no-repeat,
+linear-gradient(to left, #fff 40%, rgba(255,255,255,0)) 100% 0 / 24px 100% no-repeat,
+radial-gradient(farthest-side at 0 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 0 0 / 12px 100% no-repeat,
+radial-gradient(farthest-side at 100% 50%, rgba(17,24,39,.10), rgba(17,24,39,0)) 100% 0 / 12px 100% no-repeat;
+background-attachment: local, local, scroll, scroll;
+}
+.tbl-scroll:focus-visible {
+outline: 2px solid var(--fox-500);
+outline-offset: 2px;
+}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -320,7 +337,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="В школьном классе на тридцать детей одному ученику за сорок пять минут остаётся меньше минуты речи — остальное время он слушает. Именно поэтому ребёнок может учить английский шесть лет и не сказать ни одного предложения. В группе до пяти учеников арифметика другая: за урок в 1 час или 1,5 часа — на выбор каждый говорит примерно четверть времени, и учитель это контролирует намеренно, а не как получится.">У шкільному класі на тридцять дітей одному учневі за сорок п'ять хвилин залишається менше хвилини мовлення — решту часу він слухає. Саме тому дитина може вчити англійську шість років і не сказати жодного речення. У групі до п'яти учнів арифметика інша: за урок на 1 годину 30 хвилин кожен говорить приблизно чверть часу, і вчитель це контролює навмисно, а не як вийде.</p>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Онлайн добавляет к этому мелочь, которую замечают не сразу: в Zoom невозможно спрятаться за спину соседа. Когда учитель включает кого-то на экране, ребёнок отвечает — отсидеться на задней парте технически негде. Для стеснительных детей это сначала минус, а через месяц оказывается главным плюсом.">Онлайн додає до цього дрібницю, яку помічають не одразу: у Zoom неможливо сховатися за спину сусіда. Коли вчитель вмикає когось на екрані, дитина відповідає — відсидітись на задній парті технічно нема де. Для сором'язливих дітей це спочатку мінус, а через місяць виявляється головним плюсом.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Что нужно из техники">Що потрібно з техніки</h2>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Что">Що</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Минимум">Мінімум</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="Почему это важно">Чому це важливо</th></thead>
 <tbody>
@@ -337,7 +354,7 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Вторая разница — в обратной связи. В школе ошибку в тетради ребёнок видит через неделю, когда уже не помнит, что писал. На занятии английским онлайн учитель исправляет в момент, когда фраза ещё звучит, а часть домашних упражнений платформа проверяет сразу. Третья — расписание: дорога до класса и обратно съедает около часа в день, и в плотной неделе подростка это тот час, из-за которого занятия в итоге бросают.">Друга різниця — у зворотному зв'язку. У школі помилку в зошиті дитина бачить через тиждень, коли вже не пам'ятає, що писала. На занятті англійською онлайн учитель виправляє в момент, коли фраза ще звучить, а частину домашніх вправ платформа перевіряє одразу. Третя — розклад: дорога до класу й назад з'їдає близько години на день, і в щільному тижні підлітка це та година, через яку заняття зрештою кидають.</p>
 <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4 mt-8 sm:mt-12 first:mt-0" data-ru="Сколько стоит английский онлайн для ребёнка">Скільки коштує англійська онлайн для дитини</h2>
 <p class="text-base text-gray-600 leading-relaxed mb-4" data-ru="Цена не зависит от формата: онлайн и очный класс стоят одинаково, потому что программа, размер группы и учителя те же. Материалы, доступ к платформе и отчёты за модуль уже входят в сумму — отдельных платежей за них нет.">Ціна не залежить від формату: онлайн і очний клас коштують однаково, бо програма, розмір групи й учителі ті самі. Матеріали, доступ до платформи та звіти за модуль уже входять у суму — окремих платежів за них немає.</p>
-<div class="overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white">
+<div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">
 <table class="w-full min-w-[520px]">
 <thead class="bg-fox-50"><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap">Формат</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="В месяц">На місяць</th><th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3 whitespace-nowrap" data-ru="За час">За годину</th></thead>
 <tbody>
