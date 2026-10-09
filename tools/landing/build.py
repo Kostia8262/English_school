@@ -165,7 +165,7 @@ def render_block(b):
         # overflow-x-auto обов'язковий: на 375 px таблиця з трьох колонок інакше
         # розсуває сторінку й ламає горизонтальний скрол усього документа.
         return ('      <div class="tbl-scroll overflow-x-auto mb-6 mt-4 rounded-3xl border border-fox-100 bg-white" tabindex="0">\n'
-                '        <table class="w-full min-w-[420px] sm:min-w-[520px]">\n'
+                '        <table class="w-full sm:min-w-[520px]">\n'
                 '          <thead class="bg-fox-50">%s</thead>\n'
                 '          <tbody>\n%s\n          </tbody>\n'
                 '        </table>\n      </div>' % (th, tr))
