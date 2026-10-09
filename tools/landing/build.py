@@ -144,17 +144,29 @@ def render_block(b):
 
     if kind == "table":
         head, rows = b[1], b[2]
+        # Заголовки не переносились на жодній ширині, і саме вони тримали
+        # таблицю ширшою за екран: три nowrap-заголовки дають понад 358 px,
+        # які лишаються від 390 px після px-4. Тепер nowrap лише від sm.
         th = "".join(
             '<th scope="col" class="text-left font-black text-gray-900 text-sm px-4 py-3'
             '%s"%s</th>'
-            % (" whitespace-nowrap" if max(len(uk), len(ru)) <= 24 else "",
+            % (" sm:whitespace-nowrap" if max(len(uk), len(ru)) <= 24 else "",
                attr_ru(uk, ru))
             for uk, ru in head)
         # «3 600 грн» у вузькій колонці розривалося на два рядки й читалося як
         # два різні числа. Короткі клітинки не переносимо; довгі лишаємо як є,
         # інакше таблиця розсуне себе далеко за межі екрана.
         def cell(uk, ru):
-            nowrap = " whitespace-nowrap" if max(len(uk), len(ru)) <= 24 else ""
+            longest = max(len(uk), len(ru))
+            # «3 600 грн» і «Субота, 11:00» мусять лишатися цілими на будь-якій
+            # ширині — розірване число читається як два різні. Усе інше може
+            # переноситись на телефоні: краще три рядки, ніж обрізаний текст.
+            if longest <= 14 and any(c.isdigit() for c in uk):
+                nowrap = " whitespace-nowrap"
+            elif longest <= 24:
+                nowrap = " sm:whitespace-nowrap"
+            else:
+                nowrap = ""
             return ('<td class="px-4 py-3 text-sm text-gray-600 align-top%s"%s</td>'
                     % (nowrap, attr_ru(uk, ru)))
 
