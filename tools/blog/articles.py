@@ -33,6 +33,9 @@ from art_motyvatsiya import ART as MOTYVATSIYA
 from art_strah import ART as STRAH
 from art_vik import ART as VIK
 from art_navchyty_onlayn import ART as NAVCHYTY
+from art_shkola_za_kordonom import ART as ZA_KORDONOM
+from art_rozklad_za_kordonom import ART as ROZKLAD
+from art_try_movy import ART as TRY_MOVY
 
 ARTICLES = [
     SHKILNA,
@@ -55,4 +58,7 @@ ARTICLES = [
     STRAH,
     VIK,
     NAVCHYTY,
+    ZA_KORDONOM,
+    ROZKLAD,
+    TRY_MOVY,
 ]
