@@ -1,6 +1,33 @@
 {
  "articles": [
   {
+   "slug": "chasy-v-anhliyskiy-tablytsia-usikh-12",
+   "title": "Часи в англійській: таблиця всіх дванадцяти",
+   "title_ru": "Времена в английском: таблица всех двенадцати",
+   "excerpt": "Усі дванадцять часів таблицею з формулами, слова-підказки, чесна відповідь скільки з них потрібні насправді та чому Present Perfect дається важко.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/chasy-v-anhliyskiy-tablytsia-usikh-12"
+  },
+  {
+   "slug": "anhliyskyi-alfavit-litery-i-vymova",
+   "title": "Англійський алфавіт: літери і вимова назв",
+   "title_ru": "Английский алфавит: буквы и произношение названий",
+   "excerpt": "Усі 26 літер таблицею з вимовою назв, різниця між назвою літери і звуком та п'ять місць, де діти плутаються найчастіше.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/anhliyskyi-alfavit-litery-i-vymova"
+  },
+  {
+   "slug": "anhliyski-chysla-vid-1-do-100",
+   "title": "Англійські числа від 1 до 100: таблиця",
+   "title_ru": "Английские числа от 1 до 100: таблица",
+   "excerpt": "Усі числа до ста таблицями за групами, правило дефіса, порядкові числівники і розбір шести помилок, які повторюються з року в рік.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/anhliyski-chysla-vid-1-do-100"
+  },
+  {
    "slug": "cambridge-chy-nmt-yakyi-ispyt-potriben-dytyni",
    "title": "Cambridge чи НМТ: який іспит обрати дитині",
    "title_ru": "Cambridge или НМТ: какой экзамен выбрать ребёнку",
