@@ -1,6 +1,51 @@
 {
  "articles": [
   {
+   "slug": "pravyla-chytannia-anhliyskoyu-tablytsi",
+   "title": "Правила читання англійською: таблиці",
+   "title_ru": "Правила чтения по-английски: таблицы",
+   "excerpt": "Відкритий і закритий склад, голосна з r, пари голосних, німі літери й закінчення — правила читання таблицями, до яких повертаються.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/pravyla-chytannia-anhliyskoyu-tablytsi"
+  },
+  {
+   "slug": "mnozhyna-imennykiv-pravyla-i-vyniatky",
+   "title": "Множина іменників: правила і винятки",
+   "title_ru": "Множественное число: правила и исключения",
+   "excerpt": "Чотири правила написання, вісім неправильних форм, слова без множини взагалі і три помилки, які повторюються у всіх дітей.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/mnozhyna-imennykiv-pravyla-i-vyniatky"
+  },
+  {
+   "slug": "kolory-anhliyskoyu-dlya-ditey",
+   "title": "Кольори англійською: таблиця для дітей",
+   "title_ru": "Цвета по-английски: таблица для детей",
+   "excerpt": "Одинадцять основних кольорів таблицею, відтінки без нових слів, правило порядку слів і вирази, у яких колір означає зовсім не колір.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/kolory-anhliyskoyu-dlya-ditey"
+  },
+  {
+   "slug": "diieslovo-to-be-formy-i-koly-yaka",
+   "title": "Дієслово to be: форми і коли яка",
+   "title_ru": "Глагол to be: формы и когда какая",
+   "excerpt": "Am, is, are і was, were таблицями, скорочення, питання без допоміжних слів і розбір помилки I am go, яку роблять майже всі діти.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/diieslovo-to-be-formy-i-koly-yaka"
+  },
+  {
+   "slug": "artykli-a-an-the-koly-yakyi",
+   "title": "Артиклі a, an, the: коли який ставити",
+   "title_ru": "Артикли a, an, the: когда какой ставить",
+   "excerpt": "Два артиклі й три ситуації таблицею, чому an залежить від звуку, а не від букви, і де артикль не потрібен зовсім.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/artykli-a-an-the-koly-yakyi"
+  },
+  {
    "slug": "nepravylni-diieslova-anhliyskoyi-tablytsia",
    "title": "Неправильні дієслова англійської: таблиця",
    "title_ru": "Неправильные глаголы английского: таблица",
