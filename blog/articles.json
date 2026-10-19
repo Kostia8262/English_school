@@ -1,6 +1,24 @@
 {
  "articles": [
   {
+   "slug": "nepravylni-diieslova-anhliyskoyi-tablytsia",
+   "title": "Неправильні дієслова англійської: таблиця",
+   "title_ru": "Неправильные глаголы английского: таблица",
+   "excerpt": "Сорок робочих дієслів трьома таблицями за формою, а не за алфавітом, плюс спосіб вчити їх пачками і три помилки, які повторюються у всіх.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/nepravylni-diieslova-anhliyskoyi-tablytsia"
+  },
+  {
+   "slug": "dni-tyzhnia-i-misiatsi-anhliyskoyu",
+   "title": "Дні тижня і місяці англійською: таблиця",
+   "title_ru": "Дни недели и месяцы по-английски: таблица",
+   "excerpt": "Дні, місяці та пори року таблицями зі скороченнями, правило великої літери, три прийменники і чому британська дата читається не так, як американська.",
+   "category": "Довідник",
+   "publishedAt": "2026-10-19",
+   "url": "https://fluent-fox.site/blog/dni-tyzhnia-i-misiatsi-anhliyskoyu"
+  },
+  {
    "slug": "chasy-v-anhliyskiy-tablytsia-usikh-12",
    "title": "Часи в англійській: таблиця всіх дванадцяти",
    "title_ru": "Времена в английском: таблица всех двенадцати",
