@@ -28,7 +28,7 @@ header('Cache-Control: no-store');
 // Версія ассетів — руками, як на юридичних сторінках і на 404: цей файл не
 // складається генератором. Розходження ловить python tools/audit/assets.py,
 // який заради цього рядка й почав дивитись у .php.
-const ASSET_VERSION = '20261009b';
+const ASSET_VERSION = '20261019a';
 
 const LOG_NAME       = 'lead-errors.log';
 const RATE_MAX       = 10;          // заявок з однієї адреси
@@ -415,6 +415,24 @@ $lang  = ((string) ($_POST['lang'] ?? 'uk')) === 'ru' ? 'ru' : 'uk';
 // вибір батьків. Порожній рядок нижче просто випадає з нотаток.
 $fmt   = clean((string) ($_POST['format'] ?? ''), 40);
 
+// Атрибуція: звідки людина прийшла. Збирає js/track.js, форма додає до тіла.
+// До 19.10.2026 заявка йшла в CRM без жодної мітки — відповісти, яка
+// сторінка чи реклама привела людину, було нічим, хоча колонки під це в CRM
+// є й решта шістнадцяти сайтів їх заповнює. Жодне з полів не обов'язкове:
+// порожнє просто не піде далі.
+//
+// click_id — мітка кліку Google Ads (gclid або його замінники gbraid/wbraid).
+// Вона потрібна, щоб потім вивантажити в Ads саме ОПЛАТИ, а не відправлені
+// форми: ставки мають вчитися на тих, хто заплатив.
+$attr = [];
+foreach (['utm_source', 'utm_medium', 'utm_campaign', 'referrer',
+          'landing_path', 'click_id', 'click_type'] as $key) {
+    $val = clean((string) ($_POST[$key] ?? ''), 300);
+    if ($val !== '') {
+        $attr[$key] = $val;
+    }
+}
+
 if (mb_strlen($name) < 2) {
     fail(400, 'Вкажіть імʼя (мінімум 2 символи).');
 }
@@ -455,6 +473,11 @@ if ($crm['configured']) {
     ];
     if ($age > 0) {
         $payload['age'] = $age;
+    }
+    // Мітки йдуть окремими полями, бо CRM читає їх зі свого набору
+    // (leadAttribution на боці хаба), а не з нотаток.
+    if ($attr) {
+        $payload += $attr;
     }
 
     $headers = ['Content-Type: application/json', 'x-admin-token: ' . $config['crm_token']];

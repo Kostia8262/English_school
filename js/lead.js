@@ -111,6 +111,15 @@
          рядка в CRM не видно, яка з них привела людину. */
       body.append('page', location.pathname + location.search);
 
+      /* Атрибуція: звідки людина прийшла. Збирає її js/track.js — він стоїть
+         на всіх сторінках, а ця форма є не скрізь, і початок шляху вона б не
+         застала. Якщо track.js не виконався, полів просто не буде: заявка
+         важливіша за мітку. */
+      if (window.ffTrack && window.ffTrack.fields) {
+        var attr = window.ffTrack.fields();
+        Object.keys(attr).forEach(function (k) { body.append(k, attr[k]); });
+      }
+
       /* Запит свій-до-свого: ні CORS, ні preflight, ні редиректів — відповідь
          читається завжди. Це й було головною причиною переїзду: раніше тут
          стояв mode: 'no-cors', відповідь була непрозорою, і форма показувала

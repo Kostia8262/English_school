@@ -90,4 +90,119 @@
       }
     }
   });
+
+  /* ── 3. Атрибуція: звідки людина прийшла ────────────────────────────────
+
+     До 19.10.2026 заявка з цього сайту приходила в CRM без жодної мітки:
+     ім'я, телефон, вік і рядок «Заявка з fluent-fox.site». Тобто відповісти,
+     яка сторінка чи яка реклама привела людину, було нічим — при тому, що в
+     самій CRM колонки під це є й сусідні шістнадцять сайтів їх заповнюють.
+
+     Збирати треба саме тут, а не у формі: людина частіше приходить на статтю
+     чи на сторінку країни, а форму бачить уже на третьому кроці. js/lead.js
+     живе тільки там, де форма є, і початок шляху він би не застав.
+
+     Клік зберігаємо окремо від решти й надовго: мітка gclid потрібна, щоб
+     потім вивантажити в Google Ads саме ОПЛАТИ, а не відправлені форми.
+     Шлях від заявки до оплати довший за вікно utm-міток. */
+  var ATTR_KEY = 'ff-attr';
+  var CLICK_KEY = 'ff-click';
+  var ATTR_TTL = 30 * 24 * 60 * 60 * 1000;
+  var CLICK_TTL = 90 * 24 * 60 * 60 * 1000;
+  /* gclid — звичайний клік; gbraid і wbraid — його замінники там, де Apple не
+     дає передати gclid. Назва параметра вирішує, в яку колонку піде
+     вивантаження, тому зберігаємо саме її, а не лише значення. */
+  var CLICK_PARAMS = ['gclid', 'gbraid', 'wbraid'];
+  var OUR_HOST = /(^|\.)(fluent-fox\.site|mycomputer\.(education|school))$/i;
+
+  function read(key, ttl) {
+    var stores = [];
+    try { stores.push(localStorage); } catch (e) { /* приватне вікно */ }
+    try { stores.push(sessionStorage); } catch (e) { /* і тут теж */ }
+    for (var i = 0; i < stores.length; i++) {
+      try {
+        var raw = stores[i].getItem(key);
+        if (!raw) continue;
+        var box = JSON.parse(raw);
+        if (!box || !box.at) continue;
+        if (Date.now() - box.at > ttl) continue;
+        return box;
+      } catch (e) { /* зіпсований запис — поводимось як із порожнім */ }
+    }
+    return null;
+  }
+
+  function write(key, box) {
+    var raw;
+    try { raw = JSON.stringify(box); } catch (e) { return; }
+    try { localStorage.setItem(key, raw); } catch (e) { /* приватне вікно */ }
+    try { sessionStorage.setItem(key, raw); } catch (e) { /* і тут теж */ }
+  }
+
+  function query() {
+    try { return new URLSearchParams(location.search); } catch (e) { return null; }
+  }
+
+  /* Чи є цей візит НОВИМ приводом прийти. Внутрішній перехід не привід:
+     інакше друга ж сторінка перезаписала б джерело нашою власною адресою, і
+     кожна заявка виглядала б прямим заходом. */
+  function externalTouch() {
+    var q = query();
+    if (!q) return false;
+    if (q.get('utm_source') || q.get('utm_medium') || q.get('utm_campaign')) return true;
+    /* Автопозначка Ads кладе в адресу лише gclid, без utm-міток, а referrer
+       частину разів приходить порожнім. Без цієї перевірки рекламний захід
+       виглядав би внутрішнім переходом. */
+    for (var i = 0; i < CLICK_PARAMS.length; i++) {
+      if ((q.get(CLICK_PARAMS[i]) || '').trim()) return true;
+    }
+    var ref = document.referrer || '';
+    if (!ref) return false;
+    try { return !OUR_HOST.test(new URL(ref).hostname); } catch (e) { return false; }
+  }
+
+  function capture() {
+    var q = query();
+    if (!q) return;
+
+    var kind = null;
+    for (var i = 0; i < CLICK_PARAMS.length; i++) {
+      if ((q.get(CLICK_PARAMS[i]) || '').trim()) { kind = CLICK_PARAMS[i]; break; }
+    }
+    if (kind) {
+      write(CLICK_KEY, { id: q.get(kind).trim(), kind: kind, at: Date.now() });
+    }
+
+    /* Перше торкання бережемо, але нове ЗОВНІШНЄ перекриває його: людина
+       прийшла ще раз і вже іншою дорогою — саме ця дорога й привела. */
+    if (read(ATTR_KEY, ATTR_TTL) && !externalTouch()) return;
+    write(ATTR_KEY, {
+      utm_source:   q.get('utm_source')   || '',
+      utm_medium:   q.get('utm_medium')   || '',
+      utm_campaign: q.get('utm_campaign') || '',
+      referrer:     document.referrer     || '',
+      landing_path: location.pathname + location.search,
+      at:           Date.now()
+    });
+  }
+
+  /* Поля для форми. Клік живе довше за мітку джерела, тож заявка з живим
+     кліком і згаслим джерелом — нормальний стан, а не порожній результат. */
+  function fields() {
+    var out = {};
+    var box = read(ATTR_KEY, ATTR_TTL);
+    if (box) {
+      ['utm_source', 'utm_medium', 'utm_campaign', 'referrer', 'landing_path']
+        .forEach(function (k) { if (box[k]) out[k] = box[k]; });
+    }
+    var click = read(CLICK_KEY, CLICK_TTL);
+    if (click && click.id) {
+      out.click_id = click.id;
+      out.click_type = click.kind;
+    }
+    return out;
+  }
+
+  capture();
+  window.ffTrack = { fields: fields, capture: capture };
 })();
