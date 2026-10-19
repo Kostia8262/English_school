@@ -1,5 +1,23 @@
 [
  {
+  "slug": "cambridge-chy-nmt-yakyi-ispyt-potriben-dytyni",
+  "emoji": "📘",
+  "accent": "fox",
+  "catKey": "exams",
+  "date": "19 жовтня 2026",
+  "dateRu": "19 октября 2026",
+  "readTime": "7 хв читання",
+  "readTimeRu": "7 мин чтения",
+  "category": "НМТ та іспити",
+  "categoryRu": "НМТ и экзамены",
+  "title": "Cambridge чи НМТ: який іспит обрати дитині",
+  "titleRu": "Cambridge или НМТ: какой экзамен выбрать ребёнку",
+  "excerpt": "Cambridge і НМТ — це два різні іспити з різною метою. Пояснюємо, кому що потрібно і як поєднати обидва в одному навчальному плані.",
+  "excerptRu": "Cambridge и НМТ — это два разных экзамена с разной целью. Объясняем, кому что нужно и как соединить оба в одном учебном плане.",
+  "published": "2026-10-19",
+  "modified": "2026-10-19"
+ },
+ {
   "slug": "dytyna-propustyla-misiats-zaniat-yak-nazdohnaty",
   "emoji": "📅",
   "accent": "fox",
