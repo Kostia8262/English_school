@@ -43,6 +43,11 @@ cyrillic несе весь текст сторінки, тому її берем
 <link rel="preload" as="style" href="/css/style.css?v=20261019a"/>
 <link rel="stylesheet" href="/css/style.css?v=20261019a" fetchpriority="high"/>
 <style>
+/* Фільтр категорій ховає картки атрибутом hidden (js/blog.js), а в їхніх
+   класах стоїть flex — без цього правила display:flex перебиває
+   display:none, і жодна вкладка нічого не фільтрує. Те саме правило вже
+   стоїть на головній і на посадкових; у лістингу його просто забули. */
+[hidden] { display: none !important; }
 /* Дропдаун «Напрямки» — та сама розмітка, що на головній. */
 .nav-dd > summary { list-style: none; }
 .nav-dd > summary::-webkit-details-marker { display: none; }
