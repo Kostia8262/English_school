@@ -793,6 +793,7 @@ FOOTER = """
 <script src="/js/lead.js?v=%(assetv)s" defer></script>
 <script src="/js/subscribe.js?v=%(assetv)s" defer></script>
 <script src="/js/pay.js?v=%(assetv)s" defer></script>
+<script src="/js/track.js?v=%(assetv)s" defer></script>
 </body>
 </html>
 """
