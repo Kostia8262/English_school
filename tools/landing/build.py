@@ -490,6 +490,12 @@ HEAD = """<!DOCTYPE html>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 
+<!-- Піксель Meta. Сам код лежить у js/pixel.js саме через цей f-рядок: його
+     фігурні дужки довелося б подвоювати тут поштучно. -->
+<script src="/js/pixel.js?v={assetv}"></script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=931791603129774&amp;ev=PageView&amp;noscript=1"></noscript>
+
 <title>{title_uk}</title>
 <meta name="description" content="{desc_uk}"/>
 <meta name="robots" content="index, follow"/>

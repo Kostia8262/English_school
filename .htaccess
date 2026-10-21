@@ -221,9 +221,13 @@ ErrorDocument 503 /503.html
   # відправку, політика не стане другою поломкою. Прибрати їх можна
   # одним рухом, коли новий шлях відпрацює місяць.
   #
-  # УВАГА: нові теги в GTM (піксель Meta, Hotjar тощо) ця політика заблокує,
-  # доки їхній домен не додано в script-src і connect-src.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://smm.mycomputer.education https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://script.google.com https://script.googleusercontent.com; frame-ancestors 'self'; form-action 'self' https://script.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  # УВАГА: нові теги (Hotjar тощо) ця політика заблокує, доки їхній домен не
+  # додано в script-src і connect-src.
+  #
+  # Піксель Meta (21.10.2026): connect.facebook.net у script-src — звідти
+  # вантажиться fbevents.js; www.facebook.com у connect-src — туди він шле
+  # самі події. Картинку з noscript покриває вже наявний img-src https:.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://smm.mycomputer.education https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://script.google.com https://script.googleusercontent.com https://www.facebook.com https://connect.facebook.net; frame-ancestors 'self'; form-action 'self' https://script.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"

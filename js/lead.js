@@ -145,6 +145,13 @@
             gtag('event', 'generate_lead',
                  { event_category: 'form', event_label: 'trial_lesson' });
           }
+          /* Lead для Meta — рівно тут, поряд з generate_lead, а не на кліку
+             по кнопці: вище по ланцюжку ми вже прочитали відповідь сервера й
+             знаємо, що заявку хтось прийняв. Піксель, навчений на кліках,
+             оптимізував би покази під тих, хто тисне кнопку й відпадає. */
+          if (typeof fbq !== 'undefined') {
+            fbq('track', 'Lead', { content_name: 'trial_lesson' });
+          }
           form.reset();
         })
         .catch(function (err) {
