@@ -1986,6 +1986,30 @@
 </section>
 
 
+<!-- ═══════════════════════ METHOD ═══════════════════════ -->
+<section id="method" class="py-8 md:py-20 bg-white border-t border-fox-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-10 md:mb-14">
+            <span class="inline-block bg-fox-50 text-fox-600 font-bold text-sm px-4 py-1.5 rounded-full mb-4" x-text="t.method.label">Методика</span>
+            <h2 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 mb-3 leading-tight" x-text="t.method.title"></h2>
+            <p class="text-gray-500 text-sm sm:text-base md:text-lg max-w-2xl mx-auto" x-text="t.method.subtitle"></p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <template x-for="(it, i) in t.method.items" :key="i">
+                <div class="bg-fox-50 rounded-2xl p-5 md:p-6 border border-fox-100">
+                    <span class="flex-none select-none inline-block mb-3" x-icon="it.emoji|w-9 h-9"></span>
+                    <h3 class="font-black text-gray-900 text-sm md:text-base mb-2 leading-tight" x-text="it.title"></h3>
+                    <p class="text-gray-500 text-xs md:text-sm leading-relaxed" x-text="it.desc"></p>
+                </div>
+            </template>
+        </div>
+
+    </div>
+</section>
+
+
 <!-- ═══════════════════════ ADVANTAGES ═══════════════════════ -->
 <section class="py-8 md:py-20 bg-gray-950 relative overflow-hidden">
 
