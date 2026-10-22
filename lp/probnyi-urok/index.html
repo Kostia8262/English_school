@@ -69,7 +69,12 @@
   }
   .lp-slider::-webkit-scrollbar { display: none; }
   .lp-slide { flex: 0 0 86%; scroll-snap-align: center; }
-  @media (min-width: 768px) { .lp-slide { flex-basis: 47%; } }
+  @media (min-width: 768px) {
+    .lp-slide { flex-basis: 47%; }
+    /* Тарифів три — на десктопі вони мають поміститися всі одразу, інакше
+       людина порівнює ціни гортанням, а це найгірше місце для гортання. */
+    .lp-slide-3 { flex-basis: 31.5%; }
+  }
 
   .lp-dot {
     width: 8px; height: 8px; border-radius: 9999px;
@@ -101,10 +106,9 @@
       <img src="/logo.svg" alt="" class="w-9 h-9" width="36" height="36" fetchpriority="high">
       <span class="font-black text-lg leading-none">Fluent<span class="text-fox-500">Fox</span></span>
     </span>
-    <span class="flex items-center gap-2 sm:gap-3">
-      <a href="tel:+380954624672" class="text-xs sm:text-sm font-black text-gray-700 whitespace-nowrap">095 462-46-72</a>
-      <span class="w-px h-4 bg-gray-200" aria-hidden="true"></span>
-      <a href="tel:+380682522876" class="text-xs sm:text-sm font-black text-gray-700 whitespace-nowrap">068 252-28-76</a>
+    <span class="flex flex-col items-end leading-tight">
+      <a href="tel:+380954624672" class="text-sm font-black text-gray-700 whitespace-nowrap">095 462-46-72</a>
+      <a href="tel:+380682522876" class="text-sm font-black text-gray-700 whitespace-nowrap">068 252-28-76</a>
     </span>
   </div>
 </header>
@@ -301,106 +305,278 @@ Telegram
   </div>
 </section>
 
-<!-- ═══ Блок 3. Відгуки, ціна і повтор заклику ══════════════════════════ -->
+<!-- ═══ Блок 3. Тарифи — усі три, цифри з головної ══════════════════════ -->
 <section class="bg-gradient-to-b from-white to-fox-50 py-12 md:py-16">
   <div class="max-w-5xl mx-auto px-4">
     <p class="text-center text-xs font-black uppercase tracking-tight text-fox-600 mb-2"
-       data-ru="Отзывы">Відгуки</p>
-    <h2 class="text-2xl md:text-3xl font-black text-center mb-10 leading-tight tracking-tight"
-        data-ru="Что говорят родители">Що кажуть батьки</h2>
+       data-ru="Цены">Ціни</p>
+    <h2 class="text-2xl md:text-3xl font-black text-center mb-3 leading-tight tracking-tight"
+        data-ru="Сколько стоит обучение">Скільки коштує навчання</h2>
+    <p class="text-center text-gray-400 text-sm font-medium mb-10"
+       data-ru="После бесплатного урока — если понравится">Після безкоштовного уроку — якщо сподобається</p>
 
-    <div class="lp-slider" data-slider>
-      <figure class="lp-slide lp-card bg-white rounded-3xl border border-gray-100 p-6">
-        <div class="lp-stars mb-3">★★★★★</div>
-        <blockquote class="text-gray-600 leading-relaxed mb-4">«Перед першим заняттям Соня тиснула мене за руку і шептала «мамо, не хочу». Після третього уроку — сама сіла за планшет і повторювала слова з вчителькою. Зараз вже 4-й місяць, і вона засмучується, якщо заняття скасовують.»</blockquote>
-        <figcaption class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-full bg-fox-100 text-fox-600 font-black flex items-center justify-center shrink-0">І</span>
-          <span class="text-sm font-black text-gray-700">Ірина К.</span>
-        </figcaption>
-      </figure>
-      <figure class="lp-slide lp-card bg-white rounded-3xl border border-gray-100 p-6">
-        <div class="lp-stars mb-3">★★★★★</div>
-        <blockquote class="text-gray-600 leading-relaxed mb-4">«Максим готувався до Cambridge KET і шкільних іспитів одночасно. Вчителька склала окремий план під кожне завдання, після кожного уроку надсилала розбір помилок. Склав KET на Merit, а в школі отримав річну «відмінно». Дуже структурований підхід.»</blockquote>
-        <figcaption class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-full bg-fox-100 text-fox-600 font-black flex items-center justify-center shrink-0">О</span>
-          <span class="text-sm font-black text-gray-700">Олег Т.</span>
-        </figcaption>
-      </figure>
-      <figure class="lp-slide lp-card bg-white rounded-3xl border border-gray-100 p-6">
-        <div class="lp-stars mb-3">★★★★★</div>
-        <blockquote class="text-gray-600 leading-relaxed mb-4">«Готувались до НМТ з нуля за 4 місяці. Вчителька підібрала програму під конкретні завдання іспиту, щотижня розбирали помилки. Дарина склала на 183 бали. Вже записую молодшого сина.»</blockquote>
-        <figcaption class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-full bg-fox-100 text-fox-600 font-black flex items-center justify-center shrink-0">М</span>
-          <span class="text-sm font-black text-gray-700">Марина В.</span>
-        </figcaption>
-      </figure>
-      <figure class="lp-slide lp-card bg-white rounded-3xl border border-gray-100 p-6">
-        <div class="lp-stars mb-3">★★★★★</div>
-        <blockquote class="text-gray-600 leading-relaxed mb-4">«Льоша соромився говорити навіть зі мною по-українськи, а тут — англійська! Думала, нічого не вийде. Зараз вчителька в школі питає, де він так добре навчився. Не знаю як FluentFox це робить, але це точно працює.»</blockquote>
-        <figcaption class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-full bg-fox-100 text-fox-600 font-black flex items-center justify-center shrink-0">Т</span>
-          <span class="text-sm font-black text-gray-700">Тетяна Л.</span>
-        </figcaption>
-      </figure>
-      <figure class="lp-slide lp-card bg-white rounded-3xl border border-gray-100 p-6">
-        <div class="lp-stars mb-3">★★★★★</div>
-        <blockquote class="text-gray-600 leading-relaxed mb-4">«Аліна займалась рік у групі. Спочатку боялась відкрити рота, а тепер за сімейною вечерею виправляє мою вимову. На день народження попросила додаткові заняття. Ось такий результат.»</blockquote>
-        <figcaption class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-full bg-fox-100 text-fox-600 font-black flex items-center justify-center shrink-0">А</span>
-          <span class="text-sm font-black text-gray-700">Андрій С.</span>
-        </figcaption>
-      </figure>
-      <figure class="lp-slide lp-card bg-white rounded-3xl border border-gray-100 p-6">
-        <div class="lp-stars mb-3">★★★★★</div>
-        <blockquote class="text-gray-600 leading-relaxed mb-4">«Записала відразу двох синів у різні групи — зі знижкою на другу дитину виходить вигідно. Обоє займаються вже 7 місяців. Старший читає в оригіналі, а молодший просить перемикати мультики на англійську і сміється, що я не розумію.»</blockquote>
-        <figcaption class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-full bg-fox-100 text-fox-600 font-black flex items-center justify-center shrink-0">Н</span>
-          <span class="text-sm font-black text-gray-700">Наталія Б.</span>
-        </figcaption>
-      </figure>
+    <div class="lp-slider" data-slider="plans">
+      <div class="lp-slide lp-slide-3 lp-card bg-white rounded-3xl border-2 border-gray-100 p-6 flex flex-col">
+        
+        <h3 class="font-black text-lg mb-1 leading-tight" data-ru="Группа 1×/неделю">Група 1×/тиждень</h3>
+        <p class="text-gray-400 text-sm font-medium mb-4" data-ru="4 занятия в месяц · до 5 учеников">4 заняття на місяць · до 5 учнів</p>
+        <p class="text-3xl font-black mb-5 tracking-tight">1 800
+          <span class="text-sm font-black text-gray-400">грн / <span data-ru="месяц">місяць</span></span></p>
+        <ul class="space-y-2 mb-6 flex-1">
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="300 грн за 1 час">300 грн за 1 годину</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="4 урока по 1,5 часа">4 уроки по 1,5 години</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="Группа до 5 учеников">Група до 5 учнів</span>
+          </li>
+        </ul>
+        <a href="#form" class="block text-center bg-gradient-to-br from-fox-500 to-fox-600 text-white font-black rounded-full px-6 py-3 shadow-fox-sm transition-all duration-300 hover:-translate-y-0.5"
+           data-ru="Записаться">Записатись</a>
+      </div>
+      <div class="lp-slide lp-slide-3 lp-card bg-white rounded-3xl border-2 border-fox-300 p-6 flex flex-col">
+        <p class="inline-block self-start bg-fox-500 text-white text-xs font-black uppercase tracking-tight rounded-full px-3 py-1 mb-3"
+           data-ru="Популярный">Популярний</p>
+        <h3 class="font-black text-lg mb-1 leading-tight" data-ru="Группа 2×/неделю">Група 2×/тиждень</h3>
+        <p class="text-gray-400 text-sm font-medium mb-4" data-ru="8 занятий в месяц · до 5 учеников">8 занять на місяць · до 5 учнів</p>
+        <p class="text-3xl font-black mb-5 tracking-tight">3 600
+          <span class="text-sm font-black text-gray-400">грн / <span data-ru="месяц">місяць</span></span></p>
+        <ul class="space-y-2 mb-6 flex-1">
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="300 грн за 1 час">300 грн за 1 годину</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="8 уроков по 1,5 часа">8 уроків по 1,5 години</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="Группа до 5 учеников">Група до 5 учнів</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="Максимальный прогресс">Максимальний прогрес</span>
+          </li>
+        </ul>
+        <a href="#form" class="block text-center bg-gradient-to-br from-fox-500 to-fox-600 text-white font-black rounded-full px-6 py-3 shadow-fox-sm transition-all duration-300 hover:-translate-y-0.5"
+           data-ru="Записаться">Записатись</a>
+      </div>
+      <div class="lp-slide lp-slide-3 lp-card bg-white rounded-3xl border-2 border-gray-100 p-6 flex flex-col">
+        
+        <h3 class="font-black text-lg mb-1 leading-tight" data-ru="Индивидуально">Індивідуально</h3>
+        <p class="text-gray-400 text-sm font-medium mb-4" data-ru="8 занятий в месяц · личный подход">8 занять на місяць · особистий підхід</p>
+        <p class="text-3xl font-black mb-5 tracking-tight">4 800
+          <span class="text-sm font-black text-gray-400">грн / <span data-ru="месяц">місяць</span></span></p>
+        <ul class="space-y-2 mb-6 flex-1">
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="600 грн за 1 час">600 грн за 1 годину</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="8 уроков по 1 часу">8 уроків по 1 годині</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="Полное внимание учителя">Повна увага вчителя</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="Индивидуальный план обучения">Індивідуальний план навчання</span>
+          </li>
+        </ul>
+        <a href="#form" class="block text-center bg-gradient-to-br from-fox-500 to-fox-600 text-white font-black rounded-full px-6 py-3 shadow-fox-sm transition-all duration-300 hover:-translate-y-0.5"
+           data-ru="Записаться">Записатись</a>
+      </div>
     </div>
-    <div class="flex items-center justify-center gap-2 mt-6 mb-10">
+    <div class="flex items-center justify-center gap-2 mt-6" data-dots="plans">
       <button type="button" class="lp-dot" data-dot aria-current="true" aria-label="Відгук 1"></button>
       <button type="button" class="lp-dot" data-dot aria-current="false" aria-label="Відгук 2"></button>
       <button type="button" class="lp-dot" data-dot aria-current="false" aria-label="Відгук 3"></button>
-      <button type="button" class="lp-dot" data-dot aria-current="false" aria-label="Відгук 4"></button>
-      <button type="button" class="lp-dot" data-dot aria-current="false" aria-label="Відгук 5"></button>
-      <button type="button" class="lp-dot" data-dot aria-current="false" aria-label="Відгук 6"></button>
     </div>
 
-    <div class="lp-card bg-white rounded-3xl border border-gray-100 p-6 text-center max-w-3xl mx-auto">
-      <p class="text-gray-400 text-sm font-medium mb-2"
-         data-ru="После бесплатного урока — если понравится:">
-        Після безкоштовного уроку — якщо сподобається:</p>
-      <p class="text-3xl md:text-4xl font-black mb-1 tracking-tight">1 800
-        <span class="text-base font-black text-gray-400">грн / <span data-ru="месяц">місяць</span></span></p>
-      <p class="text-gray-400 text-sm font-medium mb-6"
-         data-ru="Группы до 5 учеников · скидка 15% на второго ребёнка">
-        Групи до 5 учнів · знижка 15% на другу дитину</p>
-      <a href="#form" class="inline-block bg-gradient-to-br from-fox-500 to-fox-600 text-white font-black rounded-full px-7 py-4 shadow-fox-sm transition-all duration-300 hover:-translate-y-0.5"
-         data-ru="Записаться на урок">Записатися на урок</a>
-    </div>
+    <p class="text-center text-sm text-gray-400 mt-8 font-medium"
+       data-ru="Первый пробный урок — бесплатно. При записи двух детей из семьи — скидка 15% на второго ребёнка.">
+      Перший пробний урок — безкоштовно. При записі двох дітей з родини —
+      знижка 15% на другу дитину.</p>
   </div>
 </section>
 
-<footer class="py-8 text-center text-sm text-gray-400 border-t border-gray-100">
-  <p class="mb-2">
-    <a href="tel:+380954624672" class="font-black text-gray-700">095 462-46-72</a>
-  </p>
-  <p>
-    <a href="/privacy.html" class="underline" data-ru="Политика конфиденциальности">Політика конфіденційності</a>
-    ·
-    <a href="/terms.html" class="underline" data-ru="Публичная оферта">Публічна оферта</a>
-  </p>
+<footer class="bg-gray-950 text-gray-400 py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 mb-10">
+<div>
+<a class="flex items-center gap-2 mb-3" href="https://fluent-fox.site/#">
+<img class="w-9 h-9 flex-none" src="/logo.svg" alt width="36" height="36" loading="lazy" decoding="async">
+<span class="flex flex-col leading-none">
+<span class="text-2xl font-black text-white leading-none">Fluent<span class="text-fox-400">Fox</span></span>
+<span class="text-2xs font-bold uppercase tracking-widest text-gray-400 mt-1">English School</span>
+</span>
+</a>
+<p class="text-base leading-relaxed max-w-xs" data-ru="Учи английский с хитростью лиса!">Вивчай англійську з хитрістю лиса!</p>
+<div class="flex gap-3 mt-4">
+<a class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white" href="https://www.instagram.com/fluent.fox.study/" target="_blank" rel="noopener" aria-label="Instagram">
+<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12c0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12c0 3.26.01 3.67.07 4.95.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24c3.26 0 3.67-.01 4.95-.07 4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95 0-3.26-.01-3.67-.07-4.95-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32A6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+</a>
+<a class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white" href="https://t.me/Artist8262" target="_blank" rel="noopener" aria-label="Telegram">
+<svg class="w-4 h-4" viewBox="-3 -3 30 30" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+</a>
+<a class="w-9 h-9 bg-gray-800 hover:bg-fox-500 rounded-xl flex items-center justify-center transition-all duration-200 text-white" href="https://www.facebook.com/people/FluentFoxAcademy/61591810049590/" target="_blank" rel="noopener" aria-label="Facebook">
+<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07z"/></svg>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" data-ru="Навигация">Навігація</h4>
+<ul class="space-y-2 text-base">
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/#about" data-ru="О нас">Про нас</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/#program" data-ru="Программа">Програма</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/#prices" data-ru="Цены">Ціни</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/#reviews" data-ru="Отзывы">Відгуки</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/blog/">Блог</a></li>
+</ul>
+<h4 class="text-white font-black text-base mb-4 mt-6 uppercase tracking-wide" data-ru="Партнёры">Партнери</h4>
+<ul class="space-y-2 text-base">
+<li><a class="hover:text-fox-400 transition-colors" href="https://mycomputer.education/" target="_blank" rel="noopener" data-ru="Школа программирования">Школа програмування</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://mycomputer.school/" target="_blank" rel="noopener" data-ru="Школа дизайна">Школа дизайну</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://child.mycomputer.education/" target="_blank" rel="noopener">Центр «Дошколярик»</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" data-ru="Разделы">Розділи</h4>
+<ul class="space-y-2 text-base">
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-6-8-rokiv" data-ru="Английский 6–8 лет">Англійська 6–8 років</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-9-12-rokiv" data-ru="Английский 9–12 лет">Англійська 9–12 років</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-13-18-rokiv" data-ru="Английский 13–18 лет">Англійська 13–18 років</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/kursy-anhliyskoyi-dlya-ditey" data-ru="Курсы английского">Курси англійської</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-onlayn-dlya-ditey" data-ru="Английский онлайн">Англійська онлайн</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/repetytor-z-anhliyskoyi" data-ru="Репетитор по английскому">Репетитор з англійської</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/rozmovna-anhliyska-dlya-ditey" data-ru="Разговорный английский">Розмовна англійська</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-z-nulya-dlya-ditey" data-ru="Английский с нуля">Англійська з нуля</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/pidhotovka-do-nmt" data-ru="Подготовка к НМТ">Підготовка до НМТ</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/cambridge" data-ru="Экзамены Cambridge">Іспити Cambridge</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/dnipro" data-ru="Английский в Днепре">Англійська у Дніпрі</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/tsiny" data-ru="Цены и скидки">Ціни та знижки</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/vidhuky" data-ru="Отзывы">Відгуки</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/pro-shkolu" data-ru="О школе">Про школу</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/probnyi-urok" data-ru="Пробный урок">Пробний урок</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" data-ru="Контакты">Контакти</h4>
+<ul class="space-y-2 text-base">
+<li class="flex items-center gap-2"><img class="w-4 h-4 flex-none" src="/icons/phone.webp" alt width="64" height="64" loading="lazy" decoding="async"> <a class="hover:text-fox-400 transition-colors" href="tel:+380954624672">+38 (095) 462-46-72</a></li>
+<li class="flex items-center gap-2"><img class="w-4 h-4 flex-none" src="/icons/phone.webp" alt width="64" height="64" loading="lazy" decoding="async"> <a class="hover:text-fox-400 transition-colors" href="tel:+380682522876">+38 (068) 252-28-76</a></li>
+<li class="flex items-center gap-2 min-w-0"><img class="w-4 h-4 flex-none" src="/icons/mail.webp" alt width="64" height="64" loading="lazy" decoding="async"> <a class="hover:text-fox-400 transition-colors break-all" href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a></li>
+<li class="flex items-center gap-2"><span>⏰</span> <span>Пн–Пт: 9:00–20:00, Сб: 10:00–18:00</span></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 mb-8">
+<h4 class="text-white font-black text-base mb-4 uppercase tracking-wide" data-ru="Детям за рубежом">Дітям за кордоном</h4>
+<ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-2 text-base">
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-v-avstriyi" data-ru="Австрия">Австрія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-bolhariyi" data-ru="Болгария">Болгарія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-velykobrytaniyi" data-ru="Великобритания">Велика Британія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-virmeniyi" data-ru="Армения">Вірменія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-hruziyi" data-ru="Грузия">Грузія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-v-irlandiyi" data-ru="Ирландия">Ірландія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-v-ispaniyi" data-ru="Испания">Іспанія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-v-italiyi" data-ru="Италия">Італія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-kazakhstani">Казахстан</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-kyrhyzstani" data-ru="Кыргызстан">Киргизстан</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-moldovi">Молдова</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-niderlandakh" data-ru="Нидерланды">Нідерланди</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-nimechchyni" data-ru="Германия">Німеччина</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-polshchi" data-ru="Польша">Польща</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-portuhaliyi" data-ru="Португалия">Португалія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-rumuniyi" data-ru="Румыния">Румунія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-slovachchyni" data-ru="Словакия">Словаччина</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-v-uhorshchyni" data-ru="Венгрия">Угорщина</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-frantsiyi" data-ru="Франция">Франція</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-chekhiyi" data-ru="Чехия">Чехія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-u-shveytsariyi" data-ru="Швейцария">Швейцарія</a></li>
+<li><a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/anhliyska-dlya-ditey-za-kordonom" data-ru="Все страны">Усі країни</a></li>
+</ul>
+</div>
+<div class="border-t border-gray-800 py-6 grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,440px)] md:gap-10 md:items-start">
+<div>
+<p class="text-base font-black text-white" data-ru="Письма от FluentFox">Листи від FluentFox</p>
+<p class="text-sm leading-relaxed text-gray-400 mt-1 max-w-md" data-ru="Новые курсы, разговорные клубы и советы, как поддержать английский дома. Отписаться — в один клик.">Нові курси, розмовні клуби й поради, як підтримати англійську вдома. Відписатися — в один клік.</p>
+</div>
+<form class="flex flex-col gap-2 min-w-0" data-subscribe data-school="fluentfox" data-consent="footer-2026-09" data-endpoint="https://smm.mycomputer.education/s/subscribe" novalidate>
+<div class="flex flex-col sm:flex-row gap-2 min-w-0">
+<label class="sr-only" for="footerSubscribeEmail" data-ru="Ваш email">Ваш email</label>
+<input class="w-full sm:w-auto sm:flex-1 min-w-0 h-12 px-5 rounded-full bg-gray-900 border border-gray-700 text-white text-base placeholder-gray-500 transition-colors focus:outline-none focus:border-fox-500 focus:ring-2 focus:ring-fox-500/30 aria-[invalid=true]:border-red-500" id="footerSubscribeEmail" type="email" name="email" inputmode="email" autocomplete="email" required placeholder="Ваш email" data-ru-placeholder="Ваш email">
+<input class="sr-only" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button class="h-12 px-7 rounded-full bg-fox-500 hover:bg-fox-600 text-white font-black transition-colors duration-200 disabled:opacity-60" type="submit" data-ru="Подписаться">Підписатися</button>
+</div>
+<p class="text-xs leading-relaxed text-gray-500"><span data-ru="Нажимая «Подписаться», вы соглашаетесь получать письма и с">Натискаючи «Підписатися», ви погоджуєтесь отримувати листи та з</span> <a class="underline hover:text-fox-400 transition-colors" href="https://fluent-fox.site/privacy.html" data-ru="политикой конфиденциальности">політикою конфіденційності</a>.</p>
+<p class="text-sm text-gray-300 empty:hidden data-[state=ok]:text-green-400 data-[state=error]:text-red-400 [&_button]:font-bold [&_button]:underline [&_button]:text-fox-400" data-subscribe-status role="status" aria-live="polite"></p>
+</form>
+</div>
+<div class="border-t border-gray-800 pt-8 mb-5">
+<div class="flex flex-wrap gap-2 justify-center md:justify-start">
+<div class="bg-white rounded-xl px-2.5 py-1 h-8 flex items-center">
+<svg width="44" height="14" viewBox="0 0 44 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="12" font-family="Arial,sans-serif" font-weight="900" font-style="italic" font-size="14" fill="#1A1F71">VISA</text>
+</svg>
+</div>
+<div class="bg-white rounded-xl px-2.5 py-1 h-8 flex items-center gap-1">
+<svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="10" r="10" fill="#EB001B"/>
+<circle cx="20" cy="10" r="10" fill="#F79E1B"/>
+<path d="M16 2.7a10 10 0 0 1 0 14.6A10 10 0 0 1 16 2.7z" fill="#FF5F00"/>
+</svg>
+</div>
+<div class="bg-white rounded-xl px-2.5 py-1 h-8 flex items-center gap-1.5 border border-gray-200">
+<svg width="10" height="12" viewBox="0 0 10 12" fill="#1D1D1F">
+<path d="M8.3 6.2c0-1.6 1.3-2.3 1.3-2.3C8.8 2.6 7.7 2.5 7.3 2.5c-1 0-1.8.6-2.3.6C4.5 3 3.7 2.5 2.8 2.5 1.2 2.5 0 3.8 0 5.7c0 1.1.4 2.2.9 3 .5.8 1 1.4 1.7 1.4.6 0 .9-.4 1.7-.4.8 0 1 .4 1.7.4.7 0 1.2-.6 1.7-1.3.5-.8.7-1.5.7-1.5-.3-.1-.8-.7-.9-1.1z"/>
+<path d="M6.8 1.5C7.2.9 7.4.3 7.2 0 6.7 0 6.1.4 5.8.9c-.3.4-.6 1-.4 1.5.5.1 1-.3 1.4-.9z"/>
+</svg>
+<span class="text-base font-semibold text-gray-900">Pay</span>
+</div>
+<div class="bg-white rounded-xl px-3 py-1 h-8 flex items-center">
+<svg width="44" height="18" viewBox="0 0 44 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<text x="0" y="13" font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#4285F4">G</text>
+<text x="10" y="13" font-family="Arial,sans-serif" font-size="11" fill="#3C4043"> Pay</text>
+</svg>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-800 py-4">
+<div class="flex flex-wrap gap-x-5 gap-y-2 text-sm justify-center md:justify-start">
+<a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/privacy.html" data-ru="Политика конфиденциальности">Політика конфіденційності</a>
+<a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/offer.html" data-ru="Публичная оферта">Публічна оферта</a>
+<a class="hover:text-fox-400 transition-colors" href="https://fluent-fox.site/returns.html" data-ru="Правила возврата">Правила повернення</a>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-5 space-y-1.5 text-sm text-gray-500 text-center md:text-left">
+<p data-ru="© 2026 FluentFox. Все права защищены.">© 2026 FluentFox. Всі права захищені.</p>
+<p><span data-ru="ФЛП Пименов К.Ю., ИНН 3498404577, г. Днепр, пр. А. Поля 28а,">ФОП Піменов К.Ю., ІПН 3498404577, м. Дніпро, пр. О. Поля 28а,</span>
+<a class="hover:text-fox-400 transition-colors" href="tel:+380954624672">+38 (095) 462-46-72</a>,
+<a class="hover:text-fox-400 transition-colors break-all" href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a>
+</p>
+</div>
+</div>
 </footer>
 
 <script>
 /* Підсвічування крапки під слайдером. Гортання робить браузер (scroll-snap),
    тут лише дві речі: яка картка зараз по центру і перехід по кліку. */
 (function () {
-  var box = document.querySelector('[data-slider]');
-  if (!box) return;
-  var dots = [].slice.call(document.querySelectorAll('[data-dot]'));
+  /* Слайдер може бути не один, тож крапки прив'язані до стрічки за іменем
+     (data-slider="x" ↔ data-dots="x"), а не беремо перший-ліпший елемент. */
+  [].slice.call(document.querySelectorAll('[data-slider]')).forEach(function (box) {
+  var holder = document.querySelector('[data-dots="' + box.getAttribute('data-slider') + '"]');
+  if (!holder) return;
+  var dots = [].slice.call(holder.querySelectorAll('[data-dot]'));
   var slides = [].slice.call(box.querySelectorAll('.lp-slide'));
   if (!dots.length || !slides.length) return;
 
@@ -428,11 +604,13 @@ Telegram
   });
 
   mark();
+  });
 })();
 </script>
 
 <script src="/js/lang.js?v=20261019a" defer></script>
 <script src="/js/lead.js?v=20261019a" defer></script>
 <script src="/js/track.js?v=20261019a" defer></script>
+<script src="/js/subscribe.js?v=20261019a" defer></script>
 </body>
 </html>

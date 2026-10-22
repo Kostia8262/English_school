@@ -118,6 +118,35 @@ def cut_reviews(home, want=2):
     return found
 
 
+def cut_footer(home):
+    """Підвал головної — цілком, з переписаними посиланнями.
+
+    Лендінг живе на ПІДДОМЕНІ (lp.fluent-fox.site), а підвал головної повний
+    відносних адрес («/tsiny», «blog/», «#prices»). Залишити їх як є —
+    означає 38 посилань у 404. Тому всі внутрішні переписуємо на абсолютні
+    до основного сайта; якір #form — наш власний, його не чіпаємо.
+    """
+    i = home.find("<footer")
+    j = home.find("</footer>", i)
+    if i < 0 or j < 0:
+        sys.exit("На головній не знайдено <footer>")
+    f = home[i:j + len("</footer>")]
+
+    def fix(m):
+        href = m.group(1)
+        if href.startswith(("http://", "https://", "tel:", "mailto:", "viber:")):
+            return m.group(0)
+        if href == "#form":
+            return m.group(0)
+        if href.startswith("#"):
+            return 'href="%s/%s"' % (BASE, href)
+        if href.startswith("/"):
+            return 'href="%s%s"' % (BASE, href)
+        return 'href="%s/%s"' % (BASE, href)
+
+    return re.sub(r'href="([^"]*)"', fix, f)
+
+
 HEAD = """<!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -189,7 +218,12 @@ HEAD = """<!DOCTYPE html>
   }
   .lp-slider::-webkit-scrollbar { display: none; }
   .lp-slide { flex: 0 0 86%%; scroll-snap-align: center; }
-  @media (min-width: 768px) { .lp-slide { flex-basis: 47%%; } }
+  @media (min-width: 768px) {
+    .lp-slide { flex-basis: 47%%; }
+    /* Тарифів три — на десктопі вони мають поміститися всі одразу, інакше
+       людина порівнює ціни гортанням, а це найгірше місце для гортання. */
+    .lp-slide-3 { flex-basis: 31.5%%; }
+  }
 
   .lp-dot {
     width: 8px; height: 8px; border-radius: 9999px;
@@ -223,10 +257,9 @@ HERO = """
       <img src="/logo.svg" alt="" class="w-9 h-9" width="36" height="36" fetchpriority="high">
       <span class="font-black text-lg leading-none">Fluent<span class="text-fox-500">Fox</span></span>
     </span>
-    <span class="flex items-center gap-2 sm:gap-3">
-      <a href="tel:+380954624672" class="text-xs sm:text-sm font-black text-gray-700 whitespace-nowrap">095 462-46-72</a>
-      <span class="w-px h-4 bg-gray-200" aria-hidden="true"></span>
-      <a href="tel:+380682522876" class="text-xs sm:text-sm font-black text-gray-700 whitespace-nowrap">068 252-28-76</a>
+    <span class="flex flex-col items-end leading-tight">
+      <a href="tel:+380954624672" class="text-sm font-black text-gray-700 whitespace-nowrap">095 462-46-72</a>
+      <a href="tel:+380682522876" class="text-sm font-black text-gray-700 whitespace-nowrap">068 252-28-76</a>
     </span>
   </div>
 </header>
@@ -322,54 +355,45 @@ CARD = """<div class="flex flex-col items-center text-center group cursor-defaul
       </div>"""
 
 PROOF = """
-<!-- ═══ Блок 3. Відгуки, ціна і повтор заклику ══════════════════════════ -->
+<!-- ═══ Блок 3. Тарифи — усі три, цифри з головної ══════════════════════ -->
 <section class="bg-gradient-to-b from-white to-fox-50 py-12 md:py-16">
   <div class="max-w-5xl mx-auto px-4">
     <p class="text-center text-xs font-black uppercase tracking-tight text-fox-600 mb-2"
-       data-ru="Отзывы">Відгуки</p>
-    <h2 class="text-2xl md:text-3xl font-black text-center mb-10 leading-tight tracking-tight"
-        data-ru="Что говорят родители">Що кажуть батьки</h2>
+       data-ru="Цены">Ціни</p>
+    <h2 class="text-2xl md:text-3xl font-black text-center mb-3 leading-tight tracking-tight"
+        data-ru="Сколько стоит обучение">Скільки коштує навчання</h2>
+    <p class="text-center text-gray-400 text-sm font-medium mb-10"
+       data-ru="После бесплатного урока — если понравится">Після безкоштовного уроку — якщо сподобається</p>
 
-    <div class="lp-slider" data-slider>
-      %(reviews)s
+    <div class="lp-slider" data-slider="plans">
+      %(plans)s
     </div>
-    <div class="flex items-center justify-center gap-2 mt-6 mb-10">
-      %(dots)s
+    <div class="flex items-center justify-center gap-2 mt-6" data-dots="plans">
+      %(plan_dots)s
     </div>
 
-    <div class="lp-card bg-white rounded-3xl border border-gray-100 p-6 text-center max-w-3xl mx-auto">
-      <p class="text-gray-400 text-sm font-medium mb-2"
-         data-ru="После бесплатного урока — если понравится:">
-        Після безкоштовного уроку — якщо сподобається:</p>
-      <p class="text-3xl md:text-4xl font-black mb-1 tracking-tight">1 800
-        <span class="text-base font-black text-gray-400">грн / <span data-ru="месяц">місяць</span></span></p>
-      <p class="text-gray-400 text-sm font-medium mb-6"
-         data-ru="Группы до 5 учеников · скидка 15%% на второго ребёнка">
-        Групи до 5 учнів · знижка 15%% на другу дитину</p>
-      <a href="#form" class="inline-block bg-gradient-to-br from-fox-500 to-fox-600 text-white font-black rounded-full px-7 py-4 shadow-fox-sm transition-all duration-300 hover:-translate-y-0.5"
-         data-ru="Записаться на урок">Записатися на урок</a>
-    </div>
+    <p class="text-center text-sm text-gray-400 mt-8 font-medium"
+       data-ru="Первый пробный урок — бесплатно. При записи двух детей из семьи — скидка 15%% на второго ребёнка.">
+      Перший пробний урок — безкоштовно. При записі двох дітей з родини —
+      знижка 15%% на другу дитину.</p>
   </div>
 </section>
 
-<footer class="py-8 text-center text-sm text-gray-400 border-t border-gray-100">
-  <p class="mb-2">
-    <a href="tel:+380954624672" class="font-black text-gray-700">095 462-46-72</a>
-  </p>
-  <p>
-    <a href="/privacy.html" class="underline" data-ru="Политика конфиденциальности">Політика конфіденційності</a>
-    ·
-    <a href="/terms.html" class="underline" data-ru="Публичная оферта">Публічна оферта</a>
-  </p>
-</footer>
+"""
+
+# Підвал головної цілком — власник попросив «нормальний, з сайта».
+FOOT = """%(footer)s
 
 <script>
 /* Підсвічування крапки під слайдером. Гортання робить браузер (scroll-snap),
    тут лише дві речі: яка картка зараз по центру і перехід по кліку. */
 (function () {
-  var box = document.querySelector('[data-slider]');
-  if (!box) return;
-  var dots = [].slice.call(document.querySelectorAll('[data-dot]'));
+  /* Слайдер може бути не один, тож крапки прив'язані до стрічки за іменем
+     (data-slider="x" ↔ data-dots="x"), а не беремо перший-ліпший елемент. */
+  [].slice.call(document.querySelectorAll('[data-slider]')).forEach(function (box) {
+  var holder = document.querySelector('[data-dots="' + box.getAttribute('data-slider') + '"]');
+  if (!holder) return;
+  var dots = [].slice.call(holder.querySelectorAll('[data-dot]'));
   var slides = [].slice.call(box.querySelectorAll('.lp-slide'));
   if (!dots.length || !slides.length) return;
 
@@ -397,24 +421,38 @@ PROOF = """
   });
 
   mark();
+  });
 })();
 </script>
 
 <script src="/js/lang.js?v=%(v)s" defer></script>
 <script src="/js/lead.js?v=%(v)s" defer></script>
 <script src="/js/track.js?v=%(v)s" defer></script>
+<script src="/js/subscribe.js?v=%(v)s" defer></script>
 </body>
 </html>
 """
 
-REVIEW = """<figure class="lp-slide lp-card bg-white rounded-3xl border border-gray-100 p-6">
-        <div class="lp-stars mb-3">★★★★★</div>
-        <blockquote class="text-gray-600 leading-relaxed mb-4">«%(text)s»</blockquote>
-        <figcaption class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-full bg-fox-100 text-fox-600 font-black flex items-center justify-center shrink-0">%(initial)s</span>
-          <span class="text-sm font-black text-gray-700">%(author)s</span>
-        </figcaption>
-      </figure>"""
+PLAN = """<div class="lp-slide lp-slide-3 lp-card bg-white rounded-3xl border-2 %(border)s p-6 flex flex-col">
+        %(badge)s
+        <h3 class="font-black text-lg mb-1 leading-tight" data-ru="%(name_ru)s">%(name)s</h3>
+        <p class="text-gray-400 text-sm font-medium mb-4" data-ru="%(sub_ru)s">%(sub)s</p>
+        <p class="text-3xl font-black mb-5 tracking-tight">%(price)s
+          <span class="text-sm font-black text-gray-400">грн / <span data-ru="месяц">місяць</span></span></p>
+        <ul class="space-y-2 mb-6 flex-1">
+          %(features)s
+        </ul>
+        <a href="#form" class="block text-center bg-gradient-to-br from-fox-500 to-fox-600 text-white font-black rounded-full px-6 py-3 shadow-fox-sm transition-all duration-300 hover:-translate-y-0.5"
+           data-ru="Записаться">Записатись</a>
+      </div>"""
+
+PLAN_FEATURE = """<li class="flex items-start gap-2">
+            <span class="shrink-0 w-5 h-5 rounded-full bg-fox-100 text-fox-600 font-black text-xs flex items-center justify-center mt-0.5">✓</span>
+            <span class="min-w-0 flex-1 text-gray-600 text-sm" data-ru="%(ru)s">%(uk)s</span>
+          </li>"""
+
+PLAN_BADGE = """<p class="inline-block self-start bg-fox-500 text-white text-xs font-black uppercase tracking-tight rounded-full px-3 py-1 mb-3"
+           data-ru="Популярный">Популярний</p>"""
 
 DOT = """<button type="button" class="lp-dot" data-dot aria-current="%(cur)s" aria-label="Відгук %(n)s"></button>"""
 
@@ -429,6 +467,29 @@ TRUSTS = [
     ("star.webp", "4.9", "середній рейтинг", "средний рейтинг"),
     ("medal.webp", "12+", "років досвіду", "лет опыта"),
     ("cap.webp", "15", "вчителів", "учителей"),
+]
+
+# Цифри взяті з блоку «Скільки коштує навчання» на головній, а не з пам'яті:
+# ціна живе у восьми місцях, і розходження тут помітила б тільки людина, яка
+# прийшла з реклами й побачила на сайті інше число.
+PLANS = [
+    ("Група 1×/тиждень", "Группа 1×/неделю", "4 заняття на місяць · до 5 учнів",
+     "4 занятия в месяц · до 5 учеников", "1 800", False,
+     [("300 грн за 1 годину", "300 грн за 1 час"),
+      ("4 уроки по 1,5 години", "4 урока по 1,5 часа"),
+      ("Група до 5 учнів", "Группа до 5 учеников")]),
+    ("Група 2×/тиждень", "Группа 2×/неделю", "8 занять на місяць · до 5 учнів",
+     "8 занятий в месяц · до 5 учеников", "3 600", True,
+     [("300 грн за 1 годину", "300 грн за 1 час"),
+      ("8 уроків по 1,5 години", "8 уроков по 1,5 часа"),
+      ("Група до 5 учнів", "Группа до 5 учеников"),
+      ("Максимальний прогрес", "Максимальный прогресс")]),
+    ("Індивідуально", "Индивидуально", "8 занять на місяць · особистий підхід",
+     "8 занятий в месяц · личный подход", "4 800", False,
+     [("600 грн за 1 годину", "600 грн за 1 час"),
+      ("8 уроків по 1 годині", "8 уроков по 1 часу"),
+      ("Повна увага вчителя", "Полное внимание учителя"),
+      ("Індивідуальний план навчання", "Индивидуальный план обучения")]),
 ]
 
 CARDS = [
@@ -450,7 +511,6 @@ CARDS = [
 def main():
     home = read_home()
     form = cut_form(home)
-    reviews = cut_reviews(home, want=6)
 
     bullets = "\n        ".join(BULLET % {"uk": uk, "ru": ru} for uk, ru in BULLETS)
     trust = "\n        ".join(
@@ -458,19 +518,26 @@ def main():
     cards = "\n      ".join(
         CARD % {"n": n, "icon": ic, "title": t, "title_ru": tru, "text": x, "text_ru": xru}
         for n, ic, t, tru, x, xru in CARDS)
-    review_html = "\n      ".join(
-        REVIEW % {"text": text, "author": author, "initial": (author or "?")[0]}
-        for text, author in reviews)
-    dots = "\n      ".join(
+    plans = "\n      ".join(
+        PLAN % {
+            "name": n, "name_ru": nru, "sub": sub, "sub_ru": subru, "price": price,
+            "border": "border-fox-300" if top else "border-gray-100",
+            "badge": PLAN_BADGE if top else "",
+            "features": "\n          ".join(
+                PLAN_FEATURE % {"uk": u, "ru": r} for u, r in feats),
+        }
+        for n, nru, sub, subru, price, top, feats in PLANS)
+    plan_dots = "\n      ".join(
         DOT % {"n": i + 1, "cur": "true" if i == 0 else "false"}
-        for i in range(len(reviews)))
+        for i in range(len(PLANS)))
 
     page = (
         HEAD % {"ga": GA_ID, "v": ASSET_VERSION, "pixel": PIXEL_ID}
         + (HERO % {"form": form, "bullets": bullets, "trust": trust}
            ).replace('<form', '<form id="form"', 1)
         + WHAT % {"cards": cards}
-        + PROOF % {"reviews": review_html, "dots": dots, "v": ASSET_VERSION}
+        + PROOF % {"plans": plans, "plan_dots": plan_dots}
+        + FOOT % {"footer": cut_footer(home), "v": ASSET_VERSION}
     )
 
     if not os.path.isdir(OUT_DIR):
@@ -479,7 +546,6 @@ def main():
 
     print("lp/probnyi-urok/index.html — %d байт" % len(page.encode("utf-8")))
     print("  форма з головної: %d байт" % len(form.encode("utf-8")))
-    print("  відгуків узято: %d" % len(reviews))
     print("  адреса реклами: https://lp.fluent-fox.site/")
 
 
