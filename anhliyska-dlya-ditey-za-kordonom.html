@@ -80,6 +80,18 @@ outline: none;
 border-color: var(--fox-500) !important;
 box-shadow: 0 0 0 3px var(--fox-ring);
 }
+/* Блок «Читайте також» приїхав сюди з блогу разом із класами, а правила
+лишилися в <style> шаблону блогу — і на 76 сторінках підйом картки й
+схована смуга прокрутки просто не працювали. Клас, якого немає в
+скомпільованому style.css, браузер мовчки ігнорує; ловиться це
+`python tools/audit/classes.py`. Правила — точна копія блогових. */
+.card-lift { transition: transform .3s ease, box-shadow .3s ease; }
+.card-lift:hover {
+transform: translateY(-6px);
+box-shadow: 0 20px 40px rgba(255,107,53,0.18);
+}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 /* Таблиці ширші за 520 px, тож на телефоні вони прокручуються — але доки
 про це ніщо не повідомляло, текст правої колонки просто обрізався й
 читався як зіпсована верстка. Класичні «тіні прокрутки»: білі градієнти
