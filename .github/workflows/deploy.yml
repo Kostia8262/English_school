@@ -54,6 +54,7 @@ jobs:
             --exclude='package.json' \
             --exclude='package-lock.json' \
             --exclude='tailwind.config.js' \
+            --exclude='programs/v2-figma-course/' \
             -e "ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no" \
             ./ ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}:/home/u260300169/domains/fluent-fox.site/public_html/
 
