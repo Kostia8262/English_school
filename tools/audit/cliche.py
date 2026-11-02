@@ -16,6 +16,7 @@
 from __future__ import unicode_literals
 
 import io
+import json
 import os
 import re
 import sys
@@ -97,15 +98,73 @@ PATTERNS = [
 ]
 
 
+try:
+    _STR = basestring          # Python 2
+except NameError:
+    _STR = str                 # Python 3
+
+
+def _py_body(raw):
+    """Тіло модуля-статті без docstring і коментарів.
+
+    Коментарі й docstring не рахуємо — там мова про методичку, і сама назва
+    кліше в поясненні не є кліше в тексті.
+    """
+    body = raw.split('"""', 2)[-1]
+    return re.sub(r"^\s*#.*$", "", body, flags=re.M)
+
+
+def _json_body(raw):
+    """Усі рядкові значення статті з конвеєра, зібрані в один текст.
+
+    Статті з конвеєра мережі лежать не модулем, а JSON-ом, і текст у них
+    розкиданий по полях: `content`, `content_ru`, `faq`, підписи, заголовки.
+    Обходимо дерево цілком і беремо кожен рядок — так само, як це робить
+    генератор, що складає з них сторінку. Інакше перевірка дивиться мимо:
+    кліше в `faq` на сторінці видно так само, як кліше в тілі статті.
+    """
+    acc = []
+
+    def walk(node):
+        if isinstance(node, dict):
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+        elif isinstance(node, _STR):
+            acc.append(node)
+
+    walk(json.loads(raw))
+    return "\n".join(acc)
+
+
 def texts():
-    """Тексти статей — з файлів-джерел, а не зі складеного HTML."""
-    d = os.path.join(ROOT, "tools", "blog")
-    if not os.path.isdir(d):
-        return []
+    """Тексти статей — з файлів-джерел, а не зі складеного HTML.
+
+    Джерел два, і це не дрібниця: рукописні статті лежать модулями
+    `tools/blog/art_*.py`, а статті з конвеєра мережі — файлами
+    `tools/blog/content/*.json`. До 02.11.2026 перевірка читала лише перші,
+    і 18 статей із 41 не перевірялися взагалі — серед них уся партія з
+    11 статей від 19.10. Вони виявилися чистими, але знати це можна було
+    тільки прогоном, а не вірою.
+    """
     out = []
-    for f in sorted(os.listdir(d)):
-        if f.startswith("art_") and f.endswith(".py"):
-            out.append((f, io.open(os.path.join(d, f), encoding="utf-8").read()))
+
+    d = os.path.join(ROOT, "tools", "blog")
+    if os.path.isdir(d):
+        for f in sorted(os.listdir(d)):
+            if f.startswith("art_") and f.endswith(".py"):
+                raw = io.open(os.path.join(d, f), encoding="utf-8").read()
+                out.append((f, _py_body(raw)))
+
+    c = os.path.join(d, "content")
+    if os.path.isdir(c):
+        for f in sorted(os.listdir(c)):
+            if f.endswith(".json"):
+                raw = io.open(os.path.join(c, f), encoding="utf-8").read()
+                out.append((os.path.join("content", f), _json_body(raw)))
+
     return out
 
 
@@ -116,12 +175,7 @@ def main():
         return 0
 
     total = 0
-    for name, s in files:
-        # Коментарі й docstring модуля не рахуємо — там мова про методичку,
-        # і сама назва кліше в поясненні не є кліше в тексті.
-        body = s.split('"""', 2)[-1]
-        body = re.sub(r"^\s*#.*$", "", body, flags=re.M)
-
+    for name, body in files:
         hits = []
         low = body.lower()
         for group, phrases in PHRASES.items():
