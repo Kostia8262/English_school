@@ -29,9 +29,16 @@ indexed», Googlebot ходить, ручних мір немає, решта м
 * 2–3 — попередження, код виходу 0 (буває: статтю перевиклали, поправили слаг);
 * 4 і більше — це партія, код виходу 1.
 
-Історії немає (shallow clone у CI, не репозиторій, git недоступний) —
-перевірка молчки пропускається: краще не перевірити, ніж завалити публікацію
-через відсутній `.git`.
+Історії немає (не репозиторій, git недоступний) — перевірка молчки
+пропускається: краще не перевірити, ніж завалити публікацію через відсутній
+`.git`.
+
+Неглибокий клон (`git clone --depth N`) — окремий випадок. Його найстаріший
+коміт не має батька, і `git log --diff-filter=A` бачить у ньому «додавання»
+кожного файлу репозиторію. 03.11 і 06.11.2026 конвеєр мережі клонував сайт
+з `--depth 1` — сторож нарахував «41 статтю за 7 днів» і двічі завалив
+публікацію однієї статті. Тому граничні коміти неглибокого клону з підрахунку
+виключаємо (`--not <межа>`), а про неповну історію пишемо прямо.
 
 Запуск:  python tools/audit/pace.py
 Код виходу: 1, якщо за останні сім днів вийшла партія.
@@ -64,14 +71,36 @@ def _git(args):
     return out
 
 
-def added_articles(days):
+def shallow_roots():
+    """Граничні коміти неглибокого клону; порожньо — історія повна."""
+    flag = _git(["rev-parse", "--is-shallow-repository"])
+    if flag is None or flag.strip() != "true":
+        return []
+    path = _git(["rev-parse", "--git-path", "shallow"])
+    if not path:
+        return []
+    path = path.strip()
+    if not os.path.isabs(path):
+        path = os.path.join(ROOT, path)
+    try:
+        with open(path) as fh:
+            return [line.strip() for line in fh if line.strip()]
+    except (IOError, OSError):
+        return []
+
+
+def added_articles(days, roots=()):
     """Статті блогу, додані за `days` днів. None — історія недоступна.
 
     Беремо тільки українські файли: `.ru.html` їде тією ж правкою й подвоїв би
     кожну цифру.
     """
-    out = _git(["log", "--since=%d.days" % days, "--diff-filter=A",
-                "--name-only", "--format=", "--", "blog/"])
+    args = ["log", "--since=%d.days" % days, "--diff-filter=A",
+            "--name-only", "--format=", "HEAD"]
+    if roots:
+        # Межа клону «додає» всі файли разом — її не рахуємо.
+        args += ["--not"] + list(roots)
+    out = _git(args + ["--", "blog/"])
     if out is None:
         return None
     found = []
@@ -94,12 +123,18 @@ def main():
         print("історії git немає — перевірку темпу пропущено")
         return 0
 
-    recent = added_articles(WINDOW_DAYS)
+    roots = shallow_roots()
+    if roots:
+        print("клон неглибокий (%d граничн. коміт) — межу не рахуємо; "
+              "якщо історія коротша за %d днів, цифри занижені"
+              % (len(roots), WINDOW_DAYS))
+
+    recent = added_articles(WINDOW_DAYS, roots)
     if recent is None:
         print("git не відповів або історія неповна — перевірку темпу пропущено")
         return 0
 
-    month = added_articles(CONTEXT_DAYS) or []
+    month = added_articles(CONTEXT_DAYS, roots) or []
 
     print("нових статей за %d днів: %d" % (WINDOW_DAYS, len(recent)))
     for slug in recent:
