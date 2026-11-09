@@ -13,6 +13,7 @@
 from __future__ import unicode_literals
 
 import io
+import re
 import json
 import os
 import sys
@@ -708,6 +709,25 @@ HEADER = """
 
 FOOTER_COUNTRIES_MARK = "<!--FOOTER_COUNTRIES-->"
 
+# Колонка «Наші школи» з посиланнями на мережу my_computer стоїть лише тут.
+# 09.11.2026 за рішенням власника: наскрізні dofollow-посилання в підвалах
+# обох сайтів (близько 1400 у дві сторони) — схема обміну посиланнями за
+# правилами Google; з 27.10 домен fluent-fox.site втратив майже всі покази.
+# Лишаємо посилання там, де вони мають сенс для людини: головна (tools/home)
+# і «Про школу». Решта сторінок отримує підвал у три колонки.
+OUR_SCHOOLS_PAGES = {"pro-shkolu"}
+_OUR_SCHOOLS_RE = re.compile(r"<!--OUR_SCHOOLS-->(.*?)<!--/OUR_SCHOOLS-->", re.S)
+
+
+def footer_for(slug):
+    if slug in OUR_SCHOOLS_PAGES:
+        return _OUR_SCHOOLS_RE.sub(lambda m: m.group(1), FOOTER)
+    out = _OUR_SCHOOLS_RE.sub("", FOOTER)
+    grid = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8'
+    assert out.count(grid) == 1
+    return out.replace(grid, grid.replace("md:grid-cols-4", "md:grid-cols-3"))
+
+
 FOOTER = """
 <footer class="bg-gray-950 text-gray-400 py-10">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -750,7 +770,7 @@ FOOTER = """
           <li><a href="/pro-shkolu" class="hover:text-fox-400 transition-colors duration-200" data-ru="О школе">Про школу</a></li>
         </ul>
       </div>
-      <div>
+<!--OUR_SCHOOLS-->      <div>
         <h3 class="text-sm font-black text-white mb-3" data-ru="Наши школы">Наші школи</h3>
         <ul class="flex flex-col gap-2 text-sm">
           <li><a href="https://mycomputer.education/" target="_blank" rel="noopener" class="hover:text-fox-400 transition-colors duration-200" data-ru="Школа программирования">Школа програмування</a></li>
@@ -758,7 +778,7 @@ FOOTER = """
           <li><a href="https://child.mycomputer.education/" target="_blank" rel="noopener" class="hover:text-fox-400 transition-colors duration-200" data-ru="Центр «Дошколярик»: развитие с 2,5 лет">Центр «Дошколярик»: розвиток з 2,5 років</a></li>
         </ul>
       </div>
-      <div>
+<!--/OUR_SCHOOLS-->      <div>
         <h3 class="text-sm font-black text-white mb-3" data-ru="Контакты">Контакти</h3>
         <ul class="flex flex-col gap-2 text-sm">
           <li><a href="tel:+380954624672" class="hover:text-fox-400 transition-colors duration-200">+38 (095) 462-46-72</a></li>
@@ -1062,7 +1082,7 @@ def render_page(p):
             # сусідні сторінки нікуди не зникли: вони лишаються в
             # підсумковому абзаці, а він і несе вагу перелінковки.
             + render_seo(p) + "</main>\n"
-            + FOOTER.replace("%(assetv)s", ASSET_VERSION)
+            + footer_for(p["slug"]).replace("%(assetv)s", ASSET_VERSION)
                     .replace(FOOTER_COUNTRIES_MARK,
                              footer_countries.html_data_ru())
                     .replace("</body>", MODAL + "</body>"))
