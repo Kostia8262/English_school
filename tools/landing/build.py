@@ -42,23 +42,7 @@ import pages_country        # noqa: E402,F401  — окремі країни: П
 import pages_country_de     # noqa: E402,F401  — Німеччина
 import pages_country_cz     # noqa: E402,F401  — Чехія
 import pages_country_it     # noqa: E402,F401  — Італія
-import pages_country_ro     # noqa: E402,F401  — Румунія
-import pages_country_fr     # noqa: E402,F401  — Франція
 import pages_country_es     # noqa: E402,F401  — Іспанія
-import pages_country_gb     # noqa: E402,F401  — Велика Британія
-import pages_country_ie     # noqa: E402,F401  — Ірландія
-import pages_country_nl     # noqa: E402,F401  — Нідерланди
-import pages_country_at     # noqa: E402,F401  — Австрія
-import pages_country_sk     # noqa: E402,F401  — Словаччина
-import pages_country_bg     # noqa: E402,F401  — Болгарія
-import pages_country_pt     # noqa: E402,F401  — Португалія
-import pages_country_ch     # noqa: E402,F401  — Швейцарія
-import pages_country_md     # noqa: E402,F401  — Молдова
-import pages_country_hu     # noqa: E402,F401  — Угорщина
-import pages_country_ge     # noqa: E402,F401  — Грузія
-import pages_country_kz     # noqa: E402,F401  — Казахстан
-import pages_country_am     # noqa: E402,F401  — Вірменія
-import pages_country_kg     # noqa: E402,F401  — Киргизстан
 import home_blocks          # noqa: E402  — контакти, статті й модалка з головної
 
 BASE = "https://fluent-fox.site"
