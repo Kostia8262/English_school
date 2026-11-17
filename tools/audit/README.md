@@ -27,7 +27,7 @@ python tools/audit/run.py
 різні гроші. Це не про SEO — це про скаргу від батька, який побачив 1800 на
 головній і 2000 у статті.
 
-### Порядок зміни ціни (перевірено правкою тарифу 21.10.2026)
+### Порядок зміни ціни, факту чи заголовка (тариф 21.10.2026, формат НМТ 17.11.2026)
 
 Таблиця вище — де цифра **видна**. Правити ці файли не можна: усі сторінки
 генеруються, і наступна збірка повернe старе значення. Джерела:
@@ -35,9 +35,31 @@ python tools/audit/run.py
 (`content.py`, `pages_service.py`, `pages_dnipro.py`, `pages_exams.py`,
 `pages_generic.py`, `pages_niche.py`, країнові), `tools/blog/art_*.py`,
 `tools/blog/content/*.json`, `tools/blog/listing.json`, `tools/i18n/graph_ru.json`
-(ключ — український рядок цілком, міняти і ключ, і значення) та `llms.txt`
-руками. Далі `python tools/home/build.py` -> `tools/landing/build.py` ->
-`tools/blog/build.py` -> `python tools/audit/run.py`.
+(ключ — український рядок цілком, міняти і ключ, і значення), `llms.txt`
+(див. нижче) і `tools/landing/REWRITE_BRIEF.md` (копія цін для агентів). Далі
+`python tools/home/build.py` -> `tools/landing/build.py` ->
+`tools/blog/build.py` -> `tools/adlanding/build.py` -> `python tools/audit/run.py`
+(exit 0). Наприкінці — `grep -rl "<стара фраза>"` по зібраних `*.html` і
+`llms.txt`: лишилось хоч одне — є ще джерело.
+
+Той самий список джерел — коли міняється **заголовок статті чи факт** (17.11.2026
+формат НМТ і назва статті «…2025» → «…2027»). Тоді ще три місця, де стара
+назва живе окремо від самої статті:
+
+- **`tools/home/template.html`** — картки статей на головній зашиті прямо в
+  шаблон (uk і ru), з `listing.json` вони не беруться. Назву НМТ там знайшли
+  в трьох місцях.
+- **`llms.txt` — наполовину генерований.** Розділ «Статті блогу» перезбирає
+  `tools/blog/site_index.py` з `llmsTitle`/`llmsDesc` у `tools/blog/listing.json`
+  (або із заголовка й анонсу, якщо їх нема): ручна правка цього розділу зникає
+  на першому ж `blog/build.py`. Правити `listing.json`. Решта файлу (посадкові)
+  — руками.
+- **Якорі в інших статтях** — `tools/blog/content/*.json` і `art_*.py` посилаються
+  на статтю її старою назвою (так було в `cambridge-chy-nmt-…json`).
+
+Змінив `title_uk`/`desc_uk`/текст у `schema` посадкової — того ж кроку пара в
+`graph_ru.json`, інакше `landing/build.py` зупиняється з «рядок без російського
+перекладу». Опис ≤ 165 знаків — інакше впаде `meta.py`.
 
 Дві пастки, через які «замінив суму» ще не означає «готово»:
 
