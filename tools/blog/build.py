@@ -535,7 +535,7 @@ def render_side(a, lang):
         body = body + "\n" + faq
 
     cta = a["cta"]
-    return """      <div class="mb-6">
+    return """      <div class="mb-6 ffm-hero-text">
         <span class="inline-block bg-fox-50 text-fox-600 font-bold text-xs px-3 py-1 rounded-full mb-4">%(cat)s</span>
         <h1 class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 leading-tight mb-4">%(title)s</h1>
         <div class="flex flex-wrap items-center gap-2 text-sm text-gray-400">

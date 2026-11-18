@@ -816,6 +816,7 @@ FOOTER = """
 <script src="/js/subscribe.js?v=%(assetv)s" defer></script>
 <script src="/js/pay.js?v=%(assetv)s" defer></script>
 <script src="/js/track.js?v=%(assetv)s" defer></script>
+<script src="/js/motion.js?v=%(assetv)s" defer></script>
 </body>
 </html>
 """
@@ -1036,13 +1037,13 @@ def render_page(p):
         hero = ('\n<section class="pt-6 pb-8 md:pb-14">\n'
                 '  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">\n'
                 '    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-12 lg:items-center">\n'
-                '      <div>\n%s      </div>\n'
-                '      <div class="relative">\n%s      </div>\n'
+                '      <div class="ffm-hero-text">\n%s      </div>\n'
+                '      <div class="relative ffm-hero-art">\n%s      </div>\n'
                 '    </div>\n  </div>\n</section>\n'
                 % (hero_text.replace("\n    ", "\n        "), art))
     else:
         hero = ('\n<section class="pt-8 pb-8 md:pb-14">\n'
-                '  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">\n'
+                '  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 ffm-hero-text">\n'
                 '%s'
                 '  </div>\n</section>\n' % hero_text)
 

@@ -17,3 +17,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Анімації внутрішніх сторінок (js/motion.js) ─────────────────────────
+   Поза @layer навмисно: Tailwind не викидає ці правила при складанні, бо
+   класи ffm-* ставить скрипт, а не розмітка. Рух — через окремі властивості
+   translate/scale, а не transform: так він складається з transform-утилітами
+   елемента (rotate-12, hover:-translate-y-1) і не збиває їх. */
+@keyframes ffm-rise  { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0 0; } }
+@keyframes ffm-slide { from { translate: 0 14px; } to { translate: 0 0; } }
+@keyframes ffm-art   { from { translate: 0 26px; scale: .96; } to { translate: 0 0; scale: 1; } }
+@keyframes ffm-pop   { from { opacity: 0; scale: .6; } to { opacity: 1; scale: 1; } }
+@keyframes ffm-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+@keyframes ffm-shine { 0% { transform: translateX(-160%) skewX(-20deg); } 55%, 100% { transform: translateX(420%) skewX(-20deg); } }
+@keyframes ffm-open  { from { opacity: 0; translate: 0 -6px; } to { opacity: 1; translate: 0 0; } }
+@keyframes ffm-flash { from { opacity: 0; translate: 0 14px; scale: .97; } to { opacity: 1; translate: 0 0; scale: 1; } }
+
+/* Герой: текст по черзі, ілюстрація підпливає, плашки за нею парять.
+   h1 не прозорий на старті — лише зсув: він часто і є LCP на телефоні. */
+.ffm-hero-text > :nth-child(-n+4) { animation: ffm-rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.ffm-hero-text > h1 { animation-name: ffm-slide; }
+.ffm-hero-text > :nth-child(1) { animation-delay: .05s; }
+.ffm-hero-text > :nth-child(2) { animation-delay: .12s; }
+.ffm-hero-text > :nth-child(3) { animation-delay: .22s; }
+.ffm-hero-text > :nth-child(4) { animation-delay: .32s; }
+.ffm-hero-art > figure { animation: ffm-art .9s cubic-bezier(.2,.7,.2,1) .1s both; }
+.ffm-hero-art > [aria-hidden="true"] { animation: ffm-pop .8s cubic-bezier(.34,1.56,.64,1) .45s both, ffm-float 7s ease-in-out 1.3s infinite; }
+.ffm-hero-art > [aria-hidden="true"] + [aria-hidden="true"] { animation-delay: .6s, 2.2s; animation-duration: .8s, 9s; }
+
+/* Поява на прокрутці. */
+.ffm { opacity: 0; translate: 0 26px;
+       transition: opacity .75s cubic-bezier(.2,.7,.2,1), translate .75s cubic-bezier(.2,.7,.2,1), scale .75s cubic-bezier(.2,.7,.2,1);
+       transition-delay: var(--ffm-d, 0s); }
+.ffm--scale { translate: 0 22px; scale: .95; }
+.ffm--left  { translate: -22px 0; }
+.ffm.ffm-in { opacity: 1; translate: 0 0; scale: 1; }
+
+/* Пунктир між кроками малюється зліва направо. */
+.ffm-draw { clip-path: inset(0 100% 0 0); transition: clip-path 1.4s cubic-bezier(.6,0,.2,1) .25s; }
+.ffm-draw.ffm-in { clip-path: inset(0 0 0 0); }
+
+/* Декоративні плашки банера. */
+.ffm-float { animation: ffm-float 8s ease-in-out infinite; }
+.ffm-float--slow { animation-duration: 11s; animation-delay: -3s; }
+
+/* Відблиск, що пробігає кнопкою раз на кілька секунд. */
+.ffm-shine { position: relative; overflow: hidden; isolation: isolate; }
+.ffm-shine::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 35%; pointer-events: none; z-index: 1;
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+                    transform: translateX(-160%) skewX(-20deg); animation: ffm-shine 5s ease-in-out 1.6s infinite; }
+.ffm-shine--warm::after { background: linear-gradient(90deg, transparent, rgba(255,107,53,.22), transparent); }
+
+/* Картки піднімаються під курсором — тільки там, де курсор є. */
+@media (hover: hover) {
+  .ffm-card { transition: translate .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .35s ease; }
+  .ffm-card:hover { translate: 0 -5px; box-shadow: 0 22px 44px -20px rgba(255,107,53,.45); border-color: #ffc7ad; }
+}
+/* Поки картка проявляється, її перехід — наш (той самий клас .ffm нижче за
+   каскадом не стоїть, тож уточнюємо). */
+.ffm.ffm-card { transition: opacity .75s cubic-bezier(.2,.7,.2,1), translate .75s cubic-bezier(.2,.7,.2,1), scale .75s cubic-bezier(.2,.7,.2,1);
+                transition-delay: var(--ffm-d, 0s); }
+
+/* FAQ: відповідь проявляється, коли питання відкрили. */
+.ffm-faq[open] > :not(summary) { animation: ffm-open .4s cubic-bezier(.2,.7,.2,1) both; }
+
+/* Шапка отримує тінь, щойно сторінку прокрутили. */
+.ffm-hdr { transition: box-shadow .3s ease, background-color .3s ease; }
+.ffm-hdr.ffm-scrolled { box-shadow: 0 10px 30px -14px rgba(17,24,39,.22); }
+
+/* Смуга прочитаного у статті. */
+.ffm-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; pointer-events: none;
+                transform-origin: 0 50%; transform: scaleX(0);
+                background: linear-gradient(90deg, #ff8a50, #ff6b35 55%, #7c3aed); }
+
+/* Лістинг блогу: картки після перемикання категорії. */
+.ffm-flash { animation: ffm-flash .45s cubic-bezier(.2,.7,.2,1) both; }
+
+@media (max-width: 767px) {
+  .ffm { translate: 0 18px; transition-duration: .6s; }
+  .ffm--left { translate: -14px 0; }
+  .ffm-hero-art > [aria-hidden="true"] { animation: ffm-pop .7s cubic-bezier(.34,1.56,.64,1) .4s both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ffm-hero-text > *, .ffm-hero-art > *, .ffm-float, .ffm-shine::after, .ffm-faq[open] > *, .ffm-flash { animation: none !important; }
+  .ffm { opacity: 1; translate: 0 0; scale: 1; transition: none; }
+}
