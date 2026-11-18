@@ -50,6 +50,12 @@
        transition-delay: var(--ffm-d, 0s); }
 .ffm--scale { translate: 0 22px; scale: .95; }
 .ffm--left  { translate: -22px 0; }
+/* Картка «вистрибує»: далеко знизу, зменшена, з пружинним перехльостом
+   наприкінці. Прозорість наростає швидше за рух, щоб картка не «пливла»
+   напівпрозорою. */
+.ffm--pop   { translate: 0 64px; scale: .9;
+              transition: opacity .45s ease, translate .9s cubic-bezier(.34,1.45,.64,1), scale .9s cubic-bezier(.34,1.45,.64,1);
+              transition-delay: var(--ffm-d, 0s); }
 .ffm.ffm-in { opacity: 1; translate: 0 0; scale: 1; }
 
 /* Пунктир між кроками малюється зліва направо. */
@@ -76,6 +82,8 @@
    каскадом не стоїть, тож уточнюємо). */
 .ffm.ffm-card { transition: opacity .75s cubic-bezier(.2,.7,.2,1), translate .75s cubic-bezier(.2,.7,.2,1), scale .75s cubic-bezier(.2,.7,.2,1);
                 transition-delay: var(--ffm-d, 0s); }
+.ffm.ffm--pop.ffm-card { transition: opacity .45s ease, translate .9s cubic-bezier(.34,1.45,.64,1), scale .9s cubic-bezier(.34,1.45,.64,1);
+                         transition-delay: var(--ffm-d, 0s); }
 
 /* FAQ: відповідь проявляється, коли питання відкрили. */
 .ffm-faq[open] > :not(summary) { animation: ffm-open .4s cubic-bezier(.2,.7,.2,1) both; }
@@ -95,6 +103,7 @@
 @media (max-width: 767px) {
   .ffm { translate: 0 18px; transition-duration: .6s; }
   .ffm--left { translate: -14px 0; }
+  .ffm--pop  { translate: 0 44px; scale: .92; }
   .ffm-hero-art > [aria-hidden="true"] { animation: ffm-pop .7s cubic-bezier(.34,1.56,.64,1) .4s both; }
 }
 

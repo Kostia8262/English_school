@@ -1,10 +1,17 @@
-/* Анімації внутрішніх сторінок FluentFox: посадкові, статті й лістинг блогу.
+/* Анімації сторінок FluentFox: головна, посадкові, статті й лістинг блогу.
 
    Що тут, а що в CSS. Поява героя при завантаженні — чистий CSS
    (`.ffm-hero-text`, `.ffm-hero-art` у src/tailwind.css): скрипт підключено з
    `defer`, і якби героя ховав він, перший кадр показав би текст, а другий —
    порожнечу. Скрипт бере на себе те, що залежить від прокрутки: поява блоків,
    лічильники, тінь шапки, смуга прочитаного.
+
+   Поява — черга, а не заздалегідь роздані затримки. Кожен блок, що заїхав в
+   екран, стає в чергу й з'являється через крок після попереднього, у порядку
+   «згори вниз, зліва направо». Так картки вистрибують по одній саме тоді,
+   коли до них догортали, а не з затримкою, порахованою за номером у сітці
+   (нижні картки довгої сітки інакше чекали б по півсекунди). Черга обмежена:
+   при швидкій прокрутці ніщо не відстає більше ніж на MAX_QUEUE.
 
    Три правила, які тримають анімацію нешкідливою:
    1. Ховаємо (opacity) лише те, що на старті нижче екрана. Що вже видно —
@@ -22,73 +29,81 @@
 
   var doc = document.documentElement;
   var mobile = window.matchMedia('(max-width: 767px)').matches;
-  var STEP = mobile ? 0.06 : 0.08;      // крок «драбинки» між сусідами, с
-  var MAX_DELAY = mobile ? 0.3 : 0.45;  // далі драбинка не росте — довгі списки не повзуть
+  var STEP = mobile ? 0.06 : 0.07;        // крок черги для заголовків і рядків, с
+  var STEP_CARD = mobile ? 0.09 : 0.11;   // крок для карток — помітно «по одній»
+  var MAX_QUEUE = 0.7;                    // далі черга не росте
+  var DUR = 0.9;                          // найдовший перехід (картки), с
 
   function $$(sel, root) { return [].slice.call((root || document).querySelectorAll(sel)); }
   function below(el) { return el.getBoundingClientRect().top > window.innerHeight - 8; }
-  function inChrome(el) { return !!el.closest('header, footer, #leadModal, [role="dialog"], .ffm-hero-text, .ffm-hero-art'); }
+  function inChrome(el) {
+    return !!el.closest('header, footer, [data-modal-panel], [role="dialog"], .ffm-hero-text, .ffm-hero-art, .hero-bg');
+  }
 
   /* ── Поява на прокрутці ───────────────────────────────────────── */
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      var el = e.target;
-      io.unobserve(el);
-      el.classList.add('ffm-in');
-      if (el.dataset.ffmCount) countUp(el);
-      var d = parseFloat(el.style.getPropertyValue('--ffm-d')) || 0;
-      // Прибираємо за собою, коли перехід скінчився: див. правило 3.
-      setTimeout(function () {
-        el.classList.remove('ffm', 'ffm-in', 'ffm--scale', 'ffm--left', 'ffm--pop');
-        el.style.removeProperty('--ffm-d');
-      }, (d + 0.9) * 1000);
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  var queueEnd = 0;
 
-  function reveal(el, kind, delay) {
+  function cleanup(el) {
+    el.classList.remove('ffm', 'ffm-in', 'ffm--scale', 'ffm--left', 'ffm--pop');
+    el.style.removeProperty('--ffm-d');
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    var now = performance.now() / 1000;
+    entries
+      .filter(function (e) { return e.isIntersecting; })
+      .sort(function (a, b) {
+        var ra = a.boundingClientRect, rb = b.boundingClientRect;
+        return (Math.round(ra.top / 12) - Math.round(rb.top / 12)) || (ra.left - rb.left);
+      })
+      .forEach(function (e) {
+        var el = e.target;
+        io.unobserve(el);
+        if (el.dataset.ffmCount) { countUp(el); return; }
+        var start = Math.max(now, queueEnd);
+        if (start - now > MAX_QUEUE) start = now + MAX_QUEUE;
+        queueEnd = start + (el.classList.contains('ffm--pop') ? STEP_CARD : STEP);
+        var d = start - now;
+        el.style.setProperty('--ffm-d', d.toFixed(2) + 's');
+        el.classList.add('ffm-in');
+        setTimeout(function () { cleanup(el); }, (d + DUR + 0.15) * 1000);
+      });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  function reveal(el, kind) {
     if (!el || el.classList.contains('ffm') || inChrome(el) || !below(el)) return;
     el.classList.add('ffm');
     if (kind) el.classList.add('ffm--' + kind);
-    if (delay) el.style.setProperty('--ffm-d', Math.min(delay, MAX_DELAY).toFixed(2) + 's');
     io.observe(el);
   }
-
-  // Драбинка: сусіди одного батька з'являються по черзі, а не всі разом.
-  function stagger(list, kind) {
-    var byParent = new Map();
-    list.forEach(function (el) {
-      var p = el.parentNode, i = byParent.get(p) || 0;
-      byParent.set(p, i + 1);
-      reveal(el, kind, i * STEP);
-    });
-  }
+  function revealAll(list, kind) { list.forEach(function (el) { reveal(el, kind); }); }
 
   function scan() {
     // Заголовки секцій: підпис-«пігулка», h2 і підзаголовок під ним.
     $$('main h2, section h2').forEach(function (h) {
-      if (h.closest('a, details, [data-card-cat]')) return;
+      if (h.closest('a, details, [data-card-cat], .grid, .snap-x')) return;
       var wrap = h.parentElement;
       if (wrap && /\btext-center\b/.test(wrap.className) && wrap.children.length <= 4) {
-        stagger([].slice.call(wrap.children));
+        revealAll([].slice.call(wrap.children));
       } else {
         reveal(h);
       }
     });
 
-    // Картки в сітках: про нас, вікові групи, контакти, лістинг блогу.
-    stagger($$('main .grid > *, section .grid > *').filter(function (el) {
+    // Картки: сітки (про нас, програми, ціни, контакти, лістинг блогу) і
+    // горизонтальні стрічки на телефоні (ціни, відгуки).
+    revealAll($$('main .grid > *, section .grid > *, section .snap-x > *').filter(function (el) {
       return !el.closest('footer, form') && el.offsetHeight > 40;
-    }), 'scale');
+    }), 'pop');
 
-    // Кроки «Як це працює» на мобільному йдуть стовпчиком, а не сіткою.
-    stagger($$('#about .md\\:hidden > .relative'), 'left');
+    // Кроки «Як це працює» на телефоні йдуть стовпчиком, а не сіткою.
+    revealAll($$('#about .md\\:hidden > .relative'), 'left');
 
     // Списки з галочками, пункти й кроки в тексті сторінки.
-    stagger($$('main ul.flex-col > li, main ol.flex-col > li, .prose > ul > li, .prose > ol > li'), 'left');
+    revealAll($$('main ul.flex-col > li, main ol.flex-col > li, .prose > ul > li, .prose > ol > li'), 'left');
 
     // Питання FAQ і питання-відповіді в статтях.
-    stagger($$('#faq details, .prose details'));
+    revealAll($$('#faq details, .prose details'));
 
     // Самостійні блоки тексту: таблиці, врізки, цитати, ілюстрації.
     $$('main table, .table-wrap, main blockquote, main figure, .course-link, .prose img').forEach(function (el) {
@@ -96,10 +111,10 @@
       reveal(el, el.tagName === 'FIGURE' || el.tagName === 'IMG' ? 'scale' : null);
     });
 
-    // Помаранчевий банер наприкінці: вміст по черзі, кнопки з відблиском.
+    // Помаранчевий банер наприкінці: вміст по черзі, плашки парять.
     $$('section.bg-gradient-to-br').forEach(function (s) {
       var box = s.querySelector('.relative');
-      if (box) stagger([].slice.call(box.children));
+      if (box) revealAll([].slice.call(box.children));
       $$('.absolute[aria-hidden="true"]', s).forEach(function (b, i) {
         b.classList.add('ffm-float');
         if (i % 2) b.classList.add('ffm-float--slow');
@@ -203,9 +218,10 @@
         var i = 0;
         $$('[data-card-cat]').forEach(function (c) {
           if (c.hidden) return;
+          cleanup(c);                               // картка ще не з'явилась — показуємо зараз
           c.classList.remove('ffm-flash');
           void c.offsetWidth;                       // перезапуск анімації
-          c.style.animationDelay = Math.min(i++ * 0.05, 0.4) + 's';
+          c.style.animationDelay = Math.min(i++ * 0.06, 0.5) + 's';
           c.classList.add('ffm-flash');
         });
       }, 0);
