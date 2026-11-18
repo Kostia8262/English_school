@@ -1228,6 +1228,59 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 }
 .wave-top  { margin-top: -2px; }
 .wave-bottom { margin-bottom: -2px; }
+/* ── Сертифікат-зразок у блоці «Результати» ─────────────────────
+Розміри в cqw: картка масштабується як документ, а не
+перекладається колонками. clamp тримає дрібний текст читабельним
+на 375 px і не дає роздути його на широкій колонці. */
+.ffc-stage{position:relative;width:100%;max-width:34rem;padding:18px 10px 6px;container-type:inline-size}
+.ffc-back{position:absolute;inset:26px 18px 0 22px;border-radius:10px;background:#EFE6D3;transform:rotate(-4deg);box-shadow:0 24px 50px -12px rgba(0,0,0,.6)}
+.ffc-back::before{content:"";position:absolute;inset:10px;border:1px solid rgba(201,162,39,.45);border-radius:6px}
+.ffc{position:relative;margin:0;overflow:hidden;border-radius:10px;text-align:center;color:#14213D;
+padding:clamp(20px,7cqw,40px) clamp(18px,7cqw,42px) clamp(16px,5cqw,30px);
+background:radial-gradient(ellipse at 50% -10%,rgba(255,107,53,.10),transparent 55%),radial-gradient(ellipse at 50% 120%,rgba(212,175,55,.14),transparent 55%),repeating-linear-gradient(45deg,rgba(20,33,61,.022) 0 1px,transparent 1px 7px),repeating-linear-gradient(-45deg,rgba(20,33,61,.022) 0 1px,transparent 1px 7px),#FFFCF4;
+box-shadow:0 34px 70px -18px rgba(0,0,0,.75),0 0 0 1px rgba(212,175,55,.5);
+transform:rotate(1.2deg);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.ffc:hover{transform:rotate(0) translateY(-4px)}
+@media (prefers-reduced-motion:reduce){.ffc{transition:none}}
+.ffc::before,.ffc::after{content:"";position:absolute;pointer-events:none}
+.ffc::before{inset:clamp(7px,2.2cqw,12px);border:1.5px solid #C9A227;border-radius:6px}
+.ffc::after{inset:clamp(11px,3.2cqw,17px);border:1px solid rgba(201,162,39,.45);border-radius:4px}
+.ffc-corner{position:absolute;width:clamp(14px,4.4cqw,24px);height:clamp(14px,4.4cqw,24px)}
+.ffc-corner--tl{top:clamp(13px,3.8cqw,20px);left:clamp(13px,3.8cqw,20px)}
+.ffc-corner--tr{top:clamp(13px,3.8cqw,20px);right:clamp(13px,3.8cqw,20px);transform:scaleX(-1)}
+.ffc-corner--bl{bottom:clamp(13px,3.8cqw,20px);left:clamp(13px,3.8cqw,20px);transform:scaleY(-1)}
+.ffc-corner--br{bottom:clamp(13px,3.8cqw,20px);right:clamp(13px,3.8cqw,20px);transform:scale(-1)}
+.ffc-wm{position:absolute;left:50%;top:54%;width:52%;height:auto;transform:translate(-50%,-50%);opacity:.05;filter:grayscale(1);pointer-events:none}
+.ffc > *{position:relative}
+.ffc > .ffc-wm,.ffc > .ffc-corner{position:absolute}
+.ffc-top{display:flex;align-items:center;justify-content:center;gap:clamp(6px,2cqw,10px)}
+.ffc-logo{width:clamp(24px,6.8cqw,36px);height:clamp(24px,6.8cqw,36px);border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#FF8A50,#E8551F);box-shadow:0 4px 10px -3px rgba(232,85,31,.6)}
+.ffc-logo img{width:76%;height:76%}
+.ffc-brand{font-weight:900;letter-spacing:.2em;font-size:clamp(10px,2.7cqw,14px);color:#14213D}
+.ffc-brand span{color:#FF6B35}
+.ffc-title{margin-top:clamp(8px,3cqw,16px);font-weight:900;text-transform:uppercase;letter-spacing:.3em;padding-left:.3em;font-size:clamp(20px,6.6cqw,36px);line-height:1;color:#14213D}
+.ffc-sub{display:flex;align-items:center;justify-content:center;gap:clamp(6px,2cqw,12px);margin-top:clamp(6px,2cqw,10px);font-size:clamp(8.5px,2cqw,11px);font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#A8801A}
+.ffc-sub::before,.ffc-sub::after{content:"";width:clamp(18px,8cqw,48px);height:1px;background:linear-gradient(90deg,transparent,#C9A227)}
+.ffc-sub::after{transform:scaleX(-1)}
+.ffc-given{margin:clamp(12px,4cqw,22px) 0 0;font-size:clamp(10px,2.5cqw,13.5px);color:#5B6275}
+.ffc-given--tight{margin-top:clamp(4px,1.4cqw,8px)}
+.ffc-name{display:inline-block;margin:clamp(2px,.8cqw,6px) 0 0;padding:0 clamp(12px,5cqw,30px) clamp(2px,.8cqw,5px);font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(24px,7.8cqw,42px);line-height:1.15;color:#14213D;background:linear-gradient(90deg,transparent,#C9A227 18%,#C9A227 82%,transparent) bottom/100% 1px no-repeat}
+.ffc-level{display:flex;align-items:center;justify-content:center;gap:clamp(6px,2cqw,12px);margin-top:clamp(8px,2.6cqw,14px)}
+.ffc-lv{font-weight:900;font-size:clamp(12px,3.6cqw,19px);line-height:1;padding:.55em .95em;border-radius:999px}
+.ffc-lv--from{color:#8A8FA3;border:1.5px solid #D9DCE5;background:#fff}
+.ffc-lv--to{color:#fff;background:linear-gradient(135deg,#FF8A50,#FF6B35 50%,#E8551F);box-shadow:0 8px 16px -6px rgba(255,107,53,.75)}
+.ffc-arrow{width:clamp(18px,5cqw,28px);height:auto;color:#C9A227}
+.ffc-scale{margin-top:clamp(5px,1.6cqw,9px);font-size:clamp(8.5px,1.9cqw,10.5px);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A8FA3}
+.ffc-foot{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:clamp(8px,3cqw,18px);margin-top:clamp(10px,3.6cqw,20px)}
+.ffc-sign{display:flex;flex-direction:column;align-items:center;min-width:0}
+.ffc-ink{width:88%;height:clamp(20px,6.4cqw,34px)}
+.ffc-date{display:flex;align-items:flex-end;justify-content:center;height:clamp(20px,6.4cqw,34px);font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(12px,3.4cqw,18px);color:#1E3A8A;white-space:nowrap}
+.ffc-line{display:block;width:100%;height:1px;margin:clamp(2px,.8cqw,5px) 0 clamp(3px,1cqw,6px);background:#14213D;opacity:.3}
+.ffc-cap{font-size:clamp(8.5px,1.9cqw,11px);letter-spacing:.06em;color:#5B6275;white-space:nowrap}
+.ffc-seal{width:clamp(58px,17cqw,96px);filter:drop-shadow(0 6px 8px rgba(120,80,0,.3))}
+.ffc-seal svg{display:block;width:100%;height:auto}
+.ffc-no{margin-top:clamp(4px,1.4cqw,8px);font-size:clamp(8px,1.7cqw,10px);letter-spacing:.12em;color:#9AA0B2;font-variant-numeric:tabular-nums}
+.ffc-caption{margin-top:22px;max-width:28rem;text-align:center;font-size:13px;line-height:1.5;color:#9CA3AF}
 </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream">
@@ -4286,63 +4339,64 @@ box-shadow: 0 0 0 3px var(--fox-ring);
 </li>
 </ul>
 </div>
-<div class="flex justify-center">
-<div class="relative w-72 md:w-full md:max-w-xl" style="filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));">
-<div class="relative rounded-2xl overflow-hidden" style="background:#0F1B3D; padding:2px;">
-<div style="background: linear-gradient(135deg,#B8960C,#F5E88A,#B8960C,#F5E88A,#B8960C); padding:2px; border-radius:14px;">
-<div class="rounded-xl overflow-hidden" style="background:#0F1B3D;">
-<div class="relative p-4 md:p-6 flex flex-col items-center text-center" style="gap:0;">
-<svg class="absolute top-2 left-2 md:top-3 md:left-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 0 L14 0"/></svg>
-<svg class="absolute top-2 right-2 md:top-3 md:right-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 0 L14 0"/></svg>
-<svg class="absolute bottom-2 left-2 md:bottom-3 md:left-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M0 14 L0 28 L14 28"/></svg>
-<svg class="absolute bottom-2 right-2 md:bottom-3 md:right-3 w-5 h-5 md:w-7 md:h-7" viewBox="0 0 28 28" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.7"><path d="M28 14 L28 28 L14 28"/></svg>
-<div class="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full opacity-10" style="background: radial-gradient(circle,var(--fox-500),transparent)"></div>
-<div class="w-full flex flex-col items-center md:flex-row md:items-center md:gap-6 md:text-left">
-<div class="flex flex-col items-center w-full md:w-36 md:flex-shrink-0 z-10">
-<div class="mt-1 md:mt-0 mb-1.5 md:mb-2 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-base md:text-xl shadow-fox overflow-hidden" style="background: linear-gradient(135deg,var(--fox-500),var(--fox-600));"><img class="w-7 h-7 md:w-9 md:h-9" src="/logo.svg" alt width="48" height="48" loading="lazy" decoding="async"></div>
-<div class="text-white font-black text-sm tracking-widest">FLUENT<span style="color:#D4AF37">FOX</span></div>
-<div class="flex items-center gap-2 w-full my-1.5 md:my-2">
-<div class="h-px flex-1" style="background:linear-gradient(to right,transparent,#D4AF37)"></div>
-<svg width="12" height="12" viewBox="0 0 12 12" fill="#D4AF37"><polygon points="6,0 7.5,4.5 12,4.5 8.5,7 10,12 6,9 2,12 3.5,7 0,4.5 4.5,4.5"/></svg>
-<div class="h-px flex-1" style="background:linear-gradient(to left,transparent,#D4AF37)"></div>
+<div class="flex flex-col items-center">
+<div class="ffc-stage">
+<div class="ffc-back" aria-hidden="true"></div>
+<figure class="ffc">
+<svg class="ffc-corner ffc-corner--tl" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.2" aria-hidden="true"><path d="M1 13V1h12"/><path d="M5 9V5h4"/><circle cx="5" cy="5" r="1.3" fill="#C9A227" stroke="none"/></svg>
+<svg class="ffc-corner ffc-corner--tr" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.2" aria-hidden="true"><path d="M1 13V1h12"/><path d="M5 9V5h4"/><circle cx="5" cy="5" r="1.3" fill="#C9A227" stroke="none"/></svg>
+<svg class="ffc-corner ffc-corner--bl" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.2" aria-hidden="true"><path d="M1 13V1h12"/><path d="M5 9V5h4"/><circle cx="5" cy="5" r="1.3" fill="#C9A227" stroke="none"/></svg>
+<svg class="ffc-corner ffc-corner--br" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.2" aria-hidden="true"><path d="M1 13V1h12"/><path d="M5 9V5h4"/><circle cx="5" cy="5" r="1.3" fill="#C9A227" stroke="none"/></svg>
+<img class="ffc-wm" src="/logo.svg" alt width="200" height="200" loading="lazy" decoding="async">
+<div class="ffc-top">
+<span class="ffc-logo"><img src="/logo.svg" alt width="36" height="36" loading="lazy" decoding="async"></span>
+<span class="ffc-brand">FLUENT<span>FOX</span></span>
 </div>
-<div class="text-2xs md:text-xs font-black tracking-[0.25em] uppercase mb-1.5 md:mb-0" style="color:#D4AF37;" data-ru="Сертификат">Сертифікат</div>
+<div class="ffc-title" data-ru="Сертификат">Сертифікат</div>
+<div class="ffc-sub" data-ru="уровень английского по CEFR">рівень англійської за CEFR</div>
+<p class="ffc-given" data-ru="Настоящим подтверждается, что">Цим засвідчується, що</p>
+<p class="ffc-name" data-ru="София Коваленко">Софія Коваленко</p>
+<p class="ffc-given ffc-given--tight" data-ru="успешно завершила программу и подтвердила уровень">успішно завершила програму й підтвердила рівень</p>
+<div class="ffc-level">
+<span class="ffc-lv ffc-lv--from">A1</span>
+<svg class="ffc-arrow" viewBox="0 0 28 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h25M21 1l5 5-5 5"/></svg>
+<span class="ffc-lv ffc-lv--to">A2</span>
 </div>
-<div class="w-full md:flex-1 flex flex-col items-center md:items-start z-10">
-<div class="mb-1.5 md:mb-3 flex items-baseline gap-1.5 md:flex-col md:gap-0 md:items-start">
-<p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;" data-ru="Выдан ученику:">Видано учню:</p>
-<p class="font-black text-sm md:text-lg text-white" data-ru="[Имя ученика]">[Ім'я учня]</p>
+<div class="ffc-scale" data-ru="Общеевропейская шкала CEFR">Загальноєвропейська шкала CEFR</div>
+<div class="ffc-foot">
+<div class="ffc-sign">
+<svg class="ffc-ink" viewBox="0 0 132 40" fill="none" stroke="#1E3A8A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 30C12 8 22 4 19 24s9 14 16-6 15-12 13 6 13 10 20-8c5-12 10 10 17 4s14-10 20-6 10 4 19 0"/><path d="M30 34c22-3 52-4 86-6"/></svg>
+<span class="ffc-line"></span>
+<span class="ffc-cap" data-ru="Директор школы">Директор школи</span>
 </div>
-<div class="flex items-center gap-1.5 md:flex-col md:gap-0 md:items-start">
-<p class="text-2xs md:text-xs md:mb-1" style="color:#8899BB;" data-ru="Успешно завершил курс:">Успішно завершив курс:</p>
-<div class="px-2.5 py-1 md:px-4 md:py-1.5 rounded-xl border text-2xs md:text-sm font-black" style="border-color:#FF6B3550; background:#FF6B3515; color:#FF9966;">
-English A1 → A2
+<div class="ffc-seal" aria-hidden="true">
+<svg viewBox="0 0 120 142">
+<defs>
+<linearGradient id="ffcGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7E58C"/><stop offset=".5" stop-color="#D4AF37"/><stop offset="1" stop-color="#A47A12"/></linearGradient>
+<linearGradient id="ffcGoldIn" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3D86B"/><stop offset="1" stop-color="#B8901F"/></linearGradient>
+<linearGradient id="ffcFox" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A50"/><stop offset="1" stop-color="#E8551F"/></linearGradient>
+<path id="ffcRing" d="M60 60m-31 0a31 31 0 1 1 62 0a31 31 0 1 1-62 0"/>
+</defs>
+<path d="M45 88 31 138l11-7 7 10 10-46z" fill="#C2410C"/>
+<path d="M75 88l14 50-11-7-7 10-10-46z" fill="#FF6B35"/>
+<polygon points="60.0,10.0 64.5,14.7 69.8,11.0 73.2,16.5 79.1,13.8 81.4,19.9 87.8,18.4 88.9,24.8 95.4,24.6 95.2,31.1 101.6,32.2 100.1,38.6 106.2,40.9 103.5,46.8 109.0,50.2 105.3,55.5 110.0,60.0 105.3,64.5 109.0,69.8 103.5,73.2 106.2,79.1 100.1,81.4 101.6,87.8 95.2,88.9 95.4,95.4 88.9,95.2 87.8,101.6 81.4,100.1 79.1,106.2 73.2,103.5 69.8,109.0 64.5,105.3 60.0,110.0 55.5,105.3 50.2,109.0 46.8,103.5 40.9,106.2 38.6,100.1 32.2,101.6 31.1,95.2 24.6,95.4 24.8,88.9 18.4,87.8 19.9,81.4 13.8,79.1 16.5,73.2 11.0,69.8 14.7,64.5 10.0,60.0 14.7,55.5 11.0,50.2 16.5,46.8 13.8,40.9 19.9,38.6 18.4,32.2 24.8,31.1 24.6,24.6 31.1,24.8 32.2,18.4 38.6,19.9 40.9,13.8 46.8,16.5 50.2,11.0 55.5,14.7" fill="url(#ffcGold)"/>
+<circle cx="60" cy="60" r="40" fill="url(#ffcGoldIn)"/>
+<circle cx="60" cy="60" r="37" fill="none" stroke="#FFF6D0" stroke-opacity=".7" stroke-width=".8" stroke-dasharray="1.5 2"/>
+<text font-size="7.4" font-weight="900" letter-spacing="1.2" fill="#5A4410"><textPath href="#ffcRing" textLength="190" lengthAdjust="spacing">FLUENTFOX • CERTIFIED • 2026 •</textPath></text>
+<circle cx="60" cy="60" r="21" fill="url(#ffcFox)" stroke="#FFF6D0" stroke-opacity=".8" stroke-width="1"/>
+<image href="/logo.svg" x="45" y="45" width="30" height="30"/>
+</svg>
 </div>
-</div>
-</div>
-</div>
-<div class="w-full mt-1.5 md:mt-4 z-10">
-<div class="h-px w-full mb-1.5 md:mb-2" style="background:linear-gradient(to right,transparent,#D4AF37,transparent)"></div>
-<div class="flex items-center justify-between">
-<div class="text-left">
-<div class="w-14 h-px mb-1" style="background:#D4AF37;opacity:0.4;"></div>
-<div class="text-2xs md:text-xs" style="color:#5566AA;">Директор</div>
-</div>
-<div class="w-9 h-9 md:w-10 md:h-10 rounded-full flex flex-col items-center justify-center border-2" style="border-color:#D4AF37; color:#D4AF37;">
-<div class="text-2xs font-black leading-none">FF</div>
-<div class="text-2xs leading-none mt-0.5">2026</div>
-</div>
-<div class="text-right">
-<div class="w-14 h-px mb-1 ml-auto" style="background:#D4AF37;opacity:0.4;"></div>
-<div class="text-2xs md:text-xs" style="color:#5566AA;">Дата</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<div class="ffc-sign">
+<span class="ffc-date">30.05.2026</span>
+<span class="ffc-line"></span>
+<span class="ffc-cap" data-ru="Дата выдачи">Дата видачі</span>
 </div>
 </div>
+<div class="ffc-no">№ FF-2026-0418</div>
+</figure>
 </div>
+<p class="ffc-caption" data-ru="Образец. Такой сертификат ребёнок получает после каждой завершённой программы — с именем, уровнем и подписью директора.">Зразок. Такий сертифікат дитина отримує після кожної завершеної програми — з іменем, рівнем і підписом директора.</p>
 </div>
 </div>
 </div>
