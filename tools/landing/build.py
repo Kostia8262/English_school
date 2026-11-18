@@ -609,8 +609,8 @@ HEADER = """
       <a href="/" class="flex items-center gap-2 flex-none">
         <img src="/logo.svg" alt="" width="36" height="36" class="w-9 h-9 flex-none" fetchpriority="high" decoding="async">
         <span class="flex flex-col leading-none">
-          <span class="text-2xl font-black text-gray-900 leading-none">Fluent<span class="gradient-text">Fox</span></span>
-          <span class="text-2xs font-bold uppercase tracking-widest text-gray-500 mt-1">English School</span>
+          <span class="text-lg sm:text-2xl font-black text-gray-900 leading-none">Fluent<span class="gradient-text">Fox</span></span>
+          <span class="text-[9px] sm:text-2xs font-bold uppercase tracking-wider sm:tracking-widest text-gray-500 mt-0.5 sm:mt-1">English School</span>
         </span>
       </a>
 
