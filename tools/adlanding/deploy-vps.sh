@@ -55,9 +55,10 @@ cp tools/adlanding/server/setup-vhost.sh "$STAGE/setup-vhost.sh"
 
 echo "файли лендінга:"; (cd "$STAGE" && find . -type f | sort | sed 's/^/  /')
 
-rsync -rlptz --chmod=F644,D755 "$STAGE/public/" "$HOST:$DIR/public/"
-rsync -rlptz --chmod=F644 "$STAGE/server.js" "$STAGE/setup-vhost.sh" "$HOST:$DIR/"
-ssh $HOST "node --check $DIR/server.js && pm2 restart ff-landing --update-env >/dev/null && sleep 1 && curl -s http://127.0.0.1:3030/api/lead.php"
+# Без --chmod: rsync у macOS (openrsync) його не знає. Права ставимо на сервері.
+rsync -rlz "$STAGE/public/" "$HOST:$DIR/public/"
+rsync -rlz "$STAGE/server.js" "$STAGE/setup-vhost.sh" "$HOST:$DIR/"
+ssh $HOST "find $DIR/public -type d -exec chmod 755 {} + ; find $DIR/public -type f -exec chmod 644 {} + ; chmod 644 $DIR/server.js; node --check $DIR/server.js && pm2 restart ff-landing --update-env >/dev/null && sleep 1 && curl -s http://127.0.0.1:3030/api/lead.php"
 echo
 probe=$(curl -s https://lp.fluent-fox.site/api/lead.php)
 echo "проба: $probe"
