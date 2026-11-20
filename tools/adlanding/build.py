@@ -82,6 +82,19 @@ def cut_form(home):
     if start < 0 or end < 0:
         sys.exit("Розмітка форми на головній виглядає інакше, ніж очікували")
     frag = home[start:end + len("</form>")]
+
+    # Блок «Дякуємо!» на головній стоїть НЕ всередині форми, а сусідом перед
+    # нею: js/lead.js після успіху ховає форму й показує [data-form-success]
+    # у тому ж батьку. До 20.11.2026 тут вирізали лише <form>, і лендінг після
+    # відправки показував порожню картку — заявка йшла, а людина бачила, що
+    # «все зникло». Беремо блок разом із формою.
+    s = home.rfind("data-form-success", 0, start)
+    s_open = home.rfind("<div", 0, s) if s >= 0 else -1
+    s_close = home.find("</div>", s) if s >= 0 else -1
+    if s_open < 0 or s_close < 0 or s_close > start or home[s_close + 6:start].strip():
+        sys.exit("Перед формою на головній немає блоку data-form-success — "
+                 "лендінг після відправки показав би порожню картку")
+    frag = home[s_open:start] + frag
     # Відносні посилання всередині форми («privacy.html») з будь-якого шляху
     # ведуть у 404 — робимо абсолютними.
     frag = frag.replace('href="privacy.html"', 'href="/privacy.html"')
