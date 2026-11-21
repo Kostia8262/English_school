@@ -173,11 +173,11 @@ HEAD = """<!DOCTYPE html>
 <title>Безкоштовний пробний урок англійської для дитини — FluentFox</title>
 <meta name="description" content="Безкоштовний пробний урок англійської для дитини 6–18 років. Онлайн, малі групи до 5 учнів. Залиште заявку — передзвонимо протягом 30 хвилин.">
 
+<!-- Згода на cookie + Consent Mode v2 + піксель Meta — СТРОГО ДО gtag (див. js/pixel.js) -->
+<script src="/js/pixel.js?v=%(v)s"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=%(ga)s"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','%(ga)s');</script>
 
-<!-- Піксель Meta -->
-<script src="/js/pixel.js?v=%(v)s"></script>
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="preload" as="style" href="/css/style.css?v=%(v)s">

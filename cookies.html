@@ -15,7 +15,7 @@
 <!-- Сторінка не тягне Tailwind, тому @font-face бере з окремого файла.
      Раніше тут стояла таблиця з fonts.googleapis.com — блокувальний
      запит на чужий домен заради трьох вагів. -->
-<link rel="stylesheet" href="/css/fonts.css?v=20261121a"/>
+<link rel="stylesheet" href="/css/fonts.css?v=20261121b"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Nunito',Arial,sans-serif;background:#FFF5EF;color:#1a1a2e;line-height:1.8;font-size:15px}
@@ -41,11 +41,11 @@ strong{font-weight:700;color:#0f0f1a}
 .doc-nav{margin-top:36px;padding:16px 18px;background:#FFF9F5;border-radius:10px;font-size:13px;line-height:2;border:1px solid #FFE8D6}
 .doc-nav a{color:#E54E1A}.doc-nav a:hover{text-decoration:underline}
 </style>
+<!-- Згода на cookie + Consent Mode v2 + піксель Meta — СТРОГО ДО gtag (див. js/pixel.js) -->
+<script src="/js/pixel.js?v=20261121b"></script>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
-<!-- Плашка згоди й піксель Meta (піксель — лише після «Прийняти всі») -->
-<script src="/js/pixel.js?v=20261121a"></script>
 </head>
 <body>
 <div class="wrap">
@@ -76,7 +76,7 @@ strong{font-weight:700;color:#0f0f1a}
 <h3>📊 Аналітичні cookie</h3>
 <p>Правова підстава: згода користувача (ст. 6(1)(a) GDPR).<br/>
 Строк зберігання: до 2 років.<br/>
-Приклади: Google Analytics (_ga, _gid, _gat), Google Tag Manager.</p>
+Приклади: Google Analytics (_ga, _ga_*). Встановлюються лише після «Прийняти всі» (Google Consent Mode v2).</p>
 <p>Аналітичні cookie допомагають нам розуміти, як відвідувачі взаємодіють із Сайтом. Ми збираємо знеособлену статистику: кількість відвідувань, джерела трафіку, поведінку на сторінках.</p>
 <ul>
   <li><strong>Google Analytics</strong> — сервіс веб-аналітики від Google LLC. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Детальніше</a></li>
@@ -132,7 +132,7 @@ strong{font-weight:700;color:#0f0f1a}
 <h2>4. Надання згоди та відмова від cookie</h2>
 
 <h3>4.0. Плашка cookie на Сайті</h3>
-<p>Під час першого відвідування Сайт показує плашку з вибором: «Прийняти всі» (зокрема рекламні cookie пікселя Meta) або «Лише обов'язкові». Вибір зберігається у cookie <code>ff_cookie_consent</code> на домені fluent-fox.site (діє і на lp.fluent-fox.site) до 6 місяців. Змінити або відкликати згоду можна будь-коли: <a href="#" data-cookie-settings>змінити налаштування cookie</a>.</p>
+<p>Під час першого відвідування Сайт показує плашку з вибором: «Прийняти всі» (аналітичні cookie Google Analytics і рекламні cookie, зокрема піксель Meta) або «Тільки необхідні». До вашого вибору і після «Тільки необхідні» Google Analytics працює в режимі Google Consent Mode v2 без згоди: файли cookie Google (<code>_ga</code> тощо) не встановлюються, а Google отримує лише знеособлені сигнали без ідентифікаторів; піксель Meta не завантажується зовсім. Вибір зберігається у cookie <code>ff_cookie_consent</code> на домені fluent-fox.site (діє і на lp.fluent-fox.site) до 6 місяців. Змінити або відкликати згоду можна будь-коли: <a href="#" data-cookie-settings>змінити налаштування cookie</a>.</p>
 
 <h3>4.1. Керування через браузер</h3>
 <p>Ви можете керувати файлами cookie безпосередньо у налаштуваннях браузера. Відключення обов'язкових cookie може призвести до некоректної роботи Сайту.</p>
@@ -197,7 +197,7 @@ strong{font-weight:700;color:#0f0f1a}
       <td>Аналітичні, маркетингові</td>
     </tr>
     <tr>
-      <td>LiqPay / WayForPay</td>
+      <td>WayForPay / plata by mono</td>
       <td>Обробка платежів</td>
       <td>Обов'язкові</td>
     </tr>

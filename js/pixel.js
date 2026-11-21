@@ -18,8 +18,13 @@
      • плашку малює цей же файл (обидві мови), тож шаблони не чіпались.
    Зразок — плашка мережі «Мій комп'ютер» (sites/main/index.html, mcaConsent).
 
-   Google Analytics ця згода поки НЕ вмикає і не вимикає — він вантажиться
-   як і раніше. Перевести його на Consent Mode — окреме рішення власника.
+   GOOGLE CONSENT MODE v2 (з 21.11.2026, як у хаба мережі). Цей файл стоїть
+   у <head> ПЕРЕД снипетом gtag.js і синхронний, тож gtag('consent','default',
+   всі четверо denied) лягає в dataLayer раніше за gtag('config'). До згоди
+   GA шле лише запити без cookie (gcs=G100) і не ставить _ga; вибір 'all' —
+   gtag('consent','update', granted). Піксель Meta і GA — від одного вибору.
+   Порядок тегів у шаблонах важливий: pixel.js нижче за gtag-снипет = GA
+   встигне стартувати з типовою згодою «granted».
 
    ПОДІЮ Lead цей файл сам не шле: її шле js/lead.js після підтвердження від
    сервера, з eventID із ffPixel.meta(). Той самий id сервер кладе в
@@ -59,6 +64,20 @@
     } catch (e) { /* приватне вікно */ }
   }
 
+  /* Consent Mode v2 — до gtag('config'). gtag оголошуємо тут же: снипет GA
+     нижче оголосить свій такий самий, черга dataLayer спільна. */
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function () { window.dataLayer.push(arguments); };
+  }
+  var GRANTED = { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' };
+  var DENIED = { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' };
+  window.gtag('consent', 'default', {
+    ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    functionality_storage: 'granted', security_storage: 'granted', wait_for_update: 500
+  });
+  if (choice === 'all') window.gtag('consent', 'update', GRANTED);
+
   function loadPixel() {
     if (loaded) return;
     loaded = true;
@@ -81,6 +100,8 @@
     choice = v;
     writeCookie(v);
     try { localStorage.setItem(KEY, v); } catch (e) { /* приватне вікно */ }
+    /* window.gtag, а не локальна змінна: снипет GA міг перевизначити її. */
+    if (typeof window.gtag === 'function') window.gtag('consent', 'update', v === 'all' ? GRANTED : DENIED);
     if (v === 'all') loadPixel();
   }
 
@@ -166,17 +187,17 @@
      будь-яка CSP, і в зібраному Tailwind не треба шукати потрібних класів. */
   var TEXT = {
     uk: {
-      text: 'Ми використовуємо обов’язкові cookie для роботи сайту, а з вашої згоди — рекламні (піксель Meta), щоб міряти рекламу. ',
-      more: 'Політика cookie',
+      text: 'Ми використовуємо файли cookie: обов’язкові — для роботи сайту, а з вашої згоди — аналітичні (Google Analytics) і рекламні (піксель Meta). ',
+      more: 'Детальніше',
       accept: 'Прийняти всі',
-      decline: 'Лише обов’язкові',
+      decline: 'Тільки необхідні',
       label: 'Згода на cookie'
     },
     ru: {
-      text: 'Мы используем обязательные cookie для работы сайта, а с вашего согласия — рекламные (пиксель Meta), чтобы измерять рекламу. ',
-      more: 'Политика cookie',
+      text: 'Мы используем файлы cookie: обязательные — для работы сайта, а с вашего согласия — аналитические (Google Analytics) и рекламные (пиксель Meta). ',
+      more: 'Подробнее',
       accept: 'Принять все',
-      decline: 'Только обязательные',
+      decline: 'Только необходимые',
       label: 'Согласие на cookie'
     }
   };

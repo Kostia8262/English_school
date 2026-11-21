@@ -469,15 +469,14 @@ HEAD = """<!DOCTYPE html>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
+<!-- Згода на cookie + Consent Mode v2 + піксель Meta — СТРОГО ДО gtag (див. js/pixel.js) -->
+<script src="/js/pixel.js?v={assetv}"></script>
 <!-- Google Analytics 4. Контейнера GTM тут більше немає: він був порожній
      («tags»:[]), тобто 331 КБ рушія на кожне завантаження не робили нічого,
      а лічильник і так стоїть прямим gtag.js. -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
 
-<!-- Піксель Meta. Сам код лежить у js/pixel.js саме через цей f-рядок: його
-     фігурні дужки довелося б подвоювати тут поштучно. -->
-<script src="/js/pixel.js?v={assetv}"></script>
 
 <title>{title_uk}</title>
 <meta name="description" content="{desc_uk}"/>
