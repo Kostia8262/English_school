@@ -15,7 +15,7 @@
 <!-- Сторінка не тягне Tailwind, тому @font-face бере з окремого файла.
      Раніше тут стояла таблиця з fonts.googleapis.com — блокувальний
      запит на чужий домен заради трьох вагів. -->
-<link rel="stylesheet" href="/css/fonts.css?v=20261118c"/>
+<link rel="stylesheet" href="/css/fonts.css?v=20261121a"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Nunito',Arial,sans-serif;background:#FFF5EF;color:#1a1a2e;line-height:1.8;font-size:15px}
@@ -44,12 +44,14 @@ strong{font-weight:700;color:#0f0f1a}
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
+<!-- Плашка згоди й піксель Meta (піксель — лише після «Прийняти всі») -->
+<script src="/js/pixel.js?v=20261121a"></script>
 </head>
 <body>
 <div class="wrap">
 <a href="/" class="back">← FluentFox</a>
 <h1>ПОЛІТИКА ВИКОРИСТАННЯ ФАЙЛІВ COOKIE</h1>
-<p class="doc-meta">Дата набрання чинності: 8 липня 2026 р.</p>
+<p class="doc-meta">Дата набрання чинності: 8 липня 2026 р. Оновлено: 21 листопада 2026 р.</p>
 
 <p>Ця Політика пояснює, які файли cookie використовує сайт FluentFox, з якою метою та як ви можете керувати своїми налаштуваннями. Документ відповідає вимогам Закону України «Про захист персональних даних» (№&nbsp;2297-VI), ЗУ «Про електронну комерцію» (№&nbsp;675-VIII) та Регламенту GDPR (EU) 2016/679.</p>
 
@@ -68,7 +70,7 @@ strong{font-weight:700;color:#0f0f1a}
 <h3>🔒 Обов'язкові (функціональні) cookie</h3>
 <p>Правова підстава: законний інтерес (ст. 6(1)(f) GDPR) — необхідні для роботи сайту.<br/>
 Строк зберігання: сесія або до 1 року.<br/>
-Приклади: збереження мови інтерфейсу, CSRF-токени форм.</p>
+Приклади: збереження мови інтерфейсу, CSRF-токени форм, <code>ff_cookie_consent</code> — ваш вибір у плашці cookie (до 6 місяців).</p>
 <p>Ці файли cookie необхідні для базової роботи Сайту і не можуть бути вимкнені. Вони не збирають особисту інформацію в маркетингових цілях.</p>
 
 <h3>📊 Аналітичні cookie</h3>
@@ -84,8 +86,9 @@ strong{font-weight:700;color:#0f0f1a}
 <h3>🎯 Маркетингові (рекламні) cookie</h3>
 <p>Правова підстава: згода користувача (ст. 6(1)(a) GDPR).<br/>
 Строк зберігання: до 1 року.<br/>
-Приклади: Google Ads, ремаркетинг Facebook.</p>
+Приклади: Google Ads, ремаркетинг Facebook, піксель Meta (<code>_fbp</code>, <code>_fbc</code>).</p>
 <p>Маркетингові cookie використовуються для показу релевантної реклами на основі ваших попередніх дій на Сайті.</p>
+<p><strong>Піксель Meta і Conversions API.</strong> Піксель Meta (Meta Platforms Ireland Ltd. / Meta Platforms Inc.) завантажується <strong>лише після того, як ви натиснете «Прийняти всі»</strong> у плашці cookie; до цього Сайт не робить жодного запиту до Meta. З вашою згодою піксель фіксує перегляд сторінки та факт відправлення заявки, щоб ми могли вимірювати результативність реклами у Facebook та Instagram. Після успішної заявки наш сервер також передає Meta через Conversions API подію «заявка» з тим самим ідентифікатором, що й піксель (щоб подія не рахувалась двічі): <strong>хешований</strong> (SHA-256, незворотне перетворення) номер телефону, IP-адресу та дані браузера, ідентифікатори <code>_fbp</code> / <code>_fbc</code> / <code>fbclid</code> і адресу сторінки. Ім'я, вік дитини та телефон у відкритому вигляді Meta не передаються. Без згоди на рекламні cookie серверна подія не надсилається.</p>
 
 <h3>🌐 Cookie соціальних мереж</h3>
 <p>Правова підстава: згода користувача (ст. 6(1)(a) GDPR).<br/>
@@ -127,6 +130,9 @@ strong{font-weight:700;color:#0f0f1a}
 </table>
 
 <h2>4. Надання згоди та відмова від cookie</h2>
+
+<h3>4.0. Плашка cookie на Сайті</h3>
+<p>Під час першого відвідування Сайт показує плашку з вибором: «Прийняти всі» (зокрема рекламні cookie пікселя Meta) або «Лише обов'язкові». Вибір зберігається у cookie <code>ff_cookie_consent</code> на домені fluent-fox.site (діє і на lp.fluent-fox.site) до 6 місяців. Змінити або відкликати згоду можна будь-коли: <a href="#" data-cookie-settings>змінити налаштування cookie</a>.</p>
 
 <h3>4.1. Керування через браузер</h3>
 <p>Ви можете керувати файлами cookie безпосередньо у налаштуваннях браузера. Відключення обов'язкових cookie може призвести до некоректної роботи Сайту.</p>
@@ -187,7 +193,7 @@ strong{font-weight:700;color:#0f0f1a}
     </tr>
     <tr>
       <td>Meta Platforms Inc.</td>
-      <td>Аналітика Facebook, реклама Instagram</td>
+      <td>Піксель Meta і Conversions API — вимірювання реклами у Facebook та Instagram (лише за згодою; телефон — у хешованому вигляді)</td>
       <td>Аналітичні, маркетингові</td>
     </tr>
     <tr>

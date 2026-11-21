@@ -120,6 +120,13 @@
         Object.keys(attr).forEach(function (k) { body.append(k, attr[k]); });
       }
 
+      /* Дані для серверної події Lead (Conversions API): event_id, _fbp/_fbc,
+         fbclid першого торкання, стан згоди, адреса. Одним полем-JSON, бо тіло
+         — URLSearchParams. Сервер шле подію в Meta лише за consent === 'all'.
+         Немає js/pixel.js — поля немає, заявка йде як завжди. */
+      var meta = window.ffPixel && window.ffPixel.meta ? window.ffPixel.meta() : null;
+      if (meta) body.append('meta', JSON.stringify(meta));
+
       /* Запит свій-до-свого: ні CORS, ні preflight, ні редиректів — відповідь
          читається завжди. Це й було головною причиною переїзду: раніше тут
          стояв mode: 'no-cors', відповідь була непрозорою, і форма показувала
@@ -148,9 +155,12 @@
           /* Lead для Meta — рівно тут, поряд з generate_lead, а не на кліку
              по кнопці: вище по ланцюжку ми вже прочитали відповідь сервера й
              знаємо, що заявку хтось прийняв. Піксель, навчений на кліках,
-             оптимізував би покази під тих, хто тисне кнопку й відпадає. */
-          if (typeof fbq !== 'undefined') {
-            fbq('track', 'Lead', { content_name: 'trial_lesson' });
+             оптимізував би покази під тих, хто тисне кнопку й відпадає.
+             eventID — той самий, що пішов у тілі заявки: сервер шле Lead
+             у Conversions API з ним же, і Meta рахує їх однією подією.
+             Без згоди піксель не піднятий, і trackLead нічого не шле. */
+          if (meta && window.ffPixel && window.ffPixel.trackLead) {
+            window.ffPixel.trackLead(meta.event_id, 'trial_lesson');
           }
           form.reset();
         })

@@ -178,8 +178,6 @@ HEAD = """<!DOCTYPE html>
 
 <!-- Піксель Meta -->
 <script src="/js/pixel.js?v=%(v)s"></script>
-<noscript><img height="1" width="1" style="display:none" alt=""
-  src="https://www.facebook.com/tr?id=%(pixel)s&amp;ev=PageView&amp;noscript=1"></noscript>
 
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="preload" as="style" href="/css/style.css?v=%(v)s">

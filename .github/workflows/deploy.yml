@@ -94,6 +94,14 @@ jobs:
           # публічний, і адреса з нього поїхала б у спам-бази. Немає секрету —
           # рядок у конфізі порожній, листи не шлються, заявки не страждають.
           NOTIFY:    ${{ secrets.LEAD_NOTIFY_EMAIL }}
+          # Conversions API Meta (серверна подія Lead). Токен генерує власник в
+          # Events Manager → секрет META_CAPI_TOKEN. Немає — модуль вимкнений,
+          # заявки не страждають. META_PIXEL_ID — змінна або секрет; id пікселя
+          # не секрет (він і так у js/pixel.js), тому є запасне значення.
+          # META_TEST_EVENT_CODE — лише на час перевірки в «Тестових подіях».
+          META_TOKEN: ${{ secrets.META_CAPI_TOKEN }}
+          META_PIXEL: ${{ secrets.META_PIXEL_ID || vars.META_PIXEL_ID || '931791603129774' }}
+          META_TEST:  ${{ secrets.META_TEST_EVENT_CODE || vars.META_TEST_EVENT_CODE }}
           SHEET_URL: https://script.google.com/macros/s/AKfycbxAA1T6SIdTeldgSFmT-3HUEfRBUIq7-v79uGBe3UbVnTQBlespZMrsgNQMqmZKCzEGqA/exec
         run: |
           if [ -z "$CRM_TOKEN" ]; then
@@ -108,6 +116,12 @@ jobs:
           if [ -z "$NOTIFY" ]; then
             echo "::warning title=LEAD_NOTIFY_EMAIL не заданий::дубль заявки листом вимкнено"
           fi
+          meta_token=$(printf '%s' "$META_TOKEN" | base64 -w0)
+          meta_pixel=$(printf '%s' "$META_PIXEL" | tr -cd '0-9')
+          meta_test=$(printf '%s' "$META_TEST" | base64 -w0)
+          if [ -z "$META_TOKEN" ]; then
+            echo "::warning title=META_CAPI_TOKEN не заданий::серверна подія Lead у Meta вимкнена"
+          fi
           {
             echo "<?php"
             echo "// Складає деплой із секрету CRM_ADMIN_TOKEN. Руками не правити:"
@@ -118,6 +132,9 @@ jobs:
             echo "    'sheet_url' => '${SHEET_URL}',"
             echo "    'canary_token' => base64_decode('${canary}'),"
             echo "    'notify_email' => base64_decode('${notify}'),"
+            echo "    'meta_pixel_id' => '${meta_pixel}',"
+            echo "    'meta_capi_token' => base64_decode('${meta_token}'),"
+            echo "    'meta_test_event_code' => base64_decode('${meta_test}'),"
             echo "];"
           } | sshpass -e ssh -p ${{ secrets.SFTP_PORT }} -o StrictHostKeyChecking=no \
                 ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }} \

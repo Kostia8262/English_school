@@ -40,4 +40,12 @@ return [
     // поїхала б у спам-бази. Кладе цей рядок деплой із секрету
     // LEAD_NOTIFY_EMAIL. Порожньо — на заявки це не впливає ніяк.
     'notify_email' => '',
+
+    // Conversions API Meta — серверна подія Lead (api/meta-capi.php). Кладе
+    // деплой із секретів META_CAPI_TOKEN, META_PIXEL_ID, META_TEST_EVENT_CODE.
+    // Немає токена — модуль вимкнений, заявки це не чіпає. Шлеться лише за
+    // згодою відвідувача на рекламні cookie (meta.consent === 'all').
+    'meta_pixel_id'        => '931791603129774',
+    'meta_capi_token'      => '',
+    'meta_test_event_code' => '',
 ];

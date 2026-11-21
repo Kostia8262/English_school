@@ -21,6 +21,7 @@ const http = require('http');
 const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
+const metaCapi = require('./meta-capi');
 
 const PORT = Number(process.env.PORT) || 3030;
 const PUBLIC = path.join(__dirname, 'public');
@@ -33,6 +34,9 @@ const CRM = 'https://mycomputer.education/api/leads/admin';
 function readEnvKey(key) {
   if (process.env[key]) return process.env[key];
   const candidates = [
+    /* Свій .env лендінга — для ключів, яких у мережі немає (META_CAPI_TOKEN).
+       deploy-vps.sh його не чіпає: rsync кладе лише public/ і server.js. */
+    path.join(__dirname, '.env'),
     '/var/www/mycomputer-new/sites/python/.env',
     '/var/www/mycomputer-new/sites/main/.env',
   ];
@@ -47,6 +51,22 @@ function readEnvKey(key) {
 }
 
 const TOKEN = readEnvKey('MAIN_ADMIN_TOKEN');
+
+/* Conversions API Meta: серверна подія Lead. Вимкнена, якщо в оточенні чи в
+   .env поруч немає META_CAPI_TOKEN і META_PIXEL_ID (див. meta-capi.js). */
+const META = metaCapi.config(readEnvKey);
+console.log(META.enabled
+  ? `[META] Conversions API увімкнено, піксель ${META.pixel}${META.testCode ? ', тестовий код задано' : ''}`
+  : '[META] Conversions API вимкнено: немає META_CAPI_TOKEN / META_PIXEL_ID');
+
+/* Справжня адреса клієнта. Сервіс слухає лише 127.0.0.1, перед ним LiteSpeed
+   (setup-vhost.sh, type proxy), тож remoteAddress — це сам проксі, а клієнт
+   — перший у X-Forwarded-For. */
+function clientIp(req) {
+  const xff = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+  if (xff) return xff;
+  return String(req.socket.remoteAddress || '').replace(/^::ffff:/, '');
+}
 
 /* Канарейка сторожа доставки заявок (tools/watchdogs/check-lead-delivery.js
    мережі). Контракт той самий, що в api/lead.php основного сайту й у
@@ -134,8 +154,10 @@ function handleLead(req, res) {
       return send(res, 502, JSON.stringify({ result: 'error', message: 'Сервіс тимчасово недоступний' }));
     }
 
+    const meta = metaCapi.parseMeta(p.get('meta') || '');
     const marks = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'referrer', 'landing_path', 'page']
       .map(k => (p.get(k) ? `${k}=${p.get(k)}` : null))
+      .concat(meta.fbclid ? [`fbclid=${meta.fbclid.slice(0, 120)}`] : [])
       .filter(Boolean)
       .join(' · ');
 
@@ -147,6 +169,13 @@ function handleLead(req, res) {
     };
     const age = parseInt(p.get('childAge'), 10);
     if (age >= 3 && age <= 18) payload.age = age;
+    /* Мітки кліку окремими полями, як їх шле api/lead.php: gclid (click_id)
+       і fbclid — для вивантаження оплат у рекламні кабінети. */
+    if (p.get('click_id') && p.get('click_type')) {
+      payload.click_id = String(p.get('click_id')).slice(0, 300);
+      payload.click_type = String(p.get('click_type')).slice(0, 20);
+    }
+    if (meta.fbclid) payload.fbclid = meta.fbclid;
 
     try {
       const r = await fetch(CRM, {
@@ -161,6 +190,14 @@ function handleLead(req, res) {
       }
       console.log(`[LEAD] ${name} | ${payload.phone} | ${marks || 'без міток'}`);
       send(res, 200, JSON.stringify({ result: 'success', stored: ['crm'] }));
+      /* Lead у Meta — після відповіді й без await: заявка вже прийнята, і
+         ні збій, ні повільність Graph API її не стосуються. */
+      metaCapi.sendLead(META, metaCapi.buildBody(meta, {
+        phone: payload.phone,
+        contentName: 'trial_lesson',
+        ip: clientIp(req),
+        ua: String(req.headers['user-agent'] || '').slice(0, 400),
+      }, META.testCode));
     } catch (err) {
       console.error(`[LEAD] CRM недоступна: ${err.message} | ${payload.phone}`);
       send(res, 502, JSON.stringify({ result: 'error', message: 'Не вдалося передати заявку' }));

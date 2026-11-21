@@ -35,8 +35,8 @@ STAGE=$(mktemp -d)
 trap 'rm -rf "$STAGE"' EXIT
 mkdir -p "$STAGE/public"
 cp lp/probnyi-urok/index.html "$STAGE/public/index.html"
-PAGES="lp/probnyi-urok/index.html offer.html privacy.html terms.html"
-for p in offer.html privacy.html terms.html; do cp "$p" "$STAGE/public/$p"; done
+PAGES="lp/probnyi-urok/index.html offer.html privacy.html terms.html cookies.html"
+for p in offer.html privacy.html terms.html cookies.html; do cp "$p" "$STAGE/public/$p"; done
 
 # Локальні посилання сторінок: /css/…, /js/…, /icons/…, /fonts/…, /logo.svg.
 # Шрифти тягне ще й css (url(/fonts/…)), тож дивимось і в css-файли.
@@ -51,14 +51,16 @@ for f in $(echo "$refs" | sort -u); do
   cp "$f" "$STAGE/public/$f"
 done
 cp tools/adlanding/server/server.js "$STAGE/server.js"
+cp tools/adlanding/server/meta-capi.js "$STAGE/meta-capi.js"
 cp tools/adlanding/server/setup-vhost.sh "$STAGE/setup-vhost.sh"
 
 echo "файли лендінга:"; (cd "$STAGE" && find . -type f | sort | sed 's/^/  /')
 
 # Без --chmod: rsync у macOS (openrsync) його не знає. Права ставимо на сервері.
 rsync -rlz "$STAGE/public/" "$HOST:$DIR/public/"
-rsync -rlz "$STAGE/server.js" "$STAGE/setup-vhost.sh" "$HOST:$DIR/"
-ssh $HOST "find $DIR/public -type d -exec chmod 755 {} + ; find $DIR/public -type f -exec chmod 644 {} + ; chmod 644 $DIR/server.js; node --check $DIR/server.js && pm2 restart ff-landing --update-env >/dev/null && sleep 1 && curl -s http://127.0.0.1:3030/api/lead.php"
+# .env лендінга (META_CAPI_TOKEN тощо) живе в $DIR/.env і сюди не потрапляє.
+rsync -rlz "$STAGE/server.js" "$STAGE/meta-capi.js" "$STAGE/setup-vhost.sh" "$HOST:$DIR/"
+ssh $HOST "find $DIR/public -type d -exec chmod 755 {} + ; find $DIR/public -type f -exec chmod 644 {} + ; chmod 644 $DIR/server.js $DIR/meta-capi.js; node --check $DIR/server.js && node --check $DIR/meta-capi.js && pm2 restart ff-landing --update-env >/dev/null && sleep 1 && curl -s http://127.0.0.1:3030/api/lead.php"
 echo
 probe=$(curl -s https://lp.fluent-fox.site/api/lead.php)
 echo "проба: $probe"

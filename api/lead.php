@@ -28,7 +28,7 @@ header('Cache-Control: no-store');
 // Версія ассетів — руками, як на юридичних сторінках і на 404: цей файл не
 // складається генератором. Розходження ловить python tools/audit/assets.py,
 // який заради цього рядка й почав дивитись у .php.
-const ASSET_VERSION = '20261118c';
+const ASSET_VERSION = '20261121a';
 
 const LOG_NAME       = 'lead-errors.log';
 const RATE_MAX       = 10;          // заявок з однієї адреси
@@ -433,6 +433,15 @@ foreach (['utm_source', 'utm_medium', 'utm_campaign', 'referrer',
     }
 }
 
+// Дані для серверної події Lead у Meta (js/pixel.js → поле `meta`, JSON).
+// fbclid — мітка кліку з реклами Meta, перше торкання; йде в CRM окремим
+// полем поряд із gclid і в нотатки (поки хаб не завів під нього колонку).
+require_once __DIR__ . '/meta-capi.php';
+$meta = meta_parse((string) ($_POST['meta'] ?? ''));
+if (!empty($meta['fbclid'])) {
+    $attr['fbclid'] = $meta['fbclid'];
+}
+
 if (mb_strlen($name) < 2) {
     fail(400, 'Вкажіть імʼя (мінімум 2 символи).');
 }
@@ -469,7 +478,8 @@ if ($crm['configured']) {
         'notify'     => true,
         'notes'      => 'Заявка з fluent-fox.site · пробний урок'
                         . ($fmt !== '' ? ' · формат: ' . $fmt : '')
-                        . ' · мова сторінки: ' . $lang,
+                        . ' · мова сторінки: ' . $lang
+                        . (!empty($meta['fbclid']) ? ' · fbclid: ' . mb_substr($meta['fbclid'], 0, 120) : ''),
     ];
     if ($age > 0) {
         $payload['age'] = $age;
@@ -586,6 +596,26 @@ if ($notify !== '' && !$crm_ok) {
 // відповідаємо помилкою чесно — форма покаже червоний блок і телефон.
 
 if ($crm_ok || $sheet_ok) {
+    // Lead у Meta (Conversions API) — після відповіді відвідувачу: respond()
+    // робить exit, і shutdown-функція спершу відпускає з'єднання, а вже потім
+    // іде в Graph API. Без згоди чи без токена тіла немає — нічого не шлемо.
+    if (meta_enabled($config)) {
+        $capi = meta_build_body($meta, [
+            'phone'        => $phone,
+            'content_name' => 'trial_lesson',
+            'ip'           => $ip,
+            'ua'           => mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 400),
+        ], trim((string) ($config['meta_test_event_code'] ?? '')));
+        if ($capi !== null) {
+            register_shutdown_function(static function () use ($config, $capi): void {
+                meta_finish_response();
+                [$ok, $code, $body] = meta_send($config, $capi);
+                if (!$ok) {
+                    log_problem(sprintf('META FAIL http=%d %s', $code, substr($body, 0, 300)));
+                }
+            });
+        }
+    }
     respond(200, [
         'result' => 'success',
         'stored' => array_values(array_filter([
