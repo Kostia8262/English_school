@@ -91,6 +91,12 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     /* eslint-enable */
+    /* Автоподії (SubscribedButtonClick на кожну кнопку) вимкнені навмисно.
+       fbq('consent','revoke') подій не викидає, а притримує й відправляє
+       після наступного grant — тобто кліки, зроблені вже після «Тільки
+       необхідні», поїхали б у Meta, щойно людина знову натисне «Прийняти
+       всі». Наш код за відкликаної згоди нічого не шле; автоподії — шли б. */
+    window.fbq('set', 'autoConfig', false, PIXEL_ID);
     window.fbq('init', PIXEL_ID);
     window.fbq('track', 'PageView');
   }
@@ -102,6 +108,13 @@
     try { localStorage.setItem(KEY, v); } catch (e) { /* приватне вікно */ }
     /* window.gtag, а не локальна змінна: снипет GA міг перевизначити її. */
     if (typeof window.gtag === 'function') window.gtag('consent', 'update', v === 'all' ? GRANTED : DENIED);
+    /* Передумали через «Налаштування cookie» в підвалі. Піксель, раз
+       піднятий, зі сторінки не вивантажиш — тому згоду відкликаємо в ньому
+       самому: після revoke fbq не шле жодної події, після grant — знову шле.
+       Cookie _fbp/_ga не чіпаємо: без згоди нові події їх не використовують. */
+    if (loaded && typeof window.fbq === 'function') {
+      try { window.fbq('consent', v === 'all' ? 'grant' : 'revoke'); } catch (e) { /* не ламаємо сторінку */ }
+    }
     if (v === 'all') loadPixel();
   }
 
@@ -175,7 +188,7 @@
 
   /* Lead — тільки якщо піксель справді піднятий, тобто є згода. */
   function trackLead(eventId, contentName) {
-    if (!loaded || typeof window.fbq !== 'function') return false;
+    if (!loaded || choice !== 'all' || typeof window.fbq !== 'function') return false;
     try {
       window.fbq('track', 'Lead', { content_name: contentName || 'trial_lesson' }, { eventID: eventId });
       return true;
@@ -269,13 +282,63 @@
     });
   }
 
+  /* ── «Налаштування cookie» у підвалі ────────────────────────────────────
+     Рішення власника 21.11.2026: посилання в підвалі КОЖНОЇ сторінки знову
+     відкриває плашку, щоб людина могла передумати в будь-який бік.
+     Підвали народжуються в п'яти різних місцях (головна, посадкові, статті,
+     лістинги блогу, лендінг на піддомені — той ще й переписує всі «#…»
+     на адреси основного сайту), тому посилання додає цей файл: він стоїть
+     на всіх сторінках, і нова сторінка будь-якого генератора отримає його
+     сама. Сторінки, де посилання вже є в розмітці (юридичні), не чіпаємо.
+     Місце — поряд із посиланням на політику конфіденційності, з тим самим
+     класом; якщо його в підвалі немає — після останнього посилання рядка. */
+  function addFooterLink() {
+    if (document.querySelector('[data-cookie-settings]')) return;
+    var foots = document.getElementsByTagName('footer');
+    var f = foots[foots.length - 1];
+    if (!f) return;
+    var ref = null;
+    var links = f.querySelectorAll('a[href*="privacy"]');
+    for (var i = 0; i < links.length; i++) {
+      if (!/\bunderline\b/.test(links[i].className)) { ref = links[i]; break; }
+    }
+    if (!ref) {
+      var rows = f.querySelectorAll('.flex-wrap');
+      for (var r = 0; r < rows.length && !ref; r++) {
+        var as = rows[r].querySelectorAll('a[href]');
+        if (as.length) ref = as[as.length - 1];
+      }
+    }
+    var ru = (document.documentElement.lang || '').slice(0, 2) === 'ru';
+    var a = document.createElement('a');
+    a.href = '#';
+    a.setAttribute('data-cookie-settings', '');
+    a.setAttribute('data-ru', 'Настройки cookie');
+    a.textContent = ru ? 'Настройки cookie' : 'Налаштування cookie';
+    if (ref) {
+      a.className = ref.className;
+      ref.parentNode.insertBefore(a, ref.nextSibling);
+    } else {
+      var p = document.createElement('p');
+      css(p, { margin: '12px 0 0', fontSize: '12px', textAlign: 'center' });
+      a.className = 'hover:text-fox-400 transition-colors';
+      p.appendChild(a);
+      (f.firstElementChild || f).appendChild(p);
+    }
+  }
+
+  /* Делеговано: посилання може з'явитися пізніше (додає addFooterLink, або
+     воно в розмітці юридичної сторінки). */
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target.closest('[data-cookie-settings]') : null;
+    if (!t) return;
+    e.preventDefault();
+    showBanner();
+  });
+
   function onReady() {
     if (choice !== 'all' && choice !== 'necessary') setTimeout(showBanner, 800);
-    /* Кнопка «Змінити налаштування cookie» на /cookies. */
-    var els = document.querySelectorAll('[data-cookie-settings]');
-    for (var i = 0; i < els.length; i++) {
-      els[i].addEventListener('click', function (e) { e.preventDefault(); showBanner(); });
-    }
+    addFooterLink();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', onReady);

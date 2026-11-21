@@ -15,7 +15,7 @@
 <!-- Сторінка не тягне Tailwind, тому @font-face бере з окремого файла.
      Раніше тут стояла таблиця з fonts.googleapis.com — блокувальний
      запит на чужий домен заради трьох вагів. -->
-<link rel="stylesheet" href="/css/fonts.css?v=20261121b"/>
+<link rel="stylesheet" href="/css/fonts.css?v=20261121c"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Nunito',Arial,sans-serif;background:#FFF5EF;color:#1a1a2e;line-height:1.8;font-size:15px}
@@ -42,7 +42,7 @@ strong{font-weight:700;color:#0f0f1a}
 .doc-nav a{color:#E54E1A}.doc-nav a:hover{text-decoration:underline}
 </style>
 <!-- Згода на cookie + Consent Mode v2 + піксель Meta — СТРОГО ДО gtag (див. js/pixel.js) -->
-<script src="/js/pixel.js?v=20261121b"></script>
+<script src="/js/pixel.js?v=20261121c"></script>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60LSESFTV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K60LSESFTV');</script>
@@ -132,7 +132,7 @@ strong{font-weight:700;color:#0f0f1a}
 <h2>4. Надання згоди та відмова від cookie</h2>
 
 <h3>4.0. Плашка cookie на Сайті</h3>
-<p>Під час першого відвідування Сайт показує плашку з вибором: «Прийняти всі» (аналітичні cookie Google Analytics і рекламні cookie, зокрема піксель Meta) або «Тільки необхідні». До вашого вибору і після «Тільки необхідні» Google Analytics працює в режимі Google Consent Mode v2 без згоди: файли cookie Google (<code>_ga</code> тощо) не встановлюються, а Google отримує лише знеособлені сигнали без ідентифікаторів; піксель Meta не завантажується зовсім. Вибір зберігається у cookie <code>ff_cookie_consent</code> на домені fluent-fox.site (діє і на lp.fluent-fox.site) до 6 місяців. Змінити або відкликати згоду можна будь-коли: <a href="#" data-cookie-settings>змінити налаштування cookie</a>.</p>
+<p>Під час першого відвідування Сайт показує плашку з вибором: «Прийняти всі» (аналітичні cookie Google Analytics і рекламні cookie, зокрема піксель Meta) або «Тільки необхідні». До вашого вибору і після «Тільки необхідні» Google Analytics працює в режимі Google Consent Mode v2 без згоди: файли cookie Google (<code>_ga</code> тощо) не встановлюються, а Google отримує лише знеособлені сигнали без ідентифікаторів; піксель Meta не завантажується зовсім. Вибір зберігається у cookie <code>ff_cookie_consent</code> на домені fluent-fox.site (діє і на lp.fluent-fox.site) до 6 місяців. Змінити вибір або відкликати згоду можна будь-коли — посиланням <a href="#" data-cookie-settings>«Налаштування cookie»</a> у підвалі кожної сторінки Сайту: воно знову відкриває плашку. Після «Тільки необхідні» Google Analytics повертається в режим без cookie, а піксель Meta перестає надсилати будь-які події (згоду в ньому відкликано); вже встановлені cookie <code>_ga</code> / <code>_fbp</code> можна видалити в налаштуваннях браузера (п. 4.1).</p>
 
 <h3>4.1. Керування через браузер</h3>
 <p>Ви можете керувати файлами cookie безпосередньо у налаштуваннях браузера. Відключення обов'язкових cookie може призвести до некоректної роботи Сайту.</p>
@@ -210,7 +210,7 @@ strong{font-weight:700;color:#0f0f1a}
 <ul>
   <li><strong>на доступ</strong> — отримати інформацію про те, які cookie-дані ми зберігаємо;</li>
   <li><strong>на видалення</strong> — вимагати видалення ваших даних, зібраних через cookie;</li>
-  <li><strong>на відкликання згоди</strong> — будь-коли відкликати згоду на необов'язкові cookie;</li>
+  <li><strong>на відкликання згоди</strong> — будь-коли відкликати згоду на необов'язкові cookie посиланням «Налаштування cookie» в підвалі Сайту;</li>
   <li><strong>на обмеження обробки</strong> — обмежити використання ваших даних.</li>
 </ul>
 <p>Для реалізації прав надішліть запит на <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a>. Ми відповімо протягом 30 календарних днів.</p>
@@ -228,7 +228,7 @@ strong{font-weight:700;color:#0f0f1a}
 </ul>
 
 <nav class="doc-nav" aria-label="Навігація по документах">
-  <p><strong>Інші документи:</strong> <a href="privacy.html">Конфіденційність</a> · <a href="offer.html">Публічна оферта</a> · <a href="returns.html">Повернення коштів</a> · <a href="terms.html">Правила використання</a></p>
+  <p><strong>Інші документи:</strong> <a href="privacy.html">Конфіденційність</a> · <a href="offer.html">Публічна оферта</a> · <a href="returns.html">Повернення коштів</a> · <a href="terms.html">Правила використання</a> · <a href="#" data-cookie-settings>Налаштування cookie</a></p>
   <p><strong>FluentFox:</strong> <a href="/#pricing">Тарифи</a> · <a href="/#ages">Вікові групи</a> · <a href="/#contact">Записатись на урок</a></p>
 </nav>
 <div class="footer-note">© 2026 FluentFox / ФОП Піменов К.Ю. · <a href="mailto:fluent.fox.study@gmail.com">fluent.fox.study@gmail.com</a></div>
