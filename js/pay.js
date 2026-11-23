@@ -91,6 +91,7 @@
       })
       .then(function (res) {
         if (res.ok && res.data && res.data.pageUrl) {
+          try { sessionStorage.setItem('ff_pay_lang', lang()); } catch (e) {}
           window.location.href = res.data.pageUrl;
           return;
         }
