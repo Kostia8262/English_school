@@ -28,7 +28,7 @@ header('Cache-Control: no-store');
 // Версія ассетів — руками, як на юридичних сторінках і на 404: цей файл не
 // складається генератором. Розходження ловить python tools/audit/assets.py,
 // який заради цього рядка й почав дивитись у .php.
-const ASSET_VERSION = '20261121c';
+const ASSET_VERSION = '20261124b';
 
 const LOG_NAME       = 'lead-errors.log';
 const RATE_MAX       = 10;          // заявок з однієї адреси
@@ -425,8 +425,10 @@ $fmt   = clean((string) ($_POST['format'] ?? ''), 40);
 // Вона потрібна, щоб потім вивантажити в Ads саме ОПЛАТИ, а не відправлені
 // форми: ставки мають вчитися на тих, хто заплатив.
 $attr = [];
-foreach (['utm_source', 'utm_medium', 'utm_campaign', 'referrer',
-          'landing_path', 'click_id', 'click_type'] as $key) {
+// 24.11.2026: оголошення (utm_content), ключ (utm_term) і кліки Meta / реклами
+// ChatGPT з адреси — та сама схема, що в мережі; хаб сам перевіряє їх формат.
+foreach (['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+          'fbclid', 'oppref', 'referrer', 'landing_path', 'click_id', 'click_type'] as $key) {
     $val = clean((string) ($_POST[$key] ?? ''), 300);
     if ($val !== '') {
         $attr[$key] = $val;
@@ -438,7 +440,7 @@ foreach (['utm_source', 'utm_medium', 'utm_campaign', 'referrer',
 // полем поряд із gclid і в нотатки (поки хаб не завів під нього колонку).
 require_once __DIR__ . '/meta-capi.php';
 $meta = meta_parse((string) ($_POST['meta'] ?? ''));
-if (!empty($meta['fbclid'])) {
+if (!empty($meta['fbclid']) && empty($attr['fbclid'])) {
     $attr['fbclid'] = $meta['fbclid'];
 }
 

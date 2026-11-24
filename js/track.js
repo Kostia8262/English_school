@@ -150,6 +150,8 @@
     var q = query();
     if (!q) return false;
     if (q.get('utm_source') || q.get('utm_medium') || q.get('utm_campaign')) return true;
+    /* Клік Meta і реклами ChatGPT — теж новий захід із реклами (24.11.2026). */
+    if ((q.get('fbclid') || '').trim() || (q.get('oppref') || '').trim()) return true;
     /* Автопозначка Ads кладе в адресу лише gclid, без utm-міток, а referrer
        частину разів приходить порожнім. Без цієї перевірки рекламний захід
        виглядав би внутрішнім переходом. */
@@ -180,6 +182,12 @@
       utm_source:   q.get('utm_source')   || '',
       utm_medium:   q.get('utm_medium')   || '',
       utm_campaign: q.get('utm_campaign') || '',
+      /* 24.11.2026 — та сама схема, що в мережі (js/phone-field.js сайтів мережі):
+         оголошення, ключ і кліки Meta / реклами ChatGPT з адреси. */
+      utm_content:  q.get('utm_content')  || '',
+      utm_term:     q.get('utm_term')     || '',
+      fbclid:       (q.get('fbclid') || '').trim().slice(0, 500),
+      oppref:       (q.get('oppref') || '').trim().slice(0, 512),
       referrer:     document.referrer     || '',
       landing_path: location.pathname + location.search,
       at:           Date.now()
@@ -192,7 +200,8 @@
     var out = {};
     var box = read(ATTR_KEY, ATTR_TTL);
     if (box) {
-      ['utm_source', 'utm_medium', 'utm_campaign', 'referrer', 'landing_path']
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+       'fbclid', 'oppref', 'referrer', 'landing_path']
         .forEach(function (k) { if (box[k]) out[k] = box[k]; });
     }
     var click = read(CLICK_KEY, CLICK_TTL);

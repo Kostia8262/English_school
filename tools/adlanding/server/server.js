@@ -176,6 +176,14 @@ function handleLead(req, res) {
       payload.click_type = String(p.get('click_type')).slice(0, 20);
     }
     if (meta.fbclid) payload.fbclid = meta.fbclid;
+    /* 24.11.2026: мітки — окремими полями, як у мережі, а не лише текстом у
+       notes: інакше канал заявки в CRM не рахується (server/lead-channel.js хаба).
+       Хаб сам ріже довжину й перевіряє формат fbclid / oppref. */
+    for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+                     'referrer', 'landing_path', 'fbclid', 'oppref']) {
+      const v = String(p.get(k) || '').trim();
+      if (v && !payload[k]) payload[k] = v.slice(0, 600);
+    }
 
     try {
       const r = await fetch(CRM, {
